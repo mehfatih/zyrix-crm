@@ -1,15 +1,503 @@
+/* ============================================================================
+   ZYRIX CRM — Global Styles
+   ============================================================================
+   Brand: Exclusively cyan/sky/azure tones — NO dark or gloomy colors
+   Fonts: Cairo (Arabic RTL) + Inter (EN/TR LTR)
+   ============================================================================ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (Variables)
+   ============================================================================ */
+:root {
+  /* Primary — Cyan */
+  --color-primary-50: 236 254 255;
+  --color-primary-100: 207 250 254;
+  --color-primary-200: 165 243 252;
+  --color-primary-300: 103 232 249;
+  --color-primary-400: 34 211 238;
+  --color-primary-500: 6 182 212;
+  --color-primary-600: 8 145 178;
+  --color-primary-700: 14 116 144;
+  --color-primary-800: 21 94 117;
+  --color-primary-900: 22 78 99;
 
-html { scroll-behavior: smooth; }
+  /* Sky */
+  --color-sky-50: 240 249 255;
+  --color-sky-100: 224 242 254;
+  --color-sky-200: 186 230 253;
+  --color-sky-300: 125 211 252;
+  --color-sky-400: 56 189 248;
+  --color-sky-500: 14 165 233;
 
-body {
-  font-family: 'Cairo', 'Segoe UI', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Backgrounds */
+  --color-bg-base: 240 249 255;
+  --color-bg-card: 236 254 255;
+  --color-bg-subtle: 248 250 252;
+  --color-bg-elevated: 255 255 255;
+
+  /* Text */
+  --color-ink: 22 78 99;
+  --color-ink-mid: 14 116 144;
+  --color-ink-light: 71 85 105;
+
+  /* Borders */
+  --color-line: 186 230 253;
+  --color-line-soft: 224 242 254;
+
+  /* Semantic */
+  --color-success: 5 150 105;
+  --color-warning: 245 158 11;
+  --color-danger: 220 38 38;
+  --color-info: 14 165 233;
+
+  /* Shadows (cyan-tinted) */
+  --shadow-sm: 0 1px 3px 0 rgba(8, 145, 178, 0.08);
+  --shadow-md: 0 6px 12px -2px rgba(8, 145, 178, 0.10);
+  --shadow-lg: 0 10px 20px -3px rgba(8, 145, 178, 0.12);
+  --shadow-glow: 0 0 24px rgba(34, 211, 238, 0.35);
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #F0F9FF 0%, #ECFEFF 40%, #BAE6FD 100%);
+  --gradient-cta: linear-gradient(135deg, #0891B2 0%, #0E7490 100%);
+  --gradient-accent: linear-gradient(90deg, #22D3EE 0%, #0891B2 100%);
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --header-height: 72px;
+  --container-max: 1400px;
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
-[dir="rtl"] body { font-family: 'Cairo', 'Noto Naskh Arabic', system-ui, sans-serif; }
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-bg-base text-ink antialiased;
+    font-feature-settings: "cv11", "ss01", "ss03";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* Arabic — Cairo font */
+  html[lang="ar"] body {
+    font-family: "Cairo", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+      sans-serif;
+    font-feature-settings: normal;
+  }
+
+  /* English / Turkish — Inter font */
+  html[lang="en"] body,
+  html[lang="tr"] body {
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+      sans-serif;
+  }
+
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-ink-mid font-semibold tracking-tight;
+    text-wrap: balance;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+    font-weight: 800;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl leading-tight;
+    font-weight: 700;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl leading-snug;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Links */
+  a {
+    @apply transition-colors duration-200;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Buttons — reset */
+  button {
+    @apply transition-all duration-200;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  /* Form elements — remove ugly native styles */
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+
+  /* Remove number input arrows */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Images — responsive by default */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ============================================================================
+     SCROLLBAR — Custom cyan-tinted
+     ============================================================================ */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--color-bg-card));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-sky-200));
+    border-radius: var(--radius-lg);
+    border: 2px solid rgb(var(--color-bg-card));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-primary-400));
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--color-sky-300)) rgb(var(--color-bg-card));
+  }
+
+  /* ============================================================================
+     SELECTION — Cyan highlight
+     ============================================================================ */
+  ::selection {
+    background: rgb(var(--color-primary-200));
+    color: rgb(var(--color-primary-900));
+  }
+
+  ::-moz-selection {
+    background: rgb(var(--color-primary-200));
+    color: rgb(var(--color-primary-900));
+  }
+
+  /* ============================================================================
+     FOCUS — Accessible & cyan
+     ============================================================================ */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-primary-500));
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ============================================================================
+     RTL SUPPORT
+     ============================================================================ */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="ltr"] {
+    text-align: left;
+  }
+}
+
+/* ============================================================================
+   COMPONENT LAYER — Reusable Zyrix components
+   ============================================================================ */
+@layer components {
+  /* Glass morphism (light, never dark) */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(186, 230, 253, 0.5);
+  }
+
+  .glass-soft {
+    background: rgba(240, 249, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(186, 230, 253, 0.3);
+  }
+
+  /* Gradient text (brand) */
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Hero section background */
+  .hero-bg {
+    background: var(--gradient-hero);
+    position: relative;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+        circle at 20% 30%,
+        rgba(103, 232, 249, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(56, 189, 248, 0.15) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+  }
+
+  /* CTA button base */
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           rounded-xl font-semibold text-white
+           shadow-md hover:shadow-lg
+           transition-all duration-200
+           hover:scale-[1.02] active:scale-[0.98];
+    background: var(--gradient-cta);
+  }
+
+  .btn-cta:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           rounded-xl font-semibold
+           bg-white text-primary-700
+           border-2 border-primary-200
+           hover:border-primary-400 hover:bg-primary-50
+           transition-all duration-200;
+  }
+
+  /* Card component */
+  .card {
+    @apply bg-white rounded-2xl p-6
+           border border-line-soft
+           shadow-sm hover:shadow-md
+           transition-shadow duration-300;
+  }
+
+  .card-gradient {
+    @apply rounded-2xl p-6 border border-line;
+    background: var(--gradient-hero);
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1
+           rounded-full text-xs font-semibold
+           bg-primary-50 text-primary-700
+           border border-primary-200;
+  }
+
+  .badge-dot {
+    @apply inline-block w-1.5 h-1.5 rounded-full bg-primary-500;
+  }
+
+  /* Section padding */
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Container shortcut */
+  .container-zyrix {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--container-max);
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--color-bg-card)) 0%,
+      rgb(var(--color-sky-100)) 50%,
+      rgb(var(--color-bg-card)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-line-soft my-8;
+  }
+
+  .divider-gradient {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(var(--color-line)) 50%,
+      transparent 100%
+    );
+    @apply my-8;
+  }
+}
+
+/* ============================================================================
+   UTILITY LAYER — Small utility helpers
+   ============================================================================ */
+@layer utilities {
+  /* Hide scrollbar but allow scroll */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Logical properties for RTL/LTR */
+  .ms-auto-rtl {
+    margin-inline-start: auto;
+  }
+
+  .me-auto-rtl {
+    margin-inline-end: auto;
+  }
+
+  /* Text balance (nice for headlines) */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Safe area insets (iOS notch support) */
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .ps-safe {
+    padding-inline-start: env(safe-area-inset-left);
+  }
+
+  .pe-safe {
+    padding-inline-end: env(safe-area-inset-right);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+    color: black !important;
+  }
+}

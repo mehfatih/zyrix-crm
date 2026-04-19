@@ -1,26 +1,79 @@
 {
-  "name": "zyrix-pay",
-  "version": "1.0.0",
+  "name": "zyrix-crm",
+  "version": "0.1.0",
   "private": true,
+  "description": "Zyrix CRM — The first CRM truly built for MENA & Turkey. WhatsApp-native, Arabic dialect-aware, integrated with Zyrix Pay & FinSuite.",
+  "author": {
+    "name": "Mehmet Fatih",
+    "url": "https://github.com/mehfatih"
+  },
+  "homepage": "https://crm.zyrix.co",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mehfatih/zyrix-crm.git"
+  },
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "clean": "rm -rf .next out node_modules/.cache",
+    "postinstall": "echo 'Zyrix CRM dependencies installed successfully'"
   },
   "dependencies": {
-    "next": "^16.2.4",
-    "next-intl": "^3.26.3",
-    "react": "^19",
-    "react-dom": "^19"
+    "@hookform/resolvers": "3.9.1",
+    "@tanstack/react-query": "^5.99.2",
+    "@types/js-cookie": "^3.0.6",
+    "axios": "1.7.9",
+    "clsx": "2.1.1",
+    "date-fns": "4.1.0",
+    "framer-motion": "11.15.0",
+    "js-cookie": "^3.0.5",
+    "lucide-react": "0.469.0",
+    "next": "16.2.4",
+    "next-intl": "4.4.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-hook-form": "7.54.2",
+    "sonner": "1.7.1",
+    "tailwind-merge": "2.6.0",
+    "zod": "3.24.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/node": "22.10.2",
+    "@types/react": "19.0.2",
+    "@types/react-dom": "19.0.2",
+    "autoprefixer": "10.4.20",
+    "eslint": "9.17.0",
+    "eslint-config-next": "16.2.4",
+    "postcss": "8.4.49",
+    "prettier": "3.4.2",
+    "prettier-plugin-tailwindcss": "0.6.9",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.3%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

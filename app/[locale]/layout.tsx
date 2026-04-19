@@ -1,11 +1,30 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import {
+  locales,
+  type Locale,
+  isValidLocale,
+  getDirection,
+  localeToISO,
+} from "@/i18n";
+import { AuthProvider } from "@/lib/auth/context";
 import "../globals.css";
 
-const locales = ["en", "ar", "tr"];
 const BASE = "https://crm.zyrix.co";
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export const viewport: Viewport = {
+  themeColor: "#0891B2",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
 
 export async function generateMetadata({
   params,
@@ -16,49 +35,116 @@ export async function generateMetadata({
 
   const meta = {
     en: {
-      title: "FinSuite — Professional Invoicing & Finance Suite for MENA & Turkey",
-      description: "Invoicing, VAT/KDV compliance, expense tracking, and custom checkout pages. Accept payments across Gulf, Iraq & Turkey with 99.9% uptime.",
-      keywords: "payment gateway MENA, smart routing, COD Iraq, Gulf payments, Moyasar, iyzico, payment links",
+      title: "Zyrix CRM — The CRM Built for MENA & Turkey",
+      titleTemplate: "%s | Zyrix CRM",
+      description:
+        "WhatsApp-native CRM with Arabic dialect AI. Sales pipeline, customer loyalty, AI CFO dashboard, and commission engine — all in one platform. Built for Saudi, UAE, Turkey, Iraq & Egypt.",
+      keywords:
+        "CRM MENA, CRM Turkey, Arabic CRM, WhatsApp CRM, Salesforce alternative, HubSpot alternative, Zoho alternative, Bitrix24 alternative, AI CFO, sales pipeline, customer loyalty",
     },
     ar: {
-      title: "زيريكس Pay — بوابة الدفع الذكية للشرق الأوسط وتركيا",
-      description: "توجيه متعدد البوابات، إعادة محاولة ذكية، دعم COD، وصفحات Checkout مخصصة. اقبل المدفوعات في الخليج والعراق وتركيا بضمان تشغيل 99.9%.",
-      keywords: "بوابة دفع, توجيه متعدد البوابات, دفع عند الاستلام, مدفوعات الخليج",
+      title: "Zyrix CRM — أول CRM حقيقي لمنطقة الشرق الأوسط وتركيا",
+      titleTemplate: "%s | Zyrix CRM",
+      description:
+        "نظام CRM ذكي مع واتساب مدمج ودعم اللهجات العربية. خط مبيعات، ولاء عملاء، لوحة المدير المالي الذكية، ونظام عمولات — كل شيء في منصة واحدة. مصمّم للسعودية والإمارات وتركيا والعراق ومصر.",
+      keywords:
+        "CRM عربي, نظام إدارة علاقات العملاء, CRM واتساب, بديل سيلز فورس, بديل هبسبوت, خط المبيعات, ولاء العملاء, المدير المالي الذكي, اللهجات العربية",
     },
     tr: {
-      title: "FinSuite — MENA ve Türkiye için Akıllı Ödeme Altyapısı",
-      description: "Çoklu ağ geçidi yönlendirme, akıllı yeniden deneme, COD desteği ve özel ödeme sayfaları.",
-      keywords: "ödeme altyapısı, çoklu ağ geçidi, kapıda ödeme, Körfez ödemeleri",
+      title: "Zyrix CRM — MENA ve Türkiye için Gerçek CRM",
+      titleTemplate: "%s | Zyrix CRM",
+      description:
+        "WhatsApp entegreli ve Arapça lehçelerini anlayan akıllı CRM. Satış hunisi, müşteri sadakati, AI CFO paneli ve komisyon motoru — hepsi tek platformda. Suudi Arabistan, BAE, Türkiye, Irak ve Mısır için tasarlandı.",
+      keywords:
+        "CRM Türkiye, MENA CRM, Arapça CRM, WhatsApp CRM, Salesforce alternatifi, HubSpot alternatifi, satış hunisi, müşteri sadakati, AI CFO, komisyon yönetimi",
     },
-  };
+  } as const;
 
-  const current = meta[locale as keyof typeof meta] || meta.en;
+  const current = meta[locale as Locale] ?? meta.en;
   const path = locale === "en" ? "" : `/${locale}`;
+  const isoLocale = localeToISO[locale as Locale] ?? "en-US";
 
   return {
-    title: current.title,
+    title: {
+      default: current.title,
+      template: current.titleTemplate,
+    },
     description: current.description,
     keywords: current.keywords,
+    applicationName: "Zyrix CRM",
+    authors: [{ name: "Mehmet Fatih", url: "https://github.com/mehfatih" }],
+    creator: "Zyrix",
+    publisher: "Zyrix",
     metadataBase: new URL(BASE),
+
     alternates: {
       canonical: `${BASE}${path}`,
-      languages: { en: `${BASE}/en`, ar: `${BASE}/ar`, tr: `${BASE}/tr` },
+      languages: {
+        en: `${BASE}/en`,
+        ar: `${BASE}/ar`,
+        tr: `${BASE}/tr`,
+        "x-default": `${BASE}/en`,
+      },
     },
+
     openGraph: {
       title: current.title,
       description: current.description,
       url: `${BASE}${path}`,
-      siteName: "FinSuite",
+      siteName: "Zyrix CRM",
       type: "website",
-      images: [{ url: `${BASE}/og-image.png`, width: 1200, height: 630 }],
+      locale: isoLocale.replace("-", "_"),
+      alternateLocale: Object.values(localeToISO)
+        .map((l) => l.replace("-", "_"))
+        .filter((l) => l !== isoLocale.replace("-", "_")),
+      images: [
+        {
+          url: `${BASE}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: current.title,
+          type: "image/png",
+        },
+      ],
     },
+
     twitter: {
       card: "summary_large_image",
       title: current.title,
       description: current.description,
       images: [`${BASE}/og-image.png`],
-      creator: "@zyrixpay",
+      creator: "@zyrixcrm",
+      site: "@zyrixcrm",
     },
+
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+
+    icons: {
+      icon: [
+        { url: "/logo.png", type: "image/png" },
+      ],
+      apple: [
+        { url: "/logo.png", sizes: "180x180", type: "image/png" },
+      ],
+      shortcut: "/logo.png",
+    },
+
+    other: {
+      "msapplication-TileColor": "#0891B2",
+      "msapplication-TileImage": "/logo.png",
+    },
+
+    category: "business",
   };
 }
 
@@ -70,24 +156,65 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!locales.includes(locale)) notFound();
+
+  if (!isValidLocale(locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
   const messages = await getMessages();
+  const direction = getDirection(locale);
+  const isArabic = locale === "ar";
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+    <html
+      lang={locale}
+      dir={direction}
+      suppressHydrationWarning
+      className="scroll-smooth"
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
-        <link rel="icon" href="/icon.png" type="image/png" />
-        <meta name="theme-color" content="#6D28D9" />
+
+        {isArabic && (
+          <link
+            href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+          />
+        )}
+
+        {!isArabic && (
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+          />
+        )}
+
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="default"
+        />
+        <meta name="apple-mobile-web-app-title" content="Zyrix CRM" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="color-scheme" content="light" />
       </head>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
+
+      <body
+        className={`${isArabic ? "font-cairo" : "font-inter"} bg-bg-base text-ink antialiased`}
+        suppressHydrationWarning
+      >
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <AuthProvider locale={locale}>
+            {children}
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,0 +1,258 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Loader2, Eye, EyeOff, Building2, User, Mail, Phone, Lock } from "lucide-react";
+import { useAuth } from "@/lib/auth/context";
+import { extractErrorMessage } from "@/lib/api/client";
+import { cn } from "@/lib/utils";
+
+interface SignupFormProps {
+  locale: string;
+}
+
+export function SignupForm({ locale }: SignupFormProps) {
+  const t = useTranslations("Auth.signUp");
+  const { signup } = useAuth();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const [form, setForm] = useState({
+    companyName: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    terms: false,
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!form.terms) {
+      setError(t("terms"));
+      return;
+    }
+
+    if (form.password.length < 8) {
+      setError("Password must be at least 8 characters");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await signup({
+        companyName: form.companyName,
+        fullName: form.fullName,
+        email: form.email,
+        password: form.password,
+        phone: form.phone || undefined,
+      });
+      // Redirect happens in context
+    } catch (err) {
+      setError(extractErrorMessage(err));
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Error banner */}
+      {error && (
+        <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg border border-danger/20">
+          {error}
+        </div>
+      )}
+
+      {/* Company Name */}
+      <div className="space-y-1.5">
+        <label
+          htmlFor="companyName"
+          className="block text-sm font-medium text-ink"
+        >
+          {t("companyName")}
+        </label>
+        <div className="relative">
+          <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <input
+            id="companyName"
+            name="companyName"
+            type="text"
+            required
+            autoComplete="organization"
+            value={form.companyName}
+            onChange={handleChange}
+            className={cn(
+              "w-full pl-10 pr-4 py-2.5 text-sm",
+              "bg-white border border-line rounded-lg",
+              "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
+              "placeholder:text-ink-muted",
+              "transition-all"
+            )}
+            placeholder="Zyrix Inc."
+          />
+        </div>
+      </div>
+
+      {/* Full Name */}
+      <div className="space-y-1.5">
+        <label
+          htmlFor="fullName"
+          className="block text-sm font-medium text-ink"
+        >
+          {t("fullName")}
+        </label>
+        <div className="relative">
+          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            required
+            autoComplete="name"
+            value={form.fullName}
+            onChange={handleChange}
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder:text-ink-muted transition-all"
+            placeholder="Mehmet Fatih"
+          />
+        </div>
+      </div>
+
+      {/* Email */}
+      <div className="space-y-1.5">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-ink"
+        >
+          {t("email")}
+        </label>
+        <div className="relative">
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder:text-ink-muted transition-all"
+            placeholder="you@company.com"
+          />
+        </div>
+      </div>
+
+      {/* Phone (optional) */}
+      <div className="space-y-1.5">
+        <label htmlFor="phone" className="block text-sm font-medium text-ink">
+          {t("phone")}{" "}
+          <span className="text-ink-muted text-xs">(optional)</span>
+        </label>
+        <div className="relative">
+          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            value={form.phone}
+            onChange={handleChange}
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder:text-ink-muted transition-all"
+            placeholder="+90 555 000 0000"
+          />
+        </div>
+      </div>
+
+      {/* Password */}
+      <div className="space-y-1.5">
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-ink"
+        >
+          {t("password")}
+        </label>
+        <div className="relative">
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            required
+            autoComplete="new-password"
+            minLength={8}
+            value={form.password}
+            onChange={handleChange}
+            className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder:text-ink-muted transition-all"
+            placeholder="••••••••"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((s) => !s)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-muted hover:text-ink"
+          >
+            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          </button>
+        </div>
+        <p className="text-xs text-ink-muted">{t("passwordHint")}</p>
+      </div>
+
+      {/* Terms */}
+      <div className="flex items-start gap-2 pt-2">
+        <input
+          id="terms"
+          name="terms"
+          type="checkbox"
+          required
+          checked={form.terms}
+          onChange={handleChange}
+          className="mt-0.5 w-4 h-4 text-primary-600 border-line rounded focus:ring-primary-500"
+        />
+        <label htmlFor="terms" className="text-xs text-ink-light leading-relaxed">
+          {t("terms")}
+        </label>
+      </div>
+
+      {/* Submit */}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className={cn(
+          "w-full py-3 px-4 text-sm font-medium rounded-lg",
+          "bg-primary-600 text-white",
+          "hover:bg-primary-700 active:bg-primary-800",
+          "disabled:opacity-60 disabled:cursor-not-allowed",
+          "transition-all shadow-sm hover:shadow-md",
+          "flex items-center justify-center gap-2"
+        )}
+      >
+        {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
+        {t("submit")}
+      </button>
+
+      {/* Link to Sign In */}
+      <p className="text-center text-sm text-ink-light pt-4">
+        {t("hasAccount")}{" "}
+        <Link
+          href={`/${locale}/signin`}
+          className="text-primary-600 hover:text-primary-700 font-medium hover:underline"
+        >
+          {t("signInLink")}
+        </Link>
+      </p>
+    </form>
+  );
+}
