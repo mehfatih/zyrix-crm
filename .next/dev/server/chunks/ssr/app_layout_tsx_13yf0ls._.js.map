@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/Zyrix%20Hub/zyrix-crm/app/layout.tsx"],"sourcesContent":["// ============================================================================\r\n// ZYRIX CRM — Root Layout\r\n// ============================================================================\r\n// This is the minimal root layout required by Next.js App Router.\r\n// All actual HTML structure (<html>, <body>, fonts, metadata) lives in\r\n// app/[locale]/layout.tsx — because we need per-locale `lang` and `dir`\r\n// attributes for proper RTL/LTR handling.\r\n// ============================================================================\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: {\r\n  children: React.ReactNode;\r\n}) {\r\n  return children;\r\n}"],"names":["RootLayout","children"],"mappings":"AAAA,+EAA+E;AAC/E,0BAA0B;AAC1B,+EAA+E;AAC/E,kEAAkE;AAClE,uEAAuE;AACvE,wEAAwE;AACxE,0CAA0C;AAC1C,+EAA+E;;;;;AAEhE,SAASA,WAAW,EACjCC,QAAQ,EAGT;IACC,OAAOA;AACT"}}]
-}
