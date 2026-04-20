@@ -538,3 +538,218 @@ export async function fetchPublicPlans(): Promise<AdminPlan[]> {
   );
   return res.data.data;
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+// Announcements
+// ─────────────────────────────────────────────────────────────────────────
+export interface AdminAnnouncement {
+  id: string;
+  title: string;
+  titleAr: string | null;
+  titleTr: string | null;
+  content: string;
+  contentAr: string | null;
+  contentTr: string | null;
+  type: string; // info | warn | critical
+  target: string; // all | plan | company
+  targetValue: string | null;
+  startsAt: string;
+  endsAt: string | null;
+  isActive: boolean;
+  createdBy: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateAnnouncementDto {
+  title: string;
+  titleAr?: string;
+  titleTr?: string;
+  content: string;
+  contentAr?: string;
+  contentTr?: string;
+  type?: string;
+  target?: string;
+  targetValue?: string;
+  startsAt?: string;
+  endsAt?: string | null;
+  isActive?: boolean;
+}
+
+export async function fetchAnnouncements(params: {
+  page?: number;
+  limit?: number;
+  active?: boolean;
+  target?: string;
+}) {
+  const { data } = await adminApi.get<ApiEnvelope<Paginated<AdminAnnouncement>>>(
+    "/api/admin/announcements",
+    { params }
+  );
+  return data.data;
+}
+
+export async function createAnnouncement(dto: CreateAnnouncementDto) {
+  const { data } = await adminApi.post<ApiEnvelope<AdminAnnouncement>>(
+    "/api/admin/announcements",
+    dto
+  );
+  return data.data;
+}
+
+export async function updateAnnouncement(
+  id: string,
+  dto: Partial<CreateAnnouncementDto>
+) {
+  const { data } = await adminApi.patch<ApiEnvelope<AdminAnnouncement>>(
+    `/api/admin/announcements/${id}`,
+    dto
+  );
+  return data.data;
+}
+
+export async function deleteAnnouncement(id: string) {
+  const { data } = await adminApi.delete<ApiEnvelope<{ deleted: boolean }>>(
+    `/api/admin/announcements/${id}`
+  );
+  return data.data;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Support tickets
+// ─────────────────────────────────────────────────────────────────────────
+export interface SupportTicket {
+  id: string;
+  companyId: string;
+  createdById: string;
+  subject: string;
+  description: string;
+  category: string;
+  priority: string; // low | medium | high | urgent
+  status: string; // open | in_progress | resolved | closed
+  assignedToId: string | null;
+  resolvedAt: string | null;
+  closedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  company: { id: string; name: string; slug: string; plan: string };
+  createdBy: { id: string; email: string; fullName: string };
+  assignedTo: { id: string; email: string; fullName: string } | null;
+}
+
+export interface TicketStats {
+  open: number;
+  inProgress: number;
+  resolved: number;
+  closed: number;
+  urgent: number;
+}
+
+export async function fetchTicketStats() {
+  const { data } = await adminApi.get<ApiEnvelope<TicketStats>>(
+    "/api/admin/tickets/stats"
+  );
+  return data.data;
+}
+
+export async function fetchTickets(params: {
+  page?: number;
+  limit?: number;
+  status?: string;
+  priority?: string;
+  category?: string;
+  companyId?: string;
+  assignedToId?: string;
+}) {
+  const { data } = await adminApi.get<ApiEnvelope<Paginated<SupportTicket>>>(
+    "/api/admin/tickets",
+    { params }
+  );
+  return data.data;
+}
+
+export async function updateTicket(
+  id: string,
+  dto: {
+    status?: string;
+    priority?: string;
+    category?: string;
+    assignedToId?: string | null;
+  }
+) {
+  const { data } = await adminApi.patch<ApiEnvelope<SupportTicket>>(
+    `/api/admin/tickets/${id}`,
+    dto
+  );
+  return data.data;
+}
+
+export async function closeTicket(id: string) {
+  const { data } = await adminApi.post<ApiEnvelope<SupportTicket>>(
+    `/api/admin/tickets/${id}/close`
+  );
+  return data.data;
+}
+
+export async function assignTicket(id: string, assigneeId: string) {
+  const { data } = await adminApi.post<ApiEnvelope<SupportTicket>>(
+    `/api/admin/tickets/${id}/assign`,
+    { assigneeId }
+  );
+  return data.data;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Settings — super admins
+// ─────────────────────────────────────────────────────────────────────────
+export interface SuperAdminRow {
+  id: string;
+  email: string;
+  fullName: string;
+  status: string;
+  emailVerified: boolean;
+  twoFactorEnabled: boolean;
+  lastLoginAt: string | null;
+  createdAt: string;
+}
+
+export async function fetchSuperAdmins() {
+  const { data } = await adminApi.get<ApiEnvelope<SuperAdminRow[]>>(
+    "/api/admin/super-admins"
+  );
+  return data.data;
+}
+
+export async function inviteSuperAdmin(dto: {
+  email: string;
+  fullName?: string;
+}) {
+  const { data } = await adminApi.post<
+    ApiEnvelope<{
+      id: string;
+      email: string;
+      fullName: string;
+      tempPassword: string;
+      inviteToken: string;
+    }>
+  >("/api/admin/super-admins/invite", dto);
+  return data.data;
+}
+
+export async function revokeSuperAdmin(id: string) {
+  const { data } = await adminApi.delete<
+    ApiEnvelope<{ id: string; email: string; role: string }>
+  >(`/api/admin/super-admins/${id}`);
+  return data.data;
+}
+
+export async function changeAdminPassword(dto: {
+  currentPassword: string;
+  newPassword: string;
+}) {
+  const { data } = await adminApi.post<ApiEnvelope<{ changed: boolean }>>(
+    "/api/admin/change-password",
+    dto
+  );
+  return data.data;
+}
