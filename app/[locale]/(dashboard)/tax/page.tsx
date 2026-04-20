@@ -1,0 +1,593 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import {
+  Percent,
+  Plus,
+  Loader2,
+  Trash2,
+  Pencil,
+  X,
+  AlertTriangle,
+  Sparkles,
+  Star,
+  Globe,
+  Zap,
+} from "lucide-react";
+import {
+  fetchTaxRates,
+  fetchTaxPresets,
+  createTaxRate,
+  updateTaxRate,
+  deleteTaxRate,
+  seedTaxPresets,
+  type TaxRate,
+  type PresetCountry,
+  type CreateTaxRateDto,
+} from "@/lib/api/tax";
+import { DashboardShell } from "@/components/layout/DashboardShell";
+
+// ============================================================================
+// TAX ENGINE PAGE
+// ============================================================================
+
+const COUNTRY_FLAG: Record<string, string> = {
+  TR: "🇹🇷",
+  SA: "🇸🇦",
+  AE: "🇦🇪",
+  EG: "🇪🇬",
+  QA: "🇶🇦",
+  KW: "🇰🇼",
+  US: "🇺🇸",
+  GB: "🇬🇧",
+};
+
+type FormState = {
+  name: string;
+  code: string;
+  countryCode: string;
+  ratePercent: string;
+  isDefault: boolean;
+  isActive: boolean;
+  description: string;
+};
+
+const EMPTY_FORM: FormState = {
+  name: "",
+  code: "",
+  countryCode: "",
+  ratePercent: "0",
+  isDefault: false,
+  isActive: true,
+  description: "",
+};
+
+export default function TaxPage() {
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "en";
+  const t = useTranslations("Tax");
+
+  const [rates, setRates] = useState<TaxRate[]>([]);
+  const [presets, setPresets] = useState<PresetCountry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [editing, setEditing] = useState<TaxRate | null>(null);
+  const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [saving, setSaving] = useState(false);
+  const [formErr, setFormErr] = useState<string | null>(null);
+
+  const [seedingCountry, setSeedingCountry] = useState<string | null>(null);
+
+  const load = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const [r, p] = await Promise.all([fetchTaxRates(), fetchTaxPresets()]);
+      setRates(r);
+      setPresets(p);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const openCreate = () => {
+    setEditing(null);
+    setForm(EMPTY_FORM);
+    setFormErr(null);
+    setModalOpen(true);
+  };
+
+  const openEdit = (r: TaxRate) => {
+    setEditing(r);
+    setForm({
+      name: r.name,
+      code: r.code ?? "",
+      countryCode: r.countryCode ?? "",
+      ratePercent: String(r.ratePercent),
+      isDefault: r.isDefault,
+      isActive: r.isActive,
+      description: r.description ?? "",
+    });
+    setFormErr(null);
+    setModalOpen(true);
+  };
+
+  const save = async () => {
+    if (!form.name.trim()) {
+      setFormErr(t("errors.enterName"));
+      return;
+    }
+    const pct = Number(form.ratePercent);
+    if (isNaN(pct) || pct < 0 || pct > 100) {
+      setFormErr(t("errors.invalidRate"));
+      return;
+    }
+    setSaving(true);
+    setFormErr(null);
+    try {
+      const dto: CreateTaxRateDto = {
+        name: form.name.trim(),
+        code: form.code.trim() || undefined,
+        countryCode: form.countryCode.trim() || undefined,
+        ratePercent: pct,
+        isDefault: form.isDefault,
+        isActive: form.isActive,
+        description: form.description.trim() || undefined,
+      };
+      if (editing) {
+        await updateTaxRate(editing.id, dto);
+      } else {
+        await createTaxRate(dto);
+      }
+      setModalOpen(false);
+      await load();
+    } catch (e) {
+      setFormErr(e instanceof Error ? e.message : "Failed");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm(t("confirm.delete"))) return;
+    try {
+      await deleteTaxRate(id);
+      await load();
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Failed");
+    }
+  };
+
+  const handleSeed = async (country: string) => {
+    if (!confirm(t("confirm.seed", { country }))) return;
+    setSeedingCountry(country);
+    try {
+      const result = await seedTaxPresets(country);
+      alert(
+        t("alerts.seeded", {
+          created: String(result.created),
+          skipped: String(result.skipped),
+        })
+      );
+      await load();
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Failed");
+    } finally {
+      setSeedingCountry(null);
+    }
+  };
+
+  // Group rates by country
+  const grouped = rates.reduce<Record<string, TaxRate[]>>((acc, r) => {
+    const key = r.countryCode || "—";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(r);
+    return acc;
+  }, {});
+
+  const seededCountries = new Set(
+    rates.filter((r) => r.countryCode).map((r) => r.countryCode)
+  );
+
+  return (
+    <DashboardShell locale={locale}>
+      <div className="p-6 space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
+              <Percent className="w-6 h-6 text-cyan-600" />
+              {t("title")}
+            </h1>
+            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+          </div>
+          <button
+            onClick={openCreate}
+            className="flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium shadow-sm"
+          >
+            <Plus className="w-4 h-4" />
+            {t("addRate")}
+          </button>
+        </div>
+
+        {/* Presets quick-seed */}
+        {presets.length > 0 && (
+          <div className="bg-gradient-to-r from-sky-50 to-cyan-50 border border-sky-200 rounded-xl p-5">
+            <div className="flex items-start gap-3 mb-3">
+              <div className="bg-white rounded-lg p-2 shadow-sm">
+                <Zap className="w-5 h-5 text-cyan-600" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-cyan-900">
+                  {t("presets.title")}
+                </h3>
+                <p className="text-xs text-slate-600">
+                  {t("presets.subtitle")}
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {presets.map((p, idx) => {
+                const already = seededCountries.has(p.countryCode);
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => handleSeed(p.countryCode)}
+                    disabled={seedingCountry === p.countryCode || already}
+                    className={`px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors border ${
+                      already
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-200 cursor-not-allowed"
+                        : "bg-white hover:bg-cyan-50 text-cyan-700 border-sky-200"
+                    }`}
+                  >
+                    {seedingCountry === p.countryCode ? (
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <span className="text-base">
+                        {COUNTRY_FLAG[p.countryCode] || "🏳️"}
+                      </span>
+                    )}
+                    {p.countryCode}
+                    <span className="text-xs text-slate-500">
+                      ({p.rateCount} {t("presets.rates")})
+                    </span>
+                    {already && (
+                      <span className="text-xs">✓ {t("presets.added")}</span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Content */}
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+          </div>
+        ) : error ? (
+          <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
+            <AlertTriangle className="w-5 h-5 inline ltr:mr-2 rtl:ml-2" />
+            {error}
+          </div>
+        ) : rates.length === 0 ? (
+          <div className="bg-white border border-sky-100 rounded-xl py-16 text-center text-slate-500">
+            <Sparkles className="w-10 h-10 mx-auto mb-3 text-sky-300" />
+            <p className="text-sm font-medium">{t("empty.title")}</p>
+            <p className="text-xs mt-1">{t("empty.subtitle")}</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {Object.entries(grouped).map(([country, items]) => (
+              <div
+                key={country}
+                className="bg-white border border-sky-100 rounded-xl overflow-hidden"
+              >
+                <div className="bg-sky-50 px-5 py-3 border-b border-sky-100 flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-cyan-600" />
+                  <span className="text-base">
+                    {COUNTRY_FLAG[country] || ""}
+                  </span>
+                  <h3 className="text-sm font-semibold text-cyan-900">
+                    {country === "—" ? t("noCountry") : country}
+                  </h3>
+                  <span className="text-xs text-slate-500">
+                    ({items.length})
+                  </span>
+                </div>
+                <table className="w-full text-sm">
+                  <thead className="bg-white border-b border-sky-50">
+                    <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+                      <th className="px-4 py-2 font-semibold">
+                        {t("table.name")}
+                      </th>
+                      <th className="px-4 py-2 font-semibold">
+                        {t("table.code")}
+                      </th>
+                      <th className="px-4 py-2 font-semibold ltr:text-right rtl:text-left">
+                        {t("table.rate")}
+                      </th>
+                      <th className="px-4 py-2 font-semibold">
+                        {t("table.status")}
+                      </th>
+                      <th className="px-4 py-2 w-20"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {items.map((r, idx) => (
+                      <tr
+                        key={idx}
+                        className="border-b border-sky-50 hover:bg-sky-50/40"
+                      >
+                        <td className="px-4 py-2.5">
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-cyan-900">
+                              {r.name}
+                            </span>
+                            {r.isDefault && (
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-amber-50 text-amber-700 ring-1 ring-amber-200 rounded text-[10px] font-medium">
+                                <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
+                                {t("default")}
+                              </span>
+                            )}
+                          </div>
+                          {r.description && (
+                            <div className="text-xs text-slate-500 truncate max-w-md">
+                              {r.description}
+                            </div>
+                          )}
+                        </td>
+                        <td className="px-4 py-2.5 font-mono text-xs text-slate-600">
+                          {r.code || "—"}
+                        </td>
+                        <td className="px-4 py-2.5 ltr:text-right rtl:text-left font-bold text-cyan-900">
+                          {Number(r.ratePercent)}%
+                        </td>
+                        <td className="px-4 py-2.5">
+                          <span
+                            className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                              r.isActive
+                                ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200"
+                                : "bg-slate-100 text-slate-600 ring-1 ring-slate-200"
+                            }`}
+                          >
+                            {r.isActive ? t("active") : t("inactive")}
+                          </span>
+                        </td>
+                        <td className="px-4 py-2.5">
+                          <div className="flex items-center gap-1 ltr:justify-end rtl:justify-start">
+                            <button
+                              onClick={() => openEdit(r)}
+                              className="p-1 text-slate-400 hover:text-cyan-700"
+                            >
+                              <Pencil className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(r.id)}
+                              className="p-1 text-slate-400 hover:text-red-600"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {modalOpen && (
+        <TaxFormModal
+          t={t}
+          editing={editing}
+          form={form}
+          setForm={setForm}
+          formErr={formErr}
+          saving={saving}
+          onClose={() => setModalOpen(false)}
+          onSave={save}
+        />
+      )}
+    </DashboardShell>
+  );
+}
+
+// ============================================================================
+// Form Modal
+// ============================================================================
+function TaxFormModal({
+  t,
+  editing,
+  form,
+  setForm,
+  formErr,
+  saving,
+  onClose,
+  onSave,
+}: {
+  t: ReturnType<typeof useTranslations>;
+  editing: TaxRate | null;
+  form: FormState;
+  setForm: (f: FormState) => void;
+  formErr: string | null;
+  saving: boolean;
+  onClose: () => void;
+  onSave: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-xl shadow-xl max-w-md w-full my-8"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="p-5 border-b border-sky-100 flex items-center justify-between">
+          <h2 className="text-lg font-bold text-cyan-900">
+            {editing ? t("form.editTitle") : t("form.createTitle")}
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-slate-400 hover:text-slate-700"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="p-5 space-y-3">
+          <div>
+            <label className="block text-xs font-medium text-slate-700 mb-1">
+              {t("form.name")} *
+            </label>
+            <input
+              type="text"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              placeholder={t("form.namePlaceholder")}
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                {t("form.ratePercent")} *
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  step="0.001"
+                  value={form.ratePercent}
+                  onChange={(e) =>
+                    setForm({ ...form, ratePercent: e.target.value })
+                  }
+                  className="w-full ltr:pr-8 rtl:pl-8 px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                />
+                <span className="absolute top-1/2 -translate-y-1/2 ltr:right-3 rtl:left-3 text-xs text-slate-500">
+                  %
+                </span>
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                {t("form.code")}
+              </label>
+              <input
+                type="text"
+                value={form.code}
+                onChange={(e) => setForm({ ...form, code: e.target.value })}
+                placeholder="e.g. KDV_18"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 font-mono"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-700 mb-1">
+              {t("form.countryCode")}
+            </label>
+            <select
+              value={form.countryCode}
+              onChange={(e) =>
+                setForm({ ...form, countryCode: e.target.value })
+              }
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            >
+              <option value="">— {t("form.noCountry")} —</option>
+              <option value="TR">🇹🇷 Turkey</option>
+              <option value="SA">🇸🇦 Saudi Arabia</option>
+              <option value="AE">🇦🇪 UAE</option>
+              <option value="EG">🇪🇬 Egypt</option>
+              <option value="QA">🇶🇦 Qatar</option>
+              <option value="KW">🇰🇼 Kuwait</option>
+              <option value="US">🇺🇸 United States</option>
+              <option value="GB">🇬🇧 United Kingdom</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-700 mb-1">
+              {t("form.description")}
+            </label>
+            <textarea
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+              rows={2}
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 resize-none"
+            />
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.isDefault}
+                onChange={(e) =>
+                  setForm({ ...form, isDefault: e.target.checked })
+                }
+                className="w-4 h-4 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+              />
+              <span className="text-sm text-slate-700">
+                {t("form.isDefault")}
+              </span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.isActive}
+                onChange={(e) =>
+                  setForm({ ...form, isActive: e.target.checked })
+                }
+                className="w-4 h-4 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+              />
+              <span className="text-sm text-slate-700">
+                {t("form.isActive")}
+              </span>
+            </label>
+          </div>
+
+          {formErr && (
+            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100">
+              {formErr}
+            </div>
+          )}
+        </div>
+
+        <div className="p-4 border-t border-sky-100 flex justify-end gap-2 bg-sky-50/30">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 rounded-lg"
+          >
+            {t("actions.cancel")}
+          </button>
+          <button
+            onClick={onSave}
+            disabled={saving}
+            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+          >
+            {saving && <Loader2 className="w-4 h-4 animate-spin" />}
+            {editing ? t("actions.save") : t("actions.create")}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

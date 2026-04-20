@@ -41,7 +41,8 @@
     "arabic": "العربية",
     "turkish": "Türkçe",
     "quotes": "Quotes",
-    "loyalty": "Loyalty"
+    "loyalty": "Loyalty",
+    "tax": "Tax"
   },
   "Home": {
     "hero": {
@@ -1597,6 +1598,60 @@
     "errors": {
       "selectCustomer": "Please select a customer",
       "enterPoints": "Please enter a points value"
+    }
+  },
+  "Tax": {
+    "title": "Tax Engine",
+    "subtitle": "Configure VAT and KDV rates for Turkey, Saudi Arabia, UAE, and more",
+    "addRate": "Add Rate",
+    "default": "Default",
+    "active": "Active",
+    "inactive": "Inactive",
+    "noCountry": "Uncategorized",
+    "presets": {
+      "title": "Quick Seed: Preset Rates",
+      "subtitle": "Instantly add standard tax rates for a country",
+      "rates": "rates",
+      "added": "added"
+    },
+    "table": {
+      "name": "Name",
+      "code": "Code",
+      "rate": "Rate",
+      "status": "Status"
+    },
+    "empty": {
+      "title": "No tax rates yet",
+      "subtitle": "Seed presets for your country or add a custom rate"
+    },
+    "form": {
+      "createTitle": "New Tax Rate",
+      "editTitle": "Edit Tax Rate",
+      "name": "Name",
+      "namePlaceholder": "e.g. KDV 18%, Standard VAT",
+      "ratePercent": "Rate",
+      "code": "Code",
+      "countryCode": "Country",
+      "noCountry": "No country",
+      "description": "Description",
+      "isDefault": "Default for country",
+      "isActive": "Active"
+    },
+    "actions": {
+      "create": "Create",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "confirm": {
+      "delete": "Delete this tax rate?",
+      "seed": "Add preset tax rates for {country}?"
+    },
+    "alerts": {
+      "seeded": "Added {created} new rates, skipped {skipped} existing."
+    },
+    "errors": {
+      "enterName": "Please enter a name",
+      "invalidRate": "Rate must be between 0 and 100"
     }
   }
 }

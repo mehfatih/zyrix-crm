@@ -41,7 +41,8 @@
     "arabic": "العربية",
     "turkish": "Türkçe",
     "quotes": "Teklifler",
-    "loyalty": "Sadakat"
+    "loyalty": "Sadakat",
+    "tax": "Vergi"
   },
   "Home": {
     "hero": {
@@ -1597,6 +1598,60 @@
     "errors": {
       "selectCustomer": "Lütfen bir müşteri seçin",
       "enterPoints": "Lütfen bir puan değeri girin"
+    }
+  },
+  "Tax": {
+    "title": "Vergi Motoru",
+    "subtitle": "Türkiye KDV, Suudi Arabistan, BAE ve diğer ülkeler için KDV oranlarını yapılandırın",
+    "addRate": "Oran Ekle",
+    "default": "Varsayılan",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "noCountry": "Sınıflandırılmamış",
+    "presets": {
+      "title": "Hızlı Kurulum: Hazır Oranlar",
+      "subtitle": "Bir ülkenin standart vergi oranlarını tek tıkla ekleyin",
+      "rates": "oran",
+      "added": "eklendi"
+    },
+    "table": {
+      "name": "Ad",
+      "code": "Kod",
+      "rate": "Oran",
+      "status": "Durum"
+    },
+    "empty": {
+      "title": "Henüz vergi oranı yok",
+      "subtitle": "Ülkenizin hazır oranlarını ekleyin veya özel oran oluşturun"
+    },
+    "form": {
+      "createTitle": "Yeni Vergi Oranı",
+      "editTitle": "Vergi Oranını Düzenle",
+      "name": "Ad",
+      "namePlaceholder": "Örn: KDV 18%, Standart KDV",
+      "ratePercent": "Oran",
+      "code": "Kod",
+      "countryCode": "Ülke",
+      "noCountry": "Ülke yok",
+      "description": "Açıklama",
+      "isDefault": "Ülke için varsayılan",
+      "isActive": "Aktif"
+    },
+    "actions": {
+      "create": "Oluştur",
+      "save": "Kaydet",
+      "cancel": "İptal"
+    },
+    "confirm": {
+      "delete": "Bu vergi oranı silinsin mi?",
+      "seed": "{country} için hazır vergi oranları eklensin mi?"
+    },
+    "alerts": {
+      "seeded": "{created} yeni oran eklendi, {skipped} mevcut oran atlandı."
+    },
+    "errors": {
+      "enterName": "Lütfen bir ad girin",
+      "invalidRate": "Oran 0 ile 100 arasında olmalıdır"
     }
   }
 }
