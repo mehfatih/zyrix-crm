@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import {
   signupApi,
   signinApi,
+  googleAuthApi,
   logoutApi,
   meApi,
 } from "../api/auth";
@@ -44,6 +45,7 @@ interface AuthContextValue {
   isLoading: boolean;
   signup: (payload: SignupPayload) => Promise<void>;
   signin: (payload: SigninPayload) => Promise<void>;
+  googleSignIn: (idToken: string) => Promise<void>;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
 }
@@ -129,6 +131,20 @@ export function AuthProvider({
     [locale, router]
   );
 
+  const googleSignIn = useCallback(
+    async (idToken: string) => {
+      const result = await googleAuthApi(idToken);
+      setAccessToken(result.tokens.accessToken);
+      setRefreshToken(result.tokens.refreshToken);
+      setUserState(result.user);
+      setCompanyState(result.company);
+      cacheUser(result.user);
+      cacheCompany(result.company);
+      router.push(`/${locale}/dashboard`);
+    },
+    [locale, router]
+  );
+
   const logout = useCallback(async () => {
     const refreshToken = getRefreshToken();
     if (refreshToken) {
@@ -155,6 +171,7 @@ export function AuthProvider({
     isLoading,
     signup,
     signin,
+    googleSignIn,
     logout,
     refresh,
   };

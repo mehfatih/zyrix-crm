@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Loader2, Eye, EyeOff, Building2, User, Mail, Phone, Lock } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
+import { GoogleButton } from "./GoogleButton";
 import { extractErrorMessage } from "@/lib/api/client";
 import { cn } from "@/lib/utils";
 
@@ -242,6 +243,21 @@ export function SignupForm({ locale }: SignupFormProps) {
         {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
         {t("submit")}
       </button>
+
+      {/* Divider */}
+      <div className="relative my-4">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-line"></div>
+        </div>
+        <div className="relative flex justify-center text-xs">
+          <span className="bg-white px-3 text-ink-muted uppercase">
+            {t("orContinueWith")}
+          </span>
+        </div>
+      </div>
+
+      {/* Google Sign-up */}
+      <GoogleButton mode="signup" onError={setError} />
 
       {/* Link to Sign In */}
       <p className="text-center text-sm text-ink-light pt-4">
