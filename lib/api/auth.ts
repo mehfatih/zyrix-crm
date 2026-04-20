@@ -100,3 +100,48 @@ export async function resetPasswordApi(
   );
   return response.data.data;
 }
+
+export interface UpdateProfilePayload {
+  fullName?: string;
+  phone?: string;
+}
+
+export async function updateProfileApi(
+  payload: UpdateProfilePayload
+): Promise<{ user: User }> {
+  const response = await apiClient.patch<ApiSuccess<{ user: User }>>(
+    "/api/auth/profile",
+    payload
+  );
+  return response.data.data;
+}
+
+export interface UpdateCompanyPayload {
+  name?: string;
+}
+
+export async function updateCompanyApi(
+  payload: UpdateCompanyPayload
+): Promise<{ company: Company }> {
+  const response = await apiClient.patch<ApiSuccess<{ company: Company }>>(
+    "/api/auth/company",
+    payload
+  );
+  return response.data.data;
+}
+
+export interface ChangePasswordPayload {
+  currentPassword: string;
+  newPassword: string;
+}
+
+export async function changePasswordApi(
+  payload: ChangePasswordPayload
+): Promise<{ changed: boolean }> {
+  const response = await apiClient.post<ApiSuccess<{ changed: boolean }>>(
+    "/api/auth/change-password",
+    payload
+  );
+  return response.data.data;
+}
+

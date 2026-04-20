@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { type ReactNode } from "react";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import type { Locale } from "@/i18n";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -19,7 +23,7 @@ export function AuthLayout({
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-sky-50 via-cyan-50 to-sky-100">
       {/* Header */}
       <header className="w-full px-6 py-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <Link
             href={`/${locale}`}
             className="inline-flex items-center gap-2 text-ink hover:text-primary-600 transition-colors"
@@ -33,6 +37,10 @@ export function AuthLayout({
             />
             <span className="text-xl font-bold">Zyrix CRM</span>
           </Link>
+
+          <div className="w-28">
+            <LanguageSwitcher currentLocale={locale as Locale} />
+          </div>
         </div>
       </header>
 
@@ -47,7 +55,6 @@ export function AuthLayout({
               </h1>
               <p className="text-ink-light text-sm sm:text-base">{subtitle}</p>
             </div>
-
             {children}
           </div>
 

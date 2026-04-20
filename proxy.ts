@@ -1,30 +1,34 @@
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
-import { locales, defaultLocale } from "./i18n";
+import { locales, defaultLocale, type Locale } from "./i18n";
 
 // ============================================================================
 // ZYRIX CRM — Locale Routing Proxy (Next.js 16 replacement for middleware.ts)
 // ============================================================================
 // Handles:
-// 1. Locale detection from URL, cookie, or Accept-Language header
-// 2. Auto-redirect to appropriate locale
-// 3. Sets NEXT_LOCALE cookie for consistency
-// 4. Skips static assets, API routes, and internal Next.js paths
+// 1. Country-based locale detection (Cloudflare/Vercel IP headers)
+// 2. Accept-Language fallback
+// 3. Cookie persistence (zyrix_locale)
+// 4. Auto-redirect to appropriate locale
+// 5. Skips static assets, API routes, and internal Next.js paths
 // ============================================================================
+
+// Country → preferred locale mapping (for IP-based detection)
+const COUNTRY_TO_LOCALE: Record<string, Locale> = {
+  // Arabic-speaking countries
+  SA: "ar", AE: "ar", KW: "ar", QA: "ar", BH: "ar", OM: "ar",
+  JO: "ar", LB: "ar", SY: "ar", IQ: "ar", PS: "ar", YE: "ar",
+  EG: "ar", LY: "ar", TN: "ar", DZ: "ar", MA: "ar", SD: "ar",
+  MR: "ar", SO: "ar", DJ: "ar", KM: "ar",
+  // Turkish
+  TR: "tr",
+};
 
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-
-  // "as-needed" — show locale prefix only for non-default locales
-  // "/en/page" → "/page", but "/ar/page" stays as "/ar/page"
-  // CHANGED TO "always" for explicit URLs — better SEO + clearer redirects
   localePrefix: "always",
-
-  // Detect locale from Accept-Language header on first visit
   localeDetection: true,
-
-  // Alternate URLs in response headers (helps SEO)
   alternateLinks: true,
 });
 
@@ -62,9 +66,52 @@ export default function proxy(request: NextRequest) {
   }
 
   // ───────────────────────────────────────────────────────────────
+  // Country-based locale hint
+  // Inject preferred locale into Accept-Language header when no cookie exists
+  // This way next-intl picks it up during its own detection
+  // ───────────────────────────────────────────────────────────────
+  const hasLocaleCookie =
+    request.cookies.has("zyrix_locale") ||
+    request.cookies.has("NEXT_LOCALE");
+
+  const pathnameHasLocale = locales.some(
+    (locale) =>
+      pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (!hasLocaleCookie && !pathnameHasLocale) {
+    const country =
+      request.headers.get("cf-ipcountry") ||
+      request.headers.get("x-vercel-ip-country") ||
+      "";
+    const countryLocale = COUNTRY_TO_LOCALE[country.toUpperCase()];
+
+    if (countryLocale) {
+      // Prepend country locale to Accept-Language so next-intl prefers it
+      const originalAcceptLang = request.headers.get("accept-language") || "";
+      const newAcceptLang = `${countryLocale},${originalAcceptLang}`;
+      request.headers.set("accept-language", newAcceptLang);
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────
   // Apply next-intl locale routing
   // ───────────────────────────────────────────────────────────────
   const response = intlMiddleware(request);
+
+  // ───────────────────────────────────────────────────────────────
+  // Sync zyrix_locale cookie with the resolved locale
+  // ───────────────────────────────────────────────────────────────
+  if (response && pathnameHasLocale) {
+    const currentLocale = pathname.split("/")[1] as Locale;
+    if ((locales as readonly string[]).includes(currentLocale)) {
+      response.cookies.set("zyrix_locale", currentLocale, {
+        maxAge: 60 * 60 * 24 * 365,
+        path: "/",
+        sameSite: "lax",
+      });
+    }
+  }
 
   // ───────────────────────────────────────────────────────────────
   // Add custom headers for analytics / debugging
@@ -82,12 +129,6 @@ export default function proxy(request: NextRequest) {
 // ============================================================================
 export const config = {
   matcher: [
-    // Match all paths EXCEPT:
-    // - api routes
-    // - _next (Next.js internals)
-    // - _vercel (Vercel internals)
-    // - static files with extensions
-    // - robots.txt, sitemap.xml, manifest.json
     "/((?!api|_next|_vercel|.*\\..*).*)",
   ],
 };

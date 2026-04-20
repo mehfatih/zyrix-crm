@@ -14,6 +14,8 @@ import {
   LogOut,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import type { Locale } from "@/i18n";
 import { getInitials, cn } from "@/lib/utils";
 
 interface DashboardShellProps {
@@ -111,7 +113,8 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           })}
         </nav>
 
-        <div className="p-3 border-t border-line-soft">
+        <div className="p-3 border-t border-line-soft space-y-2">
+          <LanguageSwitcher currentLocale={locale as Locale} />
           <Link
             href={`/${locale}/settings`}
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
