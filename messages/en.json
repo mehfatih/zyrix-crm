@@ -768,5 +768,190 @@
     "invalidBilling": "Billing cycle must be monthly or yearly.",
     "invalidCurrency": "Currency must be USD, TRY, SAR, or AED.",
     "secureCheckout": "Payments secured by Iyzico & HyperPay"
+  },
+  "Legal": {
+    "privacy": {
+      "eyebrow": "Legal",
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated",
+      "lastUpdatedDate": "April 20, 2026",
+      "intro": "This policy explains what information Zyrix collects when you use our CRM platform, why we collect it, and what choices you have. We take your privacy seriously and designed Zyrix to give you real control over your data.",
+      "s1": {
+        "title": "1. Data we collect",
+        "p1": "We collect only what we need to deliver the service. Broadly, this falls into five categories:",
+        "l1": {
+          "label": "Account data",
+          "body": "Your name, email, phone number, company name, company country, and the password hash (never the password itself)."
+        },
+        "l2": {
+          "label": "Business data you create",
+          "body": "Customers, deals, activities, notes, tasks, quotes, and any content you choose to store in Zyrix."
+        },
+        "l3": {
+          "label": "Payment data",
+          "body": "Your plan, billing cycle, currency, invoice email, and transaction history. Card numbers are never stored on our servers — they are handled entirely by our payment providers."
+        },
+        "l4": {
+          "label": "Usage data",
+          "body": "Which pages you open, which features you use, timestamps, IP address, browser and device type. This helps us fix bugs and prioritize improvements."
+        },
+        "l5": {
+          "label": "Communications",
+          "body": "Support tickets, email conversations, and any messages you send us."
+        }
+      },
+      "s2": {
+        "title": "2. How we use your data",
+        "p1": "We use your data only for specific, narrow purposes:",
+        "l1": "To provide the CRM service you signed up for.",
+        "l2": "To process payments and send invoices and receipts.",
+        "l3": "To respond to your support requests.",
+        "l4": "To send essential service emails (security alerts, password resets, payment failures, subscription changes).",
+        "l5": "To improve the product — in aggregate, non-identifiable form only."
+      },
+      "s3": {
+        "title": "3. Third-party providers",
+        "p1": "We use a small number of vetted vendors to operate Zyrix. Each of them has their own privacy policy and processes data only on our instructions:",
+        "iyzico": "Payment processing for Turkey (TRY, USD).",
+        "hyperpay": "Payment processing for Saudi Arabia, the UAE, and the wider GCC (SAR, AED, USD).",
+        "resend": "Transactional email delivery (verification, password reset, receipts).",
+        "google": "Sign-in via Google account. We only receive your email and public profile — nothing else.",
+        "gemini": "AI features. When you use an AI feature, the prompt and relevant data are sent to Google Gemini. Google does not use this data to train its models.",
+        "infra": "Hosting and content delivery.",
+        "p2": "We do not sell your data to anyone. We do not share your data with advertisers. We do not use your business data to train AI models."
+      },
+      "s4": {
+        "title": "4. Where your data is stored",
+        "p1": "Zyrix uses cloud infrastructure to operate. Your data is stored in the following regions depending on the service:",
+        "l1": "Application servers and database — Railway (US/EU regions).",
+        "l2": "Static assets — Vercel global edge network.",
+        "l3": "DNS and security — Cloudflare global network.",
+        "l4": "We may transfer data across borders for service delivery. When we do, we rely on standard contractual clauses or other legally recognized mechanisms."
+      },
+      "s5": {
+        "title": "5. Security",
+        "p1": "We apply strong technical and organizational measures to protect your data:",
+        "l1": "All traffic is encrypted in transit using TLS 1.2 or higher.",
+        "l2": "Passwords are hashed using bcrypt with a strong cost factor.",
+        "l3": "Access tokens are short-lived (15 minutes) and refresh tokens are rotated.",
+        "l4": "Database access is restricted to a small number of production engineers.",
+        "l5": "All administrative actions are logged in an immutable audit log.",
+        "l6": "We never store raw payment card numbers.",
+        "p2": "No system is ever 100% secure. If you believe your account has been compromised, email us immediately at security@zyrix.co."
+      },
+      "s6": {
+        "title": "6. Your rights",
+        "p1": "You have full rights over your personal data. You can exercise any of these at any time by emailing privacy@zyrix.co:",
+        "l1": {
+          "label": "Access",
+          "body": "Request a copy of all personal data we hold about you."
+        },
+        "l2": {
+          "label": "Correction",
+          "body": "Fix any inaccurate or incomplete information."
+        },
+        "l3": {
+          "label": "Deletion",
+          "body": "Delete your account and all associated business data. Note: invoice records must be retained for legal and tax purposes."
+        },
+        "l4": {
+          "label": "Export",
+          "body": "Receive your business data in a structured, machine-readable format (CSV or JSON)."
+        }
+      },
+      "s7": {
+        "title": "7. Data retention",
+        "p1": "We keep your business data for as long as your account is active. If you delete your account, we remove your business data within 30 days.",
+        "p2": "Invoices, payment records, and audit logs are retained for up to 10 years to comply with accounting and anti-money-laundering regulations in Türkiye and the GCC."
+      },
+      "s8": {
+        "title": "8. Cookies",
+        "p1": "We use only essential cookies required to keep you signed in and remember your language preference. We do not use marketing or advertising cookies on any page of crm.zyrix.co."
+      },
+      "s9": {
+        "title": "9. Children",
+        "p1": "Zyrix is a business product. It is not directed at anyone under 18. We do not knowingly collect data from minors."
+      },
+      "s10": {
+        "title": "10. Changes to this policy",
+        "p1": "We may update this policy from time to time. When we make significant changes, we notify all active customers by email at least 15 days before the changes take effect. The 'Last updated' date at the top always reflects the current version."
+      }
+    },
+    "terms": {
+      "eyebrow": "Legal",
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated",
+      "lastUpdatedDate": "April 20, 2026",
+      "intro": "These Terms of Service are the agreement between you (the customer) and Zyrix (the provider) when you use our CRM platform at crm.zyrix.co and its subdomains. By creating an account, you accept these terms.",
+      "s1": {
+        "title": "1. Who we are",
+        "p1": "Zyrix is a software company based in Istanbul, Türkiye. Zyrix CRM is a subscription-based customer relationship management platform designed for businesses operating in Türkiye and the Arab world."
+      },
+      "s2": {
+        "title": "2. Eligibility",
+        "p1": "To use Zyrix, you must:",
+        "l1": "Be at least 18 years old and legally able to enter a binding contract.",
+        "l2": "Represent a legitimate business entity or be acting on behalf of one.",
+        "l3": "Provide accurate registration information and keep it up to date.",
+        "l4": "Comply with all laws that apply to your business and your customers."
+      },
+      "s3": {
+        "title": "3. Your account",
+        "p1": "You are responsible for everything that happens under your account:",
+        "l1": {
+          "label": "Credentials",
+          "body": "Keep your password confidential. Do not share it with anyone."
+        },
+        "l2": {
+          "label": "Authorized users",
+          "body": "You may invite team members; the number of seats depends on your plan."
+        },
+        "l3": {
+          "label": "Accuracy",
+          "body": "Do not sign up with false identity or false business information."
+        },
+        "l4": {
+          "label": "Legal activity",
+          "body": "You may not use Zyrix for any illegal purpose, including fraud, money laundering, or violating sanctions."
+        }
+      },
+      "s4": {
+        "title": "4. Subscription, billing, and refunds",
+        "p1": "Paid plans auto-renew at the end of each billing cycle (monthly or yearly) using the payment method on file. You can cancel at any time from your account — cancellation takes effect at the end of the current paid period and stops future charges.",
+        "p2": "We do not offer pro-rated refunds for partial months or unused portions. If a charge was clearly erroneous or duplicated, contact us at billing@zyrix.co within 30 days and we will investigate in good faith.",
+        "p3": "Prices may change; we will give at least 30 days' notice before raising prices on your current plan."
+      },
+      "s5": {
+        "title": "5. Acceptable use",
+        "p1": "You agree not to:",
+        "l1": "Send spam, phishing, or unsolicited bulk communications through Zyrix or its integrations (including WhatsApp).",
+        "l2": "Upload malware, viruses, or content designed to damage any system.",
+        "l3": "Attempt to reverse-engineer, resell, or sublicense the platform without our written permission.",
+        "l4": "Use the service to store or process data you do not have the right to process.",
+        "l5": "Harass or threaten other users, our staff, or third parties through the platform.",
+        "l6": "Violate the terms of any integrated third party (for example, WhatsApp Business Policy)."
+      },
+      "s6": {
+        "title": "6. Your data",
+        "p1": "You own the data you enter into Zyrix. We do not claim any ownership over your customer records, deals, notes, or any business data. You grant us the minimal license required to host, display, and process your data solely to provide the service.",
+        "p2": "You can export or delete your data at any time. When you delete your account, we remove your business data within 30 days (see our Privacy Policy for details on what we are legally required to retain)."
+      },
+      "s7": {
+        "title": "7. Availability and uptime",
+        "p1": "We aim for 99.9% monthly uptime. Scheduled maintenance is announced in advance whenever possible. We are not liable for downtime caused by events outside our reasonable control, including upstream provider outages (Railway, Vercel, Cloudflare, payment gateways)."
+      },
+      "s8": {
+        "title": "8. Disclaimer and limitation of liability",
+        "p1": "Zyrix is provided 'as is' without any warranty of merchantability or fitness for a particular purpose. Our total liability for any claim arising from your use of the service is limited to the amount you paid us in the 12 months before the claim arose. We are not liable for indirect, incidental, or consequential damages including lost profits or lost business opportunities."
+      },
+      "s9": {
+        "title": "9. Termination",
+        "p1": "We may suspend or terminate your account if you violate these terms, abuse the service, or fail to pay. In most cases we will notify you first and give you a chance to fix the issue. For severe violations (fraud, illegal activity, security attacks) we may terminate immediately."
+      },
+      "s10": {
+        "title": "10. Governing law and contact",
+        "p1": "These terms are governed by the laws of the Republic of Türkiye. Any dispute arising from these terms will be handled by the courts of Istanbul. Contact us for legal matters at:"
+      }
+    }
   }
 }

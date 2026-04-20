@@ -768,5 +768,190 @@
     "invalidBilling": "Fatura döngüsü aylık veya yıllık olmalıdır.",
     "invalidCurrency": "Para birimi USD, TRY, SAR veya AED olmalıdır.",
     "secureCheckout": "Ödemeler Iyzico ve HyperPay tarafından güvence altına alınmıştır"
+  },
+  "Legal": {
+    "privacy": {
+      "eyebrow": "Yasal",
+      "title": "Gizlilik Politikası",
+      "lastUpdated": "Son güncelleme",
+      "lastUpdatedDate": "20 Nisan 2026",
+      "intro": "Bu politika, Zyrix CRM platformumuzu kullandığınızda hangi bilgileri topladığımızı, bunları neden topladığımızı ve hangi seçeneklere sahip olduğunuzu açıklar. Gizliliğinizi ciddiye alıyoruz ve Zyrix'i verileriniz üzerinde gerçek kontrol sağlayacak şekilde tasarladık.",
+      "s1": {
+        "title": "1. Topladığımız veriler",
+        "p1": "Yalnızca hizmeti sunmak için ihtiyacımız olanı topluyoruz. Genel olarak veriler beş kategoriye ayrılır:",
+        "l1": {
+          "label": "Hesap verileri",
+          "body": "Adınız, e-postanız, telefon numaranız, şirket adınız, ülke ve şifre özeti (şifrenin kendisi asla değil)."
+        },
+        "l2": {
+          "label": "Oluşturduğunuz iş verileri",
+          "body": "Müşteriler, fırsatlar, aktiviteler, notlar, görevler, teklifler ve Zyrix'te saklamayı seçtiğiniz her türlü içerik."
+        },
+        "l3": {
+          "label": "Ödeme verileri",
+          "body": "Paketiniz, fatura döngüsü, para birimi, fatura e-postası ve işlem geçmişi. Kart numaraları hiçbir zaman sunucularımızda saklanmaz — tamamen ödeme sağlayıcılarımız tarafından işlenir."
+        },
+        "l4": {
+          "label": "Kullanım verileri",
+          "body": "Açtığınız sayfalar, kullandığınız özellikler, zaman damgaları, IP adresi, tarayıcı ve cihaz türü. Bu, hataları düzeltmeye ve hizmeti iyileştirmeye yardımcı olur."
+        },
+        "l5": {
+          "label": "İletişim",
+          "body": "Destek talepleri, e-posta yazışmaları ve bize gönderdiğiniz tüm mesajlar."
+        }
+      },
+      "s2": {
+        "title": "2. Verilerinizi nasıl kullanıyoruz",
+        "p1": "Verilerinizi yalnızca belirli, dar amaçlar için kullanırız:",
+        "l1": "Kaydolduğunuz CRM hizmetini sağlamak için.",
+        "l2": "Ödemeleri işlemek ve fatura ile makbuz göndermek için.",
+        "l3": "Destek taleplerinize yanıt vermek için.",
+        "l4": "Temel hizmet e-postalarını göndermek için (güvenlik uyarıları, şifre sıfırlama, ödeme başarısızlıkları, abonelik değişiklikleri).",
+        "l5": "Ürünü iyileştirmek için — yalnızca toplu ve tanımlanamaz biçimde."
+      },
+      "s3": {
+        "title": "3. Üçüncü taraf sağlayıcılar",
+        "p1": "Zyrix'i işletmek için az sayıda denetlenmiş tedarikçi kullanıyoruz. Her birinin kendi gizlilik politikası vardır ve verileri yalnızca talimatlarımız doğrultusunda işler:",
+        "iyzico": "Türkiye için ödeme işleme (TRY, USD).",
+        "hyperpay": "Suudi Arabistan, BAE ve Körfez bölgesi için ödeme işleme (SAR, AED, USD).",
+        "resend": "İşlemsel e-posta teslimi (doğrulama, şifre sıfırlama, makbuz).",
+        "google": "Google hesabı ile oturum açma. Yalnızca e-postanızı ve genel profilinizi alırız.",
+        "gemini": "AI özellikleri. Bir AI özelliği kullandığınızda istek ve ilgili veriler Google Gemini'ye gönderilir. Google bu verileri modellerini eğitmek için kullanmaz.",
+        "infra": "Barındırma ve içerik dağıtımı.",
+        "p2": "Verilerinizi kimseye satmayız. Verilerinizi reklamverenlerle paylaşmayız. İş verilerinizi AI modellerini eğitmek için kullanmayız."
+      },
+      "s4": {
+        "title": "4. Verilerinizin saklandığı yer",
+        "p1": "Zyrix işletmek için bulut altyapısı kullanır. Verileriniz hizmete bağlı olarak şu bölgelerde saklanır:",
+        "l1": "Uygulama sunucuları ve veritabanı — Railway (ABD/AB bölgeleri).",
+        "l2": "Statik varlıklar — Vercel küresel edge ağı.",
+        "l3": "DNS ve güvenlik — Cloudflare küresel ağı.",
+        "l4": "Hizmet sunumu için verileri sınır ötesine aktarabiliriz. Bunu yaparken standart sözleşme maddelerine veya diğer yasal olarak tanınan mekanizmalara dayanırız."
+      },
+      "s5": {
+        "title": "5. Güvenlik",
+        "p1": "Verilerinizi korumak için güçlü teknik ve kurumsal önlemler uyguluyoruz:",
+        "l1": "Tüm trafik TLS 1.2 veya üzeri kullanılarak aktarım sırasında şifrelenir.",
+        "l2": "Şifreler güçlü bir maliyet faktörü ile bcrypt kullanılarak özetlenir.",
+        "l3": "Erişim token'ları kısa ömürlüdür (15 dakika) ve yenileme token'ları rotasyona tabidir.",
+        "l4": "Veritabanı erişimi az sayıda üretim mühendisiyle sınırlıdır.",
+        "l5": "Tüm yönetici işlemleri değiştirilemez bir denetim günlüğüne kaydedilir.",
+        "l6": "Ham ödeme kartı numaralarını asla saklamayız.",
+        "p2": "Hiçbir sistem %100 güvenli değildir. Hesabınızın tehlikeye girdiğini düşünüyorsanız, hemen security@zyrix.co adresinden bize e-posta gönderin."
+      },
+      "s6": {
+        "title": "6. Haklarınız",
+        "p1": "Kişisel verileriniz üzerinde tam haklara sahipsiniz. Bunları privacy@zyrix.co adresine e-posta göndererek her zaman kullanabilirsiniz:",
+        "l1": {
+          "label": "Erişim",
+          "body": "Hakkınızda tuttuğumuz tüm kişisel verilerin bir kopyasını talep edin."
+        },
+        "l2": {
+          "label": "Düzeltme",
+          "body": "Yanlış veya eksik bilgileri düzeltin."
+        },
+        "l3": {
+          "label": "Silme",
+          "body": "Hesabınızı ve ilişkili tüm iş verilerini silin. Not: Fatura kayıtları yasal ve vergi amaçlı tutulmak zorundadır."
+        },
+        "l4": {
+          "label": "Dışa aktarma",
+          "body": "İş verilerinizi yapılandırılmış, makine tarafından okunabilir bir biçimde (CSV veya JSON) alın."
+        }
+      },
+      "s7": {
+        "title": "7. Veri saklama",
+        "p1": "Hesabınız aktif olduğu sürece iş verilerinizi saklarız. Hesabınızı silerseniz iş verilerinizi 30 gün içinde kaldırırız.",
+        "p2": "Faturalar, ödeme kayıtları ve denetim günlükleri, Türkiye ve Körfez ülkelerindeki muhasebe ve kara para aklamayla mücadele düzenlemelerine uyum sağlamak için en fazla 10 yıl saklanır."
+      },
+      "s8": {
+        "title": "8. Çerezler",
+        "p1": "Yalnızca oturum açık tutmak ve dil tercihinizi hatırlamak için gerekli temel çerezleri kullanırız. crm.zyrix.co'nun hiçbir sayfasında pazarlama veya reklam çerezi kullanmayız."
+      },
+      "s9": {
+        "title": "9. Çocuklar",
+        "p1": "Zyrix bir işletme ürünüdür. 18 yaşın altındakilere yönelik değildir. Küçüklerden bilerek veri toplamıyoruz."
+      },
+      "s10": {
+        "title": "10. Bu politikadaki değişiklikler",
+        "p1": "Bu politikayı zaman zaman güncelleyebiliriz. Önemli değişiklikler yaptığımızda, tüm aktif müşterilere değişiklikler yürürlüğe girmeden en az 15 gün önce e-posta ile bildiririz. Üstteki 'Son güncelleme' tarihi her zaman geçerli sürümü yansıtır."
+      }
+    },
+    "terms": {
+      "eyebrow": "Yasal",
+      "title": "Kullanım Şartları",
+      "lastUpdated": "Son güncelleme",
+      "lastUpdatedDate": "20 Nisan 2026",
+      "intro": "Bu Kullanım Şartları, crm.zyrix.co ve alt alan adlarındaki CRM platformumuzu kullandığınızda sizin (müşteri) ile Zyrix (sağlayıcı) arasındaki anlaşmadır. Bir hesap oluşturarak bu şartları kabul etmiş olursunuz.",
+      "s1": {
+        "title": "1. Biz kimiz",
+        "p1": "Zyrix, İstanbul, Türkiye merkezli bir yazılım şirketidir. Zyrix CRM, Türkiye ve Arap dünyasında faaliyet gösteren işletmeler için tasarlanmış abonelik tabanlı bir müşteri ilişkileri yönetimi platformudur."
+      },
+      "s2": {
+        "title": "2. Uygunluk",
+        "p1": "Zyrix'i kullanmak için:",
+        "l1": "18 yaşında veya daha büyük olmalı ve bağlayıcı bir sözleşmeye hukuken girebilmelisiniz.",
+        "l2": "Meşru bir işletme kuruluşunu temsil etmeli veya onun adına hareket etmelisiniz.",
+        "l3": "Doğru kayıt bilgileri sağlamalı ve bunları güncel tutmalısınız.",
+        "l4": "İşletmenize ve müşterilerinize uygulanan tüm yasalara uymalısınız."
+      },
+      "s3": {
+        "title": "3. Hesabınız",
+        "p1": "Hesabınız altında gerçekleşen her şeyden siz sorumlusunuz:",
+        "l1": {
+          "label": "Kimlik bilgileri",
+          "body": "Şifrenizi gizli tutun. Kimseyle paylaşmayın."
+        },
+        "l2": {
+          "label": "Yetkili kullanıcılar",
+          "body": "Ekip üyelerini davet edebilirsiniz; koltuk sayısı paketinize bağlıdır."
+        },
+        "l3": {
+          "label": "Doğruluk",
+          "body": "Sahte kimlik veya sahte işletme bilgileriyle kayıt olmayın."
+        },
+        "l4": {
+          "label": "Yasal faaliyet",
+          "body": "Zyrix'i dolandırıcılık, kara para aklama veya yaptırım ihlali dahil hiçbir yasadışı amaç için kullanamazsınız."
+        }
+      },
+      "s4": {
+        "title": "4. Abonelik, faturalandırma ve iade",
+        "p1": "Ücretli paketler, kayıtlı ödeme yöntemi kullanılarak her fatura döngüsünün (aylık veya yıllık) sonunda otomatik olarak yenilenir. Hesabınızdan dilediğiniz zaman iptal edebilirsiniz — iptal, geçerli ücretli dönemin sonunda yürürlüğe girer ve gelecekteki ücretleri durdurur.",
+        "p2": "Kısmi aylar veya kullanılmamış bölümler için orantılı iade sunmuyoruz. Bir ücret açıkça hatalı veya yinelenmişse, 30 gün içinde billing@zyrix.co adresinden bize ulaşın, iyi niyetle araştıracağız.",
+        "p3": "Fiyatlar değişebilir; mevcut paketinizin fiyatını yükseltmeden en az 30 gün önce bildirimde bulunuruz."
+      },
+      "s5": {
+        "title": "5. Kabul edilebilir kullanım",
+        "p1": "Şunları yapmamayı kabul edersiniz:",
+        "l1": "Zyrix veya entegrasyonları (WhatsApp dahil) aracılığıyla spam, kimlik avı veya istenmeyen toplu iletişim göndermemek.",
+        "l2": "Kötü amaçlı yazılım, virüs veya herhangi bir sistemi bozmak için tasarlanmış içerik yüklememek.",
+        "l3": "Yazılı iznimiz olmadan platformun tersine mühendisliğini yapmaya, yeniden satmaya veya alt lisansını vermeye çalışmamak.",
+        "l4": "Hizmeti, işleme hakkına sahip olmadığınız verileri depolamak veya işlemek için kullanmamak.",
+        "l5": "Diğer kullanıcıları, personelimizi veya üçüncü tarafları platform üzerinden taciz etmemek veya tehdit etmemek.",
+        "l6": "Entegre edilmiş herhangi bir üçüncü tarafın şartlarını ihlal etmemek (örneğin WhatsApp Business Politikası)."
+      },
+      "s6": {
+        "title": "6. Verileriniz",
+        "p1": "Zyrix'e girdiğiniz verilerin sahibi sizsiniz. Müşteri kayıtları, fırsatlar, notlar veya herhangi bir iş verisi üzerinde herhangi bir sahiplik iddia etmiyoruz. Verilerinizi yalnızca hizmeti sağlamak amacıyla barındırmak, görüntülemek ve işlemek için bize asgari lisansı verirsiniz.",
+        "p2": "Verilerinizi istediğiniz zaman dışa aktarabilir veya silebilirsiniz. Hesabınızı sildiğinizde iş verilerinizi 30 gün içinde kaldırırız (yasal olarak tutmamız gereken şeyler için Gizlilik Politikamıza bakın)."
+      },
+      "s7": {
+        "title": "7. Erişilebilirlik ve uptime",
+        "p1": "Aylık %99,9 uptime hedefliyoruz. Planlı bakımlar mümkün olduğunda önceden duyurulur. Makul kontrolümüz dışındaki olaylardan kaynaklanan kesintilerden sorumlu değiliz; buna altyapı sağlayıcılarının kesintileri (Railway, Vercel, Cloudflare, ödeme ağ geçitleri) dahildir."
+      },
+      "s8": {
+        "title": "8. Feragatname ve sorumluluk sınırlaması",
+        "p1": "Zyrix 'olduğu gibi' sunulur; ticari elverişlilik veya belirli bir amaca uygunluk konusunda herhangi bir garanti verilmez. Hizmeti kullanmanızdan kaynaklanan herhangi bir talep için toplam sorumluluğumuz, talebin doğmasından önceki 12 ay içinde bize ödediğiniz tutarla sınırlıdır. Kâr kaybı veya iş fırsatı kaybı dahil olmak üzere dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu değiliz."
+      },
+      "s9": {
+        "title": "9. Fesih",
+        "p1": "Bu şartları ihlal etmeniz, hizmeti kötüye kullanmanız veya ödeme yapmamanız durumunda hesabınızı askıya alabilir veya feshedebiliriz. Çoğu durumda sizi önce bilgilendirir ve sorunu çözmeniz için bir şans veririz. Ciddi ihlaller için (dolandırıcılık, yasadışı faaliyet, güvenlik saldırıları) derhal fesih edebiliriz."
+      },
+      "s10": {
+        "title": "10. Geçerli hukuk ve iletişim",
+        "p1": "Bu şartlar Türkiye Cumhuriyeti yasalarına tabidir. Bu şartlardan doğan uyuşmazlıklar İstanbul mahkemelerinde görülür. Hukuki konular için bize ulaşın:"
+      }
+    }
   }
 }
