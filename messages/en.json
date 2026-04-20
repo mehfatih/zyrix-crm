@@ -1299,5 +1299,72 @@
     "consent": "By submitting this form, you agree to our Privacy Policy.",
     "errorRequired": "Please fill in your name and email.",
     "errorGeneric": "Something went wrong. Please try again or email hello@zyrix.co directly."
+  },
+  "Tasks": {
+    "title": "Tasks",
+    "subtitle": "Track what your team needs to do — and what's overdue",
+    "create": "New task",
+    "createTitle": "Create task",
+    "editTitle": "Edit task",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "titleRequired": "Please add a title for this task.",
+    "saveError": "Failed to save task. Please try again.",
+    "confirmDeleteTitle": "Delete this task?",
+    "confirmDeleteMessage": "\"{title}\" will be permanently deleted.",
+    "assignedToMe": "Me",
+    "unassigned": "Unassigned",
+    "searchPlaceholder": "Search tasks…",
+    "emptyTitle": "No tasks yet",
+    "emptyBody": "Create your first task to start tracking what needs to get done — assign it to a teammate or yourself.",
+    "emptyCta": "Create your first task",
+    "emptyColumn": "Drag or create tasks here",
+    "stats": {
+      "myOpen": "My open tasks",
+      "dueToday": "Due today",
+      "overdue": "Overdue",
+      "urgent": "Urgent"
+    },
+    "filters": {
+      "allPriorities": "All priorities",
+      "myTasks": "My tasks",
+      "overdue": "Overdue only"
+    },
+    "views": {
+      "kanban": "Kanban",
+      "list": "List"
+    },
+    "status": {
+      "todo": "To do",
+      "in_progress": "In progress",
+      "done": "Done",
+      "cancelled": "Cancelled"
+    },
+    "priority": {
+      "urgent": "Urgent",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "advance": {
+      "todo": "Move back to To do",
+      "in_progress": "Start working",
+      "done": "Mark as done",
+      "cancelled": "Cancel"
+    },
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "descriptionPlaceholder": "What needs to get done?",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due date",
+      "assignee": "Assignee",
+      "customer": "Related customer",
+      "deal": "Related deal",
+      "noCustomer": "— No customer —",
+      "noDeal": "— No deal —"
+    }
   }
 }

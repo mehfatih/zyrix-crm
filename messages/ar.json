@@ -1299,5 +1299,72 @@
     "consent": "بإرسال هذا النموذج، أنت توافق على سياسة الخصوصية الخاصة بنا.",
     "errorRequired": "يرجى إدخال اسمك وبريدك الإلكتروني.",
     "errorGeneric": "حدث خطأ ما. حاول مرة أخرى أو راسلنا على hello@zyrix.co مباشرة."
+  },
+  "Tasks": {
+    "title": "المهام",
+    "subtitle": "تتبّع ما يحتاج فريقك لإنجازه — وما هو متأخر",
+    "create": "مهمة جديدة",
+    "createTitle": "إنشاء مهمة",
+    "editTitle": "تعديل المهمة",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "titleRequired": "يرجى إضافة عنوان لهذه المهمة.",
+    "saveError": "فشل حفظ المهمة. يرجى المحاولة مرة أخرى.",
+    "confirmDeleteTitle": "حذف هذه المهمة؟",
+    "confirmDeleteMessage": "سيتم حذف \"{title}\" نهائياً.",
+    "assignedToMe": "أنا",
+    "unassigned": "غير مُسنَدة",
+    "searchPlaceholder": "ابحث في المهام…",
+    "emptyTitle": "لا توجد مهام بعد",
+    "emptyBody": "أنشئ أول مهمة لتبدأ في تتبّع ما يجب إنجازه — أسندها لزميل أو لنفسك.",
+    "emptyCta": "أنشئ أول مهمة",
+    "emptyColumn": "اسحب أو أنشئ مهام هنا",
+    "stats": {
+      "myOpen": "مهامي المفتوحة",
+      "dueToday": "مستحقة اليوم",
+      "overdue": "متأخرة",
+      "urgent": "عاجلة"
+    },
+    "filters": {
+      "allPriorities": "كل الأولويات",
+      "myTasks": "مهامي",
+      "overdue": "المتأخرة فقط"
+    },
+    "views": {
+      "kanban": "كانبان",
+      "list": "قائمة"
+    },
+    "status": {
+      "todo": "للعمل",
+      "in_progress": "قيد التنفيذ",
+      "done": "مكتملة",
+      "cancelled": "ملغاة"
+    },
+    "priority": {
+      "urgent": "عاجل",
+      "high": "مرتفع",
+      "medium": "متوسط",
+      "low": "منخفض"
+    },
+    "advance": {
+      "todo": "إرجاع إلى للعمل",
+      "in_progress": "ابدأ العمل",
+      "done": "وضع كمكتملة",
+      "cancelled": "إلغاء"
+    },
+    "fields": {
+      "title": "العنوان",
+      "description": "الوصف",
+      "descriptionPlaceholder": "ما الذي يجب إنجازه؟",
+      "status": "الحالة",
+      "priority": "الأولوية",
+      "dueDate": "تاريخ الاستحقاق",
+      "assignee": "المسؤول",
+      "customer": "العميل المرتبط",
+      "deal": "الصفقة المرتبطة",
+      "noCustomer": "— لا يوجد عميل —",
+      "noDeal": "— لا توجد صفقة —"
+    }
   }
 }

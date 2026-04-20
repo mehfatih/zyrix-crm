@@ -1299,5 +1299,72 @@
     "consent": "Bu formu göndererek Gizlilik Politikamızı kabul etmiş olursunuz.",
     "errorRequired": "Lütfen adınızı ve e-postanızı girin.",
     "errorGeneric": "Bir şeyler ters gitti. Tekrar deneyin veya doğrudan hello@zyrix.co adresine e-posta gönderin."
+  },
+  "Tasks": {
+    "title": "Görevler",
+    "subtitle": "Ekibinizin yapması gerekenleri — ve neyin gecikmiş olduğunu takip edin",
+    "create": "Yeni görev",
+    "createTitle": "Görev oluştur",
+    "editTitle": "Görevi düzenle",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "titleRequired": "Lütfen bu görev için bir başlık ekleyin.",
+    "saveError": "Görev kaydedilemedi. Lütfen tekrar deneyin.",
+    "confirmDeleteTitle": "Bu görev silinsin mi?",
+    "confirmDeleteMessage": "\"{title}\" kalıcı olarak silinecek.",
+    "assignedToMe": "Ben",
+    "unassigned": "Atanmamış",
+    "searchPlaceholder": "Görevlerde ara…",
+    "emptyTitle": "Henüz görev yok",
+    "emptyBody": "Yapılması gerekenleri takip etmeye başlamak için ilk görevinizi oluşturun — bir takım arkadaşına veya kendinize atayın.",
+    "emptyCta": "İlk görevinizi oluşturun",
+    "emptyColumn": "Buraya görev sürükleyin veya oluşturun",
+    "stats": {
+      "myOpen": "Açık görevlerim",
+      "dueToday": "Bugün dolacak",
+      "overdue": "Gecikmiş",
+      "urgent": "Acil"
+    },
+    "filters": {
+      "allPriorities": "Tüm öncelikler",
+      "myTasks": "Görevlerim",
+      "overdue": "Sadece gecikmiş"
+    },
+    "views": {
+      "kanban": "Kanban",
+      "list": "Liste"
+    },
+    "status": {
+      "todo": "Yapılacak",
+      "in_progress": "Devam ediyor",
+      "done": "Tamamlandı",
+      "cancelled": "İptal edildi"
+    },
+    "priority": {
+      "urgent": "Acil",
+      "high": "Yüksek",
+      "medium": "Orta",
+      "low": "Düşük"
+    },
+    "advance": {
+      "todo": "Yapılacak'a geri al",
+      "in_progress": "Çalışmaya başla",
+      "done": "Tamamlandı olarak işaretle",
+      "cancelled": "İptal et"
+    },
+    "fields": {
+      "title": "Başlık",
+      "description": "Açıklama",
+      "descriptionPlaceholder": "Ne yapılması gerekiyor?",
+      "status": "Durum",
+      "priority": "Öncelik",
+      "dueDate": "Son tarih",
+      "assignee": "Atanan kişi",
+      "customer": "İlgili müşteri",
+      "deal": "İlgili fırsat",
+      "noCustomer": "— Müşteri yok —",
+      "noDeal": "— Fırsat yok —"
+    }
   }
 }
