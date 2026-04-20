@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { Briefcase, Loader2, Plus } from "lucide-react";
 import { listDeals, type Deal, type DealStage } from "@/lib/api/deals";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import { CreateDealModal } from "@/components/deals/CreateDealModal";
 import { formatDate, cn } from "@/lib/utils";
 
 const STAGE_COLORS: Record<DealStage, string> = {
@@ -22,24 +23,31 @@ export default function DealsPage() {
   const [deals, setDeals] = useState<Deal[]>([]);
   const [loading, setLoading] = useState(true);
   const [stageFilter, setStageFilter] = useState<string>("");
+  const [showCreateModal, setShowCreateModal] = useState(false);
+
+  const fetchDeals = async () => {
+    setLoading(true);
+    try {
+      const result = await listDeals({
+        stage: stageFilter || undefined,
+        limit: 100,
+      });
+      setDeals(result.deals);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      try {
-        const result = await listDeals({
-          stage: stageFilter || undefined,
-          limit: 100,
-        });
-        setDeals(result.deals);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetch();
+    fetchDeals();
   }, [stageFilter]);
+
+  const handleCreateSuccess = () => {
+    setShowCreateModal(false);
+    fetchDeals();
+  };
 
   const totalValue = deals.reduce(
     (sum, d) => sum + (d.stage === "won" ? Number(d.value) : 0),
@@ -56,7 +64,10 @@ export default function DealsPage() {
               {deals.length} deals · ${totalValue.toLocaleString()} won
             </p>
           </div>
-          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 shadow-sm">
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 shadow-sm"
+          >
             <Plus className="w-4 h-4" />
             New deal
           </button>
@@ -168,6 +179,13 @@ export default function DealsPage() {
           )}
         </div>
       </div>
+
+      {showCreateModal && (
+        <CreateDealModal
+          onClose={() => setShowCreateModal(false)}
+          onSuccess={handleCreateSuccess}
+        />
+      )}
     </DashboardShell>
   );
 }
