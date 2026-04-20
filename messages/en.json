@@ -40,7 +40,8 @@
     "english": "English",
     "arabic": "العربية",
     "turkish": "Türkçe",
-    "quotes": "Quotes"
+    "quotes": "Quotes",
+    "loyalty": "Loyalty"
   },
   "Home": {
     "hero": {
@@ -1506,5 +1507,96 @@
       "rejected": "You have declined this quote."
     },
     "poweredBy": "Powered by"
+  },
+  "Loyalty": {
+    "title": "Customer Loyalty",
+    "subtitle": "Reward repeat customers with points and tiers",
+    "newTransaction": "New Transaction",
+    "pts": "pts",
+    "banner": {
+      "inactiveTitle": "Your loyalty program is inactive",
+      "inactiveSubtitle": "Activate it in the Program tab to start rewarding customers",
+      "configure": "Configure"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "members": "Members",
+      "transactions": "Transactions",
+      "program": "Program"
+    },
+    "stats": {
+      "activeMembers": "Active Members",
+      "totalEarned": "Total Earned",
+      "totalRedeemed": "Total Redeemed",
+      "txnsLast30d": "Transactions (30d)"
+    },
+    "overview": {
+      "programConfig": "Program Configuration",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "ptsPer": "pts per",
+      "pts": "pts",
+      "topMembers": "Top Members",
+      "noMembers": "No members yet. Start by creating a transaction."
+    },
+    "table": {
+      "member": "Member",
+      "tier": "Tier",
+      "balance": "Balance",
+      "date": "Date",
+      "type": "Type",
+      "reason": "Reason",
+      "points": "Points"
+    },
+    "txnType": {
+      "earn": "Earn",
+      "redeem": "Redeem",
+      "adjust": "Adjust",
+      "expire": "Expire"
+    },
+    "transactions": {
+      "empty": "No transactions yet",
+      "newTitle": "New Loyalty Transaction"
+    },
+    "program": {
+      "basics": "Basics",
+      "earnRedeem": "Earn & Redeem Rules",
+      "tiers": "Membership Tiers",
+      "name": "Program Name",
+      "currency": "Currency",
+      "isActive": "Program is active",
+      "pointsPerUnit": "Points per unit of currency",
+      "pointsPerUnitHint": "E.g. 1 means customer earns 1 point for every 1 TRY spent",
+      "redeemValue": "Value per point on redemption",
+      "redeemValueHint": "How much 1 point is worth when redeemed",
+      "minRedeem": "Minimum points to redeem",
+      "addTier": "Add tier",
+      "noTiers": "No tiers defined. Tiers let you reward top customers with multipliers and perks.",
+      "tierName": "Tier name",
+      "multiplier": "multiplier",
+      "save": "Save Program",
+      "saved": "Program saved successfully"
+    },
+    "form": {
+      "customer": "Customer",
+      "selectCustomer": "Select a customer…",
+      "type": "Transaction Type",
+      "points": "Points",
+      "pointsHint": "Always enter a positive number — redeem/expire will become negative automatically",
+      "reason": "Reason",
+      "reasonPlaceholder": "e.g. Invoice #1234, Birthday bonus, Redeemed for discount"
+    },
+    "actions": {
+      "create": "Create",
+      "cancel": "Cancel"
+    },
+    "confirm": {
+      "deleteTxn": "Delete this transaction? This will change the customer's balance."
+    },
+    "errors": {
+      "selectCustomer": "Please select a customer",
+      "enterPoints": "Please enter a points value"
+    }
   }
 }

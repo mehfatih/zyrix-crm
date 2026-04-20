@@ -40,7 +40,8 @@
     "english": "English",
     "arabic": "العربية",
     "turkish": "Türkçe",
-    "quotes": "Teklifler"
+    "quotes": "Teklifler",
+    "loyalty": "Sadakat"
   },
   "Home": {
     "hero": {
@@ -1506,5 +1507,96 @@
       "rejected": "Bu teklifi reddettiniz."
     },
     "poweredBy": "Sağlayan:"
+  },
+  "Loyalty": {
+    "title": "Müşteri Sadakati",
+    "subtitle": "Tekrar eden müşterileri puan ve seviyelerle ödüllendirin",
+    "newTransaction": "Yeni İşlem",
+    "pts": "puan",
+    "banner": {
+      "inactiveTitle": "Sadakat programınız pasif durumda",
+      "inactiveSubtitle": "Müşterileri ödüllendirmeye başlamak için Program sekmesinden etkinleştirin",
+      "configure": "Yapılandır"
+    },
+    "tabs": {
+      "overview": "Genel Bakış",
+      "members": "Üyeler",
+      "transactions": "İşlemler",
+      "program": "Program"
+    },
+    "stats": {
+      "activeMembers": "Aktif Üyeler",
+      "totalEarned": "Toplam Kazanılan",
+      "totalRedeemed": "Toplam Kullanılan",
+      "txnsLast30d": "İşlemler (30 gün)"
+    },
+    "overview": {
+      "programConfig": "Program Yapılandırması",
+      "status": "Durum",
+      "active": "Aktif",
+      "inactive": "Pasif",
+      "ptsPer": "puan /",
+      "pts": "puan",
+      "topMembers": "En İyi Üyeler",
+      "noMembers": "Henüz üye yok. Bir işlem oluşturarak başlayın."
+    },
+    "table": {
+      "member": "Üye",
+      "tier": "Seviye",
+      "balance": "Bakiye",
+      "date": "Tarih",
+      "type": "Tür",
+      "reason": "Sebep",
+      "points": "Puan"
+    },
+    "txnType": {
+      "earn": "Kazanım",
+      "redeem": "Kullanım",
+      "adjust": "Düzeltme",
+      "expire": "Süre Sonu"
+    },
+    "transactions": {
+      "empty": "Henüz işlem yok",
+      "newTitle": "Yeni Sadakat İşlemi"
+    },
+    "program": {
+      "basics": "Temel Ayarlar",
+      "earnRedeem": "Kazanım ve Kullanım Kuralları",
+      "tiers": "Üyelik Seviyeleri",
+      "name": "Program Adı",
+      "currency": "Para Birimi",
+      "isActive": "Program aktif",
+      "pointsPerUnit": "Birim başına puan",
+      "pointsPerUnitHint": "Örn: 1 değeri, her 1 TL harcamada 1 puan kazanılacağı anlamına gelir",
+      "redeemValue": "Kullanım sırasında puan başına değer",
+      "redeemValueHint": "1 puan kullanıldığında ne kadar değerindedir",
+      "minRedeem": "Minimum kullanım puanı",
+      "addTier": "Seviye ekle",
+      "noTiers": "Tanımlı seviye yok. Seviyeler, en iyi müşterilere çarpanlar ve ek avantajlar sağlar.",
+      "tierName": "Seviye adı",
+      "multiplier": "çarpan",
+      "save": "Programı Kaydet",
+      "saved": "Program başarıyla kaydedildi"
+    },
+    "form": {
+      "customer": "Müşteri",
+      "selectCustomer": "Müşteri seçin…",
+      "type": "İşlem Türü",
+      "points": "Puan",
+      "pointsHint": "Her zaman pozitif bir sayı girin — kullanım/süre sonu otomatik olarak negatif olur",
+      "reason": "Sebep",
+      "reasonPlaceholder": "Örn: Fatura #1234, Doğum günü bonusu, İndirim için kullanıldı"
+    },
+    "actions": {
+      "create": "Oluştur",
+      "cancel": "İptal"
+    },
+    "confirm": {
+      "deleteTxn": "Bu işlem silinsin mi? Müşterinin bakiyesi değişecek."
+    },
+    "errors": {
+      "selectCustomer": "Lütfen bir müşteri seçin",
+      "enterPoints": "Lütfen bir puan değeri girin"
+    }
   }
 }
