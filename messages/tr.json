@@ -42,7 +42,8 @@
     "turkish": "Türkçe",
     "quotes": "Teklifler",
     "loyalty": "Sadakat",
-    "tax": "Vergi"
+    "tax": "Vergi",
+    "cashflow": "Nakit Akışı"
   },
   "Home": {
     "hero": {
@@ -1652,6 +1653,42 @@
     "errors": {
       "enterName": "Lütfen bir ad girin",
       "invalidRate": "Oran 0 ile 100 arasında olmalıdır"
+    }
+  },
+  "Cashflow": {
+    "title": "Nakit Akışı Tahmini",
+    "subtitle": "Satış hunisinden olasılık-ağırlıklı gelir projeksiyonu",
+    "kpi": {
+      "weighted": "Ağırlıklı Tahmin",
+      "weightedHint": "Değer × olasılık",
+      "potential": "Toplam Huni",
+      "potentialHint": "Tüm anlaşmalar kapansa",
+      "deals": "Aktif Anlaşmalar",
+      "dealsHint": "{horizon} gün içinde kapanacak",
+      "avgProbability": "Ort. Olasılık",
+      "avgProbabilityHint": "Tahmindeki anlaşmalar"
+    },
+    "historical": {
+      "title": "Son 30 Gün — Geçmiş Baz Çizgisi",
+      "subtitle": "Tahmininizi kalibre etmek için referans",
+      "wonCount": "Kazanılan Anlaşma",
+      "wonValue": "Gelir",
+      "winRate": "Kazanma Oranı",
+      "avgDealSize": "Ort. Anlaşma Büyüklüğü"
+    },
+    "chart": {
+      "title": "Döneme Göre Tahmini Nakit Akışı — {horizon} gün",
+      "empty": "Bu pencerede beklenen kapanış tarihi olan anlaşma yok",
+      "emptyHint": "Tahmini doldurmak için anlaşmalarınıza beklenen kapanış tarihi ekleyin"
+    },
+    "byStage": {
+      "title": "Aşamaya Göre Ağırlıklı Değer",
+      "empty": "Tahmin penceresinde aktif anlaşma yok"
+    },
+    "topDeals": {
+      "title": "Ağırlıklı Değere Göre En İyi 10 Anlaşma",
+      "empty": "Tahmin penceresinde anlaşma yok",
+      "of": "/"
     }
   }
 }

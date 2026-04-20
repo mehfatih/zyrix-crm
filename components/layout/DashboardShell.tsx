@@ -14,6 +14,7 @@ import {
   FileText,
   Award,
   Percent,
+  TrendingUp,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -59,6 +60,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     { href: `/${locale}/quotes`, icon: FileText, label: "Quotes" },
     { href: `/${locale}/loyalty`, icon: Award, label: "Loyalty" },
     { href: `/${locale}/tax`, icon: Percent, label: "Tax" },
+    { href: `/${locale}/cashflow`, icon: TrendingUp, label: "Cash Flow" },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
     {
       href: `/${locale}/whatsapp`,

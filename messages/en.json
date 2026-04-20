@@ -42,7 +42,8 @@
     "turkish": "Türkçe",
     "quotes": "Quotes",
     "loyalty": "Loyalty",
-    "tax": "Tax"
+    "tax": "Tax",
+    "cashflow": "Cash Flow"
   },
   "Home": {
     "hero": {
@@ -1652,6 +1653,42 @@
     "errors": {
       "enterName": "Please enter a name",
       "invalidRate": "Rate must be between 0 and 100"
+    }
+  },
+  "Cashflow": {
+    "title": "Cash Flow Forecast",
+    "subtitle": "Probability-weighted revenue projection from your pipeline",
+    "kpi": {
+      "weighted": "Weighted Forecast",
+      "weightedHint": "Value × probability",
+      "potential": "Total Pipeline",
+      "potentialHint": "If every deal closes",
+      "deals": "Active Deals",
+      "dealsHint": "Closing in next {horizon} days",
+      "avgProbability": "Avg. Probability",
+      "avgProbabilityHint": "Across forecast deals"
+    },
+    "historical": {
+      "title": "Last 30 Days — Historical Baseline",
+      "subtitle": "Context for calibrating your forecast",
+      "wonCount": "Deals Won",
+      "wonValue": "Revenue",
+      "winRate": "Win Rate",
+      "avgDealSize": "Avg. Deal Size"
+    },
+    "chart": {
+      "title": "Projected Cash Flow by Period — Next {horizon} days",
+      "empty": "No deals with expected close dates in this window",
+      "emptyHint": "Set expected close dates on your deals to populate the forecast"
+    },
+    "byStage": {
+      "title": "Weighted Value by Stage",
+      "empty": "No active deals in forecast window"
+    },
+    "topDeals": {
+      "title": "Top 10 Deals by Weighted Value",
+      "empty": "No deals in forecast window",
+      "of": "of"
     }
   }
 }
