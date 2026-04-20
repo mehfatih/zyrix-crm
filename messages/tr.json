@@ -1007,5 +1007,180 @@
     "consent": "Bu formu göndererek Gizlilik Politikamızı ve isteğinizi yanıtlamak için verilerinizin işlenmesini kabul etmiş olursunuz.",
     "errorRequired": "Lütfen adınızı, e-postanızı ve mesajınızı girin.",
     "errorGeneric": "Bir şeyler ters gitti. Tekrar deneyin veya doğrudan e-posta ile bize ulaşın."
+  },
+  "Features": {
+    "eyebrow": "Özellikler",
+    "title": "İşinizi yönetmek için ihtiyacınız olan her şey",
+    "subtitle": "WhatsApp potansiyel müşterilerinden KDV uyumlu faturalara kadar, Zyrix ekibinize tek bir çalışma alanı sunar — Türkiye ve Arap dünyasında işlerin gerçekte nasıl yürüdüğüne göre tasarlanmıştır.",
+    "hero": {
+      "titlePrefix": "Gerçekten",
+      "titleHighlight": "dilinizi konuşan bir CRM",
+      "subtitle": "Arapça lehçeler, Türk KDV kuralları, Suudi ZATCA hazırlığı ve özünde WhatsApp — eklenti yok, sürpriz yok."
+    },
+    "values": {
+      "trilingual": {
+        "title": "İlk günden üç dilli",
+        "body": "Arapça, İngilizce, Türkçe — arayüz, e-postalar ve AI birlikte değişir."
+      },
+      "whatsappNative": {
+        "title": "Doğuştan WhatsApp",
+        "body": "Müşterilerinizin zaten kullandığı kanalda görüşmeler, müşteri adayları ve AI çıkarımı."
+      },
+      "perCompany": {
+        "title": "Şirket başına fiyatlandırma",
+        "body": "Koltuk başı ücret yok. Tüm ekibinizi herhangi bir ücretli pakette davet edin."
+      },
+      "dataSovereignty": {
+        "title": "Dışa aktarılabilir veri",
+        "body": "Verileriniz sizin kalır. İstediğiniz zaman CSV veya JSON'da tam dışa aktarma."
+      }
+    },
+    "categories": {
+      "communication": {
+        "title": "İletişim",
+        "heading": "Müşterilere oldukları yerde ulaşın",
+        "subtitle": "WhatsApp, e-posta ve akıllı takipler — hepsi tek bir CRM zaman çizelgesine akar, böylece hiçbir şey gözden kaçmaz."
+      },
+      "sales": {
+        "title": "Satış ve pipeline",
+        "heading": "Daha az işle daha çok satın",
+        "subtitle": "Görsel pipeline'lar, dönüştüren teklifler ve satış ekibinizin gerçekten kullanacağı komisyon takibi."
+      },
+      "ai": {
+        "title": "Bölgeyi bilen AI",
+        "heading": "Dilinizde yerleşik zeka",
+        "subtitle": "AI'ımız Körfez lehçelerini, Levanten Arapçasını ve Türk iş kültürü bağlamını anlıyor — sadece jenerik İngilizce değil."
+      },
+      "finance": {
+        "title": "Finans ve uyumluluk",
+        "heading": "KDV, VAT ve ZATCA — hazır",
+        "subtitle": "Vergi kurallarıyla boğuşmayı bırakın. Zyrix Türkiye KDV'yi, Suudi ve BAE VAT'ı hesaplar ve nakit akışınızı tahmin eder."
+      },
+      "productivity": {
+        "title": "Ekip verimliliği",
+        "heading": "Tüm ekibinizi senkronize tutun",
+        "subtitle": "Görevler, sadakat programları ve müşterileriniz için bir portal — ekibinizin verimli çalışması için ihtiyaç duyduğu her şey."
+      }
+    },
+    "items": {
+      "whatsapp": {
+        "title": "WhatsApp Business CRM",
+        "body": "Her WhatsApp görüşmesi bir müşteri kaydına dönüşür. AI niyet, bütçe ve sonraki adımları otomatik olarak çıkarır.",
+        "badge": "Beta"
+      },
+      "email": {
+        "title": "E-posta Senkronu ve Pazarlama",
+        "body": "Gmail veya herhangi bir IMAP gelen kutusu bağlayın. Görüşmeleri takip edin, kampanyalar gönderin ve açılmaları aynı CRM'den ölçün."
+      },
+      "followup": {
+        "title": "Akıllı Takip",
+        "body": "Bir potansiyel müşteriyi sessizliğe kaybetmeyin. Zyrix, müşteri 2, 5 veya 10 gün yanıt vermediğinde ekibinize hatırlatır — sizin kurallarınızla."
+      },
+      "customers": {
+        "title": "Müşteri Veritabanı",
+        "body": "Her çağrı, mesaj, fırsat ve notla birleşik profil. Arapça isimler doğru şekilde ele alınır, telefon numaraları normalize edilir."
+      },
+      "pipeline": {
+        "title": "Görsel Pipeline",
+        "body": "Fırsatları aşamalar arasında sürükleyip bırakın. Ağırlıklı değeri, kazanma oranını ve yaşlanan müşteri adaylarını bir bakışta görün."
+      },
+      "quotes": {
+        "title": "Teklifler ve Öneriler",
+        "body": "Logonuzla, KDV satırınızla ve e-imzayla Arapça veya İngilizce teklifler oluşturun. Müşterilerin teklifleri ne zaman açtığını takip edin."
+      },
+      "commission": {
+        "title": "Komisyon Motoru",
+        "body": "Fırsat başına, kademeli veya ekip tabanlı komisyon kuralları ayarlayın. Her satış elemanının ne kazandığını otomatik hesaplayın."
+      },
+      "cfo": {
+        "title": "AI CFO Paneli",
+        "body": "'Geçen çeyrek nasıldı?' diye Arapça sorun ve gerçek bir yanıt alın — kendi fırsatlarınız, ödemeleriniz ve tahminlerinizden çekilen."
+      },
+      "dialects": {
+        "title": "Arapça Lehçe AI",
+        "body": "Körfez, Levanten, Mısır — modellerimiz hepsini anlıyor. Müşterilerinize artık 'tuhaf' CRM yanıtları gitmiyor."
+      },
+      "insights": {
+        "title": "Akıllı İçgörüler",
+        "body": "Zyrix, gelirin %80'ini üreten müşterilerin %20'sini, duraklayan fırsatları ve en hızlı büyüyen şehirleri ortaya çıkarır."
+      },
+      "tax": {
+        "title": "Vergi Motoru (KDV / VAT)",
+        "body": "Türk KDV (%8, %18, %20), Suudi VAT (%15), BAE VAT (%5) — tekliflerde ve faturalarda doğru hesaplanır."
+      },
+      "cashflow": {
+        "title": "Nakit Akışı Tahmini",
+        "body": "Pipeline'ınız, fırsatlarınız ve geçmiş ödeme zamanlamanıza göre nakit pozisyonunuzu 30/60/90 gün önceden öngörün."
+      },
+      "multicurrency": {
+        "title": "Çoklu Para Birimi Raporları",
+        "body": "USD, TRY, SAR, AED, EGP, IQD ile çalışın. Canlı döviz çevrimiyle herhangi birinde raporlayın."
+      },
+      "tasks": {
+        "title": "Görev Yönetimi",
+        "body": "Görevleri takım arkadaşlarına atayın, son tarih belirleyin, notlarda @bahsedin. Her müşteri kaydının içinde yerleşik yapılacaklar listesi."
+      },
+      "loyalty": {
+        "title": "Müşteri Sadakati",
+        "body": "En iyi müşterileriniz için puanlar, kademeler ve ödüller. Kimin VIP olduğunu ve kimin uzaklaştığını takip edin."
+      },
+      "portal": {
+        "title": "Müşteri Portalı",
+        "body": "Müşterilerinize tekliflerini, faturalarını ve açık taleplerini kendi dillerinde görüntüleyebilecekleri markalı bir portal verin."
+      }
+    },
+    "aiBand": {
+      "title": "Müşterilerinizin dilini gerçekten konuşan tek AI",
+      "body": "Çoğu CRM, OpenAI'yi İngilizce bir sistem yönergesiyle ekler ve en iyisini umar. Zyrix, MENA iş bağlamıyla ince ayarlanmış Gemini kullanır — böylece AI, Arapça lehçelerini, Türk nezaket seviyelerini ve Körfez iş kültürünü doğru anlar.",
+      "langs": {
+        "ar": "Körfez, Levanten, Mısır",
+        "en": "İş ve günlük",
+        "tr": "Resmi ve günlük"
+      }
+    },
+    "comparison": {
+      "title": "Neden sadece Hubspot veya Salesforce kullanmıyoruz?",
+      "subtitle": "Bunlar ABD pazarı için yapılmış. İstanbul, Riyad veya Kahire'de iş yönettiğinizde bunun size maliyeti:",
+      "feature": "Özellik",
+      "generic": "Hubspot / Salesforce",
+      "rows": {
+        "arabic": {
+          "label": "Arapça RTL arayüz",
+          "generic": "Kısmi, makine çevirisi",
+          "zyrix": "Yerel RTL, el çevirisi"
+        },
+        "whatsapp": {
+          "label": "WhatsApp Business",
+          "generic": "3. taraf eklenti ile",
+          "zyrix": "Yerleşik ve çekirdek"
+        },
+        "localPayments": {
+          "label": "Iyzico + HyperPay",
+          "generic": "Desteklenmiyor",
+          "zyrix": "Birinci sınıf"
+        },
+        "pricing": {
+          "label": "Fiyatlandırma modeli",
+          "generic": "Koltuk başı (pahalı)",
+          "zyrix": "Şirket başı (sabit)"
+        },
+        "vat": {
+          "label": "KDV / VAT / ZATCA",
+          "generic": "Manuel yapılandırma",
+          "zyrix": "Kutudan çıkar çıkmaz"
+        },
+        "support": {
+          "label": "Destek saatleri",
+          "generic": "ABD / AB saat dilimleri",
+          "zyrix": "İstanbul, GMT+3"
+        }
+      }
+    },
+    "cta": {
+      "title": "Aksiyonda görmeye hazır mısınız?",
+      "subtitle": "Ücretsiz deneme. Verileriniz, müşterileriniz, 5 dakikadan kısa sürede.",
+      "primary": "Ücretsiz denemeyi başlat",
+      "secondary": "Fiyatları görüntüle"
+    }
   }
 }

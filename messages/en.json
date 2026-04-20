@@ -1007,5 +1007,180 @@
     "consent": "By submitting this form, you agree to our Privacy Policy and the processing of your data to respond to your request.",
     "errorRequired": "Please fill in your name, email, and a message.",
     "errorGeneric": "Something went wrong. Please try again or email us directly."
+  },
+  "Features": {
+    "eyebrow": "Features",
+    "title": "Everything you need to run your business",
+    "subtitle": "From WhatsApp leads to VAT-compliant invoices, Zyrix gives your team one place to work — built for how business actually runs in Türkiye and the Arab world.",
+    "hero": {
+      "titlePrefix": "A CRM that actually",
+      "titleHighlight": "speaks your language",
+      "subtitle": "Arabic dialects, Turkish VAT rules, Saudi ZATCA readiness, and WhatsApp at the core — no bolt-ons, no plugins, no surprises."
+    },
+    "values": {
+      "trilingual": {
+        "title": "Trilingual from day one",
+        "body": "Arabic, English, Turkish — UI, emails, and AI all switch together."
+      },
+      "whatsappNative": {
+        "title": "WhatsApp-native",
+        "body": "Conversations, leads, and AI extraction in the channel your customers already use."
+      },
+      "perCompany": {
+        "title": "Per-company pricing",
+        "body": "No per-seat fees. Invite your whole team on any paid plan."
+      },
+      "dataSovereignty": {
+        "title": "Data you can export",
+        "body": "Your data stays yours. Full export in CSV or JSON at any time."
+      }
+    },
+    "categories": {
+      "communication": {
+        "title": "Communication",
+        "heading": "Meet customers where they are",
+        "subtitle": "WhatsApp, email, and smart follow-ups — all flowing into one CRM timeline so nothing slips through the cracks."
+      },
+      "sales": {
+        "title": "Sales & pipeline",
+        "heading": "Close more, with less work",
+        "subtitle": "Visual pipelines, quotes that convert, and commission tracking that your sales team will actually use."
+      },
+      "ai": {
+        "title": "AI that knows the region",
+        "heading": "Built-in intelligence, in your language",
+        "subtitle": "Our AI understands Gulf dialects, Levantine Arabic, and Turkish business context — not just generic English."
+      },
+      "finance": {
+        "title": "Finance & compliance",
+        "heading": "KDV, VAT, and ZATCA — handled",
+        "subtitle": "Stop wrestling with tax rules. Zyrix computes KDV for Türkiye, VAT for KSA and UAE, and forecasts your cash flow."
+      },
+      "productivity": {
+        "title": "Team productivity",
+        "heading": "Keep your whole team in sync",
+        "subtitle": "Tasks, loyalty programs, and a portal for your customers — everything your team needs to work together efficiently."
+      }
+    },
+    "items": {
+      "whatsapp": {
+        "title": "WhatsApp Business CRM",
+        "body": "Every WhatsApp conversation becomes a customer record. AI extracts intent, budget, and next steps — automatically.",
+        "badge": "Beta"
+      },
+      "email": {
+        "title": "Email Sync & Marketing",
+        "body": "Connect Gmail or any IMAP inbox. Track conversations, send campaigns, and measure opens from the same CRM."
+      },
+      "followup": {
+        "title": "Smart Follow-up",
+        "body": "Never lose a lead to silence. Zyrix reminds your team when a customer hasn't replied in 2, 5, or 10 days — your rules."
+      },
+      "customers": {
+        "title": "Customer Database",
+        "body": "Unified profile with every call, message, deal, and note. Arabic names handled correctly, phone numbers normalized."
+      },
+      "pipeline": {
+        "title": "Visual Pipeline",
+        "body": "Drag-and-drop deals across stages. See weighted value, win rate, and aging leads at a glance."
+      },
+      "quotes": {
+        "title": "Quotes & Proposals",
+        "body": "Generate Arabic or English quotes with your logo, VAT line, and e-signature. Track when customers open them."
+      },
+      "commission": {
+        "title": "Commission Engine",
+        "body": "Set per-deal, tiered, or team-based commission rules. Auto-compute what each salesperson has earned."
+      },
+      "cfo": {
+        "title": "AI CFO Dashboard",
+        "body": "Ask 'how was last quarter?' in Arabic and get a real answer — pulled from your own deals, payments, and forecasts."
+      },
+      "dialects": {
+        "title": "Arabic Dialect AI",
+        "body": "Khaleeji, Levantine, Egyptian — our models understand them all. No more 'weird' CRM replies to your customers."
+      },
+      "insights": {
+        "title": "Smart Insights",
+        "body": "Zyrix surfaces the 20% of customers generating 80% of revenue, the stalling deals, and the cities growing fastest."
+      },
+      "tax": {
+        "title": "Tax Engine (KDV / VAT)",
+        "body": "Turkish KDV (8%, 18%, 20%), Saudi VAT (15%), UAE VAT (5%) — all computed correctly on quotes and invoices."
+      },
+      "cashflow": {
+        "title": "Cash Flow Forecast",
+        "body": "Project your cash position 30/60/90 days ahead based on your pipeline, deals, and historical payment timing."
+      },
+      "multicurrency": {
+        "title": "Multi-Currency Reports",
+        "body": "Operate in USD, TRY, SAR, AED, EGP, IQD. Report in any of them with live FX conversion."
+      },
+      "tasks": {
+        "title": "Task Management",
+        "body": "Assign tasks to teammates, set due dates, @mention in notes. A built-in to-do list inside every customer record."
+      },
+      "loyalty": {
+        "title": "Customer Loyalty",
+        "body": "Points, tiers, and rewards for your best customers. Track who's a VIP and who's slipping away."
+      },
+      "portal": {
+        "title": "Customer Portal",
+        "body": "Give customers a branded portal to view their quotes, invoices, and open tickets — in their own language."
+      }
+    },
+    "aiBand": {
+      "title": "The only AI that truly speaks your customers' language",
+      "body": "Most CRMs bolt on OpenAI with an English system prompt and hope for the best. Zyrix uses Gemini fine-tuned with MENA business context — so the AI gets Arabic dialects, Turkish politeness levels, and Gulf business culture right.",
+      "langs": {
+        "ar": "Gulf, Levantine, Egyptian",
+        "en": "Business & casual",
+        "tr": "Formal & everyday"
+      }
+    },
+    "comparison": {
+      "title": "Why not just use Hubspot or Salesforce?",
+      "subtitle": "They're built for the US market. Here's what that costs you when you run a business in Istanbul, Riyadh, or Cairo.",
+      "feature": "Feature",
+      "generic": "Hubspot / Salesforce",
+      "rows": {
+        "arabic": {
+          "label": "Arabic RTL UI",
+          "generic": "Partial, machine-translated",
+          "zyrix": "Native RTL, hand-translated"
+        },
+        "whatsapp": {
+          "label": "WhatsApp Business",
+          "generic": "Via 3rd-party plugin",
+          "zyrix": "Built-in & core"
+        },
+        "localPayments": {
+          "label": "Iyzico + HyperPay",
+          "generic": "Not supported",
+          "zyrix": "First-class"
+        },
+        "pricing": {
+          "label": "Pricing model",
+          "generic": "Per-seat (expensive)",
+          "zyrix": "Per-company (flat)"
+        },
+        "vat": {
+          "label": "KDV / VAT / ZATCA",
+          "generic": "Manual configuration",
+          "zyrix": "Out-of-the-box"
+        },
+        "support": {
+          "label": "Support hours",
+          "generic": "US / EU timezones",
+          "zyrix": "Istanbul, GMT+3"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to see it in action?",
+      "subtitle": "Free trial. Your data, your customers, in under 5 minutes.",
+      "primary": "Start free trial",
+      "secondary": "See pricing"
+    }
   }
 }
