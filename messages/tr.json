@@ -953,5 +953,59 @@
         "p1": "Bu şartlar Türkiye Cumhuriyeti yasalarına tabidir. Bu şartlardan doğan uyuşmazlıklar İstanbul mahkemelerinde görülür. Hukuki konular için bize ulaşın:"
       }
     }
+  },
+  "Contact": {
+    "eyebrow": "Bize ulaşın",
+    "title": "Konuşalım",
+    "subtitle": "Satış soruları, ortaklık fikirleri, basın sorguları — sizi buraya getiren her neyse, genellikle bir iş günü içinde yanıt veriyoruz.",
+    "channels": {
+      "email": {
+        "title": "Satış ve Genel",
+        "subtitle": "1 iş günü içinde yanıt"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "subtitle": "Pazartesi–Cuma, 09:00–18:00 TRT"
+      },
+      "support": {
+        "title": "Mevcut müşteriler",
+        "subtitle": "Hesabınızla ilgili yardım için"
+      },
+      "office": {
+        "title": "Ofis",
+        "primary": "İstanbul, Türkiye",
+        "subtitle": "Ziyaretler yalnızca randevu ile"
+      }
+    },
+    "hours": {
+      "title": "Biz İstanbul'dayız",
+      "body": "Ekibimiz Türkiye ve Körfez arasında dağılmış durumda; genellikle 08:00–20:00 GMT+3 arasında birisi çevrimiçidir. Bu saatler dışında da mesaj bırakabilirsiniz — ertesi sabah ilk iş size döneriz."
+    },
+    "formTitle": "Bize mesaj gönderin",
+    "formSubtitle": "Ne kadar bağlam paylaşırsanız, o kadar iyi yardımcı olabiliriz.",
+    "sentTitle": "Mesaj alındı",
+    "sentBody": "Ulaştığınız için teşekkürler. Ekibimizden bir üye 1 iş günü içinde sizinle iletişime geçecek.",
+    "sendAnother": "Başka bir mesaj gönder",
+    "fields": {
+      "name": "Adınız",
+      "email": "İş e-postası",
+      "company": "Şirket",
+      "phone": "Telefon veya WhatsApp",
+      "topic": "Konu nedir?",
+      "message": "Mesajınız",
+      "messagePlaceholder": "İşiniz ve aradığınız şey hakkında biraz bilgi verin…"
+    },
+    "topics": {
+      "sales": "Satış sorusu",
+      "support": "Müşteri desteği",
+      "partnership": "Ortaklık",
+      "press": "Basın ve medya",
+      "other": "Başka bir şey"
+    },
+    "submit": "Mesaj gönder",
+    "sending": "Gönderiliyor…",
+    "consent": "Bu formu göndererek Gizlilik Politikamızı ve isteğinizi yanıtlamak için verilerinizin işlenmesini kabul etmiş olursunuz.",
+    "errorRequired": "Lütfen adınızı, e-postanızı ve mesajınızı girin.",
+    "errorGeneric": "Bir şeyler ters gitti. Tekrar deneyin veya doğrudan e-posta ile bize ulaşın."
   }
 }

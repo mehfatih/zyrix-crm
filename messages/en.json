@@ -953,5 +953,59 @@
         "p1": "These terms are governed by the laws of the Republic of Türkiye. Any dispute arising from these terms will be handled by the courts of Istanbul. Contact us for legal matters at:"
       }
     }
+  },
+  "Contact": {
+    "eyebrow": "Get in touch",
+    "title": "Let's talk",
+    "subtitle": "Sales questions, partnership ideas, press enquiries — whatever brings you here, we usually reply within one business day.",
+    "channels": {
+      "email": {
+        "title": "Sales & General",
+        "subtitle": "Replies within 1 business day"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "subtitle": "Monday–Friday, 09:00–18:00 TRT"
+      },
+      "support": {
+        "title": "Existing customers",
+        "subtitle": "For help with your account"
+      },
+      "office": {
+        "title": "Office",
+        "primary": "Istanbul, Türkiye",
+        "subtitle": "Visits by appointment only"
+      }
+    },
+    "hours": {
+      "title": "We're based in Istanbul",
+      "body": "Our team is spread across Türkiye and the Gulf, so someone is usually online between 08:00 and 20:00 GMT+3. You can always leave us a message outside these hours — we'll get back to you first thing the next morning."
+    },
+    "formTitle": "Send us a message",
+    "formSubtitle": "The more context you share, the better we can help.",
+    "sentTitle": "Message received",
+    "sentBody": "Thanks for reaching out. A member of our team will follow up within 1 business day.",
+    "sendAnother": "Send another message",
+    "fields": {
+      "name": "Your name",
+      "email": "Work email",
+      "company": "Company",
+      "phone": "Phone or WhatsApp",
+      "topic": "What is this about?",
+      "message": "Your message",
+      "messagePlaceholder": "Tell us a bit about your business and what you're looking for…"
+    },
+    "topics": {
+      "sales": "Sales enquiry",
+      "support": "Customer support",
+      "partnership": "Partnership",
+      "press": "Press & media",
+      "other": "Something else"
+    },
+    "submit": "Send message",
+    "sending": "Sending…",
+    "consent": "By submitting this form, you agree to our Privacy Policy and the processing of your data to respond to your request.",
+    "errorRequired": "Please fill in your name, email, and a message.",
+    "errorGeneric": "Something went wrong. Please try again or email us directly."
   }
 }
