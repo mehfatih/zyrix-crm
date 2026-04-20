@@ -21,6 +21,7 @@ import {
   ChevronRight,
   Copy,
   Check,
+  Info,
 } from "lucide-react";
 
 // ============================================================================
@@ -240,7 +241,17 @@ export default function AdminUsersView() {
                 <thead className="bg-sky-50">
                   <tr>
                     <Th>{t("email")}</Th>
-                    <Th>{t("role")}</Th>
+                    <Th>
+                      <span className="inline-flex items-center gap-1">
+                        {t("role")}
+                        <span
+                          className="inline-flex items-center justify-center rounded-full text-slate-400 hover:text-cyan-600 cursor-help"
+                          title={t("roleTooltip")}
+                        >
+                          <Info size={12} />
+                        </span>
+                      </span>
+                    </Th>
                     <Th>{t("status")}</Th>
                     <Th>{t("company")}</Th>
                     <Th>{t("lastLogin")}</Th>

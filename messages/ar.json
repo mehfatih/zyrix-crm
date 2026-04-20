@@ -416,7 +416,8 @@
       "noResults": "لا يوجد مستخدمون",
       "disabled": "تم تعطيل المستخدم بنجاح",
       "enabled": "تم تفعيل المستخدم بنجاح",
-      "never": "أبداً"
+      "never": "أبداً",
+      "roleTooltip": "المالك = مؤسس الشركة (أول حساب). المسؤول والمدير والعضو = مستخدمون مدعوّون."
     },
     "plans": {
       "title": "الباقات",
@@ -513,6 +514,33 @@
       "viewChanges": "عرض التغييرات",
       "hideChanges": "إخفاء",
       "system": "النظام"
+    },
+    "billing": {
+      "title": "الفواتير والإيرادات",
+      "subtitle": "الإيرادات الشهرية المتكررة محسوبة من الاشتراكات النشطة",
+      "loadError": "فشل تحميل بيانات الفواتير",
+      "mrr": "الإيرادات الشهرية",
+      "arr": "الإيرادات السنوية",
+      "recurringMonthly": "الإيرادات الشهرية المتكررة",
+      "projectedAnnual": "الإيرادات السنوية المتوقعة",
+      "payingCustomers": "العملاء المدفوعون",
+      "activeSubscriptions": "الاشتراكات المدفوعة النشطة",
+      "trialAccounts": "الحسابات التجريبية",
+      "trialSubtitle": "الشركات في الفترة التجريبية",
+      "revenueByPlan": "الإيرادات حسب الباقة",
+      "monthlyEstimate": "تقدير شهري",
+      "companies": "شركات",
+      "noData": "لا توجد بيانات للباقات",
+      "activeSubscriptionsTitle": "الاشتراكات النشطة",
+      "noActiveSubs": "لا توجد اشتراكات مدفوعة حتى الآن",
+      "company": "الشركة",
+      "plan": "الباقة",
+      "country": "الدولة",
+      "price": "السعر",
+      "billingEmail": "بريد الفواتير",
+      "failedPayments": "المدفوعات الفاشلة",
+      "paymentsComingSoon": "سيظهر تتبع المدفوعات هنا",
+      "paymentsComingSoonDetail": "متوفر بعد تفعيل تكامل بوابات Iyzico / HyperPay."
     }
   },
   "Pricing": {

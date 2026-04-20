@@ -16,7 +16,6 @@ import {
   Search,
   Building2,
   Loader2,
-  MoreHorizontal,
   Play,
   Pause,
   Trash2,
@@ -303,12 +302,6 @@ export default function AdminCompaniesView() {
                             title={t("delete")}
                           >
                             <Trash2 size={16} />
-                          </button>
-                          <button
-                            className="p-1.5 rounded hover:bg-slate-100 text-slate-500"
-                            title="More"
-                          >
-                            <MoreHorizontal size={16} />
                           </button>
                         </div>
                       </td>

@@ -416,7 +416,8 @@
       "noResults": "No users found",
       "disabled": "User disabled successfully",
       "enabled": "User enabled successfully",
-      "never": "Never"
+      "never": "Never",
+      "roleTooltip": "Owner = company founder (first signup). Admin, Manager, Member = invited users."
     },
     "plans": {
       "title": "Plans",
@@ -513,6 +514,33 @@
       "viewChanges": "View changes",
       "hideChanges": "Hide",
       "system": "System"
+    },
+    "billing": {
+      "title": "Billing & revenue",
+      "subtitle": "Monthly recurring revenue computed from active subscriptions",
+      "loadError": "Failed to load billing data",
+      "mrr": "MRR",
+      "arr": "ARR",
+      "recurringMonthly": "Recurring monthly revenue",
+      "projectedAnnual": "Projected annual revenue",
+      "payingCustomers": "Paying customers",
+      "activeSubscriptions": "Active paid subscriptions",
+      "trialAccounts": "Trial accounts",
+      "trialSubtitle": "Companies on free trial",
+      "revenueByPlan": "Revenue by plan",
+      "monthlyEstimate": "Monthly estimate",
+      "companies": "companies",
+      "noData": "No plan data available",
+      "activeSubscriptionsTitle": "Active subscriptions",
+      "noActiveSubs": "No active paid subscriptions yet",
+      "company": "Company",
+      "plan": "Plan",
+      "country": "Country",
+      "price": "Price",
+      "billingEmail": "Billing email",
+      "failedPayments": "Failed payments",
+      "paymentsComingSoon": "Payment tracking will appear here",
+      "paymentsComingSoonDetail": "Available once the Iyzico / HyperPay webhook integration is deployed."
     }
   },
   "Pricing": {

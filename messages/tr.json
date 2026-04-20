@@ -416,7 +416,8 @@
       "noResults": "Kullanıcı bulunamadı",
       "disabled": "Kullanıcı başarıyla devre dışı bırakıldı",
       "enabled": "Kullanıcı başarıyla etkinleştirildi",
-      "never": "Hiçbir zaman"
+      "never": "Hiçbir zaman",
+      "roleTooltip": "Sahip = şirket kurucusu (ilk kayıt). Yönetici, Müdür, Üye = davet edilen kullanıcılar."
     },
     "plans": {
       "title": "Planlar",
@@ -513,6 +514,33 @@
       "viewChanges": "Değişiklikleri gör",
       "hideChanges": "Gizle",
       "system": "Sistem"
+    },
+    "billing": {
+      "title": "Faturalandırma ve gelir",
+      "subtitle": "Aktif aboneliklerden hesaplanan aylık tekrarlayan gelir",
+      "loadError": "Faturalandırma verileri yüklenemedi",
+      "mrr": "Aylık gelir (MRR)",
+      "arr": "Yıllık gelir (ARR)",
+      "recurringMonthly": "Aylık tekrarlayan gelir",
+      "projectedAnnual": "Öngörülen yıllık gelir",
+      "payingCustomers": "Ödeyen müşteriler",
+      "activeSubscriptions": "Aktif ücretli abonelikler",
+      "trialAccounts": "Deneme hesapları",
+      "trialSubtitle": "Deneme sürümündeki şirketler",
+      "revenueByPlan": "Pakete göre gelir",
+      "monthlyEstimate": "Aylık tahmin",
+      "companies": "şirket",
+      "noData": "Paket verisi yok",
+      "activeSubscriptionsTitle": "Aktif abonelikler",
+      "noActiveSubs": "Henüz aktif ücretli abonelik yok",
+      "company": "Şirket",
+      "plan": "Paket",
+      "country": "Ülke",
+      "price": "Fiyat",
+      "billingEmail": "Fatura e-postası",
+      "failedPayments": "Başarısız ödemeler",
+      "paymentsComingSoon": "Ödeme takibi burada görünecek",
+      "paymentsComingSoonDetail": "Iyzico / HyperPay webhook entegrasyonu devreye alındığında erişilebilir."
     }
   },
   "Pricing": {
