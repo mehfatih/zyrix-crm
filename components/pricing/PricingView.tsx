@@ -233,6 +233,14 @@ function PlanCard({
 
   const signupHref = `/${locale}/signup?plan=${plan.slug}`;
   const contactHref = `/${locale}/contact?plan=enterprise`;
+  const checkoutHref = `/${locale}/checkout?plan=${plan.slug}&billing=${billing}&currency=${currency}`;
+
+  // Which URL does the CTA point to?
+  const ctaHref = isEnterprise
+    ? contactHref
+    : isFree
+      ? signupHref
+      : checkoutHref;
 
   // Top features to display prominently (from full list)
   const visibleFeatures = useMemo(() => {
@@ -299,7 +307,7 @@ function PlanCard({
 
       {/* CTA */}
       <Link
-        href={isEnterprise ? contactHref : signupHref}
+        href={ctaHref}
         className={`block text-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors mb-6 ${
           featured
             ? "bg-cyan-600 hover:bg-cyan-700 text-white"
