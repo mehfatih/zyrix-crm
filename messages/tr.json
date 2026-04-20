@@ -44,7 +44,8 @@
     "loyalty": "Sadakat",
     "tax": "Vergi",
     "cashflow": "Nakit Akışı",
-    "followup": "Takip"
+    "followup": "Takip",
+    "aiCfo": "AI CFO"
   },
   "Home": {
     "hero": {
@@ -1742,6 +1743,41 @@
       "errors": {
         "thresholds": "Kritik gün sayısı ≥ uyarı gün sayısı olmalıdır"
       }
+    }
+  },
+  "AICFO": {
+    "title": "AI CFO",
+    "subtitle": "Yapay zekâ destekli CFO'nuz — verilerinizi analiz eder ve eyleme yönelik tavsiyeler verir",
+    "poweredBy": "Gemini 2.0",
+    "templates": {
+      "title": "Hızlı Sorular"
+    },
+    "snapshot": {
+      "title": "Canlı İşletme Görünümü",
+      "subtitle": "AI'nın kullandığı gerçek zamanlı metrikler — genişletmek için tıklayın",
+      "customers": "Müşteriler",
+      "last30d": "son 30g",
+      "wonRevenue": "Kazanılan Gelir (30g)",
+      "wonDeals": "kazanılan anlaşma",
+      "weightedPipeline": "Ağırlıklı Huni",
+      "openDeals": "açık anlaşma",
+      "quotesAccepted": "Kabul Edilen Teklifler (30g)",
+      "acceptRate": "kabul oranı",
+      "staleCustomers": "Pasif Müşteriler",
+      "critical": "kritik",
+      "pendingQuotes": "Bekleyen Teklifler",
+      "awaitingResponse": "yanıt bekliyor",
+      "avgDealSize": "Ort. Anlaşma Büyüklüğü",
+      "fromWonDeals": "kazanılan anlaşmalardan",
+      "loyaltyMembers": "Sadakat Üyeleri",
+      "ptsIssued": "puan verildi"
+    },
+    "input": {
+      "placeholder": "İşletmeniz hakkında her şeyi sorun — gelir, riskler, fırsatlar, müşteriler…",
+      "send": "Sor"
+    },
+    "ai": {
+      "poweredBy": "AI tarafından üretilen içgörü"
     }
   }
 }

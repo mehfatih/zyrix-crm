@@ -44,7 +44,8 @@
     "loyalty": "Loyalty",
     "tax": "Tax",
     "cashflow": "Cash Flow",
-    "followup": "Follow-up"
+    "followup": "Follow-up",
+    "aiCfo": "AI CFO"
   },
   "Home": {
     "hero": {
@@ -1742,6 +1743,41 @@
       "errors": {
         "thresholds": "Critical days must be ≥ warning days"
       }
+    }
+  },
+  "AICFO": {
+    "title": "AI CFO",
+    "subtitle": "Your AI-powered fractional CFO — analyzes your data and gives actionable advice",
+    "poweredBy": "Gemini 2.0",
+    "templates": {
+      "title": "Quick Questions"
+    },
+    "snapshot": {
+      "title": "Live Business Snapshot",
+      "subtitle": "Real-time metrics feeding the AI — click to expand",
+      "customers": "Customers",
+      "last30d": "last 30d",
+      "wonRevenue": "Won Revenue (30d)",
+      "wonDeals": "deals won",
+      "weightedPipeline": "Weighted Pipeline",
+      "openDeals": "open deals",
+      "quotesAccepted": "Quotes Accepted (30d)",
+      "acceptRate": "accept rate",
+      "staleCustomers": "Stale Customers",
+      "critical": "critical",
+      "pendingQuotes": "Pending Quotes",
+      "awaitingResponse": "awaiting response",
+      "avgDealSize": "Avg Deal Size",
+      "fromWonDeals": "from won deals",
+      "loyaltyMembers": "Loyalty Members",
+      "ptsIssued": "pts issued"
+    },
+    "input": {
+      "placeholder": "Ask anything about your business — revenue, risks, opportunities, customers…",
+      "send": "Ask"
+    },
+    "ai": {
+      "poweredBy": "AI-generated insight"
     }
   }
 }
