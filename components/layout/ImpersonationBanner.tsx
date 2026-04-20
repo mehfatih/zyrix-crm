@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ShieldAlert, X } from "lucide-react";
@@ -53,6 +53,14 @@ interface Props {
 }
 
 export default function ImpersonationBanner({ locale }: Props) {
+  return (
+    <Suspense fallback={null}>
+      <ImpersonationBannerInner locale={locale} />
+    </Suspense>
+  );
+}
+
+function ImpersonationBannerInner({ locale }: Props) {
   const t = useTranslations("Admin.impersonation");
   const router = useRouter();
   const params = useSearchParams();

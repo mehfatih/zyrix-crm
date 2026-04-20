@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -16,6 +16,8 @@ import { CheckCircle2, Loader2, XCircle } from "lucide-react";
 //      with the stored clientReference to activate the subscription.
 //   2. Real gateway — the gateway already sent the webhook to our backend,
 //      which activated the subscription. We just display success.
+//
+// Wrapped in <Suspense> — useSearchParams requires it under Next 15+.
 // ============================================================================
 
 interface Props {
@@ -25,6 +27,24 @@ interface Props {
 type Status = "confirming" | "succeeded" | "failed";
 
 export default function CheckoutSuccessView({ locale }: Props) {
+  return (
+    <Suspense fallback={<SuccessLoadingFallback />}>
+      <SuccessContent locale={locale} />
+    </Suspense>
+  );
+}
+
+function SuccessLoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-cyan-100 p-8 text-center">
+        <Loader2 className="w-8 h-8 text-cyan-600 animate-spin mx-auto" />
+      </div>
+    </div>
+  );
+}
+
+function SuccessContent({ locale }: Props) {
   const t = useTranslations("Checkout");
   const params = useSearchParams();
 

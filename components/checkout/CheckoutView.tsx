@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -18,6 +18,10 @@ import { Loader2, ShieldCheck, CreditCard, AlertCircle } from "lucide-react";
 // Reads ?plan=business&billing=monthly&currency=SAR, verifies the user is
 // signed in (else redirects to signup?next=/checkout?...), calls
 // /api/payments/checkout/create-session, then redirects to the gateway.
+//
+// Wrapped in <Suspense> because useSearchParams opts the tree into CSR only;
+// Next.js 15+ requires the boundary to allow the surrounding page to still
+// prerender its static chrome.
 // ============================================================================
 
 const CURRENCY_SYMBOL: Record<CheckoutCurrency, string> = {
@@ -32,6 +36,24 @@ interface Props {
 }
 
 export default function CheckoutView({ locale }: Props) {
+  return (
+    <Suspense fallback={<CheckoutLoadingFallback />}>
+      <CheckoutContent locale={locale} />
+    </Suspense>
+  );
+}
+
+function CheckoutLoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-cyan-100 p-8 text-center">
+        <Loader2 className="w-8 h-8 text-cyan-600 animate-spin mx-auto" />
+      </div>
+    </div>
+  );
+}
+
+function CheckoutContent({ locale }: Props) {
   const t = useTranslations("Checkout");
   const router = useRouter();
   const params = useSearchParams();
