@@ -11,6 +11,7 @@ import {
   MessageCircle,
   Activity,
   CheckSquare,
+  FileText,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -53,6 +54,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     { href: `/${locale}/customers`, icon: Users, label: "Customers" },
     { href: `/${locale}/deals`, icon: Briefcase, label: "Deals" },
     { href: `/${locale}/pipeline`, icon: Activity, label: "Pipeline" },
+    { href: `/${locale}/quotes`, icon: FileText, label: "Quotes" },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
     {
       href: `/${locale}/whatsapp`,

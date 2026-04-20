@@ -39,7 +39,8 @@
     "languageSwitch": "اللغة",
     "english": "English",
     "arabic": "العربية",
-    "turkish": "Türkçe"
+    "turkish": "Türkçe",
+    "quotes": "عروض الأسعار"
   },
   "Home": {
     "hero": {
@@ -1366,5 +1367,144 @@
       "noCustomer": "— لا يوجد عميل —",
       "noDeal": "— لا توجد صفقة —"
     }
+  },
+  "Quotes": {
+    "title": "عروض الأسعار والمقترحات",
+    "subtitle": "أرسل عروض أسعار رسمية للعملاء وتابع ردودهم",
+    "newQuote": "عرض جديد",
+    "searchPlaceholder": "ابحث بالرقم أو العنوان…",
+    "stats": {
+      "total": "الإجمالي",
+      "pending": "قيد الانتظار",
+      "accepted": "مقبولة",
+      "acceptedValue": "قيمة المقبولة"
+    },
+    "status": {
+      "draft": "مسودة",
+      "sent": "مُرسلة",
+      "viewed": "تمت المشاهدة",
+      "accepted": "مقبولة",
+      "rejected": "مرفوضة",
+      "expired": "منتهية"
+    },
+    "filters": {
+      "allStatuses": "جميع الحالات"
+    },
+    "table": {
+      "number": "الرقم",
+      "customer": "العميل",
+      "title": "العنوان",
+      "status": "الحالة",
+      "validUntil": "صالحة حتى",
+      "total": "الإجمالي"
+    },
+    "empty": {
+      "title": "لا توجد عروض بعد",
+      "subtitle": "أنشئ أول عرض سعر لإرساله إلى عميل"
+    },
+    "form": {
+      "createTitle": "عرض سعر جديد",
+      "editTitle": "تعديل العرض",
+      "customer": "العميل",
+      "selectCustomer": "اختر عميلًا…",
+      "titleLabel": "العنوان",
+      "titlePlaceholder": "مثال: عرض إعادة تصميم الموقع Q1 2026",
+      "currency": "العملة",
+      "validUntil": "صالحة حتى",
+      "items": "البنود",
+      "addItem": "إضافة بند",
+      "itemName": "اسم البند",
+      "qty": "الكمية",
+      "unitPrice": "السعر",
+      "descriptionOptional": "الوصف (اختياري)",
+      "discount": "الخصم",
+      "tax": "الضريبة",
+      "subtotal": "المجموع الفرعي",
+      "taxTotal": "الضريبة",
+      "total": "الإجمالي",
+      "notes": "ملاحظات",
+      "terms": "الشروط والأحكام"
+    },
+    "detail": {
+      "issuedAt": "تاريخ الإصدار",
+      "validUntil": "صالحة حتى",
+      "createdBy": "أنشأها",
+      "item": "البند",
+      "qty": "الكمية",
+      "price": "السعر",
+      "total": "إجمالي البند",
+      "discount": "الخصم"
+    },
+    "actions": {
+      "save": "حفظ",
+      "create": "إنشاء",
+      "cancel": "إلغاء",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "send": "إرسال للعميل",
+      "accept": "تحديد كمقبولة",
+      "reject": "تحديد كمرفوضة",
+      "copyLink": "نسخ الرابط"
+    },
+    "confirm": {
+      "delete": "حذف هذا العرض؟ لا يمكن التراجع."
+    },
+    "alerts": {
+      "linkCopied": "تم نسخ الرابط العام"
+    },
+    "errors": {
+      "selectCustomer": "الرجاء اختيار عميل",
+      "enterTitle": "الرجاء إدخال عنوان",
+      "addItem": "أضف بندًا واحدًا على الأقل باسم وكمية",
+      "saveFailed": "فشل حفظ العرض",
+      "deleteFailed": "فشل حذف العرض",
+      "actionFailed": "فشل التنفيذ"
+    }
+  },
+  "PublicQuote": {
+    "notFound": {
+      "title": "العرض غير موجود",
+      "subtitle": "قد يكون هذا الرابط منتهي الصلاحية أو تم حذف العرض."
+    },
+    "status": {
+      "draft": "مسودة",
+      "sent": "قيد الانتظار",
+      "viewed": "قيد المراجعة",
+      "accepted": "مقبولة",
+      "rejected": "مرفوضة",
+      "expired": "منتهية"
+    },
+    "meta": {
+      "issued": "تاريخ الإصدار",
+      "validUntil": "صالحة حتى"
+    },
+    "items": {
+      "title": "البنود",
+      "item": "البند",
+      "qty": "الكمية",
+      "price": "السعر",
+      "total": "الإجمالي"
+    },
+    "totals": {
+      "subtotal": "المجموع الفرعي",
+      "discount": "الخصم",
+      "tax": "الضريبة",
+      "total": "الإجمالي"
+    },
+    "notes": "ملاحظات",
+    "terms": "الشروط والأحكام",
+    "actions": {
+      "accept": "قبول العرض",
+      "reject": "رفض"
+    },
+    "confirm": {
+      "accept": "هل تقبل هذا العرض؟ سيتم إبلاغ المُرسِل.",
+      "reject": "هل ترفض هذا العرض؟ لا يمكن التراجع."
+    },
+    "resolved": {
+      "accepted": "لقد قبلت هذا العرض. شكرًا لك!",
+      "rejected": "لقد رفضت هذا العرض."
+    },
+    "poweredBy": "مدعوم من"
   }
 }

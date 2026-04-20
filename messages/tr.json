@@ -39,7 +39,8 @@
     "languageSwitch": "Dil",
     "english": "English",
     "arabic": "العربية",
-    "turkish": "Türkçe"
+    "turkish": "Türkçe",
+    "quotes": "Teklifler"
   },
   "Home": {
     "hero": {
@@ -1366,5 +1367,144 @@
       "noCustomer": "— Müşteri yok —",
       "noDeal": "— Fırsat yok —"
     }
+  },
+  "Quotes": {
+    "title": "Teklifler ve Öneriler",
+    "subtitle": "Müşterilere resmi fiyat teklifleri gönderin ve yanıtlarını takip edin",
+    "newQuote": "Yeni Teklif",
+    "searchPlaceholder": "Numara veya başlık ile ara…",
+    "stats": {
+      "total": "Toplam",
+      "pending": "Bekleyen",
+      "accepted": "Kabul Edilen",
+      "acceptedValue": "Kabul Edilen Tutar"
+    },
+    "status": {
+      "draft": "Taslak",
+      "sent": "Gönderildi",
+      "viewed": "Görüntülendi",
+      "accepted": "Kabul Edildi",
+      "rejected": "Reddedildi",
+      "expired": "Süresi Doldu"
+    },
+    "filters": {
+      "allStatuses": "Tüm durumlar"
+    },
+    "table": {
+      "number": "Numara",
+      "customer": "Müşteri",
+      "title": "Başlık",
+      "status": "Durum",
+      "validUntil": "Geçerlilik",
+      "total": "Toplam"
+    },
+    "empty": {
+      "title": "Henüz teklif yok",
+      "subtitle": "Bir müşteriye göndermek için ilk teklifinizi oluşturun"
+    },
+    "form": {
+      "createTitle": "Yeni Teklif",
+      "editTitle": "Teklifi Düzenle",
+      "customer": "Müşteri",
+      "selectCustomer": "Müşteri seçin…",
+      "titleLabel": "Başlık",
+      "titlePlaceholder": "Örn: Q1 2026 Web Sitesi Yenileme Teklifi",
+      "currency": "Para Birimi",
+      "validUntil": "Geçerlilik Tarihi",
+      "items": "Kalemler",
+      "addItem": "Kalem ekle",
+      "itemName": "Kalem adı",
+      "qty": "Adet",
+      "unitPrice": "Birim fiyat",
+      "descriptionOptional": "Açıklama (opsiyonel)",
+      "discount": "İndirim",
+      "tax": "KDV",
+      "subtotal": "Ara Toplam",
+      "taxTotal": "KDV",
+      "total": "Toplam",
+      "notes": "Notlar",
+      "terms": "Şartlar ve Koşullar"
+    },
+    "detail": {
+      "issuedAt": "Düzenlenme",
+      "validUntil": "Geçerlilik",
+      "createdBy": "Oluşturan",
+      "item": "Kalem",
+      "qty": "Adet",
+      "price": "Fiyat",
+      "total": "Satır Toplamı",
+      "discount": "İndirim"
+    },
+    "actions": {
+      "save": "Kaydet",
+      "create": "Oluştur",
+      "cancel": "İptal",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "send": "Müşteriye Gönder",
+      "accept": "Kabul Edildi Olarak İşaretle",
+      "reject": "Reddedildi Olarak İşaretle",
+      "copyLink": "Bağlantıyı Kopyala"
+    },
+    "confirm": {
+      "delete": "Bu teklif silinsin mi? Geri alınamaz."
+    },
+    "alerts": {
+      "linkCopied": "Genel bağlantı kopyalandı"
+    },
+    "errors": {
+      "selectCustomer": "Lütfen bir müşteri seçin",
+      "enterTitle": "Lütfen bir başlık girin",
+      "addItem": "İsim ve miktar içeren en az bir kalem ekleyin",
+      "saveFailed": "Teklif kaydedilemedi",
+      "deleteFailed": "Teklif silinemedi",
+      "actionFailed": "İşlem başarısız"
+    }
+  },
+  "PublicQuote": {
+    "notFound": {
+      "title": "Teklif bulunamadı",
+      "subtitle": "Bağlantının süresi dolmuş veya teklif kaldırılmış olabilir."
+    },
+    "status": {
+      "draft": "Taslak",
+      "sent": "Beklemede",
+      "viewed": "İncelemede",
+      "accepted": "Kabul Edildi",
+      "rejected": "Reddedildi",
+      "expired": "Süresi Doldu"
+    },
+    "meta": {
+      "issued": "Düzenlenme",
+      "validUntil": "Geçerlilik"
+    },
+    "items": {
+      "title": "Kalemler",
+      "item": "Kalem",
+      "qty": "Adet",
+      "price": "Fiyat",
+      "total": "Toplam"
+    },
+    "totals": {
+      "subtotal": "Ara Toplam",
+      "discount": "İndirim",
+      "tax": "KDV",
+      "total": "Toplam"
+    },
+    "notes": "Notlar",
+    "terms": "Şartlar ve Koşullar",
+    "actions": {
+      "accept": "Teklifi Kabul Et",
+      "reject": "Reddet"
+    },
+    "confirm": {
+      "accept": "Bu teklifi kabul ediyor musunuz? Gönderen bilgilendirilecek.",
+      "reject": "Bu teklifi reddediyor musunuz? Geri alınamaz."
+    },
+    "resolved": {
+      "accepted": "Bu teklifi kabul ettiniz. Teşekkürler!",
+      "rejected": "Bu teklifi reddettiniz."
+    },
+    "poweredBy": "Sağlayan:"
   }
 }

@@ -39,7 +39,8 @@
     "languageSwitch": "Language",
     "english": "English",
     "arabic": "العربية",
-    "turkish": "Türkçe"
+    "turkish": "Türkçe",
+    "quotes": "Quotes"
   },
   "Home": {
     "hero": {
@@ -1366,5 +1367,144 @@
       "noCustomer": "— No customer —",
       "noDeal": "— No deal —"
     }
+  },
+  "Quotes": {
+    "title": "Quotes & Proposals",
+    "subtitle": "Send formal price proposals to customers and track their responses",
+    "newQuote": "New Quote",
+    "searchPlaceholder": "Search by number or title…",
+    "stats": {
+      "total": "Total",
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "acceptedValue": "Accepted Value"
+    },
+    "status": {
+      "draft": "Draft",
+      "sent": "Sent",
+      "viewed": "Viewed",
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "expired": "Expired"
+    },
+    "filters": {
+      "allStatuses": "All statuses"
+    },
+    "table": {
+      "number": "Number",
+      "customer": "Customer",
+      "title": "Title",
+      "status": "Status",
+      "validUntil": "Valid Until",
+      "total": "Total"
+    },
+    "empty": {
+      "title": "No quotes yet",
+      "subtitle": "Create your first quote to send to a customer"
+    },
+    "form": {
+      "createTitle": "New Quote",
+      "editTitle": "Edit Quote",
+      "customer": "Customer",
+      "selectCustomer": "Select a customer…",
+      "titleLabel": "Title",
+      "titlePlaceholder": "e.g. Q1 2026 Website Redesign Proposal",
+      "currency": "Currency",
+      "validUntil": "Valid Until",
+      "items": "Line Items",
+      "addItem": "Add item",
+      "itemName": "Item name",
+      "qty": "Qty",
+      "unitPrice": "Unit price",
+      "descriptionOptional": "Description (optional)",
+      "discount": "Discount",
+      "tax": "Tax",
+      "subtotal": "Subtotal",
+      "taxTotal": "Tax",
+      "total": "Total",
+      "notes": "Notes",
+      "terms": "Terms & Conditions"
+    },
+    "detail": {
+      "issuedAt": "Issued",
+      "validUntil": "Valid Until",
+      "createdBy": "Created By",
+      "item": "Item",
+      "qty": "Qty",
+      "price": "Price",
+      "total": "Line Total",
+      "discount": "Discount"
+    },
+    "actions": {
+      "save": "Save",
+      "create": "Create",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "send": "Send to Customer",
+      "accept": "Mark Accepted",
+      "reject": "Mark Rejected",
+      "copyLink": "Copy Link"
+    },
+    "confirm": {
+      "delete": "Delete this quote? This cannot be undone."
+    },
+    "alerts": {
+      "linkCopied": "Public link copied to clipboard"
+    },
+    "errors": {
+      "selectCustomer": "Please select a customer",
+      "enterTitle": "Please enter a title",
+      "addItem": "Add at least one item with name and quantity",
+      "saveFailed": "Failed to save quote",
+      "deleteFailed": "Failed to delete quote",
+      "actionFailed": "Action failed"
+    }
+  },
+  "PublicQuote": {
+    "notFound": {
+      "title": "Quote not found",
+      "subtitle": "This link may have expired or the quote has been removed."
+    },
+    "status": {
+      "draft": "Draft",
+      "sent": "Pending",
+      "viewed": "Under Review",
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "expired": "Expired"
+    },
+    "meta": {
+      "issued": "Issued",
+      "validUntil": "Valid Until"
+    },
+    "items": {
+      "title": "Items",
+      "item": "Item",
+      "qty": "Qty",
+      "price": "Price",
+      "total": "Total"
+    },
+    "totals": {
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "tax": "Tax",
+      "total": "Total"
+    },
+    "notes": "Notes",
+    "terms": "Terms & Conditions",
+    "actions": {
+      "accept": "Accept Quote",
+      "reject": "Decline"
+    },
+    "confirm": {
+      "accept": "Accept this quote? The sender will be notified.",
+      "reject": "Decline this quote? This action cannot be undone."
+    },
+    "resolved": {
+      "accepted": "You have accepted this quote. Thank you!",
+      "rejected": "You have declined this quote."
+    },
+    "poweredBy": "Powered by"
   }
 }
