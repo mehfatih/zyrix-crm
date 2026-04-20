@@ -494,7 +494,8 @@
       "subAmount": "المبلغ",
       "subStarted": "بدء",
       "impersonateReady": "جاهز للتمثيل باسم {email}. الميزة قريباً.",
-      "impersonateError": "فشل التمثيل"
+      "impersonateError": "فشل التمثيل",
+      "impersonatePopupBlocked": "النافذة المنبثقة محجوبة — اسمح بالنوافذ المنبثقة لهذا الموقع وحاول مرة أخرى."
     },
     "audit": {
       "title": "سجل التدقيق",
@@ -655,6 +656,11 @@
       "done": "تم",
       "copy": "نسخ",
       "actions": "الإجراءات"
+    },
+    "impersonation": {
+      "badge": "انتحال شخصية",
+      "banner": "أنت تنتحل شخصية {email}",
+      "endSession": "إنهاء الجلسة"
     }
   },
   "Pricing": {

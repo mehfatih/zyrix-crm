@@ -494,7 +494,8 @@
       "subAmount": "Tutar",
       "subStarted": "Başlangıç",
       "impersonateReady": "{email} adına gerçeği gözetme hazır. Özellik yakında.",
-      "impersonateError": "Gerçeği gözetme başarısız"
+      "impersonateError": "Gerçeği gözetme başarısız",
+      "impersonatePopupBlocked": "Pop-up engellendi — bu site için pop-up'lara izin verin ve tekrar deneyin."
     },
     "audit": {
       "title": "Denetim kaydı",
@@ -655,6 +656,11 @@
       "done": "Tamam",
       "copy": "Kopyala",
       "actions": "İşlemler"
+    },
+    "impersonation": {
+      "badge": "Kimliğe bürünme",
+      "banner": "{email} olarak oturum açtınız",
+      "endSession": "Oturumu sonlandır"
     }
   },
   "Pricing": {

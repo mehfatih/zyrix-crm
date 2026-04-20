@@ -378,6 +378,32 @@ export async function impersonateCompany(id: string) {
   return data.data;
 }
 
+export interface ImpersonateTokenResult {
+  accessToken: string;
+  expiresIn: number;
+  targetUser: {
+    id: string;
+    email: string;
+    fullName: string;
+    role: string;
+    companyId: string;
+    emailVerified: boolean;
+  };
+  company: {
+    id: string;
+    name: string;
+    slug: string;
+    plan: string;
+  };
+}
+
+export async function impersonateCompanyToken(id: string) {
+  const { data } = await adminApi.post<ApiEnvelope<ImpersonateTokenResult>>(
+    `/api/admin/companies/${id}/impersonate-token`
+  );
+  return data.data;
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 // User details (single)
 // ─────────────────────────────────────────────────────────────────────────

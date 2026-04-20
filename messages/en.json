@@ -494,7 +494,8 @@
       "subAmount": "Amount",
       "subStarted": "Started",
       "impersonateReady": "Ready to impersonate {email}. Feature coming soon.",
-      "impersonateError": "Impersonation failed"
+      "impersonateError": "Impersonation failed",
+      "impersonatePopupBlocked": "Popup blocked — allow pop-ups for this site and try again."
     },
     "audit": {
       "title": "Audit log",
@@ -655,6 +656,11 @@
       "done": "Done",
       "copy": "Copy",
       "actions": "Actions"
+    },
+    "impersonation": {
+      "badge": "Impersonation",
+      "banner": "You are impersonating {email}",
+      "endSession": "End session"
     }
   },
   "Pricing": {

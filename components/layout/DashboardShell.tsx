@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import ImpersonationBanner from "./ImpersonationBanner";
 import type { Locale } from "@/i18n";
 import { getInitials, cn } from "@/lib/utils";
 
@@ -60,7 +61,9 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-bg-base flex">
+    <div className="min-h-screen bg-bg-base flex flex-col">
+      <ImpersonationBanner locale={locale} />
+      <div className="flex-1 flex">
       {/* Sidebar */}
       <aside className="hidden lg:flex w-64 bg-white border-r border-line-soft flex-col fixed h-screen">
         <div className="p-4 border-b border-line-soft">
@@ -148,6 +151,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
 
       {/* Main */}
       <main className="flex-1 lg:ml-64">{children}</main>
+      </div>
     </div>
   );
 }

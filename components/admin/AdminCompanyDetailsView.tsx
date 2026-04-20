@@ -9,7 +9,7 @@ import {
   updateCompany,
   suspendCompany,
   resumeCompany,
-  impersonateCompany,
+  impersonateCompanyToken,
   fetchPlanOverrides,
   createPlanOverride,
   deletePlanOverride,
@@ -186,11 +186,22 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
     if (!company) return;
     setActionBusy(true);
     try {
-      const res = await impersonateCompany(company.id);
-      setBanner({
-        tone: "success",
-        text: t("impersonateReady", { email: res.user.email }),
-      });
+      const res = await impersonateCompanyToken(company.id);
+      const url = `${window.location.origin}/${locale}/dashboard?impersonation=${encodeURIComponent(
+        res.accessToken
+      )}`;
+      const opened = window.open(url, "_blank", "noopener,noreferrer");
+      if (!opened) {
+        setBanner({
+          tone: "error",
+          text: t("impersonatePopupBlocked"),
+        });
+      } else {
+        setBanner({
+          tone: "success",
+          text: t("impersonateReady", { email: res.targetUser.email }),
+        });
+      }
     } catch {
       setBanner({ tone: "error", text: t("impersonateError") });
     } finally {
