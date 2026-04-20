@@ -1182,5 +1182,122 @@
       "primary": "Start free trial",
       "secondary": "See pricing"
     }
+  },
+  "About": {
+    "eyebrow": "Our story",
+    "title": "Built in Istanbul, for the Arab world and Türkiye",
+    "subtitle": "Zyrix is a CRM designed from day one for the way businesses actually operate in Türkiye, the Gulf, Egypt, and Iraq — not a translation of a Silicon Valley product.",
+    "story": {
+      "eyebrow": "Why we started",
+      "heading": "We got tired of forcing US tools to speak Arabic",
+      "location": "Istanbul, Türkiye",
+      "p1": "Our founder spent years running e-commerce and marketing operations across Türkiye, Iraq, and Saudi Arabia — managing campaigns in Arabic, invoices in Turkish lira, and customer support across three timezones.",
+      "p2": "Every CRM he tried was built for the US market and bolted on other languages as an afterthought. Arabic was right-to-left but half-translated. Turkish KDV was 'almost' supported. WhatsApp — the actual channel his customers used — needed a $99/month plugin.",
+      "p3": "Zyrix exists to fix that. A CRM where Arabic, Turkish, and English are equal citizens. Where WhatsApp is in the core, not a plugin. Where KDV and VAT just work. Built in Istanbul by a team that lives in the same time zone as the customer you're trying to close."
+    },
+    "mission": {
+      "title": "Our mission",
+      "body": "Give businesses in Türkiye and the Arab world the same quality of tooling that Silicon Valley keeps for itself — in their own language, at a fair price, with support they can actually reach."
+    },
+    "vision": {
+      "title": "Our vision",
+      "body": "To become the default CRM for every business operating between Istanbul and Riyadh. Not by copying Salesforce — by being genuinely better at the things that matter here: Arabic, WhatsApp, local payments, and regional compliance."
+    },
+    "values": {
+      "eyebrow": "How we work",
+      "heading": "The principles we won't compromise on",
+      "subtitle": "These aren't posters on a wall — they drive what we build and what we refuse to build.",
+      "items": {
+        "customerFirst": {
+          "title": "Customer-first, every time",
+          "body": "We don't chase vanity metrics. If a feature doesn't make a customer's day easier, we don't build it."
+        },
+        "region": {
+          "title": "Regional, not global-minus",
+          "body": "We're not a watered-down version of a US product. We're built for this region, in this region."
+        },
+        "ship": {
+          "title": "Ship, then learn",
+          "body": "We deploy every week. We'd rather ship something imperfect and improve it than wait six months to be wrong."
+        },
+        "transparent": {
+          "title": "Transparent by default",
+          "body": "Honest roadmaps, honest pricing, honest about what works and what doesn't. Trust compounds."
+        }
+      }
+    },
+    "stats": {
+      "languages": "Languages supported",
+      "countries": "Countries served",
+      "arabicSupport": "Native Arabic RTL",
+      "timezone": "Our working hours"
+    },
+    "team": {
+      "eyebrow": "Leadership",
+      "heading": "A small team, close to the customer",
+      "subtitle": "We're intentionally lean. Everyone on the team talks to customers every week.",
+      "founderRole": "Founder & Technical Director",
+      "founderBio": "Built Zyrix from scratch after years running marketing and e-commerce operations across Türkiye, Iraq, and Saudi Arabia. MBA, 10+ years in digital marketing, media buying, and product — with a deep belief that the Arab world and Türkiye deserve first-class software built for them, not translated to them."
+    },
+    "cta": {
+      "title": "Ready to see what we've built?",
+      "subtitle": "Create a free account or talk to us directly — we reply within one business day.",
+      "primary": "Start free trial",
+      "secondary": "Contact us"
+    }
+  },
+  "Demo": {
+    "eyebrow": "Request a demo",
+    "title": "See Zyrix live with one of our founders",
+    "subtitle": "A 30-minute walkthrough tailored to your business. No slides — we open the real product and answer your questions with your own use cases in mind.",
+    "included": {
+      "walkthrough": {
+        "title": "Personalized walkthrough",
+        "body": "We open Zyrix with demo data shaped like your business — not generic screenshots."
+      },
+      "whatsapp": {
+        "title": "WhatsApp integration preview",
+        "body": "See how WhatsApp Business messages turn into customer records, live."
+      },
+      "qa": {
+        "title": "Your real questions",
+        "body": "Bring the hard ones. VAT, multi-currency, team permissions — we'll show or tell the truth."
+      },
+      "team": {
+        "title": "Bring your team",
+        "body": "Invite up to 4 people from your side. Sales, ops, finance — whoever will use the tool."
+      }
+    },
+    "prefer": {
+      "title": "Prefer to just try it?",
+      "body": "The free plan gives you real access with your own data.",
+      "cta": "Start free trial →"
+    },
+    "formTitle": "Book your demo",
+    "formSubtitle": "We reply within one business day with a calendar link.",
+    "sentTitle": "Demo request received",
+    "sentBody": "Thanks! A member of our team will email you within 1 business day with available slots in your timezone.",
+    "meanwhile": "Meanwhile, explore the features →",
+    "fields": {
+      "name": "Your name",
+      "email": "Work email",
+      "company": "Company",
+      "phone": "Phone or WhatsApp",
+      "teamSize": "Team size",
+      "message": "Anything specific you'd like us to focus on?",
+      "messagePlaceholder": "e.g. 'We run 3 WhatsApp numbers and need to route conversations by region…'"
+    },
+    "teamSizes": {
+      "s1": "Just me (1–5)",
+      "s2": "Small team (6–20)",
+      "s3": "Growing (21–50)",
+      "s4": "Mid-market (51–200)",
+      "s5": "Enterprise (200+)"
+    },
+    "submit": "Request demo",
+    "sending": "Sending…",
+    "consent": "By submitting this form, you agree to our Privacy Policy.",
+    "errorRequired": "Please fill in your name and email.",
+    "errorGeneric": "Something went wrong. Please try again or email hello@zyrix.co directly."
   }
 }

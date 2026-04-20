@@ -1182,5 +1182,122 @@
       "primary": "Ücretsiz denemeyi başlat",
       "secondary": "Fiyatları görüntüle"
     }
+  },
+  "About": {
+    "eyebrow": "Hikayemiz",
+    "title": "İstanbul'da Arap dünyası ve Türkiye için inşa edildi",
+    "subtitle": "Zyrix, Silikon Vadisi ürününün bir çevirisi değil — Türkiye, Körfez, Mısır ve Irak'ta işlerin gerçekte nasıl yürüdüğüne göre ilk günden tasarlanmış bir CRM.",
+    "story": {
+      "eyebrow": "Neden başladık",
+      "heading": "ABD araçlarını Arapça konuşmaya zorlamaktan bıktık",
+      "location": "İstanbul, Türkiye",
+      "p1": "Kurucumuz, Türkiye, Irak ve Suudi Arabistan'da e-ticaret ve pazarlama operasyonlarını yönetmek için yıllar harcadı — Arapça kampanyalar, Türk lirasında faturalar ve üç saat dilimi arasında müşteri desteği yönetti.",
+      "p2": "Denediği her CRM, ABD pazarı için yapılmıştı ve diğer diller sonradan eklenmişti. Arapça sağdan sola ama yarı çevrilmişti. Türk KDV'si 'neredeyse' destekleniyordu. WhatsApp — müşterilerinin gerçekten kullandığı kanal — ayda 99$'lık bir eklenti gerektiriyordu.",
+      "p3": "Zyrix bunu düzeltmek için var. Arapça, Türkçe ve İngilizce'nin eşit vatandaşlar olduğu bir CRM. WhatsApp'ın eklenti değil, çekirdekte olduğu yer. KDV ve VAT'ın sadece çalıştığı yer. İstanbul'da, kapatmaya çalıştığınız müşteriyle aynı saat diliminde yaşayan bir ekip tarafından inşa edildi."
+    },
+    "mission": {
+      "title": "Misyonumuz",
+      "body": "Silikon Vadisi'nin kendine sakladığı araç kalitesinin aynısını — kendi dillerinde, adil bir fiyatla, gerçekten ulaşabilecekleri destekle — Türkiye ve Arap dünyasındaki işletmelere sunmak."
+    },
+    "vision": {
+      "title": "Vizyonumuz",
+      "body": "İstanbul ile Riyad arasında faaliyet gösteren her işletme için varsayılan CRM olmak. Salesforce'u kopyalayarak değil — burada önemli olan şeylerde gerçekten daha iyi olarak: Arapça, WhatsApp, yerel ödemeler ve bölgesel uyum."
+    },
+    "values": {
+      "eyebrow": "Nasıl çalışıyoruz",
+      "heading": "Taviz vermeyeceğimiz ilkeler",
+      "subtitle": "Bunlar duvardaki posterler değil — ne inşa edeceğimizi ve neyi reddedeceğimizi bunlar yönlendirir.",
+      "items": {
+        "customerFirst": {
+          "title": "Her zaman önce müşteri",
+          "body": "Gösteriş metriklerinin peşinden koşmuyoruz. Bir özellik müşterinin gününü kolaylaştırmıyorsa, inşa etmiyoruz."
+        },
+        "region": {
+          "title": "Bölgesel, 'global-eksi' değil",
+          "body": "Biz bir ABD ürününün seyreltilmiş versiyonu değiliz. Bu bölge için, bu bölgede inşa edildik."
+        },
+        "ship": {
+          "title": "Yayınla, sonra öğren",
+          "body": "Her hafta dağıtım yapıyoruz. Altı ay bekleyip yanıldığımızı görmek yerine mükemmel olmayan bir şey yayınlayıp iyileştirmeyi tercih ederiz."
+        },
+        "transparent": {
+          "title": "Varsayılan olarak şeffaf",
+          "body": "Dürüst yol haritaları, dürüst fiyatlandırma, neyin işe yaradığı ve neyin yaramadığı konusunda dürüstlük. Güven birikir."
+        }
+      }
+    },
+    "stats": {
+      "languages": "Desteklenen dil",
+      "countries": "Hizmet verilen ülke",
+      "arabicSupport": "Yerel Arapça RTL",
+      "timezone": "Çalışma saatlerimiz"
+    },
+    "team": {
+      "eyebrow": "Liderlik",
+      "heading": "Küçük bir ekip, müşteriye yakın",
+      "subtitle": "Bilinçli olarak yalın tutuyoruz. Ekipteki herkes her hafta müşterilerle konuşuyor.",
+      "founderRole": "Kurucu ve Teknik Direktör",
+      "founderBio": "Zyrix'i, Türkiye, Irak ve Suudi Arabistan'da pazarlama ve e-ticaret operasyonlarını yönettikten sonra sıfırdan inşa etti. MBA, dijital pazarlama, medya satın alma ve üründe 10+ yıl — Arap dünyasının ve Türkiye'nin onlar için inşa edilmiş birinci sınıf yazılımı hak ettiklerine dair derin bir inançla; onlara çevrilmiş değil."
+    },
+    "cta": {
+      "title": "Ne inşa ettiğimizi görmeye hazır mısınız?",
+      "subtitle": "Ücretsiz hesap oluşturun veya doğrudan bizimle konuşun — bir iş günü içinde yanıt veririz.",
+      "primary": "Ücretsiz denemeyi başlat",
+      "secondary": "Bize ulaşın"
+    }
+  },
+  "Demo": {
+    "eyebrow": "Demo talep edin",
+    "title": "Zyrix'i kuruculardan biriyle canlı görün",
+    "subtitle": "İşletmenize özel 30 dakikalık bir tur. Slayt yok — gerçek ürünü açıyor ve kendi kullanım durumlarınızı göz önünde bulundurarak sorularınızı yanıtlıyoruz.",
+    "included": {
+      "walkthrough": {
+        "title": "Kişiselleştirilmiş tur",
+        "body": "Zyrix'i işletmeniz gibi şekillendirilmiş demo verileriyle açıyoruz — jenerik ekran görüntüleri değil."
+      },
+      "whatsapp": {
+        "title": "WhatsApp entegrasyonu önizleme",
+        "body": "WhatsApp Business mesajlarının canlı olarak müşteri kayıtlarına nasıl dönüştüğünü görün."
+      },
+      "qa": {
+        "title": "Gerçek sorularınız",
+        "body": "Zorlarını getirin. VAT, çoklu para birimi, ekip izinleri — gerçeği gösteririz veya söyleriz."
+      },
+      "team": {
+        "title": "Ekibinizi getirin",
+        "body": "Tarafınızdan 4 kişiye kadar davet edin. Satış, operasyon, finans — aracı kim kullanacaksa."
+      }
+    },
+    "prefer": {
+      "title": "Sadece denemek mi istiyorsunuz?",
+      "body": "Ücretsiz plan, kendi verilerinizle gerçek erişim sağlar.",
+      "cta": "Ücretsiz denemeyi başlat →"
+    },
+    "formTitle": "Demo randevunuzu alın",
+    "formSubtitle": "Takvim bağlantısıyla bir iş günü içinde yanıt veriyoruz.",
+    "sentTitle": "Demo talebi alındı",
+    "sentBody": "Teşekkürler! Ekibimizden bir üye 1 iş günü içinde saat diliminize uygun müsait saatlerle size e-posta gönderecek.",
+    "meanwhile": "Bu arada, özellikleri keşfedin →",
+    "fields": {
+      "name": "Adınız",
+      "email": "İş e-postası",
+      "company": "Şirket",
+      "phone": "Telefon veya WhatsApp",
+      "teamSize": "Ekip büyüklüğü",
+      "message": "Odaklanmamızı istediğiniz özel bir şey var mı?",
+      "messagePlaceholder": "örn. '3 WhatsApp numarası çalıştırıyoruz ve görüşmeleri bölgeye göre yönlendirmemiz gerekiyor…'"
+    },
+    "teamSizes": {
+      "s1": "Sadece ben (1–5)",
+      "s2": "Küçük ekip (6–20)",
+      "s3": "Büyüyen (21–50)",
+      "s4": "Orta ölçek (51–200)",
+      "s5": "Kurumsal (200+)"
+    },
+    "submit": "Demo talep et",
+    "sending": "Gönderiliyor…",
+    "consent": "Bu formu göndererek Gizlilik Politikamızı kabul etmiş olursunuz.",
+    "errorRequired": "Lütfen adınızı ve e-postanızı girin.",
+    "errorGeneric": "Bir şeyler ters gitti. Tekrar deneyin veya doğrudan hello@zyrix.co adresine e-posta gönderin."
   }
 }
