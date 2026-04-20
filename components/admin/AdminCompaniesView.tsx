@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
   fetchCompanies,
@@ -20,6 +22,7 @@ import {
   Trash2,
   ChevronLeft,
   ChevronRight,
+  Eye,
 } from "lucide-react";
 
 // ============================================================================
@@ -36,6 +39,8 @@ const STATUS_COLORS: Record<string, string> = {
 export default function AdminCompaniesView() {
   const t = useTranslations("Admin.companies");
   const tStatus = useTranslations("Admin.status");
+  const params = useParams<{ locale: string }>();
+  const locale = params?.locale || "en";
 
   const [data, setData] = useState<Paginated<AdminCompanyListItem> | null>(null);
   const [loading, setLoading] = useState(true);
@@ -230,8 +235,15 @@ export default function AdminCompaniesView() {
                   {data.items.map((c) => (
                     <tr key={c.id} className="hover:bg-sky-50/50 transition-colors">
                       <td className="px-4 py-3">
-                        <div className="font-medium text-slate-900">{c.name}</div>
-                        <div className="text-xs text-slate-500">{c.slug}</div>
+                        <Link
+                          href={`/${locale}/admin/companies/${c.id}`}
+                          className="block"
+                        >
+                          <div className="font-medium text-slate-900 hover:text-cyan-700">
+                            {c.name}
+                          </div>
+                          <div className="text-xs text-slate-500">{c.slug}</div>
+                        </Link>
                       </td>
                       <td className="px-4 py-3">
                         <span className="inline-flex items-center rounded-full bg-cyan-50 text-cyan-800 ring-1 ring-cyan-200 px-2 py-0.5 text-xs font-medium capitalize">
@@ -259,6 +271,13 @@ export default function AdminCompaniesView() {
                       </td>
                       <td className="px-4 py-3 text-right">
                         <div className="inline-flex items-center gap-1">
+                          <Link
+                            href={`/${locale}/admin/companies/${c.id}`}
+                            className="p-1.5 rounded hover:bg-cyan-50 text-cyan-600"
+                            title={t("view")}
+                          >
+                            <Eye size={16} />
+                          </Link>
                           <button
                             onClick={() =>
                               setAction({ type: "suspend", company: c })

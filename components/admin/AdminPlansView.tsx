@@ -2,8 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { fetchPlansAdmin, type AdminPlan } from "@/lib/api/admin";
-import { Package, Loader2, Star, Check, X } from "lucide-react";
+import {
+  fetchPlansAdmin,
+  updatePlan,
+  type AdminPlan,
+} from "@/lib/api/admin";
+import {
+  Package,
+  Loader2,
+  Star,
+  Check,
+  X,
+  Pencil,
+  Save,
+} from "lucide-react";
 
 // ============================================================================
 // ADMIN PLANS VIEW
@@ -29,13 +41,60 @@ export default function AdminPlansView({ locale }: { locale: string }) {
   const [plans, setPlans] = useState<AdminPlan[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [editing, setEditing] = useState<AdminPlan | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const loadPlans = () => {
+    setLoading(true);
     fetchPlansAdmin()
       .then((res) => setPlans(res))
       .catch(() => setError("Failed to load plans."))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    loadPlans();
   }, []);
+
+  const handleSave = async () => {
+    if (!editing) return;
+    setSaving(true);
+    setSaveError(null);
+    try {
+      await updatePlan(editing.id, {
+        priceMonthlyUsd: editing.priceMonthlyUsd,
+        priceYearlyUsd: editing.priceYearlyUsd,
+        priceMonthlyTry: editing.priceMonthlyTry,
+        priceYearlyTry: editing.priceYearlyTry,
+        priceMonthlySar: editing.priceMonthlySar,
+        priceYearlySar: editing.priceYearlySar,
+        maxUsers: editing.maxUsers,
+        maxCustomers: editing.maxCustomers,
+        maxDeals: editing.maxDeals,
+        maxStorageGb: editing.maxStorageGb,
+        maxWhatsappMsg: editing.maxWhatsappMsg,
+        maxAiTokens: editing.maxAiTokens,
+        features: editing.features,
+        isActive: editing.isActive,
+        isFeatured: editing.isFeatured,
+      });
+      setEditing(null);
+      loadPlans();
+    } catch {
+      setSaveError("Failed to save");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const toggleFeature = (slug: string) => {
+    if (!editing) return;
+    const next = editing.features.includes(slug)
+      ? editing.features.filter((f) => f !== slug)
+      : [...editing.features, slug];
+    setEditing({ ...editing, features: next });
+  };
 
   if (loading) {
     return (
@@ -97,9 +156,16 @@ export default function AdminPlansView({ locale }: { locale: string }) {
               >
                 <Package size={16} style={{ color: p.color }} />
               </div>
-              <h3 className="text-base font-bold text-slate-900">
+              <h3 className="text-base font-bold text-slate-900 flex-1">
                 {localizedName(p)}
               </h3>
+              <button
+                onClick={() => setEditing({ ...p })}
+                className="p-1.5 rounded hover:bg-cyan-50 text-cyan-600"
+                title="Edit"
+              >
+                <Pencil size={14} />
+              </button>
             </div>
 
             <div className="mb-4">
@@ -182,6 +248,262 @@ export default function AdminPlansView({ locale }: { locale: string }) {
           </table>
         </div>
       </div>
+
+      {/* Edit Modal */}
+      {editing && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 overflow-y-auto">
+          <div className="w-full max-w-3xl rounded-xl bg-white shadow-xl my-8">
+            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center"
+                  style={{ backgroundColor: `${editing.color}20` }}
+                >
+                  <Package size={16} style={{ color: editing.color }} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  Edit {localizedName(editing)}
+                </h3>
+              </div>
+              <button
+                onClick={() => setEditing(null)}
+                disabled={saving}
+                className="p-1 rounded hover:bg-slate-100"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="px-6 py-5 space-y-5 max-h-[70vh] overflow-y-auto">
+              {saveError && (
+                <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                  {saveError}
+                </div>
+              )}
+
+              {/* Prices */}
+              <div>
+                <h4 className="text-sm font-semibold text-cyan-900 mb-2">
+                  Prices
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <PriceField
+                    label="USD / month"
+                    value={editing.priceMonthlyUsd}
+                    onChange={(v) =>
+                      setEditing({ ...editing, priceMonthlyUsd: v })
+                    }
+                  />
+                  <PriceField
+                    label="USD / year"
+                    value={editing.priceYearlyUsd}
+                    onChange={(v) =>
+                      setEditing({ ...editing, priceYearlyUsd: v })
+                    }
+                  />
+                  <div />
+                  <PriceField
+                    label="TRY / month"
+                    value={editing.priceMonthlyTry}
+                    onChange={(v) =>
+                      setEditing({ ...editing, priceMonthlyTry: v })
+                    }
+                  />
+                  <PriceField
+                    label="TRY / year"
+                    value={editing.priceYearlyTry}
+                    onChange={(v) =>
+                      setEditing({ ...editing, priceYearlyTry: v })
+                    }
+                  />
+                  <div />
+                  <PriceField
+                    label="SAR / month"
+                    value={editing.priceMonthlySar}
+                    onChange={(v) =>
+                      setEditing({ ...editing, priceMonthlySar: v })
+                    }
+                  />
+                  <PriceField
+                    label="SAR / year"
+                    value={editing.priceYearlySar}
+                    onChange={(v) =>
+                      setEditing({ ...editing, priceYearlySar: v })
+                    }
+                  />
+                </div>
+              </div>
+
+              {/* Limits */}
+              <div>
+                <h4 className="text-sm font-semibold text-cyan-900 mb-2">
+                  Limits
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <NumField
+                    label="Max users"
+                    value={editing.maxUsers}
+                    onChange={(v) => setEditing({ ...editing, maxUsers: v })}
+                  />
+                  <NumField
+                    label="Max customers"
+                    value={editing.maxCustomers}
+                    onChange={(v) =>
+                      setEditing({ ...editing, maxCustomers: v })
+                    }
+                  />
+                  <NumField
+                    label="Max deals"
+                    value={editing.maxDeals}
+                    onChange={(v) => setEditing({ ...editing, maxDeals: v })}
+                  />
+                  <NumField
+                    label="Storage (GB)"
+                    value={editing.maxStorageGb}
+                    onChange={(v) =>
+                      setEditing({ ...editing, maxStorageGb: v })
+                    }
+                  />
+                  <NumField
+                    label="WhatsApp msgs"
+                    value={editing.maxWhatsappMsg}
+                    onChange={(v) =>
+                      setEditing({ ...editing, maxWhatsappMsg: v })
+                    }
+                  />
+                  <NumField
+                    label="AI tokens"
+                    value={editing.maxAiTokens}
+                    onChange={(v) =>
+                      setEditing({ ...editing, maxAiTokens: v })
+                    }
+                  />
+                </div>
+              </div>
+
+              {/* Flags */}
+              <div className="flex flex-wrap items-center gap-4">
+                <label className="inline-flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={editing.isActive}
+                    onChange={(e) =>
+                      setEditing({ ...editing, isActive: e.target.checked })
+                    }
+                    className="rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+                  />
+                  Active
+                </label>
+                <label className="inline-flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={editing.isFeatured}
+                    onChange={(e) =>
+                      setEditing({ ...editing, isFeatured: e.target.checked })
+                    }
+                    className="rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+                  />
+                  Featured
+                </label>
+              </div>
+
+              {/* Features */}
+              <div>
+                <h4 className="text-sm font-semibold text-cyan-900 mb-2">
+                  Features ({editing.features.length} / {ALL_FEATURE_SLUGS.length})
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5">
+                  {ALL_FEATURE_SLUGS.map((slug) => (
+                    <label
+                      key={slug}
+                      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-xs hover:bg-sky-50 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={editing.features.includes(slug)}
+                        onChange={() => toggleFeature(slug)}
+                        className="rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+                      />
+                      <span className="text-slate-700">{slug}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2 border-t border-slate-200 px-6 py-4">
+              <button
+                onClick={() => setEditing(null)}
+                disabled={saving}
+                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSave}
+                disabled={saving}
+                className="inline-flex items-center gap-2 rounded-lg bg-cyan-600 px-4 py-2 text-sm font-medium text-white hover:bg-cyan-700 disabled:opacity-50"
+              >
+                {saving ? (
+                  <Loader2 size={14} className="animate-spin" />
+                ) : (
+                  <Save size={14} />
+                )}
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PriceField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number | string;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div>
+      <label className="mb-1 block text-xs font-medium text-slate-600">
+        {label}
+      </label>
+      <input
+        type="number"
+        step="0.01"
+        value={typeof value === "string" ? value : value.toString()}
+        onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+      />
+    </div>
+  );
+}
+
+function NumField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div>
+      <label className="mb-1 block text-xs font-medium text-slate-600">
+        {label}
+      </label>
+      <input
+        type="number"
+        value={value}
+        onChange={(e) => onChange(parseInt(e.target.value, 10) || 0)}
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+      />
     </div>
   );
 }

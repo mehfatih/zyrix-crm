@@ -312,6 +312,224 @@ export async function fetchPlansAdmin() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+// Company details (single)
+// ─────────────────────────────────────────────────────────────────────────
+export interface AdminCompanyDetails extends AdminCompanyListItem {
+  suspendReason: string | null;
+  deletedAt: string | null;
+  users: Array<{
+    id: string;
+    email: string;
+    fullName: string;
+    role: string;
+    status: string;
+    lastLoginAt: string | null;
+    createdAt: string;
+  }>;
+  subscriptions?: Array<{
+    id: string;
+    planSlug: string;
+    status: string;
+    billingCycle: string;
+    currency: string;
+    amount: number | string;
+    startedAt: string;
+    endsAt: string | null;
+  }>;
+  planOverrides?: Array<{
+    id: string;
+    featureSlug: string;
+    enabled: boolean;
+    expiresAt: string | null;
+    reason: string | null;
+    createdAt: string;
+  }>;
+}
+
+export async function fetchCompany(id: string) {
+  const { data } = await adminApi.get<ApiEnvelope<AdminCompanyDetails>>(
+    `/api/admin/companies/${id}`
+  );
+  return data.data;
+}
+
+export async function updateCompany(
+  id: string,
+  dto: {
+    name?: string;
+    plan?: string;
+    billingEmail?: string;
+    country?: string;
+    industry?: string;
+    size?: string;
+  }
+) {
+  const { data } = await adminApi.patch<ApiEnvelope<AdminCompanyListItem>>(
+    `/api/admin/companies/${id}`,
+    dto
+  );
+  return data.data;
+}
+
+export async function impersonateCompany(id: string) {
+  const { data } = await adminApi.post<
+    ApiEnvelope<{ user: AdminUser; company: { id: string; name: string } }>
+  >(`/api/admin/companies/${id}/impersonate`);
+  return data.data;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// User details (single)
+// ─────────────────────────────────────────────────────────────────────────
+export async function fetchUser(id: string) {
+  const { data } = await adminApi.get<ApiEnvelope<AdminUserListItem>>(
+    `/api/admin/users/${id}`
+  );
+  return data.data;
+}
+
+export async function updateUser(
+  id: string,
+  dto: { fullName?: string; phone?: string; role?: string }
+) {
+  const { data } = await adminApi.patch<ApiEnvelope<AdminUserListItem>>(
+    `/api/admin/users/${id}`,
+    dto
+  );
+  return data.data;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Plan update
+// ─────────────────────────────────────────────────────────────────────────
+export async function fetchPlanAdmin(id: string) {
+  const { data } = await adminApi.get<ApiEnvelope<AdminPlan>>(
+    `/api/admin/plans/${id}`
+  );
+  return data.data;
+}
+
+export async function updatePlan(id: string, dto: Partial<AdminPlan>) {
+  const { data } = await adminApi.patch<ApiEnvelope<AdminPlan>>(
+    `/api/admin/plans/${id}`,
+    dto
+  );
+  return data.data;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Plan overrides
+// ─────────────────────────────────────────────────────────────────────────
+export interface PlanOverride {
+  id: string;
+  companyId: string;
+  featureSlug: string;
+  enabled: boolean;
+  expiresAt: string | null;
+  reason: string | null;
+  grantedBy: string | null;
+  createdAt: string;
+}
+
+export async function fetchPlanOverrides(companyId?: string) {
+  const { data } = await adminApi.get<ApiEnvelope<PlanOverride[]>>(
+    "/api/admin/plan-overrides",
+    { params: companyId ? { companyId } : undefined }
+  );
+  return data.data;
+}
+
+export async function createPlanOverride(dto: {
+  companyId: string;
+  featureSlug: string;
+  enabled?: boolean;
+  expiresAt?: string;
+  reason?: string;
+}) {
+  const { data } = await adminApi.post<ApiEnvelope<PlanOverride>>(
+    "/api/admin/plan-overrides",
+    dto
+  );
+  return data.data;
+}
+
+export async function deletePlanOverride(id: string) {
+  const { data } = await adminApi.delete<ApiEnvelope<unknown>>(
+    `/api/admin/plan-overrides/${id}`
+  );
+  return data.data;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Audit logs
+// ─────────────────────────────────────────────────────────────────────────
+export interface AuditLog {
+  id: string;
+  userId: string | null;
+  companyId: string | null;
+  action: string;
+  entityType: string | null;
+  entityId: string | null;
+  changes: Record<string, unknown> | null;
+  ipAddress: string | null;
+  userAgent: string | null;
+  createdAt: string;
+  user?: { email: string; fullName: string } | null;
+  company?: { name: string } | null;
+}
+
+export async function fetchAuditLogs(params: {
+  page?: number;
+  limit?: number;
+  action?: string;
+  companyId?: string;
+  userId?: string;
+}) {
+  const { data } = await adminApi.get<ApiEnvelope<Paginated<AuditLog>>>(
+    "/api/admin/audit-logs",
+    { params }
+  );
+  return data.data;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Feature catalog (used by plan overrides UI)
+// ─────────────────────────────────────────────────────────────────────────
+export const ALL_FEATURES = [
+  "contacts",
+  "deals",
+  "pipeline",
+  "tasks",
+  "notes",
+  "whatsapp_basic",
+  "whatsapp_api",
+  "email_sync",
+  "live_chat",
+  "ai_extract",
+  "ai_cfo",
+  "ai_insights",
+  "ai_dialects",
+  "ai_voice",
+  "quotes",
+  "invoices",
+  "commission",
+  "loyalty",
+  "dashboards",
+  "forecasts",
+  "reports_advanced",
+  "workflows_basic",
+  "workflows_advanced",
+  "customer_portal",
+  "tickets",
+  "sso",
+  "audit_log",
+  "white_label",
+  "dedicated_support",
+  "custom_domain",
+  "api_access",
+] as const;
+
+// ─────────────────────────────────────────────────────────────────────────
 // Public plans (no auth)
 // ─────────────────────────────────────────────────────────────────────────
 export async function fetchPublicPlans(): Promise<AdminPlan[]> {
