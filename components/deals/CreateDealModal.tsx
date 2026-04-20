@@ -63,7 +63,7 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
         currency: form.currency,
         stage: form.stage as "lead" | "qualified" | "proposal" | "negotiation" | "won" | "lost",
         probability: form.probability ? Number(form.probability) : 0,
-        expectedCloseDate: form.expectedCloseDate || undefined,
+        expectedCloseDate: form.expectedCloseDate ? new Date(form.expectedCloseDate).toISOString() : undefined,
         description: form.description || undefined,
       });
       onSuccess();
