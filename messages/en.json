@@ -43,7 +43,8 @@
     "quotes": "Quotes",
     "loyalty": "Loyalty",
     "tax": "Tax",
-    "cashflow": "Cash Flow"
+    "cashflow": "Cash Flow",
+    "followup": "Follow-up"
   },
   "Home": {
     "hero": {
@@ -1689,6 +1690,58 @@
       "title": "Top 10 Deals by Weighted Value",
       "empty": "No deals in forecast window",
       "of": "of"
+    }
+  },
+  "Followup": {
+    "title": "Smart Follow-up",
+    "subtitle": "Automatically surface customers going cold and create follow-up tasks in one click",
+    "settings": "Settings",
+    "daysSinceContact": "{days} days since last contact",
+    "thresholds": {
+      "label": "Thresholds",
+      "warning": "Warning: {days}+ days",
+      "critical": "Critical: {days}+ days",
+      "disabled": "Disabled"
+    },
+    "stats": {
+      "totalStale": "Total Stale",
+      "critical": "Critical",
+      "warning": "Warning",
+      "valueAtRisk": "Value at Risk"
+    },
+    "empty": {
+      "title": "All caught up!",
+      "subtitle": "Every customer has been contacted recently. Great work."
+    },
+    "groups": {
+      "critical": "Critical — needs immediate attention",
+      "criticalSubtitle": "Not contacted for {days}+ days",
+      "warning": "Warning — getting cold",
+      "warningSubtitle": "Not contacted for {days}+ days"
+    },
+    "actions": {
+      "createTask": "Create Task",
+      "createAll": "Create for all",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "confirm": {
+      "bulk": "Create follow-up tasks for {count} customers?"
+    },
+    "alerts": {
+      "bulkCreated": "Created {created} tasks, skipped {skipped}."
+    },
+    "settingsModal": {
+      "title": "Follow-up Settings",
+      "isEnabled": "Enable smart follow-up alerts",
+      "warningDays": "Warning threshold (days)",
+      "warningHint": "Customers not contacted this long appear in 'Warning'",
+      "criticalDays": "Critical threshold (days)",
+      "criticalHint": "Customers not contacted this long appear in 'Critical'",
+      "excludeInactive": "Exclude lost/disabled customers",
+      "errors": {
+        "thresholds": "Critical days must be ≥ warning days"
+      }
     }
   }
 }

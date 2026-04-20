@@ -15,6 +15,7 @@ import {
   Award,
   Percent,
   TrendingUp,
+  Bell,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -61,6 +62,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     { href: `/${locale}/loyalty`, icon: Award, label: "Loyalty" },
     { href: `/${locale}/tax`, icon: Percent, label: "Tax" },
     { href: `/${locale}/cashflow`, icon: TrendingUp, label: "Cash Flow" },
+    { href: `/${locale}/followup`, icon: Bell, label: "Follow-up" },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
     {
       href: `/${locale}/whatsapp`,

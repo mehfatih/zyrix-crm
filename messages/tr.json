@@ -43,7 +43,8 @@
     "quotes": "Teklifler",
     "loyalty": "Sadakat",
     "tax": "Vergi",
-    "cashflow": "Nakit Akışı"
+    "cashflow": "Nakit Akışı",
+    "followup": "Takip"
   },
   "Home": {
     "hero": {
@@ -1689,6 +1690,58 @@
       "title": "Ağırlıklı Değere Göre En İyi 10 Anlaşma",
       "empty": "Tahmin penceresinde anlaşma yok",
       "of": "/"
+    }
+  },
+  "Followup": {
+    "title": "Akıllı Takip",
+    "subtitle": "Soğumaya başlayan müşterileri otomatik keşfedin ve tek tıkla takip görevi oluşturun",
+    "settings": "Ayarlar",
+    "daysSinceContact": "Son iletişimden {days} gün sonra",
+    "thresholds": {
+      "label": "Eşikler",
+      "warning": "Uyarı: {days}+ gün",
+      "critical": "Kritik: {days}+ gün",
+      "disabled": "Devre dışı"
+    },
+    "stats": {
+      "totalStale": "Toplam Pasif",
+      "critical": "Kritik",
+      "warning": "Uyarı",
+      "valueAtRisk": "Risk Altındaki Değer"
+    },
+    "empty": {
+      "title": "Her şey yolunda!",
+      "subtitle": "Tüm müşterilerle yakın zamanda iletişim kuruldu. Harika iş."
+    },
+    "groups": {
+      "critical": "Kritik — acil ilgi gerekiyor",
+      "criticalSubtitle": "{days}+ gündür iletişim yok",
+      "warning": "Uyarı — soğumaya başlıyor",
+      "warningSubtitle": "{days}+ gündür iletişim yok"
+    },
+    "actions": {
+      "createTask": "Görev Oluştur",
+      "createAll": "Tümü için oluştur",
+      "save": "Kaydet",
+      "cancel": "İptal"
+    },
+    "confirm": {
+      "bulk": "{count} müşteri için takip görevi oluşturulsun mu?"
+    },
+    "alerts": {
+      "bulkCreated": "{created} görev oluşturuldu, {skipped} atlandı."
+    },
+    "settingsModal": {
+      "title": "Takip Ayarları",
+      "isEnabled": "Akıllı takip uyarılarını etkinleştir",
+      "warningDays": "Uyarı eşiği (gün)",
+      "warningHint": "Bu süre iletişim kurulmayan müşteriler 'Uyarı'da görünür",
+      "criticalDays": "Kritik eşik (gün)",
+      "criticalHint": "Bu süre iletişim kurulmayan müşteriler 'Kritik'te görünür",
+      "excludeInactive": "Kaybedilen/devre dışı müşterileri hariç tut",
+      "errors": {
+        "thresholds": "Kritik gün sayısı ≥ uyarı gün sayısı olmalıdır"
+      }
     }
   }
 }
