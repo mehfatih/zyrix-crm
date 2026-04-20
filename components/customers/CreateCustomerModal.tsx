@@ -30,7 +30,7 @@ export function CreateCustomerModal({
   });
 
   const handleChange = (
-    e: React.ChangeEvent
+    e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
@@ -64,7 +64,6 @@ export function CreateCustomerModal({
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-        {/* Header */}
         <div className="sticky top-0 bg-white border-b border-line-soft px-6 py-4 flex items-center justify-between rounded-t-2xl">
           <h2 className="text-lg font-semibold text-ink">Add new customer</h2>
           <button
@@ -75,7 +74,6 @@ export function CreateCustomerModal({
           </button>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {error && (
             <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg">
@@ -84,38 +82,11 @@ export function CreateCustomerModal({
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Field
-              label="Full name"
-              name="fullName"
-              value={form.fullName}
-              onChange={handleChange}
-              required
-            />
-            <Field
-              label="Email"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-            />
-            <Field
-              label="Phone / WhatsApp"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-            />
-            <Field
-              label="Company"
-              name="companyName"
-              value={form.companyName}
-              onChange={handleChange}
-            />
-            <Field
-              label="Position"
-              name="position"
-              value={form.position}
-              onChange={handleChange}
-            />
+            <Field label="Full name" name="fullName" value={form.fullName} onChange={handleChange} required />
+            <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} />
+            <Field label="Phone / WhatsApp" name="phone" value={form.phone} onChange={handleChange} />
+            <Field label="Company" name="companyName" value={form.companyName} onChange={handleChange} />
+            <Field label="Position" name="position" value={form.position} onChange={handleChange} />
             <SelectField
               label="Status"
               name="status"
@@ -128,31 +99,19 @@ export function CreateCustomerModal({
                 { value: "lost", label: "Lost" },
               ]}
             />
-            <Field
-              label="Country"
-              name="country"
-              value={form.country}
-              onChange={handleChange}
-            />
-            <Field
-              label="City"
-              name="city"
-              value={form.city}
-              onChange={handleChange}
-            />
+            <Field label="Country" name="country" value={form.country} onChange={handleChange} />
+            <Field label="City" name="city" value={form.city} onChange={handleChange} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-ink mb-1.5">
-              Notes
-            </label>
+            <label className="block text-sm font-medium text-ink mb-1.5">Notes</label>
             <textarea
               name="notes"
               value={form.notes}
               onChange={handleChange}
               rows={3}
               className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
-              placeholder="Any additional context…"
+              placeholder="Any additional context..."
             />
           </div>
 
@@ -184,9 +143,6 @@ export function CreateCustomerModal({
   );
 }
 
-// ─────────────────────────────────────────────────────────────────
-// Helpers
-// ─────────────────────────────────────────────────────────────────
 function Field(props: {
   label: string;
   name: string;
