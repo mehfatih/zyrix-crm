@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { Loader2, CheckCircle2, Building2, Zap } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { updateCompanyApi } from "@/lib/api/auth";
@@ -8,6 +9,7 @@ import { extractErrorMessage } from "@/lib/api/client";
 import { cn } from "@/lib/utils";
 
 export function CompanyTab() {
+  const t = useTranslations("Settings.company");
   const { user, company, refresh } = useAuth();
 
   const [form, setForm] = useState({
@@ -40,11 +42,11 @@ export function CompanyTab() {
 
   return (
     <div className="space-y-5 max-w-xl">
-      <h2 className="text-lg font-bold text-ink">Company Information</h2>
+      <h2 className="text-lg font-bold text-ink">{t("heading")}</h2>
 
       {!canEdit && (
         <div className="bg-warning-light text-warning-dark text-sm p-3 rounded-lg border border-warning/20">
-          Only owners and admins can update company settings.
+          {t("restricted")}
         </div>
       )}
 
@@ -58,13 +60,13 @@ export function CompanyTab() {
         {success && (
           <div className="bg-success-light text-success-dark text-sm p-3 rounded-lg border border-success/20 flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4" />
-            Company updated successfully
+            {t("success")}
           </div>
         )}
 
         <div className="space-y-1.5">
           <label htmlFor="name" className="block text-sm font-medium text-ink">
-            Company Name
+            {t("name")}
           </label>
           <div className="relative">
             <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -81,7 +83,7 @@ export function CompanyTab() {
         </div>
 
         <div className="space-y-1.5">
-          <label className="block text-sm font-medium text-ink">Company Slug</label>
+          <label className="block text-sm font-medium text-ink">{t("slug")}</label>
           <input
             type="text"
             value={company?.slug || ""}
@@ -91,9 +93,7 @@ export function CompanyTab() {
         </div>
 
         <div className="space-y-1.5">
-          <label className="block text-sm font-medium text-ink">
-            Current Plan
-          </label>
+          <label className="block text-sm font-medium text-ink">{t("plan")}</label>
           <div className="flex items-center gap-2 px-4 py-3 bg-primary-50 border border-primary-200 rounded-lg">
             <Zap className="w-4 h-4 text-primary-600" />
             <span className="text-sm font-semibold text-primary-700 capitalize">
@@ -113,7 +113,7 @@ export function CompanyTab() {
             )}
           >
             {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-            Save changes
+            {t("save")}
           </button>
         )}
       </form>

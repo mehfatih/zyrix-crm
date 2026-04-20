@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Loader2, CheckCircle2, Lock, LogOut, Eye, EyeOff, Shield } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { changePasswordApi } from "@/lib/api/auth";
@@ -13,6 +14,7 @@ interface SecurityTabProps {
 }
 
 export function SecurityTab({ locale }: SecurityTabProps) {
+  const t = useTranslations("Settings.security");
   const { logout } = useAuth();
   const router = useRouter();
 
@@ -34,12 +36,12 @@ export function SecurityTab({ locale }: SecurityTabProps) {
     setSuccess(false);
 
     if (form.newPassword !== form.confirmPassword) {
-      setError("New passwords do not match");
+      setError(t("passwordsDoNotMatch"));
       return;
     }
 
     if (form.newPassword.length < 8) {
-      setError("New password must be at least 8 characters");
+      setError(t("passwordTooShort"));
       return;
     }
 
@@ -73,7 +75,7 @@ export function SecurityTab({ locale }: SecurityTabProps) {
       <div>
         <h2 className="text-lg font-bold text-ink mb-4 flex items-center gap-2">
           <Shield className="w-5 h-5 text-primary-600" />
-          Change Password
+          {t("changePasswordHeading")}
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -86,13 +88,13 @@ export function SecurityTab({ locale }: SecurityTabProps) {
           {success && (
             <div className="bg-success-light text-success-dark text-sm p-3 rounded-lg border border-success/20 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4" />
-              Password changed. Other devices have been signed out.
+              {t("success")}
             </div>
           )}
 
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-ink">
-              Current password
+              {t("currentPassword")}
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -115,7 +117,7 @@ export function SecurityTab({ locale }: SecurityTabProps) {
 
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-ink">
-              New password
+              {t("newPassword")}
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -128,12 +130,12 @@ export function SecurityTab({ locale }: SecurityTabProps) {
                 className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
-            <p className="text-xs text-ink-muted">At least 8 characters</p>
+            <p className="text-xs text-ink-muted">{t("passwordHint")}</p>
           </div>
 
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-ink">
-              Confirm new password
+              {t("confirmNewPassword")}
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -158,16 +160,14 @@ export function SecurityTab({ locale }: SecurityTabProps) {
             )}
           >
             {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-            Update password
+            {t("updatePassword")}
           </button>
         </form>
       </div>
 
       <div className="border-t border-line pt-6">
-        <h3 className="text-lg font-bold text-ink mb-2">Sessions</h3>
-        <p className="text-sm text-ink-light mb-4">
-          Sign out of this device. Your data will not be lost.
-        </p>
+        <h3 className="text-lg font-bold text-ink mb-2">{t("sessionsHeading")}</h3>
+        <p className="text-sm text-ink-light mb-4">{t("sessionsMessage")}</p>
         <button
           onClick={handleLogout}
           disabled={isLoggingOut}
@@ -183,7 +183,7 @@ export function SecurityTab({ locale }: SecurityTabProps) {
           ) : (
             <LogOut className="w-4 h-4" />
           )}
-          Sign out
+          {t("signOut")}
         </button>
       </div>
     </div>

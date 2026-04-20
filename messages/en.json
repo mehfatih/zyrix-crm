@@ -23,7 +23,6 @@
     "soon": "Coming soon",
     "beta": "Beta"
   },
-
   "Nav": {
     "home": "Home",
     "product": "Product",
@@ -42,7 +41,6 @@
     "arabic": "العربية",
     "turkish": "Türkçe"
   },
-
   "Home": {
     "hero": {
       "badge": "Built for MENA & Turkey",
@@ -53,7 +51,6 @@
       "ctaSecondary": "Watch 2-min demo",
       "trustIndicator": "Trusted by growing teams in 14 countries"
     },
-
     "stats": {
       "title": "The numbers tell the story",
       "subtitle": "Why teams switch from Salesforce, HubSpot and Zoho to Zyrix",
@@ -76,7 +73,6 @@
         }
       }
     },
-
     "features": {
       "title": "Everything you need. Nothing you don't.",
       "subtitle": "A complete CRM platform with 16 core features — not 16 separate apps like Zoho, and not locked behind a $800/month tier like HubSpot.",
@@ -119,7 +115,6 @@
         }
       }
     },
-
     "whyZyrix": {
       "title": "Why Zyrix beats Salesforce, HubSpot and Zoho",
       "items": {
@@ -141,7 +136,6 @@
         }
       }
     },
-
     "cta": {
       "title": "Ready to see the difference?",
       "subtitle": "Start with a free account. Talk to sales when you're ready to scale.",
@@ -149,7 +143,6 @@
       "ctaSecondary": "Talk to sales"
     }
   },
-
   "Footer": {
     "tagline": "The CRM that speaks your language. Built for MENA & Turkey.",
     "sections": {
@@ -189,7 +182,6 @@
     "copyright": "© 2026 Zyrix. All rights reserved.",
     "madeIn": "Made in Istanbul with care."
   },
-
   "Auth": {
     "signIn": {
       "title": "Welcome back",
@@ -225,9 +217,48 @@
       "submit": "Verify",
       "resend": "Resend code",
       "wrongNumber": "Wrong number? Go back"
+    },
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "subtitle": "Enter your email and we will send you a reset link.",
+      "email": "Email",
+      "submit": "Send reset link",
+      "backToSignIn": "Back to sign in",
+      "checkEmail": "Check your email",
+      "checkEmailMessage": "If an account exists for {email}, we sent a password reset link. The link expires in 1 hour."
+    },
+    "resetPassword": {
+      "title": "Set new password",
+      "subtitle": "Your new password must be at least 8 characters.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "passwordHint": "At least 8 characters",
+      "submit": "Reset password",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "missingToken": "Missing reset token",
+      "invalidLink": "Invalid link",
+      "invalidLinkMessage": "This reset link is missing required information.",
+      "requestNewLink": "Request new link",
+      "success": "Password reset!",
+      "successMessage": "You can now sign in with your new password.",
+      "redirecting": "Redirecting..."
+    },
+    "verifyEmail": {
+      "title": "Verify your email",
+      "subtitle": "We are confirming your email address...",
+      "verifying": "Verifying your email...",
+      "pleaseWait": "Please wait a moment.",
+      "success": "Email Verified!",
+      "successMessage": "Your email has been verified successfully!",
+      "redirectingToSignIn": "Redirecting to sign-in in 3 seconds...",
+      "goToSignIn": "Go to Sign In",
+      "failed": "Verification Failed",
+      "noToken": "No verification token provided",
+      "signIn": "Sign In",
+      "signUp": "Sign Up"
     }
   },
-
   "Errors": {
     "notFound": {
       "title": "Page not found",
@@ -243,5 +274,47 @@
     "unauthorized": "You don't have permission to do that.",
     "sessionExpired": "Your session has expired. Please sign in again.",
     "invalidCredentials": "Invalid email or password."
+  },
+  "Settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile, company, and security preferences.",
+    "tabs": {
+      "profile": "Profile",
+      "company": "Company",
+      "security": "Security"
+    },
+    "profile": {
+      "heading": "Personal Information",
+      "email": "Email",
+      "emailNote": "Email cannot be changed",
+      "fullName": "Full Name",
+      "phone": "Phone",
+      "phonePlaceholder": "+90 555 000 0000",
+      "save": "Save changes",
+      "success": "Profile updated successfully"
+    },
+    "company": {
+      "heading": "Company Information",
+      "name": "Company Name",
+      "slug": "Company Slug",
+      "plan": "Current Plan",
+      "save": "Save changes",
+      "success": "Company updated successfully",
+      "restricted": "Only owners and admins can update company settings."
+    },
+    "security": {
+      "changePasswordHeading": "Change Password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
+      "passwordHint": "At least 8 characters",
+      "updatePassword": "Update password",
+      "passwordsDoNotMatch": "New passwords do not match",
+      "passwordTooShort": "New password must be at least 8 characters",
+      "success": "Password changed. Other devices have been signed out.",
+      "sessionsHeading": "Sessions",
+      "sessionsMessage": "Sign out of this device. Your data will not be lost.",
+      "signOut": "Sign out"
+    }
   }
 }

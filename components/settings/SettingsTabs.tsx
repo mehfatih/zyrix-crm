@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { User, Building2, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProfileTab } from "./ProfileTab";
@@ -14,12 +15,13 @@ interface SettingsTabsProps {
 }
 
 export function SettingsTabs({ locale }: SettingsTabsProps) {
+  const t = useTranslations("Settings.tabs");
   const [activeTab, setActiveTab] = useState<TabId>("profile");
 
   const tabs: Array<{ id: TabId; label: string; icon: React.ElementType }> = [
-    { id: "profile", label: "Profile", icon: User },
-    { id: "company", label: "Company", icon: Building2 },
-    { id: "security", label: "Security", icon: Lock },
+    { id: "profile", label: t("profile"), icon: User },
+    { id: "company", label: t("company"), icon: Building2 },
+    { id: "security", label: t("security"), icon: Lock },
   ];
 
   return (

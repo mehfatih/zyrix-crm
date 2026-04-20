@@ -23,7 +23,6 @@
     "soon": "Çok yakında",
     "beta": "Beta"
   },
-
   "Nav": {
     "home": "Ana sayfa",
     "product": "Ürün",
@@ -42,7 +41,6 @@
     "arabic": "العربية",
     "turkish": "Türkçe"
   },
-
   "Home": {
     "hero": {
       "badge": "MENA ve Türkiye için tasarlandı",
@@ -53,7 +51,6 @@
       "ctaSecondary": "2 dakikalık demoyu izle",
       "trustIndicator": "14 ülkedeki büyüyen ekiplerin güvendiği platform"
     },
-
     "stats": {
       "title": "Rakamlar her şeyi anlatıyor",
       "subtitle": "Ekipler neden Salesforce, HubSpot ve Zoho'dan Zyrix'e geçiyor",
@@ -76,7 +73,6 @@
         }
       }
     },
-
     "features": {
       "title": "İhtiyacınız olan her şey. Fazlası değil.",
       "subtitle": "16 temel özellikle tam bir CRM platformu — Zoho gibi 16 ayrı uygulama değil, HubSpot gibi aylık 800 dolarlık paketin arkasına kilitlenmiş değil.",
@@ -119,7 +115,6 @@
         }
       }
     },
-
     "whyZyrix": {
       "title": "Zyrix, Salesforce, HubSpot ve Zoho'yu neden geçiyor",
       "items": {
@@ -141,7 +136,6 @@
         }
       }
     },
-
     "cta": {
       "title": "Farkı görmeye hazır mısınız?",
       "subtitle": "Ücretsiz hesapla başlayın. Büyümeye hazır olduğunuzda satış ekibiyle konuşun.",
@@ -149,7 +143,6 @@
       "ctaSecondary": "Satışla görüş"
     }
   },
-
   "Footer": {
     "tagline": "Dilinizden anlayan CRM. MENA ve Türkiye için tasarlandı.",
     "sections": {
@@ -189,7 +182,6 @@
     "copyright": "© 2026 Zyrix. Tüm hakları saklıdır.",
     "madeIn": "İstanbul'da özenle üretildi."
   },
-
   "Auth": {
     "signIn": {
       "title": "Tekrar hoş geldiniz",
@@ -225,9 +217,48 @@
       "submit": "Doğrula",
       "resend": "Kodu tekrar gönder",
       "wrongNumber": "Yanlış numara? Geri dön"
+    },
+    "forgotPassword": {
+      "title": "Şifrenizi mi unuttunuz?",
+      "subtitle": "E-posta adresinizi girin, size sıfırlama bağlantısı gönderelim.",
+      "email": "E-posta",
+      "submit": "Sıfırlama bağlantısı gönder",
+      "backToSignIn": "Girişe dön",
+      "checkEmail": "E-postanızı kontrol edin",
+      "checkEmailMessage": "{email} adresine kayıtlı hesap varsa, şifre sıfırlama bağlantısı gönderdik. Bağlantı 1 saat içinde geçerliliğini yitirir."
+    },
+    "resetPassword": {
+      "title": "Yeni şifre belirle",
+      "subtitle": "Yeni şifreniz en az 8 karakter olmalıdır.",
+      "newPassword": "Yeni şifre",
+      "confirmPassword": "Şifreyi onayla",
+      "passwordHint": "En az 8 karakter",
+      "submit": "Şifreyi sıfırla",
+      "passwordsDoNotMatch": "Şifreler eşleşmiyor",
+      "passwordTooShort": "Şifre en az 8 karakter olmalıdır",
+      "missingToken": "Sıfırlama jetonu eksik",
+      "invalidLink": "Geçersiz bağlantı",
+      "invalidLinkMessage": "Bu sıfırlama bağlantısında gerekli bilgiler eksik.",
+      "requestNewLink": "Yeni bağlantı iste",
+      "success": "Şifre sıfırlandı!",
+      "successMessage": "Artık yeni şifrenizle giriş yapabilirsiniz.",
+      "redirecting": "Yönlendiriliyor..."
+    },
+    "verifyEmail": {
+      "title": "E-postanızı doğrulayın",
+      "subtitle": "E-posta adresinizi onaylıyoruz...",
+      "verifying": "E-postanız doğrulanıyor...",
+      "pleaseWait": "Lütfen bir dakika bekleyin.",
+      "success": "E-posta Doğrulandı!",
+      "successMessage": "E-posta adresiniz başarıyla doğrulandı!",
+      "redirectingToSignIn": "3 saniye içinde girişe yönlendiriliyor...",
+      "goToSignIn": "Girişe Git",
+      "failed": "Doğrulama Başarısız",
+      "noToken": "Doğrulama jetonu sağlanmadı",
+      "signIn": "Giriş Yap",
+      "signUp": "Kaydol"
     }
   },
-
   "Errors": {
     "notFound": {
       "title": "Sayfa bulunamadı",
@@ -243,5 +274,47 @@
     "unauthorized": "Bu işlem için yetkiniz yok.",
     "sessionExpired": "Oturumunuz sona erdi. Lütfen tekrar giriş yapın.",
     "invalidCredentials": "E-posta veya şifre hatalı."
+  },
+  "Settings": {
+    "title": "Ayarlar",
+    "subtitle": "Profilinizi, şirketinizi ve güvenlik tercihlerinizi yönetin.",
+    "tabs": {
+      "profile": "Profil",
+      "company": "Şirket",
+      "security": "Güvenlik"
+    },
+    "profile": {
+      "heading": "Kişisel Bilgiler",
+      "email": "E-posta",
+      "emailNote": "E-posta değiştirilemez",
+      "fullName": "Ad Soyad",
+      "phone": "Telefon",
+      "phonePlaceholder": "+90 555 000 0000",
+      "save": "Değişiklikleri kaydet",
+      "success": "Profil başarıyla güncellendi"
+    },
+    "company": {
+      "heading": "Şirket Bilgileri",
+      "name": "Şirket Adı",
+      "slug": "Şirket Kısaltması",
+      "plan": "Mevcut Plan",
+      "save": "Değişiklikleri kaydet",
+      "success": "Şirket başarıyla güncellendi",
+      "restricted": "Sadece sahipler ve yöneticiler şirket ayarlarını güncelleyebilir."
+    },
+    "security": {
+      "changePasswordHeading": "Şifre Değiştir",
+      "currentPassword": "Mevcut şifre",
+      "newPassword": "Yeni şifre",
+      "confirmNewPassword": "Yeni şifreyi onayla",
+      "passwordHint": "En az 8 karakter",
+      "updatePassword": "Şifreyi güncelle",
+      "passwordsDoNotMatch": "Yeni şifreler eşleşmiyor",
+      "passwordTooShort": "Yeni şifre en az 8 karakter olmalıdır",
+      "success": "Şifre değiştirildi. Diğer cihazlardaki oturumlar kapatıldı.",
+      "sessionsHeading": "Oturumlar",
+      "sessionsMessage": "Bu cihazdan çıkış yapın. Verileriniz kaybolmayacak.",
+      "signOut": "Çıkış yap"
+    }
   }
 }

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Mail, Loader2, CheckCircle2, ArrowLeft } from "lucide-react";
 import { requestPasswordResetApi } from "@/lib/api/auth";
 import { extractErrorMessage } from "@/lib/api/client";
@@ -12,6 +13,7 @@ interface ForgotPasswordClientProps {
 }
 
 export function ForgotPasswordClient({ locale }: ForgotPasswordClientProps) {
+  const t = useTranslations("Auth.forgotPassword");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -38,17 +40,16 @@ export function ForgotPasswordClient({ locale }: ForgotPasswordClientProps) {
         <div className="w-16 h-16 bg-success-light rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-8 h-8 text-success" />
         </div>
-        <h2 className="text-xl font-bold text-ink mb-2">Check your email</h2>
+        <h2 className="text-xl font-bold text-ink mb-2">{t("checkEmail")}</h2>
         <p className="text-sm text-ink-light mb-6">
-          If an account exists for <strong>{email}</strong>, we sent a password
-          reset link. The link expires in 1 hour.
+          {t("checkEmailMessage", { email })}
         </p>
         <Link
           href={`/${locale}/signin`}
           className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to sign in
+          {t("backToSignIn")}
         </Link>
       </div>
     );
@@ -64,7 +65,7 @@ export function ForgotPasswordClient({ locale }: ForgotPasswordClientProps) {
 
       <div className="space-y-1.5">
         <label htmlFor="email" className="block text-sm font-medium text-ink">
-          Email
+          {t("email")}
         </label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -95,7 +96,7 @@ export function ForgotPasswordClient({ locale }: ForgotPasswordClientProps) {
         )}
       >
         {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-        Send reset link
+        {t("submit")}
       </button>
 
       <p className="text-center text-sm text-ink-light pt-4">
@@ -104,7 +105,7 @@ export function ForgotPasswordClient({ locale }: ForgotPasswordClientProps) {
           className="text-primary-600 hover:text-primary-700 font-medium hover:underline inline-flex items-center gap-1"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          Back to sign in
+          {t("backToSignIn")}
         </Link>
       </p>
     </form>

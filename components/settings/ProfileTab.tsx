@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { Loader2, CheckCircle2, User, Phone, Mail } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { updateProfileApi } from "@/lib/api/auth";
@@ -8,6 +9,7 @@ import { extractErrorMessage } from "@/lib/api/client";
 import { cn } from "@/lib/utils";
 
 export function ProfileTab() {
+  const t = useTranslations("Settings.profile");
   const { user, refresh } = useAuth();
 
   const [form, setForm] = useState({
@@ -42,7 +44,7 @@ export function ProfileTab() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 max-w-xl">
-      <h2 className="text-lg font-bold text-ink">Personal Information</h2>
+      <h2 className="text-lg font-bold text-ink">{t("heading")}</h2>
 
       {error && (
         <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg border border-danger/20">
@@ -53,12 +55,12 @@ export function ProfileTab() {
       {success && (
         <div className="bg-success-light text-success-dark text-sm p-3 rounded-lg border border-success/20 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4" />
-          Profile updated successfully
+          {t("success")}
         </div>
       )}
 
       <div className="space-y-1.5">
-        <label className="block text-sm font-medium text-ink">Email</label>
+        <label className="block text-sm font-medium text-ink">{t("email")}</label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
           <input
@@ -68,12 +70,12 @@ export function ProfileTab() {
             className="w-full pl-10 pr-4 py-2.5 text-sm bg-bg-subtle border border-line rounded-lg text-ink-light cursor-not-allowed"
           />
         </div>
-        <p className="text-xs text-ink-muted">Email cannot be changed</p>
+        <p className="text-xs text-ink-muted">{t("emailNote")}</p>
       </div>
 
       <div className="space-y-1.5">
         <label htmlFor="fullName" className="block text-sm font-medium text-ink">
-          Full Name
+          {t("fullName")}
         </label>
         <div className="relative">
           <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -90,7 +92,7 @@ export function ProfileTab() {
 
       <div className="space-y-1.5">
         <label htmlFor="phone" className="block text-sm font-medium text-ink">
-          Phone
+          {t("phone")}
         </label>
         <div className="relative">
           <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -99,7 +101,7 @@ export function ProfileTab() {
             type="tel"
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            placeholder="+90 555 000 0000"
+            placeholder={t("phonePlaceholder")}
             className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
@@ -115,7 +117,7 @@ export function ProfileTab() {
         )}
       >
         {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-        Save changes
+        {t("save")}
       </button>
     </form>
   );

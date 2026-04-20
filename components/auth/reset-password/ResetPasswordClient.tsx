@@ -3,6 +3,7 @@
 import { useState, Suspense, type FormEvent } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Lock, Loader2, CheckCircle2, Eye, EyeOff } from "lucide-react";
 import { resetPasswordApi } from "@/lib/api/auth";
 import { extractErrorMessage } from "@/lib/api/client";
@@ -13,6 +14,7 @@ interface ResetPasswordClientProps {
 }
 
 function ResetPasswordContent({ locale }: { locale: string }) {
+  const t = useTranslations("Auth.resetPassword");
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams?.get("token");
@@ -29,17 +31,17 @@ function ResetPasswordContent({ locale }: { locale: string }) {
     setError(null);
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(t("passwordsDoNotMatch"));
       return;
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters");
+      setError(t("passwordTooShort"));
       return;
     }
 
     if (!token) {
-      setError("Missing reset token");
+      setError(t("missingToken"));
       return;
     }
 
@@ -60,15 +62,13 @@ function ResetPasswordContent({ locale }: { locale: string }) {
   if (!token) {
     return (
       <div className="text-center">
-        <h2 className="text-xl font-bold text-ink mb-2">Invalid link</h2>
-        <p className="text-sm text-ink-light mb-6">
-          This reset link is missing required information.
-        </p>
+        <h2 className="text-xl font-bold text-ink mb-2">{t("invalidLink")}</h2>
+        <p className="text-sm text-ink-light mb-6">{t("invalidLinkMessage")}</p>
         <Link
           href={`/${locale}/forgot-password`}
           className="inline-block px-6 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700"
         >
-          Request new link
+          {t("requestNewLink")}
         </Link>
       </div>
     );
@@ -80,11 +80,9 @@ function ResetPasswordContent({ locale }: { locale: string }) {
         <div className="w-16 h-16 bg-success-light rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-8 h-8 text-success" />
         </div>
-        <h2 className="text-xl font-bold text-ink mb-2">Password reset!</h2>
-        <p className="text-sm text-ink-light mb-6">
-          You can now sign in with your new password.
-        </p>
-        <p className="text-xs text-ink-muted">Redirecting...</p>
+        <h2 className="text-xl font-bold text-ink mb-2">{t("success")}</h2>
+        <p className="text-sm text-ink-light mb-6">{t("successMessage")}</p>
+        <p className="text-xs text-ink-muted">{t("redirecting")}</p>
       </div>
     );
   }
@@ -99,7 +97,7 @@ function ResetPasswordContent({ locale }: { locale: string }) {
 
       <div className="space-y-1.5">
         <label htmlFor="password" className="block text-sm font-medium text-ink">
-          New password
+          {t("newPassword")}
         </label>
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -122,11 +120,12 @@ function ResetPasswordContent({ locale }: { locale: string }) {
             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
         </div>
+        <p className="text-xs text-ink-muted">{t("passwordHint")}</p>
       </div>
 
       <div className="space-y-1.5">
         <label htmlFor="confirmPassword" className="block text-sm font-medium text-ink">
-          Confirm password
+          {t("confirmPassword")}
         </label>
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
@@ -157,7 +156,7 @@ function ResetPasswordContent({ locale }: { locale: string }) {
         )}
       >
         {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-        Reset password
+        {t("submit")}
       </button>
     </form>
   );

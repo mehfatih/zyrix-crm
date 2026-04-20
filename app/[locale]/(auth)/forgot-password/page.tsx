@@ -1,14 +1,22 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { ForgotPasswordClient } from "@/components/auth/forgot-password/ForgotPasswordClient";
 import { isValidLocale } from "@/i18n";
 import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Reset your password",
-  description: "Request a password reset link for your Zyrix CRM account.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Auth.forgotPassword" });
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+  };
+}
 
 export default async function ForgotPasswordPage({
   params,
@@ -19,11 +27,13 @@ export default async function ForgotPasswordPage({
   if (!isValidLocale(locale)) notFound();
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: "Auth.forgotPassword" });
+
   return (
     <AuthLayout
       locale={locale}
-      title="Forgot your password?"
-      subtitle="Enter your email and we will send you a reset link."
+      title={t("title")}
+      subtitle={t("subtitle")}
     >
       <ForgotPasswordClient locale={locale} />
     </AuthLayout>

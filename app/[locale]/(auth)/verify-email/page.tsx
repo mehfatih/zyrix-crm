@@ -1,14 +1,22 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { VerifyEmailClient } from "@/components/auth/verify-email/VerifyEmailClient";
 import { isValidLocale } from "@/i18n";
 import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Verify your email",
-  description: "Confirm your email address to activate your Zyrix CRM account.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Auth.verifyEmail" });
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+  };
+}
 
 export default async function VerifyEmailPage({
   params,
@@ -19,11 +27,13 @@ export default async function VerifyEmailPage({
   if (!isValidLocale(locale)) notFound();
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: "Auth.verifyEmail" });
+
   return (
     <AuthLayout
       locale={locale}
-      title="Verify your email"
-      subtitle="We are confirming your email address..."
+      title={t("title")}
+      subtitle={t("subtitle")}
     >
       <VerifyEmailClient locale={locale} />
     </AuthLayout>
