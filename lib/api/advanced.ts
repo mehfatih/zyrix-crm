@@ -1053,3 +1053,69 @@ export async function createCheckoutSession(dto: {
   >("/api/payments/checkout/create-session", dto);
   return data.data;
 }
+
+// ============================================================================
+// COHORT + FUNNEL ANALYTICS
+// ============================================================================
+
+export interface CohortRetention {
+  monthOffset: number;
+  activeCount: number;
+  retentionPct: number;
+}
+
+export interface CohortRow {
+  cohortMonth: string;
+  cohortSize: number;
+  retention: CohortRetention[];
+}
+
+export interface CohortReport {
+  baseCurrency: string;
+  monthsBack: number;
+  cohorts: CohortRow[];
+  generatedAt: string;
+}
+
+export async function getCohortReport(params?: {
+  monthsBack?: number;
+}): Promise<CohortReport> {
+  const { data } = await apiClient.get<ApiSuccess<CohortReport>>(
+    "/api/reports/cohort",
+    { params: params || {} }
+  );
+  return data.data;
+}
+
+export interface FunnelStage {
+  stage: string;
+  totalDeals: number;
+  conversionToNext: number | null;
+  avgDaysInStage: number;
+  openDeals: number;
+  wonDeals: number;
+  lostDeals: number;
+  totalValue: number;
+  currency: string;
+}
+
+export interface FunnelReport {
+  windowDays: number;
+  stages: FunnelStage[];
+  overallConversionRate: number;
+  totalDeals: number;
+  wonDeals: number;
+  lostDeals: number;
+  avgDealCycleDays: number | null;
+  generatedAt: string;
+}
+
+export async function getFunnelReport(params?: {
+  windowDays?: number;
+}): Promise<FunnelReport> {
+  const { data } = await apiClient.get<ApiSuccess<FunnelReport>>(
+    "/api/reports/funnel",
+    { params: params || {} }
+  );
+  return data.data;
+}

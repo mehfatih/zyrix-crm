@@ -20,6 +20,8 @@ import {
   ArrowRightLeft,
   Store,
   ArrowRight,
+  Users,
+  GitBranch,
 } from "lucide-react";
 import Link from "next/link";
 import {
@@ -182,6 +184,69 @@ export default function ReportsPage() {
             }`}
           />
         </Link>
+
+        {/* Cohort + Funnel — two-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <Link
+            href={`/${locale}/reports/cohort`}
+            className="group flex items-center gap-3 bg-gradient-to-r from-cyan-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-cyan-300 hover:shadow-sm transition-all"
+          >
+            <div className="w-10 h-10 rounded-lg bg-white border border-sky-200 flex items-center justify-center flex-shrink-0">
+              <Users className="w-5 h-5 text-cyan-600" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-sm font-semibold text-cyan-900">
+                {locale === "ar"
+                  ? "الاحتفاظ بالعملاء"
+                  : locale === "tr"
+                    ? "Müşteri tutma"
+                    : "Cohort retention"}
+              </h3>
+              <p className="text-xs text-slate-600 mt-0.5">
+                {locale === "ar"
+                  ? "نسبة العملاء اللي لسه نشطين شهر بعد شهر — هل أحدث عملائك أفضل من القدامى؟"
+                  : locale === "tr"
+                    ? "Müşterilerin ay ay ne kadarı hâlâ aktif — yeni müşteriler eskilerden daha mı iyi?"
+                    : "How many customers stay active month over month — are newer cohorts better than older ones?"}
+              </p>
+            </div>
+            <ArrowRight
+              className={`w-4 h-4 text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
+                locale === "ar" ? "-scale-x-100" : ""
+              }`}
+            />
+          </Link>
+
+          <Link
+            href={`/${locale}/reports/funnel`}
+            className="group flex items-center gap-3 bg-gradient-to-r from-cyan-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-cyan-300 hover:shadow-sm transition-all"
+          >
+            <div className="w-10 h-10 rounded-lg bg-white border border-sky-200 flex items-center justify-center flex-shrink-0">
+              <GitBranch className="w-5 h-5 text-cyan-600" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-sm font-semibold text-cyan-900">
+                {locale === "ar"
+                  ? "مسار التحويل"
+                  : locale === "tr"
+                    ? "Satış hunisi"
+                    : "Pipeline funnel"}
+              </h3>
+              <p className="text-xs text-slate-600 mt-0.5">
+                {locale === "ar"
+                  ? "أين تموت الصفقات بين المراحل — وكم تقضي في كل مرحلة"
+                  : locale === "tr"
+                    ? "Anlaşmalar aşamalar arasında nerede ölüyor — ve her aşamada ne kadar zaman geçiriyor"
+                    : "Where deals die between stages — and how long they spend in each"}
+              </p>
+            </div>
+            <ArrowRight
+              className={`w-4 h-4 text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
+                locale === "ar" ? "-scale-x-100" : ""
+              }`}
+            />
+          </Link>
+        </div>
 
         {/* Warning banner for unconvertible currencies */}
         {summary?.hasUnconvertible && (

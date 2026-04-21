@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -60,6 +60,18 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function CustomersPage() {
+  // The `useSearchParams` hook used for the ?welcome=1 handoff forces this
+  // page out of static prerender — wrapping in Suspense satisfies Next's
+  // build-time requirement and lets the rest of the dashboard continue
+  // to be statically generated where possible.
+  return (
+    <Suspense fallback={null}>
+      <CustomersPageInner />
+    </Suspense>
+  );
+}
+
+function CustomersPageInner() {
   const params = useParams<{ locale: string }>();
   const locale = params?.locale || "en";
 
