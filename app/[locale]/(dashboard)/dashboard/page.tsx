@@ -21,6 +21,7 @@ import {
   Clock,
 } from "lucide-react";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import ConnectedStoresWidget from "@/components/dashboard/ConnectedStoresWidget";
 import { useTranslations } from "next-intl";
 import {
   fetchDashboardStats,
@@ -137,6 +138,9 @@ export default function DashboardPage() {
             color={stats.tasks.overdue > 0 ? "amber" : "cyan"}
           />
         </div>
+
+        {/* Connected e-commerce stores — shortcut cards with sync status */}
+        <ConnectedStoresWidget locale={locale} />
 
         {/* Role-specific content */}
         {scope === "personal" && <MemberView stats={stats as any} locale={locale} t={t} />}
