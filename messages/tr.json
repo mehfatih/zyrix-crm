@@ -64,7 +64,7 @@
     },
     "stats": {
       "title": "Rakamlar her şeyi anlatıyor",
-      "subtitle": "Ekipler neden Salesforce, HubSpot ve Zoho'dan Zyrix'e geçiyor",
+      "subtitle": "Ekipler neden kurumsal CRM platformları'dan Zyrix'e geçiyor",
       "items": {
         "savings": {
           "value": "%80",
@@ -86,7 +86,7 @@
     },
     "features": {
       "title": "İhtiyacınız olan her şey. Fazlası değil.",
-      "subtitle": "16 temel özellikle tam bir CRM platformu — Zoho gibi 16 ayrı uygulama değil, HubSpot gibi aylık 800 dolarlık paketin arkasına kilitlenmiş değil.",
+      "subtitle": "16 temel özellikle tam bir CRM platformu — 16 ayrı bağımsız uygulama değil, pahalı kurumsal paketlerin arkasına kilitlenmiş değil.",
       "items": {
         "whatsapp": {
           "title": "WhatsApp Temelli Gelen Kutusu",
@@ -127,7 +127,7 @@
       }
     },
     "whyZyrix": {
-      "title": "Zyrix, Salesforce, HubSpot ve Zoho'yu neden geçiyor",
+      "title": "Zyrix, kurumsal CRM platformları'yu neden geçiyor",
       "items": {
         "native": {
           "title": "Gerçekten bu bölge için",
@@ -1150,10 +1150,10 @@
       }
     },
     "comparison": {
-      "title": "Neden sadece Hubspot veya Salesforce kullanmıyoruz?",
+      "title": "Neden eski kurumsal CRM'leri kullanmıyoruz?",
       "subtitle": "Bunlar ABD pazarı için yapılmış. İstanbul, Riyad veya Kahire'de iş yönettiğinizde bunun size maliyeti:",
       "feature": "Özellik",
-      "generic": "Hubspot / Salesforce",
+      "generic": "Legacy enterprise CRMs",
       "rows": {
         "arabic": {
           "label": "Arapça RTL arayüz",
@@ -1212,7 +1212,7 @@
     },
     "vision": {
       "title": "Vizyonumuz",
-      "body": "İstanbul ile Riyad arasında faaliyet gösteren her işletme için varsayılan CRM olmak. Salesforce'u kopyalayarak değil — burada önemli olan şeylerde gerçekten daha iyi olarak: Arapça, WhatsApp, yerel ödemeler ve bölgesel uyum."
+      "body": "İstanbul ile Riyad arasında faaliyet gösteren her işletme için varsayılan CRM olmak. eski kurumsal araçları kopyalayarak değil — burada önemli olan şeylerde gerçekten daha iyi olarak: Arapça, WhatsApp, yerel ödemeler ve bölgesel uyum."
     },
     "values": {
       "eyebrow": "Nasıl çalışıyoruz",

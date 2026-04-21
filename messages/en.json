@@ -64,7 +64,7 @@
     },
     "stats": {
       "title": "The numbers tell the story",
-      "subtitle": "Why teams switch from Salesforce, HubSpot and Zoho to Zyrix",
+      "subtitle": "Why teams switch from enterprise CRM platforms to Zyrix",
       "items": {
         "savings": {
           "value": "80%",
@@ -86,7 +86,7 @@
     },
     "features": {
       "title": "Everything you need. Nothing you don't.",
-      "subtitle": "A complete CRM platform with 16 core features — not 16 separate apps like Zoho, and not locked behind a $800/month tier like HubSpot.",
+      "subtitle": "A complete CRM platform with 16 core features — not 16 separate disconnected apps, and not locked behind expensive enterprise tiers.",
       "items": {
         "whatsapp": {
           "title": "WhatsApp-Native Inbox",
@@ -127,7 +127,7 @@
       }
     },
     "whyZyrix": {
-      "title": "Why Zyrix beats Salesforce, HubSpot and Zoho",
+      "title": "Why Zyrix beats enterprise CRM platforms",
       "items": {
         "native": {
           "title": "Actually built for here",
@@ -1150,10 +1150,10 @@
       }
     },
     "comparison": {
-      "title": "Why not just use Hubspot or Salesforce?",
+      "title": "Why not just use legacy enterprise CRMs?",
       "subtitle": "They're built for the US market. Here's what that costs you when you run a business in Istanbul, Riyadh, or Cairo.",
       "feature": "Feature",
-      "generic": "Hubspot / Salesforce",
+      "generic": "Legacy enterprise CRMs",
       "rows": {
         "arabic": {
           "label": "Arabic RTL UI",
@@ -1212,7 +1212,7 @@
     },
     "vision": {
       "title": "Our vision",
-      "body": "To become the default CRM for every business operating between Istanbul and Riyadh. Not by copying Salesforce — by being genuinely better at the things that matter here: Arabic, WhatsApp, local payments, and regional compliance."
+      "body": "To become the default CRM for every business operating between Istanbul and Riyadh. Not by copying legacy enterprise tools — by being genuinely better at the things that matter here: Arabic, WhatsApp, local payments, and regional compliance."
     },
     "values": {
       "eyebrow": "How we work",

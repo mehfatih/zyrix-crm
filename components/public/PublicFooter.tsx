@@ -44,6 +44,7 @@ const FOOTER_LABELS: Record<
       privacy: string;
       terms: string;
       security: string;
+      sitemap: string;
     };
     contact: { headquarters: string; address: string; email: string };
     rights: string;
@@ -76,6 +77,7 @@ const FOOTER_LABELS: Record<
       privacy: "Privacy policy",
       terms: "Terms of service",
       security: "Security",
+      sitemap: "Site map",
     },
     contact: {
       headquarters: "Headquarters",
@@ -111,6 +113,7 @@ const FOOTER_LABELS: Record<
       privacy: "سياسة الخصوصية",
       terms: "شروط الخدمة",
       security: "الأمان",
+      sitemap: "خريطة الموقع",
     },
     contact: {
       headquarters: "المقر الرئيسي",
@@ -146,6 +149,7 @@ const FOOTER_LABELS: Record<
       privacy: "Gizlilik politikası",
       terms: "Kullanım şartları",
       security: "Güvenlik",
+      sitemap: "Site haritası",
     },
     contact: {
       headquarters: "Genel Merkez",
@@ -232,21 +236,22 @@ export default function PublicFooter() {
             <FooterColumn title={t.sections.company}>
               <FooterLink href={`/${locale}/about`}>{t.links.about}</FooterLink>
               <FooterLink href={`/${locale}/contact`}>{t.links.contact}</FooterLink>
-              <FooterLink href="#" disabled>{t.links.blog}</FooterLink>
-              <FooterLink href="#" disabled>{t.links.changelog}</FooterLink>
+              <FooterLink href={`/${locale}/blog`}>{t.links.blog}</FooterLink>
+              <FooterLink href={`/${locale}/changelog`}>{t.links.changelog}</FooterLink>
             </FooterColumn>
 
             <FooterColumn title={t.sections.resources}>
-              <FooterLink href="#" disabled>{t.links.docs}</FooterLink>
-              <FooterLink href="#" disabled>{t.links.api}</FooterLink>
+              <FooterLink href={`/${locale}/docs`}>{t.links.docs}</FooterLink>
+              <FooterLink href={`/${locale}/api-reference`}>{t.links.api}</FooterLink>
               <FooterLink href={`/${locale}/contact`}>{t.links.support}</FooterLink>
-              <FooterLink href="#" disabled>{t.links.status}</FooterLink>
+              <FooterLink href={`/${locale}/status`}>{t.links.status}</FooterLink>
+              <FooterLink href={`/${locale}/sitemap`}>{t.links.sitemap}</FooterLink>
             </FooterColumn>
 
             <FooterColumn title={t.sections.legal}>
               <FooterLink href={`/${locale}/privacy`}>{t.links.privacy}</FooterLink>
               <FooterLink href={`/${locale}/terms`}>{t.links.terms}</FooterLink>
-              <FooterLink href="#" disabled>{t.links.security}</FooterLink>
+              <FooterLink href={`/${locale}/security`}>{t.links.security}</FooterLink>
             </FooterColumn>
           </div>
         </div>
