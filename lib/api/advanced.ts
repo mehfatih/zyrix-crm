@@ -1160,3 +1160,133 @@ export async function resetDashboardLayout(): Promise<DashboardLayout> {
   );
   return data.data;
 }
+
+// ============================================================================
+// TEMPLATES MARKETPLACE
+// ============================================================================
+
+export interface TemplateCard {
+  id: string;
+  slug: string;
+  industry: string;
+  region: string;
+  locale: string;
+  name: string;
+  nameAr: string | null;
+  nameTr: string | null;
+  tagline: string | null;
+  taglineAr: string | null;
+  taglineTr: string | null;
+  description: string | null;
+  descriptionAr: string | null;
+  descriptionTr: string | null;
+  icon: string;
+  color: string;
+  isFeatured: boolean;
+  sortOrder: number;
+  setupMinutes: number;
+  hasSeedData: boolean;
+}
+
+export interface TemplateBundle {
+  pipelineStages?: string[];
+  tags?: string[];
+  customerStatuses?: string[];
+  dealSources?: string[];
+  customFields?: Array<{
+    entityType: string;
+    name: string;
+    slug: string;
+    type: string;
+    options?: string[];
+  }>;
+  emailTemplates?: Array<{
+    subject: string;
+    body: string;
+    purpose?: string;
+  }>;
+  seedCustomers?: Array<{
+    fullName: string;
+    email?: string;
+    phone?: string;
+    companyName?: string;
+    status?: string;
+    source?: string;
+  }>;
+  seedDeals?: Array<{
+    title: string;
+    value: number;
+    currency: string;
+    stage: string;
+    customerIdx: number;
+  }>;
+}
+
+export interface TemplateDetail extends TemplateCard {
+  bundle: TemplateBundle;
+}
+
+export interface TemplateApplication {
+  id: string;
+  templateId: string;
+  appliedAt: string;
+  status: "completed" | "failed" | "reverted";
+  createdRecords: Record<string, string[]>;
+  slug: string;
+  name: string;
+  nameAr: string | null;
+  nameTr: string | null;
+  icon: string;
+  industry: string;
+}
+
+export async function listMarketplaceTemplates(filters?: {
+  industry?: string;
+  region?: string;
+}): Promise<TemplateCard[]> {
+  const { data } = await apiClient.get<ApiSuccess<TemplateCard[]>>(
+    "/api/templates",
+    { params: filters || {} }
+  );
+  return data.data;
+}
+
+export async function getMarketplaceTemplate(slug: string): Promise<TemplateDetail> {
+  const { data } = await apiClient.get<ApiSuccess<TemplateDetail>>(
+    `/api/templates/${encodeURIComponent(slug)}`
+  );
+  return data.data;
+}
+
+export async function applyMarketplaceTemplate(
+  slug: string
+): Promise<{
+  applicationId: string;
+  summary: Record<string, number>;
+}> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{
+      applicationId: string;
+      summary: Record<string, number>;
+    }>
+  >(`/api/templates/${encodeURIComponent(slug)}/apply`);
+  return data.data;
+}
+
+export async function listMarketplaceApplications(): Promise<
+  TemplateApplication[]
+> {
+  const { data } = await apiClient.get<ApiSuccess<TemplateApplication[]>>(
+    "/api/templates/applications"
+  );
+  return data.data;
+}
+
+export async function revertMarketplaceApplication(
+  id: string
+): Promise<{ reverted: true }> {
+  const { data } = await apiClient.post<ApiSuccess<{ reverted: true }>>(
+    `/api/templates/applications/${encodeURIComponent(id)}/revert`
+  );
+  return data.data;
+}

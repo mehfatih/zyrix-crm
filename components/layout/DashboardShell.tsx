@@ -105,6 +105,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       badge: "AI",
     },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
+    { href: `/${locale}/templates`, icon: Sparkles, label: "Templates" },
     { href: `/${locale}/chat`, icon: MessageSquare, label: "Team Chat", unreadCount: chatUnread },
     {
       href: `/${locale}/whatsapp`,
