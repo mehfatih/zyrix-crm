@@ -2580,5 +2580,66 @@
       "is_not_empty": "غير فارغ",
       "between": "بين"
     }
+  },
+  "Ecommerce": {
+    "title": "تكاملات التجارة الإلكترونية",
+    "subtitle": "اتصل بأكثر من {count} منصة عبر الشرق الأوسط وتركيا والعالم",
+    "connectedStores": "المتاجر المتصلة",
+    "availablePlatforms": "المنصات المتاحة",
+    "searchPlatforms": "ابحث عن منصة...",
+    "noResults": "لا توجد منصات",
+    "noResultsHint": "جرب بحثًا أو منطقة أخرى",
+    "connect": "ربط",
+    "connected": "متصل",
+    "connectTitle": "الاتصال بـ {name}",
+    "connectButton": "ربط المتجر",
+    "cancel": "إلغاء",
+    "sync": "مزامنة",
+    "disconnect": "قطع الاتصال",
+    "visitWebsite": "زيارة الموقع",
+    "comingSoon": "قريبًا",
+    "useCSVImport": "استخدم استيراد CSV",
+    "howToGetCredentials": "كيفية الحصول على البيانات",
+    "status": {
+      "native": "أصلي",
+      "api": "مزامنة API",
+      "csv_only": "CSV فقط",
+      "planned": "مخطط",
+      "idle": "جاهز",
+      "syncing": "جاري المزامنة",
+      "success": "تمت المزامنة",
+      "error": "خطأ"
+    },
+    "cap": {
+      "customers": "عملاء",
+      "orders": "طلبات",
+      "products": "منتجات"
+    },
+    "stats": {
+      "customers": "العملاء",
+      "orders": "الطلبات"
+    },
+    "fields": {
+      "domain": "نطاق المتجر",
+      "domainHint": "نطاق متجرك بدون https://",
+      "accessToken": "رمز الوصول",
+      "accessTokenHint": "الصق رمز الوصول من لوحة إدارة منصتك",
+      "apiKey": "مفتاح API",
+      "apiKeyHint": "الصق مفتاح API من إعدادات المطور في منصتك",
+      "consumerKey": "مفتاح المستهلك",
+      "consumerKeyHint": "لـ WooCommerce، أنشئ المفتاح من WooCommerce > Settings > Advanced > REST API",
+      "consumerSecret": "سر المستهلك"
+    },
+    "errors": {
+      "required": "النطاق ورمز الوصول مطلوبان",
+      "secretRequired": "سر المستهلك مطلوب"
+    },
+    "howItWorks": {
+      "title": "كيف تعمل",
+      "step1": "اختر منصة التجارة الإلكترونية من القائمة أعلاه",
+      "step2": "احصل على رمز وصول أو مفتاح API من لوحة إدارة منصتك",
+      "step3": "الصق النطاق وبيانات الاعتماد في نافذة الربط",
+      "step4": "اضغط مزامنة لاستيراد العملاء والطلبات إلى Zyrix CRM"
+    }
   }
 }

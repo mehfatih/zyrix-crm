@@ -2580,5 +2580,66 @@
       "is_not_empty": "boş değil",
       "between": "arasında"
     }
+  },
+  "Ecommerce": {
+    "title": "E-ticaret Entegrasyonları",
+    "subtitle": "MENA, Türkiye ve global {count}+ platforma bağlan",
+    "connectedStores": "Bağlı mağazalar",
+    "availablePlatforms": "Mevcut platformlar",
+    "searchPlatforms": "Platform ara...",
+    "noResults": "Platform bulunamadı",
+    "noResultsHint": "Farklı bir arama veya bölge deneyin",
+    "connect": "Bağla",
+    "connected": "Bağlı",
+    "connectTitle": "{name} ile Bağlan",
+    "connectButton": "Mağazayı bağla",
+    "cancel": "İptal",
+    "sync": "Senkronize et",
+    "disconnect": "Bağlantıyı kes",
+    "visitWebsite": "Siteyi ziyaret et",
+    "comingSoon": "Yakında",
+    "useCSVImport": "CSV içe aktarma kullan",
+    "howToGetCredentials": "Kimlik bilgileri nasıl alınır",
+    "status": {
+      "native": "Yerel",
+      "api": "API senkron",
+      "csv_only": "Sadece CSV",
+      "planned": "Planlı",
+      "idle": "Hazır",
+      "syncing": "Senkronize ediliyor",
+      "success": "Senkronize edildi",
+      "error": "Hata"
+    },
+    "cap": {
+      "customers": "Müşteriler",
+      "orders": "Siparişler",
+      "products": "Ürünler"
+    },
+    "stats": {
+      "customers": "Müşteriler",
+      "orders": "Siparişler"
+    },
+    "fields": {
+      "domain": "Mağaza alan adı",
+      "domainHint": "Mağazanızın alan adı, https:// olmadan",
+      "accessToken": "Erişim belirteci",
+      "accessTokenHint": "Platformunuzun yönetici panelinden erişim belirtecini yapıştırın",
+      "apiKey": "API anahtarı",
+      "apiKeyHint": "Platformunuzun geliştirici ayarlarından API anahtarını yapıştırın",
+      "consumerKey": "Tüketici anahtarı",
+      "consumerKeyHint": "WooCommerce için WooCommerce > Settings > Advanced > REST API altından oluşturun",
+      "consumerSecret": "Tüketici sırrı"
+    },
+    "errors": {
+      "required": "Alan adı ve erişim belirteci gereklidir",
+      "secretRequired": "Tüketici sırrı gereklidir"
+    },
+    "howItWorks": {
+      "title": "Nasıl çalışır",
+      "step1": "Yukarıdaki katalogdan e-ticaret platformunuzu seçin",
+      "step2": "Platformunuzun yönetici panelinden erişim belirteci veya API anahtarı alın",
+      "step3": "Alan adı ve kimlik bilgilerini bağlantı iletişim kutusuna yapıştırın",
+      "step4": "Müşterileri ve siparişleri Zyrix CRM'ye aktarmak için Senkronize'ye tıklayın"
+    }
   }
 }

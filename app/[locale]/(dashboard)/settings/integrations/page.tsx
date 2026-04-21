@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
-  ShoppingBag,
+  Store,
   Plug,
   Plus,
   Trash2,
@@ -17,34 +17,57 @@ import {
   ExternalLink,
   Users,
   ShoppingCart,
+  Search,
+  Globe,
+  MapPin,
+  Info,
+  Sparkles,
+  Zap,
+  FileText,
 } from "lucide-react";
 import {
-  listShopifyStores,
-  connectShopifyStore,
-  disconnectShopifyStore,
-  syncShopifyStore,
-  type ShopifyStore,
+  listPlatformCatalog,
+  listEcommerceStores,
+  connectEcommerceStore,
+  disconnectEcommerceStore,
+  syncEcommerceStore,
+  type PlatformDefinition,
+  type EcommerceStore,
+  type PlatformRegion,
+  type ConnectEcommerceDto,
 } from "@/lib/api/advanced";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 
-// ============================================================================
-// SHOPIFY INTEGRATIONS PAGE
-// ============================================================================
+type RegionFilter = "all" | PlatformRegion;
 
-export default function ShopifyIntegrationsPage() {
+const REGION_LABELS: Record<RegionFilter, { en: string; ar: string; tr: string; icon: typeof Globe }> = {
+  all: { en: "All platforms", ar: "كل المنصات", tr: "Tüm platformlar", icon: Sparkles },
+  mena: { en: "Arab region", ar: "المنطقة العربية", tr: "Arap bölgesi", icon: Globe },
+  turkey: { en: "Turkey", ar: "تركيا", tr: "Türkiye", icon: Globe },
+  global: { en: "Global", ar: "عالمي", tr: "Küresel", icon: Globe },
+};
+
+export default function EcommerceIntegrationsPage() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "en";
-  const t = useTranslations("Shopify");
+  const t = useTranslations("Ecommerce");
 
-  const [stores, setStores] = useState<ShopifyStore[]>([]);
+  const [catalog, setCatalog] = useState<PlatformDefinition[]>([]);
+  const [stores, setStores] = useState<EcommerceStore[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showConnect, setShowConnect] = useState(false);
+  const [regionFilter, setRegionFilter] = useState<RegionFilter>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [connectingPlatform, setConnectingPlatform] = useState<PlatformDefinition | null>(null);
   const [syncingId, setSyncingId] = useState<string | null>(null);
 
   const load = async () => {
     try {
-      const data = await listShopifyStores();
-      setStores(data);
+      const [cat, st] = await Promise.all([
+        listPlatformCatalog(),
+        listEcommerceStores(),
+      ]);
+      setCatalog(cat);
+      setStores(st);
     } catch (e) {
       console.error(e);
     } finally {
@@ -59,107 +82,179 @@ export default function ShopifyIntegrationsPage() {
   const handleSync = async (id: string) => {
     setSyncingId(id);
     try {
-      const result = await syncShopifyStore(id);
-      alert(t("sync.success", { count: result.imported }));
+      const result = await syncEcommerceStore(id);
+      alert(`${result.imported} customers imported successfully`);
       await load();
     } catch (e: any) {
-      alert(e?.response?.data?.error?.message || "Sync failed");
+      alert(e?.response?.data?.error?.message || e?.message || "Sync failed");
     } finally {
       setSyncingId(null);
     }
   };
 
-  const handleDisconnect = async (id: string, domain: string) => {
-    if (!confirm(t("confirmDisconnect", { domain }))) return;
+  const handleDisconnect = async (id: string, name: string) => {
+    if (!confirm(`Disconnect ${name}? Imported customers will remain.`)) return;
     try {
-      await disconnectShopifyStore(id);
+      await disconnectEcommerceStore(id);
       await load();
     } catch (e: any) {
       alert(e?.response?.data?.error?.message || "Disconnect failed");
     }
   };
 
+  const filtered = catalog.filter((p) => {
+    if (regionFilter !== "all" && p.region !== regionFilter) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      return (
+        p.name.toLowerCase().includes(q) ||
+        p.country.toLowerCase().includes(q) ||
+        p.description.en.toLowerCase().includes(q)
+      );
+    }
+    return true;
+  });
+
+  const connectedPlatforms = new Set(stores.map((s) => s.platform));
+
+  const counts = {
+    all: catalog.length,
+    mena: catalog.filter((p) => p.region === "mena").length,
+    turkey: catalog.filter((p) => p.region === "turkey").length,
+    global: catalog.filter((p) => p.region === "global").length,
+  };
+
   return (
     <DashboardShell locale={locale}>
-      <div className="p-6 max-w-4xl mx-auto space-y-6">
-        <div className="flex items-center justify-between gap-4 flex-wrap">
+      <div className="p-6 max-w-7xl mx-auto space-y-6">
+        <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 text-white flex items-center justify-center shadow-lg">
-              <ShoppingBag className="w-6 h-6" />
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow-lg">
+              <Store className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">{t("title")}</h1>
-              <p className="text-sm text-slate-600 mt-0.5">{t("subtitle")}</p>
+              <h1 className="text-2xl font-bold text-cyan-900">
+                {t("title")}
+              </h1>
+              <p className="text-sm text-slate-600 mt-0.5">
+                {t("subtitle", { count: catalog.length })}
+              </p>
             </div>
           </div>
-          <button
-            onClick={() => setShowConnect(true)}
-            className="flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg shadow-sm"
-          >
-            <Plus className="w-4 h-4" />
-            {t("connectStore")}
-          </button>
         </div>
 
-        {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-emerald-600" />
-          </div>
-        ) : stores.length === 0 ? (
-          <div className="bg-white border border-sky-100 rounded-xl p-12 text-center">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-50 mb-3">
-              <Plug className="w-7 h-7 text-emerald-600" />
+        {stores.length > 0 && (
+          <section className="space-y-3">
+            <h2 className="text-sm font-semibold text-cyan-900 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              {t("connectedStores")} ({stores.length})
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {stores.map((store) => (
+                <ConnectedStoreCard
+                  key={store.id}
+                  store={store}
+                  syncing={syncingId === store.id}
+                  onSync={() => handleSync(store.id)}
+                  onDisconnect={() => handleDisconnect(store.id, store.shopDomain)}
+                  locale={locale}
+                  t={t}
+                />
+              ))}
             </div>
-            <h3 className="text-lg font-semibold text-cyan-900 mb-1">
-              {t("empty.title")}
-            </h3>
-            <p className="text-sm text-slate-500 mb-4 max-w-sm mx-auto">
-              {t("empty.subtitle")}
-            </p>
-            <button
-              onClick={() => setShowConnect(true)}
-              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg"
-            >
-              {t("connectFirst")}
-            </button>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {stores.map((store) => (
-              <StoreCard
-                key={store.id}
-                store={store}
-                syncing={syncingId === store.id}
-                onSync={() => handleSync(store.id)}
-                onDisconnect={() => handleDisconnect(store.id, store.shopDomain)}
-                t={t}
-                locale={locale}
-              />
-            ))}
-          </div>
+          </section>
         )}
 
-        {/* How it works */}
-        <div className="bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-100 rounded-xl p-6">
-          <h3 className="text-base font-semibold text-cyan-900 mb-3">
+        <section className="space-y-4">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <h2 className="text-sm font-semibold text-cyan-900 flex items-center gap-2">
+              <Plug className="w-4 h-4 text-cyan-600" />
+              {t("availablePlatforms")}
+            </h2>
+            <div className="relative">
+              <Search className="w-4 h-4 text-slate-400 absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t("searchPlatforms")}
+                className="ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            {(["all", "mena", "turkey", "global"] as RegionFilter[]).map((r) => {
+              const label = REGION_LABELS[r];
+              const Icon = label.icon;
+              const active = regionFilter === r;
+              return (
+                <button
+                  key={r}
+                  onClick={() => setRegionFilter(r)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+                    active ? "bg-cyan-600 text-white shadow-sm" : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {label[locale as "en" | "ar" | "tr"] || label.en}
+                  <span className={`ml-1 px-1.5 py-0.5 text-[10px] font-bold rounded-full ${active ? "bg-white/20" : "bg-slate-100"}`}>
+                    {counts[r]}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="bg-white border border-sky-100 rounded-xl p-12 text-center">
+              <Search className="w-10 h-10 text-sky-300 mx-auto mb-2" />
+              <h3 className="text-base font-semibold text-cyan-900 mb-1">{t("noResults")}</h3>
+              <p className="text-sm text-slate-500">{t("noResultsHint")}</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+              {filtered.map((platform) => (
+                <PlatformCard
+                  key={platform.id}
+                  platform={platform}
+                  isConnected={connectedPlatforms.has(platform.id)}
+                  onConnect={() => setConnectingPlatform(platform)}
+                  locale={locale}
+                  t={t}
+                />
+              ))}
+            </div>
+          )}
+        </section>
+
+        <div className="bg-gradient-to-br from-cyan-50 to-sky-50 border border-sky-100 rounded-xl p-5">
+          <h3 className="text-base font-semibold text-cyan-900 mb-2 flex items-center gap-2">
+            <Info className="w-4 h-4" />
             {t("howItWorks.title")}
           </h3>
-          <ol className="space-y-2 text-sm text-slate-700">
-            <StepItem n={1}>{t("howItWorks.step1")}</StepItem>
-            <StepItem n={2}>{t("howItWorks.step2")}</StepItem>
-            <StepItem n={3}>{t("howItWorks.step3")}</StepItem>
-            <StepItem n={4}>{t("howItWorks.step4")}</StepItem>
+          <ol className="space-y-1.5 text-sm text-slate-700">
+            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-cyan-600 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">1</span><span>{t("howItWorks.step1")}</span></li>
+            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-cyan-600 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">2</span><span>{t("howItWorks.step2")}</span></li>
+            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-cyan-600 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">3</span><span>{t("howItWorks.step3")}</span></li>
+            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-cyan-600 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">4</span><span>{t("howItWorks.step4")}</span></li>
           </ol>
         </div>
       </div>
 
-      {showConnect && (
+      {connectingPlatform && (
         <ConnectDialog
-          onClose={() => setShowConnect(false)}
+          platform={connectingPlatform}
+          onClose={() => setConnectingPlatform(null)}
           onConnected={async () => {
-            setShowConnect(false);
+            setConnectingPlatform(null);
             await load();
           }}
+          locale={locale}
           t={t}
         />
       )}
@@ -167,107 +262,163 @@ export default function ShopifyIntegrationsPage() {
   );
 }
 
-function StoreCard({
-  store,
-  syncing,
-  onSync,
-  onDisconnect,
-  t,
-  locale,
-}: {
-  store: ShopifyStore;
-  syncing: boolean;
-  onSync: () => void;
-  onDisconnect: () => void;
-  t: any;
-  locale: string;
-}) {
-  const statusMeta: Record<string, { bg: string; text: string; Icon: any; label: string }> = {
-    idle: { bg: "bg-slate-50", text: "text-slate-600", Icon: Clock, label: t("status.idle") },
-    syncing: { bg: "bg-sky-50", text: "text-sky-700", Icon: RefreshCw, label: t("status.syncing") },
-    success: { bg: "bg-emerald-50", text: "text-emerald-700", Icon: CheckCircle2, label: t("status.success") },
-    error: { bg: "bg-red-50", text: "text-red-700", Icon: AlertTriangle, label: t("status.error") },
+function PlatformCard({ platform, isConnected, onConnect, locale, t }: any) {
+  const description = platform.description[locale as "en" | "ar" | "tr"] || platform.description.en;
+  const canConnect = platform.status === "native" || platform.status === "api";
+  const statusColors: Record<string, string> = {
+    native: "bg-emerald-100 text-emerald-700",
+    api: "bg-cyan-100 text-cyan-700",
+    csv_only: "bg-amber-100 text-amber-700",
+    planned: "bg-slate-100 text-slate-500",
+  };
+
+  return (
+    <div className="bg-white border border-sky-100 rounded-xl p-4 hover:shadow-md transition-shadow flex flex-col">
+      <div className="flex items-start gap-3 mb-2">
+        <div
+          className="w-11 h-11 rounded-lg flex items-center justify-center font-bold text-white text-lg flex-shrink-0 shadow-sm"
+          style={{ backgroundColor: platform.brandColor }}
+        >
+          {platform.name.charAt(0)}
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-bold text-cyan-900 truncate flex items-center gap-1">
+            {platform.name}
+            {platform.popularity >= 85 && <Zap className="w-3 h-3 text-amber-500 flex-shrink-0" />}
+          </h3>
+          <div className="flex items-center gap-1 text-[10px] text-slate-500 mt-0.5">
+            <MapPin className="w-2.5 h-2.5" />
+            {platform.country}
+          </div>
+        </div>
+      </div>
+
+      <p className="text-xs text-slate-600 mb-3 line-clamp-3 flex-1">{description}</p>
+
+      <div className="flex items-center gap-1 mb-3 flex-wrap">
+        {platform.supports.customers && (
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded">
+            <Users className="w-2.5 h-2.5" />
+            {t("cap.customers")}
+          </span>
+        )}
+        {platform.supports.orders && (
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+            <ShoppingCart className="w-2.5 h-2.5" />
+            {t("cap.orders")}
+          </span>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded ${statusColors[platform.status]}`}>
+          {platform.status === "native" && <Zap className="w-2.5 h-2.5" />}
+          {platform.status === "csv_only" && <FileText className="w-2.5 h-2.5" />}
+          {platform.status === "planned" && <Clock className="w-2.5 h-2.5" />}
+          {t(`status.${platform.status}`)}
+        </span>
+        <a href={platform.website} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-600" title={t("visitWebsite")}>
+          <ExternalLink className="w-3 h-3" />
+        </a>
+      </div>
+
+      {isConnected ? (
+        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <CheckCircle2 className="w-3.5 h-3.5" />
+          {t("connected")}
+        </div>
+      ) : canConnect ? (
+        <button onClick={onConnect} className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white">
+          <Plus className="w-3.5 h-3.5" />
+          {t("connect")}
+        </button>
+      ) : platform.status === "csv_only" ? (
+        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-amber-50 text-amber-700 border border-amber-100">
+          <FileText className="w-3.5 h-3.5" />
+          {t("useCSVImport")}
+        </div>
+      ) : (
+        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-50 text-slate-500 border border-slate-100">
+          <Clock className="w-3.5 h-3.5" />
+          {t("comingSoon")}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ConnectedStoreCard({ store, syncing, onSync, onDisconnect, locale, t }: any) {
+  const statusMeta: Record<string, { bg: string; text: string; Icon: any }> = {
+    idle: { bg: "bg-slate-50", text: "text-slate-600", Icon: Clock },
+    syncing: { bg: "bg-sky-50", text: "text-sky-700", Icon: RefreshCw },
+    success: { bg: "bg-emerald-50", text: "text-emerald-700", Icon: CheckCircle2 },
+    error: { bg: "bg-red-50", text: "text-red-700", Icon: AlertTriangle },
   };
   const s = statusMeta[store.syncStatus] || statusMeta.idle;
   const SIcon = s.Icon;
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-5">
+    <div className="bg-white border border-sky-100 rounded-xl p-4">
       <div className="flex items-start justify-between gap-3 flex-wrap">
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 text-white flex items-center justify-center flex-shrink-0">
-            <ShoppingBag className="w-5 h-5" />
+        <div className="flex items-start gap-3 min-w-0 flex-1">
+          <div
+            className="w-10 h-10 rounded-lg text-white flex items-center justify-center flex-shrink-0 font-bold shadow-sm"
+            style={{ backgroundColor: store.platformInfo?.brandColor || "#0891B2" }}
+          >
+            {(store.platformInfo?.name || store.platform).charAt(0)}
           </div>
-          <div>
-            <h3 className="text-base font-semibold text-cyan-900 flex items-center gap-2">
+          <div className="min-w-0 flex-1">
+            <div className="text-xs font-semibold uppercase text-slate-500 tracking-wide">
+              {store.platformInfo?.name || store.platform}
+            </div>
+            <h3 className="text-sm font-bold text-cyan-900 truncate flex items-center gap-1 mt-0.5">
               {store.shopDomain}
-              <a
-                href={`https://${store.shopDomain}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-emerald-600"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
+              <a href={`https://${store.shopDomain}`} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-600 flex-shrink-0">
+                <ExternalLink className="w-3 h-3" />
               </a>
             </h3>
-            <div className="flex items-center gap-2 mt-1">
-              <span
-                className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded ${s.bg} ${s.text}`}
-              >
+            <div className="flex items-center gap-2 mt-1 flex-wrap">
+              <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-medium rounded ${s.bg} ${s.text}`}>
                 <SIcon className={`w-2.5 h-2.5 ${syncing ? "animate-spin" : ""}`} />
-                {syncing ? t("status.syncing") : s.label}
+                {syncing ? t("status.syncing") : t(`status.${store.syncStatus}`)}
               </span>
               {store.lastSyncAt && (
-                <span className="text-[10px] text-slate-500">
-                  {t("lastSync")}: {formatDate(store.lastSyncAt, locale)}
-                </span>
+                <span className="text-[10px] text-slate-500">{formatDate(store.lastSyncAt, locale)}</span>
               )}
             </div>
           </div>
         </div>
         <div className="flex items-center gap-1 flex-shrink-0">
-          <button
-            onClick={onSync}
-            disabled={syncing}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-semibold rounded-lg"
-          >
-            {syncing ? (
-              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            ) : (
-              <RefreshCw className="w-3.5 h-3.5" />
-            )}
-            {t("syncNow")}
+          <button onClick={onSync} disabled={syncing} className="flex items-center gap-1 px-2.5 py-1.5 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white text-xs font-semibold rounded-lg">
+            {syncing ? <Loader2 className="w-3 h-3 animate-spin" /> : <RefreshCw className="w-3 h-3" />}
+            {t("sync")}
           </button>
-          <button
-            onClick={onDisconnect}
-            className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
-            title={t("disconnect")}
-          >
-            <Trash2 className="w-4 h-4" />
+          <button onClick={onDisconnect} className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded" title={t("disconnect")}>
+            <Trash2 className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
 
       {store.syncError && (
-        <div className="mt-3 p-2 bg-red-50 border border-red-100 text-red-700 text-xs rounded flex items-start gap-2">
-          <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+        <div className="mt-2 p-2 bg-red-50 border border-red-100 text-red-700 text-[10px] rounded flex items-start gap-1.5">
+          <AlertTriangle className="w-3 h-3 flex-shrink-0 mt-0.5" />
           {store.syncError}
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-sky-50">
-        <div className="flex items-center gap-2">
-          <Users className="w-4 h-4 text-emerald-600" />
+      <div className="flex items-center gap-4 mt-3 pt-3 border-t border-sky-50">
+        <div className="flex items-center gap-1.5">
+          <Users className="w-3.5 h-3.5 text-cyan-600" />
           <div>
-            <div className="text-xs text-slate-500">{t("stats.customers")}</div>
-            <div className="text-lg font-bold text-cyan-900">{store.totalCustomersImported}</div>
+            <div className="text-[10px] text-slate-500 uppercase">{t("stats.customers")}</div>
+            <div className="text-sm font-bold text-cyan-900">{store.totalCustomersImported}</div>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <ShoppingCart className="w-4 h-4 text-emerald-600" />
+        <div className="flex items-center gap-1.5">
+          <ShoppingCart className="w-3.5 h-3.5 text-emerald-600" />
           <div>
-            <div className="text-xs text-slate-500">{t("stats.orders")}</div>
-            <div className="text-lg font-bold text-cyan-900">{store.totalOrdersImported}</div>
+            <div className="text-[10px] text-slate-500 uppercase">{t("stats.orders")}</div>
+            <div className="text-sm font-bold text-cyan-900">{store.totalOrdersImported}</div>
           </div>
         </div>
       </div>
@@ -275,29 +426,53 @@ function StoreCard({
   );
 }
 
-function ConnectDialog({
-  onClose,
-  onConnected,
-  t,
-}: {
-  onClose: () => void;
-  onConnected: () => void;
-  t: any;
-}) {
-  const [domain, setDomain] = useState("");
-  const [token, setToken] = useState("");
+function ConnectDialog({ platform, onClose, onConnected, locale, t }: any) {
+  const [form, setForm] = useState<ConnectEcommerceDto>({
+    platform: platform.id,
+    shopDomain: "",
+    accessToken: "",
+    apiKey: "",
+    apiSecret: "",
+  });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const requiresSecret = platform.authScheme === "api_key_secret";
+  const tokenLabel = platform.authScheme === "access_token"
+    ? t("fields.accessToken")
+    : platform.authScheme === "api_key_secret"
+      ? t("fields.consumerKey")
+      : t("fields.apiKey");
+  const tokenHint = platform.authScheme === "access_token"
+    ? t("fields.accessTokenHint")
+    : platform.authScheme === "api_key_secret"
+      ? t("fields.consumerKeyHint")
+      : t("fields.apiKeyHint");
+
+  const description = platform.description[locale as "en" | "ar" | "tr"] || platform.description.en;
+
   const save = async () => {
-    if (!domain.trim() || !token.trim()) {
-      setError(t("connect.errors.required"));
+    if (!form.shopDomain.trim() || !form.accessToken.trim()) {
+      setError(t("errors.required"));
+      return;
+    }
+    if (requiresSecret && !form.apiSecret?.trim()) {
+      setError(t("errors.secretRequired"));
       return;
     }
     setSaving(true);
     setError(null);
     try {
-      await connectShopifyStore(domain.trim(), token.trim());
+      const dto: ConnectEcommerceDto = {
+        platform: platform.id,
+        shopDomain: form.shopDomain.trim(),
+        accessToken: form.accessToken.trim(),
+      };
+      if (requiresSecret) {
+        dto.apiKey = form.accessToken.trim();
+        dto.apiSecret = form.apiSecret?.trim();
+      }
+      await connectEcommerceStore(dto);
       onConnected();
     } catch (e: any) {
       setError(e?.response?.data?.error?.message || e?.message || "Connect failed");
@@ -307,49 +482,72 @@ function ConnectDialog({
   };
 
   return (
-    <div
-      className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white rounded-xl shadow-xl max-w-md w-full my-8"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-cyan-900">{t("connect.title")}</h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-700">
+    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4" onClick={onClose}>
+      <div className="bg-white rounded-xl shadow-xl max-w-md w-full my-8" onClick={(e) => e.stopPropagation()}>
+        <div className="p-5 rounded-t-xl text-white relative" style={{ backgroundColor: platform.brandColor }}>
+          <button onClick={onClose} className="absolute top-3 ltr:right-3 rtl:left-3 p-1 text-white/80 hover:text-white hover:bg-white/20 rounded">
             <X className="w-5 h-5" />
           </button>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center font-bold text-xl">
+              {platform.name.charAt(0)}
+            </div>
+            <div>
+              <h2 className="text-lg font-bold">{t("connectTitle", { name: platform.name })}</h2>
+              <div className="text-xs opacity-90 flex items-center gap-1 mt-0.5">
+                <MapPin className="w-3 h-3" />
+                {platform.country}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="p-5 space-y-4">
+          <p className="text-sm text-slate-600">{description}</p>
+
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
-              {t("connect.domain")} *
-            </label>
+            <label className="block text-xs font-medium text-slate-700 mb-1">{t("fields.domain")} *</label>
             <input
               type="text"
-              value={domain}
-              onChange={(e) => setDomain(e.target.value)}
-              placeholder="your-shop.myshopify.com"
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              value={form.shopDomain}
+              onChange={(e) => setForm({ ...form, shopDomain: e.target.value })}
+              placeholder={getDomainPlaceholder(platform.id)}
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
-            <p className="text-[10px] text-slate-500 mt-1">{t("connect.domainHint")}</p>
+            <p className="text-[10px] text-slate-500 mt-1">{t("fields.domainHint")}</p>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
-              {t("connect.token")} *
-            </label>
+            <label className="block text-xs font-medium text-slate-700 mb-1">{tokenLabel} *</label>
             <input
               type="password"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              placeholder="shpat_..."
-              className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              value={form.accessToken}
+              onChange={(e) => setForm({ ...form, accessToken: e.target.value })}
+              placeholder={getTokenPlaceholder(platform.id)}
+              className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
-            <p className="text-[10px] text-slate-500 mt-1">{t("connect.tokenHint")}</p>
+            <p className="text-[10px] text-slate-500 mt-1">{tokenHint}</p>
           </div>
+
+          {requiresSecret && (
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">{t("fields.consumerSecret")} *</label>
+              <input
+                type="password"
+                value={form.apiSecret || ""}
+                onChange={(e) => setForm({ ...form, apiSecret: e.target.value })}
+                placeholder="cs_..."
+                className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              />
+            </div>
+          )}
+
+          {platform.authHelpUrl && (
+            <a href={platform.authHelpUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-cyan-600 hover:underline">
+              <ExternalLink className="w-3 h-3" />
+              {t("howToGetCredentials")}
+            </a>
+          )}
 
           {error && (
             <div className="p-3 bg-red-50 border border-red-100 text-red-700 text-sm rounded-lg flex items-start gap-2">
@@ -360,19 +558,12 @@ function ConnectDialog({
         </div>
 
         <div className="p-4 border-t border-sky-100 bg-sky-50/30 flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-lg"
-          >
-            {t("connect.cancel")}
+          <button onClick={onClose} className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-lg">
+            {t("cancel")}
           </button>
-          <button
-            onClick={save}
-            disabled={saving || !domain || !token}
-            className="flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
-          >
+          <button onClick={save} disabled={saving} className="flex items-center gap-1.5 px-4 py-2 text-white text-sm font-semibold rounded-lg disabled:opacity-50" style={{ backgroundColor: platform.brandColor }}>
             {saving && <Loader2 className="w-4 h-4 animate-spin" />}
-            {t("connect.connect")}
+            {t("connectButton")}
           </button>
         </div>
       </div>
@@ -380,26 +571,41 @@ function ConnectDialog({
   );
 }
 
-function StepItem({ n, children }: { n: number; children: React.ReactNode }) {
-  return (
-    <li className="flex items-start gap-3">
-      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">
-        {n}
-      </span>
-      <span>{children}</span>
-    </li>
-  );
+function getDomainPlaceholder(platformId: string): string {
+  switch (platformId) {
+    case "shopify": return "your-shop.myshopify.com";
+    case "salla": return "salla.sa/mystore";
+    case "zid": return "mystore.zid.store";
+    case "youcan": return "mystore.youcan.shop";
+    case "woocommerce": return "mystore.com";
+    case "easyorders": return "app.easy-orders.net";
+    case "expandcart": return "mystore.expandcart.com";
+    case "ticimax": return "mystore.ticimax.com.tr";
+    case "ideasoft": return "mystore.ideasoft.com.tr";
+    case "tsoft": return "mystore.tsoft.com.tr";
+    case "ikas": return "mystore.myikas.com";
+    case "turhost": return "mystore.turhost.com";
+    default: return "example.com";
+  }
+}
+
+function getTokenPlaceholder(platformId: string): string {
+  switch (platformId) {
+    case "shopify": return "shpat_...";
+    case "salla":
+    case "zid":
+    case "youcan":
+    case "ideasoft":
+    case "turhost": return "eyJhbGciOi... (JWT token)";
+    case "woocommerce": return "ck_...";
+    default: return "API key";
+  }
 }
 
 function formatDate(iso: string, locale: string): string {
   const loc = locale === "ar" ? "ar-SA" : locale === "tr" ? "tr-TR" : "en-US";
   try {
-    return new Date(iso).toLocaleString(loc, {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+    return new Date(iso).toLocaleString(loc, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
   } catch {
     return iso;
   }

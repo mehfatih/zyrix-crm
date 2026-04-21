@@ -2580,5 +2580,66 @@
       "is_not_empty": "is not empty",
       "between": "between"
     }
+  },
+  "Ecommerce": {
+    "title": "E-commerce Integrations",
+    "subtitle": "Connect to {count}+ platforms across MENA, Turkey, and global",
+    "connectedStores": "Connected stores",
+    "availablePlatforms": "Available platforms",
+    "searchPlatforms": "Search platforms...",
+    "noResults": "No platforms found",
+    "noResultsHint": "Try a different search or region",
+    "connect": "Connect",
+    "connected": "Connected",
+    "connectTitle": "Connect to {name}",
+    "connectButton": "Connect store",
+    "cancel": "Cancel",
+    "sync": "Sync",
+    "disconnect": "Disconnect",
+    "visitWebsite": "Visit website",
+    "comingSoon": "Coming soon",
+    "useCSVImport": "Use CSV import",
+    "howToGetCredentials": "How to get credentials",
+    "status": {
+      "native": "Native",
+      "api": "API sync",
+      "csv_only": "CSV only",
+      "planned": "Planned",
+      "idle": "Ready",
+      "syncing": "Syncing",
+      "success": "Synced",
+      "error": "Error"
+    },
+    "cap": {
+      "customers": "Customers",
+      "orders": "Orders",
+      "products": "Products"
+    },
+    "stats": {
+      "customers": "Customers",
+      "orders": "Orders"
+    },
+    "fields": {
+      "domain": "Shop domain",
+      "domainHint": "Your store's domain without https://",
+      "accessToken": "Access token",
+      "accessTokenHint": "Paste the access token from your platform's admin panel",
+      "apiKey": "API key",
+      "apiKeyHint": "Paste the API key from your platform's developer settings",
+      "consumerKey": "Consumer key",
+      "consumerKeyHint": "For WooCommerce, generate this under WooCommerce > Settings > Advanced > REST API",
+      "consumerSecret": "Consumer secret"
+    },
+    "errors": {
+      "required": "Domain and access token are required",
+      "secretRequired": "Consumer secret is required"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "step1": "Choose your e-commerce platform from the catalog above",
+      "step2": "Get an access token or API key from your platform's admin panel",
+      "step3": "Paste the domain and credentials into the connect dialog",
+      "step4": "Click Sync to import customers and orders into Zyrix CRM"
+    }
   }
 }

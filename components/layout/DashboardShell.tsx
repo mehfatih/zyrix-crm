@@ -199,7 +199,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
             className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Shopify
+            E-commerce
           </Link>
         </div>
 

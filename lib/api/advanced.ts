@@ -384,3 +384,109 @@ export async function getFilterFields(): Promise<Record<string, string[]>> {
   );
   return data.data;
 }
+
+// ============================================================================
+// ECOMMERCE (MULTI-PLATFORM)
+// ============================================================================
+export type PlatformRegion = "mena" | "turkey" | "global";
+export type AuthScheme =
+  | "access_token"
+  | "api_key"
+  | "api_key_secret"
+  | "oauth"
+  | "basic_auth";
+
+export interface PlatformDefinition {
+  id: string;
+  name: string;
+  region: PlatformRegion;
+  country: string;
+  website: string;
+  authScheme: AuthScheme;
+  authHelpUrl?: string;
+  apiBase?: string | null;
+  apiDocs?: string;
+  supports: {
+    customers: boolean;
+    orders: boolean;
+    products: boolean;
+    webhooks: boolean;
+  };
+  brandColor: string;
+  description: { en: string; ar: string; tr: string };
+  status: "native" | "api" | "csv_only" | "planned";
+  popularity: number;
+}
+
+export interface EcommerceStore {
+  id: string;
+  platform: string;
+  shopDomain: string;
+  isActive: boolean;
+  region: string | null;
+  currency: string | null;
+  lastSyncAt: string | null;
+  syncStatus: string;
+  syncError: string | null;
+  totalCustomersImported: number;
+  totalOrdersImported: number;
+  metadata: Record<string, any>;
+  createdAt: string;
+  updatedAt: string;
+  platformInfo: {
+    name: string;
+    brandColor: string;
+    country: string;
+    region: PlatformRegion;
+  } | null;
+}
+
+export interface ConnectEcommerceDto {
+  platform: string;
+  shopDomain: string;
+  accessToken: string;
+  apiKey?: string;
+  apiSecret?: string;
+  region?: string;
+  currency?: string;
+  metadata?: Record<string, any>;
+}
+
+export async function listPlatformCatalog(
+  region?: PlatformRegion
+): Promise<PlatformDefinition[]> {
+  const { data } = await apiClient.get<ApiSuccess<PlatformDefinition[]>>(
+    "/api/advanced/ecommerce/catalog",
+    { params: region ? { region } : {} }
+  );
+  return data.data;
+}
+
+export async function listEcommerceStores(): Promise<EcommerceStore[]> {
+  const { data } = await apiClient.get<ApiSuccess<EcommerceStore[]>>(
+    "/api/advanced/ecommerce/stores"
+  );
+  return data.data;
+}
+
+export async function connectEcommerceStore(dto: ConnectEcommerceDto) {
+  const { data } = await apiClient.post<ApiSuccess<any>>(
+    "/api/advanced/ecommerce/connect",
+    dto
+  );
+  return data.data;
+}
+
+export async function disconnectEcommerceStore(id: string) {
+  const { data } = await apiClient.delete<ApiSuccess<any>>(
+    `/api/advanced/ecommerce/stores/${id}`
+  );
+  return data.data;
+}
+
+export async function syncEcommerceStore(id: string) {
+  const { data } = await apiClient.post<ApiSuccess<{ imported: number; orders: number }>>(
+    `/api/advanced/ecommerce/stores/${id}/sync`
+  );
+  return data.data;
+}
