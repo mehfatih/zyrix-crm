@@ -1119,3 +1119,44 @@ export async function getFunnelReport(params?: {
   );
   return data.data;
 }
+
+// ============================================================================
+// CUSTOM DASHBOARDS — widget layouts
+// ============================================================================
+
+export type WidgetWidth = "full" | "half" | "third" | "quarter";
+
+export interface DashboardWidget {
+  id: string;
+  type: string;
+  width: WidgetWidth;
+  config?: Record<string, unknown>;
+}
+
+export interface DashboardLayout {
+  widgets: DashboardWidget[];
+  source: "user" | "company" | "default";
+}
+
+export async function getDashboardLayout(): Promise<DashboardLayout> {
+  const { data } = await apiClient.get<ApiSuccess<DashboardLayout>>(
+    "/api/dashboard/layout"
+  );
+  return data.data;
+}
+
+export async function saveDashboardLayout(
+  widgets: DashboardWidget[]
+): Promise<{ widgets: DashboardWidget[] }> {
+  const { data } = await apiClient.put<
+    ApiSuccess<{ widgets: DashboardWidget[] }>
+  >("/api/dashboard/layout", { widgets });
+  return data.data;
+}
+
+export async function resetDashboardLayout(): Promise<DashboardLayout> {
+  const { data } = await apiClient.delete<ApiSuccess<DashboardLayout>>(
+    "/api/dashboard/layout"
+  );
+  return data.data;
+}

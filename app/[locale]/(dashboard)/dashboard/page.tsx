@@ -33,6 +33,7 @@ import {
   getOnboardingStatus,
   type OnboardingStatus,
 } from "@/lib/api/advanced";
+import { DashboardGrid } from "@/components/dashboard-widgets/DashboardGrid";
 
 // ============================================================================
 // ROLE-BASED DASHBOARD
@@ -202,6 +203,9 @@ export default function DashboardPage() {
             </div>
           </div>
         )}
+
+        {/* Customizable widget grid — per-user layout saved in DashboardLayout */}
+        <DashboardGrid locale={(["en", "ar", "tr"].includes(locale) ? locale : "en") as "en" | "ar" | "tr"} />
 
         {/* Primary KPIs */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
