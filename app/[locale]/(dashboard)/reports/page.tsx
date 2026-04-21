@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
@@ -38,6 +38,8 @@ import {
 } from "@/lib/api/reports";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ExportButton from "@/components/advanced/ExportButton";
+import { useAuth } from "@/lib/auth/context";
+import { getCountryProfile } from "@/lib/locale/country-profiles";
 
 // ============================================================================
 // MULTI-CURRENCY REPORTS
@@ -63,8 +65,35 @@ export default function ReportsPage() {
   const locale = (params?.locale as string) ?? "en";
   const t = useTranslations("Reports");
 
+  // Default reports to the merchant's base currency, fall back to their
+  // country's primary currency, last-resort USD. The old default was a
+  // hardcoded "USD" which confused merchants whose business never
+  // touches dollars.
+  const { company } = useAuth();
+  const merchantCurrency =
+    company?.baseCurrency ||
+    getCountryProfile(company?.country)?.currency ||
+    "USD";
+
   const [tab, setTab] = useState<Tab>("summary");
-  const [baseCurrency, setBaseCurrency] = useState("USD");
+  const [baseCurrency, setBaseCurrency] = useState(merchantCurrency);
+
+  // Re-sync once company loads (initial render happens before useAuth
+  // hydrates, so the first baseCurrency value may be USD until the
+  // company arrives — this effect catches up the moment it does).
+  useEffect(() => {
+    if (merchantCurrency && baseCurrency !== merchantCurrency && baseCurrency === "USD") {
+      // Only auto-switch if user hasn't explicitly toggled to USD
+      if (!userChangedCurrency.current) {
+        setBaseCurrency(merchantCurrency);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [merchantCurrency]);
+
+  // Track whether user manually toggled currency; once they do, we
+  // respect their choice and don't auto-sync anymore.
+  const userChangedCurrency = useRef(false);
 
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
   const [revenue, setRevenue] = useState<RevenueReport | null>(null);
@@ -114,14 +143,69 @@ export default function ReportsPage() {
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="flex items-center gap-2">
-              <label className="text-xs font-medium text-slate-600">
-                {t("baseCurrency")}:
-              </label>
+            {/* 2-pill toggle — Base (merchant currency) vs USD (converted).
+                Keeps the interaction simple: most merchants just want to
+                see their own numbers, with a single click to compare in
+                USD when talking to investors or foreign partners. The
+                advanced multi-currency dropdown is still available in
+                "More" for users who need it. */}
+            <div className="inline-flex rounded-lg border border-sky-200 bg-white p-0.5">
+              <button
+                onClick={() => {
+                  userChangedCurrency.current = true;
+                  setBaseCurrency(merchantCurrency);
+                }}
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+                  baseCurrency === merchantCurrency
+                    ? "bg-cyan-600 text-white"
+                    : "text-slate-700 hover:bg-sky-50"
+                }`}
+              >
+                {merchantCurrency}
+                <span className="ms-1 opacity-80 font-normal text-[10px]">
+                  {locale === "ar"
+                    ? "(عملتك)"
+                    : locale === "tr"
+                      ? "(Sizin)"
+                      : "(Yours)"}
+                </span>
+              </button>
+              {merchantCurrency !== "USD" && (
+                <button
+                  onClick={() => {
+                    userChangedCurrency.current = true;
+                    setBaseCurrency("USD");
+                  }}
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+                    baseCurrency === "USD"
+                      ? "bg-cyan-600 text-white"
+                      : "text-slate-700 hover:bg-sky-50"
+                  }`}
+                >
+                  USD
+                  <span className="ms-1 opacity-80 font-normal text-[10px]">
+                    {locale === "ar"
+                      ? "(محوّل)"
+                      : locale === "tr"
+                        ? "(Çevrilmiş)"
+                        : "(Converted)"}
+                  </span>
+                </button>
+              )}
+            </div>
+
+            {/* Advanced: full currency dropdown for power users */}
+            <details className="relative">
+              <summary className="list-none cursor-pointer px-2 py-1.5 text-[11px] font-semibold text-slate-500 hover:text-cyan-700">
+                {locale === "ar" ? "المزيد" : locale === "tr" ? "Daha fazla" : "More"}
+              </summary>
               <select
                 value={baseCurrency}
-                onChange={(e) => setBaseCurrency(e.target.value)}
-                className="px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                onChange={(e) => {
+                  userChangedCurrency.current = true;
+                  setBaseCurrency(e.target.value);
+                }}
+                className="absolute top-8 end-0 px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-lg z-10"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -129,7 +213,7 @@ export default function ReportsPage() {
                   </option>
                 ))}
               </select>
-            </div>
+            </details>
             <button
               onClick={() => setRatesModalOpen(true)}
               className="flex items-center gap-2 px-3 py-2 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-lg text-sm font-medium"
@@ -153,6 +237,24 @@ export default function ReportsPage() {
             </button>
           </div>
         </div>
+
+        {/* Conversion banner — shown only when USD toggle is active and
+            the merchant's home currency is something other than USD.
+            Makes it explicit that these figures are converted from the
+            merchant's multi-currency deals using the rates configured
+            in "Manage rates". */}
+        {baseCurrency === "USD" && merchantCurrency !== "USD" && (
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-2 px-3 flex items-center gap-2 text-[11px] text-amber-900">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+            <span>
+              {locale === "ar"
+                ? `تم تحويل الأرقام إلى USD حسب أسعار الصرف المحفوظة. قيمتك الأصلية بالـ ${merchantCurrency}.`
+                : locale === "tr"
+                  ? `Rakamlar kayıtlı kur üzerinden USD'ye çevrildi. Orijinal ${merchantCurrency} değerleriniz korunuyor.`
+                  : `Amounts converted to USD using stored rates. Your native ${merchantCurrency} values are preserved.`}
+            </span>
+          </div>
+        )}
 
         {/* Related reports — deep links to specialized dashboards */}
         <Link

@@ -161,7 +161,11 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           <BrandSwitcher />
         </div>
 
-        <nav className="flex-1 p-3 space-y-1">
+        {/* Sidebar nav — scrolls independently when content exceeds
+            viewport height so all items remain reachable on small
+            screens without zooming out. min-h-0 is necessary for
+            overflow-y-auto to respect the flex parent's height. */}
+        <nav className="flex-1 min-h-0 overflow-y-auto p-3 space-y-1">
           {navItems.map((item) => {
             const isActive = pathname?.startsWith(item.href);
             const Icon = item.icon;
