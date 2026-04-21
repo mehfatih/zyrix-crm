@@ -39,6 +39,7 @@ import {
 } from "@/lib/api/contracts";
 import { listCustomers, type Customer } from "@/lib/api/customers";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import ExportButton from "@/components/advanced/ExportButton";
 
 // ============================================================================
 // CONTRACTS PAGE
@@ -283,13 +284,16 @@ export default function ContractsPage() {
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
           </div>
-          <button
-            onClick={openCreate}
-            className="flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium shadow-sm"
-          >
-            <Plus className="w-4 h-4" />
-            {t("newContract")}
-          </button>
+          <div className="flex items-center gap-2">
+            <ExportButton entityType="contracts" />
+            <button
+              onClick={openCreate}
+              className="flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium shadow-sm"
+            >
+              <Plus className="w-4 h-4" />
+              {t("newContract")}
+            </button>
+          </div>
         </div>
 
         {/* Stats */}

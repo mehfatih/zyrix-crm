@@ -2302,5 +2302,244 @@
     "empty": {
       "noCurrencies": "لا توجد صفقات مغلقة بعد"
     }
+  },
+  "Export": {
+    "export": "تصدير",
+    "csv": "CSV",
+    "xlsx": "Excel",
+    "pdf": "PDF"
+  },
+  "Bulk": {
+    "selected": "محدد",
+    "assignOwner": "تعيين مسؤول",
+    "changeStatus": "تغيير الحالة",
+    "changeStage": "تغيير المرحلة",
+    "addTag": "إضافة وسم",
+    "delete": "حذف",
+    "clear": "إلغاء التحديد",
+    "confirmDelete": "هل تريد حذف {count} عنصر؟ لا يمكن التراجع.",
+    "confirmDeleteAction": "نعم، احذف",
+    "cancel": "إلغاء",
+    "success": "تم تحديث {count} عنصر بنجاح"
+  },
+  "Import": {
+    "title": "استيراد العملاء",
+    "subtitle": "ارفع ملف CSV لاستيراد بيانات عملائك بشكل جماعي",
+    "downloadSample": "تحميل نموذج",
+    "next": "التالي",
+    "back": "السابق",
+    "steps": {
+      "upload": "رفع الملف",
+      "preview": "معاينة",
+      "result": "النتيجة"
+    },
+    "upload": {
+      "title": "اسحب ملف CSV هنا",
+      "hint": "يدعم ملفات .csv حتى 5 ميجا",
+      "selectFile": "اختر ملفاً",
+      "changeFile": "تغيير الملف",
+      "columnsTitle": "الأعمدة المدعومة",
+      "columnsHint": "يجب أن يحتوي CSV على عمود الاسم الكامل على الأقل. باقي الحقول اختيارية.",
+      "aliasesHint": "أسماء الأعمدة مرنة — نقبل العناوين العربية والتركية أيضاً."
+    },
+    "preview": {
+      "title": "معاينة البيانات",
+      "totalRows": "{count} صف للاستيراد",
+      "skipDuplicates": "تخطي المكررات (حسب البريد أو الهاتف)",
+      "import": "استيراد {count} عميل",
+      "showingFirst": "عرض {shown} من {total}"
+    },
+    "result": {
+      "success": "اكتمل الاستيراد!",
+      "noneImported": "لم يتم استيراد أي عميل",
+      "summary": "{imported} مستورد، {skipped} متخطى من أصل {total}",
+      "imported": "مستورد",
+      "skipped": "متخطى",
+      "total": "الإجمالي",
+      "errorsTitle": "{count} خطأ",
+      "duplicatesTitle": "{count} مكرر",
+      "duplicatesHint": "هذه الصفوف طابقت عملاء موجودين حسب البريد أو الهاتف فتم تخطيها.",
+      "importAnother": "استيراد ملف آخر",
+      "viewCustomers": "عرض العملاء"
+    },
+    "errors": {
+      "tooLarge": "الملف كبير جداً. الحد الأقصى 5 ميجا."
+    }
+  },
+  "Templates": {
+    "title": "قوالب البريد",
+    "subtitle": "قوالب قابلة لإعادة الاستخدام للحملات والرسائل الفردية",
+    "createNew": "إنشاء قالب",
+    "createFirst": "أنشئ أول قالب",
+    "searchPlaceholder": "ابحث بالاسم أو الموضوع أو الوصف",
+    "allCategories": "الكل",
+    "preview": "معاينة",
+    "edit": "تعديل",
+    "duplicate": "نسخ",
+    "delete": "حذف",
+    "usedCount": "استُخدم {count}×",
+    "confirmDelete": "حذف القالب '{name}'؟",
+    "empty": {
+      "title": "لا توجد قوالب بعد",
+      "noResults": "لا توجد نتائج",
+      "subtitle": "أنشئ أول قالب بريد قابل لإعادة الاستخدام",
+      "tryDifferent": "جرّب مصطلحات بحث أخرى"
+    },
+    "categories": {
+      "general": "عام",
+      "welcome": "ترحيبي",
+      "follow_up": "متابعة",
+      "promotional": "ترويجي",
+      "transactional": "عملية",
+      "reminder": "تذكير",
+      "announcement": "إعلان"
+    },
+    "editor": {
+      "titleNew": "قالب جديد",
+      "titleEdit": "تعديل قالب",
+      "name": "اسم القالب",
+      "category": "الفئة",
+      "description": "الوصف",
+      "subject": "سطر الموضوع",
+      "subjectPlaceholder": "مرحباً بك في {{companyName}}، {{customerName}}!",
+      "body": "محتوى HTML",
+      "bodyHint": "استخدم وسوم HTML. المتغيرات مثل {{customerName}} ستُستبدل عند الإرسال.",
+      "bodyPlaceholder": "<p>مرحباً {{customerName}}،</p>\\n<p>مرحباً بك!</p>",
+      "shared": "شارك مع الفريق (يمكن للآخرين استخدام هذا القالب)",
+      "variableHint": "يتم استخراج المتغيرات تلقائياً من صيغة {{...}}",
+      "cancel": "إلغاء",
+      "save": "حفظ القالب"
+    },
+    "errors": {
+      "requiredFields": "الاسم والموضوع والمحتوى مطلوبة"
+    }
+  },
+  "CustomFields": {
+    "title": "حقول مخصصة",
+    "subtitle": "عرّف حقولك الخاصة للعملاء والصفقات",
+    "customers": "العملاء",
+    "deals": "الصفقات",
+    "createNew": "إضافة حقل",
+    "createFirst": "أنشئ أول حقل مخصص",
+    "required": "إلزامي",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "confirmDelete": "حذف الحقل '{label}'؟ البيانات الحالية ستُحفظ لكن ستُخفى.",
+    "empty": {
+      "title": "لا توجد حقول مخصصة لـ {entity}",
+      "subtitle": "أضف حقولاً لالتقاط البيانات الخاصة بعملك"
+    },
+    "table": {
+      "label": "التسمية",
+      "key": "المفتاح",
+      "type": "النوع",
+      "required": "إلزامي"
+    },
+    "types": {
+      "text": "نص",
+      "number": "رقم",
+      "date": "تاريخ",
+      "select": "اختيار (واحد)",
+      "multi_select": "اختيار (متعدد)",
+      "boolean": "نعم/لا",
+      "url": "رابط",
+      "email": "بريد"
+    },
+    "editor": {
+      "titleNew": "حقل مخصص جديد",
+      "titleEdit": "تعديل حقل مخصص",
+      "entityType": "طبّق على",
+      "type": "نوع الحقل",
+      "label": "التسمية",
+      "labelPlaceholder": "مثل: القطاع، الإيراد السنوي",
+      "key": "المفتاح (اختياري)",
+      "keyPlaceholder": "مثل: industry",
+      "keyHint": "يُولَّد تلقائياً من التسمية إذا تُرك فارغاً. أحرف صغيرة وأرقام وشرطة سفلية فقط.",
+      "options": "الخيارات",
+      "optionsPlaceholder": "خيار 1\\nخيار 2\\nخيار 3",
+      "optionsHint": "خيار واحد في كل سطر",
+      "default": "القيمة الافتراضية (اختياري)",
+      "required": "حقل إلزامي",
+      "cancel": "إلغاء",
+      "save": "حفظ الحقل"
+    },
+    "errors": {
+      "labelRequired": "التسمية مطلوبة",
+      "optionsRequired": "يلزم خيار واحد على الأقل لحقول الاختيار"
+    }
+  },
+  "Shopify": {
+    "title": "تكامل Shopify",
+    "subtitle": "مزامنة العملاء والطلبات من متجرك على Shopify",
+    "connectStore": "ربط متجر",
+    "connectFirst": "اربط أول متجر",
+    "syncNow": "مزامنة الآن",
+    "disconnect": "قطع الاتصال",
+    "confirmDisconnect": "قطع الاتصال مع '{domain}'؟ العملاء المستوردون سيبقون.",
+    "lastSync": "آخر مزامنة",
+    "status": {
+      "idle": "جاهز",
+      "syncing": "جاري المزامنة",
+      "success": "تمت المزامنة",
+      "error": "خطأ"
+    },
+    "sync": {
+      "success": "تم استيراد {count} عميل"
+    },
+    "stats": {
+      "customers": "العملاء",
+      "orders": "الطلبات"
+    },
+    "empty": {
+      "title": "لا توجد متاجر Shopify متصلة",
+      "subtitle": "اربط أول متجر لاستيراد العملاء والطلبات تلقائياً إلى Zyrix CRM."
+    },
+    "howItWorks": {
+      "title": "كيف يعمل",
+      "step1": "أنشئ تطبيق خاص في لوحة Shopify (Apps → Develop apps)",
+      "step2": "امنح وصول قراءة للعملاء والطلبات",
+      "step3": "انسخ رمز وصول Admin API",
+      "step4": "ألصقه هنا مع نطاق متجرك"
+    },
+    "connect": {
+      "title": "ربط متجر Shopify",
+      "domain": "نطاق المتجر",
+      "domainHint": "مثال: your-shop.myshopify.com",
+      "token": "رمز وصول Admin API",
+      "tokenHint": "يبدأ بـ shpat_... نطاقات customer:read و orders:read فقط مطلوبة.",
+      "cancel": "إلغاء",
+      "connect": "ربط",
+      "errors": {
+        "required": "النطاق والرمز مطلوبان"
+      }
+    }
+  },
+  "Timeline": {
+    "empty": {
+      "title": "لا يوجد نشاط بعد",
+      "subtitle": "ستظهر المكالمات والرسائل والصفقات وباقي النشاطات هنا"
+    },
+    "filters": {
+      "all": "الكل"
+    },
+    "types": {
+      "activity": "نشاط",
+      "call": "مكالمات",
+      "email": "رسائل",
+      "meeting": "اجتماعات",
+      "note": "ملاحظات",
+      "deal_created": "صفقات جديدة",
+      "deal_stage_change": "تحديثات الصفقات",
+      "task_created": "مهام",
+      "task_completed": "مهام مكتملة",
+      "quote_issued": "عروض مُرسلة",
+      "quote_accepted": "عروض مقبولة",
+      "quote_rejected": "عروض مرفوضة",
+      "contract_signed": "عقود",
+      "email_campaign": "حملات",
+      "whatsapp_message": "واتساب",
+      "loyalty_earned": "نقاط مكتسبة",
+      "loyalty_redeemed": "نقاط مستبدلة"
+    }
   }
 }

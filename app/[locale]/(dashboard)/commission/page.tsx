@@ -44,6 +44,7 @@ import {
   type CreateRuleDto,
 } from "@/lib/api/commission";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import ExportButton from "@/components/advanced/ExportButton";
 
 // ============================================================================
 // COMMISSION ENGINE PAGE
@@ -203,6 +204,7 @@ export default function CommissionPage() {
               )}
               {t("recompute")}
             </button>
+            <ExportButton entityType="commissions" />
             <button
               onClick={() => {
                 setEditingRule(null);

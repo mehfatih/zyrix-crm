@@ -2302,5 +2302,244 @@
     "empty": {
       "noCurrencies": "No closed deals yet"
     }
+  },
+  "Export": {
+    "export": "Export",
+    "csv": "CSV",
+    "xlsx": "Excel",
+    "pdf": "PDF"
+  },
+  "Bulk": {
+    "selected": "selected",
+    "assignOwner": "Assign owner",
+    "changeStatus": "Change status",
+    "changeStage": "Change stage",
+    "addTag": "Add tag",
+    "delete": "Delete",
+    "clear": "Clear selection",
+    "confirmDelete": "Are you sure you want to delete {count} items? This cannot be undone.",
+    "confirmDeleteAction": "Yes, delete",
+    "cancel": "Cancel",
+    "success": "{count} items updated successfully"
+  },
+  "Import": {
+    "title": "Import Customers",
+    "subtitle": "Upload a CSV file to bulk import your customer data",
+    "downloadSample": "Download sample",
+    "next": "Next",
+    "back": "Back",
+    "steps": {
+      "upload": "Upload file",
+      "preview": "Preview",
+      "result": "Result"
+    },
+    "upload": {
+      "title": "Drop your CSV file here",
+      "hint": "Supports .csv files up to 5 MB",
+      "selectFile": "Select a file",
+      "changeFile": "Change file",
+      "columnsTitle": "Supported columns",
+      "columnsHint": "The CSV should contain at least a Full Name column. Other fields are optional.",
+      "aliasesHint": "Column names are flexible — we also accept Arabic and Turkish headers."
+    },
+    "preview": {
+      "title": "Preview your data",
+      "totalRows": "{count} rows to import",
+      "skipDuplicates": "Skip duplicates (by email or phone)",
+      "import": "Import {count} customers",
+      "showingFirst": "Showing {shown} of {total} rows"
+    },
+    "result": {
+      "success": "Import complete!",
+      "noneImported": "No customers were imported",
+      "summary": "{imported} imported, {skipped} skipped out of {total} rows",
+      "imported": "Imported",
+      "skipped": "Skipped",
+      "total": "Total",
+      "errorsTitle": "{count} errors",
+      "duplicatesTitle": "{count} duplicates found",
+      "duplicatesHint": "These rows matched existing customers by email or phone and were skipped.",
+      "importAnother": "Import another file",
+      "viewCustomers": "View customers"
+    },
+    "errors": {
+      "tooLarge": "File too large. Maximum 5 MB."
+    }
+  },
+  "Templates": {
+    "title": "Email Templates",
+    "subtitle": "Reusable templates for campaigns and one-off emails",
+    "createNew": "Create template",
+    "createFirst": "Create your first template",
+    "searchPlaceholder": "Search by name, subject, or description",
+    "allCategories": "All",
+    "preview": "Preview",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "usedCount": "used {count}×",
+    "confirmDelete": "Delete template '{name}'?",
+    "empty": {
+      "title": "No templates yet",
+      "noResults": "No templates match",
+      "subtitle": "Create your first reusable email template",
+      "tryDifferent": "Try different search terms"
+    },
+    "categories": {
+      "general": "General",
+      "welcome": "Welcome",
+      "follow_up": "Follow-up",
+      "promotional": "Promotional",
+      "transactional": "Transactional",
+      "reminder": "Reminder",
+      "announcement": "Announcement"
+    },
+    "editor": {
+      "titleNew": "New template",
+      "titleEdit": "Edit template",
+      "name": "Template name",
+      "category": "Category",
+      "description": "Description",
+      "subject": "Subject line",
+      "subjectPlaceholder": "Welcome to {{companyName}}, {{customerName}}!",
+      "body": "HTML body",
+      "bodyHint": "Use HTML tags. Variables like {{customerName}} will be replaced when sending.",
+      "bodyPlaceholder": "<p>Hello {{customerName}},</p>\\n<p>Welcome aboard!</p>",
+      "shared": "Share with team (others can use this template)",
+      "variableHint": "Variables are auto-extracted from {{...}} syntax",
+      "cancel": "Cancel",
+      "save": "Save template"
+    },
+    "errors": {
+      "requiredFields": "Name, subject, and body are required"
+    }
+  },
+  "CustomFields": {
+    "title": "Custom Fields",
+    "subtitle": "Define your own fields for customers and deals",
+    "customers": "Customers",
+    "deals": "Deals",
+    "createNew": "Add field",
+    "createFirst": "Create your first custom field",
+    "required": "Required",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Delete field '{label}'? Existing data will be preserved but hidden.",
+    "empty": {
+      "title": "No custom fields for {entity}",
+      "subtitle": "Add fields to capture data specific to your business"
+    },
+    "table": {
+      "label": "Label",
+      "key": "Key",
+      "type": "Type",
+      "required": "Required"
+    },
+    "types": {
+      "text": "Text",
+      "number": "Number",
+      "date": "Date",
+      "select": "Select (one)",
+      "multi_select": "Select (multiple)",
+      "boolean": "Yes / No",
+      "url": "URL",
+      "email": "Email"
+    },
+    "editor": {
+      "titleNew": "New custom field",
+      "titleEdit": "Edit custom field",
+      "entityType": "Apply to",
+      "type": "Field type",
+      "label": "Label",
+      "labelPlaceholder": "e.g., Industry, Annual Revenue",
+      "key": "Key (optional)",
+      "keyPlaceholder": "e.g., industry",
+      "keyHint": "Auto-generated from label if left empty. Lowercase letters, numbers, and underscores only.",
+      "options": "Options",
+      "optionsPlaceholder": "Option 1\\nOption 2\\nOption 3",
+      "optionsHint": "One option per line",
+      "default": "Default value (optional)",
+      "required": "Required field",
+      "cancel": "Cancel",
+      "save": "Save field"
+    },
+    "errors": {
+      "labelRequired": "Label is required",
+      "optionsRequired": "At least one option is required for select fields"
+    }
+  },
+  "Shopify": {
+    "title": "Shopify Integration",
+    "subtitle": "Sync customers and orders from your Shopify store",
+    "connectStore": "Connect store",
+    "connectFirst": "Connect your first store",
+    "syncNow": "Sync now",
+    "disconnect": "Disconnect",
+    "confirmDisconnect": "Disconnect '{domain}'? Imported customers will remain.",
+    "lastSync": "Last synced",
+    "status": {
+      "idle": "Ready",
+      "syncing": "Syncing",
+      "success": "Synced",
+      "error": "Error"
+    },
+    "sync": {
+      "success": "{count} customers imported"
+    },
+    "stats": {
+      "customers": "Customers",
+      "orders": "Orders"
+    },
+    "empty": {
+      "title": "No Shopify stores connected",
+      "subtitle": "Connect your first store to automatically import customers and orders into Zyrix CRM."
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "step1": "Create a private app in your Shopify admin (Apps → Develop apps)",
+      "step2": "Grant read access to customers and orders",
+      "step3": "Copy the Admin API access token",
+      "step4": "Paste it below along with your shop domain"
+    },
+    "connect": {
+      "title": "Connect Shopify store",
+      "domain": "Shop domain",
+      "domainHint": "Example: your-shop.myshopify.com",
+      "token": "Admin API access token",
+      "tokenHint": "Starts with shpat_... Only customer:read and orders:read scopes are needed.",
+      "cancel": "Cancel",
+      "connect": "Connect",
+      "errors": {
+        "required": "Domain and token are required"
+      }
+    }
+  },
+  "Timeline": {
+    "empty": {
+      "title": "No activity yet",
+      "subtitle": "Calls, emails, deals, and other activity will appear here"
+    },
+    "filters": {
+      "all": "All"
+    },
+    "types": {
+      "activity": "Activity",
+      "call": "Calls",
+      "email": "Emails",
+      "meeting": "Meetings",
+      "note": "Notes",
+      "deal_created": "New deals",
+      "deal_stage_change": "Deal updates",
+      "task_created": "Tasks",
+      "task_completed": "Completed tasks",
+      "quote_issued": "Quotes issued",
+      "quote_accepted": "Quotes accepted",
+      "quote_rejected": "Quotes rejected",
+      "contract_signed": "Contracts",
+      "email_campaign": "Campaigns",
+      "whatsapp_message": "WhatsApp",
+      "loyalty_earned": "Points earned",
+      "loyalty_redeemed": "Points redeemed"
+    }
   }
 }

@@ -32,6 +32,7 @@ import {
   type FinancialSummary,
 } from "@/lib/api/reports";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import ExportButton from "@/components/advanced/ExportButton";
 
 // ============================================================================
 // MULTI-CURRENCY REPORTS
@@ -136,6 +137,8 @@ export default function ReportsPage() {
                 </span>
               )}
             </button>
+            <ExportButton entityType="deals" label={t("exportDeals") ?? "Export deals"} />
+            <ExportButton entityType="customers" label={t("exportCustomers") ?? "Export customers"} />
             <button
               onClick={load}
               className="p-2 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg"

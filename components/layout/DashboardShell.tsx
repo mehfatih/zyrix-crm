@@ -170,7 +170,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           })}
         </nav>
 
-        <div className="p-3 border-t border-line-soft space-y-2">
+        <div className="p-3 border-t border-line-soft space-y-0.5">
           <LanguageSwitcher currentLocale={locale as Locale} />
           <Link
             href={`/${locale}/settings`}
@@ -178,6 +178,27 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           >
             <Settings className="w-4 h-4" />
             Settings
+          </Link>
+          <Link
+            href={`/${locale}/settings/templates`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            Email templates
+          </Link>
+          <Link
+            href={`/${locale}/settings/custom-fields`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <Activity className="w-3.5 h-3.5" />
+            Custom fields
+          </Link>
+          <Link
+            href={`/${locale}/settings/integrations`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            Shopify
           </Link>
         </div>
 

@@ -7,6 +7,7 @@ import { listDeals, type Deal, type DealStage } from "@/lib/api/deals";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import { CreateDealModal } from "@/components/deals/CreateDealModal";
 import { formatDate, cn } from "@/lib/utils";
+import ExportButton from "@/components/advanced/ExportButton";
 
 const STAGE_COLORS: Record<DealStage, string> = {
   lead: "bg-sky-100 text-sky-700",
@@ -64,13 +65,16 @@ export default function DealsPage() {
               {deals.length} deals · ${totalValue.toLocaleString()} won
             </p>
           </div>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 shadow-sm"
-          >
-            <Plus className="w-4 h-4" />
-            New deal
-          </button>
+          <div className="flex items-center gap-2">
+            <ExportButton entityType="deals" />
+            <button
+              onClick={() => setShowCreateModal(true)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 shadow-sm"
+            >
+              <Plus className="w-4 h-4" />
+              New deal
+            </button>
+          </div>
         </div>
 
         <div className="flex gap-2 mb-6 overflow-x-auto">

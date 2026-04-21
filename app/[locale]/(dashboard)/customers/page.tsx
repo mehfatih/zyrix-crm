@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 import {
   Plus,
   Search,
@@ -10,6 +11,7 @@ import {
   Building2,
   MoreHorizontal,
   Loader2,
+  Upload,
 } from "lucide-react";
 import {
   listCustomers,
@@ -18,6 +20,7 @@ import {
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import { cn, getInitials, formatDate } from "@/lib/utils";
 import { CreateCustomerModal } from "@/components/customers/CreateCustomerModal";
+import ExportButton from "@/components/advanced/ExportButton";
 
 const STATUS_COLORS: Record<string, string> = {
   new: "bg-sky-100 text-sky-700",
@@ -70,13 +73,23 @@ export default function CustomersPage() {
               {total} {total === 1 ? "customer" : "customers"} total
             </p>
           </div>
-          <button
-            onClick={() => setShowCreate(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors shadow-sm"
-          >
-            <Plus className="w-4 h-4" />
-            Add customer
-          </button>
+          <div className="flex items-center gap-2">
+            <Link
+              href={`/${locale}/customers/import`}
+              className="inline-flex items-center gap-2 px-3 py-2.5 bg-white border border-sky-200 text-slate-700 text-sm font-medium rounded-lg hover:bg-sky-50 transition-colors"
+            >
+              <Upload className="w-4 h-4" />
+              Import CSV
+            </Link>
+            <ExportButton entityType="customers" />
+            <button
+              onClick={() => setShowCreate(true)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors shadow-sm"
+            >
+              <Plus className="w-4 h-4" />
+              Add customer
+            </button>
+          </div>
         </div>
 
         {/* Filters */}

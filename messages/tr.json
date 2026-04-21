@@ -2302,5 +2302,244 @@
     "empty": {
       "noCurrencies": "Henüz kapanan anlaşma yok"
     }
+  },
+  "Export": {
+    "export": "Dışa aktar",
+    "csv": "CSV",
+    "xlsx": "Excel",
+    "pdf": "PDF"
+  },
+  "Bulk": {
+    "selected": "seçili",
+    "assignOwner": "Sahip ata",
+    "changeStatus": "Durumu değiştir",
+    "changeStage": "Aşamayı değiştir",
+    "addTag": "Etiket ekle",
+    "delete": "Sil",
+    "clear": "Seçimi temizle",
+    "confirmDelete": "{count} öğeyi silmek istiyor musunuz? Geri alınamaz.",
+    "confirmDeleteAction": "Evet, sil",
+    "cancel": "İptal",
+    "success": "{count} öğe başarıyla güncellendi"
+  },
+  "Import": {
+    "title": "Müşteri İçe Aktar",
+    "subtitle": "Müşteri verilerinizi toplu içe aktarmak için CSV yükleyin",
+    "downloadSample": "Örnek indir",
+    "next": "İleri",
+    "back": "Geri",
+    "steps": {
+      "upload": "Dosya yükle",
+      "preview": "Önizleme",
+      "result": "Sonuç"
+    },
+    "upload": {
+      "title": "CSV dosyanızı buraya bırakın",
+      "hint": "5 MB'a kadar .csv dosyaları desteklenir",
+      "selectFile": "Dosya seç",
+      "changeFile": "Dosyayı değiştir",
+      "columnsTitle": "Desteklenen sütunlar",
+      "columnsHint": "CSV en az Tam İsim sütunu içermelidir. Diğer alanlar isteğe bağlıdır.",
+      "aliasesHint": "Sütun adları esnek — Arapça ve Türkçe başlıklar da kabul edilir."
+    },
+    "preview": {
+      "title": "Verilerinizi önizleyin",
+      "totalRows": "{count} satır içe aktarılacak",
+      "skipDuplicates": "Yinelenenleri atla (e-posta veya telefona göre)",
+      "import": "{count} müşteri içe aktar",
+      "showingFirst": "{total} satırdan {shown} gösteriliyor"
+    },
+    "result": {
+      "success": "İçe aktarma tamamlandı!",
+      "noneImported": "Müşteri içe aktarılmadı",
+      "summary": "{total} satırdan {imported} aktarıldı, {skipped} atlandı",
+      "imported": "Aktarıldı",
+      "skipped": "Atlandı",
+      "total": "Toplam",
+      "errorsTitle": "{count} hata",
+      "duplicatesTitle": "{count} yineleme bulundu",
+      "duplicatesHint": "Bu satırlar e-posta veya telefonla mevcut müşterilerle eşleşti ve atlandı.",
+      "importAnother": "Başka dosya aktar",
+      "viewCustomers": "Müşterileri görüntüle"
+    },
+    "errors": {
+      "tooLarge": "Dosya çok büyük. Maksimum 5 MB."
+    }
+  },
+  "Templates": {
+    "title": "E-posta Şablonları",
+    "subtitle": "Kampanyalar ve tekli e-postalar için yeniden kullanılabilir şablonlar",
+    "createNew": "Şablon oluştur",
+    "createFirst": "İlk şablonunuzu oluşturun",
+    "searchPlaceholder": "İsim, konu veya açıklamaya göre ara",
+    "allCategories": "Tümü",
+    "preview": "Önizleme",
+    "edit": "Düzenle",
+    "duplicate": "Çoğalt",
+    "delete": "Sil",
+    "usedCount": "{count}× kullanıldı",
+    "confirmDelete": "Şablonu '{name}' silinsin mi?",
+    "empty": {
+      "title": "Henüz şablon yok",
+      "noResults": "Eşleşen şablon yok",
+      "subtitle": "İlk yeniden kullanılabilir e-posta şablonunuzu oluşturun",
+      "tryDifferent": "Farklı arama terimleri deneyin"
+    },
+    "categories": {
+      "general": "Genel",
+      "welcome": "Hoş geldin",
+      "follow_up": "Takip",
+      "promotional": "Tanıtım",
+      "transactional": "İşlemsel",
+      "reminder": "Hatırlatma",
+      "announcement": "Duyuru"
+    },
+    "editor": {
+      "titleNew": "Yeni şablon",
+      "titleEdit": "Şablonu düzenle",
+      "name": "Şablon adı",
+      "category": "Kategori",
+      "description": "Açıklama",
+      "subject": "Konu satırı",
+      "subjectPlaceholder": "{{companyName}}'e hoş geldin, {{customerName}}!",
+      "body": "HTML gövdesi",
+      "bodyHint": "HTML etiketleri kullanın. {{customerName}} gibi değişkenler gönderimde değiştirilir.",
+      "bodyPlaceholder": "<p>Merhaba {{customerName}},</p>\\n<p>Aramıza hoş geldin!</p>",
+      "shared": "Ekiple paylaş (diğerleri bu şablonu kullanabilir)",
+      "variableHint": "Değişkenler {{...}} sözdiziminden otomatik çıkarılır",
+      "cancel": "İptal",
+      "save": "Şablonu kaydet"
+    },
+    "errors": {
+      "requiredFields": "Ad, konu ve gövde gereklidir"
+    }
+  },
+  "CustomFields": {
+    "title": "Özel Alanlar",
+    "subtitle": "Müşteri ve anlaşmalar için kendi alanlarınızı tanımlayın",
+    "customers": "Müşteriler",
+    "deals": "Anlaşmalar",
+    "createNew": "Alan ekle",
+    "createFirst": "İlk özel alanınızı oluşturun",
+    "required": "Zorunlu",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "confirmDelete": "Alan '{label}' silinsin mi? Mevcut veri saklanır ama gizlenir.",
+    "empty": {
+      "title": "{entity} için özel alan yok",
+      "subtitle": "İşinize özel veri yakalamak için alanlar ekleyin"
+    },
+    "table": {
+      "label": "Etiket",
+      "key": "Anahtar",
+      "type": "Tür",
+      "required": "Zorunlu"
+    },
+    "types": {
+      "text": "Metin",
+      "number": "Sayı",
+      "date": "Tarih",
+      "select": "Seçim (tek)",
+      "multi_select": "Seçim (çoklu)",
+      "boolean": "Evet/Hayır",
+      "url": "URL",
+      "email": "E-posta"
+    },
+    "editor": {
+      "titleNew": "Yeni özel alan",
+      "titleEdit": "Özel alanı düzenle",
+      "entityType": "Uygula",
+      "type": "Alan türü",
+      "label": "Etiket",
+      "labelPlaceholder": "ör: Sektör, Yıllık Gelir",
+      "key": "Anahtar (isteğe bağlı)",
+      "keyPlaceholder": "ör: industry",
+      "keyHint": "Boş bırakılırsa etiketten otomatik oluşturulur. Sadece küçük harf, sayı ve alt çizgi.",
+      "options": "Seçenekler",
+      "optionsPlaceholder": "Seçenek 1\\nSeçenek 2\\nSeçenek 3",
+      "optionsHint": "Satır başına bir seçenek",
+      "default": "Varsayılan değer (isteğe bağlı)",
+      "required": "Zorunlu alan",
+      "cancel": "İptal",
+      "save": "Alanı kaydet"
+    },
+    "errors": {
+      "labelRequired": "Etiket zorunludur",
+      "optionsRequired": "Seçim alanları için en az bir seçenek gereklidir"
+    }
+  },
+  "Shopify": {
+    "title": "Shopify Entegrasyonu",
+    "subtitle": "Shopify mağazanızdan müşteri ve sipariş senkronize edin",
+    "connectStore": "Mağaza bağla",
+    "connectFirst": "İlk mağazanızı bağlayın",
+    "syncNow": "Şimdi senkronize et",
+    "disconnect": "Bağlantıyı kes",
+    "confirmDisconnect": "'{domain}' bağlantısı kesilsin mi? İçe aktarılan müşteriler kalır.",
+    "lastSync": "Son senkronize",
+    "status": {
+      "idle": "Hazır",
+      "syncing": "Senkronize ediliyor",
+      "success": "Senkronize edildi",
+      "error": "Hata"
+    },
+    "sync": {
+      "success": "{count} müşteri içe aktarıldı"
+    },
+    "stats": {
+      "customers": "Müşteriler",
+      "orders": "Siparişler"
+    },
+    "empty": {
+      "title": "Bağlı Shopify mağazası yok",
+      "subtitle": "Müşteri ve siparişleri Zyrix CRM'ye otomatik içe aktarmak için ilk mağazanızı bağlayın."
+    },
+    "howItWorks": {
+      "title": "Nasıl çalışır",
+      "step1": "Shopify yönetici panelinizde özel bir uygulama oluşturun (Apps → Develop apps)",
+      "step2": "Müşteri ve siparişlere okuma erişimi verin",
+      "step3": "Admin API erişim belirtecini kopyalayın",
+      "step4": "Mağaza alan adınızla birlikte aşağıya yapıştırın"
+    },
+    "connect": {
+      "title": "Shopify mağazası bağla",
+      "domain": "Mağaza alan adı",
+      "domainHint": "Örnek: your-shop.myshopify.com",
+      "token": "Admin API erişim belirteci",
+      "tokenHint": "shpat_... ile başlar. Sadece customer:read ve orders:read kapsamları gerekir.",
+      "cancel": "İptal",
+      "connect": "Bağla",
+      "errors": {
+        "required": "Alan adı ve belirteç gereklidir"
+      }
+    }
+  },
+  "Timeline": {
+    "empty": {
+      "title": "Henüz etkinlik yok",
+      "subtitle": "Aramalar, e-postalar, anlaşmalar ve diğer etkinlikler burada görünecek"
+    },
+    "filters": {
+      "all": "Tümü"
+    },
+    "types": {
+      "activity": "Etkinlik",
+      "call": "Aramalar",
+      "email": "E-postalar",
+      "meeting": "Toplantılar",
+      "note": "Notlar",
+      "deal_created": "Yeni anlaşmalar",
+      "deal_stage_change": "Anlaşma güncellemeleri",
+      "task_created": "Görevler",
+      "task_completed": "Tamamlanan görevler",
+      "quote_issued": "Gönderilen teklifler",
+      "quote_accepted": "Kabul edilen teklifler",
+      "quote_rejected": "Reddedilen teklifler",
+      "contract_signed": "Sözleşmeler",
+      "email_campaign": "Kampanyalar",
+      "whatsapp_message": "WhatsApp",
+      "loyalty_earned": "Kazanılan puanlar",
+      "loyalty_redeemed": "Kullanılan puanlar"
+    }
   }
 }
