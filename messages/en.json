@@ -2074,5 +2074,82 @@
       "selectCustomer": "Please select a customer",
       "enterTitle": "Please enter a title"
     }
+  },
+  "Portal": {
+    "login": {
+      "brandTitle": "Customer Portal",
+      "brandSubtitle": "Secure access to your account",
+      "title": "Sign in",
+      "subtitle": "Enter your email and we'll send you a magic link to sign in — no password required.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@company.com",
+      "submit": "Send me a sign-in link",
+      "footerHint": "If your email is registered, you'll receive a link within a minute.",
+      "sent": {
+        "title": "Check your inbox",
+        "sentTo": "We sent a sign-in link to",
+        "hint": "The link expires in 15 minutes. If you don't see it, check your spam folder.",
+        "tryAgain": "Use a different email"
+      }
+    },
+    "callback": {
+      "title": "Signing you in…",
+      "subtitle": "Verifying your magic link",
+      "errorTitle": "Couldn't sign you in",
+      "backToLogin": "Back to sign in",
+      "errors": {
+        "missingToken": "No token found in URL",
+        "invalidToken": "Invalid or expired token"
+      }
+    },
+    "dashboard": {
+      "customerPortal": "Customer Portal",
+      "welcome": "Welcome, {name}",
+      "welcomeSubtitle": "Here's an overview of your account",
+      "logout": "Sign out",
+      "backToLogin": "Back to sign in",
+      "profile": {
+        "title": "Your Profile",
+        "company": "Company",
+        "email": "Email",
+        "phone": "Phone"
+      },
+      "stats": {
+        "quotes": "Quotes",
+        "contracts": "Contracts",
+        "loyaltyBalance": "Loyalty Points"
+      },
+      "quotes": {
+        "title": "Your Quotes",
+        "subtitle": "Recent quotes and proposals",
+        "empty": "No quotes yet",
+        "validUntil": "Valid until"
+      },
+      "contracts": {
+        "title": "Your Contracts",
+        "subtitle": "Active and past agreements",
+        "empty": "No contracts yet",
+        "until": "Until"
+      },
+      "status": {
+        "draft": "Draft",
+        "sent": "Sent",
+        "viewed": "Viewed",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "expired": "Expired"
+      },
+      "contractStatus": {
+        "draft": "Draft",
+        "pending_signature": "Pending",
+        "signed": "Signed",
+        "active": "Active",
+        "expired": "Expired",
+        "terminated": "Terminated"
+      },
+      "footer": {
+        "needHelp": "Need help? Contact"
+      }
+    }
   }
 }

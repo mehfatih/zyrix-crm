@@ -2074,5 +2074,82 @@
       "selectCustomer": "Lütfen bir müşteri seçin",
       "enterTitle": "Lütfen bir başlık girin"
     }
+  },
+  "Portal": {
+    "login": {
+      "brandTitle": "Müşteri Portalı",
+      "brandSubtitle": "Hesabınıza güvenli erişim",
+      "title": "Giriş yap",
+      "subtitle": "E-postanızı girin, giriş için sihirli bağlantı gönderelim — şifre gerekmez.",
+      "emailLabel": "E-posta adresi",
+      "emailPlaceholder": "you@company.com",
+      "submit": "Giriş bağlantısı gönder",
+      "footerHint": "E-postanız kayıtlıysa, bir dakika içinde bağlantıyı alacaksınız.",
+      "sent": {
+        "title": "Gelen kutunuzu kontrol edin",
+        "sentTo": "Giriş bağlantısını şu adrese gönderdik:",
+        "hint": "Bağlantı 15 dakika geçerlidir. Görmüyorsanız spam klasörünü kontrol edin.",
+        "tryAgain": "Farklı bir e-posta kullan"
+      }
+    },
+    "callback": {
+      "title": "Giriş yapılıyor…",
+      "subtitle": "Sihirli bağlantı doğrulanıyor",
+      "errorTitle": "Giriş yapılamadı",
+      "backToLogin": "Girişe dön",
+      "errors": {
+        "missingToken": "URL'de token bulunamadı",
+        "invalidToken": "Geçersiz veya süresi dolmuş token"
+      }
+    },
+    "dashboard": {
+      "customerPortal": "Müşteri Portalı",
+      "welcome": "Hoş geldin, {name}",
+      "welcomeSubtitle": "Hesabınıza genel bakış",
+      "logout": "Çıkış yap",
+      "backToLogin": "Girişe dön",
+      "profile": {
+        "title": "Profiliniz",
+        "company": "Şirket",
+        "email": "E-posta",
+        "phone": "Telefon"
+      },
+      "stats": {
+        "quotes": "Teklifler",
+        "contracts": "Sözleşmeler",
+        "loyaltyBalance": "Sadakat Puanı"
+      },
+      "quotes": {
+        "title": "Tekliflerin",
+        "subtitle": "Son teklifler ve öneriler",
+        "empty": "Henüz teklif yok",
+        "validUntil": "Geçerlilik"
+      },
+      "contracts": {
+        "title": "Sözleşmelerin",
+        "subtitle": "Aktif ve geçmiş anlaşmalar",
+        "empty": "Henüz sözleşme yok",
+        "until": "Bitiş"
+      },
+      "status": {
+        "draft": "Taslak",
+        "sent": "Gönderildi",
+        "viewed": "Görüntülendi",
+        "accepted": "Kabul",
+        "rejected": "Red",
+        "expired": "Süresi doldu"
+      },
+      "contractStatus": {
+        "draft": "Taslak",
+        "pending_signature": "İmza Bekliyor",
+        "signed": "İmzalandı",
+        "active": "Aktif",
+        "expired": "Süresi doldu",
+        "terminated": "Feshedildi"
+      },
+      "footer": {
+        "needHelp": "Yardım mı lazım? İletişim:"
+      }
+    }
   }
 }

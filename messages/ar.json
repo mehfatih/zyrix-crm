@@ -2074,5 +2074,82 @@
       "selectCustomer": "الرجاء اختيار عميل",
       "enterTitle": "الرجاء إدخال عنوان"
     }
+  },
+  "Portal": {
+    "login": {
+      "brandTitle": "بوابة العملاء",
+      "brandSubtitle": "وصول آمن إلى حسابك",
+      "title": "تسجيل الدخول",
+      "subtitle": "أدخل بريدك الإلكتروني وسنرسل لك رابط دخول مباشر — لا حاجة لكلمة مرور.",
+      "emailLabel": "عنوان البريد",
+      "emailPlaceholder": "you@company.com",
+      "submit": "أرسل لي رابط الدخول",
+      "footerHint": "إذا كان بريدك مسجّلاً، ستستلم الرابط خلال دقيقة.",
+      "sent": {
+        "title": "تفقّد بريدك",
+        "sentTo": "أرسلنا رابط الدخول إلى",
+        "hint": "الرابط صالح لمدة 15 دقيقة. إن لم تراه، تفقّد مجلد الرسائل غير المرغوب فيها.",
+        "tryAgain": "استخدم بريدًا آخر"
+      }
+    },
+    "callback": {
+      "title": "جاري تسجيل دخولك…",
+      "subtitle": "التحقق من الرابط السحري",
+      "errorTitle": "تعذّر تسجيل الدخول",
+      "backToLogin": "العودة لتسجيل الدخول",
+      "errors": {
+        "missingToken": "لم يتم العثور على رمز في الرابط",
+        "invalidToken": "رمز غير صالح أو منتهي"
+      }
+    },
+    "dashboard": {
+      "customerPortal": "بوابة العميل",
+      "welcome": "مرحبًا، {name}",
+      "welcomeSubtitle": "إليك نظرة عامة على حسابك",
+      "logout": "تسجيل الخروج",
+      "backToLogin": "العودة لتسجيل الدخول",
+      "profile": {
+        "title": "ملفّك الشخصي",
+        "company": "الشركة",
+        "email": "البريد",
+        "phone": "الهاتف"
+      },
+      "stats": {
+        "quotes": "عروض الأسعار",
+        "contracts": "العقود",
+        "loyaltyBalance": "نقاط الولاء"
+      },
+      "quotes": {
+        "title": "عروض الأسعار الخاصة بك",
+        "subtitle": "العروض والاقتراحات الأخيرة",
+        "empty": "لا توجد عروض بعد",
+        "validUntil": "صالح حتى"
+      },
+      "contracts": {
+        "title": "عقودك",
+        "subtitle": "الاتفاقيات النشطة والسابقة",
+        "empty": "لا توجد عقود بعد",
+        "until": "حتى"
+      },
+      "status": {
+        "draft": "مسودة",
+        "sent": "مُرسل",
+        "viewed": "تمّت المعاينة",
+        "accepted": "مقبول",
+        "rejected": "مرفوض",
+        "expired": "منتهي"
+      },
+      "contractStatus": {
+        "draft": "مسودة",
+        "pending_signature": "بانتظار التوقيع",
+        "signed": "موقّع",
+        "active": "نشط",
+        "expired": "منتهي",
+        "terminated": "مُنهى"
+      },
+      "footer": {
+        "needHelp": "تحتاج مساعدة؟ تواصل مع"
+      }
+    }
   }
 }
