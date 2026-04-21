@@ -24,6 +24,9 @@ import {
   BarChart3,
   Settings,
   LogOut,
+  CreditCard,
+  Shield,
+  History,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { fetchUnreadCount } from "@/lib/api/chat";
@@ -200,6 +203,27 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           >
             <Sparkles className="w-3.5 h-3.5" />
             E-commerce
+          </Link>
+          <Link
+            href={`/${locale}/settings/billing`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <CreditCard className="w-3.5 h-3.5" />
+            Billing
+          </Link>
+          <Link
+            href={`/${locale}/settings/security`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <Shield className="w-3.5 h-3.5" />
+            Security
+          </Link>
+          <Link
+            href={`/${locale}/settings/audit`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <History className="w-3.5 h-3.5" />
+            Audit log
           </Link>
         </div>
 

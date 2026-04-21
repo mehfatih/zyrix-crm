@@ -896,3 +896,160 @@ export async function listAuditActions(): Promise<string[]> {
   );
   return data.data;
 }
+
+// ============================================================================
+// BILLING — merchant self-service
+// ============================================================================
+
+export interface BillingPlan {
+  id: string;
+  slug: string;
+  name: string;
+  nameAr: string;
+  nameTr: string;
+  description: string | null;
+  descriptionAr: string | null;
+  descriptionTr: string | null;
+  priceMonthlyUsd: string;
+  priceYearlyUsd: string;
+  priceMonthlyTry: string;
+  priceYearlyTry: string;
+  priceMonthlySar: string;
+  priceYearlySar: string;
+  maxUsers: number;
+  maxCustomers: number;
+  maxDeals: number;
+  features: string[];
+  isFeatured: boolean;
+  sortOrder: number;
+  color: string;
+}
+
+export interface CurrentSubscription {
+  id: string;
+  planId: string;
+  status: string;
+  billingCycle: string;
+  currency: string;
+  amount: string;
+  currentPeriodStart: string;
+  currentPeriodEnd: string;
+  cancelAt: string | null;
+  cancelledAt: string | null;
+  trialStart: string | null;
+  trialEnd: string | null;
+  gateway: string | null;
+  createdAt: string;
+  plan: {
+    id: string;
+    slug: string;
+    name: string;
+    nameAr: string;
+    nameTr: string;
+    priceMonthlyUsd: string;
+    priceYearlyUsd: string;
+    priceMonthlyTry: string;
+    priceYearlyTry: string;
+    priceMonthlySar: string;
+    priceYearlySar: string;
+    features: string[];
+  };
+}
+
+export interface CurrentBilling {
+  company: {
+    id: string;
+    plan: string;
+    trialEndsAt: string | null;
+    status: string;
+    baseCurrency: string | null;
+  };
+  subscription: CurrentSubscription | null;
+}
+
+export interface Invoice {
+  id: string;
+  amount: string;
+  currency: string;
+  status: string;
+  gateway: string;
+  gatewayPaymentId: string | null;
+  method: string | null;
+  last4: string | null;
+  cardBrand: string | null;
+  description: string | null;
+  failureReason: string | null;
+  paidAt: string | null;
+  refundedAt: string | null;
+  createdAt: string;
+  subscription: {
+    billingCycle: string;
+    plan: { name: string; slug: string };
+  } | null;
+}
+
+export interface InvoicePage {
+  items: Invoice[];
+  pagination: { total: number; limit: number; offset: number };
+}
+
+export async function listBillingPlans(): Promise<BillingPlan[]> {
+  const { data } = await apiClient.get<ApiSuccess<BillingPlan[]>>(
+    "/api/billing/plans"
+  );
+  return data.data;
+}
+
+export async function getCurrentBilling(): Promise<CurrentBilling> {
+  const { data } = await apiClient.get<ApiSuccess<CurrentBilling>>(
+    "/api/billing/current"
+  );
+  return data.data;
+}
+
+export async function listInvoices(
+  limit = 50,
+  offset = 0
+): Promise<InvoicePage> {
+  const { data } = await apiClient.get<ApiSuccess<InvoicePage>>(
+    "/api/billing/invoices",
+    { params: { limit, offset } }
+  );
+  return data.data;
+}
+
+export async function cancelSubscription(
+  subscriptionId: string
+): Promise<{ cancelled: true; immediate: boolean }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ cancelled: true; immediate: boolean }>
+  >(`/api/billing/subscriptions/${subscriptionId}/cancel`);
+  return data.data;
+}
+
+export async function resumeSubscription(
+  subscriptionId: string
+): Promise<{ resumed: true }> {
+  const { data } = await apiClient.post<ApiSuccess<{ resumed: true }>>(
+    `/api/billing/subscriptions/${subscriptionId}/resume`
+  );
+  return data.data;
+}
+
+// Checkout session creation — hits the public endpoint (no auth required
+// since the gateway flow starts before the user's session is fully
+// established for plan upgrades).
+export async function createCheckoutSession(dto: {
+  companyId: string;
+  planSlug: string;
+  billingCycle: "monthly" | "yearly";
+  currency: "USD" | "TRY" | "SAR" | "AED";
+  buyerCountry?: string;
+  successUrl?: string;
+  cancelUrl?: string;
+}): Promise<{ gatewaySessionId: string; redirectUrl: string; expiresAt: string }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ gatewaySessionId: string; redirectUrl: string; expiresAt: string }>
+  >("/api/payments/checkout/create-session", dto);
+  return data.data;
+}
