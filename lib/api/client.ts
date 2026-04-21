@@ -29,6 +29,39 @@ export const apiClient: AxiosInstance = axios.create({
 });
 
 // ─────────────────────────────────────────────────────────────────────────
+// SESSION TELEMETRY — fire-and-forget record of session_expired events
+// ─────────────────────────────────────────────────────────────────────────
+// Called from the response interceptor when the refresh-token path
+// fails. Uses native fetch with keepalive=true so the request survives
+// the imminent page navigation to /signin. We intentionally DON'T
+// import from session-events.ts here — that module imports apiClient,
+// and going the other way would create a circular import.
+//
+// Silently swallows all failures — telemetry must never block the
+// critical path of getting the user out to the signin page.
+function reportSessionExpired() {
+  if (typeof window === "undefined") return;
+  const token = getAccessToken();
+  if (!token) return; // nothing to authenticate with; skip
+  try {
+    void fetch(`${API_URL}/api/session-events`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        eventType: "session_expired",
+        metadata: { source: "refresh_failed" },
+      }),
+      keepalive: true, // survives page unload
+    }).catch(() => {});
+  } catch {
+    /* ignore */
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 // REQUEST INTERCEPTOR — Attach access token
 // ─────────────────────────────────────────────────────────────────────────
 apiClient.interceptors.request.use(
@@ -114,6 +147,7 @@ apiClient.interceptors.response.use(
     const refreshToken = getRefreshToken();
     if (!refreshToken) {
       isRefreshing = false;
+      reportSessionExpired();
       clearAuth();
       if (typeof window !== "undefined") {
         window.location.href = "/signin";
@@ -141,6 +175,7 @@ apiClient.interceptors.response.use(
       return apiClient(originalRequest);
     } catch (refreshError) {
       processQueue(null);
+      reportSessionExpired();
       clearAuth();
       if (typeof window !== "undefined") {
         window.location.href = "/signin";

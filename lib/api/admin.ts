@@ -182,6 +182,8 @@ export interface AdminCompanyListItem {
   country: string | null;
   industry: string | null;
   size: string | null;
+  baseCurrency: string | null;
+  idleTimeoutMinutes: number | null;
   createdAt: string;
   updatedAt: string;
   _count: { users: number; customers: number; deals: number };
@@ -362,6 +364,8 @@ export async function updateCompany(
     country?: string;
     industry?: string;
     size?: string;
+    baseCurrency?: string | null;
+    idleTimeoutMinutes?: number | null;
   }
 ) {
   const { data } = await adminApi.patch<ApiEnvelope<AdminCompanyListItem>>(

@@ -87,6 +87,8 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
     country: string;
     industry: string;
     size: string;
+    baseCurrency: string;
+    idleTimeoutMinutes: number;
   }>({
     name: "",
     plan: "",
@@ -94,6 +96,8 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
     country: "",
     industry: "",
     size: "",
+    baseCurrency: "",
+    idleTimeoutMinutes: 10,
   });
   const [saving, setSaving] = useState(false);
 
@@ -126,6 +130,9 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
         country: c.country || "",
         industry: c.industry || "",
         size: c.size || "",
+        baseCurrency: c.baseCurrency || "",
+        idleTimeoutMinutes:
+          typeof c.idleTimeoutMinutes === "number" ? c.idleTimeoutMinutes : 10,
       });
     } catch (err: unknown) {
       setError(t("loadError"));
@@ -143,7 +150,17 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
     setSaving(true);
     setBanner(null);
     try {
-      await updateCompany(companyId, editForm);
+      await updateCompany(companyId, {
+        name: editForm.name,
+        plan: editForm.plan,
+        billingEmail: editForm.billingEmail,
+        country: editForm.country,
+        industry: editForm.industry,
+        size: editForm.size,
+        baseCurrency: editForm.baseCurrency || null,
+        idleTimeoutMinutes:
+          editForm.idleTimeoutMinutes > 0 ? editForm.idleTimeoutMinutes : null,
+      });
       setBanner({ tone: "success", text: t("saved") });
       setEditing(false);
       await loadAll();
@@ -427,6 +444,77 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
               value={editForm.size}
               onChange={(v) => setEditForm({ ...editForm, size: v })}
             />
+
+            {/* Base currency — dropdown with curated list. Merchant's
+                default reporting currency; feeds the /reports page
+                pill toggle (SAR (Yours) / USD). */}
+            <div>
+              <label className="mb-1 block text-xs font-medium uppercase text-slate-500 tracking-wide">
+                {t("baseCurrency") ?? "Base currency"}
+              </label>
+              <select
+                value={editForm.baseCurrency}
+                onChange={(e) =>
+                  setEditForm({ ...editForm, baseCurrency: e.target.value })
+                }
+                dir="ltr"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+              >
+                <option value="">
+                  {t("useCountryDefault") ?? "Use country default"}
+                </option>
+                {["USD", "SAR", "TRY", "AED", "EUR", "GBP", "EGP", "KWD", "QAR", "BHD", "OMR", "IQD"].map(
+                  (c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  )
+                )}
+              </select>
+              <p className="mt-1 text-xs text-slate-500">
+                {t("baseCurrencyHint") ??
+                  "Default reporting currency. Leave empty to use the country's currency."}
+              </p>
+            </div>
+
+            {/* Idle timeout — slider 0..60 minutes with "Disabled" label
+                when 0. Merchant's dashboard auto-locks after this many
+                minutes of inactivity. Also explicitly zero-out button
+                for TV-dashboard / kiosk merchants. */}
+            <div className="col-span-full">
+              <label className="mb-1 flex items-center justify-between text-xs font-medium uppercase text-slate-500 tracking-wide">
+                <span>{t("idleTimeout") ?? "Idle auto-lock timeout"}</span>
+                <span className="font-mono tabular-nums text-sm text-cyan-900 normal-case tracking-normal">
+                  {editForm.idleTimeoutMinutes === 0
+                    ? t("disabled") ?? "Disabled"
+                    : `${editForm.idleTimeoutMinutes} ${t("minutes") ?? "min"}`}
+                </span>
+              </label>
+              <input
+                type="range"
+                min={0}
+                max={60}
+                step={1}
+                value={editForm.idleTimeoutMinutes}
+                onChange={(e) =>
+                  setEditForm({
+                    ...editForm,
+                    idleTimeoutMinutes: Number(e.target.value),
+                  })
+                }
+                className="w-full accent-cyan-600"
+              />
+              <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400">
+                <span>0 ({t("disabled") ?? "Disabled"})</span>
+                <span>10 ({t("default") ?? "Default"})</span>
+                <span>60</span>
+              </div>
+              <p className="mt-1 text-xs text-slate-500">
+                {t("idleTimeoutHint") ??
+                  "Dashboard auto-locks after this many idle minutes. Set to 0 for TV dashboards or kiosks that should stay signed in."}
+              </p>
+            </div>
+
             <div className="col-span-full flex gap-2">
               <button
                 onClick={handleSave}
