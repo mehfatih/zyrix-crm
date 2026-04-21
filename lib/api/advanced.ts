@@ -592,3 +592,61 @@ export async function listWebhookEvents(params?: {
   );
   return data.data;
 }
+
+// ============================================================================
+// E-COMMERCE ANALYTICS
+// ============================================================================
+export interface EcommerceAnalytics {
+  baseCurrency: string;
+  windowDays: number;
+  generatedAt: string;
+  totals: {
+    storesConnected: number;
+    totalCustomers: number;
+    totalCustomersInWindow: number;
+    totalCustomersInPriorWindow: number;
+    customerGrowthPct: number;
+    totalOrders: number;
+    totalWonRevenue: number;
+  };
+  platforms: Array<{
+    platform: string;
+    storesConnected: number;
+    customers: number;
+    customersInWindow: number;
+    customersInPriorWindow: number;
+    orders: number;
+    ordersInWindow: number;
+    wonOrders: number;
+    wonRevenue: number;
+    avgOrderValue: number;
+  }>;
+  topCustomers: Array<{
+    id: string;
+    fullName: string;
+    email: string | null;
+    source: string | null;
+    lifetimeValue: number;
+  }>;
+  dailyRevenue: Array<{ date: string; revenue: number }>;
+  stores: Array<{
+    id: string;
+    platform: string;
+    shopDomain: string;
+    lastSyncAt: string | null;
+    syncStatus: string;
+    totalCustomersImported: number;
+    totalOrdersImported: number;
+  }>;
+}
+
+export async function getEcommerceAnalytics(params?: {
+  baseCurrency?: string;
+  windowDays?: number;
+}): Promise<EcommerceAnalytics> {
+  const { data } = await apiClient.get<ApiSuccess<EcommerceAnalytics>>(
+    "/api/reports/ecommerce",
+    { params: params || {} }
+  );
+  return data.data;
+}

@@ -18,7 +18,10 @@ import {
   Save,
   RefreshCw,
   ArrowRightLeft,
+  Store,
+  ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 import {
   fetchRates,
   upsertRate,
@@ -148,6 +151,37 @@ export default function ReportsPage() {
             </button>
           </div>
         </div>
+
+        {/* Related reports — deep links to specialized dashboards */}
+        <Link
+          href={`/${locale}/reports/ecommerce`}
+          className="group flex items-center gap-3 bg-gradient-to-r from-cyan-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-cyan-300 hover:shadow-sm transition-all"
+        >
+          <div className="w-10 h-10 rounded-lg bg-white border border-sky-200 flex items-center justify-center flex-shrink-0">
+            <Store className="w-5 h-5 text-cyan-600" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-semibold text-cyan-900">
+              {locale === "ar"
+                ? "تحليلات التجارة الإلكترونية"
+                : locale === "tr"
+                  ? "E-ticaret analitiği"
+                  : "E-commerce analytics"}
+            </h3>
+            <p className="text-xs text-slate-600 mt-0.5">
+              {locale === "ar"
+                ? "الأداء عبر جميع المتاجر المتصلة — تفصيل المنصات، أفضل العملاء، واتجاه الإيرادات"
+                : locale === "tr"
+                  ? "Tüm bağlı mağazalardaki performans — platform dağılımı, en iyi müşteriler ve gelir trendi"
+                  : "Performance across all connected stores — platform breakdown, top customers, revenue trend"}
+            </p>
+          </div>
+          <ArrowRight
+            className={`w-4 h-4 text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
+              locale === "ar" ? "-scale-x-100" : ""
+            }`}
+          />
+        </Link>
 
         {/* Warning banner for unconvertible currencies */}
         {summary?.hasUnconvertible && (
