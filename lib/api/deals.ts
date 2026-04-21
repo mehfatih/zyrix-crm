@@ -72,6 +72,7 @@ export async function listDeals(params?: {
   limit?: number;
   stage?: string;
   customerId?: string;
+  brandId?: string; // UUID or 'unbranded'; undefined = all brands
 }): Promise<DealsListResponse> {
   const { data } = await apiClient.get<ApiSuccess<DealsListResponse>>(
     "/api/deals",

@@ -2089,3 +2089,113 @@ export async function deleteScheduledReport(
   );
   return data.data;
 }
+
+// ============================================================================
+// MULTI-BRAND
+// ============================================================================
+
+export interface Brand {
+  id: string;
+  companyId: string;
+  name: string;
+  slug: string;
+  logoUrl: string | null;
+  primaryColor: string | null;
+  description: string | null;
+  isDefault: boolean;
+  isArchived: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BrandStats {
+  brandId: string | null;
+  customerCount: number;
+  dealCount: number;
+  activityCount: number;
+}
+
+export async function listBrands(
+  opts?: { includeArchived?: boolean }
+): Promise<Brand[]> {
+  const { data } = await apiClient.get<ApiSuccess<Brand[]>>("/api/brands", {
+    params: opts?.includeArchived ? { includeArchived: "true" } : {},
+  });
+  return data.data;
+}
+
+export async function getBrandStats(): Promise<BrandStats[]> {
+  const { data } = await apiClient.get<ApiSuccess<BrandStats[]>>(
+    "/api/brands/stats"
+  );
+  return data.data;
+}
+
+export async function createBrand(input: {
+  name: string;
+  slug: string;
+  logoUrl?: string | null;
+  primaryColor?: string | null;
+  description?: string | null;
+}): Promise<Brand> {
+  const { data } = await apiClient.post<ApiSuccess<Brand>>(
+    "/api/brands",
+    input
+  );
+  return data.data;
+}
+
+export async function updateBrand(
+  id: string,
+  patch: Partial<{
+    name: string;
+    slug: string;
+    logoUrl: string | null;
+    primaryColor: string | null;
+    description: string | null;
+    isArchived: boolean;
+  }>
+): Promise<Brand> {
+  const { data } = await apiClient.patch<ApiSuccess<Brand>>(
+    `/api/brands/${encodeURIComponent(id)}`,
+    patch
+  );
+  return data.data;
+}
+
+export async function setDefaultBrand(id: string): Promise<Brand> {
+  const { data } = await apiClient.post<ApiSuccess<Brand>>(
+    `/api/brands/${encodeURIComponent(id)}/default`,
+    {}
+  );
+  return data.data;
+}
+
+export async function deleteBrand(
+  id: string
+): Promise<{ deleted: boolean; archived?: boolean }> {
+  const { data } = await apiClient.delete<
+    ApiSuccess<{ deleted: boolean; archived?: boolean }>
+  >(`/api/brands/${encodeURIComponent(id)}`);
+  return data.data;
+}
+
+// ── Active-brand localStorage helpers ────────────────────────────────
+//
+// The brand switcher stores the currently-active brand's id in
+// localStorage. A custom window event 'zyrix:brand-changed' fires
+// when the selection changes so list pages can refetch.
+
+const ACTIVE_BRAND_KEY = "zyrix_active_brand_id";
+
+export function getActiveBrandId(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(ACTIVE_BRAND_KEY);
+}
+
+export function setActiveBrandId(value: string | null): void {
+  if (typeof window === "undefined") return;
+  if (value === null) localStorage.removeItem(ACTIVE_BRAND_KEY);
+  else localStorage.setItem(ACTIVE_BRAND_KEY, value);
+  window.dispatchEvent(new CustomEvent("zyrix:brand-changed", { detail: value }));
+}

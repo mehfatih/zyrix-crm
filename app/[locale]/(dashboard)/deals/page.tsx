@@ -10,6 +10,7 @@ import { formatDate, cn } from "@/lib/utils";
 import ExportButton from "@/components/advanced/ExportButton";
 import BulkActionBar from "@/components/advanced/BulkActionBar";
 import AdvancedFilterBuilder from "@/components/advanced/AdvancedFilterBuilder";
+import { useActiveBrand } from "@/hooks/useActiveBrand";
 
 const DEAL_FILTER_FIELDS = [
   { key: "title", label: "Title", type: "text" as const },
@@ -47,12 +48,14 @@ export default function DealsPage() {
   const [showFilter, setShowFilter] = useState(false);
   const [filterResults, setFilterResults] = useState<Deal[] | null>(null);
   const [filterCount, setFilterCount] = useState(0);
+  const activeBrandId = useActiveBrand();
 
   const fetchDeals = async () => {
     setLoading(true);
     try {
       const result = await listDeals({
         stage: stageFilter || undefined,
+        brandId: activeBrandId ?? undefined,
         limit: 100,
       });
       setDeals(result.deals);
@@ -67,7 +70,7 @@ export default function DealsPage() {
     if (filterResults) return;
     fetchDeals();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stageFilter, filterResults]);
+  }, [stageFilter, filterResults, activeBrandId]);
 
   const handleCreateSuccess = () => {
     setShowCreateModal(false);

@@ -30,12 +30,14 @@ import {
   Zap,
   Key,
   Palette,
+  Store,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { fetchUnreadCount } from "@/lib/api/chat";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import ImpersonationBanner from "./ImpersonationBanner";
 import { NotificationBell } from "@/components/collab/NotificationBell";
+import { BrandSwitcher } from "@/components/layout/BrandSwitcher";
 import type { Locale } from "@/i18n";
 import { getInitials, cn } from "@/lib/utils";
 import GlobalSearchBar from "@/components/advanced/GlobalSearchBar";
@@ -152,6 +154,11 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           <NotificationBell />
         </div>
 
+        {/* Brand switcher — self-hides if merchant has no brands configured */}
+        <div className="px-3 pt-3">
+          <BrandSwitcher />
+        </div>
+
         <nav className="flex-1 p-3 space-y-1">
           {navItems.map((item) => {
             const isActive = pathname?.startsWith(item.href);
@@ -247,6 +254,13 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           >
             <Palette className="w-3.5 h-3.5" />
             Branding
+          </Link>
+          <Link
+            href={`/${locale}/settings/brands`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <Store className="w-3.5 h-3.5" />
+            Brands
           </Link>
         </div>
 

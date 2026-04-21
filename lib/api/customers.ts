@@ -71,6 +71,7 @@ export async function listCustomers(params?: {
   limit?: number;
   search?: string;
   status?: string;
+  brandId?: string; // UUID or 'unbranded'; undefined = all brands
 }): Promise<CustomersListResponse> {
   const { data } = await apiClient.get<ApiSuccess<CustomersListResponse>>(
     "/api/customers",

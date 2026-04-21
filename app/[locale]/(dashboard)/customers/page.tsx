@@ -25,6 +25,7 @@ import { CreateCustomerModal } from "@/components/customers/CreateCustomerModal"
 import ExportButton from "@/components/advanced/ExportButton";
 import BulkActionBar from "@/components/advanced/BulkActionBar";
 import AdvancedFilterBuilder from "@/components/advanced/AdvancedFilterBuilder";
+import { useActiveBrand } from "@/hooks/useActiveBrand";
 
 const CUSTOMER_FILTER_FIELDS = [
   { key: "fullName", label: "Name", type: "text" as const },
@@ -83,6 +84,7 @@ function CustomersPageInner() {
   const [showCreate, setShowCreate] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [showFilter, setShowFilter] = useState(false);
+  const activeBrandId = useActiveBrand();
   const [filterResults, setFilterResults] = useState<Customer[] | null>(null);
   const [filterCount, setFilterCount] = useState(0);
 
@@ -105,6 +107,7 @@ function CustomersPageInner() {
       const result = await listCustomers({
         search: search || undefined,
         status: statusFilter || undefined,
+        brandId: activeBrandId ?? undefined,
         limit: 50,
       });
       setCustomers(result.customers);
@@ -120,7 +123,7 @@ function CustomersPageInner() {
     if (filterResults) return; // skip when advanced filter is active
     fetchCustomers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, statusFilter, filterResults]);
+  }, [search, statusFilter, filterResults, activeBrandId]);
 
   const displayedCustomers = filterResults ?? customers;
   const displayedTotal = filterResults ? filterCount : total;
