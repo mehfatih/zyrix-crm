@@ -17,6 +17,12 @@ import {
   Receipt,
 } from "lucide-react";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import { useAuth } from "@/lib/auth/context";
+import {
+  regimesForCountry,
+  availableCurrencies,
+  getCountryProfile,
+} from "@/lib/locale/country-profiles";
 import {
   listTaxInvoices,
   issueTaxInvoice,
@@ -93,6 +99,12 @@ export default function TaxInvoicesPage() {
   const tr = (en: string, ar: string, trk: string) =>
     locale === "ar" ? ar : locale === "tr" ? trk : en;
 
+  // Location-gating: only show regimes that apply to the merchant's
+  // country. A Saudi merchant shouldn't see Turkish e-Fatura options
+  // and vice versa.
+  const { company } = useAuth();
+  const allowedRegimes = regimesForCountry(company?.country);
+
   const [invoices, setInvoices] = useState<TaxInvoice[]>([]);
   const [total, setTotal] = useState(0);
   const [regimeFilter, setRegimeFilter] = useState<TaxRegime | "">("");
@@ -168,6 +180,8 @@ export default function TaxInvoicesPage() {
           <IssueInvoiceForm
             locale={locale}
             tr={tr}
+            allowedRegimes={allowedRegimes}
+            countryIso2={company?.country ?? null}
             onCancel={() => setShowIssue(false)}
             onSaved={() => {
               setShowIssue(false);
@@ -189,7 +203,9 @@ export default function TaxInvoicesPage() {
             {tr("All", "الكل", "Tümü")}
             <span className="ms-1 opacity-70">({total})</span>
           </button>
-          {(Object.keys(REGIME_META) as TaxRegime[]).map((r) => (
+          {(Object.keys(REGIME_META) as TaxRegime[])
+            .filter((r) => allowedRegimes.includes(r))
+            .map((r) => (
             <button
               key={r}
               onClick={() => setRegimeFilter(r)}
@@ -400,15 +416,25 @@ function QrPreview({
 function IssueInvoiceForm({
   locale,
   tr,
+  allowedRegimes,
+  countryIso2,
   onCancel,
   onSaved,
 }: {
   locale: "en" | "ar" | "tr";
   tr: (en: string, ar: string, trk: string) => string;
+  allowedRegimes: TaxRegime[];
+  countryIso2: string | null;
   onCancel: () => void;
   onSaved: () => void;
 }) {
-  const [regime, setRegime] = useState<TaxRegime>("zatca");
+  // Default regime: first allowed for this country (falls back to zatca
+  // only if country is unknown, which shouldn't happen in practice).
+  const defaultRegime: TaxRegime =
+    allowedRegimes[0] ?? ("zatca" as TaxRegime);
+  const currencyOptions = availableCurrencies(countryIso2);
+
+  const [regime, setRegime] = useState<TaxRegime>(defaultRegime);
   const [type, setType] = useState<"standard" | "simplified">("standard");
   const [sellerName, setSellerName] = useState("");
   const [sellerVatNo, setSellerVatNo] = useState("");
@@ -416,8 +442,8 @@ function IssueInvoiceForm({
   const [buyerName, setBuyerName] = useState("");
   const [buyerVatNo, setBuyerVatNo] = useState("");
   const [buyerAddress, setBuyerAddress] = useState("");
-  const [currency, setCurrency] = useState(REGIME_META.zatca.currency);
-  const [taxRate, setTaxRate] = useState(REGIME_META.zatca.defaultTax);
+  const [currency, setCurrency] = useState(REGIME_META[defaultRegime].currency);
+  const [taxRate, setTaxRate] = useState(REGIME_META[defaultRegime].defaultTax);
   const [discountAmount, setDiscountAmount] = useState(0);
   const [items, setItems] = useState<TaxLineItem[]>([
     { description: "", quantity: 1, unitPrice: 0, lineTotal: 0 },
@@ -520,7 +546,9 @@ function IssueInvoiceForm({
           {tr("Regime", "النظام الضريبي", "Rejim")}
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          {(Object.keys(REGIME_META) as TaxRegime[]).map((r) => (
+          {(Object.keys(REGIME_META) as TaxRegime[])
+            .filter((r) => allowedRegimes.includes(r))
+            .map((r) => (
             <button
               key={r}
               onClick={() => handleRegimeChange(r)}
@@ -706,16 +734,24 @@ function IssueInvoiceForm({
           <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
             {tr("Currency", "العملة", "Para birimi")}
           </label>
-          <input
+          <select
             value={currency}
-            onChange={(e) => setCurrency(e.target.value.toUpperCase().slice(0, 3))}
+            onChange={(e) => setCurrency(e.target.value)}
             dir="ltr"
             className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono bg-white"
-          />
+          >
+            {currencyOptions.map((c) => (
+              <option key={c.code} value={c.code}>
+                {c.symbol} {c.code} — {c.label[locale]}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
-            {tr("Tax rate %", "نسبة الضريبة %", "KDV %")}
+            {getCountryProfile(countryIso2)?.taxName[locale] ??
+              tr("Tax", "ضريبة", "Vergi")}{" "}
+            %
           </label>
           <input
             type="number"
@@ -748,7 +784,9 @@ function IssueInvoiceForm({
             {total.toFixed(2)} {currency}
           </div>
           <div className="text-[9px] opacity-80 font-mono tabular-nums" dir="ltr">
-            {tr("VAT", "ضريبة", "KDV")} {taxAmount.toFixed(2)}
+            {getCountryProfile(countryIso2)?.taxName[locale] ??
+              tr("Tax", "ضريبة", "Vergi")}{" "}
+            {taxAmount.toFixed(2)}
           </div>
         </div>
       </div>

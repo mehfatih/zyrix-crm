@@ -22,6 +22,8 @@ export interface Company {
   name: string;
   slug: string;
   plan: "free" | "starter" | "business" | "enterprise";
+  country?: string | null;  // ISO-3166-1 alpha-2, e.g. "SA" / "TR"
+  baseCurrency?: string | null; // USD / SAR / TRY — falls back to country's currency
 }
 
 export interface AuthTokens {
