@@ -285,7 +285,7 @@ export default function SitemapPage() {
         </div>
 
         {/* Central radial diagram */}
-        <div className="relative mb-12 min-h-[640px] md:min-h-[720px] overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-white to-cyan-50/40 border border-slate-200 shadow-inner">
+        <div className="relative mb-12 min-h-[880px] md:min-h-[1020px] overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-white to-cyan-50/40 border border-slate-200 shadow-inner">
           <RadialMap
             nodes={filteredNodes}
             locale={L}
@@ -401,8 +401,13 @@ function RadialMap({
       const catEnd = catStart + anglePerCat;
       const catSpan = catEnd - catStart;
       const ring = 1;
-      // Use multiple rings if too many in category
-      const perRing = Math.ceil(Math.sqrt(catNodes.length));
+      // Use multiple rings if too many in category — smaller perRing
+      // creates more rings (taller stack of concentric circles) which
+      // gives each individual node more breathing room. Previously the
+      // Math.sqrt formula packed most nodes into the first ring; now
+      // we cap at 4 per ring so densely-populated categories (like
+      // 'product' with 15+ items) spread across 4+ outer rings.
+      const perRing = Math.min(4, Math.ceil(catNodes.length / 2));
 
       catNodes.forEach((n, i) => {
         const r = (i % perRing === 0 && i > 0) ? ring + 1 : ring;
@@ -412,7 +417,10 @@ function RadialMap({
           catStart +
           (catSpan / (catNodes.length + 1)) * (localI + 1);
         const rad = (angle * Math.PI) / 180;
-        const radiusPct = 24 + (Math.floor(i / perRing) * 10); // 24% or 34%
+        // Wider radius spacing: 30% (inner) + 12% per additional ring
+        // — was 24% + 10%. This pushes nodes farther out so labels
+        // below them don't collide with labels of adjacent nodes.
+        const radiusPct = 30 + (Math.floor(i / perRing) * 12);
         positions[n.id] = {
           x: centerX + radiusPct * Math.cos(rad),
           y: centerY + radiusPct * Math.sin(rad),
@@ -426,7 +434,7 @@ function RadialMap({
   }, [nodes]);
 
   return (
-    <div className="relative w-full h-[640px] md:h-[720px]">
+    <div className="relative w-full h-[860px] md:h-[980px]">
       {/* SVG connecting lines */}
       <svg
         className="absolute inset-0 w-full h-full"
@@ -584,12 +592,15 @@ function RadialMap({
                 />
               </div>
 
-              {/* Label */}
+              {/* Label — rendered as a compact chip on a white pill
+                  so it stays readable even when another node's circle
+                  sits behind it. Drop-shadow adds separation from the
+                  gradient background. */}
               <span
-                className={`absolute top-full mt-1.5 text-[10px] md:text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`absolute top-full mt-2 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-sm border border-slate-200/60 text-[10px] md:text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${
                   isHovered
-                    ? `${cat.color} scale-110`
-                    : "text-slate-600 group-hover:text-slate-900"
+                    ? `${cat.color} scale-110 border-current/30`
+                    : "text-slate-700 group-hover:text-slate-900 group-hover:border-slate-300"
                 }`}
               >
                 {n.label[locale]}
