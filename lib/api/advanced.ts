@@ -270,3 +270,117 @@ export async function syncShopifyStore(id: string): Promise<{ imported: number; 
   );
   return data.data;
 }
+
+// ============================================================================
+// GLOBAL SEARCH + ADVANCED FILTER
+// ============================================================================
+export interface GlobalSearchResult {
+  customers: Array<{
+    id: string;
+    fullName: string;
+    email: string | null;
+    phone: string | null;
+    companyName: string | null;
+    status: string;
+  }>;
+  deals: Array<{
+    id: string;
+    title: string;
+    stage: string;
+    value: string;
+    currency: string;
+    customerId: string;
+    customerName: string;
+  }>;
+  quotes: Array<{
+    id: string;
+    quoteNumber: string;
+    title: string;
+    status: string;
+    total: string;
+    currency: string;
+    customerName: string;
+  }>;
+  contracts: Array<{
+    id: string;
+    contractNumber: string;
+    title: string;
+    status: string;
+    value: string;
+    currency: string;
+    customerName: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    title: string;
+    status: string;
+    priority: string;
+    dueDate: string | null;
+  }>;
+  totalMatches: number;
+}
+
+export async function globalSearch(q: string): Promise<GlobalSearchResult> {
+  const { data } = await apiClient.get<ApiSuccess<GlobalSearchResult>>(
+    "/api/advanced/search",
+    { params: { q } }
+  );
+  return data.data;
+}
+
+export type FilterOperator =
+  | "equals"
+  | "contains"
+  | "starts_with"
+  | "not_equals"
+  | "greater_than"
+  | "less_than"
+  | "greater_or_equal"
+  | "less_or_equal"
+  | "in"
+  | "not_in"
+  | "is_empty"
+  | "is_not_empty"
+  | "between";
+
+export interface FilterCondition {
+  field: string;
+  operator: FilterOperator;
+  value?: any;
+  value2?: any;
+}
+
+export interface AdvancedFilterRequest {
+  entityType: "customers" | "deals" | "quotes" | "contracts" | "tasks";
+  conditions: FilterCondition[];
+  logic?: "AND" | "OR";
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+  page?: number;
+  limit?: number;
+}
+
+export interface AdvancedFilterResult {
+  items: any[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export async function advancedFilter(
+  req: AdvancedFilterRequest
+): Promise<AdvancedFilterResult> {
+  const { data } = await apiClient.post<ApiSuccess<AdvancedFilterResult>>(
+    "/api/advanced/filter",
+    req
+  );
+  return data.data;
+}
+
+export async function getFilterFields(): Promise<Record<string, string[]>> {
+  const { data } = await apiClient.get<ApiSuccess<Record<string, string[]>>>(
+    "/api/advanced/filter/fields"
+  );
+  return data.data;
+}

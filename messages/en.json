@@ -2541,5 +2541,44 @@
       "loyalty_earned": "Points earned",
       "loyalty_redeemed": "Points redeemed"
     }
+  },
+  "Search": {
+    "placeholder": "Search customers, deals, quotes, contracts, tasks...",
+    "noResults": "No results for \"{q}\"",
+    "matches": "matches",
+    "toNavigate": "to navigate",
+    "entities": {
+      "customers": "Customers",
+      "deals": "Deals",
+      "quotes": "Quotes",
+      "contracts": "Contracts",
+      "tasks": "Tasks"
+    }
+  },
+  "Filter": {
+    "title": "Advanced filter",
+    "addCondition": "Add condition",
+    "condition": "condition",
+    "conditions": "conditions",
+    "matchAll": "Match all",
+    "matchAny": "Match any",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "valuePlaceholder": "Value",
+    "operators": {
+      "equals": "equals",
+      "contains": "contains",
+      "starts_with": "starts with",
+      "not_equals": "does not equal",
+      "greater_than": "greater than",
+      "less_than": "less than",
+      "greater_or_equal": "greater or equal",
+      "less_or_equal": "less or equal",
+      "in": "is one of",
+      "not_in": "is not one of",
+      "is_empty": "is empty",
+      "is_not_empty": "is not empty",
+      "between": "between"
+    }
   }
 }

@@ -8,6 +8,7 @@ import { DashboardShell } from "@/components/layout/DashboardShell";
 import { CreateDealModal } from "@/components/deals/CreateDealModal";
 import { formatDate, cn } from "@/lib/utils";
 import ExportButton from "@/components/advanced/ExportButton";
+import BulkActionBar from "@/components/advanced/BulkActionBar";
 
 const STAGE_COLORS: Record<DealStage, string> = {
   lead: "bg-sky-100 text-sky-700",
@@ -25,6 +26,7 @@ export default function DealsPage() {
   const [loading, setLoading] = useState(true);
   const [stageFilter, setStageFilter] = useState<string>("");
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   const fetchDeals = async () => {
     setLoading(true);
@@ -116,6 +118,20 @@ export default function DealsPage() {
               <table className="w-full">
                 <thead className="bg-bg-subtle border-b border-line-soft">
                   <tr>
+                    <th className="px-3 py-3 w-10">
+                      <input
+                        type="checkbox"
+                        checked={deals.length > 0 && selectedIds.size === deals.length}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedIds(new Set(deals.map((d) => d.id)));
+                          } else {
+                            setSelectedIds(new Set());
+                          }
+                        }}
+                        className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                      />
+                    </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-ink-light uppercase">
                       Title
                     </th>
@@ -140,8 +156,24 @@ export default function DealsPage() {
                   {deals.map((deal) => (
                     <tr
                       key={deal.id}
-                      className="hover:bg-bg-subtle cursor-pointer"
+                      className={cn(
+                        "hover:bg-bg-subtle",
+                        selectedIds.has(deal.id) && "bg-cyan-50/40"
+                      )}
                     >
+                      <td className="px-3 py-3 w-10" onClick={(e) => e.stopPropagation()}>
+                        <input
+                          type="checkbox"
+                          checked={selectedIds.has(deal.id)}
+                          onChange={(e) => {
+                            const next = new Set(selectedIds);
+                            if (e.target.checked) next.add(deal.id);
+                            else next.delete(deal.id);
+                            setSelectedIds(next);
+                          }}
+                          className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                        />
+                      </td>
                       <td className="px-4 py-3">
                         <p className="text-sm font-medium text-ink">
                           {deal.title}
@@ -190,6 +222,16 @@ export default function DealsPage() {
           onSuccess={handleCreateSuccess}
         />
       )}
+
+      <BulkActionBar
+        entityType="deals"
+        selectedIds={Array.from(selectedIds)}
+        onClearSelection={() => setSelectedIds(new Set())}
+        onActionComplete={() => {
+          setSelectedIds(new Set());
+          fetchDeals();
+        }}
+      />
     </DashboardShell>
   );
 }

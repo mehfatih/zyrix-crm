@@ -21,6 +21,7 @@ import { DashboardShell } from "@/components/layout/DashboardShell";
 import { cn, getInitials, formatDate } from "@/lib/utils";
 import { CreateCustomerModal } from "@/components/customers/CreateCustomerModal";
 import ExportButton from "@/components/advanced/ExportButton";
+import BulkActionBar from "@/components/advanced/BulkActionBar";
 
 const STATUS_COLORS: Record<string, string> = {
   new: "bg-sky-100 text-sky-700",
@@ -39,6 +40,7 @@ export default function CustomersPage() {
   const [statusFilter, setStatusFilter] = useState<string>("");
   const [total, setTotal] = useState(0);
   const [showCreate, setShowCreate] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   const fetchCustomers = async () => {
     setLoading(true);
@@ -145,6 +147,20 @@ export default function CustomersPage() {
               <table className="w-full">
                 <thead className="bg-bg-subtle border-b border-line-soft">
                   <tr>
+                    <th className="px-3 py-3 w-10">
+                      <input
+                        type="checkbox"
+                        checked={customers.length > 0 && selectedIds.size === customers.length}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedIds(new Set(customers.map((c) => c.id)));
+                          } else {
+                            setSelectedIds(new Set());
+                          }
+                        }}
+                        className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                      />
+                    </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-ink-light uppercase tracking-wider">
                       Customer
                     </th>
@@ -170,10 +186,29 @@ export default function CustomersPage() {
                   {customers.map((customer) => (
                     <tr
                       key={customer.id}
-                      className="hover:bg-bg-subtle transition-colors cursor-pointer"
+                      className={cn(
+                        "hover:bg-bg-subtle transition-colors",
+                        selectedIds.has(customer.id) && "bg-cyan-50/40"
+                      )}
                     >
+                      <td className="px-3 py-3 w-10" onClick={(e) => e.stopPropagation()}>
+                        <input
+                          type="checkbox"
+                          checked={selectedIds.has(customer.id)}
+                          onChange={(e) => {
+                            const next = new Set(selectedIds);
+                            if (e.target.checked) next.add(customer.id);
+                            else next.delete(customer.id);
+                            setSelectedIds(next);
+                          }}
+                          className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                        />
+                      </td>
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-3">
+                        <Link
+                          href={`/${locale}/customers/${customer.id}`}
+                          className="flex items-center gap-3 hover:text-cyan-700"
+                        >
                           <div className="w-9 h-9 rounded-full bg-primary-600 text-white flex items-center justify-center text-xs font-semibold flex-shrink-0">
                             {getInitials(customer.fullName)}
                           </div>
@@ -187,7 +222,7 @@ export default function CustomersPage() {
                               </p>
                             )}
                           </div>
-                        </div>
+                        </Link>
                       </td>
                       <td className="px-4 py-3 hidden md:table-cell">
                         <p className="text-sm text-ink">
@@ -251,6 +286,17 @@ export default function CustomersPage() {
           }}
         />
       )}
+
+      {/* Bulk action bar (appears when rows are selected) */}
+      <BulkActionBar
+        entityType="customers"
+        selectedIds={Array.from(selectedIds)}
+        onClearSelection={() => setSelectedIds(new Set())}
+        onActionComplete={() => {
+          setSelectedIds(new Set());
+          fetchCustomers();
+        }}
+      />
     </DashboardShell>
   );
 }

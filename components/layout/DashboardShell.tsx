@@ -31,6 +31,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import ImpersonationBanner from "./ImpersonationBanner";
 import type { Locale } from "@/i18n";
 import { getInitials, cn } from "@/lib/utils";
+import GlobalSearchBar from "@/components/advanced/GlobalSearchBar";
 
 interface DashboardShellProps {
   locale: string;
@@ -225,7 +226,12 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       </aside>
 
       {/* Main */}
-      <main className="flex-1 lg:ml-64">{children}</main>
+      <main className="flex-1 lg:ml-64 flex flex-col min-h-screen">
+        <div className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-line-soft px-4 py-2.5 flex items-center gap-3">
+          <GlobalSearchBar />
+        </div>
+        <div className="flex-1">{children}</div>
+      </main>
       </div>
     </div>
   );

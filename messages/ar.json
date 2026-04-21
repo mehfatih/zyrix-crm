@@ -2541,5 +2541,44 @@
       "loyalty_earned": "نقاط مكتسبة",
       "loyalty_redeemed": "نقاط مستبدلة"
     }
+  },
+  "Search": {
+    "placeholder": "ابحث في العملاء والصفقات والعروض والعقود والمهام...",
+    "noResults": "لا نتائج لـ \"{q}\"",
+    "matches": "نتيجة",
+    "toNavigate": "للانتقال",
+    "entities": {
+      "customers": "العملاء",
+      "deals": "الصفقات",
+      "quotes": "العروض",
+      "contracts": "العقود",
+      "tasks": "المهام"
+    }
+  },
+  "Filter": {
+    "title": "فلتر متقدم",
+    "addCondition": "إضافة شرط",
+    "condition": "شرط",
+    "conditions": "شروط",
+    "matchAll": "مطابقة الكل",
+    "matchAny": "مطابقة أي",
+    "apply": "تطبيق",
+    "cancel": "إلغاء",
+    "valuePlaceholder": "القيمة",
+    "operators": {
+      "equals": "يساوي",
+      "contains": "يحتوي",
+      "starts_with": "يبدأ بـ",
+      "not_equals": "لا يساوي",
+      "greater_than": "أكبر من",
+      "less_than": "أصغر من",
+      "greater_or_equal": "أكبر أو يساوي",
+      "less_or_equal": "أصغر أو يساوي",
+      "in": "أحد",
+      "not_in": "ليس أحد",
+      "is_empty": "فارغ",
+      "is_not_empty": "غير فارغ",
+      "between": "بين"
+    }
   }
 }

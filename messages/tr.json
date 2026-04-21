@@ -2541,5 +2541,44 @@
       "loyalty_earned": "Kazanılan puanlar",
       "loyalty_redeemed": "Kullanılan puanlar"
     }
+  },
+  "Search": {
+    "placeholder": "Müşteri, anlaşma, teklif, sözleşme, görev ara...",
+    "noResults": "\"{q}\" için sonuç yok",
+    "matches": "eşleşme",
+    "toNavigate": "gitmek için",
+    "entities": {
+      "customers": "Müşteriler",
+      "deals": "Anlaşmalar",
+      "quotes": "Teklifler",
+      "contracts": "Sözleşmeler",
+      "tasks": "Görevler"
+    }
+  },
+  "Filter": {
+    "title": "Gelişmiş filtre",
+    "addCondition": "Koşul ekle",
+    "condition": "koşul",
+    "conditions": "koşul",
+    "matchAll": "Tümünü eşleştir",
+    "matchAny": "Herhangi birini eşleştir",
+    "apply": "Uygula",
+    "cancel": "İptal",
+    "valuePlaceholder": "Değer",
+    "operators": {
+      "equals": "eşittir",
+      "contains": "içerir",
+      "starts_with": "ile başlar",
+      "not_equals": "eşit değil",
+      "greater_than": "büyüktür",
+      "less_than": "küçüktür",
+      "greater_or_equal": "büyük veya eşit",
+      "less_or_equal": "küçük veya eşit",
+      "in": "şunlardan biri",
+      "not_in": "şunlardan biri değil",
+      "is_empty": "boş",
+      "is_not_empty": "boş değil",
+      "between": "arasında"
+    }
   }
 }
