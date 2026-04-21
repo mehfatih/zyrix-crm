@@ -701,3 +701,66 @@ export async function exportEcommerceAnalytics(params: {
     URL.revokeObjectURL(url);
   }, 100);
 }
+
+// ============================================================================
+// ONBOARDING — 7-step wizard
+// ============================================================================
+
+export interface OnboardingStatus {
+  completed: boolean;
+  company: {
+    id: string;
+    name: string;
+    country: string | null;
+    baseCurrency: string | null;
+    onboardingCompletedAt: string | null;
+  };
+  user: {
+    id: string;
+    fullName: string;
+    preferredLocale: string | null;
+  };
+  signals: {
+    storesConnected: number;
+    teamMembers: number;
+  };
+}
+
+export interface CompleteOnboardingDto {
+  companyName?: string;
+  country?: string;
+  baseCurrency?: string;
+  preferredLocale?: "en" | "ar" | "tr";
+}
+
+export async function getOnboardingStatus(): Promise<OnboardingStatus> {
+  const { data } = await apiClient.get<ApiSuccess<OnboardingStatus>>(
+    "/api/onboarding/status"
+  );
+  return data.data;
+}
+
+export async function completeOnboarding(
+  dto: CompleteOnboardingDto
+): Promise<OnboardingStatus> {
+  const { data } = await apiClient.post<ApiSuccess<OnboardingStatus>>(
+    "/api/onboarding/complete",
+    dto
+  );
+  return data.data;
+}
+
+export interface InviteColleagueDto {
+  email: string;
+  role: "manager" | "member";
+  fullName?: string;
+}
+
+export async function inviteColleague(
+  dto: InviteColleagueDto
+): Promise<{ invited: true; userId: string; email: string }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ invited: true; userId: string; email: string }>
+  >("/api/onboarding/invite-colleague", dto);
+  return data.data;
+}

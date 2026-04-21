@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Plus,
@@ -73,6 +73,19 @@ export default function CustomersPage() {
   const [showFilter, setShowFilter] = useState(false);
   const [filterResults, setFilterResults] = useState<Customer[] | null>(null);
   const [filterCount, setFilterCount] = useState(0);
+
+  // Onboarding completion handoff — when the wizard's Finish step sends the
+  // user here with ?welcome=1, auto-open the CreateCustomerModal so the
+  // "let's create your first customer together" promise actually happens.
+  // We then strip the query param so a refresh doesn't reopen the modal.
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  useEffect(() => {
+    if (searchParams?.get("welcome") === "1") {
+      setShowCreate(true);
+      router.replace(`/${locale}/customers`);
+    }
+  }, [searchParams, router, locale]);
 
   const fetchCustomers = async () => {
     setLoading(true);

@@ -23,11 +23,16 @@ import {
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ConnectedStoresWidget from "@/components/dashboard/ConnectedStoresWidget";
 import { useTranslations } from "next-intl";
+import { X, Rocket } from "lucide-react";
 import {
   fetchDashboardStats,
   type DashboardStats,
   type TeamLeaderboardEntry,
 } from "@/lib/api/dashboard";
+import {
+  getOnboardingStatus,
+  type OnboardingStatus,
+} from "@/lib/api/advanced";
 
 // ============================================================================
 // ROLE-BASED DASHBOARD
@@ -42,19 +47,40 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [onboarding, setOnboarding] = useState<OnboardingStatus | null>(null);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
-        const d = await fetchDashboardStats();
+        // Parallel fetch — onboarding status shouldn't delay the dashboard
+        // render, and the dashboard shouldn't delay the onboarding check.
+        const [d, ob] = await Promise.all([
+          fetchDashboardStats(),
+          getOnboardingStatus().catch(() => null), // non-fatal
+        ]);
         setStats(d);
+        setOnboarding(ob);
       } catch (e) {
         setError(e instanceof Error ? e.message : "Failed");
       } finally {
         setLoading(false);
       }
     })();
+    // Check sessionStorage for a per-tab dismissal flag
+    if (typeof window !== "undefined") {
+      setBannerDismissed(
+        sessionStorage.getItem("zyrix_onboarding_banner_dismissed") === "1"
+      );
+    }
   }, []);
+
+  const dismissBanner = () => {
+    setBannerDismissed(true);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("zyrix_onboarding_banner_dismissed", "1");
+    }
+  };
 
   if (loading) {
     return (
@@ -96,6 +122,86 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
+
+        {/* Onboarding banner — shows until wizard is completed */}
+        {onboarding && !onboarding.completed && !bannerDismissed && (
+          <div className="relative rounded-2xl bg-gradient-to-r from-cyan-500 via-sky-500 to-cyan-600 text-white p-5 shadow-md overflow-hidden">
+            <div className="absolute right-0 top-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative flex items-start gap-4">
+              <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
+                <Rocket className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-bold">
+                  {locale === "ar"
+                    ? "أكمل إعداد حسابك"
+                    : locale === "tr"
+                      ? "Hesap kurulumunuzu tamamlayın"
+                      : "Finish setting up your account"}
+                </h3>
+                <p className="text-sm text-white/90 mt-1 leading-relaxed">
+                  {locale === "ar"
+                    ? "يستغرق الأمر دقيقتين فقط — قم بإعداد عملتك الأساسية، اربط متجرك، وادعُ فريقك."
+                    : locale === "tr"
+                      ? "Sadece 2 dakika sürer — ana para biriminizi ayarlayın, mağazanızı bağlayın ve ekibinizi davet edin."
+                      : "It takes just 2 minutes — set your base currency, connect your store, and invite your team."}
+                </p>
+                <div className="mt-4 flex items-center gap-3 flex-wrap">
+                  <Link
+                    href={`/${locale}/onboarding`}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white text-cyan-700 rounded-lg text-sm font-bold hover:bg-cyan-50 transition-colors"
+                  >
+                    {locale === "ar"
+                      ? "ابدأ الإعداد"
+                      : locale === "tr"
+                        ? "Kuruluma başla"
+                        : "Start setup"}
+                    <ArrowRight
+                      className={`w-4 h-4 ${locale === "ar" ? "-scale-x-100" : ""}`}
+                    />
+                  </Link>
+                  <div className="flex items-center gap-3 text-xs text-white/80">
+                    <span>
+                      {onboarding.signals.storesConnected > 0
+                        ? locale === "ar"
+                          ? `✓ ${onboarding.signals.storesConnected} متجر متصل`
+                          : locale === "tr"
+                            ? `✓ ${onboarding.signals.storesConnected} mağaza bağlı`
+                            : `✓ ${onboarding.signals.storesConnected} store connected`
+                        : locale === "ar"
+                          ? "○ لا توجد متاجر بعد"
+                          : locale === "tr"
+                            ? "○ Henüz mağaza yok"
+                            : "○ No stores yet"}
+                    </span>
+                    <span>
+                      {onboarding.signals.teamMembers > 1
+                        ? locale === "ar"
+                          ? `✓ ${onboarding.signals.teamMembers} أعضاء`
+                          : locale === "tr"
+                            ? `✓ ${onboarding.signals.teamMembers} üye`
+                            : `✓ ${onboarding.signals.teamMembers} members`
+                        : locale === "ar"
+                          ? "○ أنت وحدك"
+                          : locale === "tr"
+                            ? "○ Sadece siz"
+                            : "○ Just you"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={dismissBanner}
+                aria-label={
+                  locale === "ar" ? "إغلاق" : locale === "tr" ? "kapat" : "dismiss"
+                }
+                className="flex-shrink-0 w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Primary KPIs */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
