@@ -2169,5 +2169,28 @@
     "send": "Gönder",
     "you": "Sen",
     "noMessagesYet": "Henüz mesaj yok"
+  },
+  "Whatsapp": {
+    "title": "WhatsApp CRM",
+    "subtitle": "Meta Cloud API ile gerçek zamanlı gelen kutusu",
+    "refresh": "Gelen kutusunu yenile",
+    "searchPlaceholder": "Ad, telefon veya şirkete göre ara…",
+    "noResults": "Eşleşme yok",
+    "msgs": "mesaj",
+    "empty": {
+      "title": "Henüz konuşma yok",
+      "subtitle": "Meta Cloud webhook'undan gelen WhatsApp mesajları burada görünür. AI otomatik olarak müşteri bilgilerini çıkarır ve kayıt oluşturur."
+    },
+    "pickConversation": "Bir konuşma seçin",
+    "pickConversationHint": "Mesajlaşmaya başlamak için gelen kutusundan bir sohbet seçin",
+    "emptyThread": "Henüz mesaj yok",
+    "notACustomer": "Henüz müşteri değil",
+    "aiSuggest": "AI ile yanıt öner",
+    "messagePlaceholder": "WhatsApp mesajı yazın…",
+    "send": "Gönder",
+    "alerts": {
+      "sendWarning": "Meta Cloud yapılandırılmamış — mesaj yalnızca yerel olarak kaydedildi.",
+      "noIncomingForSuggest": "Yanıt önerisi için henüz gelen mesaj yok."
+    }
   }
 }

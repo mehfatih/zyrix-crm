@@ -2169,5 +2169,28 @@
     "send": "إرسال",
     "you": "أنت",
     "noMessagesYet": "لا توجد رسائل بعد"
+  },
+  "Whatsapp": {
+    "title": "واتساب CRM",
+    "subtitle": "صندوق وارد مباشر عبر Meta Cloud API",
+    "refresh": "تحديث الصندوق",
+    "searchPlaceholder": "ابحث بالاسم أو الهاتف أو الشركة…",
+    "noResults": "لا نتائج",
+    "msgs": "رسالة",
+    "empty": {
+      "title": "لا توجد محادثات بعد",
+      "subtitle": "ستظهر رسائل واتساب الواردة عبر Meta Cloud هنا. يقوم الذكاء الاصطناعي تلقائيًا باستخراج بيانات العملاء وإنشاء السجلات."
+    },
+    "pickConversation": "اختر محادثة",
+    "pickConversationHint": "اختر دردشة من الصندوق لبدء المراسلة",
+    "emptyThread": "لا توجد رسائل بعد",
+    "notACustomer": "ليس عميلاً بعد",
+    "aiSuggest": "اقتراح رد بالذكاء الاصطناعي",
+    "messagePlaceholder": "اكتب رسالة واتساب…",
+    "send": "إرسال",
+    "alerts": {
+      "sendWarning": "Meta Cloud غير مُهيّأ — تم حفظ الرسالة محليًا فقط.",
+      "noIncomingForSuggest": "لا توجد رسائل واردة لاقتراح رد عليها."
+    }
   }
 }

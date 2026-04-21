@@ -2169,5 +2169,28 @@
     "send": "Send",
     "you": "You",
     "noMessagesYet": "No messages yet"
+  },
+  "Whatsapp": {
+    "title": "WhatsApp CRM",
+    "subtitle": "Real-time inbox powered by Meta Cloud API",
+    "refresh": "Refresh inbox",
+    "searchPlaceholder": "Search by name, phone, or company…",
+    "noResults": "No matches",
+    "msgs": "msgs",
+    "empty": {
+      "title": "No conversations yet",
+      "subtitle": "Incoming WhatsApp messages from Meta Cloud webhook will appear here. AI automatically extracts customer info and creates records."
+    },
+    "pickConversation": "Select a conversation",
+    "pickConversationHint": "Choose a chat from the inbox to start messaging",
+    "emptyThread": "No messages yet",
+    "notACustomer": "Not a customer yet",
+    "aiSuggest": "AI suggest reply",
+    "messagePlaceholder": "Type a WhatsApp message…",
+    "send": "Send",
+    "alerts": {
+      "sendWarning": "Meta Cloud not configured — message saved locally only.",
+      "noIncomingForSuggest": "No incoming messages yet to suggest a reply for."
+    }
   }
 }
