@@ -104,16 +104,16 @@ export default function ContactView({ locale: _locale }: Props) {
             <InfoCard
               icon={<MessageCircle className="w-5 h-5" />}
               title={t("channels.whatsapp.title")}
-              primary="+90 552 000 0000"
+              primary="+90 545 221 0888"
               secondary={t("channels.whatsapp.subtitle")}
-              href="https://wa.me/905520000000"
+              href="https://wa.me/905452210888"
             />
             <InfoCard
               icon={<Phone className="w-5 h-5" />}
               title={t("channels.support.title")}
-              primary="support@zyrix.co"
+              primary="+90 545 221 0888"
               secondary={t("channels.support.subtitle")}
-              href="mailto:support@zyrix.co"
+              href="tel:+905452210888"
             />
             <InfoCard
               icon={<MapPin className="w-5 h-5" />}

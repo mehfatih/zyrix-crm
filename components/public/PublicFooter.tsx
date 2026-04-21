@@ -255,7 +255,12 @@ export default function PublicFooter() {
         <div className="border-t border-slate-800 py-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           <ContactItem icon={MapPin} label={t.contact.headquarters} value={t.contact.address} />
           <ContactItem icon={Mail} label="Email" value={t.contact.email} href={`mailto:${t.contact.email}`} />
-          <ContactItem icon={Phone} label="WhatsApp" value="+90 5xx xxx xx xx" />
+          <ContactItem
+            icon={Phone}
+            label="WhatsApp"
+            value="+90 545 221 0888"
+            href="https://wa.me/905452210888"
+          />
         </div>
 
         {/* Bottom bar */}

@@ -100,14 +100,81 @@ export default function PublicHeader({ accentColor = "cyan" }: PublicHeaderProps
 
   const currentLang = LOCALES.find((l) => l.code === locale) || LOCALES[0];
 
-  const accentClasses: Record<string, { text: string; bg: string; ring: string }> = {
-    cyan: { text: "text-cyan-600", bg: "bg-cyan-600 hover:bg-cyan-700", ring: "ring-cyan-200" },
-    sky: { text: "text-sky-600", bg: "bg-sky-600 hover:bg-sky-700", ring: "ring-sky-200" },
-    teal: { text: "text-teal-600", bg: "bg-teal-600 hover:bg-teal-700", ring: "ring-teal-200" },
-    indigo: { text: "text-indigo-600", bg: "bg-indigo-600 hover:bg-indigo-700", ring: "ring-indigo-200" },
-    emerald: { text: "text-emerald-600", bg: "bg-emerald-600 hover:bg-emerald-700", ring: "ring-emerald-200" },
-    violet: { text: "text-violet-600", bg: "bg-violet-600 hover:bg-violet-700", ring: "ring-violet-200" },
-    slate: { text: "text-slate-700", bg: "bg-slate-800 hover:bg-slate-900", ring: "ring-slate-200" },
+  const accentClasses: Record<
+    string,
+    {
+      text: string;
+      bg: string;
+      ring: string;
+      headerBg: string;
+      headerBgScrolled: string;
+      border: string;
+      underline: string;
+    }
+  > = {
+    cyan: {
+      text: "text-cyan-700",
+      bg: "bg-cyan-600 hover:bg-cyan-700",
+      ring: "ring-cyan-200",
+      headerBg: "bg-cyan-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-cyan-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-cyan-200/60",
+      underline: "bg-cyan-500",
+    },
+    sky: {
+      text: "text-sky-700",
+      bg: "bg-sky-600 hover:bg-sky-700",
+      ring: "ring-sky-200",
+      headerBg: "bg-sky-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-sky-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-sky-200/60",
+      underline: "bg-sky-500",
+    },
+    teal: {
+      text: "text-teal-700",
+      bg: "bg-teal-600 hover:bg-teal-700",
+      ring: "ring-teal-200",
+      headerBg: "bg-teal-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-teal-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-teal-200/60",
+      underline: "bg-teal-500",
+    },
+    indigo: {
+      text: "text-indigo-700",
+      bg: "bg-indigo-600 hover:bg-indigo-700",
+      ring: "ring-indigo-200",
+      headerBg: "bg-indigo-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-indigo-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-indigo-200/60",
+      underline: "bg-indigo-500",
+    },
+    emerald: {
+      text: "text-emerald-700",
+      bg: "bg-emerald-600 hover:bg-emerald-700",
+      ring: "ring-emerald-200",
+      headerBg: "bg-emerald-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-emerald-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-emerald-200/60",
+      underline: "bg-emerald-500",
+    },
+    violet: {
+      text: "text-violet-700",
+      bg: "bg-violet-600 hover:bg-violet-700",
+      ring: "ring-violet-200",
+      headerBg: "bg-violet-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-violet-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-violet-200/60",
+      underline: "bg-violet-500",
+    },
+    slate: {
+      text: "text-slate-700",
+      bg: "bg-slate-800 hover:bg-slate-900",
+      ring: "ring-slate-200",
+      headerBg: "bg-slate-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-slate-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-slate-200/60",
+      underline: "bg-slate-500",
+    },
   };
   const accent = accentClasses[accentColor];
 
@@ -123,10 +190,10 @@ export default function PublicHeader({ accentColor = "cyan" }: PublicHeaderProps
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? "bg-white/90 backdrop-blur-lg shadow-sm border-b border-slate-200"
-          : "bg-white/70 backdrop-blur-sm border-b border-transparent"
+          ? `${accent.headerBgScrolled} ${accent.border}`
+          : `${accent.headerBg} border-transparent`
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
@@ -173,7 +240,7 @@ export default function PublicHeader({ accentColor = "cyan" }: PublicHeaderProps
                 {link.label}
                 {active && (
                   <span
-                    className={`absolute bottom-0 ltr:left-3 rtl:right-3 ltr:right-3 rtl:left-3 h-0.5 ${accent.bg.split(" ")[0]} rounded-full`}
+                    className={`absolute bottom-0 ltr:left-3 rtl:right-3 ltr:right-3 rtl:left-3 h-0.5 ${accent.underline} rounded-full`}
                   />
                 )}
               </Link>
