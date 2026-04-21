@@ -29,6 +29,7 @@ import {
   History,
   Zap,
   Key,
+  Palette,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { fetchUnreadCount } from "@/lib/api/chat";
@@ -236,6 +237,13 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           >
             <Key className="w-3.5 h-3.5" />
             API keys
+          </Link>
+          <Link
+            href={`/${locale}/settings/brand`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <Palette className="w-3.5 h-3.5" />
+            Branding
           </Link>
         </div>
 

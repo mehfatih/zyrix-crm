@@ -1742,3 +1742,92 @@ export async function initShopifyInstall(
   );
   return data.data;
 }
+
+// ============================================================================
+// WHITE-LABEL BRAND SETTINGS
+// ============================================================================
+
+export interface BrandSettings {
+  id: string;
+  companyId: string;
+  displayName: string | null;
+  logoUrl: string | null;
+  faviconUrl: string | null;
+  primaryColor: string | null;
+  accentColor: string | null;
+  emailFromName: string | null;
+  emailFromAddress: string | null;
+  customDomain: string | null;
+  customDomainVerifiedAt: string | null;
+  customDomainVerificationToken: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface UpdateBrandInput {
+  displayName?: string | null;
+  logoUrl?: string | null;
+  faviconUrl?: string | null;
+  primaryColor?: string | null;
+  accentColor?: string | null;
+  emailFromName?: string | null;
+  emailFromAddress?: string | null;
+}
+
+export async function getBrandSettings(): Promise<BrandSettings | null> {
+  const { data } = await apiClient.get<ApiSuccess<BrandSettings | null>>(
+    "/api/brand"
+  );
+  return data.data;
+}
+
+export async function updateBrandSettings(
+  input: UpdateBrandInput
+): Promise<BrandSettings> {
+  const { data } = await apiClient.patch<ApiSuccess<BrandSettings>>(
+    "/api/brand",
+    input
+  );
+  return data.data;
+}
+
+export async function resetBrandSettings(): Promise<{ reset: true }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ reset: true }>>(
+    "/api/brand"
+  );
+  return data.data;
+}
+
+export interface CustomDomainSetupResult {
+  customDomain: string;
+  verificationToken: string;
+  txtRecord: { name: string; value: string };
+  cnameTarget: string;
+}
+
+export async function setCustomDomain(
+  customDomain: string
+): Promise<CustomDomainSetupResult> {
+  const { data } = await apiClient.post<ApiSuccess<CustomDomainSetupResult>>(
+    "/api/brand/domain",
+    { customDomain }
+  );
+  return data.data;
+}
+
+export async function verifyCustomDomain(): Promise<{
+  verified: boolean;
+  reason?: string;
+}> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ verified: boolean; reason?: string }>
+  >("/api/brand/domain/verify", {});
+  return data.data;
+}
+
+export async function removeCustomDomain(): Promise<{ removed: true }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ removed: true }>>(
+    "/api/brand/domain"
+  );
+  return data.data;
+}
