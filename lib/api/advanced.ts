@@ -493,3 +493,102 @@ export async function syncEcommerceStore(id: string) {
   );
   return data.data;
 }
+
+// ============================================================================
+// WEBHOOKS — inbound delivery management
+// ============================================================================
+export interface WebhookSubscription {
+  id: string;
+  platform: string;
+  storeId: string | null;
+  topic: string;
+  isActive: boolean;
+  lastReceivedAt: string | null;
+  receivedCount: number;
+  failedCount: number;
+  publicUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface WebhookSubscriptionWithSecret extends WebhookSubscription {
+  secret: string; // returned ONLY from create + rotateSecret; never from list
+}
+
+export interface WebhookEvent {
+  id: string;
+  platform: string;
+  topic: string;
+  externalId: string | null;
+  status: "pending" | "processing" | "done" | "failed" | "skipped";
+  attempts: number;
+  lastError: string | null;
+  signatureOk: boolean;
+  receivedAt: string;
+  processedAt: string | null;
+}
+
+export async function getSupportedWebhookPlatforms(): Promise<string[]> {
+  const { data } = await apiClient.get<ApiSuccess<string[]>>(
+    "/api/webhooks/platforms"
+  );
+  return data.data;
+}
+
+export async function listWebhookSubscriptions(
+  storeId?: string
+): Promise<WebhookSubscription[]> {
+  const { data } = await apiClient.get<ApiSuccess<WebhookSubscription[]>>(
+    "/api/webhooks/subscriptions",
+    { params: storeId ? { storeId } : {} }
+  );
+  return data.data;
+}
+
+export async function createWebhookSubscription(input: {
+  platform: string;
+  topic: string;
+  storeId?: string | null;
+}): Promise<WebhookSubscriptionWithSecret> {
+  const { data } = await apiClient.post<ApiSuccess<WebhookSubscriptionWithSecret>>(
+    "/api/webhooks/subscriptions",
+    input
+  );
+  return data.data;
+}
+
+export async function updateWebhookSubscription(
+  id: string,
+  input: { isActive: boolean }
+): Promise<WebhookSubscription> {
+  const { data } = await apiClient.patch<ApiSuccess<WebhookSubscription>>(
+    `/api/webhooks/subscriptions/${id}`,
+    input
+  );
+  return data.data;
+}
+
+export async function deleteWebhookSubscription(id: string): Promise<void> {
+  await apiClient.delete(`/api/webhooks/subscriptions/${id}`);
+}
+
+export async function rotateWebhookSecret(
+  id: string
+): Promise<{ id: string; secret: string; updatedAt: string }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ id: string; secret: string; updatedAt: string }>
+  >(`/api/webhooks/subscriptions/${id}/rotate-secret`);
+  return data.data;
+}
+
+export async function listWebhookEvents(params?: {
+  limit?: number;
+  platform?: string;
+  status?: string;
+}): Promise<WebhookEvent[]> {
+  const { data } = await apiClient.get<ApiSuccess<WebhookEvent[]>>(
+    "/api/webhooks/events",
+    { params: params || {} }
+  );
+  return data.data;
+}

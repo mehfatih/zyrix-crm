@@ -37,6 +37,7 @@ import {
   type ConnectEcommerceDto,
 } from "@/lib/api/advanced";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import WebhooksPanel from "@/components/settings/WebhooksPanel";
 
 type RegionFilter = "all" | PlatformRegion;
 
@@ -164,6 +165,9 @@ export default function EcommerceIntegrationsPage() {
             </div>
           </section>
         )}
+
+        {/* Webhooks panel — self-hides when backend has no active subscriptions */}
+        <WebhooksPanel locale={locale} />
 
         <section className="space-y-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">

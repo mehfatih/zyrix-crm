@@ -1,0 +1,838 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  Webhook,
+  Plus,
+  Copy,
+  Check,
+  RefreshCw,
+  Trash2,
+  Power,
+  PowerOff,
+  AlertTriangle,
+  CheckCircle2,
+  Clock,
+  Loader2,
+  X,
+  Key,
+  Info,
+  Radio,
+} from "lucide-react";
+import {
+  listWebhookSubscriptions,
+  createWebhookSubscription,
+  updateWebhookSubscription,
+  deleteWebhookSubscription,
+  rotateWebhookSecret,
+  getSupportedWebhookPlatforms,
+  listWebhookEvents,
+  type WebhookSubscription,
+  type WebhookSubscriptionWithSecret,
+  type WebhookEvent,
+} from "@/lib/api/advanced";
+
+// ============================================================================
+// WEBHOOKS PANEL — /settings/integrations
+//
+// Manages inbound webhook subscriptions for connected e-commerce platforms.
+// Key UX principles:
+//  • Secret is revealed ONCE on create or rotate — user must copy it
+//    immediately. Reload = gone. Enforced by a modal with explicit
+//    "I've saved this" confirmation.
+//  • Public URL is always visible + copyable next to each subscription.
+//  • Recent delivery log gives instant "is this wired up?" feedback.
+//  • Preset topics per platform so users don't have to memorize strings.
+// ============================================================================
+
+// Common topics per platform — shown as quick-pick buttons in the Add dialog.
+// These match the normalized topic slugs our backend dispatcher handles.
+const TOPIC_PRESETS: Record<string, string[]> = {
+  shopify: [
+    "customers/create",
+    "customers/update",
+    "orders/create",
+    "orders/paid",
+    "orders/updated",
+  ],
+  salla: [
+    "customer.created",
+    "customer.updated",
+    "order.created",
+    "order.updated",
+  ],
+  zid: ["customer.created", "order.created", "order.updated"],
+  woocommerce: [
+    "customer.created",
+    "customer.updated",
+    "order.created",
+    "order.updated",
+  ],
+  youcan: ["customer.created", "order.created", "order.paid"],
+};
+
+export default function WebhooksPanel({ locale }: { locale: string }) {
+  const isRtl = locale === "ar";
+  const [platforms, setPlatforms] = useState<string[]>([]);
+  const [subs, setSubs] = useState<WebhookSubscription[]>([]);
+  const [events, setEvents] = useState<WebhookEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showAdd, setShowAdd] = useState(false);
+  const [newSecret, setNewSecret] = useState<WebhookSubscriptionWithSecret | null>(
+    null
+  );
+  const [rotated, setRotated] = useState<{
+    sub: WebhookSubscription;
+    secret: string;
+  } | null>(null);
+
+  const load = async () => {
+    try {
+      const [p, s, e] = await Promise.all([
+        getSupportedWebhookPlatforms(),
+        listWebhookSubscriptions(),
+        listWebhookEvents({ limit: 20 }),
+      ]);
+      setPlatforms(p);
+      setSubs(s);
+      setEvents(e);
+    } catch {
+      // Backend may not be deployed yet — fall back to empty state quietly
+      setPlatforms([]);
+      setSubs([]);
+      setEvents([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const handleToggle = async (s: WebhookSubscription) => {
+    try {
+      await updateWebhookSubscription(s.id, { isActive: !s.isActive });
+      await load();
+    } catch (e: any) {
+      alert(e?.response?.data?.error?.message || "Failed to update");
+    }
+  };
+
+  const handleDelete = async (s: WebhookSubscription) => {
+    if (
+      !confirm(
+        locale === "ar"
+          ? `حذف اشتراك ${s.platform} / ${s.topic}؟ المنصة لن تعود لترسل هذا الحدث.`
+          : locale === "tr"
+            ? `${s.platform} / ${s.topic} aboneliğini sil? Platform bu olayı artık göndermeyecek.`
+            : `Delete ${s.platform} / ${s.topic} subscription? The platform will stop sending this event.`
+      )
+    )
+      return;
+    try {
+      await deleteWebhookSubscription(s.id);
+      await load();
+    } catch (e: any) {
+      alert(e?.response?.data?.error?.message || "Failed to delete");
+    }
+  };
+
+  const handleRotate = async (s: WebhookSubscription) => {
+    if (
+      !confirm(
+        locale === "ar"
+          ? "إعادة توليد السر ستبطل السر القديم فوراً. تأكد من تحديث إعدادات المنصة قبل المتابعة."
+          : locale === "tr"
+            ? "Yeni gizli anahtar, eskisini anında geçersiz kılar. Devam etmeden önce platform ayarlarını güncellediğinizden emin olun."
+            : "Rotating the secret invalidates the old one immediately. Update the platform before continuing."
+      )
+    )
+      return;
+    try {
+      const r = await rotateWebhookSecret(s.id);
+      setRotated({ sub: s, secret: r.secret });
+    } catch (e: any) {
+      alert(e?.response?.data?.error?.message || "Failed to rotate");
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="bg-white border border-sky-100 rounded-xl p-6 flex items-center justify-center">
+        <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+      </div>
+    );
+  }
+
+  // Don't render the panel at all if backend doesn't support webhooks yet
+  if (platforms.length === 0 && subs.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="space-y-3">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 className="text-sm font-semibold text-cyan-900 flex items-center gap-2">
+            <Webhook className="w-4 h-4 text-cyan-600" />
+            {locale === "ar"
+              ? "استقبال الويب هوكس"
+              : locale === "tr"
+                ? "Webhook dinleyicileri"
+                : "Webhook listeners"}
+            {subs.length > 0 && (
+              <span className="px-2 py-0.5 text-[10px] bg-cyan-100 text-cyan-700 rounded-full font-semibold">
+                {subs.length}
+              </span>
+            )}
+          </h2>
+          <p className="text-xs text-slate-500 mt-0.5 max-w-xl">
+            {locale === "ar"
+              ? "اجعل منصات التجارة الإلكترونية تُرسل إليك التحديثات فوراً بدلاً من الانتظار لدورة المزامنة التالية."
+              : locale === "tr"
+                ? "E-ticaret platformlarının bir sonraki senkron döngüsünü beklemek yerine size anında güncelleme göndermesini sağlayın."
+                : "Have your e-commerce platforms push updates to you in real time instead of waiting for the next sync cycle."}
+          </p>
+        </div>
+        <button
+          onClick={() => setShowAdd(true)}
+          className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg shadow-sm"
+        >
+          <Plus className="w-3.5 h-3.5" />
+          {locale === "ar"
+            ? "إضافة ويب هوك"
+            : locale === "tr"
+              ? "Webhook ekle"
+              : "Add webhook"}
+        </button>
+      </div>
+
+      {/* Subscription list */}
+      {subs.length === 0 ? (
+        <div className="bg-white border border-sky-100 border-dashed rounded-xl p-6 text-center">
+          <Radio className="w-8 h-8 text-sky-300 mx-auto mb-2" />
+          <p className="text-sm text-slate-600">
+            {locale === "ar"
+              ? "لم تضف أي ويب هوك بعد."
+              : locale === "tr"
+                ? "Henüz webhook eklemediniz."
+                : "No webhooks yet."}
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {subs.map((s) => (
+            <WebhookRow
+              key={s.id}
+              sub={s}
+              isRtl={isRtl}
+              locale={locale}
+              onToggle={() => handleToggle(s)}
+              onRotate={() => handleRotate(s)}
+              onDelete={() => handleDelete(s)}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Recent events */}
+      {events.length > 0 && (
+        <details className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+          <summary className="px-4 py-2.5 text-xs font-semibold text-cyan-900 cursor-pointer hover:bg-sky-50 flex items-center gap-2">
+            <Clock className="w-3.5 h-3.5" />
+            {locale === "ar"
+              ? `آخر ${events.length} حدث`
+              : locale === "tr"
+                ? `Son ${events.length} olay`
+                : `Recent ${events.length} events`}
+          </summary>
+          <div className="border-t border-sky-50 divide-y divide-sky-50">
+            {events.map((ev) => (
+              <EventRow key={ev.id} event={ev} locale={locale} />
+            ))}
+          </div>
+        </details>
+      )}
+
+      {/* Add dialog */}
+      {showAdd && (
+        <AddWebhookDialog
+          platforms={platforms}
+          locale={locale}
+          onCancel={() => setShowAdd(false)}
+          onCreated={(sub) => {
+            setShowAdd(false);
+            setNewSecret(sub);
+            load();
+          }}
+        />
+      )}
+
+      {/* Secret reveal — shown after create */}
+      {newSecret && (
+        <SecretRevealDialog
+          title={
+            locale === "ar"
+              ? "تم إنشاء الويب هوك"
+              : locale === "tr"
+                ? "Webhook oluşturuldu"
+                : "Webhook created"
+          }
+          platform={newSecret.platform}
+          topic={newSecret.topic}
+          publicUrl={newSecret.publicUrl}
+          secret={newSecret.secret}
+          locale={locale}
+          onClose={() => setNewSecret(null)}
+        />
+      )}
+
+      {/* Secret reveal — shown after rotate */}
+      {rotated && (
+        <SecretRevealDialog
+          title={
+            locale === "ar"
+              ? "تم توليد سر جديد"
+              : locale === "tr"
+                ? "Yeni gizli anahtar üretildi"
+                : "New secret generated"
+          }
+          platform={rotated.sub.platform}
+          topic={rotated.sub.topic}
+          publicUrl={rotated.sub.publicUrl}
+          secret={rotated.secret}
+          locale={locale}
+          onClose={() => setRotated(null)}
+        />
+      )}
+    </section>
+  );
+}
+
+// ─── Row ───────────────────────────────────────────────────────────────
+
+function WebhookRow({
+  sub,
+  locale,
+  isRtl,
+  onToggle,
+  onRotate,
+  onDelete,
+}: {
+  sub: WebhookSubscription;
+  locale: string;
+  isRtl: boolean;
+  onToggle: () => void;
+  onRotate: () => void;
+  onDelete: () => void;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(sub.publicUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // noop
+    }
+  };
+
+  const hasFailures = sub.failedCount > 0;
+
+  return (
+    <div
+      className={`bg-white border rounded-xl p-3 ${
+        sub.isActive ? "border-sky-100" : "border-slate-200 opacity-60"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs font-semibold text-cyan-900 capitalize">
+              {sub.platform}
+            </span>
+            <span className="text-slate-300">·</span>
+            <code className="text-[11px] font-mono px-1.5 py-0.5 bg-sky-50 text-cyan-800 rounded">
+              {sub.topic}
+            </code>
+            {!sub.isActive && (
+              <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">
+                {locale === "ar" ? "متوقف" : locale === "tr" ? "pasif" : "inactive"}
+              </span>
+            )}
+            {hasFailures && (
+              <span
+                className="text-[10px] px-1.5 py-0.5 bg-amber-50 text-amber-700 rounded flex items-center gap-1"
+                title={`${sub.failedCount} failed`}
+              >
+                <AlertTriangle className="w-2.5 h-2.5" />
+                {sub.failedCount}
+              </span>
+            )}
+          </div>
+
+          {/* Public URL */}
+          <div className="mt-2 flex items-center gap-1.5 min-w-0">
+            <code
+              className="flex-1 min-w-0 text-[10px] font-mono px-2 py-1 bg-slate-50 text-slate-600 rounded border border-slate-200 truncate"
+              dir="ltr"
+              style={{ unicodeBidi: "embed" }}
+            >
+              {sub.publicUrl}
+            </code>
+            <button
+              onClick={copyUrl}
+              className="p-1.5 text-slate-500 hover:text-cyan-600 hover:bg-sky-50 rounded"
+              title={locale === "ar" ? "نسخ" : locale === "tr" ? "kopyala" : "copy"}
+            >
+              {copied ? (
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+              ) : (
+                <Copy className="w-3.5 h-3.5" />
+              )}
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="mt-1.5 flex items-center gap-3 text-[10px] text-slate-500 flex-wrap">
+            <span>
+              {locale === "ar"
+                ? `مستلم: ${sub.receivedCount}`
+                : locale === "tr"
+                  ? `alınan: ${sub.receivedCount}`
+                  : `received: ${sub.receivedCount}`}
+            </span>
+            {sub.lastReceivedAt && (
+              <span>
+                {locale === "ar" ? "آخر استلام: " : locale === "tr" ? "son: " : "last: "}
+                <time dir="ltr" style={{ unicodeBidi: "embed" }}>
+                  {new Date(sub.lastReceivedAt).toLocaleString()}
+                </time>
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1">
+          <button
+            onClick={onToggle}
+            title={
+              sub.isActive
+                ? locale === "ar"
+                  ? "إيقاف"
+                  : locale === "tr"
+                    ? "durdur"
+                    : "pause"
+                : locale === "ar"
+                  ? "تشغيل"
+                  : locale === "tr"
+                    ? "başlat"
+                    : "resume"
+            }
+            className="p-1.5 text-slate-500 hover:text-cyan-700 hover:bg-sky-50 rounded"
+          >
+            {sub.isActive ? (
+              <Power className="w-3.5 h-3.5" />
+            ) : (
+              <PowerOff className="w-3.5 h-3.5" />
+            )}
+          </button>
+          <button
+            onClick={onRotate}
+            title={
+              locale === "ar"
+                ? "إعادة توليد السر"
+                : locale === "tr"
+                  ? "gizli anahtarı yenile"
+                  : "rotate secret"
+            }
+            className="p-1.5 text-slate-500 hover:text-cyan-700 hover:bg-sky-50 rounded"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+          </button>
+          <button
+            onClick={onDelete}
+            title={
+              locale === "ar" ? "حذف" : locale === "tr" ? "sil" : "delete"
+            }
+            className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Event row (recent deliveries) ────────────────────────────────────
+
+function EventRow({ event, locale }: { event: WebhookEvent; locale: string }) {
+  const statusConfig: Record<
+    WebhookEvent["status"],
+    { bg: string; text: string; icon: typeof Check }
+  > = {
+    done: { bg: "bg-emerald-50", text: "text-emerald-700", icon: CheckCircle2 },
+    pending: { bg: "bg-sky-50", text: "text-sky-700", icon: Clock },
+    processing: { bg: "bg-sky-50", text: "text-sky-700", icon: Clock },
+    failed: { bg: "bg-rose-50", text: "text-rose-700", icon: AlertTriangle },
+    skipped: { bg: "bg-amber-50", text: "text-amber-700", icon: AlertTriangle },
+  };
+  const cfg = statusConfig[event.status] || statusConfig.pending;
+  const Icon = cfg.icon;
+
+  return (
+    <div className="px-4 py-2 flex items-center gap-3 text-[11px] hover:bg-sky-50/40">
+      <span
+        className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded ${cfg.bg} ${cfg.text} font-medium`}
+      >
+        <Icon className="w-2.5 h-2.5" />
+        {event.status}
+      </span>
+      <span className="text-slate-700 font-medium capitalize">{event.platform}</span>
+      <code className="text-[10px] font-mono text-slate-600">{event.topic}</code>
+      {!event.signatureOk && (
+        <span className="text-[10px] px-1 py-0.5 bg-rose-50 text-rose-700 rounded">
+          {locale === "ar"
+            ? "توقيع غير صالح"
+            : locale === "tr"
+              ? "imza geçersiz"
+              : "bad signature"}
+        </span>
+      )}
+      <time
+        className="ml-auto text-slate-400"
+        dir="ltr"
+        style={{ unicodeBidi: "embed" }}
+      >
+        {new Date(event.receivedAt).toLocaleTimeString()}
+      </time>
+    </div>
+  );
+}
+
+// ─── Add dialog ────────────────────────────────────────────────────────
+
+function AddWebhookDialog({
+  platforms,
+  locale,
+  onCancel,
+  onCreated,
+}: {
+  platforms: string[];
+  locale: string;
+  onCancel: () => void;
+  onCreated: (sub: WebhookSubscriptionWithSecret) => void;
+}) {
+  const [platform, setPlatform] = useState(platforms[0] || "shopify");
+  const [topic, setTopic] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  const presets = TOPIC_PRESETS[platform] || [];
+
+  const submit = async () => {
+    if (!topic.trim()) return;
+    setSaving(true);
+    setErr(null);
+    try {
+      const sub = await createWebhookSubscription({
+        platform,
+        topic: topic.trim(),
+      });
+      onCreated(sub);
+    } catch (e: any) {
+      setErr(
+        e?.response?.data?.error?.message ||
+          e?.message ||
+          "Failed to create webhook"
+      );
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div
+      className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={onCancel}
+    >
+      <div
+        className="bg-white rounded-xl shadow-2xl max-w-md w-full p-5"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start justify-between mb-4">
+          <h3 className="text-base font-semibold text-cyan-900">
+            {locale === "ar"
+              ? "إضافة ويب هوك"
+              : locale === "tr"
+                ? "Webhook ekle"
+                : "Add webhook"}
+          </h3>
+          <button
+            onClick={onCancel}
+            className="text-slate-400 hover:text-slate-700"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="space-y-3">
+          <div>
+            <label className="block text-xs font-medium text-slate-700 mb-1">
+              {locale === "ar"
+                ? "المنصة"
+                : locale === "tr"
+                  ? "Platform"
+                  : "Platform"}
+            </label>
+            <select
+              value={platform}
+              onChange={(e) => {
+                setPlatform(e.target.value);
+                setTopic("");
+              }}
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white capitalize"
+            >
+              {platforms.map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-700 mb-1">
+              {locale === "ar"
+                ? "الحدث"
+                : locale === "tr"
+                  ? "Olay"
+                  : "Topic"}
+            </label>
+            <input
+              type="text"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              placeholder={presets[0] || "customers/create"}
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg font-mono"
+              dir="ltr"
+            />
+            {presets.length > 0 && (
+              <div className="mt-1.5 flex items-center gap-1 flex-wrap">
+                {presets.map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => setTopic(p)}
+                    className={`text-[10px] px-2 py-0.5 rounded-full border ${
+                      topic === p
+                        ? "bg-cyan-600 text-white border-cyan-600"
+                        : "bg-white text-slate-600 border-slate-200 hover:border-cyan-300"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="bg-sky-50 border border-sky-100 rounded-lg p-2.5 flex items-start gap-2">
+            <Info className="w-3.5 h-3.5 text-cyan-600 flex-shrink-0 mt-0.5" />
+            <p className="text-[11px] text-cyan-900 leading-relaxed">
+              {locale === "ar"
+                ? "بعد الإنشاء، سنعرض لك السر الموقع ورابط الاستقبال. تلصقهما في لوحة تحكم المنصة."
+                : locale === "tr"
+                  ? "Oluşturulduktan sonra size imzalama anahtarını ve alıcı URL'yi göstereceğiz. Bunları platform paneline yapıştırın."
+                  : "After creating, we'll show you the signing secret and the receiver URL. Paste them into the platform's admin panel."}
+            </p>
+          </div>
+
+          {err && (
+            <div className="bg-rose-50 border border-rose-100 rounded-lg p-2 text-[11px] text-rose-700">
+              {err}
+            </div>
+          )}
+        </div>
+
+        <div className="mt-5 flex items-center justify-end gap-2">
+          <button
+            onClick={onCancel}
+            className="px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50 rounded-lg"
+          >
+            {locale === "ar" ? "إلغاء" : locale === "tr" ? "iptal" : "Cancel"}
+          </button>
+          <button
+            onClick={submit}
+            disabled={saving || !topic.trim()}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg disabled:opacity-50"
+          >
+            {saving ? (
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+            ) : (
+              <Plus className="w-3.5 h-3.5" />
+            )}
+            {locale === "ar"
+              ? "إنشاء"
+              : locale === "tr"
+                ? "oluştur"
+                : "Create"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Secret reveal dialog ──────────────────────────────────────────────
+
+function SecretRevealDialog({
+  title,
+  platform,
+  topic,
+  publicUrl,
+  secret,
+  locale,
+  onClose,
+}: {
+  title: string;
+  platform: string;
+  topic: string;
+  publicUrl: string;
+  secret: string;
+  locale: string;
+  onClose: () => void;
+}) {
+  const [copiedUrl, setCopiedUrl] = useState(false);
+  const [copiedSecret, setCopiedSecret] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+
+  const copy = async (
+    value: string,
+    set: (v: boolean) => void
+  ): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(value);
+      set(true);
+      setTimeout(() => set(false), 1500);
+    } catch {
+      // noop
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full p-5">
+        <div className="flex items-start gap-2 mb-3">
+          <Key className="w-5 h-5 text-cyan-600 mt-0.5" />
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base font-semibold text-cyan-900">{title}</h3>
+            <p className="text-xs text-slate-600 mt-0.5 capitalize">
+              {platform} · <span className="font-mono text-slate-700">{topic}</span>
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-2 mb-4">
+          <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-amber-900 leading-relaxed">
+            {locale === "ar"
+              ? "احفظ هذا السر الآن. لن يتم عرضه مرة أخرى. إن فقدته، استخدم زر إعادة التوليد."
+              : locale === "tr"
+                ? "Gizli anahtarı şimdi kaydet. Tekrar gösterilmeyecek. Kaybedersen, yenileme düğmesini kullan."
+                : "Save this secret now. It will not be shown again. If lost, use the rotate button to generate a new one."}
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <div>
+            <label className="block text-[11px] font-medium text-slate-600 mb-1">
+              {locale === "ar"
+                ? "رابط الاستقبال"
+                : locale === "tr"
+                  ? "Alıcı URL"
+                  : "Receiver URL"}
+            </label>
+            <div className="flex items-center gap-1.5">
+              <code
+                className="flex-1 min-w-0 text-[11px] font-mono px-2.5 py-2 bg-slate-50 text-slate-800 rounded border border-slate-200 truncate"
+                dir="ltr"
+                style={{ unicodeBidi: "embed" }}
+              >
+                {publicUrl}
+              </code>
+              <button
+                onClick={() => copy(publicUrl, setCopiedUrl)}
+                className="p-2 text-slate-500 hover:text-cyan-600 hover:bg-sky-50 rounded border border-slate-200"
+              >
+                {copiedUrl ? (
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                ) : (
+                  <Copy className="w-3.5 h-3.5" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-[11px] font-medium text-slate-600 mb-1">
+              {locale === "ar"
+                ? "سر التوقيع (مخفي في المستقبل)"
+                : locale === "tr"
+                  ? "İmza anahtarı (tekrar gösterilmez)"
+                  : "Signing secret (shown once)"}
+            </label>
+            <div className="flex items-center gap-1.5">
+              <code
+                className="flex-1 min-w-0 text-[11px] font-mono px-2.5 py-2 bg-amber-50 text-amber-900 rounded border border-amber-200 break-all"
+                dir="ltr"
+                style={{ unicodeBidi: "embed" }}
+              >
+                {secret}
+              </code>
+              <button
+                onClick={() => copy(secret, setCopiedSecret)}
+                className="p-2 text-slate-500 hover:text-cyan-600 hover:bg-sky-50 rounded border border-slate-200"
+              >
+                {copiedSecret ? (
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                ) : (
+                  <Copy className="w-3.5 h-3.5" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <label className="mt-4 flex items-start gap-2 text-xs text-slate-700 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={confirmed}
+            onChange={(e) => setConfirmed(e.target.checked)}
+            className="mt-0.5 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+          />
+          <span>
+            {locale === "ar"
+              ? "قمت بنسخ السر وألصقته في لوحة تحكم المنصة"
+              : locale === "tr"
+                ? "Anahtarı kopyaladım ve platform paneline yapıştırdım"
+                : "I've copied the secret and pasted it into the platform's admin panel"}
+          </span>
+        </label>
+
+        <div className="mt-4 flex items-center justify-end">
+          <button
+            onClick={onClose}
+            disabled={!confirmed}
+            className="px-4 py-2 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {locale === "ar" ? "تم" : locale === "tr" ? "tamam" : "Done"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
