@@ -46,6 +46,7 @@
     "commission": "العمولات",
     "cashflow": "التدفق النقدي",
     "followup": "المتابعة",
+    "campaigns": "الحملات",
     "aiCfo": "المدير المالي"
   },
   "Home": {
@@ -1877,6 +1878,118 @@
       "stageValue": "اسم المرحلة",
       "minValue": "الحد الأدنى",
       "isActive": "نشطة"
+    }
+  },
+  "Campaigns": {
+    "title": "الحملات التسويقية",
+    "subtitle": "التسويق عبر البريد والقنوات المتعددة — أرسل لفئات محددة من العملاء",
+    "newCampaign": "حملة جديدة",
+    "channel": {
+      "email": "بريد إلكتروني",
+      "whatsapp": "واتساب",
+      "sms": "رسالة نصية"
+    },
+    "status": {
+      "draft": "مسودة",
+      "scheduled": "مجدولة",
+      "sending": "جاري الإرسال",
+      "sent": "مُرسَلة",
+      "failed": "فشلت",
+      "cancelled": "ملغاة"
+    },
+    "recipientStatus": {
+      "queued": "في الانتظار",
+      "sent": "مُرسَلة",
+      "delivered": "وصلت",
+      "opened": "فُتحت",
+      "clicked": "تم النقر",
+      "bounced": "مرتدّة",
+      "failed": "فشلت"
+    },
+    "stats": {
+      "total": "الإجمالي",
+      "totalSent": "رسائل مُرسَلة",
+      "totalOpens": "فتحات",
+      "openRate": "معدل الفتح"
+    },
+    "table": {
+      "name": "الاسم",
+      "channel": "القناة",
+      "status": "الحالة",
+      "recipients": "المستلمون",
+      "sent": "مُرسَلة",
+      "created": "تاريخ الإنشاء"
+    },
+    "empty": {
+      "title": "لا توجد حملات بعد",
+      "subtitle": "أنشئ أول حملة بريدية للوصول إلى فئات محددة من العملاء"
+    },
+    "wizard": {
+      "title": "حملة جديدة",
+      "step": "الخطوة {step} من {total}",
+      "beta": "تجريبي",
+      "scheduleHint": "اترك فارغًا للإرسال الفوري من القائمة، أو اختر وقتًا مستقبليًا",
+      "steps": {
+        "channel": "القناة",
+        "audience": "الجمهور",
+        "content": "المحتوى",
+        "review": "المراجعة"
+      },
+      "fields": {
+        "name": "اسم الحملة",
+        "namePlaceholder": "مثال: عرض مارس لكل العملاء",
+        "channel": "اختر القناة",
+        "targetType": "من يستقبل هذه الحملة؟",
+        "statusValue": "حالة العميل",
+        "tagValue": "اسم الوسم",
+        "tagPlaceholder": "مثال: vip",
+        "subject": "عنوان الرسالة",
+        "fromName": "اسم المُرسِل",
+        "replyTo": "الرد على",
+        "body": "نص الرسالة",
+        "bodyPlaceholder": "اكتب رسالتك. يمكنك استخدام نص عادي — سيتم الحفاظ على فواصل الأسطر في البريد.",
+        "scheduledAt": "جدولة للإرسال لاحقًا (اختياري)"
+      },
+      "target": {
+        "all": "كل العملاء النشطين",
+        "status": "العملاء بحالة محددة",
+        "tag": "العملاء بوسم محدد",
+        "manual": "اختيار يدوي"
+      },
+      "review": {
+        "name": "الاسم",
+        "channel": "القناة",
+        "audience": "الجمهور",
+        "subject": "العنوان"
+      },
+      "actions": {
+        "cancel": "إلغاء",
+        "back": "رجوع",
+        "next": "التالي",
+        "saveDraft": "حفظ كمسودة",
+        "sendNow": "إرسال الآن"
+      },
+      "errors": {
+        "enterName": "الرجاء إدخال اسم للحملة"
+      }
+    },
+    "detail": {
+      "recipients": "المستلمون",
+      "sent": "مُرسَلة",
+      "opened": "فُتحت",
+      "failed": "فشلت",
+      "body": "نص الرسالة",
+      "recipientsList": "المستلمون",
+      "noRecipients": "لا يوجد مستلمون — تحقق من إعدادات الجمهور",
+      "moreRecipients": "مستلم إضافي"
+    },
+    "actions": {
+      "sendNow": "إرسال الآن",
+      "delete": "حذف"
+    },
+    "confirm": {
+      "send": "إرسال الحملة إلى {count} مستلم الآن؟",
+      "delete": "حذف هذه الحملة؟ ستُفقد كل سجلات المستلمين."
     }
   }
 }

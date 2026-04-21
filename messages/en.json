@@ -46,6 +46,7 @@
     "commission": "Commission",
     "cashflow": "Cash Flow",
     "followup": "Follow-up",
+    "campaigns": "Campaigns",
     "aiCfo": "AI CFO"
   },
   "Home": {
@@ -1877,6 +1878,118 @@
       "stageValue": "Stage name",
       "minValue": "Min value",
       "isActive": "Active"
+    }
+  },
+  "Campaigns": {
+    "title": "Campaigns",
+    "subtitle": "Email marketing and multi-channel outreach — send to segmented audiences",
+    "newCampaign": "New Campaign",
+    "channel": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "sms": "SMS"
+    },
+    "status": {
+      "draft": "Draft",
+      "scheduled": "Scheduled",
+      "sending": "Sending",
+      "sent": "Sent",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    },
+    "recipientStatus": {
+      "queued": "Queued",
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "opened": "Opened",
+      "clicked": "Clicked",
+      "bounced": "Bounced",
+      "failed": "Failed"
+    },
+    "stats": {
+      "total": "Total",
+      "totalSent": "Messages Sent",
+      "totalOpens": "Opens",
+      "openRate": "Open Rate"
+    },
+    "table": {
+      "name": "Name",
+      "channel": "Channel",
+      "status": "Status",
+      "recipients": "Recipients",
+      "sent": "Sent",
+      "created": "Created"
+    },
+    "empty": {
+      "title": "No campaigns yet",
+      "subtitle": "Create your first email campaign to reach segmented audiences"
+    },
+    "wizard": {
+      "title": "New Campaign",
+      "step": "Step {step} of {total}",
+      "beta": "beta",
+      "scheduleHint": "Leave empty to send immediately from the list, or pick a future time",
+      "steps": {
+        "channel": "Channel",
+        "audience": "Audience",
+        "content": "Content",
+        "review": "Review"
+      },
+      "fields": {
+        "name": "Campaign name",
+        "namePlaceholder": "e.g. March promo to all customers",
+        "channel": "Choose channel",
+        "targetType": "Who receives this campaign?",
+        "statusValue": "Customer status",
+        "tagValue": "Tag name",
+        "tagPlaceholder": "e.g. vip",
+        "subject": "Subject line",
+        "fromName": "From name",
+        "replyTo": "Reply to",
+        "body": "Message body",
+        "bodyPlaceholder": "Write your message. You can use plain text — line breaks will be preserved in the email.",
+        "scheduledAt": "Schedule for later (optional)"
+      },
+      "target": {
+        "all": "All active customers",
+        "status": "Customers with specific status",
+        "tag": "Customers with specific tag",
+        "manual": "Manual selection"
+      },
+      "review": {
+        "name": "Name",
+        "channel": "Channel",
+        "audience": "Audience",
+        "subject": "Subject"
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "back": "Back",
+        "next": "Next",
+        "saveDraft": "Save as draft",
+        "sendNow": "Send now"
+      },
+      "errors": {
+        "enterName": "Please enter a campaign name"
+      }
+    },
+    "detail": {
+      "recipients": "Recipients",
+      "sent": "Sent",
+      "opened": "Opened",
+      "failed": "Failed",
+      "body": "Message body",
+      "recipientsList": "Recipients",
+      "noRecipients": "No recipients — check audience settings",
+      "moreRecipients": "more recipients"
+    },
+    "actions": {
+      "sendNow": "Send now",
+      "delete": "Delete"
+    },
+    "confirm": {
+      "send": "Send campaign to {count} recipients now?",
+      "delete": "Delete this campaign? All recipient records will be lost."
     }
   }
 }

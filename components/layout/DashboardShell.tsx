@@ -18,6 +18,7 @@ import {
   Bell,
   Sparkles,
   DollarSign,
+  Mail,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -66,6 +67,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     { href: `/${locale}/commission`, icon: DollarSign, label: "Commission" },
     { href: `/${locale}/cashflow`, icon: TrendingUp, label: "Cash Flow" },
     { href: `/${locale}/followup`, icon: Bell, label: "Follow-up" },
+    { href: `/${locale}/campaigns`, icon: Mail, label: "Campaigns" },
     {
       href: `/${locale}/ai-cfo`,
       icon: Sparkles,

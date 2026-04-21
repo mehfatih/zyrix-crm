@@ -46,6 +46,7 @@
     "commission": "Komisyon",
     "cashflow": "Nakit Akışı",
     "followup": "Takip",
+    "campaigns": "Kampanyalar",
     "aiCfo": "AI CFO"
   },
   "Home": {
@@ -1877,6 +1878,118 @@
       "stageValue": "Aşama adı",
       "minValue": "Min değer",
       "isActive": "Aktif"
+    }
+  },
+  "Campaigns": {
+    "title": "Kampanyalar",
+    "subtitle": "E-posta pazarlama ve çok kanallı ulaşım — segmentli kitlelere gönderin",
+    "newCampaign": "Yeni Kampanya",
+    "channel": {
+      "email": "E-posta",
+      "whatsapp": "WhatsApp",
+      "sms": "SMS"
+    },
+    "status": {
+      "draft": "Taslak",
+      "scheduled": "Planlandı",
+      "sending": "Gönderiliyor",
+      "sent": "Gönderildi",
+      "failed": "Başarısız",
+      "cancelled": "İptal"
+    },
+    "recipientStatus": {
+      "queued": "Beklemede",
+      "sent": "Gönderildi",
+      "delivered": "Ulaştı",
+      "opened": "Açıldı",
+      "clicked": "Tıklandı",
+      "bounced": "Geri döndü",
+      "failed": "Başarısız"
+    },
+    "stats": {
+      "total": "Toplam",
+      "totalSent": "Gönderilen Mesaj",
+      "totalOpens": "Açılışlar",
+      "openRate": "Açılma Oranı"
+    },
+    "table": {
+      "name": "Ad",
+      "channel": "Kanal",
+      "status": "Durum",
+      "recipients": "Alıcılar",
+      "sent": "Gönderildi",
+      "created": "Oluşturulma"
+    },
+    "empty": {
+      "title": "Henüz kampanya yok",
+      "subtitle": "Segmentli kitlelere ulaşmak için ilk e-posta kampanyanızı oluşturun"
+    },
+    "wizard": {
+      "title": "Yeni Kampanya",
+      "step": "Adım {step}/{total}",
+      "beta": "beta",
+      "scheduleHint": "Listeden hemen göndermek için boş bırakın veya gelecek bir zaman seçin",
+      "steps": {
+        "channel": "Kanal",
+        "audience": "Kitle",
+        "content": "İçerik",
+        "review": "Özet"
+      },
+      "fields": {
+        "name": "Kampanya adı",
+        "namePlaceholder": "Örn: Tüm müşterilere Mart promosyonu",
+        "channel": "Kanal seçin",
+        "targetType": "Bu kampanyayı kim alacak?",
+        "statusValue": "Müşteri durumu",
+        "tagValue": "Etiket adı",
+        "tagPlaceholder": "Örn: vip",
+        "subject": "Konu satırı",
+        "fromName": "Gönderen adı",
+        "replyTo": "Yanıt adresi",
+        "body": "Mesaj içeriği",
+        "bodyPlaceholder": "Mesajınızı yazın. Düz metin kullanabilirsiniz — satır sonları e-postada korunur.",
+        "scheduledAt": "Daha sonra gönder (opsiyonel)"
+      },
+      "target": {
+        "all": "Tüm aktif müşteriler",
+        "status": "Belirli durumdaki müşteriler",
+        "tag": "Belirli etiketli müşteriler",
+        "manual": "Manuel seçim"
+      },
+      "review": {
+        "name": "Ad",
+        "channel": "Kanal",
+        "audience": "Kitle",
+        "subject": "Konu"
+      },
+      "actions": {
+        "cancel": "İptal",
+        "back": "Geri",
+        "next": "İleri",
+        "saveDraft": "Taslak olarak kaydet",
+        "sendNow": "Şimdi gönder"
+      },
+      "errors": {
+        "enterName": "Lütfen bir kampanya adı girin"
+      }
+    },
+    "detail": {
+      "recipients": "Alıcılar",
+      "sent": "Gönderildi",
+      "opened": "Açıldı",
+      "failed": "Başarısız",
+      "body": "Mesaj içeriği",
+      "recipientsList": "Alıcılar",
+      "noRecipients": "Alıcı yok — kitle ayarlarını kontrol edin",
+      "moreRecipients": "alıcı daha"
+    },
+    "actions": {
+      "sendNow": "Şimdi gönder",
+      "delete": "Sil"
+    },
+    "confirm": {
+      "send": "Kampanya {count} alıcıya şimdi gönderilsin mi?",
+      "delete": "Bu kampanya silinsin mi? Tüm alıcı kayıtları kaybolacak."
     }
   }
 }
