@@ -123,6 +123,13 @@ export async function resetPasswordApi(
 export interface UpdateProfilePayload {
   fullName?: string;
   phone?: string;
+  // UX #7 — profile expansion
+  avatarUrl?: string | null;
+  website?: string | null;
+  timezone?: string | null;
+  billingEmail?: string | null;
+  preferredLocale?: "en" | "ar" | "tr" | null;
+  notificationPrefs?: Record<string, boolean>;
 }
 
 export async function updateProfileApi(

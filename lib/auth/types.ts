@@ -15,6 +15,13 @@ export interface User {
   twoFactorEnabled?: boolean;
   lastLoginAt?: string;
   createdAt?: string;
+  // Profile expansion (UX #7)
+  avatarUrl?: string | null;
+  website?: string | null;
+  timezone?: string | null;
+  billingEmail?: string | null;
+  preferredLocale?: "en" | "ar" | "tr" | null;
+  notificationPrefs?: Record<string, boolean>;
 }
 
 export interface Company {

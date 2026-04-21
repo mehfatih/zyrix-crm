@@ -149,13 +149,26 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
             href={`/${locale}/dashboard`}
             className="flex items-center gap-2 flex-1 min-w-0"
           >
-            <Image
-              src="/logo.png"
-              alt="Zyrix"
-              width={32}
-              height={32}
-              className="rounded-lg"
-            />
+            {/* Avatar — uses the uploaded user image when available,
+                falls back to the Zyrix logo. This was previously a
+                hardcoded Zyrix logo for every merchant, which users
+                wanted to replace with their own branding. */}
+            {user.avatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={user.avatarUrl}
+                alt={user.fullName || "Profile"}
+                className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
+              />
+            ) : (
+              <Image
+                src="/logo.png"
+                alt="Zyrix"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
+            )}
             <div className="min-w-0">
               <h1 className="text-sm font-bold text-ink leading-tight truncate">
                 {company.name}
