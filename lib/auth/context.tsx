@@ -17,6 +17,7 @@ import {
   meApi,
   twoFactorChallengeApi,
 } from "../api/auth";
+import { recordSessionEvent } from "../api/session-events";
 import {
   getAccessToken,
   setAccessToken,
@@ -119,6 +120,8 @@ export function AuthProvider({
       setCompanyState(result.company);
       cacheUser(result.user);
       cacheCompany(result.company);
+      // Session-events telemetry — fire-and-forget, never block signup
+      recordSessionEvent("login", { method: "signup" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
     },
     [locale, router]
@@ -139,6 +142,7 @@ export function AuthProvider({
       setCompanyState(full.company);
       cacheUser(full.user);
       cacheCompany(full.company);
+      recordSessionEvent("login", { method: "password" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
       return;
     },
@@ -154,6 +158,7 @@ export function AuthProvider({
       setCompanyState(result.company);
       cacheUser(result.user);
       cacheCompany(result.company);
+      recordSessionEvent("login", { method: "password_2fa" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
     },
     [locale, router]
@@ -168,6 +173,7 @@ export function AuthProvider({
       setCompanyState(result.company);
       cacheUser(result.user);
       cacheCompany(result.company);
+      recordSessionEvent("login", { method: "google" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
     },
     [locale, router]

@@ -5,6 +5,9 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useDraggableSplit } from "@/hooks/useDraggableSplit";
+import { useIdleTimeout } from "@/hooks/useIdleTimeout";
+import { IdleWarningModal } from "@/components/auth/IdleWarningModal";
+import { recordSessionEvent } from "@/lib/api/session-events";
 import {
   LayoutDashboard,
   Users,
@@ -60,6 +63,36 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
   const splitContainerRef = useRef<HTMLDivElement | null>(null);
   const { topFlexPercent, startDrag, isDragging, resetToDefault } =
     useDraggableSplit(splitContainerRef);
+
+  // Auto-lock after configured minutes of inactivity. Records a
+  // session_events row with eventType='auto_logout_idle' BEFORE
+  // clearing tokens so managers' KPI reports show an accurate
+  // breakdown of auto vs manual logouts per employee.
+  const { warningOpen, secondsLeft, dismissWarning, forceLogout } =
+    useIdleTimeout({
+      enabled:
+        isAuthenticated &&
+        !!company &&
+        (company?.idleTimeoutMinutes ?? 0) > 0,
+      idleMinutes: company?.idleTimeoutMinutes ?? 10,
+      onAutoLogout: async () => {
+        try {
+          await recordSessionEvent("auto_logout_idle");
+        } catch {
+          /* telemetry must not block logout */
+        }
+        await logout();
+      },
+    });
+
+  const handleManualLogoutFromWarning = async () => {
+    try {
+      await recordSessionEvent("manual_logout", { source: "idle_warning" });
+    } catch {
+      /* never block */
+    }
+    await logout();
+  };
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -369,7 +402,16 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
               <p className="text-xs text-ink-muted truncate">{user.email}</p>
             </div>
             <button
-              onClick={logout}
+              onClick={async () => {
+                try {
+                  await recordSessionEvent("manual_logout", {
+                    source: "sidebar_button",
+                  });
+                } catch {
+                  /* never block logout on telemetry */
+                }
+                await logout();
+              }}
               className="p-1.5 text-ink-light hover:text-danger hover:bg-danger-light rounded"
               title="Log out"
             >
@@ -387,6 +429,17 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
         <div className="flex-1">{children}</div>
       </main>
       </div>
+
+      {/* Idle-timeout warning — rendered at root level so it overlays
+          every dashboard page. Not a portal since it's already inside
+          the shell's root flex container. */}
+      <IdleWarningModal
+        open={warningOpen}
+        secondsLeft={secondsLeft}
+        locale={locale as "en" | "ar" | "tr"}
+        onContinue={dismissWarning}
+        onLogoutNow={handleManualLogoutFromWarning}
+      />
     </div>
   );
 }

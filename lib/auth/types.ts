@@ -35,6 +35,9 @@ export interface Company {
   // default to true (enabled), so new features appear automatically
   // without needing a data migration.
   enabledFeatures?: Record<string, boolean>;
+  // Auto-lock inactivity timeout in minutes. 10 default, 0 or null
+  // disables auto-lock (e.g. for dashboards on TV screens).
+  idleTimeoutMinutes?: number | null;
 }
 
 export interface AuthTokens {
