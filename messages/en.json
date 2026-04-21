@@ -41,6 +41,7 @@
     "arabic": "العربية",
     "turkish": "Türkçe",
     "quotes": "Quotes",
+    "contracts": "Contracts",
     "loyalty": "Loyalty",
     "tax": "Tax",
     "commission": "Commission",
@@ -1990,6 +1991,88 @@
     "confirm": {
       "send": "Send campaign to {count} recipients now?",
       "delete": "Delete this campaign? All recipient records will be lost."
+    }
+  },
+  "Contracts": {
+    "title": "Contracts",
+    "subtitle": "Manage customer contracts, signatures, and renewal reminders",
+    "newContract": "New Contract",
+    "searchPlaceholder": "Search by number or title…",
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "pending": "Pending Signature",
+      "expiringSoon": "Expiring in 30d"
+    },
+    "filters": {
+      "allStatuses": "All statuses",
+      "expiringOnly": "Only expiring (30d)"
+    },
+    "status": {
+      "draft": "Draft",
+      "pending_signature": "Pending Signature",
+      "signed": "Signed",
+      "active": "Active",
+      "expired": "Expired",
+      "terminated": "Terminated"
+    },
+    "table": {
+      "number": "Number",
+      "customer": "Customer",
+      "title": "Title",
+      "status": "Status",
+      "endDate": "End Date",
+      "value": "Value",
+      "expiringSoon": "Expiring soon"
+    },
+    "empty": {
+      "title": "No contracts yet",
+      "subtitle": "Create your first contract to track customer agreements"
+    },
+    "form": {
+      "createTitle": "New Contract",
+      "editTitle": "Edit Contract",
+      "customer": "Customer",
+      "selectCustomer": "Select a customer…",
+      "status": "Status",
+      "titleLabel": "Contract Title",
+      "titlePlaceholder": "e.g. Annual SaaS Subscription 2026",
+      "description": "Description",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "renewalDate": "Renewal Date",
+      "value": "Value",
+      "currency": "Currency",
+      "fileUrl": "File URL",
+      "fileUrlHint": "Link to contract file in Google Drive, Dropbox, etc.",
+      "notes": "Notes"
+    },
+    "detail": {
+      "startDate": "Start",
+      "endDate": "End",
+      "renewal": "Renewal",
+      "value": "Contract Value",
+      "notes": "Notes",
+      "terms": "Terms"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "create": "Create",
+      "edit": "Edit",
+      "delete": "Delete",
+      "createReminder": "Create Renewal Reminder",
+      "reminderDone": "Reminder created ✓"
+    },
+    "confirm": {
+      "delete": "Delete this contract? This cannot be undone."
+    },
+    "alerts": {
+      "reminderCreated": "A high-priority task has been created for contract renewal follow-up."
+    },
+    "errors": {
+      "selectCustomer": "Please select a customer",
+      "enterTitle": "Please enter a title"
     }
   }
 }

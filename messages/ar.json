@@ -41,6 +41,7 @@
     "arabic": "العربية",
     "turkish": "Türkçe",
     "quotes": "عروض الأسعار",
+    "contracts": "العقود",
     "loyalty": "الولاء",
     "tax": "الضرائب",
     "commission": "العمولات",
@@ -1990,6 +1991,88 @@
     "confirm": {
       "send": "إرسال الحملة إلى {count} مستلم الآن؟",
       "delete": "حذف هذه الحملة؟ ستُفقد كل سجلات المستلمين."
+    }
+  },
+  "Contracts": {
+    "title": "العقود",
+    "subtitle": "إدارة عقود العملاء والتوقيعات وتذكيرات التجديد",
+    "newContract": "عقد جديد",
+    "searchPlaceholder": "ابحث بالرقم أو العنوان…",
+    "stats": {
+      "total": "الإجمالي",
+      "active": "نشطة",
+      "pending": "بانتظار التوقيع",
+      "expiringSoon": "تنتهي خلال 30 يومًا"
+    },
+    "filters": {
+      "allStatuses": "جميع الحالات",
+      "expiringOnly": "المنتهية خلال 30 يومًا فقط"
+    },
+    "status": {
+      "draft": "مسودة",
+      "pending_signature": "بانتظار التوقيع",
+      "signed": "مُوقّعة",
+      "active": "نشطة",
+      "expired": "منتهية",
+      "terminated": "مُلغاة"
+    },
+    "table": {
+      "number": "الرقم",
+      "customer": "العميل",
+      "title": "العنوان",
+      "status": "الحالة",
+      "endDate": "تاريخ الانتهاء",
+      "value": "القيمة",
+      "expiringSoon": "تنتهي قريبًا"
+    },
+    "empty": {
+      "title": "لا توجد عقود بعد",
+      "subtitle": "أنشئ أول عقد لتتبع اتفاقيات العملاء"
+    },
+    "form": {
+      "createTitle": "عقد جديد",
+      "editTitle": "تعديل العقد",
+      "customer": "العميل",
+      "selectCustomer": "اختر عميلًا…",
+      "status": "الحالة",
+      "titleLabel": "عنوان العقد",
+      "titlePlaceholder": "مثال: اشتراك SaaS سنوي 2026",
+      "description": "الوصف",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ الانتهاء",
+      "renewalDate": "تاريخ التجديد",
+      "value": "القيمة",
+      "currency": "العملة",
+      "fileUrl": "رابط الملف",
+      "fileUrlHint": "رابط لملف العقد في Google Drive أو Dropbox إلخ.",
+      "notes": "ملاحظات"
+    },
+    "detail": {
+      "startDate": "البداية",
+      "endDate": "الانتهاء",
+      "renewal": "التجديد",
+      "value": "قيمة العقد",
+      "notes": "ملاحظات",
+      "terms": "الشروط"
+    },
+    "actions": {
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "create": "إنشاء",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "createReminder": "إنشاء تذكير بالتجديد",
+      "reminderDone": "تم إنشاء التذكير ✓"
+    },
+    "confirm": {
+      "delete": "حذف هذا العقد؟ لا يمكن التراجع."
+    },
+    "alerts": {
+      "reminderCreated": "تم إنشاء مهمة عالية الأولوية لمتابعة تجديد العقد."
+    },
+    "errors": {
+      "selectCustomer": "الرجاء اختيار عميل",
+      "enterTitle": "الرجاء إدخال عنوان"
     }
   }
 }

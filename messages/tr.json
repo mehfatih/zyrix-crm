@@ -41,6 +41,7 @@
     "arabic": "العربية",
     "turkish": "Türkçe",
     "quotes": "Teklifler",
+    "contracts": "Sözleşmeler",
     "loyalty": "Sadakat",
     "tax": "Vergi",
     "commission": "Komisyon",
@@ -1990,6 +1991,88 @@
     "confirm": {
       "send": "Kampanya {count} alıcıya şimdi gönderilsin mi?",
       "delete": "Bu kampanya silinsin mi? Tüm alıcı kayıtları kaybolacak."
+    }
+  },
+  "Contracts": {
+    "title": "Sözleşmeler",
+    "subtitle": "Müşteri sözleşmelerini, imzaları ve yenileme hatırlatıcılarını yönetin",
+    "newContract": "Yeni Sözleşme",
+    "searchPlaceholder": "Numara veya başlık ile ara…",
+    "stats": {
+      "total": "Toplam",
+      "active": "Aktif",
+      "pending": "İmza Bekleyen",
+      "expiringSoon": "30g içinde biten"
+    },
+    "filters": {
+      "allStatuses": "Tüm durumlar",
+      "expiringOnly": "Sadece bitenler (30g)"
+    },
+    "status": {
+      "draft": "Taslak",
+      "pending_signature": "İmza Bekliyor",
+      "signed": "İmzalandı",
+      "active": "Aktif",
+      "expired": "Süresi Doldu",
+      "terminated": "Feshedildi"
+    },
+    "table": {
+      "number": "Numara",
+      "customer": "Müşteri",
+      "title": "Başlık",
+      "status": "Durum",
+      "endDate": "Bitiş",
+      "value": "Değer",
+      "expiringSoon": "Yakında bitiyor"
+    },
+    "empty": {
+      "title": "Henüz sözleşme yok",
+      "subtitle": "Müşteri sözleşmelerini takip etmek için ilk sözleşmenizi oluşturun"
+    },
+    "form": {
+      "createTitle": "Yeni Sözleşme",
+      "editTitle": "Sözleşmeyi Düzenle",
+      "customer": "Müşteri",
+      "selectCustomer": "Müşteri seçin…",
+      "status": "Durum",
+      "titleLabel": "Sözleşme Başlığı",
+      "titlePlaceholder": "Örn: Yıllık SaaS Aboneliği 2026",
+      "description": "Açıklama",
+      "startDate": "Başlangıç",
+      "endDate": "Bitiş",
+      "renewalDate": "Yenileme",
+      "value": "Değer",
+      "currency": "Para Birimi",
+      "fileUrl": "Dosya Bağlantısı",
+      "fileUrlHint": "Google Drive, Dropbox vb. içindeki sözleşme bağlantısı",
+      "notes": "Notlar"
+    },
+    "detail": {
+      "startDate": "Başlangıç",
+      "endDate": "Bitiş",
+      "renewal": "Yenileme",
+      "value": "Sözleşme Değeri",
+      "notes": "Notlar",
+      "terms": "Şartlar"
+    },
+    "actions": {
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "create": "Oluştur",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "createReminder": "Yenileme Hatırlatıcısı Oluştur",
+      "reminderDone": "Hatırlatıcı oluşturuldu ✓"
+    },
+    "confirm": {
+      "delete": "Bu sözleşme silinsin mi? Geri alınamaz."
+    },
+    "alerts": {
+      "reminderCreated": "Sözleşme yenilemesi için yüksek öncelikli görev oluşturuldu."
+    },
+    "errors": {
+      "selectCustomer": "Lütfen bir müşteri seçin",
+      "enterTitle": "Lütfen bir başlık girin"
     }
   }
 }
