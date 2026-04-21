@@ -35,6 +35,7 @@ import { useAuth } from "@/lib/auth/context";
 import { fetchUnreadCount } from "@/lib/api/chat";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import ImpersonationBanner from "./ImpersonationBanner";
+import { NotificationBell } from "@/components/collab/NotificationBell";
 import type { Locale } from "@/i18n";
 import { getInitials, cn } from "@/lib/utils";
 import GlobalSearchBar from "@/components/advanced/GlobalSearchBar";
@@ -126,10 +127,10 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       <div className="flex-1 flex">
       {/* Sidebar */}
       <aside className="hidden lg:flex w-64 bg-white border-r border-line-soft flex-col fixed h-screen">
-        <div className="p-4 border-b border-line-soft">
+        <div className="p-4 border-b border-line-soft flex items-center gap-2">
           <Link
             href={`/${locale}/dashboard`}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 flex-1 min-w-0"
           >
             <Image
               src="/logo.png"
@@ -138,8 +139,8 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
               height={32}
               className="rounded-lg"
             />
-            <div>
-              <h1 className="text-sm font-bold text-ink leading-tight">
+            <div className="min-w-0">
+              <h1 className="text-sm font-bold text-ink leading-tight truncate">
                 {company.name}
               </h1>
               <p className="text-[10px] text-ink-muted capitalize">
@@ -147,6 +148,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
               </p>
             </div>
           </Link>
+          <NotificationBell />
         </div>
 
         <nav className="flex-1 p-3 space-y-1">

@@ -1831,3 +1831,150 @@ export async function removeCustomDomain(): Promise<{ removed: true }> {
   );
   return data.data;
 }
+
+// ============================================================================
+// COLLABORATION — notifications + comments + mentions
+// ============================================================================
+
+export interface Notification {
+  id: string;
+  companyId: string;
+  userId: string;
+  kind: string;
+  title: string;
+  body: string | null;
+  link: string | null;
+  entityType: string | null;
+  entityId: string | null;
+  readAt: string | null;
+  createdAt: string;
+}
+
+export interface NotificationsPage {
+  items: Notification[];
+  unreadCount: number;
+}
+
+export async function listNotifications(opts?: {
+  onlyUnread?: boolean;
+  limit?: number;
+  offset?: number;
+}): Promise<NotificationsPage> {
+  const params: Record<string, string | number> = {};
+  if (opts?.onlyUnread) params.onlyUnread = "true";
+  if (opts?.limit) params.limit = opts.limit;
+  if (opts?.offset) params.offset = opts.offset;
+  const { data } = await apiClient.get<ApiSuccess<NotificationsPage>>(
+    "/api/notifications",
+    { params }
+  );
+  return data.data;
+}
+
+export async function getNotificationUnreadCount(): Promise<number> {
+  const { data } = await apiClient.get<ApiSuccess<{ count: number }>>(
+    "/api/notifications/unread-count"
+  );
+  return data.data.count;
+}
+
+export async function markNotificationsRead(
+  ids?: string[]
+): Promise<{ updated: number }> {
+  const body = ids && ids.length ? { ids } : { all: true };
+  const { data } = await apiClient.post<ApiSuccess<{ updated: number }>>(
+    "/api/notifications/mark-read",
+    body
+  );
+  return data.data;
+}
+
+export async function deleteNotification(
+  id: string
+): Promise<{ deleted: boolean }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ deleted: boolean }>>(
+    `/api/notifications/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+// ─── Comments ───────────────────────────────────────────────────────
+
+export type CommentEntityType = "customer" | "deal" | "activity";
+
+export interface Comment {
+  id: string;
+  companyId: string;
+  authorId: string;
+  author: { id: string; fullName: string; email: string };
+  entityType: string;
+  entityId: string;
+  body: string;
+  parentId: string | null;
+  mentions: Array<{ mentionedUserId: string }>;
+  replyCount: number;
+  editedAt: string | null;
+  deletedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MentionableUser {
+  id: string;
+  fullName: string;
+  email: string;
+}
+
+export async function listComments(
+  entityType: CommentEntityType,
+  entityId: string
+): Promise<Comment[]> {
+  const { data } = await apiClient.get<ApiSuccess<Comment[]>>(
+    "/api/comments",
+    { params: { entityType, entityId } }
+  );
+  return data.data;
+}
+
+export async function createComment(input: {
+  entityType: CommentEntityType;
+  entityId: string;
+  body: string;
+  parentId?: string;
+}): Promise<Comment> {
+  const { data } = await apiClient.post<ApiSuccess<Comment>>(
+    "/api/comments",
+    input
+  );
+  return data.data;
+}
+
+export async function updateComment(
+  id: string,
+  body: string
+): Promise<Comment> {
+  const { data } = await apiClient.patch<ApiSuccess<Comment>>(
+    `/api/comments/${encodeURIComponent(id)}`,
+    { body }
+  );
+  return data.data;
+}
+
+export async function deleteComment(
+  id: string
+): Promise<{ deleted: boolean }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ deleted: boolean }>>(
+    `/api/comments/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+export async function listMentionableUsers(
+  query?: string
+): Promise<MentionableUser[]> {
+  const { data } = await apiClient.get<ApiSuccess<MentionableUser[]>>(
+    "/api/comments/mentionable",
+    { params: query ? { q: query } : {} }
+  );
+  return data.data;
+}
