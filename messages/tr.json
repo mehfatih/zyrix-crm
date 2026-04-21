@@ -2301,7 +2301,9 @@
     },
     "empty": {
       "noCurrencies": "Henüz kapanan anlaşma yok"
-    }
+    },
+    "exportDeals": "Fırsatları dışa aktar",
+    "exportCustomers": "Müşterileri dışa aktar"
   },
   "Export": {
     "export": "Dışa aktar",

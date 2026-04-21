@@ -2301,7 +2301,9 @@
     },
     "empty": {
       "noCurrencies": "No closed deals yet"
-    }
+    },
+    "exportDeals": "Export deals",
+    "exportCustomers": "Export customers"
   },
   "Export": {
     "export": "Export",

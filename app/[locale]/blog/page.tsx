@@ -23,7 +23,7 @@ export async function generateMetadata({
   };
   const descriptions = {
     en: "Guides, insights, and product updates on CRM, WhatsApp sales, AI-driven finance, and growing businesses in MENA and Türkiye.",
-    ar: "أدلّة ورؤى وتحديثات منتجات حول CRM ومبيعات واتساب والتمويل بالذكاء الاصطناعي وتنمية الأعمال في منطقة الشرق الأوسط وتركيا.",
+    ar: "أدلّة ورؤى وتحديثات منتجات حول CRM ومبيعات واتساب والتمويل بالذكاء الاصطناعي وتنمية الأعمال في منطقة الشرق الأوسط وTürkiye.",
     tr: "CRM, WhatsApp satış, AI destekli finans ve MENA ile Türkiye'de işletme büyütme üzerine rehberler, içgörüler ve ürün güncellemeleri.",
   };
   return {
@@ -47,7 +47,7 @@ const POSTS: {
     category: { en: "Announcement", ar: "إعلان", tr: "Duyuru" },
     title: {
       en: "Launching Zyrix CRM — a fresh take on customer relationships for MENA and Türkiye",
-      ar: "إطلاق Zyrix CRM — نهج جديد لإدارة علاقات العملاء في الشرق الأوسط وتركيا",
+      ar: "إطلاق Zyrix CRM — نهج جديد لإدارة علاقات العملاء في الشرق الأوسط وTürkiye",
       tr: "Zyrix CRM lansmanı — MENA ve Türkiye için müşteri ilişkilerine yeni bir bakış",
     },
     excerpt: {
@@ -165,7 +165,7 @@ export default async function BlogPage({
       comingSoonDesc: "We publish one long-form article every two weeks. Subscribe via the contact page to get them first.",
     },
     ar: {
-      hero: { badge: "المدوّنة", title: "قصص وأدلّة وأبحاث", subtitle: "مقالات مُعمَّقة حول CRM ومبيعات واتساب والتمويل الذكي وبناء SaaS للشرق الأوسط وتركيا." },
+      hero: { badge: "المدوّنة", title: "قصص وأدلّة وأبحاث", subtitle: "مقالات مُعمَّقة حول CRM ومبيعات واتساب والتمويل الذكي وبناء SaaS للشرق الأوسط وTürkiye." },
       readMore: "اقرأ المزيد",
       minRead: "دقيقة قراءة",
       comingSoon: "المزيد من المقالات قريباً",

@@ -152,7 +152,7 @@ const PILLARS: {
     },
     body: {
       en: "Aligned with GDPR, KVKK (Turkey), and Saudi PDPL. Right to export, right to delete, and full transparency on subprocessors.",
-      ar: "متوافق مع GDPR و KVKK (تركيا) و PDPL السعودي. الحق في التصدير، الحق في الحذف، وشفافية كاملة في المعالجين الفرعيين.",
+      ar: "متوافق مع GDPR و KVKK (Türkiye) و PDPL السعودي. الحق في التصدير، الحق في الحذف، وشفافية كاملة في المعالجين الفرعيين.",
       tr: "GDPR, KVKK (Türkiye) ve Suudi PDPL ile uyumlu. Dışa aktarma hakkı, silme hakkı ve alt işleyicilerde tam şeffaflık.",
     },
     items: [

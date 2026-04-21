@@ -44,7 +44,7 @@ type RegionFilter = "all" | PlatformRegion;
 const REGION_LABELS: Record<RegionFilter, { en: string; ar: string; tr: string; icon: typeof Globe }> = {
   all: { en: "All platforms", ar: "كل المنصات", tr: "Tüm platformlar", icon: Sparkles },
   mena: { en: "Arab region", ar: "المنطقة العربية", tr: "Arap bölgesi", icon: Globe },
-  turkey: { en: "Turkey", ar: "تركيا", tr: "Türkiye", icon: Globe },
+  turkey: { en: "Türkiye", ar: "Türkiye", tr: "Türkiye", icon: Globe },
   global: { en: "Global", ar: "عالمي", tr: "Küresel", icon: Globe },
 };
 

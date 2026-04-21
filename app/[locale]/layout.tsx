@@ -43,10 +43,10 @@ export async function generateMetadata({
         "CRM MENA, CRM Turkey, Arabic CRM, WhatsApp CRM, enterprise CRM alternative, AI CFO, sales pipeline, customer loyalty",
     },
     ar: {
-      title: "Zyrix CRM — أول CRM حقيقي لمنطقة الشرق الأوسط وتركيا",
+      title: "Zyrix CRM — أول CRM حقيقي لمنطقة الشرق الأوسط وTürkiye",
       titleTemplate: "%s | Zyrix CRM",
       description:
-        "نظام CRM ذكي مع واتساب مدمج ودعم اللهجات العربية. خط مبيعات، ولاء عملاء، لوحة المدير المالي الذكية، ونظام عمولات — كل شيء في منصة واحدة. مصمّم للسعودية والإمارات وتركيا والعراق ومصر.",
+        "نظام CRM ذكي مع واتساب مدمج ودعم اللهجات العربية. خط مبيعات، ولاء عملاء، لوحة المدير المالي الذكية، ونظام عمولات — كل شيء في منصة واحدة. مصمّم للسعودية والإمارات وTürkiye والعراق ومصر.",
       keywords:
         "CRM عربي, نظام إدارة علاقات العملاء, CRM واتساب, بديل أنظمة CRM المؤسسية, خط المبيعات, ولاء العملاء, المدير المالي الذكي, اللهجات العربية",
     },
