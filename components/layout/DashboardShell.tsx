@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,6 +26,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
+import { fetchUnreadCount } from "@/lib/api/chat";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import ImpersonationBanner from "./ImpersonationBanner";
 import type { Locale } from "@/i18n";
@@ -46,6 +47,26 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       router.replace(`/${locale}/signin`);
     }
   }, [isLoading, isAuthenticated, locale, router]);
+
+  const [chatUnread, setChatUnread] = useState<number>(0);
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    let cancelled = false;
+    const load = async () => {
+      try {
+        const c = await fetchUnreadCount();
+        if (!cancelled) setChatUnread(c);
+      } catch {
+        /* ignore */
+      }
+    };
+    load();
+    const id = setInterval(load, 20000);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
+  }, [isAuthenticated]);
 
   if (isLoading || !user || !company) {
     return (
@@ -80,7 +101,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       badge: "AI",
     },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
-    { href: `/${locale}/chat`, icon: MessageSquare, label: "Team Chat" },
+    { href: `/${locale}/chat`, icon: MessageSquare, label: "Team Chat", unreadCount: chatUnread },
     {
       href: `/${locale}/whatsapp`,
       icon: MessageCircle,
@@ -135,11 +156,15 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
                 <span className="flex-1">{item.label}</span>
-                {item.badge && (
+                {(item as any).unreadCount && (item as any).unreadCount > 0 ? (
+                  <span className="px-1.5 min-w-[18px] h-[18px] text-[10px] font-bold bg-red-500 text-white rounded-full flex items-center justify-center">
+                    {(item as any).unreadCount > 99 ? "99+" : (item as any).unreadCount}
+                  </span>
+                ) : item.badge ? (
                   <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase bg-cyan-100 text-cyan-700 rounded">
                     {item.badge}
                   </span>
-                )}
+                ) : null}
               </Link>
             );
           })}
