@@ -1290,3 +1290,218 @@ export async function revertMarketplaceApplication(
   );
   return data.data;
 }
+
+// ============================================================================
+// WORKFLOW AUTOMATION
+// ============================================================================
+
+export interface WorkflowSpecField {
+  key: string;
+  label: { en: string; ar: string; tr: string };
+  type: "text" | "number" | "select" | "textarea" | "boolean" | "cron";
+  required?: boolean;
+  options?: string[];
+  placeholder?: string;
+  helpText?: { en: string; ar: string; tr: string };
+}
+
+export interface WorkflowTriggerSpec {
+  type: string;
+  label: { en: string; ar: string; tr: string };
+  description: { en: string; ar: string; tr: string };
+  category: "crm" | "schedule" | "external";
+  configFields: WorkflowSpecField[];
+  payloadFields: string[];
+}
+
+export interface WorkflowActionSpec {
+  type: string;
+  label: { en: string; ar: string; tr: string };
+  description: { en: string; ar: string; tr: string };
+  category: "messaging" | "crm" | "external";
+  configFields: WorkflowSpecField[];
+}
+
+export interface WorkflowCatalog {
+  triggers: WorkflowTriggerSpec[];
+  actions: WorkflowActionSpec[];
+  conditionOperators: string[];
+}
+
+export interface WorkflowTrigger {
+  type: string;
+  config: Record<string, unknown>;
+}
+
+export interface WorkflowAction {
+  id: string;
+  type: string;
+  config: Record<string, unknown>;
+  stopOnError?: boolean;
+  delaySeconds?: number;
+}
+
+export interface WorkflowCondition {
+  field: string;
+  operator: string;
+  value: unknown;
+}
+
+export interface Workflow {
+  id: string;
+  companyId: string;
+  createdById: string;
+  name: string;
+  description: string | null;
+  isEnabled: boolean;
+  trigger: WorkflowTrigger;
+  actions: WorkflowAction[];
+  conditions: WorkflowCondition[];
+  runCount: number;
+  successCount: number;
+  failureCount: number;
+  lastRunAt: string | null;
+  lastSuccessAt: string | null;
+  lastFailureAt: string | null;
+  lastError: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface WorkflowExecutionStep {
+  actionId: string;
+  actionType: string;
+  status: "success" | "failed" | "skipped";
+  startedAt: string;
+  finishedAt: string;
+  error?: string;
+  output?: unknown;
+}
+
+export interface WorkflowExecution {
+  id: string;
+  workflowId: string;
+  workflowName?: string;
+  companyId: string;
+  triggerPayload: unknown;
+  status: "pending" | "running" | "completed" | "failed" | "skipped_conditions";
+  stepResults: WorkflowExecutionStep[];
+  attempts: number;
+  lastError: string | null;
+  nextRetryAt: string | null;
+  queuedAt: string;
+  startedAt: string | null;
+  finishedAt: string | null;
+}
+
+export interface WorkflowExecutionsPage {
+  items: WorkflowExecution[];
+  pagination: { total: number; limit: number; offset: number };
+}
+
+export interface CreateWorkflowDto {
+  name: string;
+  description?: string;
+  trigger: WorkflowTrigger;
+  actions?: WorkflowAction[];
+  conditions?: WorkflowCondition[];
+  isEnabled?: boolean;
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// API functions
+// ─────────────────────────────────────────────────────────────────────
+
+export async function getWorkflowCatalog(): Promise<WorkflowCatalog> {
+  const { data } = await apiClient.get<ApiSuccess<WorkflowCatalog>>(
+    "/api/workflows/catalog"
+  );
+  return data.data;
+}
+
+export async function listWorkflows(filters?: {
+  isEnabled?: boolean;
+  triggerType?: string;
+}): Promise<Workflow[]> {
+  const params: Record<string, string> = {};
+  if (filters?.isEnabled !== undefined)
+    params.isEnabled = String(filters.isEnabled);
+  if (filters?.triggerType) params.triggerType = filters.triggerType;
+  const { data } = await apiClient.get<ApiSuccess<Workflow[]>>(
+    "/api/workflows",
+    { params }
+  );
+  return data.data;
+}
+
+export async function getWorkflow(id: string): Promise<Workflow> {
+  const { data } = await apiClient.get<ApiSuccess<Workflow>>(
+    `/api/workflows/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+export async function createWorkflow(
+  dto: CreateWorkflowDto
+): Promise<Workflow> {
+  const { data } = await apiClient.post<ApiSuccess<Workflow>>(
+    "/api/workflows",
+    dto
+  );
+  return data.data;
+}
+
+export async function updateWorkflow(
+  id: string,
+  patch: Partial<CreateWorkflowDto>
+): Promise<Workflow> {
+  const { data } = await apiClient.patch<ApiSuccess<Workflow>>(
+    `/api/workflows/${encodeURIComponent(id)}`,
+    patch
+  );
+  return data.data;
+}
+
+export async function deleteWorkflow(id: string): Promise<{ deleted: true }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ deleted: true }>>(
+    `/api/workflows/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+export async function testRunWorkflow(
+  id: string,
+  payload?: Record<string, unknown>
+): Promise<{ executionId: string }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ executionId: string }>
+  >(`/api/workflows/${encodeURIComponent(id)}/test`, { payload: payload ?? {} });
+  return data.data;
+}
+
+export async function listWorkflowExecutions(filters?: {
+  workflowId?: string;
+  status?: string;
+  limit?: number;
+  offset?: number;
+}): Promise<WorkflowExecutionsPage> {
+  const params: Record<string, string | number> = {};
+  if (filters?.workflowId) params.workflowId = filters.workflowId;
+  if (filters?.status) params.status = filters.status;
+  if (filters?.limit) params.limit = filters.limit;
+  if (filters?.offset) params.offset = filters.offset;
+  const { data } = await apiClient.get<ApiSuccess<WorkflowExecutionsPage>>(
+    "/api/workflows/executions",
+    { params }
+  );
+  return data.data;
+}
+
+export async function getWorkflowExecution(
+  id: string
+): Promise<WorkflowExecution> {
+  const { data } = await apiClient.get<ApiSuccess<WorkflowExecution>>(
+    `/api/workflows/executions/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}

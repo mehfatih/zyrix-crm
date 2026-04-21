@@ -27,6 +27,7 @@ import {
   CreditCard,
   Shield,
   History,
+  Zap,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { fetchUnreadCount } from "@/lib/api/chat";
@@ -106,6 +107,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
     { href: `/${locale}/templates`, icon: Sparkles, label: "Templates" },
+    { href: `/${locale}/workflows`, icon: Zap, label: "Automations" },
     { href: `/${locale}/chat`, icon: MessageSquare, label: "Team Chat", unreadCount: chatUnread },
     {
       href: `/${locale}/whatsapp`,
