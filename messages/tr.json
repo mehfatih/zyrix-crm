@@ -46,6 +46,7 @@
     "tax": "Vergi",
     "commission": "Komisyon",
     "cashflow": "Nakit Akışı",
+    "reports": "Raporlar",
     "followup": "Takip",
     "campaigns": "Kampanyalar",
     "aiCfo": "AI CFO",
@@ -2191,6 +2192,115 @@
     "alerts": {
       "sendWarning": "Meta Cloud yapılandırılmamış — mesaj yalnızca yerel olarak kaydedildi.",
       "noIncomingForSuggest": "Yanıt önerisi için henüz gelen mesaj yok."
+    }
+  },
+  "Dashboard": {
+    "title": "Panel",
+    "scope": {
+      "personal": "Kişisel Görünüm",
+      "team": "Ekip Görünümü",
+      "company": "Şirket Görünümü"
+    },
+    "scopeHint": {
+      "personal": "Anlaşmalarınız, görevleriniz ve müşterileriniz gösteriliyor",
+      "team": "Ekip performansı genel görünümü",
+      "company": "Tüm şirket metrikleri"
+    },
+    "kpis": {
+      "myRevenue": "Gelirim (30g)",
+      "revenue": "Gelir (30g)",
+      "wonDeals": "kazanılan anlaşma",
+      "weightedPipeline": "Ağırlıklı Huni",
+      "openDeals": "açık anlaşma",
+      "myCustomers": "Müşterilerim",
+      "customers": "Müşteriler",
+      "last30d": "son 30 gün",
+      "myTasks": "Açık Görevlerim",
+      "tasks": "Açık Görevler",
+      "overdue": "gecikmiş",
+      "onTrack": "yolunda",
+      "totalUsers": "Ekip Üyeleri",
+      "quotesAccepted30d": "Kabul Edilen Teklifler (30g)",
+      "activeContracts": "Aktif Sözleşmeler"
+    },
+    "panels": {
+      "upcomingTasks": "Yaklaşan Görevlerim",
+      "myDeals": "Açık Anlaşmalarım",
+      "teamLeaderboard": "Ekip Sıralaması (30g)",
+      "topCustomers": "En İyi Müşteriler"
+    },
+    "empty": {
+      "noTasks": "Yaklaşan görev yok",
+      "noDeals": "Açık anlaşma yok",
+      "noTeamSales": "Son 30 günde ekip satışı yok",
+      "noCustomers": "Henüz müşteri yok"
+    },
+    "quickLinks": {
+      "pipeline": "Huni",
+      "quotes": "Teklifler",
+      "aiCfo": "AI CFO",
+      "tasks": "Görevler"
+    }
+  },
+  "Reports": {
+    "title": "Finansal Raporlar",
+    "subtitle": "Otomatik dönüşümlü çok para birimli analiz",
+    "baseCurrency": "Temel para birimi",
+    "manageRates": "Döviz kurları",
+    "refresh": "Yenile",
+    "tabs": {
+      "summary": "Özet",
+      "revenue": "Gelir",
+      "pipeline": "Huni"
+    },
+    "summary": {
+      "revenue30d": "Gelir (30 gün)",
+      "revenue90d": "Gelir (90 gün)",
+      "openPipeline": "Açık Huni",
+      "weighted": "ağırlıklı",
+      "deals": "anlaşma",
+      "currenciesInUse": "Kullanılan Para Birimleri",
+      "base": "temel"
+    },
+    "revenue": {
+      "totalRevenue": "Toplam Gelir",
+      "currencies": "para birimi",
+      "byCurrency": "Para Birimine Göre Gelir",
+      "currency": "Para Birimi",
+      "deals": "Anlaşmalar",
+      "native": "Orijinal Toplam",
+      "converted": "Dönüştürülmüş",
+      "recentDeals": "Son Kazanılan Anlaşmalar",
+      "unconvertibleFlag": "Yapılandırılmış döviz kuru yok"
+    },
+    "pipeline": {
+      "totalOpen": "Toplam Açık Huni",
+      "weighted": "Olasılık Ağırlıklı",
+      "probability": "ort. olasılık",
+      "byStage": "Aşamaya Göre Huni"
+    },
+    "rates": {
+      "title": "Döviz Kurları",
+      "subtitle": "Özel kurlar yapılandırın. Özel kur ayarlanmadığında yerleşik varsayılan kurlar kullanılır.",
+      "addNew": "Yeni kur ekle",
+      "existing": "Yapılandırılmış kurlar",
+      "from": "Kaynak",
+      "to": "Hedef",
+      "rate": "Kur",
+      "hint": "Örnek: 1 USD = 30 TRY fromCurrency=USD, toCurrency=TRY, rate=30 demektir",
+      "empty": "Özel kur yok — yerleşik varsayılanlar kullanılıyor",
+      "done": "Tamam",
+      "errors": {
+        "sameCurrency": "Kaynak ve hedef para birimleri farklı olmalı",
+        "invalidRate": "Kur pozitif bir sayı olmalı"
+      }
+    },
+    "warnings": {
+      "unconvertible": "Bazı para birimleri dönüştürülemedi",
+      "unconvertibleHint": "Doğru toplamlar için eksik para birimleri için özel döviz kuru ayarlayın"
+    },
+    "empty": {
+      "noCurrencies": "Henüz kapanan anlaşma yok"
     }
   }
 }

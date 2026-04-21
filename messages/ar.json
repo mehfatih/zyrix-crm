@@ -46,6 +46,7 @@
     "tax": "الضرائب",
     "commission": "العمولات",
     "cashflow": "التدفق النقدي",
+    "reports": "التقارير",
     "followup": "المتابعة",
     "campaigns": "الحملات",
     "aiCfo": "المدير المالي",
@@ -2191,6 +2192,115 @@
     "alerts": {
       "sendWarning": "Meta Cloud غير مُهيّأ — تم حفظ الرسالة محليًا فقط.",
       "noIncomingForSuggest": "لا توجد رسائل واردة لاقتراح رد عليها."
+    }
+  },
+  "Dashboard": {
+    "title": "لوحة التحكم",
+    "scope": {
+      "personal": "عرضي الشخصي",
+      "team": "عرض الفريق",
+      "company": "عرض الشركة"
+    },
+    "scopeHint": {
+      "personal": "عرض صفقاتك ومهامك وعملائك",
+      "team": "نظرة عامة على أداء الفريق",
+      "company": "مقاييس الشركة الكاملة"
+    },
+    "kpis": {
+      "myRevenue": "إيراداتي (30 يوم)",
+      "revenue": "الإيرادات (30 يوم)",
+      "wonDeals": "صفقات رابحة",
+      "weightedPipeline": "خط المبيعات المرجح",
+      "openDeals": "صفقات مفتوحة",
+      "myCustomers": "عملائي",
+      "customers": "العملاء",
+      "last30d": "آخر 30 يوم",
+      "myTasks": "مهامي المفتوحة",
+      "tasks": "المهام المفتوحة",
+      "overdue": "متأخرة",
+      "onTrack": "على المسار",
+      "totalUsers": "أعضاء الفريق",
+      "quotesAccepted30d": "العروض المقبولة (30 يوم)",
+      "activeContracts": "العقود النشطة"
+    },
+    "panels": {
+      "upcomingTasks": "مهامي القادمة",
+      "myDeals": "صفقاتي المفتوحة",
+      "teamLeaderboard": "ترتيب الفريق (30 يوم)",
+      "topCustomers": "أهم العملاء"
+    },
+    "empty": {
+      "noTasks": "لا توجد مهام قادمة",
+      "noDeals": "لا توجد صفقات مفتوحة",
+      "noTeamSales": "لا توجد مبيعات للفريق في آخر 30 يوم",
+      "noCustomers": "لا يوجد عملاء بعد"
+    },
+    "quickLinks": {
+      "pipeline": "خط المبيعات",
+      "quotes": "العروض",
+      "aiCfo": "المدير المالي",
+      "tasks": "المهام"
+    }
+  },
+  "Reports": {
+    "title": "التقارير المالية",
+    "subtitle": "تحليلات متعددة العملات مع التحويل التلقائي",
+    "baseCurrency": "العملة الأساسية",
+    "manageRates": "أسعار الصرف",
+    "refresh": "تحديث",
+    "tabs": {
+      "summary": "ملخص",
+      "revenue": "الإيرادات",
+      "pipeline": "خط المبيعات"
+    },
+    "summary": {
+      "revenue30d": "الإيرادات (30 يوم)",
+      "revenue90d": "الإيرادات (90 يوم)",
+      "openPipeline": "خط المبيعات المفتوح",
+      "weighted": "مرجحة",
+      "deals": "صفقات",
+      "currenciesInUse": "العملات المستخدمة",
+      "base": "أساسية"
+    },
+    "revenue": {
+      "totalRevenue": "إجمالي الإيرادات",
+      "currencies": "عملات",
+      "byCurrency": "الإيرادات حسب العملة",
+      "currency": "العملة",
+      "deals": "الصفقات",
+      "native": "الإجمالي الأصلي",
+      "converted": "المحوّل",
+      "recentDeals": "الصفقات الرابحة الأخيرة",
+      "unconvertibleFlag": "لا يوجد سعر صرف مُكوّن"
+    },
+    "pipeline": {
+      "totalOpen": "إجمالي الخط المفتوح",
+      "weighted": "مرجّح بالاحتمالية",
+      "probability": "احتمالية متوسطة",
+      "byStage": "الخط حسب المرحلة"
+    },
+    "rates": {
+      "title": "أسعار الصرف",
+      "subtitle": "ضبط أسعار مخصصة. تُستخدم الأسعار الافتراضية المدمجة عند عدم ضبط سعر مخصص.",
+      "addNew": "إضافة سعر جديد",
+      "existing": "الأسعار المُكوّنة",
+      "from": "من",
+      "to": "إلى",
+      "rate": "السعر",
+      "hint": "مثال: 1 USD = 30 TRY يعني fromCurrency=USD, toCurrency=TRY, rate=30",
+      "empty": "لا توجد أسعار مخصصة — استخدام الافتراضيات المدمجة",
+      "done": "تم",
+      "errors": {
+        "sameCurrency": "يجب اختلاف العملتين",
+        "invalidRate": "السعر يجب أن يكون رقمًا موجبًا"
+      }
+    },
+    "warnings": {
+      "unconvertible": "بعض العملات لم يتم تحويلها",
+      "unconvertibleHint": "اضبط سعر صرف مخصص للعملات المفقودة للحصول على إجماليات دقيقة"
+    },
+    "empty": {
+      "noCurrencies": "لا توجد صفقات مغلقة بعد"
     }
   }
 }

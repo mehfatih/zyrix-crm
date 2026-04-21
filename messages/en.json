@@ -46,6 +46,7 @@
     "tax": "Tax",
     "commission": "Commission",
     "cashflow": "Cash Flow",
+    "reports": "Reports",
     "followup": "Follow-up",
     "campaigns": "Campaigns",
     "aiCfo": "AI CFO",
@@ -2191,6 +2192,115 @@
     "alerts": {
       "sendWarning": "Meta Cloud not configured — message saved locally only.",
       "noIncomingForSuggest": "No incoming messages yet to suggest a reply for."
+    }
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "scope": {
+      "personal": "My View",
+      "team": "Team View",
+      "company": "Company View"
+    },
+    "scopeHint": {
+      "personal": "Showing your deals, tasks, and customers",
+      "team": "Team performance overview",
+      "company": "Full company metrics"
+    },
+    "kpis": {
+      "myRevenue": "My Revenue (30d)",
+      "revenue": "Revenue (30d)",
+      "wonDeals": "won deals",
+      "weightedPipeline": "Weighted Pipeline",
+      "openDeals": "open deals",
+      "myCustomers": "My Customers",
+      "customers": "Customers",
+      "last30d": "last 30d",
+      "myTasks": "My Open Tasks",
+      "tasks": "Open Tasks",
+      "overdue": "overdue",
+      "onTrack": "on track",
+      "totalUsers": "Team Members",
+      "quotesAccepted30d": "Quotes Accepted (30d)",
+      "activeContracts": "Active Contracts"
+    },
+    "panels": {
+      "upcomingTasks": "My Upcoming Tasks",
+      "myDeals": "My Open Deals",
+      "teamLeaderboard": "Team Leaderboard (30d)",
+      "topCustomers": "Top Customers"
+    },
+    "empty": {
+      "noTasks": "No upcoming tasks",
+      "noDeals": "No open deals",
+      "noTeamSales": "No team sales in the last 30 days",
+      "noCustomers": "No customers yet"
+    },
+    "quickLinks": {
+      "pipeline": "Pipeline",
+      "quotes": "Quotes",
+      "aiCfo": "AI CFO",
+      "tasks": "Tasks"
+    }
+  },
+  "Reports": {
+    "title": "Financial Reports",
+    "subtitle": "Multi-currency analytics with automatic conversion",
+    "baseCurrency": "Base currency",
+    "manageRates": "Exchange rates",
+    "refresh": "Refresh",
+    "tabs": {
+      "summary": "Summary",
+      "revenue": "Revenue",
+      "pipeline": "Pipeline"
+    },
+    "summary": {
+      "revenue30d": "Revenue (30 days)",
+      "revenue90d": "Revenue (90 days)",
+      "openPipeline": "Open Pipeline",
+      "weighted": "weighted",
+      "deals": "deals",
+      "currenciesInUse": "Currencies in Use",
+      "base": "base"
+    },
+    "revenue": {
+      "totalRevenue": "Total Revenue",
+      "currencies": "currencies",
+      "byCurrency": "Revenue by Currency",
+      "currency": "Currency",
+      "deals": "Deals",
+      "native": "Native Total",
+      "converted": "Converted",
+      "recentDeals": "Recent Won Deals",
+      "unconvertibleFlag": "No exchange rate configured"
+    },
+    "pipeline": {
+      "totalOpen": "Total Open Pipeline",
+      "weighted": "Weighted by Probability",
+      "probability": "avg probability",
+      "byStage": "Pipeline by Stage"
+    },
+    "rates": {
+      "title": "Exchange Rates",
+      "subtitle": "Configure custom rates. Built-in fallback rates are used when no custom rate is set.",
+      "addNew": "Add new rate",
+      "existing": "Configured rates",
+      "from": "From",
+      "to": "To",
+      "rate": "Rate",
+      "hint": "Example: 1 USD = 30 TRY means fromCurrency=USD, toCurrency=TRY, rate=30",
+      "empty": "No custom rates yet — using built-in defaults",
+      "done": "Done",
+      "errors": {
+        "sameCurrency": "From and to currencies must differ",
+        "invalidRate": "Rate must be a positive number"
+      }
+    },
+    "warnings": {
+      "unconvertible": "Some currencies couldn't be converted",
+      "unconvertibleHint": "Set a custom exchange rate for missing currencies to get accurate totals"
+    },
+    "empty": {
+      "noCurrencies": "No closed deals yet"
     }
   }
 }
