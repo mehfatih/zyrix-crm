@@ -100,6 +100,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     { href: `/${locale}/commission`, icon: DollarSign, label: "Commission" },
     { href: `/${locale}/cashflow`, icon: TrendingUp, label: "Cash Flow" },
     { href: `/${locale}/reports`, icon: BarChart3, label: "Reports" },
+    { href: `/${locale}/analytics`, icon: BarChart3, label: "Analytics" },
     { href: `/${locale}/followup`, icon: Bell, label: "Follow-up" },
     { href: `/${locale}/campaigns`, icon: Mail, label: "Campaigns" },
     {

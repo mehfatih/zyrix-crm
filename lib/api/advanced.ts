@@ -1978,3 +1978,114 @@ export async function listMentionableUsers(
   );
   return data.data;
 }
+
+// ============================================================================
+// ANALYTICS REPORTS (metric catalog + scheduled reports)
+// ============================================================================
+
+export interface MetricColumn {
+  key: string;
+  label: { en: string; ar: string; tr: string };
+  kind: "text" | "number" | "currency" | "percent" | "date";
+}
+
+export interface MetricDefinition {
+  key: string;
+  label: { en: string; ar: string; tr: string };
+  description: { en: string; ar: string; tr: string };
+  category: "revenue" | "pipeline" | "customers" | "activity";
+  chart: "bar" | "line" | "pie" | "table";
+  columns: MetricColumn[];
+}
+
+export interface MetricResult {
+  key: string;
+  rows: Record<string, unknown>[];
+  meta?: Record<string, unknown>;
+}
+
+export interface ScheduledReport {
+  id: string;
+  companyId: string;
+  createdById: string;
+  name: string;
+  cadence: "daily" | "weekly" | "monthly";
+  hour: number;
+  dayOfWeek: number | null;
+  dayOfMonth: number | null;
+  metrics: string[];
+  recipients: string[];
+  isEnabled: boolean;
+  lastRunAt: string | null;
+  lastError: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function getMetricCatalog(): Promise<MetricDefinition[]> {
+  const { data } = await apiClient.get<ApiSuccess<MetricDefinition[]>>(
+    "/api/analytics-reports/metrics"
+  );
+  return data.data;
+}
+
+export async function runMetric(metricKey: string): Promise<MetricResult> {
+  const { data } = await apiClient.post<ApiSuccess<MetricResult>>(
+    "/api/analytics-reports/run",
+    { metricKey }
+  );
+  return data.data;
+}
+
+export async function listScheduledReports(): Promise<ScheduledReport[]> {
+  const { data } = await apiClient.get<ApiSuccess<ScheduledReport[]>>(
+    "/api/analytics-reports/scheduled"
+  );
+  return data.data;
+}
+
+export async function createScheduledReport(input: {
+  name: string;
+  cadence: "daily" | "weekly" | "monthly";
+  hour?: number;
+  dayOfWeek?: number | null;
+  dayOfMonth?: number | null;
+  metrics: string[];
+  recipients: string[];
+  isEnabled?: boolean;
+}): Promise<ScheduledReport> {
+  const { data } = await apiClient.post<ApiSuccess<ScheduledReport>>(
+    "/api/analytics-reports/scheduled",
+    input
+  );
+  return data.data;
+}
+
+export async function updateScheduledReport(
+  id: string,
+  patch: Partial<{
+    name: string;
+    cadence: "daily" | "weekly" | "monthly";
+    hour: number;
+    dayOfWeek: number | null;
+    dayOfMonth: number | null;
+    metrics: string[];
+    recipients: string[];
+    isEnabled: boolean;
+  }>
+): Promise<ScheduledReport> {
+  const { data } = await apiClient.patch<ApiSuccess<ScheduledReport>>(
+    `/api/analytics-reports/scheduled/${encodeURIComponent(id)}`,
+    patch
+  );
+  return data.data;
+}
+
+export async function deleteScheduledReport(
+  id: string
+): Promise<{ deleted: true }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ deleted: true }>>(
+    `/api/analytics-reports/scheduled/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
