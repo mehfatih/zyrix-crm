@@ -1554,3 +1554,115 @@ export async function revokeApiKey(id: string): Promise<{ revoked: true }> {
   );
   return data.data;
 }
+
+// ============================================================================
+// AI AGENTS
+// ============================================================================
+
+export type AgentKind = "sales" | "content" | "meeting";
+
+export interface AiThread {
+  id: string;
+  title: string | null;
+  agentKind: AgentKind;
+  relatedActivityId: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AiMessage {
+  id: string;
+  role: "user" | "assistant" | "tool" | "system";
+  content: string;
+  toolCall: {
+    name?: string;
+    args?: Record<string, unknown>;
+    result?: unknown;
+  } | null;
+  createdAt: string;
+}
+
+export interface AiThreadWithMessages extends AiThread {
+  messages: AiMessage[];
+}
+
+export async function listAiThreads(
+  kind: AgentKind = "sales"
+): Promise<AiThread[]> {
+  const { data } = await apiClient.get<ApiSuccess<AiThread[]>>(
+    "/api/ai-agents/threads",
+    { params: { kind } }
+  );
+  return data.data;
+}
+
+export async function getAiThread(id: string): Promise<AiThreadWithMessages> {
+  const { data } = await apiClient.get<ApiSuccess<AiThreadWithMessages>>(
+    `/api/ai-agents/threads/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+export async function createAiThread(opts: {
+  agentKind: AgentKind;
+  relatedActivityId?: string;
+}): Promise<AiThread> {
+  const { data } = await apiClient.post<ApiSuccess<AiThread>>(
+    "/api/ai-agents/threads",
+    opts
+  );
+  return data.data;
+}
+
+export async function sendAiMessage(
+  threadId: string,
+  message: string
+): Promise<{ assistantMessage: string; toolCallsUsed: number }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ assistantMessage: string; toolCallsUsed: number }>
+  >(`/api/ai-agents/threads/${encodeURIComponent(threadId)}/messages`, {
+    message,
+  });
+  return data.data;
+}
+
+export async function archiveAiThread(
+  id: string
+): Promise<{ archived: true }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ archived: true }>>(
+    `/api/ai-agents/threads/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+export async function generateAiContent(opts: {
+  kind: "email" | "whatsapp" | "social";
+  prompt: string;
+  tone?: string;
+  language?: "ar" | "en" | "tr";
+  context?: Record<string, string>;
+}): Promise<{ draft: string }> {
+  const { data } = await apiClient.post<ApiSuccess<{ draft: string }>>(
+    "/api/ai-agents/content",
+    opts
+  );
+  return data.data;
+}
+
+export interface MeetingNotesResult {
+  summary: string;
+  actionItems: Array<{ owner?: string; task: string }>;
+  decisions: string[];
+  openQuestions: string[];
+}
+
+export async function extractAiMeetingNotes(opts: {
+  transcript: string;
+  language?: "ar" | "en" | "tr";
+}): Promise<MeetingNotesResult> {
+  const { data } = await apiClient.post<ApiSuccess<MeetingNotesResult>>(
+    "/api/ai-agents/meeting-notes",
+    opts
+  );
+  return data.data;
+}
