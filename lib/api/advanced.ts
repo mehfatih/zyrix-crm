@@ -2338,3 +2338,47 @@ export async function rejectTaxInvoice(
   );
   return data.data;
 }
+
+// ============================================================================
+// FEATURE FLAGS — per-company service toggles (UX #4)
+// ============================================================================
+
+export interface FeatureCatalogEntry {
+  key: string;
+  label: { en: string; ar: string; tr: string };
+  description: { en: string; ar: string; tr: string };
+  category: "sales" | "growth" | "ai" | "ops" | "compliance" | "advanced";
+}
+
+export async function getFeatureCatalog(): Promise<FeatureCatalogEntry[]> {
+  const { data } = await apiClient.get<ApiSuccess<FeatureCatalogEntry[]>>(
+    "/api/feature-flags/catalog"
+  );
+  return data.data;
+}
+
+export async function getMyFeatureFlags(): Promise<Record<string, boolean>> {
+  const { data } = await apiClient.get<
+    ApiSuccess<Record<string, boolean>>
+  >("/api/feature-flags");
+  return data.data;
+}
+
+export async function getCompanyFeatureFlags(
+  companyId: string
+): Promise<Record<string, boolean>> {
+  const { data } = await apiClient.get<
+    ApiSuccess<Record<string, boolean>>
+  >(`/api/admin/companies/${encodeURIComponent(companyId)}/features`);
+  return data.data;
+}
+
+export async function setCompanyFeatureFlags(
+  companyId: string,
+  flags: Record<string, boolean>
+): Promise<Record<string, boolean>> {
+  const { data } = await apiClient.post<
+    ApiSuccess<Record<string, boolean>>
+  >(`/api/admin/companies/${encodeURIComponent(companyId)}/features`, { flags });
+  return data.data;
+}

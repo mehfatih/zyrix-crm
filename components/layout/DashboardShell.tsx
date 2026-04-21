@@ -87,6 +87,13 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     );
   }
 
+  // Each nav item may specify a `featureKey` that corresponds to a
+  // key in the FEATURE_CATALOG on the backend. When the platform
+  // owner disables a feature for a merchant from the admin panel,
+  // company.enabledFeatures[featureKey] becomes false, and we hide
+  // that nav item. Missing keys default to visible.
+  const enabledFeatures: Record<string, boolean> =
+    company.enabledFeatures ?? {};
   const navItems = [
     {
       href: `/${locale}/dashboard`,
@@ -96,22 +103,23 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     { href: `/${locale}/customers`, icon: Users, label: "Customers" },
     { href: `/${locale}/deals`, icon: Briefcase, label: "Deals" },
     { href: `/${locale}/pipeline`, icon: Activity, label: "Pipeline" },
-    { href: `/${locale}/quotes`, icon: FileText, label: "Quotes" },
-    { href: `/${locale}/contracts`, icon: FileSignature, label: "Contracts" },
-    { href: `/${locale}/loyalty`, icon: Award, label: "Loyalty" },
+    { href: `/${locale}/quotes`, icon: FileText, label: "Quotes", featureKey: "quotes" },
+    { href: `/${locale}/contracts`, icon: FileSignature, label: "Contracts", featureKey: "contracts" },
+    { href: `/${locale}/loyalty`, icon: Award, label: "Loyalty", featureKey: "loyalty" },
     { href: `/${locale}/tax`, icon: Percent, label: "Tax" },
-    { href: `/${locale}/commission`, icon: DollarSign, label: "Commission" },
+    { href: `/${locale}/commission`, icon: DollarSign, label: "Commission", featureKey: "commission" },
     { href: `/${locale}/cashflow`, icon: TrendingUp, label: "Cash Flow" },
     { href: `/${locale}/reports`, icon: BarChart3, label: "Reports" },
-    { href: `/${locale}/tax-invoices`, icon: Receipt, label: "Tax Invoices" },
-    { href: `/${locale}/analytics`, icon: BarChart3, label: "Analytics" },
+    { href: `/${locale}/tax-invoices`, icon: Receipt, label: "Tax Invoices", featureKey: "tax_invoices" },
+    { href: `/${locale}/analytics`, icon: BarChart3, label: "Analytics", featureKey: "analytics_reports" },
     { href: `/${locale}/followup`, icon: Bell, label: "Follow-up" },
-    { href: `/${locale}/campaigns`, icon: Mail, label: "Campaigns" },
+    { href: `/${locale}/campaigns`, icon: Mail, label: "Campaigns", featureKey: "marketing_automation" },
     {
       href: `/${locale}/ai-cfo`,
       icon: Sparkles,
       label: "AI CFO",
       badge: "AI",
+      featureKey: "ai_cfo",
     },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
     { href: `/${locale}/templates`, icon: Sparkles, label: "Templates" },
@@ -124,7 +132,11 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       label: "WhatsApp",
       badge: "Beta",
     },
-  ];
+  ].filter((item) => {
+    const key = (item as { featureKey?: string }).featureKey;
+    if (!key) return true;
+    return enabledFeatures[key] !== false;
+  });
 
   return (
     <div className="min-h-screen bg-bg-base flex flex-col">

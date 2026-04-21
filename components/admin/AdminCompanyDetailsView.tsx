@@ -33,7 +33,9 @@ import {
   X,
   Check,
   AlertCircle,
+  Zap,
 } from "lucide-react";
+import { AdminFeatureToggles } from "./AdminFeatureToggles";
 
 // ============================================================================
 // ADMIN COMPANY DETAILS VIEW
@@ -591,6 +593,31 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
             ))}
           </div>
         )}
+      </div>
+
+      {/* Per-company feature toggles — platform owner controls which
+          Zyrix features this merchant has access to. Independent of
+          plan tier; useful for pilots + one-off disablement. */}
+      <div className="rounded-xl border border-cyan-100 bg-white p-6">
+        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-cyan-900">
+          <Zap className="size-5 text-cyan-600" />
+          {locale === "ar"
+            ? "صلاحيات الميزات"
+            : locale === "tr"
+              ? "Özellik erişimleri"
+              : "Feature access"}
+        </h2>
+        <p className="mb-4 text-sm text-slate-600">
+          {locale === "ar"
+            ? "تحكم في أي ميزة متاحة لهذا العميل. الميزات المعطَّلة تختفي من قائمة التنقل الخاصة به."
+            : locale === "tr"
+              ? "Bu müşterinin hangi özelliklere erişebileceğini kontrol edin. Devre dışı özellikler kenar çubuğundan kaybolur."
+              : "Control which features this merchant can access. Disabled features disappear from their sidebar."}
+        </p>
+        <AdminFeatureToggles
+          companyId={companyId}
+          locale={locale as "en" | "ar" | "tr"}
+        />
       </div>
 
       {/* Subscriptions (read-only for now) */}

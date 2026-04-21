@@ -60,6 +60,29 @@ apiClient.interceptors.response.use(
       | (InternalAxiosRequestConfig & { _retry?: boolean })
       | undefined;
 
+    // 403 FEATURE_DISABLED → redirect to the friendly feature-disabled
+    // page, preserving the feature key so the page can display what
+    // specifically is unavailable. Only run in the browser; SSR render
+    // loops if we navigate during a server-side axios call.
+    if (error.response?.status === 403 && typeof window !== "undefined") {
+      const body = error.response.data as {
+        error?: { code?: string; feature?: string };
+      } | undefined;
+      if (body?.error?.code === "FEATURE_DISABLED") {
+        const feature = body.error.feature ?? "";
+        const currentPath = window.location.pathname;
+        // Avoid infinite redirect loop if we're already there
+        if (!currentPath.includes("/feature-disabled")) {
+          const localeMatch = currentPath.match(/^\/([a-z]{2})\//);
+          const locale = localeMatch?.[1] ?? "en";
+          window.location.href = `/${locale}/feature-disabled?feature=${encodeURIComponent(
+            feature
+          )}`;
+        }
+        return Promise.reject(error);
+      }
+    }
+
     // Not 401 → reject immediately
     if (
       error.response?.status !== 401 ||

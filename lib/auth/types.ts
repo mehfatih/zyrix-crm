@@ -24,6 +24,10 @@ export interface Company {
   plan: "free" | "starter" | "business" | "enterprise";
   country?: string | null;  // ISO-3166-1 alpha-2, e.g. "SA" / "TR"
   baseCurrency?: string | null; // USD / SAR / TRY — falls back to country's currency
+  // Per-merchant feature overrides from the admin panel. Missing keys
+  // default to true (enabled), so new features appear automatically
+  // without needing a data migration.
+  enabledFeatures?: Record<string, boolean>;
 }
 
 export interface AuthTokens {
