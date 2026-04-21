@@ -151,6 +151,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
     { href: `/${locale}/commission`, icon: DollarSign, label: "Commission", featureKey: "commission" },
     { href: `/${locale}/cashflow`, icon: TrendingUp, label: "Cash Flow" },
     { href: `/${locale}/reports`, icon: BarChart3, label: "Reports" },
+    { href: `/${locale}/session-kpis`, icon: Activity, label: "Session KPIs", managersOnly: true },
     { href: `/${locale}/tax-invoices`, icon: Receipt, label: "Tax Invoices", featureKey: "tax_invoices" },
     { href: `/${locale}/analytics`, icon: BarChart3, label: "Analytics", featureKey: "analytics_reports" },
     { href: `/${locale}/followup`, icon: Bell, label: "Follow-up" },
@@ -174,6 +175,17 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       badge: "Beta",
     },
   ].filter((item) => {
+    // Manager-only items (like Session KPIs) are hidden from regular
+    // members — they can still access their own row via the direct
+    // URL, the backend's role-scope filter ensures they only see
+    // their own data, but the sidebar link is managerial-only.
+    const managersOnly = (item as { managersOnly?: boolean }).managersOnly;
+    if (managersOnly) {
+      const role = user.role;
+      if (role !== "owner" && role !== "admin" && role !== "manager") {
+        return false;
+      }
+    }
     const key = (item as { featureKey?: string }).featureKey;
     if (!key) return true;
     return enabledFeatures[key] !== false;
