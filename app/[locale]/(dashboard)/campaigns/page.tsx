@@ -28,6 +28,7 @@ import {
   Calendar,
   Tag,
   Edit3,
+  BookOpen,
 } from "lucide-react";
 import {
   fetchCampaigns,
@@ -46,6 +47,7 @@ import {
   type RecipientStatus,
   type CreateCampaignDto,
 } from "@/lib/api/campaigns";
+import { listTemplates, markTemplateUsed, type EmailTemplate } from "@/lib/api/advanced";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 
 // ============================================================================
@@ -337,6 +339,34 @@ function WizardModal({
   });
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [templates, setTemplates] = useState<EmailTemplate[]>([]);
+  const [templatesLoaded, setTemplatesLoaded] = useState(false);
+  const [selectedTemplateId, setSelectedTemplateId] = useState<string>("");
+
+  // Lazy-load templates the first time we hit step 3 for an email campaign
+  useEffect(() => {
+    if (step === 3 && form.channel === "email" && !templatesLoaded) {
+      listTemplates()
+        .then((rows) => setTemplates(rows))
+        .catch(() => setTemplates([]))
+        .finally(() => setTemplatesLoaded(true));
+    }
+  }, [step, form.channel, templatesLoaded]);
+
+  const applyTemplate = (templateId: string) => {
+    setSelectedTemplateId(templateId);
+    if (!templateId) return;
+    const tpl = templates.find((x) => x.id === templateId);
+    if (!tpl) return;
+    // Strip HTML tags to produce a plain-text preview for the textarea
+    const plain = tpl.bodyText || tpl.bodyHtml.replace(/<[^>]*>/g, "").trim();
+    setForm((prev) => ({
+      ...prev,
+      subject: prev.subject || tpl.subject,
+      bodyText: prev.bodyText || plain,
+      bodyHtml: prev.bodyHtml || tpl.bodyHtml,
+    }));
+  };
 
   const next = () => setStep((s) => Math.min(4, s + 1) as WizardStep);
   const back = () => setStep((s) => Math.max(1, s - 1) as WizardStep);
@@ -378,6 +408,10 @@ function WizardModal({
       const created = await createCampaign(dto);
       if (sendNow) {
         await sendCampaign(created.id);
+      }
+      // Best-effort usage tracking; don't block the UI if it fails
+      if (selectedTemplateId) {
+        markTemplateUsed(selectedTemplateId).catch(() => {});
       }
       await onCreated();
     } catch (e) {
@@ -551,6 +585,52 @@ function WizardModal({
 
           {step === 3 && (
             <div className="space-y-3">
+              {form.channel === "email" && templates.length > 0 && (
+                <div className="bg-sky-50/50 border border-sky-100 rounded-lg p-3">
+                  <label className="flex items-center gap-1.5 text-xs font-medium text-cyan-900 mb-1.5">
+                    <BookOpen className="w-3.5 h-3.5" />
+                    Use a saved template
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <select
+                      value={selectedTemplateId}
+                      onChange={(e) => applyTemplate(e.target.value)}
+                      className="flex-1 px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white"
+                    >
+                      <option value="">— Start from scratch —</option>
+                      {templates.map((tpl) => (
+                        <option key={tpl.id} value={tpl.id}>
+                          {tpl.name}
+                          {tpl.category && tpl.category !== "general"
+                            ? ` (${tpl.category})`
+                            : ""}
+                          {tpl.usageCount > 0 ? ` · used ${tpl.usageCount}×` : ""}
+                        </option>
+                      ))}
+                    </select>
+                    {selectedTemplateId && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedTemplateId("");
+                          setForm((prev) => ({
+                            ...prev,
+                            subject: "",
+                            bodyText: "",
+                            bodyHtml: "",
+                          }));
+                        }}
+                        className="px-2 py-2 text-xs text-slate-600 hover:bg-white rounded-lg"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-slate-500 mt-1.5">
+                    Picking a template fills in any empty fields below. You can still edit them.
+                  </p>
+                </div>
+              )}
               {form.channel === "email" && (
                 <>
                   <div>

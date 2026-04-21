@@ -56,6 +56,9 @@ export async function updateTemplate(id: string, dto: Partial<CreateTemplateDto>
 export async function deleteTemplate(id: string): Promise<void> {
   await apiClient.delete(`/api/advanced/templates/${id}`);
 }
+export async function markTemplateUsed(id: string): Promise<void> {
+  await apiClient.post(`/api/advanced/templates/${id}/use`);
+}
 
 // ============================================================================
 // CUSTOM FIELDS

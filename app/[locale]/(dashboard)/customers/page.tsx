@@ -12,6 +12,8 @@ import {
   MoreHorizontal,
   Loader2,
   Upload,
+  Filter,
+  X,
 } from "lucide-react";
 import {
   listCustomers,
@@ -22,6 +24,33 @@ import { cn, getInitials, formatDate } from "@/lib/utils";
 import { CreateCustomerModal } from "@/components/customers/CreateCustomerModal";
 import ExportButton from "@/components/advanced/ExportButton";
 import BulkActionBar from "@/components/advanced/BulkActionBar";
+import AdvancedFilterBuilder from "@/components/advanced/AdvancedFilterBuilder";
+
+const CUSTOMER_FILTER_FIELDS = [
+  { key: "fullName", label: "Name", type: "text" as const },
+  { key: "email", label: "Email", type: "text" as const },
+  { key: "phone", label: "Phone", type: "text" as const },
+  { key: "whatsappPhone", label: "WhatsApp", type: "text" as const },
+  { key: "companyName", label: "Company", type: "text" as const },
+  { key: "position", label: "Position", type: "text" as const },
+  { key: "country", label: "Country", type: "text" as const },
+  { key: "city", label: "City", type: "text" as const },
+  {
+    key: "status",
+    label: "Status",
+    type: "select" as const,
+    options: ["new", "qualified", "customer", "lost"],
+  },
+  {
+    key: "source",
+    label: "Source",
+    type: "select" as const,
+    options: ["csv_import", "whatsapp", "shopify", "salla", "zid", "youcan", "woocommerce", "manual"],
+  },
+  { key: "lifetimeValue", label: "LTV", type: "number" as const },
+  { key: "createdAt", label: "Added", type: "date" as const },
+  { key: "lastContactAt", label: "Last contact", type: "date" as const },
+];
 
 const STATUS_COLORS: Record<string, string> = {
   new: "bg-sky-100 text-sky-700",
@@ -41,6 +70,9 @@ export default function CustomersPage() {
   const [total, setTotal] = useState(0);
   const [showCreate, setShowCreate] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [showFilter, setShowFilter] = useState(false);
+  const [filterResults, setFilterResults] = useState<Customer[] | null>(null);
+  const [filterCount, setFilterCount] = useState(0);
 
   const fetchCustomers = async () => {
     setLoading(true);
@@ -60,9 +92,18 @@ export default function CustomersPage() {
   };
 
   useEffect(() => {
+    if (filterResults) return; // skip when advanced filter is active
     fetchCustomers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, statusFilter]);
+  }, [search, statusFilter, filterResults]);
+
+  const displayedCustomers = filterResults ?? customers;
+  const displayedTotal = filterResults ? filterCount : total;
+
+  const clearAdvancedFilter = () => {
+    setFilterResults(null);
+    setFilterCount(0);
+  };
 
   return (
     <DashboardShell locale={locale}>
@@ -72,7 +113,7 @@ export default function CustomersPage() {
           <div>
             <h1 className="text-2xl font-bold text-ink">Customers</h1>
             <p className="text-sm text-ink-light mt-1">
-              {total} {total === 1 ? "customer" : "customers"} total
+              {displayedTotal} {displayedTotal === 1 ? "customer" : "customers"} {filterResults ? "matched" : "total"}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -83,6 +124,23 @@ export default function CustomersPage() {
               <Upload className="w-4 h-4" />
               Import CSV
             </Link>
+            <button
+              onClick={() => setShowFilter((v) => !v)}
+              className={cn(
+                "inline-flex items-center gap-2 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                showFilter || filterResults
+                  ? "bg-cyan-600 text-white hover:bg-cyan-700"
+                  : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+              )}
+            >
+              <Filter className="w-4 h-4" />
+              Filters
+              {filterResults && (
+                <span className="ml-1 px-1.5 py-0.5 bg-white/20 rounded text-[10px] font-bold">
+                  {filterCount}
+                </span>
+              )}
+            </button>
             <ExportButton entityType="customers" />
             <button
               onClick={() => setShowCreate(true)}
@@ -93,6 +151,38 @@ export default function CustomersPage() {
             </button>
           </div>
         </div>
+
+        {/* Advanced Filter */}
+        {showFilter && (
+          <div className="mb-4">
+            <AdvancedFilterBuilder
+              entityType="customers"
+              fields={CUSTOMER_FILTER_FIELDS}
+              onResults={(items, total) => {
+                setFilterResults(items as Customer[]);
+                setFilterCount(total);
+                setShowFilter(false);
+              }}
+              onClose={() => setShowFilter(false)}
+            />
+          </div>
+        )}
+
+        {filterResults && !showFilter && (
+          <div className="mb-4 flex items-center gap-2 px-3 py-2 bg-cyan-50 border border-cyan-100 rounded-lg">
+            <Filter className="w-4 h-4 text-cyan-700" />
+            <span className="text-sm text-cyan-800">
+              Showing {filterCount} results from advanced filter
+            </span>
+            <button
+              onClick={clearAdvancedFilter}
+              className="ml-auto inline-flex items-center gap-1 px-2 py-1 text-xs text-cyan-700 hover:bg-cyan-100 rounded"
+            >
+              <X className="w-3.5 h-3.5" />
+              Clear
+            </button>
+          </div>
+        )}
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
@@ -125,14 +215,16 @@ export default function CustomersPage() {
             <div className="p-12 flex items-center justify-center">
               <Loader2 className="w-6 h-6 animate-spin text-primary-600" />
             </div>
-          ) : customers.length === 0 ? (
+          ) : displayedCustomers.length === 0 ? (
             <div className="p-12 text-center">
               <Building2 className="w-12 h-12 text-ink-muted mx-auto mb-3" />
               <h3 className="text-lg font-semibold text-ink mb-1">
-                No customers yet
+                {filterResults ? "No matches" : "No customers yet"}
               </h3>
               <p className="text-sm text-ink-light mb-4">
-                Start building your customer base by adding your first one.
+                {filterResults
+                  ? "Try adjusting your filter conditions."
+                  : "Start building your customer base by adding your first one."}
               </p>
               <button
                 onClick={() => setShowCreate(true)}
@@ -150,10 +242,10 @@ export default function CustomersPage() {
                     <th className="px-3 py-3 w-10">
                       <input
                         type="checkbox"
-                        checked={customers.length > 0 && selectedIds.size === customers.length}
+                        checked={displayedCustomers.length > 0 && selectedIds.size === displayedCustomers.length}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setSelectedIds(new Set(customers.map((c) => c.id)));
+                            setSelectedIds(new Set(displayedCustomers.map((c) => c.id)));
                           } else {
                             setSelectedIds(new Set());
                           }
@@ -183,7 +275,7 @@ export default function CustomersPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-line-soft">
-                  {customers.map((customer) => (
+                  {displayedCustomers.map((customer) => (
                     <tr
                       key={customer.id}
                       className={cn(

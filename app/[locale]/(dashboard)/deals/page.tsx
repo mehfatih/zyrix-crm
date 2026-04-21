@@ -2,13 +2,30 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { Briefcase, Loader2, Plus } from "lucide-react";
+import { Briefcase, Loader2, Plus, Filter, X } from "lucide-react";
 import { listDeals, type Deal, type DealStage } from "@/lib/api/deals";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import { CreateDealModal } from "@/components/deals/CreateDealModal";
 import { formatDate, cn } from "@/lib/utils";
 import ExportButton from "@/components/advanced/ExportButton";
 import BulkActionBar from "@/components/advanced/BulkActionBar";
+import AdvancedFilterBuilder from "@/components/advanced/AdvancedFilterBuilder";
+
+const DEAL_FILTER_FIELDS = [
+  { key: "title", label: "Title", type: "text" as const },
+  {
+    key: "stage",
+    label: "Stage",
+    type: "select" as const,
+    options: ["lead", "qualified", "proposal", "negotiation", "won", "lost"],
+  },
+  { key: "value", label: "Value", type: "number" as const },
+  { key: "currency", label: "Currency", type: "text" as const },
+  { key: "probability", label: "Probability", type: "number" as const },
+  { key: "expectedCloseDate", label: "Expected close", type: "date" as const },
+  { key: "actualCloseDate", label: "Actual close", type: "date" as const },
+  { key: "createdAt", label: "Created", type: "date" as const },
+];
 
 const STAGE_COLORS: Record<DealStage, string> = {
   lead: "bg-sky-100 text-sky-700",
@@ -27,6 +44,9 @@ export default function DealsPage() {
   const [stageFilter, setStageFilter] = useState<string>("");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [showFilter, setShowFilter] = useState(false);
+  const [filterResults, setFilterResults] = useState<Deal[] | null>(null);
+  const [filterCount, setFilterCount] = useState(0);
 
   const fetchDeals = async () => {
     setLoading(true);
@@ -44,15 +64,24 @@ export default function DealsPage() {
   };
 
   useEffect(() => {
+    if (filterResults) return;
     fetchDeals();
-  }, [stageFilter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stageFilter, filterResults]);
 
   const handleCreateSuccess = () => {
     setShowCreateModal(false);
     fetchDeals();
   };
 
-  const totalValue = deals.reduce(
+  const displayedDeals = filterResults ?? deals;
+
+  const clearAdvancedFilter = () => {
+    setFilterResults(null);
+    setFilterCount(0);
+  };
+
+  const totalValue = displayedDeals.reduce(
     (sum, d) => sum + (d.stage === "won" ? Number(d.value) : 0),
     0
   );
@@ -64,10 +93,27 @@ export default function DealsPage() {
           <div>
             <h1 className="text-2xl font-bold text-ink">Deals</h1>
             <p className="text-sm text-ink-light mt-1">
-              {deals.length} deals · ${totalValue.toLocaleString()} won
+              {displayedDeals.length} deals · ${totalValue.toLocaleString()} won
             </p>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowFilter((v) => !v)}
+              className={cn(
+                "inline-flex items-center gap-2 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                showFilter || filterResults
+                  ? "bg-cyan-600 text-white hover:bg-cyan-700"
+                  : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+              )}
+            >
+              <Filter className="w-4 h-4" />
+              Filters
+              {filterResults && (
+                <span className="ml-1 px-1.5 py-0.5 bg-white/20 rounded text-[10px] font-bold">
+                  {filterCount}
+                </span>
+              )}
+            </button>
             <ExportButton entityType="deals" />
             <button
               onClick={() => setShowCreateModal(true)}
@@ -78,6 +124,37 @@ export default function DealsPage() {
             </button>
           </div>
         </div>
+
+        {showFilter && (
+          <div className="mb-4">
+            <AdvancedFilterBuilder
+              entityType="deals"
+              fields={DEAL_FILTER_FIELDS}
+              onResults={(items, total) => {
+                setFilterResults(items as Deal[]);
+                setFilterCount(total);
+                setShowFilter(false);
+              }}
+              onClose={() => setShowFilter(false)}
+            />
+          </div>
+        )}
+
+        {filterResults && !showFilter && (
+          <div className="mb-4 flex items-center gap-2 px-3 py-2 bg-cyan-50 border border-cyan-100 rounded-lg">
+            <Filter className="w-4 h-4 text-cyan-700" />
+            <span className="text-sm text-cyan-800">
+              Showing {filterCount} results from advanced filter
+            </span>
+            <button
+              onClick={clearAdvancedFilter}
+              className="ml-auto inline-flex items-center gap-1 px-2 py-1 text-xs text-cyan-700 hover:bg-cyan-100 rounded"
+            >
+              <X className="w-3.5 h-3.5" />
+              Clear
+            </button>
+          </div>
+        )}
 
         <div className="flex gap-2 mb-6 overflow-x-auto">
           {["", "lead", "qualified", "proposal", "negotiation", "won", "lost"].map(
@@ -103,14 +180,16 @@ export default function DealsPage() {
             <div className="p-12 flex items-center justify-center">
               <Loader2 className="w-6 h-6 animate-spin text-primary-600" />
             </div>
-          ) : deals.length === 0 ? (
+          ) : displayedDeals.length === 0 ? (
             <div className="p-12 text-center">
               <Briefcase className="w-12 h-12 text-ink-muted mx-auto mb-3" />
               <h3 className="text-lg font-semibold text-ink mb-1">
-                No deals yet
+                {filterResults ? "No matches" : "No deals yet"}
               </h3>
               <p className="text-sm text-ink-light">
-                Create your first deal to track sales opportunities.
+                {filterResults
+                  ? "Try adjusting your filter conditions."
+                  : "Create your first deal to track sales opportunities."}
               </p>
             </div>
           ) : (
@@ -121,10 +200,10 @@ export default function DealsPage() {
                     <th className="px-3 py-3 w-10">
                       <input
                         type="checkbox"
-                        checked={deals.length > 0 && selectedIds.size === deals.length}
+                        checked={displayedDeals.length > 0 && selectedIds.size === displayedDeals.length}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setSelectedIds(new Set(deals.map((d) => d.id)));
+                            setSelectedIds(new Set(displayedDeals.map((d) => d.id)));
                           } else {
                             setSelectedIds(new Set());
                           }
@@ -153,7 +232,7 @@ export default function DealsPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-line-soft">
-                  {deals.map((deal) => (
+                  {displayedDeals.map((deal) => (
                     <tr
                       key={deal.id}
                       className={cn(

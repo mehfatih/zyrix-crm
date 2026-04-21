@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import {
   Activity,
   Phone,
@@ -167,6 +168,7 @@ export default function ActivityTimeline({
               key={ev.id}
               event={ev}
               locale={locale}
+              customerId={customerId}
               isLast={idx === filtered.length - 1}
             />
           ))}
@@ -176,17 +178,67 @@ export default function ActivityTimeline({
   );
 }
 
+function buildDeepLink(
+  event: TimelineEvent,
+  locale: string,
+  customerId: string
+): string | null {
+  const md = event.metadata || {};
+  if (typeof md.dealId === "string") return `/${locale}/deals?highlight=${md.dealId}`;
+  if (typeof md.quoteId === "string") return `/${locale}/quotes/${md.quoteId}`;
+  if (typeof md.contractId === "string") return `/${locale}/contracts/${md.contractId}`;
+  if (typeof md.taskId === "string") return `/${locale}/tasks?highlight=${md.taskId}`;
+  // Activity/note/loyalty/whatsapp events stay on the customer detail page
+  if (
+    event.type.startsWith("activity") ||
+    event.type === "whatsapp_message" ||
+    event.type === "loyalty_earned"
+  ) {
+    return `/${locale}/customers/${customerId}`;
+  }
+  return null;
+}
+
 function TimelineEventItem({
   event,
   locale,
+  customerId,
   isLast,
 }: {
   event: TimelineEvent;
   locale: string;
+  customerId: string;
   isLast: boolean;
 }) {
   const Icon = ICON_MAP[event.icon] || Activity;
   const colors = COLOR_MAP[event.color] || COLOR_MAP.slate;
+  const href = buildDeepLink(event, locale, customerId);
+
+  const card = (
+    <div
+      className={`flex-1 min-w-0 bg-white border border-sky-50 rounded-lg p-3 shadow-sm ${
+        href ? "hover:border-cyan-200 hover:bg-sky-50/40 transition-colors" : ""
+      }`}
+    >
+      <div className="flex items-start justify-between gap-2 flex-wrap">
+        <h4 className="text-sm font-semibold text-cyan-900">{event.title}</h4>
+        <time className="text-[10px] text-slate-500 flex-shrink-0">
+          {formatTimeAgo(event.timestamp, locale)}
+        </time>
+      </div>
+      {event.description && (
+        <p className="text-xs text-slate-600 mt-1 line-clamp-3 whitespace-pre-wrap">
+          {event.description}
+        </p>
+      )}
+      {event.userName && (
+        <div className="mt-2 flex items-center gap-1 text-[10px] text-slate-500">
+          <User className="w-2.5 h-2.5" />
+          {event.userName}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <div className="relative flex items-start gap-3">
@@ -195,25 +247,13 @@ function TimelineEventItem({
       >
         <Icon className="w-4 h-4" />
       </div>
-      <div className="flex-1 min-w-0 bg-white border border-sky-50 rounded-lg p-3 shadow-sm">
-        <div className="flex items-start justify-between gap-2 flex-wrap">
-          <h4 className="text-sm font-semibold text-cyan-900">{event.title}</h4>
-          <time className="text-[10px] text-slate-500 flex-shrink-0">
-            {formatTimeAgo(event.timestamp, locale)}
-          </time>
-        </div>
-        {event.description && (
-          <p className="text-xs text-slate-600 mt-1 line-clamp-3 whitespace-pre-wrap">
-            {event.description}
-          </p>
-        )}
-        {event.userName && (
-          <div className="mt-2 flex items-center gap-1 text-[10px] text-slate-500">
-            <User className="w-2.5 h-2.5" />
-            {event.userName}
-          </div>
-        )}
-      </div>
+      {href ? (
+        <Link href={href} className="flex-1 min-w-0 no-underline">
+          {card}
+        </Link>
+      ) : (
+        card
+      )}
     </div>
   );
 }
