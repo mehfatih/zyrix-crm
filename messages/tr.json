@@ -43,6 +43,7 @@
     "quotes": "Teklifler",
     "loyalty": "Sadakat",
     "tax": "Vergi",
+    "commission": "Komisyon",
     "cashflow": "Nakit Akışı",
     "followup": "Takip",
     "aiCfo": "AI CFO"
@@ -1778,6 +1779,104 @@
     },
     "ai": {
       "poweredBy": "AI tarafından üretilen içgörü"
+    }
+  },
+  "Commission": {
+    "title": "Komisyon Motoru",
+    "subtitle": "Anlaşmalar kazanıldığında satış komisyonlarını otomatik hesapla ve takip et",
+    "newRule": "Yeni Kural",
+    "recompute": "Yeniden Hesapla",
+    "tabs": {
+      "rules": "Kurallar",
+      "entries": "Kayıtlar",
+      "stats": "İstatistikler"
+    },
+    "rules": {
+      "empty": "Henüz komisyon kuralı yok",
+      "emptyHint": "Anlaşmalar kapandığında komisyonları otomatik hesaplamak için ilk kuralınızı oluşturun",
+      "appliesAll": "Tüm kazanılan anlaşmalar",
+      "appliesStage": "Aşama: {stage}",
+      "appliesMin": "Değer ≥ {value}",
+      "col": {
+        "name": "Ad",
+        "type": "Tür",
+        "formula": "Formül",
+        "appliesTo": "Kapsam",
+        "entries": "Kayıtlar"
+      }
+    },
+    "entries": {
+      "filter": "Filtre",
+      "all": "Tümü",
+      "empty": "Henüz komisyon kaydı yok",
+      "col": {
+        "date": "Tarih",
+        "user": "Kullanıcı",
+        "deal": "Anlaşma",
+        "rule": "Kural",
+        "amount": "Tutar",
+        "status": "Durum"
+      }
+    },
+    "status": {
+      "pending": "Beklemede",
+      "approved": "Onaylı",
+      "paid": "Ödendi",
+      "cancelled": "İptal"
+    },
+    "stats": {
+      "pending": "Beklemede",
+      "approved": "Onaylı",
+      "paid": "Ödendi",
+      "topUsers": "En Çok Kazananlar",
+      "entries": "kayıt",
+      "noUsers": "Henüz komisyon yok"
+    },
+    "actions": {
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "create": "Oluştur",
+      "approve": "Onayla",
+      "markPaid": "Ödendi olarak işaretle"
+    },
+    "confirm": {
+      "deleteRule": "Bu kural silinsin mi? Mevcut kayıtlar kalır.",
+      "deleteEntry": "Bu komisyon kaydı silinsin mi?",
+      "recompute": "Tüm kazanılan anlaşmalar için komisyonlar yeniden hesaplansın mı? Eksik olanlar için kayıt oluşturulur."
+    },
+    "alerts": {
+      "recomputed": "{deals} anlaşma işlendi, {entries} yeni kayıt oluşturuldu."
+    },
+    "errors": {
+      "enterName": "Lütfen bir ad girin"
+    },
+    "modal": {
+      "createTitle": "Yeni Komisyon Kuralı",
+      "editTitle": "Komisyon Kuralını Düzenle",
+      "name": "Ad",
+      "namePlaceholder": "Örn: Kazanılan anlaşmalarda standart %10",
+      "description": "Açıklama",
+      "type": "Tür",
+      "types": {
+        "percent": "Değerin %'si",
+        "flat": "Sabit tutar",
+        "tiered": "Kademeli"
+      },
+      "rate": "Oran",
+      "amount": "Tutar",
+      "tiers": "Kademeler",
+      "addTier": "Kademe ekle",
+      "from": "Kimden",
+      "to": "Kime (boş = ∞)",
+      "appliesTo": "Kapsam",
+      "applies": {
+        "all": "Tüm kazanılan anlaşmalar",
+        "deal_stage": "Belirli aşama",
+        "min_value": "Min anlaşma değeri"
+      },
+      "stageValue": "Aşama adı",
+      "minValue": "Min değer",
+      "isActive": "Aktif"
     }
   }
 }

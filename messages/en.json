@@ -43,6 +43,7 @@
     "quotes": "Quotes",
     "loyalty": "Loyalty",
     "tax": "Tax",
+    "commission": "Commission",
     "cashflow": "Cash Flow",
     "followup": "Follow-up",
     "aiCfo": "AI CFO"
@@ -1778,6 +1779,104 @@
     },
     "ai": {
       "poweredBy": "AI-generated insight"
+    }
+  },
+  "Commission": {
+    "title": "Commission Engine",
+    "subtitle": "Auto-compute and track sales commissions when deals are won",
+    "newRule": "New Rule",
+    "recompute": "Recompute",
+    "tabs": {
+      "rules": "Rules",
+      "entries": "Entries",
+      "stats": "Stats"
+    },
+    "rules": {
+      "empty": "No commission rules yet",
+      "emptyHint": "Create your first rule to auto-compute commissions when deals close",
+      "appliesAll": "All won deals",
+      "appliesStage": "Stage: {stage}",
+      "appliesMin": "Value ≥ {value}",
+      "col": {
+        "name": "Name",
+        "type": "Type",
+        "formula": "Formula",
+        "appliesTo": "Applies To",
+        "entries": "Entries"
+      }
+    },
+    "entries": {
+      "filter": "Filter",
+      "all": "All",
+      "empty": "No commission entries yet",
+      "col": {
+        "date": "Date",
+        "user": "User",
+        "deal": "Deal",
+        "rule": "Rule",
+        "amount": "Amount",
+        "status": "Status"
+      }
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "paid": "Paid",
+      "cancelled": "Cancelled"
+    },
+    "stats": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "paid": "Paid",
+      "topUsers": "Top Earners",
+      "entries": "entries",
+      "noUsers": "No commissions yet"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "create": "Create",
+      "approve": "Approve",
+      "markPaid": "Mark paid"
+    },
+    "confirm": {
+      "deleteRule": "Delete this rule? Existing entries will remain.",
+      "deleteEntry": "Delete this commission entry?",
+      "recompute": "Recompute commissions for all won deals? This will create entries for any that are missing."
+    },
+    "alerts": {
+      "recomputed": "Processed {deals} deals, created {entries} new entries."
+    },
+    "errors": {
+      "enterName": "Please enter a name"
+    },
+    "modal": {
+      "createTitle": "New Commission Rule",
+      "editTitle": "Edit Commission Rule",
+      "name": "Name",
+      "namePlaceholder": "e.g. Standard 10% on won deals",
+      "description": "Description",
+      "type": "Type",
+      "types": {
+        "percent": "% of value",
+        "flat": "Flat amount",
+        "tiered": "Tiered"
+      },
+      "rate": "Rate",
+      "amount": "Amount",
+      "tiers": "Tiers",
+      "addTier": "Add tier",
+      "from": "From",
+      "to": "To (empty = ∞)",
+      "appliesTo": "Applies To",
+      "applies": {
+        "all": "All won deals",
+        "deal_stage": "Specific stage",
+        "min_value": "Min deal value"
+      },
+      "stageValue": "Stage name",
+      "minValue": "Min value",
+      "isActive": "Active"
     }
   }
 }
