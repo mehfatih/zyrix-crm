@@ -764,3 +764,135 @@ export async function inviteColleague(
   >("/api/onboarding/invite-colleague", dto);
   return data.data;
 }
+
+// ============================================================================
+// SECURITY — 2FA + Audit Log
+// ============================================================================
+
+// ─── 2FA ──────────────────────────────────────────────────────────────
+
+export interface TwoFactorStatus {
+  enabled: boolean;
+  backupCodesRemaining: number;
+}
+
+export async function get2FAStatus(): Promise<TwoFactorStatus> {
+  const { data } = await apiClient.get<ApiSuccess<TwoFactorStatus>>(
+    "/api/security/2fa/status"
+  );
+  return data.data;
+}
+
+export interface BeginEnroll2FAResult {
+  qrDataUrl: string;
+  secret: string;
+  otpauthUrl: string;
+}
+
+export async function begin2FAEnroll(): Promise<BeginEnroll2FAResult> {
+  const { data } = await apiClient.post<ApiSuccess<BeginEnroll2FAResult>>(
+    "/api/security/2fa/begin-enroll"
+  );
+  return data.data;
+}
+
+export async function confirm2FAEnroll(
+  code: string
+): Promise<{ enabled: true; backupCodes: string[] }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ enabled: true; backupCodes: string[] }>
+  >("/api/security/2fa/confirm-enroll", { code });
+  return data.data;
+}
+
+export async function disable2FA(
+  password: string
+): Promise<{ disabled: true }> {
+  const { data } = await apiClient.post<ApiSuccess<{ disabled: true }>>(
+    "/api/security/2fa/disable",
+    { password }
+  );
+  return data.data;
+}
+
+export async function regenerate2FABackupCodes(): Promise<{
+  backupCodes: string[];
+}> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ backupCodes: string[] }>
+  >("/api/security/2fa/regenerate-backup-codes");
+  return data.data;
+}
+
+// ─── 2FA challenge (login step 2) ─────────────────────────────────────
+
+export interface TwoFAChallengeResponse {
+  user: {
+    id: string;
+    email: string;
+    fullName: string;
+    role: string;
+    companyId: string;
+    emailVerified: boolean;
+  };
+  company: { id: string; name: string; slug: string; plan: string };
+  tokens: { accessToken: string; refreshToken: string; expiresIn: number };
+}
+
+export async function complete2FAChallenge(
+  challengeToken: string,
+  code: string
+): Promise<TwoFAChallengeResponse> {
+  const { data } = await apiClient.post<ApiSuccess<TwoFAChallengeResponse>>(
+    "/api/auth/2fa-challenge",
+    { challengeToken, code }
+  );
+  return data.data;
+}
+
+// ─── Audit log ────────────────────────────────────────────────────────
+
+export interface AuditLogEntry {
+  id: string;
+  userId: string | null;
+  companyId: string | null;
+  action: string;
+  entityType: string | null;
+  entityId: string | null;
+  changes: Record<string, { before: unknown; after: unknown }> | null;
+  metadata: Record<string, unknown> | null;
+  ipAddress: string | null;
+  userAgent: string | null;
+  createdAt: string;
+  user: { id: string; fullName: string; email: string } | null;
+}
+
+export interface AuditLogPage {
+  items: AuditLogEntry[];
+  pagination: { total: number; limit: number; offset: number };
+}
+
+export async function listAuditLogs(params?: {
+  limit?: number;
+  offset?: number;
+  action?: string;
+  actionPrefix?: string;
+  entityType?: string;
+  entityId?: string;
+  userId?: string;
+  since?: string;
+  until?: string;
+}): Promise<AuditLogPage> {
+  const { data } = await apiClient.get<ApiSuccess<AuditLogPage>>(
+    "/api/security/audit",
+    { params: params || {} }
+  );
+  return data.data;
+}
+
+export async function listAuditActions(): Promise<string[]> {
+  const { data } = await apiClient.get<ApiSuccess<string[]>>(
+    "/api/security/audit/actions"
+  );
+  return data.data;
+}

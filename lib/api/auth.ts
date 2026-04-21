@@ -29,12 +29,31 @@ export async function signupApi(
   return response.data.data;
 }
 
+export type SigninResult =
+  | (AuthResponse & { requires2FA?: false })
+  | { requires2FA: true; challengeToken: string };
+
 export async function signinApi(
   payload: SigninPayload
-): Promise<AuthResponse> {
-  const response = await apiClient.post<ApiSuccess<AuthResponse>>(
+): Promise<SigninResult> {
+  const response = await apiClient.post<ApiSuccess<SigninResult>>(
     "/api/auth/signin",
     payload
+  );
+  return response.data.data;
+}
+
+/**
+ * Step 2 of 2FA login — exchange the short-lived challenge token + TOTP
+ * or backup code for a normal access/refresh token pair.
+ */
+export async function twoFactorChallengeApi(
+  challengeToken: string,
+  code: string
+): Promise<AuthResponse> {
+  const response = await apiClient.post<ApiSuccess<AuthResponse>>(
+    "/api/auth/2fa-challenge",
+    { challengeToken, code }
   );
   return response.data.data;
 }

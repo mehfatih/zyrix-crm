@@ -15,6 +15,7 @@ import {
   googleAuthApi,
   logoutApi,
   meApi,
+  twoFactorChallengeApi,
 } from "../api/auth";
 import {
   getAccessToken,
@@ -44,7 +45,13 @@ interface AuthContextValue {
   isAuthenticated: boolean;
   isLoading: boolean;
   signup: (payload: SignupPayload) => Promise<void>;
-  signin: (payload: SigninPayload) => Promise<void>;
+  // signin resolves to { requires2FA: true, challengeToken } when the
+  // account has 2FA enabled — caller must then show a TOTP prompt and
+  // call complete2FAChallenge to finish the login.
+  signin: (
+    payload: SigninPayload
+  ) => Promise<{ requires2FA: true; challengeToken: string } | void>;
+  complete2FAChallenge: (challengeToken: string, code: string) => Promise<void>;
   googleSignIn: (idToken: string) => Promise<void>;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
@@ -120,6 +127,27 @@ export function AuthProvider({
   const signin = useCallback(
     async (payload: SigninPayload) => {
       const result = await signinApi(payload);
+      if ("requires2FA" in result && result.requires2FA) {
+        // Don't route — let the caller (SigninForm) render the TOTP
+        // prompt using the challengeToken we return here.
+        return { requires2FA: true as const, challengeToken: result.challengeToken };
+      }
+      const full = result as Exclude<typeof result, { requires2FA: true }>;
+      setAccessToken(full.tokens.accessToken);
+      setRefreshToken(full.tokens.refreshToken);
+      setUserState(full.user);
+      setCompanyState(full.company);
+      cacheUser(full.user);
+      cacheCompany(full.company);
+      router.push(`/${locale}/dashboard`);
+      return;
+    },
+    [locale, router]
+  );
+
+  const complete2FAChallenge = useCallback(
+    async (challengeToken: string, code: string) => {
+      const result = await twoFactorChallengeApi(challengeToken, code);
       setAccessToken(result.tokens.accessToken);
       setRefreshToken(result.tokens.refreshToken);
       setUserState(result.user);
@@ -171,6 +199,7 @@ export function AuthProvider({
     isLoading,
     signup,
     signin,
+    complete2FAChallenge,
     googleSignIn,
     logout,
     refresh,
