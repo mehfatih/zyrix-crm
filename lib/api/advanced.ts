@@ -2199,3 +2199,142 @@ export function setActiveBrandId(value: string | null): void {
   else localStorage.setItem(ACTIVE_BRAND_KEY, value);
   window.dispatchEvent(new CustomEvent("zyrix:brand-changed", { detail: value }));
 }
+
+// ============================================================================
+// TAX INVOICES — ZATCA + e-Fatura / e-Arşiv compliance
+// ============================================================================
+
+export type TaxRegime = "zatca" | "efatura" | "earsiv";
+export type TaxInvoiceType =
+  | "standard"
+  | "simplified"
+  | "credit_note"
+  | "debit_note";
+export type TaxInvoiceStatus =
+  | "draft"
+  | "submitted"
+  | "approved"
+  | "rejected";
+
+export interface TaxLineItem {
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  discount?: number;
+  taxRate?: number;
+  lineTotal: number;
+}
+
+export interface TaxInvoice {
+  id: string;
+  companyId: string;
+  regime: TaxRegime;
+  type: TaxInvoiceType;
+  invoiceNumber: string;
+  quoteId: string | null;
+  contractId: string | null;
+  dealId: string | null;
+  sellerName: string;
+  sellerVatNo: string | null;
+  sellerAddress: string | null;
+  buyerName: string;
+  buyerVatNo: string | null;
+  buyerAddress: string | null;
+  currency: string;
+  subtotal: number;
+  discountAmount: number;
+  taxRate: number;
+  taxAmount: number;
+  totalAmount: number;
+  lineItems: TaxLineItem[];
+  issuedAt: string;
+  xml: string | null;
+  qrCode: string | null;
+  invoiceHash: string | null;
+  previousInvoiceHash: string | null;
+  status: TaxInvoiceStatus;
+  externalId: string | null;
+  submittedAt: string | null;
+  approvedAt: string | null;
+  rejectionReason: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function listTaxInvoices(params?: {
+  regime?: TaxRegime;
+  status?: TaxInvoiceStatus;
+  limit?: number;
+  offset?: number;
+}): Promise<{ items: TaxInvoice[]; total: number }> {
+  const { data } = await apiClient.get<
+    ApiSuccess<{ items: TaxInvoice[]; total: number }>
+  >("/api/tax-invoices", { params });
+  return data.data;
+}
+
+export async function getTaxInvoice(id: string): Promise<TaxInvoice> {
+  const { data } = await apiClient.get<ApiSuccess<TaxInvoice>>(
+    `/api/tax-invoices/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+export async function issueTaxInvoice(input: {
+  regime: TaxRegime;
+  type?: TaxInvoiceType;
+  quoteId?: string;
+  contractId?: string;
+  dealId?: string;
+  sellerName: string;
+  sellerVatNo?: string;
+  sellerAddress?: string;
+  buyerName: string;
+  buyerVatNo?: string;
+  buyerAddress?: string;
+  currency?: string;
+  taxRate: number;
+  discountAmount?: number;
+  lineItems: TaxLineItem[];
+}): Promise<TaxInvoice> {
+  const { data } = await apiClient.post<ApiSuccess<TaxInvoice>>(
+    "/api/tax-invoices",
+    input
+  );
+  return data.data;
+}
+
+export function buildTaxInvoiceXmlUrl(id: string): string {
+  const base = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
+  return `${base}/api/tax-invoices/${encodeURIComponent(id)}/xml`;
+}
+
+export async function submitTaxInvoice(
+  id: string,
+  externalId: string
+): Promise<TaxInvoice> {
+  const { data } = await apiClient.post<ApiSuccess<TaxInvoice>>(
+    `/api/tax-invoices/${encodeURIComponent(id)}/submit`,
+    { externalId }
+  );
+  return data.data;
+}
+
+export async function approveTaxInvoice(id: string): Promise<TaxInvoice> {
+  const { data } = await apiClient.post<ApiSuccess<TaxInvoice>>(
+    `/api/tax-invoices/${encodeURIComponent(id)}/approve`,
+    {}
+  );
+  return data.data;
+}
+
+export async function rejectTaxInvoice(
+  id: string,
+  reason: string
+): Promise<TaxInvoice> {
+  const { data } = await apiClient.post<ApiSuccess<TaxInvoice>>(
+    `/api/tax-invoices/${encodeURIComponent(id)}/reject`,
+    { reason }
+  );
+  return data.data;
+}
