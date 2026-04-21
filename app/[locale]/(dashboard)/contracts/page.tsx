@@ -38,6 +38,7 @@ import {
   type CreateContractDto,
 } from "@/lib/api/contracts";
 import { listCustomers, type Customer } from "@/lib/api/customers";
+import { extractErrorMessage } from "@/lib/errors";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ExportButton from "@/components/advanced/ExportButton";
 
@@ -153,7 +154,7 @@ export default function ContractsPage() {
       setStats(s);
       setCustomers(cs.customers);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to load");
+      setError(extractErrorMessage(e) || "Failed to load");
     } finally {
       setLoading(false);
     }
@@ -239,7 +240,7 @@ export default function ContractsPage() {
       setModalOpen(false);
       await load();
     } catch (e) {
-      setFormErr(e instanceof Error ? e.message : "Failed");
+      setFormErr(extractErrorMessage(e) || "Failed");
     } finally {
       setSaving(false);
     }
@@ -252,7 +253,7 @@ export default function ContractsPage() {
       setViewing(null);
       await load();
     } catch (e) {
-      alert(e instanceof Error ? e.message : "Failed");
+      alert(extractErrorMessage(e) || "Failed");
     }
   };
 
@@ -267,7 +268,7 @@ export default function ContractsPage() {
         setViewing(updated);
       }
     } catch (e) {
-      alert(e instanceof Error ? e.message : "Failed");
+      alert(extractErrorMessage(e) || "Failed");
     } finally {
       setReminderLoading(false);
     }
@@ -742,7 +743,7 @@ function ContractFormModal({
           </div>
 
           {formErr && (
-            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100">
+            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100 whitespace-pre-line">
               {formErr}
             </div>
           )}

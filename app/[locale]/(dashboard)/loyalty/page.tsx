@@ -40,6 +40,7 @@ import {
   type CreateTxnDto,
 } from "@/lib/api/loyalty";
 import { listCustomers, type Customer } from "@/lib/api/customers";
+import { extractErrorMessage } from "@/lib/errors";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 
 // ============================================================================
@@ -111,7 +112,7 @@ export default function LoyaltyPage() {
       setTxns(tx.items);
       setCustomers(c.customers);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to load loyalty data");
+      setError(extractErrorMessage(e) || "Failed to load loyalty data");
     } finally {
       setLoading(false);
     }
@@ -132,7 +133,7 @@ export default function LoyaltyPage() {
       await deleteLoyaltyTransaction(id);
       await load();
     } catch (e) {
-      alert(e instanceof Error ? e.message : "Failed");
+      alert(extractErrorMessage(e) || "Failed");
     }
   };
 
@@ -631,7 +632,7 @@ function ProgramTab({
       await onSaved();
       setTimeout(() => setSavedMessage(null), 3000);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Failed");
+      setErr(extractErrorMessage(e) || "Failed");
     } finally {
       setSaving(false);
     }
@@ -823,7 +824,7 @@ function ProgramTab({
       </div>
 
       {err && (
-        <div className="bg-red-50 text-red-700 text-sm p-3 rounded-lg border border-red-100">
+        <div className="bg-red-50 text-red-700 text-sm p-3 rounded-lg border border-red-100 whitespace-pre-line">
           {err}
         </div>
       )}
@@ -901,7 +902,7 @@ function TransactionModal({
       await createLoyaltyTransaction(dto);
       await onCreated();
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Failed");
+      setErr(extractErrorMessage(e) || "Failed");
     } finally {
       setSaving(false);
     }
@@ -1008,7 +1009,7 @@ function TransactionModal({
           </div>
 
           {err && (
-            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100">
+            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100 whitespace-pre-line">
               {err}
             </div>
           )}

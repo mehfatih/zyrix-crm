@@ -40,6 +40,7 @@ import {
   type QuoteItemInput,
 } from "@/lib/api/quotes";
 import { listCustomers, type Customer } from "@/lib/api/customers";
+import { extractErrorMessage } from "@/lib/errors";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ExportButton from "@/components/advanced/ExportButton";
 
@@ -292,9 +293,7 @@ export default function QuotesPage() {
       closeModal();
       await load();
     } catch (e) {
-      setFormError(
-        e instanceof Error ? e.message : t("errors.saveFailed")
-      );
+      setFormError(extractErrorMessage(e) || t("errors.saveFailed"));
     } finally {
       setSaving(false);
     }
@@ -307,7 +306,7 @@ export default function QuotesPage() {
       setViewQuote(null);
       await load();
     } catch (e) {
-      alert(e instanceof Error ? e.message : t("errors.deleteFailed"));
+      alert(extractErrorMessage(e) || t("errors.deleteFailed"));
     }
   };
 
@@ -916,7 +915,7 @@ function QuoteFormModal({
           </div>
 
           {formError && (
-            <div className="bg-red-50 text-red-700 text-sm p-3 rounded-lg border border-red-100">
+            <div className="bg-red-50 text-red-700 text-sm p-3 rounded-lg border border-red-100 whitespace-pre-line">
               {formError}
             </div>
           )}
