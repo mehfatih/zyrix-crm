@@ -48,7 +48,8 @@
     "cashflow": "Nakit Akışı",
     "followup": "Takip",
     "campaigns": "Kampanyalar",
-    "aiCfo": "AI CFO"
+    "aiCfo": "AI CFO",
+    "chat": "Ekip Sohbeti"
   },
   "Home": {
     "hero": {
@@ -2151,5 +2152,22 @@
         "needHelp": "Yardım mı lazım? İletişim:"
       }
     }
+  },
+  "Chat": {
+    "title": "Ekip Sohbeti",
+    "subtitle": "Ekibinizle doğrudan mesajlaşma",
+    "newChat": "Yeni sohbet başlat",
+    "searchTeam": "Ekipte ara…",
+    "noTeamMembers": "Başka ekip üyesi yok",
+    "noThreads": "Henüz konuşma yok",
+    "noThreadsHint": "Bir ekip üyesiyle sohbet başlatmak için + simgesine dokunun",
+    "selectChat": "Bir konuşma seçin",
+    "selectChatHint": "Sohbete başlamak için kenar çubuğundan birini seçin",
+    "emptyConversation": "Henüz mesaj yok",
+    "emptyConversationHint": "Konuşmayı başlatmak için merhaba deyin",
+    "messagePlaceholder": "Mesaj yazın…",
+    "send": "Gönder",
+    "you": "Sen",
+    "noMessagesYet": "Henüz mesaj yok"
   }
 }

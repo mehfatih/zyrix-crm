@@ -48,7 +48,8 @@
     "cashflow": "التدفق النقدي",
     "followup": "المتابعة",
     "campaigns": "الحملات",
-    "aiCfo": "المدير المالي"
+    "aiCfo": "المدير المالي",
+    "chat": "دردشة الفريق"
   },
   "Home": {
     "hero": {
@@ -2151,5 +2152,22 @@
         "needHelp": "تحتاج مساعدة؟ تواصل مع"
       }
     }
+  },
+  "Chat": {
+    "title": "دردشة الفريق",
+    "subtitle": "رسائل مباشرة مع فريقك",
+    "newChat": "بدء محادثة جديدة",
+    "searchTeam": "ابحث في الفريق…",
+    "noTeamMembers": "لا يوجد أعضاء آخرون في الفريق",
+    "noThreads": "لا توجد محادثات بعد",
+    "noThreadsHint": "اضغط + لبدء محادثة مع زميل",
+    "selectChat": "اختر محادثة",
+    "selectChatHint": "اختر شخصًا من القائمة الجانبية لبدء الدردشة",
+    "emptyConversation": "لا توجد رسائل بعد",
+    "emptyConversationHint": "قل مرحبًا لبدء المحادثة",
+    "messagePlaceholder": "اكتب رسالة…",
+    "send": "إرسال",
+    "you": "أنت",
+    "noMessagesYet": "لا توجد رسائل بعد"
   }
 }

@@ -48,7 +48,8 @@
     "cashflow": "Cash Flow",
     "followup": "Follow-up",
     "campaigns": "Campaigns",
-    "aiCfo": "AI CFO"
+    "aiCfo": "AI CFO",
+    "chat": "Team Chat"
   },
   "Home": {
     "hero": {
@@ -2151,5 +2152,22 @@
         "needHelp": "Need help? Contact"
       }
     }
+  },
+  "Chat": {
+    "title": "Team Chat",
+    "subtitle": "Direct messages with your team",
+    "newChat": "Start new chat",
+    "searchTeam": "Search team…",
+    "noTeamMembers": "No other team members",
+    "noThreads": "No conversations yet",
+    "noThreadsHint": "Tap + to start a chat with a teammate",
+    "selectChat": "Select a conversation",
+    "selectChatHint": "Choose someone from the sidebar to start chatting",
+    "emptyConversation": "No messages yet",
+    "emptyConversationHint": "Say hello to start the conversation",
+    "messagePlaceholder": "Type a message…",
+    "send": "Send",
+    "you": "You",
+    "noMessagesYet": "No messages yet"
   }
 }

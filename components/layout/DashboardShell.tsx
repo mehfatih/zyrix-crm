@@ -9,6 +9,7 @@ import {
   Users,
   Briefcase,
   MessageCircle,
+  MessageSquare,
   Activity,
   CheckSquare,
   FileText,
@@ -77,6 +78,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       badge: "AI",
     },
     { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
+    { href: `/${locale}/chat`, icon: MessageSquare, label: "Team Chat" },
     {
       href: `/${locale}/whatsapp`,
       icon: MessageCircle,
