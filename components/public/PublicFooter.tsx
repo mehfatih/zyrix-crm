@@ -33,6 +33,7 @@ const FOOTER_LABELS: Record<
       demo: string;
       aiCfo: string;
       whatsapp: string;
+      integrations: string;
       about: string;
       contact: string;
       blog: string;
@@ -66,6 +67,7 @@ const FOOTER_LABELS: Record<
       demo: "Book a demo",
       aiCfo: "AI CFO",
       whatsapp: "WhatsApp CRM",
+      integrations: "Integrations",
       about: "About us",
       contact: "Contact",
       blog: "Blog",
@@ -102,6 +104,7 @@ const FOOTER_LABELS: Record<
       demo: "احجز تجربة",
       aiCfo: "المدير المالي الذكي",
       whatsapp: "واتساب CRM",
+      integrations: "تكاملات التجارة الإلكترونية",
       about: "من نحن",
       contact: "تواصل معنا",
       blog: "المدوّنة",
@@ -138,6 +141,7 @@ const FOOTER_LABELS: Record<
       demo: "Demo al",
       aiCfo: "AI CFO",
       whatsapp: "WhatsApp CRM",
+      integrations: "E-ticaret Entegrasyonları",
       about: "Hakkımızda",
       contact: "İletişim",
       blog: "Blog",
@@ -228,6 +232,7 @@ export default function PublicFooter() {
             <FooterColumn title={t.sections.product}>
               <FooterLink href={`/${locale}/features`}>{t.links.features}</FooterLink>
               <FooterLink href={`/${locale}/pricing`}>{t.links.pricing}</FooterLink>
+              <FooterLink href={`/${locale}/integrations`}>{t.links.integrations}</FooterLink>
               <FooterLink href={`/${locale}/demo`}>{t.links.demo}</FooterLink>
               <FooterLink href={`/${locale}/features#ai-cfo`}>{t.links.aiCfo}</FooterLink>
               <FooterLink href={`/${locale}/features#whatsapp`}>{t.links.whatsapp}</FooterLink>
@@ -354,7 +359,7 @@ function ContactItem({
         <div className="text-[10px] uppercase text-slate-500 font-semibold tracking-wider">
           {label}
         </div>
-        <div className="text-sm text-slate-300 truncate">{value}</div>
+        <div className="text-sm text-slate-300 truncate" dir="ltr" style={{ unicodeBidi: "embed" }}>{value}</div>
       </div>
     </div>
   );

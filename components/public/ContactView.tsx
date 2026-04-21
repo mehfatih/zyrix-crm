@@ -334,7 +334,7 @@ function InfoCard({
         <h3 className="text-xs font-bold uppercase tracking-wider text-ink-mid mb-1">
           {title}
         </h3>
-        <div className="text-sm font-semibold text-ink truncate">{primary}</div>
+        <div className="text-sm font-semibold text-ink truncate" dir="ltr" style={{ unicodeBidi: "embed" }}>{primary}</div>
         <p className="text-xs text-ink-light mt-0.5">{secondary}</p>
       </div>
     </div>
