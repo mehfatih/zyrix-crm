@@ -28,6 +28,7 @@ import {
   Shield,
   History,
   Zap,
+  Key,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 import { fetchUnreadCount } from "@/lib/api/chat";
@@ -227,6 +228,13 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           >
             <History className="w-3.5 h-3.5" />
             Audit log
+          </Link>
+          <Link
+            href={`/${locale}/settings/api`}
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+          >
+            <Key className="w-3.5 h-3.5" />
+            API keys
           </Link>
         </div>
 

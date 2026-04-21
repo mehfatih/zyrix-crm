@@ -1505,3 +1505,52 @@ export async function getWorkflowExecution(
   );
   return data.data;
 }
+
+// ============================================================================
+// API KEYS
+// ============================================================================
+
+export interface ApiKeyRecord {
+  id: string;
+  companyId: string;
+  createdById: string;
+  name: string;
+  keyPrefix: string;
+  scope: "read" | "write";
+  revokedAt: string | null;
+  lastUsedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ApiKeyWithSecret extends ApiKeyRecord {
+  plaintextKey: string;
+}
+
+export async function listApiKeys(
+  includeRevoked?: boolean
+): Promise<ApiKeyRecord[]> {
+  const { data } = await apiClient.get<ApiSuccess<ApiKeyRecord[]>>(
+    "/api/keys",
+    { params: includeRevoked ? { includeRevoked: "true" } : {} }
+  );
+  return data.data;
+}
+
+export async function createApiKey(dto: {
+  name: string;
+  scope?: "read" | "write";
+}): Promise<ApiKeyWithSecret> {
+  const { data } = await apiClient.post<ApiSuccess<ApiKeyWithSecret>>(
+    "/api/keys",
+    dto
+  );
+  return data.data;
+}
+
+export async function revokeApiKey(id: string): Promise<{ revoked: true }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ revoked: true }>>(
+    `/api/keys/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
