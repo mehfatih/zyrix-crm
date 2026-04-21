@@ -520,12 +520,13 @@ export interface WebhookEvent {
   platform: string;
   topic: string;
   externalId: string | null;
-  status: "pending" | "processing" | "done" | "failed" | "skipped";
+  status: "pending" | "processing" | "done" | "failed" | "skipped" | "dead_letter";
   attempts: number;
   lastError: string | null;
   signatureOk: boolean;
   receivedAt: string;
   processedAt: string | null;
+  nextRetryAt: string | null;
 }
 
 export async function getSupportedWebhookPlatforms(): Promise<string[]> {
@@ -590,6 +591,15 @@ export async function listWebhookEvents(params?: {
     "/api/webhooks/events",
     { params: params || {} }
   );
+  return data.data;
+}
+
+export async function retryWebhookEvent(
+  id: string
+): Promise<{ eventId: string; status: string }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{ eventId: string; status: string }>
+  >(`/api/webhooks/events/${id}/retry`);
   return data.data;
 }
 

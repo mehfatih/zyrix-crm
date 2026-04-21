@@ -18,6 +18,8 @@ import {
   Key,
   Info,
   Radio,
+  Skull,
+  RotateCw,
 } from "lucide-react";
 import {
   listWebhookSubscriptions,
@@ -27,6 +29,7 @@ import {
   rotateWebhookSecret,
   getSupportedWebhookPlatforms,
   listWebhookEvents,
+  retryWebhookEvent,
   type WebhookSubscription,
   type WebhookSubscriptionWithSecret,
   type WebhookEvent,
@@ -249,7 +252,7 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
           </summary>
           <div className="border-t border-sky-50 divide-y divide-sky-50">
             {events.map((ev) => (
-              <EventRow key={ev.id} event={ev} locale={locale} />
+              <EventRow key={ev.id} event={ev} locale={locale} onReload={load} />
             ))}
           </div>
         </details>
@@ -469,30 +472,130 @@ function WebhookRow({
 
 // ─── Event row (recent deliveries) ────────────────────────────────────
 
-function EventRow({ event, locale }: { event: WebhookEvent; locale: string }) {
+function EventRow({
+  event,
+  locale,
+  onReload,
+}: {
+  event: WebhookEvent;
+  locale: string;
+  onReload: () => void;
+}) {
+  const [retrying, setRetrying] = useState(false);
+
   const statusConfig: Record<
     WebhookEvent["status"],
-    { bg: string; text: string; icon: typeof Check }
+    { bg: string; text: string; icon: typeof Check; label: { en: string; ar: string; tr: string } }
   > = {
-    done: { bg: "bg-emerald-50", text: "text-emerald-700", icon: CheckCircle2 },
-    pending: { bg: "bg-sky-50", text: "text-sky-700", icon: Clock },
-    processing: { bg: "bg-sky-50", text: "text-sky-700", icon: Clock },
-    failed: { bg: "bg-rose-50", text: "text-rose-700", icon: AlertTriangle },
-    skipped: { bg: "bg-amber-50", text: "text-amber-700", icon: AlertTriangle },
+    done: {
+      bg: "bg-emerald-50",
+      text: "text-emerald-700",
+      icon: CheckCircle2,
+      label: { en: "done", ar: "تم", tr: "tamam" },
+    },
+    pending: {
+      bg: "bg-sky-50",
+      text: "text-sky-700",
+      icon: Clock,
+      label: { en: "pending", ar: "قيد الانتظار", tr: "bekliyor" },
+    },
+    processing: {
+      bg: "bg-sky-50",
+      text: "text-sky-700",
+      icon: Loader2,
+      label: { en: "processing", ar: "جارٍ", tr: "işleniyor" },
+    },
+    failed: {
+      bg: "bg-rose-50",
+      text: "text-rose-700",
+      icon: AlertTriangle,
+      label: { en: "failed", ar: "فشل", tr: "başarısız" },
+    },
+    skipped: {
+      bg: "bg-amber-50",
+      text: "text-amber-700",
+      icon: AlertTriangle,
+      label: { en: "skipped", ar: "تم تخطيه", tr: "atlandı" },
+    },
+    dead_letter: {
+      bg: "bg-rose-100",
+      text: "text-rose-900",
+      icon: Skull,
+      label: { en: "dead letter", ar: "متوقف نهائياً", tr: "ölü mektup" },
+    },
   };
   const cfg = statusConfig[event.status] || statusConfig.pending;
   const Icon = cfg.icon;
+  const isRetryable = event.status === "failed" || event.status === "dead_letter";
+
+  const handleRetry = async () => {
+    setRetrying(true);
+    try {
+      await retryWebhookEvent(event.id);
+      onReload();
+    } catch (e: any) {
+      alert(
+        e?.response?.data?.error?.message ||
+          e?.message ||
+          "Retry failed"
+      );
+    } finally {
+      setRetrying(false);
+    }
+  };
+
+  // Format nextRetryAt relative to now — "retry in 3 min" vs "retry overdue"
+  const retryHint = (): string | null => {
+    if (!event.nextRetryAt) return null;
+    const ms = new Date(event.nextRetryAt).getTime() - Date.now();
+    if (ms <= 0) {
+      return locale === "ar"
+        ? "سيُعاد قريباً"
+        : locale === "tr"
+          ? "yakında yeniden denenecek"
+          : "retry pending";
+    }
+    const min = Math.round(ms / 60000);
+    if (min < 60) {
+      return locale === "ar"
+        ? `إعادة بعد ${min}د`
+        : locale === "tr"
+          ? `${min}d sonra yeniden`
+          : `retry in ${min}m`;
+    }
+    const hr = Math.round(ms / 3600000);
+    return locale === "ar"
+      ? `إعادة بعد ${hr}س`
+      : locale === "tr"
+        ? `${hr}s sonra yeniden`
+        : `retry in ${hr}h`;
+  };
+  const nextRetry = retryHint();
 
   return (
-    <div className="px-4 py-2 flex items-center gap-3 text-[11px] hover:bg-sky-50/40">
+    <div className="px-4 py-2 flex items-center gap-3 text-[11px] hover:bg-sky-50/40 flex-wrap">
       <span
         className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded ${cfg.bg} ${cfg.text} font-medium`}
       >
-        <Icon className="w-2.5 h-2.5" />
-        {event.status}
+        <Icon className={`w-2.5 h-2.5 ${event.status === "processing" ? "animate-spin" : ""}`} />
+        {cfg.label[locale as "en" | "ar" | "tr"] || cfg.label.en}
       </span>
-      <span className="text-slate-700 font-medium capitalize">{event.platform}</span>
+
+      <span className="text-slate-700 font-medium capitalize">
+        {event.platform}
+      </span>
       <code className="text-[10px] font-mono text-slate-600">{event.topic}</code>
+
+      {/* Attempt counter — show only when retries have happened */}
+      {event.attempts > 1 && (
+        <span
+          className="text-[10px] text-slate-500 tabular-nums"
+          title={locale === "ar" ? "المحاولات" : locale === "tr" ? "deneme" : "attempts"}
+        >
+          #{event.attempts}
+        </span>
+      )}
+
       {!event.signatureOk && (
         <span className="text-[10px] px-1 py-0.5 bg-rose-50 text-rose-700 rounded">
           {locale === "ar"
@@ -502,13 +605,53 @@ function EventRow({ event, locale }: { event: WebhookEvent; locale: string }) {
               : "bad signature"}
         </span>
       )}
+
+      {/* Next retry timestamp for failed events */}
+      {nextRetry && event.status === "failed" && (
+        <span className="text-[10px] text-slate-500 inline-flex items-center gap-0.5">
+          <Clock className="w-2.5 h-2.5" />
+          {nextRetry}
+        </span>
+      )}
+
+      {/* Tooltip with error message on hover for failed/dead_letter */}
+      {event.lastError && (event.status === "failed" || event.status === "dead_letter") && (
+        <span
+          className="text-[10px] text-rose-600 max-w-[200px] truncate"
+          title={event.lastError}
+        >
+          · {event.lastError}
+        </span>
+      )}
+
       <time
-        className="ml-auto text-slate-400"
+        className="ltr:ml-auto rtl:mr-auto text-slate-400"
         dir="ltr"
         style={{ unicodeBidi: "embed" }}
       >
         {new Date(event.receivedAt).toLocaleTimeString()}
       </time>
+
+      {isRetryable && (
+        <button
+          onClick={handleRetry}
+          disabled={retrying}
+          className="p-1 text-slate-500 hover:text-cyan-700 hover:bg-sky-50 rounded disabled:opacity-50"
+          title={
+            locale === "ar"
+              ? "إعادة المحاولة الآن"
+              : locale === "tr"
+                ? "şimdi tekrar dene"
+                : "retry now"
+          }
+        >
+          {retrying ? (
+            <Loader2 className="w-3 h-3 animate-spin" />
+          ) : (
+            <RotateCw className="w-3 h-3" />
+          )}
+        </button>
+      )}
     </div>
   );
 }
