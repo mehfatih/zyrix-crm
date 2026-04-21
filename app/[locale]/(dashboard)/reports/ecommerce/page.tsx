@@ -18,9 +18,12 @@ import {
   Crown,
   RefreshCw,
   AlertTriangle,
+  FileDown,
+  FileText,
 } from "lucide-react";
 import {
   getEcommerceAnalytics,
+  exportEcommerceAnalytics,
   type EcommerceAnalytics,
 } from "@/lib/api/advanced";
 import { DashboardShell } from "@/components/layout/DashboardShell";
@@ -66,6 +69,22 @@ export default function EcommerceReportsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [windowDays, setWindowDays] = useState(30);
+  const [exporting, setExporting] = useState<"csv" | "pdf" | null>(null);
+
+  const handleExport = async (format: "csv" | "pdf") => {
+    setExporting(format);
+    try {
+      await exportEcommerceAnalytics({ format, windowDays });
+    } catch (e: any) {
+      alert(
+        e?.response?.data?.error?.message ||
+          e?.message ||
+          "Export failed"
+      );
+    } finally {
+      setExporting(null);
+    }
+  };
 
   const load = async (days: number) => {
     setLoading(true);
@@ -124,21 +143,49 @@ export default function EcommerceReportsPage() {
             </div>
           </div>
 
-          {/* Window toggle */}
-          <div className="inline-flex items-center bg-white border border-sky-200 rounded-lg p-0.5">
-            {WINDOW_PRESETS.map((p) => (
-              <button
-                key={p.days}
-                onClick={() => setWindowDays(p.days)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
-                  windowDays === p.days
-                    ? "bg-cyan-600 text-white"
-                    : "text-slate-600 hover:bg-sky-50"
-                }`}
-              >
-                {p.label[locale as "en" | "ar" | "tr"] || p.label.en}
-              </button>
-            ))}
+          {/* Right-side controls: export + window toggle */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              onClick={() => handleExport("csv")}
+              disabled={!data || exporting !== null}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {exporting === "csv" ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <FileText className="w-3.5 h-3.5" />
+              )}
+              {tr("CSV", "CSV", "CSV")}
+            </button>
+            <button
+              onClick={() => handleExport("pdf")}
+              disabled={!data || exporting !== null}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {exporting === "pdf" ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <FileDown className="w-3.5 h-3.5" />
+              )}
+              {tr("PDF", "PDF", "PDF")}
+            </button>
+
+            {/* Window toggle */}
+            <div className="inline-flex items-center bg-white border border-sky-200 rounded-lg p-0.5">
+              {WINDOW_PRESETS.map((p) => (
+                <button
+                  key={p.days}
+                  onClick={() => setWindowDays(p.days)}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+                    windowDays === p.days
+                      ? "bg-cyan-600 text-white"
+                      : "text-slate-600 hover:bg-sky-50"
+                  }`}
+                >
+                  {p.label[locale as "en" | "ar" | "tr"] || p.label.en}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

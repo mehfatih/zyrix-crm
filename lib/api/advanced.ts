@@ -660,3 +660,44 @@ export async function getEcommerceAnalytics(params?: {
   );
   return data.data;
 }
+
+/**
+ * Download the e-commerce analytics report as CSV or PDF.
+ *
+ * Uses a raw axios request with responseType:'blob' so we get the binary
+ * body intact (apiClient's default interceptor tries to unwrap JSON, which
+ * would corrupt a PDF). The returned Blob is handed to the browser via
+ * a dynamically-created anchor tag — standard pattern for programmatic
+ * downloads that works across Chrome/Safari/Firefox without popups.
+ */
+export async function exportEcommerceAnalytics(params: {
+  format: "csv" | "pdf";
+  baseCurrency?: string;
+  windowDays?: number;
+}): Promise<void> {
+  const resp = await apiClient.get("/api/reports/ecommerce/export", {
+    params,
+    responseType: "blob",
+  });
+
+  // Try to get filename from Content-Disposition header; fall back to sensible default.
+  const disposition = resp.headers["content-disposition"] as string | undefined;
+  let filename = `zyrix-ecommerce-${params.windowDays || 30}d.${params.format}`;
+  if (disposition) {
+    const match = disposition.match(/filename="([^"]+)"/);
+    if (match) filename = match[1];
+  }
+
+  const blob = resp.data as Blob;
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  // Give the browser a moment to start the download before cleanup
+  setTimeout(() => {
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }, 100);
+}
