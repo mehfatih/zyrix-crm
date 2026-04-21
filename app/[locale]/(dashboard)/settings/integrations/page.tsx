@@ -38,6 +38,7 @@ import {
 } from "@/lib/api/advanced";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import WebhooksPanel from "@/components/settings/WebhooksPanel";
+import OAuthInstallPanel from "@/components/settings/OAuthInstallPanel";
 
 type RegionFilter = "all" | PlatformRegion;
 
@@ -165,6 +166,11 @@ export default function EcommerceIntegrationsPage() {
             </div>
           </section>
         )}
+
+        {/* OAuth install panel — Salla/Shopify one-click install flow.
+            Self-hides sections if provider env vars aren't set or there
+            are no oauth-installed stores yet. */}
+        <OAuthInstallPanel locale={locale as "en" | "ar" | "tr"} />
 
         {/* Webhooks panel — self-hides when backend has no active subscriptions */}
         <WebhooksPanel locale={locale} />

@@ -1666,3 +1666,79 @@ export async function extractAiMeetingNotes(opts: {
   );
   return data.data;
 }
+
+// ============================================================================
+// OAUTH — SALLA / SHOPIFY INSTALL FLOW
+// ============================================================================
+
+export interface OAuthProviderStatus {
+  salla: boolean;
+  shopify: boolean;
+}
+
+export interface OAuthConnection {
+  id: string;
+  platform: string;
+  shopDomain: string;
+  isActive: boolean;
+  currency: string | null;
+  lastSyncAt: string | null;
+  syncStatus: string;
+  syncError: string | null;
+  totalCustomersImported: number;
+  totalOrdersImported: number;
+  metadata: Record<string, any> | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function getOAuthProviderStatus(): Promise<OAuthProviderStatus> {
+  const { data } = await apiClient.get<ApiSuccess<OAuthProviderStatus>>(
+    "/api/oauth/providers"
+  );
+  return data.data;
+}
+
+export async function listOAuthConnections(): Promise<OAuthConnection[]> {
+  const { data } = await apiClient.get<ApiSuccess<OAuthConnection[]>>(
+    "/api/oauth/connections"
+  );
+  return data.data;
+}
+
+export async function disconnectOAuthConnection(
+  id: string
+): Promise<{ disconnected: true }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ disconnected: true }>>(
+    `/api/oauth/connections/${encodeURIComponent(id)}`
+  );
+  return data.data;
+}
+
+/**
+ * Initiates an OAuth install flow. Calls the backend with our Bearer
+ * auth, backend generates a state row + returns the provider consent
+ * URL. Caller then does `window.location.href = url` to redirect the
+ * browser. This two-step dance is needed because Bearer tokens can't
+ * be carried through a cross-origin 302 redirect.
+ */
+export async function initSallaInstall(
+  returnUrl = "/settings/integrations"
+): Promise<{ url: string }> {
+  const { data } = await apiClient.get<ApiSuccess<{ url: string }>>(
+    "/api/oauth/salla/install",
+    { params: { returnUrl } }
+  );
+  return data.data;
+}
+
+export async function initShopifyInstall(
+  shopDomain: string,
+  returnUrl = "/settings/integrations"
+): Promise<{ url: string }> {
+  const { data } = await apiClient.get<ApiSuccess<{ url: string }>>(
+    "/api/oauth/shopify/install",
+    { params: { shop: shopDomain, returnUrl } }
+  );
+  return data.data;
+}
