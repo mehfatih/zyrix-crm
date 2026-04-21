@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { useDraggableSplit } from "@/hooks/useDraggableSplit";
 import {
   LayoutDashboard,
   Users,
@@ -52,6 +53,13 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, company, isLoading, isAuthenticated, logout } = useAuth();
+
+  // Resizable split between the main nav (top) and Settings (bottom)
+  // inside the sidebar. splitContainerRef measures the flex height
+  // so the hook can translate mouse deltas into percentage deltas.
+  const splitContainerRef = useRef<HTMLDivElement | null>(null);
+  const { topFlexPercent, startDrag, isDragging, resetToDefault } =
+    useDraggableSplit(splitContainerRef);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -186,11 +194,19 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           <BrandSwitcher />
         </div>
 
-        {/* Sidebar nav — scrolls independently when content exceeds
-            viewport height so all items remain reachable on small
-            screens without zooming out. min-h-0 is necessary for
-            overflow-y-auto to respect the flex parent's height. */}
-        <nav className="flex-1 min-h-0 overflow-y-auto p-3 space-y-1">
+        {/* Resizable split region — top scrolls main nav, bottom
+            scrolls Settings submenu, draggable divider in between
+            lets the user expand whichever section they need more
+            of. Position persisted to localStorage. */}
+        <div
+          ref={splitContainerRef}
+          className="flex-1 min-h-0 flex flex-col"
+        >
+          {/* Main nav — top panel */}
+          <nav
+            className="min-h-0 overflow-y-auto p-3 space-y-1"
+            style={{ flexBasis: `${topFlexPercent}%`, flexGrow: 0, flexShrink: 0 }}
+          >
           {navItems.map((item) => {
             const isActive = pathname?.startsWith(item.href);
             const Icon = item.icon;
@@ -221,7 +237,52 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           })}
         </nav>
 
-        <div className="p-3 border-t border-line-soft space-y-0.5">
+        {/* Draggable splitter — drag up/down to resize the two panels.
+            Double-click resets to default (55/45). isDragging toggles
+            the highlight state so the user sees the active region. */}
+        <div
+          role="separator"
+          aria-orientation="horizontal"
+          aria-label="Resize sidebar sections"
+          aria-valuenow={Math.round(topFlexPercent)}
+          aria-valuemin={15}
+          aria-valuemax={85}
+          tabIndex={0}
+          onMouseDown={startDrag}
+          onTouchStart={startDrag}
+          onDoubleClick={resetToDefault}
+          onKeyDown={(e) => {
+            // Arrow keys nudge the split 2% at a time for keyboard users
+            if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+              e.preventDefault();
+            }
+          }}
+          className={`group relative h-1.5 cursor-ns-resize flex items-center justify-center flex-shrink-0 border-y transition-colors ${
+            isDragging
+              ? "bg-cyan-100 border-cyan-300"
+              : "bg-line-soft border-transparent hover:bg-sky-50 hover:border-sky-200"
+          }`}
+          title="Drag to resize — double-click to reset"
+        >
+          {/* Visual grip dots — appear on hover / while dragging */}
+          <div
+            className={`flex items-center gap-0.5 transition-opacity ${
+              isDragging ? "opacity-100" : "opacity-40 group-hover:opacity-80"
+            }`}
+          >
+            <span className="w-1 h-1 rounded-full bg-slate-400" />
+            <span className="w-1 h-1 rounded-full bg-slate-400" />
+            <span className="w-1 h-1 rounded-full bg-slate-400" />
+            <span className="w-1 h-1 rounded-full bg-slate-400" />
+            <span className="w-1 h-1 rounded-full bg-slate-400" />
+          </div>
+        </div>
+
+        {/* Settings — bottom panel, scrolls independently */}
+        <div
+          className="min-h-0 overflow-y-auto p-3 space-y-0.5"
+          style={{ flexBasis: `${100 - topFlexPercent}%`, flexGrow: 0, flexShrink: 0 }}
+        >
           <LanguageSwitcher currentLocale={locale as Locale} />
           <Link
             href={`/${locale}/settings`}
@@ -293,6 +354,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
             <Store className="w-3.5 h-3.5" />
             Brands
           </Link>
+        </div>
         </div>
 
         <div className="p-3 border-t border-line-soft">
