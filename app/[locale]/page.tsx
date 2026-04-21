@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import PublicLayout from "@/components/public/PublicLayout";
 import {
   MessageCircle,
   TrendingUp,
@@ -52,76 +53,11 @@ export default async function HomePage({
 
   const t = await getTranslations("Home");
   const tCommon = await getTranslations("Common");
-  const tNav = await getTranslations("Nav");
 
   const isArabic = locale === "ar";
 
   return (
-    <main className="min-h-screen bg-bg-base">
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 glass border-b border-line-soft">
-        <nav className="container-zyrix py-4 flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href={`/${locale}`}
-            className="flex items-center gap-3 group"
-            aria-label="Zyrix CRM"
-          >
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white shadow-sm border border-line-soft group-hover:shadow-md transition-shadow duration-300">
-              <Image
-                src="/logo.png"
-                alt="Zyrix"
-                fill
-                sizes="40px"
-                className="object-contain p-1"
-                priority
-              />
-            </div>
-            <span className="text-lg font-bold text-ink-mid tracking-tight">
-              <span className="text-primary-600">CRM</span>
-            </span>
-          </Link>
-
-          {/* Nav Links */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link
-              href={`/${locale}/features`}
-              className="text-sm font-medium text-ink-light hover:text-primary-600 transition-colors"
-            >
-              {tNav("features")}
-            </Link>
-            <Link
-              href={`/${locale}/pricing`}
-              className="text-sm font-medium text-ink-light hover:text-primary-600 transition-colors"
-            >
-              {tNav("pricing")}
-            </Link>
-            <Link
-              href={`/${locale}/about`}
-              className="text-sm font-medium text-ink-light hover:text-primary-600 transition-colors"
-            >
-              {tNav("about")}
-            </Link>
-          </div>
-
-          {/* Auth CTAs */}
-          <div className="flex items-center gap-3">
-            <Link
-              href={`/${locale}/signin`}
-              className="hidden sm:inline-flex text-sm font-semibold text-ink-mid hover:text-primary-700 transition-colors px-4 py-2"
-            >
-              {tNav("signIn")}
-            </Link>
-            <Link
-              href={`/${locale}/signup`}
-              className="btn-cta text-sm py-2.5 px-5"
-            >
-              {tNav("signUp")}
-            </Link>
-          </div>
-        </nav>
-      </header>
-
+    <PublicLayout>
       {/* HERO */}
       <section className="hero-bg relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern bg-grid-lg opacity-40 pointer-events-none" />
@@ -350,45 +286,8 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-white border-t border-line-soft">
-        <div className="container-zyrix py-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-white border border-line-soft">
-                <Image
-                  src="/logo.png"
-                  alt="Zyrix"
-                  fill
-                  sizes="36px"
-                  className="object-contain p-1"
-                />
-              </div>
-              <span className="text-sm font-bold text-ink-mid">
-                <span className="text-primary-600">CRM</span>
-              </span>
-            </div>
-            <p className="text-sm text-ink-light text-center">
-              © 2026 Zyrix. {isArabic ? "صُنع في إسطنبول" : "Made in Istanbul"}.
-            </p>
-            <div className="flex items-center gap-4 text-sm">
-              <Link
-                href={`/${locale}/privacy`}
-                className="text-ink-light hover:text-primary-600 transition-colors"
-              >
-                Privacy
-              </Link>
-              <Link
-                href={`/${locale}/terms`}
-                className="text-ink-light hover:text-primary-600 transition-colors"
-              >
-                Terms
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </main>
+      {/* FOOTER is rendered by PublicLayout */}
+    </PublicLayout>
   );
 }
 

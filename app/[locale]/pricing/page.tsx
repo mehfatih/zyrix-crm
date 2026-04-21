@@ -1,4 +1,5 @@
 import PricingView from "@/components/pricing/PricingView";
+import PublicLayout from "@/components/public/PublicLayout";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -40,5 +41,9 @@ export default async function PricingPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <PricingView locale={locale} />;
+  return (
+    <PublicLayout>
+      <PricingView locale={locale} />
+    </PublicLayout>
+  );
 }
