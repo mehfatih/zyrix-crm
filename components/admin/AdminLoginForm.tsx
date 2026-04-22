@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { adminLogin } from "@/lib/api/admin";
@@ -124,6 +125,14 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
+              </div>
+              <div className="mt-1.5 text-end ltr:text-right rtl:text-left">
+                <Link
+                  href={`/${locale}/admin/forgot-password`}
+                  className="text-xs font-medium text-cyan-700 hover:text-cyan-900"
+                >
+                  {t("forgot.linkFromLogin")}
+                </Link>
               </div>
             </div>
 

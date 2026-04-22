@@ -142,6 +142,17 @@ export async function adminLogin(email: string, password: string) {
   return data.data;
 }
 
+export async function requestAdminPasswordReset(email: string) {
+  await adminApi.post("/api/admin/forgot-password", { email });
+}
+
+export async function confirmAdminPasswordReset(
+  token: string,
+  newPassword: string
+) {
+  await adminApi.post("/api/admin/reset-password", { token, newPassword });
+}
+
 export async function fetchMe() {
   const { data } = await adminApi.get<ApiEnvelope<{ user: AdminUser }>>(
     "/api/admin/me"
