@@ -8,6 +8,11 @@ import {
   type AdminPlan,
 } from "@/lib/api/admin";
 import {
+  getFeatureCatalog,
+  type FeatureCatalogEntry,
+  type FeaturePlanSlug,
+} from "@/lib/api/advanced";
+import {
   Package,
   Loader2,
   Star,
@@ -16,6 +21,13 @@ import {
   Pencil,
   Save,
 } from "lucide-react";
+
+const PLAN_ORDER: FeaturePlanSlug[] = [
+  "free",
+  "starter",
+  "business",
+  "enterprise",
+];
 
 // ============================================================================
 // ADMIN PLANS VIEW
@@ -44,6 +56,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
   const [editing, setEditing] = useState<AdminPlan | null>(null);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [featureCatalog, setFeatureCatalog] = useState<FeatureCatalogEntry[]>([]);
 
   const loadPlans = () => {
     setLoading(true);
@@ -55,6 +68,11 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
   useEffect(() => {
     loadPlans();
+    // Non-fatal: if the catalog fetch fails, the "Included features"
+    // section just renders empty while the rest of the page works.
+    getFeatureCatalog()
+      .then(setFeatureCatalog)
+      .catch(() => setFeatureCatalog([]));
   }, []);
 
   const handleSave = async () => {
@@ -248,6 +266,93 @@ export default function AdminPlansView({ locale }: { locale: string }) {
           </table>
         </div>
       </div>
+
+      {/* Feature-catalog defaults per plan (mirrors backend catalog) */}
+      {featureCatalog.length > 0 && (
+        <div className="rounded-xl bg-white border border-cyan-200 shadow-sm">
+          <div className="border-b border-slate-200 px-5 py-4">
+            <h2 className="text-lg font-semibold text-slate-900">
+              {locale === "ar"
+                ? "الميزات المُضمّنة حسب الخطة"
+                : locale === "tr"
+                  ? "Plana göre dahil edilen özellikler"
+                  : "Included features by plan"}
+            </h2>
+            <p className="mt-1 text-xs text-slate-500">
+              {locale === "ar"
+                ? "الإعدادات الافتراضية للميزات المميزة. يمكن تجاوزها لكل شركة في تفاصيل الشركة → وصول الميزات."
+                : locale === "tr"
+                  ? "Premium özelliklerin varsayılanları. Şirket ayrıntıları → Özellik erişimi üzerinden şirket başına geçersiz kılınabilir."
+                  : "Premium defaults. Override per company on the company-details page → Feature access."}
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-slate-50 sticky top-0">
+                <tr>
+                  <th className="px-4 py-3 text-start text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                    {locale === "ar"
+                      ? "الميزة"
+                      : locale === "tr"
+                        ? "Özellik"
+                        : "Feature"}
+                  </th>
+                  <th className="px-4 py-3 text-start text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                    {locale === "ar"
+                      ? "الفئة"
+                      : locale === "tr"
+                        ? "Kategori"
+                        : "Category"}
+                  </th>
+                  {PLAN_ORDER.map((p) => (
+                    <th
+                      key={p}
+                      className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wide"
+                    >
+                      {p}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {featureCatalog.map((f) => (
+                  <tr key={f.key} className="hover:bg-sky-50/50">
+                    <td className="px-4 py-2 text-sm">
+                      <div className="font-medium text-slate-900">
+                        {f.label[locale as "en" | "ar" | "tr"] ?? f.label.en}
+                      </div>
+                      <code
+                        className="text-[10px] font-mono text-slate-400"
+                        dir="ltr"
+                      >
+                        {f.key}
+                      </code>
+                    </td>
+                    <td className="px-4 py-2 text-xs text-slate-600 capitalize">
+                      {f.category}
+                    </td>
+                    {PLAN_ORDER.map((p) => (
+                      <td key={p} className="px-4 py-2 text-center">
+                        {f.defaultByPlan?.[p] ? (
+                          <Check
+                            size={16}
+                            className="inline-block text-emerald-600"
+                          />
+                        ) : (
+                          <X
+                            size={14}
+                            className="inline-block text-slate-300"
+                          />
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Edit Modal */}
       {editing && (
