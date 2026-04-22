@@ -836,6 +836,61 @@ export async function removeIpAllowlistEntry(
 }
 
 // ============================================================================
+// DATA RETENTION (P5)
+// ============================================================================
+
+export type RetentionEntity =
+  | "audit_log"
+  | "activity"
+  | "session_event"
+  | "message";
+
+export interface RetentionPolicy {
+  id: string;
+  companyId: string;
+  entityType: string;
+  retentionDays: number; // 0 = forever
+  legalHold: boolean;
+  legalHoldReason: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface RetentionStatus {
+  policies: RetentionPolicy[];
+  supportedEntities: RetentionEntity[];
+}
+
+export async function getRetentionStatus(): Promise<RetentionStatus> {
+  const { data } = await apiClient.get<ApiSuccess<RetentionStatus>>(
+    "/api/data-retention"
+  );
+  return data.data;
+}
+
+export async function upsertRetentionPolicy(input: {
+  entityType: string;
+  retentionDays: number;
+  legalHold?: boolean;
+  legalHoldReason?: string | null;
+}): Promise<RetentionPolicy> {
+  const { data } = await apiClient.put<ApiSuccess<RetentionPolicy>>(
+    "/api/data-retention",
+    input
+  );
+  return data.data;
+}
+
+export async function deleteRetentionPolicy(
+  entityType: string
+): Promise<{ deleted: boolean }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ deleted: boolean }>>(
+    `/api/data-retention/${encodeURIComponent(entityType)}`
+  );
+  return data.data;
+}
+
+// ============================================================================
 // SECURITY — 2FA + Audit Log
 // ============================================================================
 
