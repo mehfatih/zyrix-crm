@@ -861,8 +861,11 @@ export interface AuditLogEntry {
   entityId: string | null;
   changes: Record<string, { before: unknown; after: unknown }> | null;
   metadata: Record<string, unknown> | null;
+  before: Record<string, unknown> | null;
+  after: Record<string, unknown> | null;
   ipAddress: string | null;
   userAgent: string | null;
+  sessionId: string | null;
   createdAt: string;
   user: { id: string; fullName: string; email: string } | null;
 }
@@ -872,7 +875,7 @@ export interface AuditLogPage {
   pagination: { total: number; limit: number; offset: number };
 }
 
-export async function listAuditLogs(params?: {
+export interface AuditLogQuery {
   limit?: number;
   offset?: number;
   action?: string;
@@ -882,9 +885,11 @@ export async function listAuditLogs(params?: {
   userId?: string;
   since?: string;
   until?: string;
-}): Promise<AuditLogPage> {
+}
+
+export async function listAuditLogs(params?: AuditLogQuery): Promise<AuditLogPage> {
   const { data } = await apiClient.get<ApiSuccess<AuditLogPage>>(
-    "/api/security/audit",
+    "/api/audit-logs",
     { params: params || {} }
   );
   return data.data;
@@ -892,9 +897,49 @@ export async function listAuditLogs(params?: {
 
 export async function listAuditActions(): Promise<string[]> {
   const { data } = await apiClient.get<ApiSuccess<string[]>>(
-    "/api/security/audit/actions"
+    "/api/audit-logs/actions"
   );
   return data.data;
+}
+
+/**
+ * Build the query string for an audit export. Used by the /settings/audit
+ * download buttons; the browser navigates to the returned URL so the
+ * Content-Disposition header triggers a download, auth token flows as a
+ * request header via the same axios instance when we fetch instead.
+ */
+function buildAuditQS(params?: AuditLogQuery): string {
+  const sp = new URLSearchParams();
+  if (!params) return "";
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== undefined && v !== null && v !== "") sp.set(k, String(v));
+  }
+  const s = sp.toString();
+  return s ? `?${s}` : "";
+}
+
+/**
+ * Downloads an audit export via axios (so the Authorization header is
+ * attached) and triggers a browser save. `format` picks json or csv.
+ */
+export async function downloadAuditExport(
+  format: "csv" | "json",
+  params?: AuditLogQuery
+): Promise<void> {
+  const qs = buildAuditQS(params);
+  const path = format === "csv" ? "export.csv" : "export.json";
+  const res = await apiClient.get(`/api/audit-logs/${path}${qs}`, {
+    responseType: "blob",
+  });
+  const blob = res.data as Blob;
+  const href = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = `audit-logs-${new Date().toISOString().slice(0, 10)}.${format}`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(href);
 }
 
 // ============================================================================

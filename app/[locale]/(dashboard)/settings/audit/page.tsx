@@ -22,14 +22,21 @@ import {
   ChevronRight,
   AlertCircle,
   X,
+  Download,
+  FileJson,
+  FileSpreadsheet,
 } from "lucide-react";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import {
   listAuditLogs,
   listAuditActions,
+  downloadAuditExport,
   type AuditLogEntry,
   type AuditLogPage,
+  type AuditLogQuery,
 } from "@/lib/api/advanced";
+import { listCompanyUsers, type TeamMember } from "@/lib/api/roles";
+import { extractErrorMessage } from "@/lib/errors";
 
 // ============================================================================
 // SETTINGS → AUDIT LOG
@@ -117,34 +124,45 @@ export default function AuditLogPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [actions, setActions] = useState<string[]>([]);
+  const [users, setUsers] = useState<TeamMember[]>([]);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [exporting, setExporting] = useState<"csv" | "json" | null>(null);
 
   // Filter state
   const [actionFilter, setActionFilter] = useState("");
+  const [userFilter, setUserFilter] = useState("");
+  const [entityTypeFilter, setEntityTypeFilter] = useState("");
   const [since, setSince] = useState("");
   const [until, setUntil] = useState("");
   const [offset, setOffset] = useState(0);
+
+  const currentQuery: AuditLogQuery = useMemo(
+    () => ({
+      limit: PAGE_SIZE,
+      offset,
+      action: actionFilter || undefined,
+      userId: userFilter || undefined,
+      entityType: entityTypeFilter || undefined,
+      since: since || undefined,
+      until: until || undefined,
+    }),
+    [offset, actionFilter, userFilter, entityTypeFilter, since, until]
+  );
 
   const load = async () => {
     setLoading(true);
     setError(null);
     try {
-      const [data, acts] = await Promise.all([
-        listAuditLogs({
-          limit: PAGE_SIZE,
-          offset,
-          action: actionFilter || undefined,
-          since: since || undefined,
-          until: until || undefined,
-        }),
+      const [data, acts, team] = await Promise.all([
+        listAuditLogs(currentQuery),
         actions.length === 0 ? listAuditActions() : Promise.resolve(actions),
+        users.length === 0 ? listCompanyUsers().catch(() => []) : Promise.resolve(users),
       ]);
       setPage(data);
       if (actions.length === 0) setActions(acts as string[]);
-    } catch (e: any) {
-      setError(
-        e?.response?.data?.error?.message || e?.message || "Failed to load"
-      );
+      if (users.length === 0) setUsers(team as TeamMember[]);
+    } catch (e) {
+      setError(extractErrorMessage(e));
     } finally {
       setLoading(false);
     }
@@ -153,7 +171,7 @@ export default function AuditLogPage() {
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, actionFilter, since, until]);
+  }, [offset, actionFilter, userFilter, entityTypeFilter, since, until]);
 
   const totalPages = page
     ? Math.max(1, Math.ceil(page.pagination.total / PAGE_SIZE))
@@ -162,11 +180,45 @@ export default function AuditLogPage() {
 
   const clearFilters = () => {
     setActionFilter("");
+    setUserFilter("");
+    setEntityTypeFilter("");
     setSince("");
     setUntil("");
     setOffset(0);
   };
-  const hasFilters = actionFilter || since || until;
+  const hasFilters =
+    actionFilter || userFilter || entityTypeFilter || since || until;
+
+  // Distinct entity types observed in the current page — gives a light-
+  // weight filter dropdown without needing a dedicated backend endpoint.
+  const entityTypes = useMemo(() => {
+    const set = new Set<string>();
+    if (page) {
+      for (const it of page.items) {
+        if (it.entityType) set.add(it.entityType);
+      }
+    }
+    // Always keep whatever is currently selected in the list so the
+    // dropdown reflects the active filter even when the page is empty.
+    if (entityTypeFilter) set.add(entityTypeFilter);
+    return Array.from(set).sort();
+  }, [page, entityTypeFilter]);
+
+  const handleExport = async (format: "csv" | "json") => {
+    setExporting(format);
+    setError(null);
+    try {
+      // Drop pagination params — the export endpoint returns up to 10k
+      // matching rows regardless of the on-screen page size.
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { limit, offset: _off, ...filters } = currentQuery;
+      await downloadAuditExport(format, filters);
+    } catch (e) {
+      setError(extractErrorMessage(e));
+    } finally {
+      setExporting(null);
+    }
+  };
 
   return (
     <DashboardShell locale={locale}>
@@ -190,20 +242,56 @@ export default function AuditLogPage() {
               </p>
             </div>
           </div>
-          <button
-            onClick={() => setFilterOpen((o) => !o)}
-            className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
-              filterOpen || hasFilters
-                ? "bg-cyan-50 border-cyan-300 text-cyan-700"
-                : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
-            }`}
-          >
-            <Filter className="w-4 h-4" />
-            {tr("Filter", "تصفية", "Filtrele")}
-            {hasFilters && (
-              <span className="ml-1 rtl:ml-0 rtl:mr-1 w-2 h-2 rounded-full bg-cyan-500" />
-            )}
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              onClick={() => handleExport("csv")}
+              disabled={exporting !== null}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-white border-sky-200 text-slate-700 hover:bg-sky-50 disabled:opacity-50"
+              title={tr(
+                "Download current filtered results as CSV",
+                "تنزيل النتائج المصفاة كـ CSV",
+                "Filtrelenmiş sonuçları CSV olarak indir"
+              )}
+            >
+              {exporting === "csv" ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <FileSpreadsheet className="w-3.5 h-3.5" />
+              )}
+              {tr("CSV", "CSV", "CSV")}
+            </button>
+            <button
+              onClick={() => handleExport("json")}
+              disabled={exporting !== null}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-white border-sky-200 text-slate-700 hover:bg-sky-50 disabled:opacity-50"
+              title={tr(
+                "Download current filtered results as JSON",
+                "تنزيل النتائج المصفاة كـ JSON",
+                "Filtrelenmiş sonuçları JSON olarak indir"
+              )}
+            >
+              {exporting === "json" ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <FileJson className="w-3.5 h-3.5" />
+              )}
+              {tr("JSON", "JSON", "JSON")}
+            </button>
+            <button
+              onClick={() => setFilterOpen((o) => !o)}
+              className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
+                filterOpen || hasFilters
+                  ? "bg-cyan-50 border-cyan-300 text-cyan-700"
+                  : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
+              }`}
+            >
+              <Filter className="w-4 h-4" />
+              {tr("Filter", "تصفية", "Filtrele")}
+              {hasFilters && (
+                <span className="ml-1 rtl:ml-0 rtl:mr-1 w-2 h-2 rounded-full bg-cyan-500" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Filter bar */}
@@ -225,6 +313,50 @@ export default function AuditLogPage() {
                 {actions.map((a) => (
                   <option key={a} value={a}>
                     {humanizeAction(a, locale)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                {tr("User", "المستخدم", "Kullanıcı")}
+              </label>
+              <select
+                value={userFilter}
+                onChange={(e) => {
+                  setUserFilter(e.target.value);
+                  setOffset(0);
+                }}
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              >
+                <option value="">
+                  {tr("All users", "كل المستخدمين", "Tüm kullanıcılar")}
+                </option>
+                {users.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.fullName} ({u.email})
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                {tr("Entity type", "نوع الكيان", "Varlık türü")}
+              </label>
+              <select
+                value={entityTypeFilter}
+                onChange={(e) => {
+                  setEntityTypeFilter(e.target.value);
+                  setOffset(0);
+                }}
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              >
+                <option value="">
+                  {tr("All types", "كل الأنواع", "Tüm türler")}
+                </option>
+                {entityTypes.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
                   </option>
                 ))}
               </select>
@@ -373,11 +505,16 @@ function EventRow({
     locale === "ar" ? ar : locale === "tr" ? trk : en;
   const { Icon, color } = iconForAction(entry.action);
   const [expanded, setExpanded] = useState(false);
+  const hasSnapshot =
+    (entry.before && Object.keys(entry.before).length > 0) ||
+    (entry.after && Object.keys(entry.after).length > 0);
   const hasDetails =
     entry.changes ||
+    hasSnapshot ||
     (entry.metadata && Object.keys(entry.metadata).length > 0) ||
     entry.ipAddress ||
-    entry.userAgent;
+    entry.userAgent ||
+    entry.sessionId;
 
   const relativeTime = useMemo(() => {
     const ms = Date.now() - new Date(entry.createdAt).getTime();
@@ -473,6 +610,16 @@ function EventRow({
                 </span>
               </div>
             )}
+            {entry.sessionId && (
+              <div className="text-slate-600">
+                <span className="font-medium">
+                  {tr("Session", "الجلسة", "Oturum")}:
+                </span>{" "}
+                <code className="font-mono text-[10px]" dir="ltr">
+                  {entry.sessionId}
+                </code>
+              </div>
+            )}
             {entry.metadata && Object.keys(entry.metadata).length > 0 && (
               <div>
                 <div className="font-medium text-slate-700 mb-1">
@@ -505,6 +652,41 @@ function EventRow({
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+            {hasSnapshot && (
+              <div>
+                <div className="font-medium text-slate-700 mb-1">
+                  {tr("Record snapshot", "لقطة السجل", "Kayıt görüntüsü")}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-rose-700 mb-1">
+                      {tr("Before", "قبل", "Önce")}
+                    </div>
+                    <pre
+                      className="bg-white p-2 rounded border border-rose-200 text-[10px] overflow-x-auto max-h-64"
+                      dir="ltr"
+                    >
+                      {entry.before
+                        ? JSON.stringify(entry.before, null, 2)
+                        : tr("— (empty)", "— (فارغ)", "— (boş)")}
+                    </pre>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-emerald-700 mb-1">
+                      {tr("After", "بعد", "Sonra")}
+                    </div>
+                    <pre
+                      className="bg-white p-2 rounded border border-emerald-200 text-[10px] overflow-x-auto max-h-64"
+                      dir="ltr"
+                    >
+                      {entry.after
+                        ? JSON.stringify(entry.after, null, 2)
+                        : tr("— (empty)", "— (فارغ)", "— (boş)")}
+                    </pre>
+                  </div>
                 </div>
               </div>
             )}
