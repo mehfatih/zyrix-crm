@@ -791,6 +791,51 @@ export async function updateOnboardingProgress(
 }
 
 // ============================================================================
+// IP ALLOWLIST (P4)
+// ============================================================================
+
+export interface IpAllowlistEntry {
+  id: string;
+  companyId: string;
+  cidr: string;
+  label: string;
+  createdBy: string;
+  createdAt: string;
+}
+
+export interface IpAllowlistStatus {
+  entries: IpAllowlistEntry[];
+  currentIp: string | null;
+}
+
+export async function getIpAllowlist(): Promise<IpAllowlistStatus> {
+  const { data } = await apiClient.get<ApiSuccess<IpAllowlistStatus>>(
+    "/api/admin/ip-allowlist"
+  );
+  return data.data;
+}
+
+export async function addIpAllowlistEntry(input: {
+  cidr: string;
+  label: string;
+}): Promise<IpAllowlistEntry> {
+  const { data } = await apiClient.post<ApiSuccess<IpAllowlistEntry>>(
+    "/api/admin/ip-allowlist",
+    input
+  );
+  return data.data;
+}
+
+export async function removeIpAllowlistEntry(
+  id: string
+): Promise<{ deleted: boolean }> {
+  const { data } = await apiClient.delete<ApiSuccess<{ deleted: boolean }>>(
+    `/api/admin/ip-allowlist/${id}`
+  );
+  return data.data;
+}
+
+// ============================================================================
 // SECURITY — 2FA + Audit Log
 // ============================================================================
 
