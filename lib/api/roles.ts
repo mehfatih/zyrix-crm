@@ -169,3 +169,23 @@ export async function assignUserRole(
   );
   return data.data;
 }
+
+export interface TeamMember {
+  id: string;
+  email: string;
+  fullName: string;
+  phone: string | null;
+  role: "owner" | "admin" | "manager" | "member";
+  customRoleId: string | null;
+  status: string;
+  avatarUrl: string | null;
+  lastLoginAt: string | null;
+  createdAt: string;
+}
+
+export async function listCompanyUsers(): Promise<TeamMember[]> {
+  const { data } = await apiClient.get<ApiSuccess<TeamMember[]>>(
+    "/api/users"
+  );
+  return data.data;
+}
