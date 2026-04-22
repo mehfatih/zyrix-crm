@@ -2728,3 +2728,73 @@ export async function setCompanyFeatureFlags(
   >(`/api/admin/companies/${encodeURIComponent(companyId)}/features`, { flags });
   return data.data;
 }
+
+// ============================================================================
+// AI MODES (P11) — architect / builder / report
+// ============================================================================
+
+export interface AiArchitectOutput {
+  pipelineStages: Array<{ name: string; probability?: number }>;
+  customFields: Array<{
+    entity: "customer" | "deal";
+    name: string;
+    type: "text" | "number" | "date" | "select";
+    options?: string[];
+  }>;
+  emailTemplates: Array<{ name: string; subject: string; bodyText: string }>;
+  rationale: string;
+}
+
+export async function aiArchitect(input: {
+  businessDescription: string;
+  locale?: "en" | "ar" | "tr";
+}): Promise<AiArchitectOutput> {
+  const { data } = await apiClient.post<ApiSuccess<AiArchitectOutput>>(
+    "/api/ai/architect",
+    input
+  );
+  return data.data;
+}
+
+export type AiBuilderArtifactType = "workflow" | "email" | "landing";
+
+export interface AiBuilderOutput {
+  artifactType: AiBuilderArtifactType;
+  [key: string]: unknown;
+}
+
+export async function aiBuilder(input: {
+  intent: string;
+  artifactType: AiBuilderArtifactType;
+}): Promise<AiBuilderOutput> {
+  const { data } = await apiClient.post<ApiSuccess<AiBuilderOutput>>(
+    "/api/ai/builder",
+    input
+  );
+  return data.data;
+}
+
+export interface AiReportOutput {
+  question: string;
+  selectedQueryId: string;
+  data: unknown;
+  narrative: string;
+  chart: {
+    type: "bar" | "line" | "pie" | "table";
+    xKey?: string;
+    yKey?: string;
+    categoryKey?: string;
+    valueKey?: string;
+  };
+}
+
+export async function aiReport(input: {
+  question: string;
+  locale?: "en" | "ar" | "tr";
+}): Promise<AiReportOutput> {
+  const { data } = await apiClient.post<ApiSuccess<AiReportOutput>>(
+    "/api/ai/report",
+    input
+  );
+  return data.data;
+}
