@@ -14,6 +14,7 @@ const ACCESS_TOKEN_KEY = "zyrix_crm_access_token";
 const REFRESH_TOKEN_KEY = "zyrix_crm_refresh_token";
 const USER_KEY = "zyrix_crm_user";
 const COMPANY_KEY = "zyrix_crm_company";
+const PERMISSIONS_KEY = "zyrix_crm_permissions";
 
 const COOKIE_OPTIONS: Cookies.CookieAttributes = {
   secure: typeof window !== "undefined" && window.location.protocol === "https:",
@@ -108,6 +109,28 @@ export function getCompany(): Company | null {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+// PERMISSIONS (RBAC cache — verify with /api/permissions/me)
+// ─────────────────────────────────────────────────────────────────────────
+export function setCachedPermissions(permissions: string[]): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(PERMISSIONS_KEY, JSON.stringify(permissions));
+  } catch {
+    // Silent fail
+  }
+}
+
+export function getCachedPermissions(): string[] | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const stored = localStorage.getItem(PERMISSIONS_KEY);
+    return stored ? (JSON.parse(stored) as string[]) : null;
+  } catch {
+    return null;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 // CLEAR EVERYTHING
 // ─────────────────────────────────────────────────────────────────────────
 export function clearAuth(): void {
@@ -117,6 +140,7 @@ export function clearAuth(): void {
   try {
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(COMPANY_KEY);
+    localStorage.removeItem(PERMISSIONS_KEY);
   } catch {
     // Silent fail
   }

@@ -27,6 +27,8 @@ import {
   getUser as getCachedUser,
   setCompany as cacheCompany,
   getCompany as getCachedCompany,
+  setCachedPermissions,
+  getCachedPermissions,
   clearAuth,
 } from "./token-storage";
 import type {
@@ -35,6 +37,7 @@ import type {
   SignupPayload,
   SigninPayload,
 } from "./types";
+import { fetchMyPermissions, type Permission } from "../api/roles";
 
 // ============================================================================
 // AUTH CONTEXT
@@ -43,6 +46,10 @@ import type {
 interface AuthContextValue {
   user: User | null;
   company: Company | null;
+  permissions: Permission[];
+  hasPermission: (permission: Permission) => boolean;
+  hasAllPermissions: (...permissions: Permission[]) => boolean;
+  hasAnyPermission: (...permissions: Permission[]) => boolean;
   isAuthenticated: boolean;
   isLoading: boolean;
   signup: (payload: SignupPayload) => Promise<void>;
@@ -73,13 +80,27 @@ export function AuthProvider({
   const router = useRouter();
   const [user, setUserState] = useState<User | null>(null);
   const [company, setCompanyState] = useState<Company | null>(null);
+  const [permissions, setPermissionsState] = useState<Permission[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const loadFromCache = useCallback(() => {
     const cachedUser = getCachedUser();
     const cachedCompany = getCachedCompany();
+    const cachedPerms = getCachedPermissions();
     if (cachedUser) setUserState(cachedUser);
     if (cachedCompany) setCompanyState(cachedCompany);
+    if (cachedPerms) setPermissionsState(cachedPerms as Permission[]);
+  }, []);
+
+  const loadPermissions = useCallback(async () => {
+    try {
+      const perms = await fetchMyPermissions();
+      setPermissionsState(perms);
+      setCachedPermissions(perms);
+    } catch {
+      // Permission fetch failed (e.g. offline) — keep whatever we have
+      // cached so the UI stays usable for the current session.
+    }
   }, []);
 
   const fetchMe = useCallback(async () => {
@@ -89,13 +110,17 @@ export function AuthProvider({
       setCompanyState(c);
       cacheUser(u);
       cacheCompany(c);
+      // /api/permissions/me is independent of /me; run in parallel but
+      // don't let a permissions hiccup kill the session hydration.
+      await loadPermissions();
     } catch {
       // Token expired / invalid → clear
       clearAuth();
       setUserState(null);
       setCompanyState(null);
+      setPermissionsState([]);
     }
-  }, []);
+  }, [loadPermissions]);
 
   // On mount, restore session if possible
   useEffect(() => {
@@ -120,11 +145,12 @@ export function AuthProvider({
       setCompanyState(result.company);
       cacheUser(result.user);
       cacheCompany(result.company);
+      await loadPermissions();
       // Session-events telemetry — fire-and-forget, never block signup
       recordSessionEvent("login", { method: "signup" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
     },
-    [locale, router]
+    [locale, loadPermissions, router]
   );
 
   const signin = useCallback(
@@ -142,11 +168,12 @@ export function AuthProvider({
       setCompanyState(full.company);
       cacheUser(full.user);
       cacheCompany(full.company);
+      await loadPermissions();
       recordSessionEvent("login", { method: "password" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
       return;
     },
-    [locale, router]
+    [locale, loadPermissions, router]
   );
 
   const complete2FAChallenge = useCallback(
@@ -158,10 +185,11 @@ export function AuthProvider({
       setCompanyState(result.company);
       cacheUser(result.user);
       cacheCompany(result.company);
+      await loadPermissions();
       recordSessionEvent("login", { method: "password_2fa" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
     },
-    [locale, router]
+    [locale, loadPermissions, router]
   );
 
   const googleSignIn = useCallback(
@@ -173,10 +201,11 @@ export function AuthProvider({
       setCompanyState(result.company);
       cacheUser(result.user);
       cacheCompany(result.company);
+      await loadPermissions();
       recordSessionEvent("login", { method: "google" }).catch(() => {});
       router.push(`/${locale}/dashboard`);
     },
-    [locale, router]
+    [locale, loadPermissions, router]
   );
 
   const logout = useCallback(async () => {
@@ -191,6 +220,7 @@ export function AuthProvider({
     clearAuth();
     setUserState(null);
     setCompanyState(null);
+    setPermissionsState([]);
     router.push(`/${locale}/signin`);
   }, [locale, router]);
 
@@ -198,9 +228,26 @@ export function AuthProvider({
     await fetchMe();
   }, [fetchMe]);
 
+  const hasPermission = useCallback(
+    (permission: Permission) => permissions.includes(permission),
+    [permissions]
+  );
+  const hasAllPermissions = useCallback(
+    (...required: Permission[]) => required.every((p) => permissions.includes(p)),
+    [permissions]
+  );
+  const hasAnyPermission = useCallback(
+    (...options: Permission[]) => options.some((p) => permissions.includes(p)),
+    [permissions]
+  );
+
   const value: AuthContextValue = {
     user,
     company,
+    permissions,
+    hasPermission,
+    hasAllPermissions,
+    hasAnyPermission,
     isAuthenticated: !!user,
     isLoading,
     signup,

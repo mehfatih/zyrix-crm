@@ -22,6 +22,10 @@ export interface User {
   billingEmail?: string | null;
   preferredLocale?: "en" | "ar" | "tr" | null;
   notificationPrefs?: Record<string, boolean>;
+  // RBAC (P1) — optional custom role override. When set, the user's
+  // permissions come from that Role; otherwise they come from the
+  // built-in `role` string above via the backend's default map.
+  customRoleId?: string | null;
 }
 
 export interface Company {
