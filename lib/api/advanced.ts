@@ -983,6 +983,44 @@ export async function fetchComplianceReport(
 }
 
 // ============================================================================
+// SCIM TOKENS (P7)
+// ============================================================================
+
+export interface ScimToken {
+  id: string;
+  label: string;
+  prefix: string;
+  createdAt: string;
+  lastUsedAt: string | null;
+  revokedAt: string | null;
+}
+
+export interface IssuedScimToken extends ScimToken {
+  plaintext: string;
+}
+
+export async function listScimTokens(): Promise<ScimToken[]> {
+  const { data } = await apiClient.get<ApiSuccess<ScimToken[]>>(
+    "/api/scim-tokens"
+  );
+  return data.data;
+}
+
+export async function issueScimToken(
+  label: string
+): Promise<IssuedScimToken> {
+  const { data } = await apiClient.post<ApiSuccess<IssuedScimToken>>(
+    "/api/scim-tokens",
+    { label }
+  );
+  return data.data;
+}
+
+export async function revokeScimToken(id: string): Promise<void> {
+  await apiClient.delete(`/api/scim-tokens/${id}`);
+}
+
+// ============================================================================
 // SECURITY — 2FA + Audit Log
 // ============================================================================
 
