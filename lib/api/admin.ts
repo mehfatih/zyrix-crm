@@ -783,3 +783,64 @@ export async function changeAdminPassword(dto: {
   );
   return data.data;
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+// Network rules (P8) — super-admin only
+// ─────────────────────────────────────────────────────────────────────────
+
+export type NetworkRuleType = "geo_block" | "rate_limit" | "ddos_heuristic";
+
+export interface NetworkRule {
+  id: string;
+  type: string;
+  label: string;
+  config: Record<string, unknown>;
+  active: boolean;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function fetchNetworkRules(): Promise<NetworkRule[]> {
+  const { data } = await adminApi.get<ApiEnvelope<NetworkRule[]>>(
+    "/api/admin/network-rules"
+  );
+  return data.data;
+}
+
+export async function createNetworkRule(input: {
+  type: NetworkRuleType;
+  label: string;
+  config: Record<string, unknown>;
+  active?: boolean;
+}): Promise<NetworkRule> {
+  const { data } = await adminApi.post<ApiEnvelope<NetworkRule>>(
+    "/api/admin/network-rules",
+    input
+  );
+  return data.data;
+}
+
+export async function updateNetworkRule(
+  id: string,
+  input: {
+    label?: string;
+    config?: Record<string, unknown>;
+    active?: boolean;
+  }
+): Promise<NetworkRule> {
+  const { data } = await adminApi.patch<ApiEnvelope<NetworkRule>>(
+    `/api/admin/network-rules/${id}`,
+    input
+  );
+  return data.data;
+}
+
+export async function deleteNetworkRule(
+  id: string
+): Promise<{ deleted: boolean }> {
+  const { data } = await adminApi.delete<ApiEnvelope<{ deleted: boolean }>>(
+    `/api/admin/network-rules/${id}`
+  );
+  return data.data;
+}
