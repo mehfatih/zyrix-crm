@@ -891,6 +891,98 @@ export async function deleteRetentionPolicy(
 }
 
 // ============================================================================
+// COMPLIANCE (P6)
+// ============================================================================
+
+export interface ComplianceToken {
+  id: string;
+  label: string;
+  prefix: string;
+  createdAt: string;
+  lastUsedAt: string | null;
+  revokedAt: string | null;
+}
+
+export interface IssuedComplianceToken extends ComplianceToken {
+  plaintext: string;
+}
+
+export async function listComplianceTokens(): Promise<ComplianceToken[]> {
+  const { data } = await apiClient.get<ApiSuccess<ComplianceToken[]>>(
+    "/api/compliance/tokens"
+  );
+  return data.data;
+}
+
+export async function issueComplianceToken(
+  label: string
+): Promise<IssuedComplianceToken> {
+  const { data } = await apiClient.post<ApiSuccess<IssuedComplianceToken>>(
+    "/api/compliance/tokens",
+    { label }
+  );
+  return data.data;
+}
+
+export async function revokeComplianceToken(id: string): Promise<void> {
+  await apiClient.delete(`/api/compliance/tokens/${id}`);
+}
+
+export async function downloadUserExport(userId: string): Promise<void> {
+  const res = await apiClient.get(`/api/compliance/data-export/${userId}`, {
+    responseType: "blob",
+  });
+  const blob = res.data as Blob;
+  const href = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = `user-${userId}-export-${new Date()
+    .toISOString()
+    .slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(href);
+}
+
+export async function deleteUserForCompliance(
+  userId: string
+): Promise<{ deleted: boolean; anonymizedEmail: string; deletedAt: string }> {
+  const { data } = await apiClient.post<
+    ApiSuccess<{
+      deleted: boolean;
+      anonymizedEmail: string;
+      deletedAt: string;
+    }>
+  >(`/api/compliance/data-deletion/${userId}`);
+  return data.data;
+}
+
+export interface ComplianceAuditReport {
+  generatedAt: string;
+  companyId: string;
+  window: { from: string; to: string };
+  totalEvents: number;
+  topActions: Array<{ action: string; count: number }>;
+  topUsers: Array<{
+    userId: string | null;
+    user: { fullName: string; email: string } | null;
+    count: number;
+  }>;
+}
+
+export async function fetchComplianceReport(
+  from: string,
+  to: string
+): Promise<ComplianceAuditReport> {
+  const { data } = await apiClient.get<ApiSuccess<ComplianceAuditReport>>(
+    "/api/compliance/audit-report",
+    { params: { from, to } }
+  );
+  return data.data;
+}
+
+// ============================================================================
 // SECURITY — 2FA + Audit Log
 // ============================================================================
 
