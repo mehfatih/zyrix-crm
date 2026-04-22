@@ -90,3 +90,82 @@ export async function fetchMyPermissions(): Promise<Permission[]> {
   >("/api/permissions/me");
   return data.data.permissions;
 }
+
+// ──────────────────────────────────────────────────────────────────────
+// Role CRUD
+// ──────────────────────────────────────────────────────────────────────
+
+export async function listRoles(): Promise<Role[]> {
+  const { data } = await apiClient.get<ApiSuccess<Role[]>>("/api/roles");
+  return data.data;
+}
+
+export async function getRole(id: string): Promise<Role> {
+  const { data } = await apiClient.get<ApiSuccess<Role>>(`/api/roles/${id}`);
+  return data.data;
+}
+
+export interface CreateRoleDto {
+  name: string;
+  description?: string | null;
+  permissions: Permission[];
+}
+
+export async function createRole(input: CreateRoleDto): Promise<Role> {
+  const { data } = await apiClient.post<ApiSuccess<Role>>("/api/roles", input);
+  return data.data;
+}
+
+export interface UpdateRoleDto {
+  name?: string;
+  description?: string | null;
+  permissions?: Permission[];
+}
+
+export async function updateRole(
+  id: string,
+  input: UpdateRoleDto
+): Promise<Role> {
+  const { data } = await apiClient.patch<ApiSuccess<Role>>(
+    `/api/roles/${id}`,
+    input
+  );
+  return data.data;
+}
+
+export async function deleteRole(
+  id: string
+): Promise<{ deleted: boolean; detachedUsers: number }> {
+  const { data } = await apiClient.delete<
+    ApiSuccess<{ deleted: boolean; detachedUsers: number }>
+  >(`/api/roles/${id}`);
+  return data.data;
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// User ↔ role assignment
+// ──────────────────────────────────────────────────────────────────────
+
+export interface AssignUserRoleDto {
+  role?: "owner" | "admin" | "manager" | "member";
+  customRoleId?: string | null;
+}
+
+export interface AssignedUser {
+  id: string;
+  email: string;
+  fullName: string;
+  role: string;
+  customRoleId: string | null;
+}
+
+export async function assignUserRole(
+  userId: string,
+  input: AssignUserRoleDto
+): Promise<AssignedUser> {
+  const { data } = await apiClient.patch<ApiSuccess<AssignedUser>>(
+    `/api/users/${userId}/role`,
+    input
+  );
+  return data.data;
+}
