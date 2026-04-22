@@ -1021,6 +1021,52 @@ export async function revokeScimToken(id: string): Promise<void> {
 }
 
 // ============================================================================
+// DOCUMENT LINKS (P9)
+// ============================================================================
+
+export type DocumentEntity = "customer" | "deal" | "quote" | "contract";
+
+export interface DocumentLink {
+  id: string;
+  companyId: string;
+  entityType: string;
+  entityId: string;
+  googleDocId: string;
+  title: string;
+  snippet: string | null;
+  addedBy: string;
+  createdAt: string;
+  lastIndexed: string;
+}
+
+export async function listDocumentLinks(
+  entityType: DocumentEntity,
+  entityId: string
+): Promise<DocumentLink[]> {
+  const { data } = await apiClient.get<ApiSuccess<DocumentLink[]>>(
+    "/api/documents",
+    { params: { entityType, entityId } }
+  );
+  return data.data;
+}
+
+export async function linkDocument(input: {
+  entityType: DocumentEntity;
+  entityId: string;
+  googleDocId: string;
+}): Promise<DocumentLink> {
+  const { data } = await apiClient.post<ApiSuccess<DocumentLink>>(
+    "/api/documents/link",
+    input
+  );
+  return data.data;
+}
+
+export async function unlinkDocument(id: string): Promise<void> {
+  await apiClient.delete(`/api/documents/${id}`);
+}
+
+// ============================================================================
 // SECURITY — 2FA + Audit Log
 // ============================================================================
 
