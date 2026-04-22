@@ -1,6 +1,7 @@
 "use client";
 
 import { apiClient } from "./client";
+import { adminApi } from "./admin";
 import type { ApiSuccess } from "../auth/types";
 
 // ============================================================================
@@ -2710,10 +2711,14 @@ export async function getMyFeatureFlags(): Promise<Record<string, boolean>> {
   return data.data;
 }
 
+// These two hit /api/admin/* which is gated by requireSuperAdmin, so they
+// must use the adminApi instance (carries the admin access token). Using
+// the merchant apiClient here triggers its 401 → /signin redirect when no
+// merchant session exists, even though the admin is signed in.
 export async function getCompanyFeatureFlags(
   companyId: string
 ): Promise<Record<string, boolean>> {
-  const { data } = await apiClient.get<
+  const { data } = await adminApi.get<
     ApiSuccess<Record<string, boolean>>
   >(`/api/admin/companies/${encodeURIComponent(companyId)}/features`);
   return data.data;
@@ -2723,7 +2728,7 @@ export async function setCompanyFeatureFlags(
   companyId: string,
   flags: Record<string, boolean>
 ): Promise<Record<string, boolean>> {
-  const { data } = await apiClient.post<
+  const { data } = await adminApi.post<
     ApiSuccess<Record<string, boolean>>
   >(`/api/admin/companies/${encodeURIComponent(companyId)}/features`, { flags });
   return data.data;
