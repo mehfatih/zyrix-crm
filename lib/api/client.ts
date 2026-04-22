@@ -149,7 +149,7 @@ apiClient.interceptors.response.use(
       isRefreshing = false;
       reportSessionExpired();
       clearAuth();
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" && !isOnAdminRoute()) {
         window.location.href = "/signin";
       }
       return Promise.reject(error);
@@ -177,7 +177,7 @@ apiClient.interceptors.response.use(
       processQueue(null);
       reportSessionExpired();
       clearAuth();
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" && !isOnAdminRoute()) {
         window.location.href = "/signin";
       }
       return Promise.reject(refreshError);
@@ -186,6 +186,16 @@ apiClient.interceptors.response.use(
     }
   }
 );
+
+// Belt-and-suspenders: if this interceptor fires while the user is on an
+// admin console route, clear merchant auth locally but do NOT hijack
+// navigation. AdminShell owns its own auth lifecycle — bouncing the
+// window to /signin would log the admin out of /admin/* even though the
+// admin token is still valid.
+function isOnAdminRoute(): boolean {
+  if (typeof window === "undefined") return false;
+  return /^\/[a-z]{2}\/admin(\/|$)/i.test(window.location.pathname);
+}
 
 // ─────────────────────────────────────────────────────────────────────────
 // HELPER — Extract error message from any API error
