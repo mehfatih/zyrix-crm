@@ -2690,11 +2690,27 @@ export async function rejectTaxInvoice(
 // FEATURE FLAGS — per-company service toggles (UX #4)
 // ============================================================================
 
+export type FeatureCategory =
+  | "sales"
+  | "growth"
+  | "ai"
+  | "ops"
+  | "compliance"
+  | "advanced"
+  | "security"
+  | "integrations"
+  | "platform"
+  | "ux";
+
+export type FeaturePlanSlug = "free" | "starter" | "business" | "enterprise";
+
 export interface FeatureCatalogEntry {
   key: string;
   label: { en: string; ar: string; tr: string };
   description: { en: string; ar: string; tr: string };
-  category: "sales" | "growth" | "ai" | "ops" | "compliance" | "advanced";
+  category: FeatureCategory;
+  icon: string;
+  defaultByPlan: Record<FeaturePlanSlug, boolean>;
 }
 
 export async function getFeatureCatalog(): Promise<FeatureCatalogEntry[]> {

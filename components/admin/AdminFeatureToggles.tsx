@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import * as LucideIcons from "lucide-react";
 import {
   Loader2,
   Save,
@@ -12,6 +13,10 @@ import {
   Briefcase,
   Receipt,
   Star,
+  Shield,
+  Plug,
+  Server,
+  Paintbrush,
 } from "lucide-react";
 import {
   getFeatureCatalog,
@@ -62,6 +67,62 @@ const CATEGORY_META: Record<
     icon: Star,
     tone: "from-fuchsia-500 to-violet-600",
   },
+  security: {
+    label: { en: "Security & Compliance", ar: "الأمان والامتثال", tr: "Güvenlik ve Uyumluluk" },
+    icon: Shield,
+    tone: "from-red-500 to-rose-600",
+  },
+  integrations: {
+    label: { en: "Integrations", ar: "التكاملات", tr: "Entegrasyonlar" },
+    icon: Plug,
+    tone: "from-teal-500 to-cyan-600",
+  },
+  platform: {
+    label: { en: "Platform", ar: "المنصة", tr: "Platform" },
+    icon: Server,
+    tone: "from-slate-500 to-slate-700",
+  },
+  ux: {
+    label: { en: "Experience", ar: "التجربة", tr: "Deneyim" },
+    icon: Paintbrush,
+    tone: "from-sky-500 to-blue-600",
+  },
+};
+
+// Declared category order so related categories group together in the UI.
+const CATEGORY_ORDER: FeatureCatalogEntry["category"][] = [
+  "sales",
+  "growth",
+  "ai",
+  "ops",
+  "security",
+  "compliance",
+  "integrations",
+  "platform",
+  "advanced",
+  "ux",
+];
+
+// Resolve a lucide-react icon by string name at render time. Falls back to
+// the category icon when the catalog entry references an unknown name.
+function resolveLucideIcon(
+  name: string | undefined,
+  fallback: any
+): any {
+  if (!name) return fallback;
+  const reg = LucideIcons as unknown as Record<string, any>;
+  const hit = reg[name];
+  return typeof hit === "function" || typeof hit === "object" ? hit : fallback;
+}
+
+const PLAN_LABELS: Record<
+  "free" | "starter" | "business" | "enterprise",
+  { en: string; ar: string; tr: string }
+> = {
+  free: { en: "Free", ar: "مجاني", tr: "Ücretsiz" },
+  starter: { en: "Starter", ar: "المبتدئ", tr: "Başlangıç" },
+  business: { en: "Business", ar: "الأعمال", tr: "İş" },
+  enterprise: { en: "Enterprise", ar: "المؤسسات", tr: "Kurumsal" },
 };
 
 export function AdminFeatureToggles({
@@ -141,12 +202,16 @@ export function AdminFeatureToggles({
     }
   };
 
-  // Group catalog by category
+  // Group catalog by category and order categories explicitly so related
+  // groups sit together in the UI regardless of catalog insertion order.
   const byCategory: Record<string, FeatureCatalogEntry[]> = {};
   for (const f of catalog) {
     if (!byCategory[f.category]) byCategory[f.category] = [];
     byCategory[f.category].push(f);
   }
+  const orderedCategories = CATEGORY_ORDER.filter(
+    (c) => (byCategory[c]?.length ?? 0) > 0
+  );
 
   if (loading) {
     return (
@@ -172,8 +237,9 @@ export function AdminFeatureToggles({
       )}
 
       <div className="space-y-4">
-        {Object.entries(byCategory).map(([cat, items]) => {
-          const meta = CATEGORY_META[cat as FeatureCatalogEntry["category"]];
+        {orderedCategories.map((cat) => {
+          const items = byCategory[cat] ?? [];
+          const meta = CATEGORY_META[cat];
           const Icon = meta?.icon ?? Zap;
           return (
             <div key={cat} className="rounded-xl border border-sky-100 bg-white overflow-hidden">
@@ -190,11 +256,20 @@ export function AdminFeatureToggles({
               <div className="divide-y divide-sky-50">
                 {items.map((f) => {
                   const enabled = flags[f.key] ?? true;
+                  const FeatureIcon = resolveLucideIcon(f.icon, meta?.icon ?? Zap);
+                  const includedPlans = (
+                    ["free", "starter", "business", "enterprise"] as const
+                  ).filter((p) => f.defaultByPlan?.[p]);
                   return (
                     <div
                       key={f.key}
                       className="px-4 py-3 flex items-center gap-3"
                     >
+                      <div
+                        className={`w-8 h-8 rounded-lg bg-gradient-to-br ${meta?.tone} text-white flex items-center justify-center flex-shrink-0`}
+                      >
+                        <FeatureIcon className="w-4 h-4" />
+                      </div>
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-semibold text-slate-900">
                           {f.label[locale]}
@@ -202,12 +277,31 @@ export function AdminFeatureToggles({
                         <p className="text-xs text-slate-500 mt-0.5">
                           {f.description[locale]}
                         </p>
-                        <code
-                          className="text-[10px] text-slate-400 font-mono mt-0.5 block"
-                          dir="ltr"
-                        >
-                          {f.key}
-                        </code>
+                        <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+                          <code
+                            className="text-[10px] text-slate-400 font-mono"
+                            dir="ltr"
+                          >
+                            {f.key}
+                          </code>
+                          {includedPlans.length > 0 && includedPlans.length < 4 && (
+                            <div className="flex flex-wrap items-center gap-1">
+                              {includedPlans.map((p) => (
+                                <span
+                                  key={p}
+                                  className="inline-flex items-center rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200 px-2 py-0.5 text-[10px] font-medium"
+                                >
+                                  {PLAN_LABELS[p][locale]}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          {includedPlans.length === 4 && (
+                            <span className="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 text-[10px] font-medium">
+                              {tr("All plans", "كل الخطط", "Tüm planlar")}
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <button
                         onClick={() => toggle(f.key)}
