@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { adminLogin } from "@/lib/api/admin";
+import {
+  adminLogin,
+  getAdminRememberMePref,
+  setAdminRememberMePref,
+} from "@/lib/api/admin";
 import type { AxiosError } from "axios";
 import { ShieldCheck, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
@@ -19,16 +23,23 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setRememberMe(getAdminRememberMePref());
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setLoading(true);
 
+    setAdminRememberMePref(rememberMe);
+
     try {
-      await adminLogin(email.trim(), password);
+      await adminLogin(email.trim(), password, rememberMe);
       router.push(`/${locale}/admin/dashboard`);
     } catch (err) {
       const axiosErr = err as AxiosError<{
@@ -135,6 +146,17 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
                 </Link>
               </div>
             </div>
+
+            {/* Remember me */}
+            <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="h-4 w-4 rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+              />
+              {t("rememberMe")}
+            </label>
 
             {/* Error */}
             {error && (

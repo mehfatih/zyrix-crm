@@ -13,6 +13,9 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 const ADMIN_ACCESS_KEY = "zyrix_admin_access_token";
 const ADMIN_REFRESH_KEY = "zyrix_admin_refresh_token";
 const ADMIN_USER_KEY = "zyrix_admin_user";
+const ADMIN_TOKEN_KEY = "zyrix_admin_token";
+const ADMIN_TOKEN_EXPIRES_AT_KEY = "zyrix_admin_token_expires_at";
+const ADMIN_REMEMBER_ME_KEY = "zyrix_admin_remember_me";
 
 // ─────────────────────────────────────────────────────────────────────────
 // Token storage
@@ -81,6 +84,54 @@ export function clearAdminAuth(): void {
     localStorage.removeItem(ADMIN_ACCESS_KEY);
     localStorage.removeItem(ADMIN_REFRESH_KEY);
     localStorage.removeItem(ADMIN_USER_KEY);
+    localStorage.removeItem(ADMIN_TOKEN_KEY);
+    localStorage.removeItem(ADMIN_TOKEN_EXPIRES_AT_KEY);
+  } catch {
+    // ignore
+  }
+}
+
+export function setAdminTokenExpiresAt(epochMs: number): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(ADMIN_TOKEN_EXPIRES_AT_KEY, String(epochMs));
+  } catch {
+    // ignore
+  }
+}
+
+export function getAdminTokenExpiresAt(): number | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(ADMIN_TOKEN_EXPIRES_AT_KEY);
+    if (!raw) return null;
+    const n = Number(raw);
+    return Number.isFinite(n) ? n : null;
+  } catch {
+    return null;
+  }
+}
+
+export function isAdminTokenExpired(): boolean {
+  const expiresAt = getAdminTokenExpiresAt();
+  if (!expiresAt) return false; // legacy sessions predate the expiry field
+  return Date.now() >= expiresAt;
+}
+
+export function getAdminRememberMePref(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return localStorage.getItem(ADMIN_REMEMBER_ME_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+export function setAdminRememberMePref(value: boolean): void {
+  if (typeof window === "undefined") return;
+  try {
+    if (value) localStorage.setItem(ADMIN_REMEMBER_ME_KEY, "1");
+    else localStorage.removeItem(ADMIN_REMEMBER_ME_KEY);
   } catch {
     // ignore
   }
@@ -124,13 +175,17 @@ export interface ApiEnvelope<T> {
   error?: { code: string; message: string; details?: unknown };
 }
 
-export async function adminLogin(email: string, password: string) {
+export async function adminLogin(
+  email: string,
+  password: string,
+  rememberMe = false
+) {
   const { data } = await adminApi.post<
     ApiEnvelope<{
       user: AdminUser;
       tokens: { accessToken: string; refreshToken: string; expiresIn: number };
     }>
-  >("/api/admin/login", { email, password });
+  >("/api/admin/login", { email, password, rememberMe });
 
   if (!data.success) {
     throw new Error(data.error?.message ?? "Login failed");
@@ -139,6 +194,16 @@ export async function adminLogin(email: string, password: string) {
   setAdminAccessToken(data.data.tokens.accessToken);
   setAdminRefreshToken(data.data.tokens.refreshToken);
   setAdminUser(data.data.user);
+
+  // Mirror the access token into the sibling key the rehydrator reads,
+  // alongside the absolute epoch-ms expiry derived from tokens.expiresIn.
+  try {
+    localStorage.setItem(ADMIN_TOKEN_KEY, data.data.tokens.accessToken);
+  } catch {
+    // ignore
+  }
+  const expiresAtMs = Date.now() + data.data.tokens.expiresIn * 1000;
+  setAdminTokenExpiresAt(expiresAtMs);
   return data.data;
 }
 
