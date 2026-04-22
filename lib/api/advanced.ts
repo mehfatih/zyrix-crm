@@ -706,6 +706,18 @@ export async function exportEcommerceAnalytics(params: {
 // ONBOARDING — 7-step wizard
 // ============================================================================
 
+export const ONBOARDING_STEPS = [
+  "profile",
+  "country",
+  "firstCustomer",
+  "invitedTeam",
+  "firstDeal",
+] as const;
+
+export type OnboardingStep = (typeof ONBOARDING_STEPS)[number];
+
+export type OnboardingProgress = Record<OnboardingStep, boolean>;
+
 export interface OnboardingStatus {
   completed: boolean;
   company: {
@@ -714,12 +726,16 @@ export interface OnboardingStatus {
     country: string | null;
     baseCurrency: string | null;
     onboardingCompletedAt: string | null;
+    onboardingProgress?: OnboardingProgress;
   };
   user: {
     id: string;
     fullName: string;
     preferredLocale: string | null;
   };
+  progress?: OnboardingProgress;
+  remaining?: OnboardingStep[];
+  percent?: number;
   signals: {
     storesConnected: number;
     teamMembers: number;
@@ -762,6 +778,15 @@ export async function inviteColleague(
   const { data } = await apiClient.post<
     ApiSuccess<{ invited: true; userId: string; email: string }>
   >("/api/onboarding/invite-colleague", dto);
+  return data.data;
+}
+
+export async function updateOnboardingProgress(
+  patch: Partial<OnboardingProgress>
+): Promise<{ progress: OnboardingProgress; completed: boolean }> {
+  const { data } = await apiClient.patch<
+    ApiSuccess<{ progress: OnboardingProgress; completed: boolean }>
+  >("/api/onboarding/progress", patch);
   return data.data;
 }
 

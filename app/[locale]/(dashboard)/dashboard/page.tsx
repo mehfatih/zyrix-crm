@@ -34,6 +34,7 @@ import {
   type OnboardingStatus,
 } from "@/lib/api/advanced";
 import { DashboardGrid } from "@/components/dashboard-widgets/DashboardGrid";
+import { OnboardingBanner } from "@/components/onboarding/OnboardingBanner";
 
 // ============================================================================
 // ROLE-BASED DASHBOARD
@@ -203,6 +204,10 @@ export default function DashboardPage() {
             </div>
           </div>
         )}
+
+        {/* Post-onboarding banner — shows remaining 5-step checklist until
+            every step is marked complete (P3). */}
+        <OnboardingBanner locale={locale} />
 
         {/* Customizable widget grid — per-user layout saved in DashboardLayout */}
         <DashboardGrid locale={(["en", "ar", "tr"].includes(locale) ? locale : "en") as "en" | "ar" | "tr"} />
