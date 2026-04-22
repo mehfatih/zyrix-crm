@@ -9,6 +9,7 @@ import {
   fetchMe,
   getAdminAccessToken,
   getAdminUser,
+  isAdminTokenExpired,
   type AdminUser,
 } from "@/lib/api/admin";
 import {
@@ -66,6 +67,14 @@ export default function AdminShell({
   useEffect(() => {
     const token = getAdminAccessToken();
     if (!token) {
+      router.replace(`/${locale}/admin/login`);
+      return;
+    }
+
+    // Short-circuit when the stored expiry has already passed. Skips
+    // the network round-trip and keeps the redirect UX snappy.
+    if (isAdminTokenExpired()) {
+      clearAdminAuth();
       router.replace(`/${locale}/admin/login`);
       return;
     }
