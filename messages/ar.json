@@ -34,6 +34,7 @@
     "version": "v2026.1",
     "pinItem": "تثبيت في الأعلى",
     "unpinItem": "إلغاء التثبيت",
+    "newButton": "جديد",
     "planBadge": {
       "free": "مجانية",
       "starter": "البداية",
@@ -76,6 +77,61 @@
     "comingSoon": "قريباً",
     "comingSoonBody": "هذه المنطقة قيد الإنشاء. نحن نصقل التجربة وسنطلقها قريباً.",
     "goHome": "عودة إلى الرئيسية"
+  },
+  "QuickAdd": {
+    "title": "إنشاء",
+    "searchPlaceholder": "اكتب للبحث عن أمر…",
+    "proTip": "تلميح: اضغط C في أي مكان لفتح هذه النافذة",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "noMatches": "لا توجد نتائج — جرّب كلمة أخرى.",
+    "createTitle": "إنشاء {entity}",
+    "createSubtitle": "نموذج الإنشاء الكامل قيد التجهيز. في الوقت الحالي، انتقل مباشرة إلى القسم.",
+    "gotoSection": "الانتقال إلى {entity}",
+    "backToHome": "العودة إلى الرئيسية",
+    "entities": {
+      "contact": "جهة اتصال",
+      "company": "شركة",
+      "deal": "صفقة",
+      "task": "مهمة",
+      "ticket": "تذكرة",
+      "email": "بريد",
+      "note": "ملاحظة",
+      "meeting": "اجتماع",
+      "campaign": "حملة",
+      "segment": "شريحة",
+      "report": "تقرير",
+      "scan": "مسح QR"
+    }
+  },
+  "AIRecommendations": {
+    "title": "توصيات الذكاء الاصطناعي",
+    "refresh": "تحديث",
+    "empty": "لا توجد توصيات حالياً — عد لاحقاً.",
+    "goToSlide": "الانتقال إلى الشريحة {index}"
+  },
+  "Shortcuts": {
+    "title": "اختصارات لوحة المفاتيح",
+    "close": "إغلاق",
+    "searchPlaceholder": "ابحث عن اختصار…",
+    "noMatches": "لا توجد اختصارات مطابقة.",
+    "groups": {
+      "general": "عام",
+      "create": "إنشاء",
+      "navigation": "التنقل"
+    },
+    "rows": {
+      "globalSearch": "فتح البحث الشامل",
+      "quickAdd": "فتح الإنشاء السريع",
+      "openCheatSheet": "عرض اختصارات لوحة المفاتيح",
+      "close": "إغلاق النافذة / اللوحة",
+      "goHome": "الانتقال إلى الرئيسية",
+      "goDeals": "الانتقال إلى الصفقات",
+      "goContacts": "الانتقال إلى جهات الاتصال",
+      "goTasks": "الانتقال إلى المهام",
+      "goConversations": "الانتقال إلى المحادثات",
+      "goSettings": "الانتقال إلى الإعدادات"
+    }
   },
   "Common": {
     "loading": "جاري التحميل…",

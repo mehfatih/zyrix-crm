@@ -34,6 +34,7 @@
     "version": "v2026.1",
     "pinItem": "Yukarı sabitle",
     "unpinItem": "Sabitlemeyi kaldır",
+    "newButton": "Yeni",
     "planBadge": {
       "free": "Ücretsiz",
       "starter": "Starter",
@@ -76,6 +77,61 @@
     "comingSoon": "Çok yakında",
     "comingSoonBody": "Bu alan yapım aşamasında. Deneyimi cilaladıktan sonra kısa süre içinde yayına alacağız.",
     "goHome": "Ana sayfaya dön"
+  },
+  "QuickAdd": {
+    "title": "Oluştur",
+    "searchPlaceholder": "Komut bulmak için yazın…",
+    "proTip": "İpucu: herhangi bir yerde C tuşuna basın",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "noMatches": "Eşleşme yok — farklı bir kelime deneyin.",
+    "createTitle": "{entity} oluştur",
+    "createSubtitle": "Tam oluşturma formu hazırlanıyor. Şimdilik doğrudan bölüme gidin.",
+    "gotoSection": "{entity} bölümüne git",
+    "backToHome": "Ana sayfaya dön",
+    "entities": {
+      "contact": "Kişi",
+      "company": "Şirket",
+      "deal": "Anlaşma",
+      "task": "Görev",
+      "ticket": "Bilet",
+      "email": "E-posta",
+      "note": "Not",
+      "meeting": "Toplantı",
+      "campaign": "Kampanya",
+      "segment": "Segment",
+      "report": "Rapor",
+      "scan": "QR tara"
+    }
+  },
+  "AIRecommendations": {
+    "title": "AI Önerileri",
+    "refresh": "Yenile",
+    "empty": "Henüz öneri yok — yakında tekrar gelin.",
+    "goToSlide": "{index}. slayta git"
+  },
+  "Shortcuts": {
+    "title": "Klavye kısayolları",
+    "close": "Kapat",
+    "searchPlaceholder": "Kısayol ara…",
+    "noMatches": "Eşleşen kısayol yok.",
+    "groups": {
+      "general": "Genel",
+      "create": "Oluştur",
+      "navigation": "Gezinme"
+    },
+    "rows": {
+      "globalSearch": "Genel aramayı aç",
+      "quickAdd": "Hızlı ekleme aç",
+      "openCheatSheet": "Klavye kısayollarını göster",
+      "close": "Modalı / paneli kapat",
+      "goHome": "Ana sayfaya git",
+      "goDeals": "Anlaşmalara git",
+      "goContacts": "Kişilere git",
+      "goTasks": "Görevlere git",
+      "goConversations": "Konuşmalara git",
+      "goSettings": "Ayarlara git"
+    }
   },
   "Common": {
     "loading": "Yükleniyor…",

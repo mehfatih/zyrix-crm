@@ -34,6 +34,7 @@
     "version": "v2026.1",
     "pinItem": "Pin to top",
     "unpinItem": "Unpin from top",
+    "newButton": "New",
     "planBadge": {
       "free": "Free",
       "starter": "Starter",
@@ -76,6 +77,61 @@
     "comingSoon": "Coming soon",
     "comingSoonBody": "This area is under construction. We're polishing the experience and will roll it out shortly.",
     "goHome": "Go back to home"
+  },
+  "QuickAdd": {
+    "title": "Create",
+    "searchPlaceholder": "Type to find a command…",
+    "proTip": "Pro tip: press C anywhere to open this",
+    "cancel": "Cancel",
+    "close": "Close",
+    "noMatches": "No matches — try a different keyword.",
+    "createTitle": "Create {entity}",
+    "createSubtitle": "The full creation form is being wired up. For now, jump straight into the section.",
+    "gotoSection": "Go to {entity}",
+    "backToHome": "Back to home",
+    "entities": {
+      "contact": "Contact",
+      "company": "Company",
+      "deal": "Deal",
+      "task": "Task",
+      "ticket": "Ticket",
+      "email": "Email",
+      "note": "Note",
+      "meeting": "Meeting",
+      "campaign": "Campaign",
+      "segment": "Segment",
+      "report": "Report",
+      "scan": "Scan QR"
+    }
+  },
+  "AIRecommendations": {
+    "title": "AI Recommendations",
+    "refresh": "Refresh",
+    "empty": "No recommendations yet — check back soon.",
+    "goToSlide": "Go to slide {index}"
+  },
+  "Shortcuts": {
+    "title": "Keyboard shortcuts",
+    "close": "Close",
+    "searchPlaceholder": "Search shortcuts…",
+    "noMatches": "No shortcuts match that filter.",
+    "groups": {
+      "general": "General",
+      "create": "Create",
+      "navigation": "Navigation"
+    },
+    "rows": {
+      "globalSearch": "Open global search",
+      "quickAdd": "Open quick-add",
+      "openCheatSheet": "Show keyboard shortcuts",
+      "close": "Close modal / drawer",
+      "goHome": "Go to Home",
+      "goDeals": "Go to Deals",
+      "goContacts": "Go to Contacts",
+      "goTasks": "Go to Tasks",
+      "goConversations": "Go to Conversations",
+      "goSettings": "Go to Settings"
+    }
   },
   "Common": {
     "loading": "Loading…",

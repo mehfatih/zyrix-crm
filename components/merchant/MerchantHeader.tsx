@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { ChevronDown, Plus, Search } from "lucide-react";
 
 import { NotificationsPanel } from "./NotificationsPanel";
+import { openQuickAdd } from "./MerchantGlobalShortcuts";
 import { NAV_ITEMS } from "./sidebar/nav-config";
 import { getInitials } from "@/lib/utils";
 
@@ -33,16 +34,11 @@ export function MerchantHeader({
   const sidebarT = useTranslations("MerchantSidebar");
   const pathname = usePathname() || "";
 
-  const [createOpen, setCreateOpen] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
-  const createRef = useRef<HTMLDivElement | null>(null);
   const avatarRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      if (createRef.current && !createRef.current.contains(e.target as Node)) {
-        setCreateOpen(false);
-      }
       if (avatarRef.current && !avatarRef.current.contains(e.target as Node)) {
         setAvatarOpen(false);
       }
@@ -108,46 +104,19 @@ export function MerchantHeader({
         </kbd>
       </button>
 
-      {/* Create menu */}
-      <div ref={createRef} className="relative">
-        <button
-          type="button"
-          onClick={() => setCreateOpen((v) => !v)}
-          className="h-9 px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg shadow-sm"
-        >
-          <Plus className="w-4 h-4" />
-          <span className="hidden sm:inline">{t("create")}</span>
-        </button>
-        {createOpen && (
-          <div
-            className={`absolute top-full mt-1 ${
-              isRTL ? "left-0" : "right-0"
-            } w-52 bg-white border border-sky-100 rounded-xl shadow-lg overflow-hidden z-40`}
-          >
-            <Link
-              href={`/${locale}/merchant/deals`}
-              onClick={() => setCreateOpen(false)}
-              className="block px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
-            >
-              {t("quickDeal")}
-            </Link>
-            <Link
-              href={`/${locale}/merchant/tasks`}
-              onClick={() => setCreateOpen(false)}
-              className="block px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
-            >
-              {t("quickTask")}
-            </Link>
-            <Link
-              href={`/${locale}/merchant/contacts`}
-              onClick={() => setCreateOpen(false)}
-              className="block px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
-            >
-              {t("quickContact")}
-            </Link>
-          </div>
-        )}
-      </div>
+      {/* Create — opens QuickAdd modal */}
+      <button
+        type="button"
+        onClick={() => openQuickAdd()}
+        className="h-9 px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg shadow-sm active:scale-[0.97] transition-transform"
+        title={t("create")}
+      >
+        <Plus className="w-4 h-4" />
+        <span className="hidden sm:inline">{t("create")}</span>
+        <kbd className="hidden md:inline-block text-[10px] font-semibold bg-white/20 border border-white/30 rounded px-1 py-0.5 ml-0.5">
+          C
+        </kbd>
+      </button>
 
       {/* Notifications */}
       <NotificationsPanel locale={locale} isRTL={isRTL} />

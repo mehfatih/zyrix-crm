@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import { getDirection, type Locale } from "@/i18n";
+import { AIRecommendationsStrip } from "@/components/merchant/AIRecommendationsStrip";
 
 export default function MerchantHome({ locale }: { locale: string }) {
   const t = useTranslations("MerchantSidebar");
@@ -54,7 +55,7 @@ export default function MerchantHome({ locale }: { locale: string }) {
         {t("searchPlaceholder")}
       </p>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {cards.map((c) => {
           const Icon = c.icon;
           return (
@@ -80,6 +81,8 @@ export default function MerchantHome({ locale }: { locale: string }) {
           );
         })}
       </div>
+
+      <AIRecommendationsStrip locale={locale} isRTL={isRTL} />
     </div>
   );
 }

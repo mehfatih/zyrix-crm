@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 
 import { UserCard } from "./sidebar/UserCard";
 import { GlobalSearch } from "./sidebar/GlobalSearch";
@@ -14,6 +14,7 @@ import { PinnedSection } from "./sidebar/PinnedSection";
 import { LanguagePills } from "./sidebar/LanguagePills";
 import { NAV_ITEMS, type GroupId } from "./sidebar/nav-config";
 import { usePinnedItems } from "./sidebar/pinnedItemsStore";
+import { openQuickAdd } from "./MerchantGlobalShortcuts";
 
 const COLLAPSED_KEY = "zyrix_merchant_sidebar_collapsed";
 
@@ -240,6 +241,30 @@ export function SmartSidebar({
           unpinLabel={t("unpinItem")}
           groupLabel={groupLabels.pinned}
         />
+
+        {/* "New" button — opens QuickAdd modal */}
+        <div className={collapsed ? "mt-2 px-1" : "mt-2 px-2"}>
+          <button
+            type="button"
+            onClick={() => openQuickAdd()}
+            title={t("newButton")}
+            className={`w-full inline-flex items-center ${
+              collapsed ? "justify-center h-10" : "gap-2 h-10 px-3"
+            } rounded-xl border border-dashed border-cyan-300 text-cyan-700 hover:bg-cyan-50 hover:border-cyan-400 transition-colors`}
+          >
+            <Plus className="w-4 h-4" />
+            {!collapsed && (
+              <>
+                <span className="text-[13px] font-semibold flex-1 text-left rtl:text-right">
+                  {t("newButton")}
+                </span>
+                <kbd className="text-[10px] font-semibold text-slate-500 bg-sky-50 border border-sky-100 rounded px-1.5 py-0.5">
+                  C
+                </kbd>
+              </>
+            )}
+          </button>
+        </div>
 
         {/* Groups */}
         {groups.map((g) => {
