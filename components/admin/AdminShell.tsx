@@ -25,6 +25,7 @@ import {
   LogOut,
   ShieldCheck,
   Loader2,
+  BookOpen,
 } from "lucide-react";
 
 // ============================================================================
@@ -43,6 +44,7 @@ const NAV: NavItem[] = [
   { href: "/admin/users", labelKey: "users", icon: Users },
   { href: "/admin/plans", labelKey: "plans", icon: Package },
   { href: "/admin/billing", labelKey: "billing", icon: Receipt },
+  { href: "/admin/docs", labelKey: "docs", icon: BookOpen },
   { href: "/admin/audit", labelKey: "audit", icon: FileText },
   { href: "/admin/announcements", labelKey: "announcements", icon: Megaphone },
   { href: "/admin/support", labelKey: "support", icon: LifeBuoy },

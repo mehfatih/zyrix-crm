@@ -1,7 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Search, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { Search, X, BookOpen, FileText } from "lucide-react";
+
+// ============================================================================
+// GlobalSearch — top-left sidebar search button + Cmd+K overlay.
+// Integrates docs results in a dedicated "Documentation" section.
+// CRM-side results (contacts, deals, tasks) are still a placeholder until
+// the backend search index lands — docs results are wired up today.
+// ============================================================================
 
 interface GlobalSearchProps {
   collapsed: boolean;
@@ -9,18 +18,35 @@ interface GlobalSearchProps {
   shortcutHint: string;
 }
 
+interface DocHit {
+  category: string;
+  slug: string;
+  title: string;
+  path: string;
+  snippet: string;
+}
+
 function isMac() {
   if (typeof navigator === "undefined") return false;
   return /Mac|iPhone|iPad|iPod/i.test(navigator.platform);
 }
+
+const API_URL =
+  typeof window !== "undefined"
+    ? process.env.NEXT_PUBLIC_API_URL || ""
+    : "";
 
 export function GlobalSearch({
   collapsed,
   placeholder,
   shortcutHint,
 }: GlobalSearchProps) {
+  const params = useParams();
+  const locale = (params?.locale as string) || "en";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [docs, setDocs] = useState<DocHit[]>([]);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [mac, setMac] = useState(false);
 
@@ -43,23 +69,80 @@ export function GlobalSearch({
 
   useEffect(() => {
     if (open) {
-      // Small delay lets overlay render before focusing
       requestAnimationFrame(() => inputRef.current?.focus());
+    } else {
+      setQuery("");
+      setDocs([]);
     }
   }, [open]);
 
+  useEffect(() => {
+    const q = query.trim();
+    if (!q || !open) {
+      setDocs([]);
+      return;
+    }
+    const ctrl = new AbortController();
+    const timer = setTimeout(async () => {
+      setLoading(true);
+      try {
+        if (!API_URL) {
+          setDocs([]);
+          return;
+        }
+        const r = await fetch(
+          `${API_URL}/api/docs/${locale}/search?q=${encodeURIComponent(q)}&limit=8`,
+          { signal: ctrl.signal }
+        );
+        const j = await r.json().catch(() => ({}));
+        setDocs(j?.data?.results || []);
+      } catch {
+        if (!ctrl.signal.aborted) setDocs([]);
+      } finally {
+        if (!ctrl.signal.aborted) setLoading(false);
+      }
+    }, 180);
+    return () => {
+      ctrl.abort();
+      clearTimeout(timer);
+    };
+  }, [query, locale, open]);
+
   const shortcutLabel = mac ? "⌘K" : shortcutHint;
+
+  const docsSectionLabel = useMemo(() => {
+    return locale === "ar"
+      ? "الوثائق"
+      : locale === "tr"
+        ? "Dokümantasyon"
+        : "Documentation";
+  }, [locale]);
 
   if (collapsed) {
     return (
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        title={placeholder}
-        className="w-10 h-9 mx-auto flex items-center justify-center rounded-[10px] border border-sky-100 text-slate-500 hover:bg-cyan-50 hover:text-cyan-700 transition-colors"
-      >
-        <Search className="w-4 h-4" />
-      </button>
+      <>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          title={placeholder}
+          className="w-10 h-9 mx-auto flex items-center justify-center rounded-[10px] border border-sky-100 text-slate-500 hover:bg-cyan-50 hover:text-cyan-700 transition-colors"
+        >
+          <Search className="w-4 h-4" />
+        </button>
+        {open && (
+          <Overlay
+            onClose={() => setOpen(false)}
+            query={query}
+            setQuery={setQuery}
+            inputRef={inputRef}
+            placeholder={placeholder}
+            docs={docs}
+            loading={loading}
+            locale={locale}
+            docsSectionLabel={docsSectionLabel}
+          />
+        )}
+      </>
     );
   }
 
@@ -80,49 +163,137 @@ export function GlobalSearch({
       </button>
 
       {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-start justify-center pt-[8vh] px-4 bg-slate-900/40 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-sky-100">
-              <Search className="w-5 h-5 text-slate-400" />
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={placeholder}
-                className="flex-1 text-base outline-none bg-transparent"
-              />
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="p-1 rounded hover:bg-slate-100 text-slate-500"
-                aria-label="Close"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="px-4 py-6 text-sm text-slate-500">
-              {query ? (
-                <p>
-                  Searching for <span className="font-semibold text-slate-700">&quot;{query}&quot;</span>… results will
-                  appear here once the search index is wired up.
-                </p>
-              ) : (
-                <p className="text-slate-400">
-                  Type to search contacts, deals, tasks, companies and help
-                  docs.
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
+        <Overlay
+          onClose={() => setOpen(false)}
+          query={query}
+          setQuery={setQuery}
+          inputRef={inputRef}
+          placeholder={placeholder}
+          docs={docs}
+          loading={loading}
+          locale={locale}
+          docsSectionLabel={docsSectionLabel}
+        />
       )}
     </>
+  );
+}
+
+function Overlay({
+  onClose,
+  query,
+  setQuery,
+  inputRef,
+  placeholder,
+  docs,
+  loading,
+  locale,
+  docsSectionLabel,
+}: {
+  onClose: () => void;
+  query: string;
+  setQuery: (q: string) => void;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  placeholder: string;
+  docs: DocHit[];
+  loading: boolean;
+  locale: string;
+  docsSectionLabel: string;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center pt-[8vh] px-4 bg-slate-900/40 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-sky-100">
+          <Search className="w-5 h-5 text-slate-400" />
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={placeholder}
+            className="flex-1 text-base outline-none bg-transparent"
+          />
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1 rounded hover:bg-slate-100 text-slate-500"
+            aria-label="Close"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="max-h-[60vh] overflow-y-auto">
+          {!query.trim() ? (
+            <p className="px-4 py-8 text-sm text-slate-400 text-center">
+              Type to search contacts, deals, tasks and documentation.
+            </p>
+          ) : (
+            <div>
+              {/* Documentation section — now wired */}
+              <SectionHeader icon={BookOpen} label={docsSectionLabel} />
+              {loading ? (
+                <p className="px-4 py-3 text-sm text-slate-400">…</p>
+              ) : docs.length === 0 ? (
+                <p className="px-4 py-3 text-sm text-slate-400">No matches</p>
+              ) : (
+                <ul>
+                  {docs.map((d) => {
+                    const href = `/${locale}/docs/${d.category}/${d.slug}`;
+                    return (
+                      <li key={`${d.category}-${d.slug}`}>
+                        <Link
+                          href={href}
+                          onClick={onClose}
+                          className="flex items-start gap-3 px-4 py-2.5 hover:bg-cyan-50"
+                        >
+                          <FileText className="w-4 h-4 text-cyan-600 flex-shrink-0 mt-0.5" />
+                          <div className="min-w-0">
+                            <div className="text-sm font-semibold text-slate-900 truncate">
+                              {d.title}
+                            </div>
+                            <div className="text-xs text-slate-500 line-clamp-1">
+                              {d.snippet}
+                            </div>
+                          </div>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+
+              {/* Everything-else placeholder — wired up when CRM search index lands */}
+              <SectionHeader icon={Search} label="CRM records" />
+              <p className="px-4 py-3 text-sm text-slate-400">
+                Contacts, deals and tasks will appear here once the search
+                index is wired up.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SectionHeader({
+  icon: Icon,
+  label,
+}: {
+  icon: typeof Search;
+  label: string;
+}) {
+  return (
+    <div className="px-4 py-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-sky-50/70 border-b border-sky-100">
+      <Icon className="w-3.5 h-3.5" />
+      {label}
+    </div>
   );
 }

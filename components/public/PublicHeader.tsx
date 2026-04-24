@@ -23,10 +23,11 @@ interface PublicHeaderProps {
     | "slate";
 }
 
-const NAV_LABELS: Record<string, { features: string; pricing: string; about: string; contact: string; signIn: string; signUp: string }> = {
+const NAV_LABELS: Record<string, { features: string; pricing: string; docs: string; about: string; contact: string; signIn: string; signUp: string }> = {
   en: {
     features: "Features",
     pricing: "Pricing",
+    docs: "Docs",
     about: "About",
     contact: "Contact",
     signIn: "Sign in",
@@ -35,6 +36,7 @@ const NAV_LABELS: Record<string, { features: string; pricing: string; about: str
   ar: {
     features: "المميزات",
     pricing: "الأسعار",
+    docs: "الوثائق",
     about: "من نحن",
     contact: "تواصل معنا",
     signIn: "تسجيل الدخول",
@@ -43,6 +45,7 @@ const NAV_LABELS: Record<string, { features: string; pricing: string; about: str
   tr: {
     features: "Özellikler",
     pricing: "Fiyatlandırma",
+    docs: "Dokümanlar",
     about: "Hakkımızda",
     contact: "İletişim",
     signIn: "Giriş",
@@ -146,6 +149,7 @@ export default function PublicHeader({ accentColor = "cyan" }: PublicHeaderProps
   const navLinks = [
     { href: `/${locale}/features`, label: labels.features },
     { href: `/${locale}/pricing`, label: labels.pricing },
+    { href: `/${locale}/docs`, label: labels.docs },
     { href: `/${locale}/about`, label: labels.about },
     { href: `/${locale}/contact`, label: labels.contact },
   ];
