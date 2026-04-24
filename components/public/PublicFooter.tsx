@@ -30,7 +30,6 @@ const FOOTER_LABELS: Record<
     links: {
       features: string;
       pricing: string;
-      demo: string;
       aiCfo: string;
       whatsapp: string;
       integrations: string;
@@ -64,7 +63,6 @@ const FOOTER_LABELS: Record<
     links: {
       features: "Features",
       pricing: "Pricing",
-      demo: "Book a demo",
       aiCfo: "AI CFO",
       whatsapp: "WhatsApp CRM",
       integrations: "Integrations",
@@ -101,7 +99,6 @@ const FOOTER_LABELS: Record<
     links: {
       features: "المميزات",
       pricing: "الأسعار",
-      demo: "احجز تجربة",
       aiCfo: "المدير المالي الذكي",
       whatsapp: "واتساب CRM",
       integrations: "تكاملات التجارة الإلكترونية",
@@ -138,7 +135,6 @@ const FOOTER_LABELS: Record<
     links: {
       features: "Özellikler",
       pricing: "Fiyatlandırma",
-      demo: "Demo al",
       aiCfo: "AI CFO",
       whatsapp: "WhatsApp CRM",
       integrations: "E-ticaret Entegrasyonları",
@@ -233,7 +229,6 @@ export default function PublicFooter() {
               <FooterLink href={`/${locale}/features`}>{t.links.features}</FooterLink>
               <FooterLink href={`/${locale}/pricing`}>{t.links.pricing}</FooterLink>
               <FooterLink href={`/${locale}/integrations`}>{t.links.integrations}</FooterLink>
-              <FooterLink href={`/${locale}/demo`}>{t.links.demo}</FooterLink>
               <FooterLink href={`/${locale}/features#ai-cfo`}>{t.links.aiCfo}</FooterLink>
               <FooterLink href={`/${locale}/features#whatsapp`}>{t.links.whatsapp}</FooterLink>
             </FooterColumn>

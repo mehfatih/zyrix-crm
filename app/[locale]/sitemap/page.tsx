@@ -28,7 +28,6 @@ import {
   Shield,
   Code2,
   BookOpen,
-  Zap,
   Lock,
   UserCircle,
   Package,
@@ -113,7 +112,6 @@ const NODES: MapNode[] = [
   { id: "pricing", category: "marketing", Icon: DollarSign, href: "/pricing", label: { en: "Pricing", ar: "الأسعار", tr: "Fiyatlandırma" } },
   { id: "about", category: "marketing", Icon: Building2, href: "/about", label: { en: "About", ar: "من نحن", tr: "Hakkımızda" } },
   { id: "contact", category: "marketing", Icon: Mail, href: "/contact", label: { en: "Contact", ar: "تواصل", tr: "İletişim" } },
-  { id: "demo", category: "marketing", Icon: Zap, href: "/demo", label: { en: "Demo", ar: "تجربة", tr: "Demo" } },
 
   // PRODUCT (app)
   { id: "dashboard", category: "product", Icon: LayoutDashboard, href: "/dashboard", label: { en: "Dashboard", ar: "لوحة التحكم", tr: "Panel" } },

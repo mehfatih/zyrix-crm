@@ -1,4 +1,82 @@
 {
+  "MerchantSidebar": {
+    "searchPlaceholder": "Search everything…",
+    "shortcutHint": "Ctrl+K",
+    "macShortcutHint": "⌘K",
+    "groups": {
+      "pinned": "PINNED",
+      "work": "WORK",
+      "engage": "ENGAGE",
+      "grow": "GROW",
+      "system": "SYSTEM"
+    },
+    "items": {
+      "home": "Home",
+      "pinned": "Pinned",
+      "contacts": "Contacts",
+      "companies": "Companies",
+      "deals": "Deals",
+      "tasks": "Tasks",
+      "tickets": "Tickets",
+      "conversations": "Conversations",
+      "marketingEmail": "Marketing Email",
+      "calls": "Calls",
+      "meetingLinks": "Meeting Links",
+      "feeds": "Feeds",
+      "dashboards": "Dashboards",
+      "segments": "Segments",
+      "settings": "Settings",
+      "help": "Help"
+    },
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "logout": "Log out",
+    "version": "v2026.1",
+    "pinItem": "Pin to top",
+    "unpinItem": "Unpin from top",
+    "planBadge": {
+      "free": "Free",
+      "starter": "Starter",
+      "business": "Business",
+      "enterprise": "Enterprise"
+    }
+  },
+  "MerchantHeader": {
+    "create": "Create",
+    "quickDeal": "New deal",
+    "quickTask": "New task",
+    "quickContact": "New contact",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "MerchantNotifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "tabAll": "All",
+    "tabUnread": "Unread",
+    "tabMentions": "Mentions",
+    "emptyCaughtUp": "All caught up!",
+    "emptyCaughtUpSubtitle": "No unread notifications.",
+    "emptyNone": "No notifications yet",
+    "emptyNoneSubtitle": "When something happens, it'll show up here.",
+    "viewAll": "View all notifications",
+    "markRead": "Mark as read",
+    "dismiss": "Dismiss",
+    "loading": "Loading…",
+    "error": "Couldn't load notifications.",
+    "minuteAgo": "{n}m ago",
+    "hourAgo": "{n}h ago",
+    "dayAgo": "{n}d ago",
+    "justNow": "just now"
+  },
+  "MerchantPlaceholder": {
+    "breadcrumbHome": "Home",
+    "comingSoon": "Coming soon",
+    "comingSoonBody": "This area is under construction. We're polishing the experience and will roll it out shortly.",
+    "goHome": "Go back to home"
+  },
   "Common": {
     "loading": "Loading…",
     "error": "Something went wrong",
@@ -15,7 +93,7 @@
     "filter": "Filter",
     "learnMore": "Learn more",
     "getStarted": "Get started",
-    "bookDemo": "Book a demo",
+    "startFree": "Start free",
     "contactSales": "Contact sales",
     "seeAll": "See all",
     "readMore": "Read more",
@@ -1293,60 +1371,6 @@
       "primary": "Start free trial",
       "secondary": "Contact us"
     }
-  },
-  "Demo": {
-    "eyebrow": "Request a demo",
-    "title": "See Zyrix live with one of our founders",
-    "subtitle": "A 30-minute walkthrough tailored to your business. No slides — we open the real product and answer your questions with your own use cases in mind.",
-    "included": {
-      "walkthrough": {
-        "title": "Personalized walkthrough",
-        "body": "We open Zyrix with demo data shaped like your business — not generic screenshots."
-      },
-      "whatsapp": {
-        "title": "WhatsApp integration preview",
-        "body": "See how WhatsApp Business messages turn into customer records, live."
-      },
-      "qa": {
-        "title": "Your real questions",
-        "body": "Bring the hard ones. VAT, multi-currency, team permissions — we'll show or tell the truth."
-      },
-      "team": {
-        "title": "Bring your team",
-        "body": "Invite up to 4 people from your side. Sales, ops, finance — whoever will use the tool."
-      }
-    },
-    "prefer": {
-      "title": "Prefer to just try it?",
-      "body": "The free plan gives you real access with your own data.",
-      "cta": "Start free trial →"
-    },
-    "formTitle": "Book your demo",
-    "formSubtitle": "We reply within one business day with a calendar link.",
-    "sentTitle": "Demo request received",
-    "sentBody": "Thanks! A member of our team will email you within 1 business day with available slots in your timezone.",
-    "meanwhile": "Meanwhile, explore the features →",
-    "fields": {
-      "name": "Your name",
-      "email": "Work email",
-      "company": "Company",
-      "phone": "Phone or WhatsApp",
-      "teamSize": "Team size",
-      "message": "Anything specific you'd like us to focus on?",
-      "messagePlaceholder": "e.g. 'We run 3 WhatsApp numbers and need to route conversations by region…'"
-    },
-    "teamSizes": {
-      "s1": "Just me (1–5)",
-      "s2": "Small team (6–20)",
-      "s3": "Growing (21–50)",
-      "s4": "Mid-market (51–200)",
-      "s5": "Enterprise (200+)"
-    },
-    "submit": "Request demo",
-    "sending": "Sending…",
-    "consent": "By submitting this form, you agree to our Privacy Policy.",
-    "errorRequired": "Please fill in your name and email.",
-    "errorGeneric": "Something went wrong. Please try again or email hello@zyrix.co directly."
   },
   "Tasks": {
     "title": "Tasks",

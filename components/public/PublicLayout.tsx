@@ -42,11 +42,6 @@ const ROUTE_ACCENTS: { match: RegExp; accent: AccentColor; bg: string }[] = [
     bg: "bg-gradient-to-br from-emerald-50 via-teal-50/40 to-white",
   },
   {
-    match: /^\/[a-z]{2}\/demo/,
-    accent: "violet",
-    bg: "bg-gradient-to-br from-violet-50 via-purple-50/40 to-white",
-  },
-  {
     match: /^\/[a-z]{2}\/privacy/,
     accent: "slate",
     bg: "bg-gradient-to-br from-slate-50 via-slate-50/60 to-white",

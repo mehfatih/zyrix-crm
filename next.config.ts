@@ -120,6 +120,27 @@ const nextConfig: NextConfig = {
         destination: "/tr",
         permanent: true,
       },
+      // Demo page removed — redirect to signup (free plan replaces demo)
+      {
+        source: "/demo",
+        destination: "/signup",
+        permanent: true,
+      },
+      {
+        source: "/en/demo",
+        destination: "/en/signup",
+        permanent: true,
+      },
+      {
+        source: "/ar/demo",
+        destination: "/ar/signup",
+        permanent: true,
+      },
+      {
+        source: "/tr/demo",
+        destination: "/tr/signup",
+        permanent: true,
+      },
     ];
   },
 

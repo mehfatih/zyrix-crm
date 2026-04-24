@@ -9,7 +9,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 // ============================================================================
 // PUBLIC HEADER — professional, scroll-aware, with compact language switcher
-// Used on: home, features, pricing, about, contact, demo, privacy, terms
+// Used on: home, features, pricing, about, contact, privacy, terms
 // ============================================================================
 
 interface PublicHeaderProps {
@@ -23,12 +23,11 @@ interface PublicHeaderProps {
     | "slate";
 }
 
-const NAV_LABELS: Record<string, { features: string; pricing: string; about: string; demo: string; contact: string; signIn: string; signUp: string }> = {
+const NAV_LABELS: Record<string, { features: string; pricing: string; about: string; contact: string; signIn: string; signUp: string }> = {
   en: {
     features: "Features",
     pricing: "Pricing",
     about: "About",
-    demo: "Demo",
     contact: "Contact",
     signIn: "Sign in",
     signUp: "Start free",
@@ -37,7 +36,6 @@ const NAV_LABELS: Record<string, { features: string; pricing: string; about: str
     features: "المميزات",
     pricing: "الأسعار",
     about: "من نحن",
-    demo: "تجربة",
     contact: "تواصل معنا",
     signIn: "تسجيل الدخول",
     signUp: "ابدأ مجاناً",
@@ -46,7 +44,6 @@ const NAV_LABELS: Record<string, { features: string; pricing: string; about: str
     features: "Özellikler",
     pricing: "Fiyatlandırma",
     about: "Hakkımızda",
-    demo: "Demo",
     contact: "İletişim",
     signIn: "Giriş",
     signUp: "Ücretsiz başla",
@@ -150,7 +147,6 @@ export default function PublicHeader({ accentColor = "cyan" }: PublicHeaderProps
     { href: `/${locale}/features`, label: labels.features },
     { href: `/${locale}/pricing`, label: labels.pricing },
     { href: `/${locale}/about`, label: labels.about },
-    { href: `/${locale}/demo`, label: labels.demo },
     { href: `/${locale}/contact`, label: labels.contact },
   ];
 

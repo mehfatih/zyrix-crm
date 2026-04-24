@@ -1,4 +1,82 @@
 {
+  "MerchantSidebar": {
+    "searchPlaceholder": "Her şeyde ara…",
+    "shortcutHint": "Ctrl+K",
+    "macShortcutHint": "⌘K",
+    "groups": {
+      "pinned": "SABİTLENMİŞ",
+      "work": "ÇALIŞMA",
+      "engage": "ETKİLEŞİM",
+      "grow": "BÜYÜME",
+      "system": "SİSTEM"
+    },
+    "items": {
+      "home": "Ana Sayfa",
+      "pinned": "Sabitlenmiş",
+      "contacts": "Kişiler",
+      "companies": "Şirketler",
+      "deals": "Anlaşmalar",
+      "tasks": "Görevler",
+      "tickets": "Biletler",
+      "conversations": "Konuşmalar",
+      "marketingEmail": "Pazarlama E-postası",
+      "calls": "Aramalar",
+      "meetingLinks": "Toplantı Bağlantıları",
+      "feeds": "Akışlar",
+      "dashboards": "Panolar",
+      "segments": "Segmentler",
+      "settings": "Ayarlar",
+      "help": "Yardım"
+    },
+    "collapse": "Kenar çubuğunu daralt",
+    "expand": "Kenar çubuğunu genişlet",
+    "logout": "Çıkış yap",
+    "version": "v2026.1",
+    "pinItem": "Yukarı sabitle",
+    "unpinItem": "Sabitlemeyi kaldır",
+    "planBadge": {
+      "free": "Ücretsiz",
+      "starter": "Starter",
+      "business": "Business",
+      "enterprise": "Enterprise"
+    }
+  },
+  "MerchantHeader": {
+    "create": "Oluştur",
+    "quickDeal": "Yeni anlaşma",
+    "quickTask": "Yeni görev",
+    "quickContact": "Yeni kişi",
+    "notifications": "Bildirimler",
+    "profile": "Profil",
+    "settings": "Ayarlar",
+    "logout": "Çıkış yap"
+  },
+  "MerchantNotifications": {
+    "title": "Bildirimler",
+    "markAllRead": "Tümünü okundu olarak işaretle",
+    "tabAll": "Tümü",
+    "tabUnread": "Okunmamış",
+    "tabMentions": "Bahsetmeler",
+    "emptyCaughtUp": "Her şey yakalandı!",
+    "emptyCaughtUpSubtitle": "Okunmamış bildirim yok.",
+    "emptyNone": "Henüz bildirim yok",
+    "emptyNoneSubtitle": "Bir şey olduğunda burada görünecek.",
+    "viewAll": "Tüm bildirimleri görüntüle",
+    "markRead": "Okundu olarak işaretle",
+    "dismiss": "Kapat",
+    "loading": "Yükleniyor…",
+    "error": "Bildirimler yüklenemedi.",
+    "minuteAgo": "{n}d önce",
+    "hourAgo": "{n}s önce",
+    "dayAgo": "{n}g önce",
+    "justNow": "az önce"
+  },
+  "MerchantPlaceholder": {
+    "breadcrumbHome": "Ana sayfa",
+    "comingSoon": "Çok yakında",
+    "comingSoonBody": "Bu alan yapım aşamasında. Deneyimi cilaladıktan sonra kısa süre içinde yayına alacağız.",
+    "goHome": "Ana sayfaya dön"
+  },
   "Common": {
     "loading": "Yükleniyor…",
     "error": "Bir şeyler yanlış gitti",
@@ -15,7 +93,7 @@
     "filter": "Filtrele",
     "learnMore": "Daha fazla bilgi",
     "getStarted": "Hemen başla",
-    "bookDemo": "Demo randevusu al",
+    "startFree": "Ücretsiz başla",
     "contactSales": "Satış ekibiyle görüş",
     "seeAll": "Tümünü gör",
     "readMore": "Devamını oku",
@@ -1293,60 +1371,6 @@
       "primary": "Ücretsiz denemeyi başlat",
       "secondary": "Bize ulaşın"
     }
-  },
-  "Demo": {
-    "eyebrow": "Demo talep edin",
-    "title": "Zyrix'i kuruculardan biriyle canlı görün",
-    "subtitle": "İşletmenize özel 30 dakikalık bir tur. Slayt yok — gerçek ürünü açıyor ve kendi kullanım durumlarınızı göz önünde bulundurarak sorularınızı yanıtlıyoruz.",
-    "included": {
-      "walkthrough": {
-        "title": "Kişiselleştirilmiş tur",
-        "body": "Zyrix'i işletmeniz gibi şekillendirilmiş demo verileriyle açıyoruz — jenerik ekran görüntüleri değil."
-      },
-      "whatsapp": {
-        "title": "WhatsApp entegrasyonu önizleme",
-        "body": "WhatsApp Business mesajlarının canlı olarak müşteri kayıtlarına nasıl dönüştüğünü görün."
-      },
-      "qa": {
-        "title": "Gerçek sorularınız",
-        "body": "Zorlarını getirin. VAT, çoklu para birimi, ekip izinleri — gerçeği gösteririz veya söyleriz."
-      },
-      "team": {
-        "title": "Ekibinizi getirin",
-        "body": "Tarafınızdan 4 kişiye kadar davet edin. Satış, operasyon, finans — aracı kim kullanacaksa."
-      }
-    },
-    "prefer": {
-      "title": "Sadece denemek mi istiyorsunuz?",
-      "body": "Ücretsiz plan, kendi verilerinizle gerçek erişim sağlar.",
-      "cta": "Ücretsiz denemeyi başlat →"
-    },
-    "formTitle": "Demo randevunuzu alın",
-    "formSubtitle": "Takvim bağlantısıyla bir iş günü içinde yanıt veriyoruz.",
-    "sentTitle": "Demo talebi alındı",
-    "sentBody": "Teşekkürler! Ekibimizden bir üye 1 iş günü içinde saat diliminize uygun müsait saatlerle size e-posta gönderecek.",
-    "meanwhile": "Bu arada, özellikleri keşfedin →",
-    "fields": {
-      "name": "Adınız",
-      "email": "İş e-postası",
-      "company": "Şirket",
-      "phone": "Telefon veya WhatsApp",
-      "teamSize": "Ekip büyüklüğü",
-      "message": "Odaklanmamızı istediğiniz özel bir şey var mı?",
-      "messagePlaceholder": "örn. '3 WhatsApp numarası çalıştırıyoruz ve görüşmeleri bölgeye göre yönlendirmemiz gerekiyor…'"
-    },
-    "teamSizes": {
-      "s1": "Sadece ben (1–5)",
-      "s2": "Küçük ekip (6–20)",
-      "s3": "Büyüyen (21–50)",
-      "s4": "Orta ölçek (51–200)",
-      "s5": "Kurumsal (200+)"
-    },
-    "submit": "Demo talep et",
-    "sending": "Gönderiliyor…",
-    "consent": "Bu formu göndererek Gizlilik Politikamızı kabul etmiş olursunuz.",
-    "errorRequired": "Lütfen adınızı ve e-postanızı girin.",
-    "errorGeneric": "Bir şeyler ters gitti. Tekrar deneyin veya doğrudan hello@zyrix.co adresine e-posta gönderin."
   },
   "Tasks": {
     "title": "Görevler",
