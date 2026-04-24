@@ -152,6 +152,19 @@ const config: Config = {
           soft: "#E0F2FE",
           strong: "#7DD3FC",
         },
+
+        // ──────────────────────────────────────────────────────────────
+        // EXPANDED ACCENT PALETTE (WEB Sprint 1)
+        // Mirrors the mobile app's vibrant landing colors.
+        // ──────────────────────────────────────────────────────────────
+        coral: "#FB7185",
+        peach: "#FDBA74",
+        mint: "#34D399",
+        lavender: "#A78BFA",
+        sunshine: "#FCD34D",
+        "sky-bright": "#7DD3FC",
+        "rose-accent": "#F9A8D4",
+        "teal-bright": "#5EEAD4",
       },
 
       // ─────────────────────────────────────────────────────────────────
@@ -264,6 +277,14 @@ const config: Config = {
           "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%)",
         "grid-pattern":
           "linear-gradient(to right, rgba(186, 230, 253, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(186, 230, 253, 0.3) 1px, transparent 1px)",
+        "hero-gradient":
+          "linear-gradient(135deg, #06B6D4 0%, #7DD3FC 100%)",
+        "premium-gradient":
+          "linear-gradient(135deg, #A78BFA 0%, #7DD3FC 100%)",
+        "celebration-gradient":
+          "linear-gradient(135deg, #FB7185 0%, #FDBA74 100%)",
+        "success-gradient":
+          "linear-gradient(135deg, #34D399 0%, #5EEAD4 100%)",
       },
 
       backgroundSize: {

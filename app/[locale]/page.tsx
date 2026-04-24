@@ -1,8 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import PublicLayout from "@/components/public/PublicLayout";
+import HomeHero from "@/components/public/HomeHero";
 import {
   MessageCircle,
   TrendingUp,
@@ -15,7 +15,6 @@ import {
   Mic,
   ArrowRight,
   Sparkles,
-  CheckCircle2,
   Globe,
   Zap,
   Shield,
@@ -58,71 +57,8 @@ export default async function HomePage({
 
   return (
     <PublicLayout>
-      {/* HERO */}
-      <section className="hero-bg relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern bg-grid-lg opacity-40 pointer-events-none" />
-
-        <div className="container-zyrix relative section pt-20 md:pt-28">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 mb-6 animate-fade-in">
-              <span className="badge">
-                <span className="badge-dot animate-pulse-soft" />
-                {t("hero.badge")}
-              </span>
-            </div>
-
-            <h1 className="mb-6 animate-slide-up text-balance">
-              <span className="text-ink-mid">
-                {t("hero.title").split(t("hero.titleHighlight"))[0]}
-              </span>
-              <span className="text-gradient">
-                {t("hero.titleHighlight")}
-              </span>
-              <span className="text-ink-mid">
-                {t("hero.title").split(t("hero.titleHighlight"))[1]}
-              </span>
-            </h1>
-
-            <p
-              className="text-lg md:text-xl text-ink-light max-w-3xl mx-auto mb-10 leading-relaxed animate-slide-up text-pretty"
-              style={{ animationDelay: "0.1s" }}
-            >
-              {t("hero.subtitle")}
-            </p>
-
-            <div
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up"
-              style={{ animationDelay: "0.2s" }}
-            >
-              <Link
-                href={`/${locale}/signup`}
-                className="btn-cta text-base py-4 px-8 w-full sm:w-auto"
-              >
-                <Zap className="w-5 h-5" />
-                {t("hero.ctaPrimary")}
-                <ArrowRight
-                  className={`w-4 h-4 ${isArabic ? "rotate-180" : ""}`}
-                />
-              </Link>
-
-              <Link
-                href={`/${locale}/demo`}
-                className="btn-secondary text-base py-4 px-8 w-full sm:w-auto"
-              >
-                {t("hero.ctaSecondary")}
-              </Link>
-            </div>
-
-            <div
-              className="flex items-center justify-center gap-2 text-sm text-ink-light animate-fade-in"
-              style={{ animationDelay: "0.3s" }}
-            >
-              <CheckCircle2 className="w-4 h-4 text-primary-500" />
-              <span>{t("hero.trustIndicator")}</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* HERO — new vibrant 2-column layout (WEB Sprint 1) */}
+      <HomeHero locale={locale} />
 
       {/* STATS */}
       <section className="section bg-white border-y border-line-soft">
@@ -173,47 +109,56 @@ export default async function HomePage({
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard
+              accent="mint"
               icon={<MessageCircle className="w-6 h-6" />}
               title={t("features.items.whatsapp.title")}
               description={t("features.items.whatsapp.description")}
             />
             <FeatureCard
+              accent="cyan"
               icon={<TrendingUp className="w-6 h-6" />}
               title={t("features.items.pipeline.title")}
               description={t("features.items.pipeline.description")}
             />
             <FeatureCard
+              accent="lavender"
               icon={<Brain className="w-6 h-6" />}
               title={t("features.items.aiCfo.title")}
               description={t("features.items.aiCfo.description")}
               badge={tCommon("new")}
             />
             <FeatureCard
+              accent="peach"
               icon={<FileText className="w-6 h-6" />}
               title={t("features.items.quotes.title")}
               description={t("features.items.quotes.description")}
             />
             <FeatureCard
+              accent="coral"
               icon={<Heart className="w-6 h-6" />}
               title={t("features.items.loyalty.title")}
               description={t("features.items.loyalty.description")}
             />
             <FeatureCard
+              accent="sunshine"
               icon={<Percent className="w-6 h-6" />}
               title={t("features.items.commission.title")}
               description={t("features.items.commission.description")}
             />
             <FeatureCard
+              accent="teal"
               icon={<Calculator className="w-6 h-6" />}
               title={t("features.items.taxEngine.title")}
               description={t("features.items.taxEngine.description")}
             />
             <FeatureCard
+              accent="sky"
               icon={<UserCircle className="w-6 h-6" />}
               title={t("features.items.portal.title")}
               description={t("features.items.portal.description")}
             />
             <FeatureCard
+              accent="rose"
               icon={<Mic className="w-6 h-6" />}
               title={t("features.items.voice.title")}
               description={t("features.items.voice.description")}
@@ -313,21 +258,56 @@ function StatCard({
   );
 }
 
+type FeatureAccent =
+  | "cyan"
+  | "coral"
+  | "peach"
+  | "mint"
+  | "lavender"
+  | "sunshine"
+  | "sky"
+  | "rose"
+  | "teal";
+
+const ACCENT_STYLES: Record<
+  FeatureAccent,
+  { bg: string; fg: string; border: string }
+> = {
+  cyan: { bg: "#ECFEFF", fg: "#0891B2", border: "rgba(8, 145, 178, 0.25)" },
+  coral: { bg: "rgba(251, 113, 133, 0.12)", fg: "#E11D48", border: "rgba(251, 113, 133, 0.35)" },
+  peach: { bg: "rgba(253, 186, 116, 0.18)", fg: "#C2410C", border: "rgba(253, 186, 116, 0.5)" },
+  mint: { bg: "rgba(52, 211, 153, 0.14)", fg: "#047857", border: "rgba(52, 211, 153, 0.4)" },
+  lavender: { bg: "rgba(167, 139, 250, 0.14)", fg: "#6D28D9", border: "rgba(167, 139, 250, 0.4)" },
+  sunshine: { bg: "rgba(252, 211, 77, 0.20)", fg: "#B45309", border: "rgba(252, 211, 77, 0.5)" },
+  sky: { bg: "rgba(125, 211, 252, 0.22)", fg: "#0369A1", border: "rgba(125, 211, 252, 0.55)" },
+  rose: { bg: "rgba(249, 168, 212, 0.18)", fg: "#BE185D", border: "rgba(249, 168, 212, 0.45)" },
+  teal: { bg: "rgba(94, 234, 212, 0.18)", fg: "#0F766E", border: "rgba(94, 234, 212, 0.45)" },
+};
+
 function FeatureCard({
   icon,
   title,
   description,
   badge,
+  accent = "cyan",
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
   badge?: string;
+  accent?: FeatureAccent;
 }) {
+  const a = ACCENT_STYLES[accent];
   return (
-    <div className="card group hover:scale-[1.02] transition-transform duration-300">
+    <div
+      className="card group hover:scale-[1.02] transition-transform duration-300"
+      style={{ borderColor: a.border }}
+    >
       <div className="flex items-start justify-between mb-4">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-50 text-primary-600 group-hover:bg-primary-100 transition-colors">
+        <div
+          className="inline-flex items-center justify-center w-12 h-12 rounded-xl transition-colors"
+          style={{ backgroundColor: a.bg, color: a.fg }}
+        >
           {icon}
         </div>
         {badge && (

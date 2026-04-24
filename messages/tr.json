@@ -54,13 +54,19 @@
   },
   "Home": {
     "hero": {
-      "badge": "MENA ve Türkiye için tasarlandı",
-      "title": "Gerçekten dilinizden anlayan CRM",
-      "titleHighlight": "dilinizden anlayan",
-      "subtitle": "Temelden WhatsApp entegreli. Arapça lehçelerini anlayan. Zyrix Pay ve FinSuite ile tam entegre. Sonunda; Suudi Arabistan, BAE, Türkiye, Irak ve Mısır'da işlerin gerçekten nasıl yürüdüğünü bilen bir CRM.",
-      "ctaPrimary": "Ücretsiz başla — kredi kartı istemez",
-      "ctaSecondary": "2 dakikalık demoyu izle",
-      "trustIndicator": "14 ülkedeki büyüyen ekiplerin güvendiği platform"
+      "badge": "Yeni",
+      "title": "İşinizin gerçek yapısına göre tasarlanmış CRM",
+      "titleHighlight": "gerçek yapısına göre",
+      "subtitle": "Temelden WhatsApp entegreli. Arapça lehçelerini anlıyor. Koltuk başına değil, şirket başına fiyat — MENA ve Türkiye ekipleri için yapıldı.",
+      "ctaPrimary": "Ücretsiz oluştur",
+      "ctaSecondary": "Giriş yap",
+      "trustIndicator": "MENA ve Türkiye'deki 500+ şirket kullanıyor",
+      "stickyCta": "Ücretsiz başla → Kredi kartı yok",
+      "stats": {
+        "whatsapp": "%98 WhatsApp teslim oranı",
+        "speed": "Salesforce kurulumundan 3× hızlı",
+        "live": "15 dakikada canlıya alın"
+      }
     },
     "stats": {
       "title": "Rakamlar her şeyi anlatıyor",

@@ -8,6 +8,11 @@ import { Check, Loader2, Star } from "lucide-react";
 
 // ============================================================================
 // PUBLIC PRICING VIEW
+// ----------------------------------------------------------------------------
+// Currency is derived from the visitor's *country* (IP-detected for logged-out
+// users), NOT the URL language. So an Arabic speaker in Türkiye visiting /ar
+// still sees TRY. Users can override with the currency dropdown, which is
+// completely separate from the header language switcher.
 // ============================================================================
 
 type Currency = "USD" | "TRY" | "SAR";
@@ -17,6 +22,22 @@ const CURRENCY_SYMBOL: Record<Currency, string> = {
   USD: "$",
   TRY: "₺",
   SAR: "﷼",
+};
+
+// Available plan prices only exist in USD/TRY/SAR — map the 11 supported
+// countries onto the closest available billing currency.
+const COUNTRY_TO_PLAN_CURRENCY: Record<string, Currency> = {
+  TR: "TRY",
+  SA: "SAR",
+  AE: "SAR",
+  EG: "SAR",
+  IQ: "SAR",
+  KW: "SAR",
+  QA: "SAR",
+  BH: "SAR",
+  OM: "SAR",
+  JO: "SAR",
+  LB: "SAR",
 };
 
 export default function PricingView({ locale }: { locale: string }) {
@@ -29,11 +50,9 @@ export default function PricingView({ locale }: { locale: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [currency, setCurrency] = useState<Currency>(() => {
-    if (locale === "ar") return "SAR";
-    if (locale === "tr") return "TRY";
-    return "USD";
-  });
+  // Default to USD until geo resolves — never derive from `locale`.
+  const [currency, setCurrency] = useState<Currency>("USD");
+  const [currencyTouched, setCurrencyTouched] = useState(false);
   const [billing, setBilling] = useState<Billing>("monthly");
 
   useEffect(() => {
@@ -43,6 +62,31 @@ export default function PricingView({ locale }: { locale: string }) {
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // IP-based country detection -> currency default.
+  // Respects user override: if they touch the currency dropdown, we stop
+  // overwriting it on re-detection.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/geo", { cache: "force-cache" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { country?: string } | null) => {
+        if (cancelled || !data?.country) return;
+        const mapped = COUNTRY_TO_PLAN_CURRENCY[data.country.toUpperCase()];
+        if (mapped && !currencyTouched) setCurrency(mapped);
+      })
+      .catch(() => {
+        /* stay on USD */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [currencyTouched]);
+
+  const handleCurrencyChange = (c: Currency) => {
+    setCurrencyTouched(true);
+    setCurrency(c);
+  };
 
   function priceFor(p: AdminPlan): number {
     const key = (
@@ -107,12 +151,15 @@ export default function PricingView({ locale }: { locale: string }) {
           </button>
         </div>
 
-        {/* Currency */}
-        <div className="inline-flex rounded-full bg-white border border-cyan-200 p-1">
+        {/* Currency — independent of header language switcher */}
+        <div
+          className="inline-flex rounded-full bg-white border border-cyan-200 p-1"
+          aria-label="Billing currency"
+        >
           {(["USD", "TRY", "SAR"] as Currency[]).map((c) => (
             <button
               key={c}
-              onClick={() => setCurrency(c)}
+              onClick={() => handleCurrencyChange(c)}
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 currency === c
                   ? "bg-cyan-600 text-white"

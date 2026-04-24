@@ -65,6 +65,30 @@
   --gradient-cta: linear-gradient(135deg, #0891B2 0%, #0E7490 100%);
   --gradient-accent: linear-gradient(90deg, #22D3EE 0%, #0891B2 100%);
 
+  /* ========================================================================
+     EXPANDED ACCENT PALETTE — mirrors mobile app (WEB Sprint 1)
+     Each landing section should reach for a different accent subtly.
+     ======================================================================== */
+  --primary: #0891B2;
+  --primary-light: #06B6D4;
+  --primary-lighter: #22D3EE;
+  --bg: #F0F9FF;
+  --surface: #FFFFFF;
+
+  --coral: #FB7185;
+  --peach: #FDBA74;
+  --mint: #34D399;
+  --lavender: #A78BFA;
+  --sunshine: #FCD34D;
+  --sky-bright: #7DD3FC;
+  --rose: #F9A8D4;
+  --teal-bright: #5EEAD4;
+
+  --hero-gradient: linear-gradient(135deg, #06B6D4 0%, #7DD3FC 100%);
+  --premium-gradient: linear-gradient(135deg, #A78BFA 0%, #7DD3FC 100%);
+  --celebration-gradient: linear-gradient(135deg, #FB7185 0%, #FDBA74 100%);
+  --success-gradient: linear-gradient(135deg, #34D399 0%, #5EEAD4 100%);
+
   /* Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -402,6 +426,79 @@
     100% {
       background-position: 200% 0;
     }
+  }
+
+  /* ========================================================================
+     VIBRANT ACCENT UTILITIES
+     ======================================================================== */
+  .bg-hero-gradient {
+    background: var(--hero-gradient);
+  }
+  .bg-premium-gradient {
+    background: var(--premium-gradient);
+  }
+  .bg-celebration-gradient {
+    background: var(--celebration-gradient);
+  }
+  .bg-success-gradient {
+    background: var(--success-gradient);
+  }
+
+  .text-coral { color: var(--coral); }
+  .text-peach { color: var(--peach); }
+  .text-mint { color: var(--mint); }
+  .text-lavender { color: var(--lavender); }
+  .text-sunshine { color: var(--sunshine); }
+  .text-rose-accent { color: var(--rose); }
+  .text-teal-bright { color: var(--teal-bright); }
+
+  .bg-coral-soft { background-color: rgba(251, 113, 133, 0.12); }
+  .bg-peach-soft { background-color: rgba(253, 186, 116, 0.15); }
+  .bg-mint-soft { background-color: rgba(52, 211, 153, 0.12); }
+  .bg-lavender-soft { background-color: rgba(167, 139, 250, 0.12); }
+  .bg-sunshine-soft { background-color: rgba(252, 211, 77, 0.18); }
+  .bg-sky-bright-soft { background-color: rgba(125, 211, 252, 0.18); }
+  .bg-rose-soft { background-color: rgba(249, 168, 212, 0.15); }
+  .bg-teal-bright-soft { background-color: rgba(94, 234, 212, 0.15); }
+
+  /* Celebration hero overlay — 15% opacity over white per spec */
+  .hero-celebration-bg {
+    position: relative;
+    background-color: #FFFFFF;
+  }
+  .hero-celebration-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--celebration-gradient);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-celebration-bg > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Subtle grain texture */
+  .grain-texture {
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(8, 145, 178, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(
+      ellipse at center,
+      black 0%,
+      transparent 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black 0%,
+      transparent 80%
+    );
   }
 
   /* Divider */

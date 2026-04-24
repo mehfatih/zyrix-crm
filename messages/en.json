@@ -54,13 +54,19 @@
   },
   "Home": {
     "hero": {
-      "badge": "Built for MENA & Turkey",
-      "title": "The CRM that actually speaks your language",
-      "titleHighlight": "speaks your language",
-      "subtitle": "WhatsApp-native. Understands Arabic dialects. Integrated with Zyrix Pay & FinSuite. Finally, a CRM designed for how business really works in Saudi, UAE, Turkey, Iraq & Egypt.",
-      "ctaPrimary": "Start free — no credit card",
-      "ctaSecondary": "Watch 2-min demo",
-      "trustIndicator": "Trusted by growing teams in 14 countries"
+      "badge": "New",
+      "title": "The CRM built for how business actually happens here",
+      "titleHighlight": "actually happens here",
+      "subtitle": "WhatsApp-native. Arabic dialect-aware. Priced per company, not per seat — the CRM made for MENA & Türkiye teams.",
+      "ctaPrimary": "Create for free",
+      "ctaSecondary": "Sign in",
+      "trustIndicator": "Used by 500+ companies across MENA & Türkiye",
+      "stickyCta": "Start free → No credit card",
+      "stats": {
+        "whatsapp": "98% WhatsApp delivery rate",
+        "speed": "3× faster than Salesforce setup",
+        "live": "15 min to go live"
+      }
     },
     "stats": {
       "title": "The numbers tell the story",

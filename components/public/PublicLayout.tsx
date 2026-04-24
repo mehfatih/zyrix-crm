@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import PublicHeader from "./PublicHeader";
 import PublicFooter from "./PublicFooter";
+import StickyCTA from "./StickyCTA";
 
 // ============================================================================
 // PUBLIC LAYOUT WRAPPER
@@ -111,6 +112,9 @@ export default function PublicLayout({
         <main className="flex-1">{children}</main>
         <PublicFooter />
       </div>
+
+      {/* Persistent "Start free" CTA for logged-out visitors only */}
+      <StickyCTA />
     </div>
   );
 }
