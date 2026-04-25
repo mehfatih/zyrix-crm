@@ -284,6 +284,16 @@
     border-radius: var(--radius-sm);
   }
 
+  /* Depth element D.3 (Sprint B — Apr 2026) — double-ring neon focus
+     (inner ring matches the #112044 surface so the outer neon ring
+     "floats"). Defined here in @layer base so the :focus-visible rule
+     above can swap to `@apply ring-neon` at Phase 2c.2. Not wired in yet. */
+  .ring-neon {
+    box-shadow:
+      0 0 0 2px #112044,
+      0 0 0 4px rgba(56, 189, 248, 0.55);
+  }
+
   /* ============================================================================
      RTL SUPPORT
      ============================================================================ */
@@ -515,6 +525,71 @@
       transparent 100%
     );
     @apply my-8;
+  }
+
+  /* ========================================================================
+     SPRINT B — DARK NAVY DEPTH UTILITIES (Apr 2026)
+     Additive — see docs/sprint-b-implementation-plan.md §B for usage rules.
+     None of these are wired up to any element yet; activation begins at
+     Phase 2c.1 (DashboardShell migrate) and 2c.2 (global canvas flip).
+     ======================================================================== */
+
+  /* Surface — page canvas color (one notch darker than #112044 brand base) */
+  .bg-navy-canvas {
+    background-color: #0A1530;
+  }
+
+  /* Depth element D.1 — dot grid at low opacity (composes with bg color) */
+  .bg-navy-dots {
+    background-image: radial-gradient(
+      rgba(125, 223, 255, 0.05) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  /* Depth element D.2 — soft circle halos for AI hero cards / focal points
+     Apply to an absolutely-positioned <div> placed behind the card content.
+     Use logical insets (start/end) rather than left/right for RTL safety. */
+  .halo-cyan {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 9999px;
+    background: rgba(56, 189, 248, 0.20);
+    filter: blur(48px);
+    pointer-events: none;
+  }
+
+  .halo-violet {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 9999px;
+    background: rgba(124, 58, 237, 0.20);
+    filter: blur(48px);
+    pointer-events: none;
+  }
+
+  /* Depth element D.5 — top-edge highlight on cards (mimics light hitting
+     glass — Linear pattern). Apply to a card wrapper; the ::before paints
+     a 1px gradient strip across the top edge. Decorative — pointer-events
+     disabled so it doesn't block clicks on the underlying card. */
+  .ai-card-edge {
+    position: relative;
+  }
+
+  .ai-card-edge::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(56, 189, 248, 0.30),
+      rgba(56, 189, 248, 0)
+    );
+    pointer-events: none;
   }
 }
 
