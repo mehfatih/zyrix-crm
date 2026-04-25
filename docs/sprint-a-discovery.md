@@ -438,3 +438,105 @@ hasAllPermissions|hasAnyPermission|customRoleId|can(|cannot(`,
 **Single new file produced by Task 1:** this file (`docs/sprint-a-discovery.md`).
 Nothing else was added, edited, or staged. `git status` and `git diff`
 output follows in chat after this report is saved.
+
+---
+
+## 9. Follow-up after DevTools console capture (2026-04-25, post Commit Point 1)
+
+After Commit Point 1 (`329a3f0`), Mehmet captured the actual
+client-side errors from `crm.zyrix.co` via DevTools. The findings:
+
+### 9.1 What was captured
+
+**`/{locale}/settings/brand`** (the page colloquially called "/branding"):
+
+- `GET https://api.crm.zyrix.co/api/brand` → **500 Internal Server Error**
+- `GET https://api.crm.zyrix.co/api/brands` → **500 Internal Server Error**
+- UI displays the page's red error banner: "An unexpected error occurred".
+
+**`/{locale}/settings/brands`** (the page colloquially called "/brands"):
+
+- `GET https://api.crm.zyrix.co/api/brands/stats` → **500 Internal Server Error**
+- `GET https://api.crm.zyrix.co/api/brands` → **500 Internal Server Error** (twice)
+- UI displays the page's red error banner: "An unexpected error occurred".
+
+### 9.2 Resolution of the open questions in §6
+
+- **Q1 (naming):** RESOLVED — Mehmet chose redirect-only. The Sprint A
+  fix adds `/[locale]/branding → /[locale]/settings/brand` and
+  `/[locale]/brands → /[locale]/settings/brands` as 307 redirects. No
+  new pages.
+- **Q2 (DevTools capture):** RESOLVED — see §9.1.
+- **Q3 (backend availability):** RESOLVED — backend at
+  `https://api.crm.zyrix.co` IS deployed and reachable, but the brand
+  endpoints (`/api/brand`, `/api/brands`, `/api/brands/stats`) all
+  return HTTP 500. Backend is up; these endpoints are erroring.
+- **Q4 (re-frame Tasks 4–5):** APPROVED — `docs/rbac-proposal.md` and
+  `docs/audit-log-proposal.md` will be gap-analysis + completion
+  proposals, not from-scratch designs.
+- **Q5 (color conflict):** still out of scope for Sprint A; deferred
+  to Sprint B.
+
+### 9.3 Root cause and re-scope
+
+The frontend code at
+`app/[locale]/(dashboard)/settings/brand/page.tsx` and
+`app/[locale]/(dashboard)/settings/brands/page.tsx` is functioning
+correctly: it calls the backend, the backend returns 500, the page
+catches the error in its `try/catch`, sets `setError`, and renders the
+red banner with the localised "An unexpected error occurred" string.
+
+This **confirms hypothesis (2)** from §2.6 — backend unreachable /
+wrong shape — and **rules out (1) and (3)**. Therefore Sprint A v2
+Tasks 2 and 3 cannot fix the user-visible "page broken" experience by
+changing **this** repo's frontend code. The backend 500s live in the
+separate `zyrix-crm-backend` repository (Railway-hosted, per
+`PROJECT_STATUS.md`) and are explicitly **out of scope for Sprint A**.
+
+### 9.4 Sprint A re-scoped fix
+
+Per Mehmet's decision after seeing the captured errors:
+
+- **In scope for Sprint A (this repo):** add audit-doc shortcut routes
+  `/[locale]/branding` → `/[locale]/settings/brand` and
+  `/[locale]/brands` → `/[locale]/settings/brands` as 307 redirects.
+  This resolves the literal "404 on /branding and /brands" finding
+  from §2.4 and §3.4 — those URLs now resolve to the real pages
+  instead of returning a 404. Type-check passes; six locale × route
+  combinations have been verified locally to redirect with HTTP 307
+  followed by HTTP 200 on the canonical settings URL.
+- **Out of scope for Sprint A:** the backend 500 errors. These need a
+  separate ticket against `zyrix-crm-backend`. Likely investigation
+  starting points (NOT acted on from this repo): missing
+  Authorization-header handling, missing DB tables/rows for brand
+  records, or a recent deployment regression. None of this is provable
+  from the frontend repo alone.
+
+### 9.5 Implication for the Sprint A final report (Task 8)
+
+The Sprint A final report should record honestly:
+
+- **Frontend:** redirect routes added, type-check passes, both
+  audit-doc URLs now resolve cleanly to the canonical settings pages.
+- **User-visible "page errors":** NOT resolved by Sprint A. They are
+  backend 500s. A follow-up ticket against `zyrix-crm-backend` is the
+  prerequisite for declaring the dashboard branding pages production-
+  ready. Until that ticket lands, visiting either `/branding` or
+  `/brands` will redirect successfully but the destination page will
+  still display the red error banner.
+
+### 9.6 Tooling note (separate observation)
+
+While running the Sprint A v2 verification gate, two pre-existing
+tooling issues surfaced that are **not** introduced by Sprint A:
+
+- `npm run lint` is broken because Next.js 16 removed the `next lint`
+  subcommand; the script tries to lint a non-existent `lint/`
+  directory.
+- `npx eslint .` is broken because ESLint 9 requires the new flat-config
+  (`eslint.config.js`) and this repo has no ESLint config file at all.
+
+`npm run type-check` runs cleanly and was used as the verification
+gate for Sprint A's redirect changes. Restoring lint should be its
+own small cleanup ticket; doing it inside Sprint A would violate the
+"don't improve code outside the assigned task" rule.
