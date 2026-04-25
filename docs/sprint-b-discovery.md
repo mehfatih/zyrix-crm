@@ -407,5 +407,16 @@ Discovery was strictly read-only. No code, no config, no theme files, no compone
 
 ---
 
+## 13. Decisions on §11 open questions (approved by Mehmet 2026-04-25)
+
+- **Q1:** Approved #7C3AED violet endpoint on gradient-ai-primary.
+- **Q2:** Page canvas = #0A1530 (one notch darker than #112044).
+- **Q3:** Phase 2c canvas-toggle = single commit (global flip).
+- **Q4:** /ai-cfo and /whatsapp — include in Phase 2k.
+- **Q5:** /ai-agents status badges (amber/emerald/sky) — leave as-is, address in a future "semantic tokens" follow-up.
+- **Q6:** /docs and marketing pages — out of scope, dashboard only.
+
+---
+
 **End of Sprint B Phase 1 Discovery Report.**
 **Awaiting Mehmet review and explicit go/no-go on §11 open questions before Phase 2a begins.**
