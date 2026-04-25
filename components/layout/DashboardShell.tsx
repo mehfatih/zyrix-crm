@@ -199,8 +199,8 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       <ImpersonationBanner locale={locale} />
       <div className="flex-1 flex">
       {/* Sidebar */}
-      <aside className="hidden lg:flex w-64 bg-white border-r border-line-soft flex-col fixed h-screen">
-        <div className="p-4 border-b border-line-soft flex items-center gap-2">
+      <aside className="hidden lg:flex w-64 bg-navy-800 border-r border-navy-700 flex-col fixed h-screen">
+        <div className="p-4 border-b border-navy-700 flex items-center gap-2">
           <Link
             href={`/${locale}/dashboard`}
             className="flex items-center gap-2 flex-1 min-w-0"
@@ -226,10 +226,10 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
               />
             )}
             <div className="min-w-0">
-              <h1 className="text-sm font-bold text-ink leading-tight truncate">
+              <h1 className="text-sm font-bold text-navy-ink leading-tight truncate">
                 {company.name}
               </h1>
-              <p className="text-[10px] text-ink-muted capitalize">
+              <p className="text-[10px] text-navy-muted capitalize">
                 {company.plan}
               </p>
             </div>
@@ -265,8 +265,8 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
                 className={cn(
                   "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
                   isActive
-                    ? "bg-primary-50 text-primary-700 font-medium"
-                    : "text-ink-light hover:bg-bg-subtle hover:text-ink"
+                    ? "bg-navy-700 text-neon-300 font-medium"
+                    : "text-navy-muted hover:bg-navy-700 hover:text-navy-ink"
                 )}
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
@@ -276,7 +276,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
                     {(item as any).unreadCount > 99 ? "99+" : (item as any).unreadCount}
                   </span>
                 ) : item.badge ? (
-                  <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase bg-sky-100 text-sky-600 rounded">
+                  <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase bg-neon-500/15 text-neon-300 rounded">
                     {item.badge}
                   </span>
                 ) : null}
@@ -307,8 +307,8 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           }}
           className={`group relative h-1.5 cursor-ns-resize flex items-center justify-center flex-shrink-0 border-y transition-colors ${
             isDragging
-              ? "bg-sky-100 border-sky-300"
-              : "bg-line-soft border-transparent hover:bg-sky-50 hover:border-sky-200"
+              ? "bg-neon-500/20 border-neon-500/50"
+              : "bg-navy-700 border-transparent hover:bg-neon-500/10 hover:border-neon-500/30"
           }`}
           title="Drag to resize — double-click to reset"
         >
@@ -318,11 +318,11 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
               isDragging ? "opacity-100" : "opacity-40 group-hover:opacity-80"
             }`}
           >
-            <span className="w-1 h-1 rounded-full bg-slate-400" />
-            <span className="w-1 h-1 rounded-full bg-slate-400" />
-            <span className="w-1 h-1 rounded-full bg-slate-400" />
-            <span className="w-1 h-1 rounded-full bg-slate-400" />
-            <span className="w-1 h-1 rounded-full bg-slate-400" />
+            <span className="w-1 h-1 rounded-full bg-navy-muted" />
+            <span className="w-1 h-1 rounded-full bg-navy-muted" />
+            <span className="w-1 h-1 rounded-full bg-navy-muted" />
+            <span className="w-1 h-1 rounded-full bg-navy-muted" />
+            <span className="w-1 h-1 rounded-full bg-navy-muted" />
           </div>
         </div>
 
@@ -334,84 +334,84 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           <LanguageSwitcher currentLocale={locale as Locale} />
           <Link
             href={`/${locale}/settings`}
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Settings className="w-4 h-4" />
             Settings
           </Link>
           <Link
             href={`/${locale}/settings/templates`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Mail className="w-3.5 h-3.5" />
             Email templates
           </Link>
           <Link
             href={`/${locale}/settings/custom-fields`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Activity className="w-3.5 h-3.5" />
             Custom fields
           </Link>
           <Link
             href={`/${locale}/settings/integrations`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Sparkles className="w-3.5 h-3.5" />
             E-commerce
           </Link>
           <Link
             href={`/${locale}/settings/billing`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <CreditCard className="w-3.5 h-3.5" />
             Billing
           </Link>
           <Link
             href={`/${locale}/settings/security`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Shield className="w-3.5 h-3.5" />
             Security
           </Link>
           <Link
             href={`/${locale}/settings/users`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Users className="w-3.5 h-3.5" />
             Team
           </Link>
           <Link
             href={`/${locale}/settings/roles`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <ShieldCheck className="w-3.5 h-3.5" />
             Roles
           </Link>
           <Link
             href={`/${locale}/settings/audit`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <History className="w-3.5 h-3.5" />
             Audit log
           </Link>
           <Link
             href={`/${locale}/settings/api`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Key className="w-3.5 h-3.5" />
             API keys
           </Link>
           <Link
             href={`/${locale}/settings/brand`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Palette className="w-3.5 h-3.5" />
             Branding
           </Link>
           <Link
             href={`/${locale}/settings/brands`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-ink-light hover:bg-bg-subtle hover:text-ink transition-colors"
+            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-navy-muted hover:bg-navy-700 hover:text-navy-ink transition-colors"
           >
             <Store className="w-3.5 h-3.5" />
             Brands
@@ -419,16 +419,16 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
         </div>
         </div>
 
-        <div className="p-3 border-t border-line-soft">
+        <div className="p-3 border-t border-navy-700">
           <div className="flex items-center gap-3 p-2">
-            <div className="w-9 h-9 rounded-full bg-primary-600 text-white flex items-center justify-center font-semibold text-sm">
+            <div className="w-9 h-9 rounded-full bg-gradient-ai-primary text-white flex items-center justify-center font-semibold text-sm">
               {getInitials(user.fullName)}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-ink truncate">
+              <p className="text-sm font-medium text-navy-ink truncate">
                 {user.fullName}
               </p>
-              <p className="text-xs text-ink-muted truncate">{user.email}</p>
+              <p className="text-xs text-navy-muted truncate">{user.email}</p>
             </div>
             <button
               onClick={async () => {
@@ -441,7 +441,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
                 }
                 await logout();
               }}
-              className="p-1.5 text-ink-light hover:text-danger hover:bg-danger-light rounded"
+              className="p-1.5 text-navy-muted hover:text-danger hover:bg-danger-light/20 rounded"
               title="Log out"
             >
               <LogOut className="w-4 h-4" />
@@ -452,11 +452,11 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
 
       {/* Main */}
       <main className="flex-1 lg:ml-64 flex flex-col min-h-screen">
-        <div className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-line-soft px-4 py-2.5 flex items-center gap-3">
+        <div className="sticky top-0 z-30 bg-navy-800/80 backdrop-blur-md border-b border-navy-700 px-4 py-2.5 flex items-center gap-3">
           <GlobalSearchBar />
           <button
             onClick={() => useAIStore.getState().toggle()}
-            className="relative flex items-center gap-2 rounded-lg bg-zyrix-ai-gradient px-3 py-1.5 text-xs font-bold text-white shadow-zyrix-card hover:shadow-zyrix-ai-glow transition-shadow"
+            className="relative flex items-center gap-2 rounded-lg bg-gradient-ai-primary px-3 py-1.5 text-xs font-bold text-white shadow-zyrix-card hover:shadow-zyrix-ai-glow-dark transition-shadow"
             aria-label="Ask AI"
           >
             <Sparkles size={14} />
