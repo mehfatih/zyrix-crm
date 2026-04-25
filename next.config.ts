@@ -26,8 +26,7 @@ const securityHeaders = [
   },
   {
     key: "Permissions-Policy",
-    value:
-      "camera=(), microphone=(self), geolocation=(self), interest-cohort=()",
+    value: "camera=(), microphone=(self), geolocation=(self), interest-cohort=()",
   },
   {
     key: "X-XSS-Protection",
@@ -39,7 +38,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  output: "standalone",
 
   // Next.js 16: typedRoutes moved OUT of experimental
   typedRoutes: true,
@@ -76,18 +74,8 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
 
-  experimental: {
-    optimizePackageImports: [
-      "lucide-react",
-      "framer-motion",
-      "date-fns",
-      "sonner",
-    ],
-  },
-
-  turbopack: {
-    resolveAlias: {},
-  },
+  // experimental.optimizePackageImports removed — was causing OOM during build.
+  // Tree-shaking still works without it for these libraries.
 
   async headers() {
     return [
