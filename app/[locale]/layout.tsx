@@ -10,6 +10,7 @@ import {
   localeToISO,
 } from "@/i18n";
 import { AuthProvider } from "@/lib/auth/context";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 import "../globals.css";
 
 const BASE = "https://crm.zyrix.co";
@@ -212,9 +213,11 @@ export default async function LocaleLayout({
         suppressHydrationWarning
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <AuthProvider locale={locale}>
-            {children}
-          </AuthProvider>
+          <QueryProvider>
+            <AuthProvider locale={locale}>
+              {children}
+            </AuthProvider>
+          </QueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>

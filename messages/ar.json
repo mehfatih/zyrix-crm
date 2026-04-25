@@ -2785,6 +2785,26 @@
     },
     "topbar": {
       "askAI": "اسأل الذكاء"
+    },
+    "dashboard": {
+      "executiveSummary": "الملخص التنفيذي",
+      "topPriorities": "أهم الأولويات",
+      "revenueAtRisk": "في خطر",
+      "opportunities": "فرص",
+      "priorityActions": "إجراءات الأولوية",
+      "priorityActionsSubtitle": "مرتبة بواسطة الذكاء الاصطناعي حسب الأثر والإلحاحية",
+      "revenueBrain": "عقل الإيرادات",
+      "revenueForecast": "توقعات الإيرادات",
+      "monthlyTarget": "الهدف الشهري",
+      "scenarios": "السيناريوهات",
+      "revenueLeakage": "تسرب الإيرادات",
+      "recommendedActions": "إجراءات موصى بها",
+      "kpi": {
+        "revenue": "الإيرادات",
+        "customers": "العملاء",
+        "pipeline": "خط المبيعات",
+        "activity": "النشاط"
+      }
     }
   }
 }

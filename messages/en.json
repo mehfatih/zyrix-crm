@@ -2785,6 +2785,26 @@
     },
     "topbar": {
       "askAI": "Ask AI"
+    },
+    "dashboard": {
+      "executiveSummary": "Executive Summary",
+      "topPriorities": "Top priorities",
+      "revenueAtRisk": "At risk",
+      "opportunities": "Opportunities",
+      "priorityActions": "Priority Actions",
+      "priorityActionsSubtitle": "Ranked by AI based on impact and urgency",
+      "revenueBrain": "Revenue Brain",
+      "revenueForecast": "Revenue Forecast",
+      "monthlyTarget": "Monthly target",
+      "scenarios": "Scenarios",
+      "revenueLeakage": "Revenue leakage",
+      "recommendedActions": "Recommended actions",
+      "kpi": {
+        "revenue": "Revenue",
+        "customers": "Customers",
+        "pipeline": "Pipeline",
+        "activity": "Activity"
+      }
     }
   }
 }

@@ -35,6 +35,12 @@ import {
 } from "@/lib/api/advanced";
 import { DashboardGrid } from "@/components/dashboard-widgets/DashboardGrid";
 import { OnboardingBanner } from "@/components/onboarding/OnboardingBanner";
+import { AIExecutiveSummary } from "@/components/dashboard/AIExecutiveSummary";
+import { AIPriorityActions } from "@/components/dashboard/AIPriorityActions";
+import { AISmartKPIGrid } from "@/components/dashboard/AISmartKPIGrid";
+import { AIRevenueBrainPanel } from "@/components/dashboard/AIRevenueBrainPanel";
+import { usePageContextSync } from "@/hooks/usePageContextSync";
+import { useAuth } from "@/lib/auth/context";
 
 // ============================================================================
 // ROLE-BASED DASHBOARD
@@ -45,6 +51,13 @@ export default function DashboardPage() {
   const params = useParams<{ locale: string }>();
   const locale = params?.locale || "en";
   const t = useTranslations("Dashboard");
+
+  // Sync the AI side-panel context to the dashboard, so any "Ask AI" call
+  // from this page knows which surface the user is currently looking at.
+  usePageContextSync("dashboard");
+  const { user, company } = useAuth();
+  const workspaceId = company?.id ?? "current";
+  const userName = user?.fullName;
 
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
@@ -112,8 +125,24 @@ export default function DashboardPage() {
   return (
     <DashboardShell locale={locale}>
       <div className="p-6 space-y-6">
+        {/* AI Executive Summary — hero card with greeting + narrative */}
+        <AIExecutiveSummary workspaceId={workspaceId} userName={userName} />
+
+        {/* AI Smart KPI Grid — KPIs always carry context, never raw numbers */}
+        <AISmartKPIGrid />
+
+        {/* AI Priority Actions + Revenue Brain — two-column on lg */}
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <AIPriorityActions workspaceId={workspaceId} />
+          </div>
+          <div>
+            <AIRevenueBrainPanel workspaceId={workspaceId} />
+          </div>
+        </div>
+
         {/* Header with scope badge */}
-        <div className="flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center justify-between gap-4 flex-wrap pt-4 border-t border-zyrix-border">
           <div>
             <h1 className="text-2xl font-bold text-sky-900">{t("title")}</h1>
             <div className="flex items-center gap-2 mt-1">

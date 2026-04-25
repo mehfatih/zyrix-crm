@@ -2785,6 +2785,26 @@
     },
     "topbar": {
       "askAI": "AI'a sor"
+    },
+    "dashboard": {
+      "executiveSummary": "Yönetici Özeti",
+      "topPriorities": "Öncelikler",
+      "revenueAtRisk": "Risk altında",
+      "opportunities": "Fırsatlar",
+      "priorityActions": "Öncelikli Eylemler",
+      "priorityActionsSubtitle": "Etki ve aciliyete göre AI tarafından sıralandı",
+      "revenueBrain": "Gelir Beyni",
+      "revenueForecast": "Gelir Tahmini",
+      "monthlyTarget": "Aylık hedef",
+      "scenarios": "Senaryolar",
+      "revenueLeakage": "Gelir sızıntısı",
+      "recommendedActions": "Önerilen eylemler",
+      "kpi": {
+        "revenue": "Gelir",
+        "customers": "Müşteriler",
+        "pipeline": "Boru hattı",
+        "activity": "Etkinlik"
+      }
     }
   }
 }
