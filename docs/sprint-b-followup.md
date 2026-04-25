@@ -123,6 +123,47 @@ Both are non-trivial scope and merit a dedicated sprint each (or a single "share
 
 ---
 
+## 4. Lint tooling restoration (surfaced during Sprint B Phase 2a — NOT scoped to Sprint B)
+
+**Why deferred:** During Phase 2a verification on 2026-04-25, the plan §C "lint exits 0" gate could not be satisfied. Two pre-existing tooling issues were uncovered. Both pre-date Sprint B and have nothing to do with the Dark Navy migration.
+
+### Broken script
+
+`package.json` defines `"lint": "next lint"`. Running `npm run lint` produces:
+
+```
+> next lint
+Invalid project directory provided, no such directory: D:\Zyrix Hub\zyrix-crm\lint
+```
+
+Next.js is interpreting "lint" as a positional path argument because the `lint` subcommand no longer exists in Next 16+.
+
+### Two root causes
+
+1. **Next.js 16 removed the `next lint` subcommand.** The project is on Next 16.2.4. The `next lint` invocation no longer dispatches to ESLint — Next now expects users to run their linter directly. (The project's `package.json` `build` script already routes around this with `next build --no-lint`, confirming the dysfunction is known.)
+2. **ESLint v9 flat-config migration not done.** Running `npx eslint` directly fails with "ESLint couldn't find an eslint.config.(js|mjs|cjs) file." ESLint 9 (installed in this project) requires the new flat-config format; the project still has a legacy `.eslintrc.*` file that hasn't been migrated.
+
+### Proposed fix — one commit, separate task
+
+`chore(tooling): restore lint` — outside any Sprint B commit, can be run any time:
+
+1. Replace `package.json` `lint` script: `"lint": "next lint"` → `"lint": "eslint ."`
+2. Write a minimal `eslint.config.js` flat-config that mirrors the rules from the existing `.eslintrc.*` (use the [ESLint v9 migration guide](https://eslint.org/docs/latest/use/configure/migration-guide); for projects with `eslint-config-next`, consume it via `import nextPlugin from 'eslint-config-next'` in flat-config form).
+3. Delete the legacy `.eslintrc.*` file(s).
+4. Verify `npm run lint` exits 0 (warnings tolerated, errors blocking) on a clean checkout.
+5. Optionally remove `--no-lint` from the `build` script in `package.json` and re-test the build.
+6. Update `docs/sprint-b-implementation-plan.md` §C step #2 to re-include lint as a blocking gate; this section in the followup doc gets a `**Status: Resolved by chore(tooling): restore lint, 20XX-XX-XX**` footer.
+
+### Sprint B impact
+
+§C step #2 of the implementation plan is amended to skip lint. Type-check + diff review + visual check carry the gate for every Sprint B commit. The §C amendment lands in the same commit as Phase 2a (`feat(theme): add navy + neon tokens (Sprint B Phase 2a)`) — the gate update is the justification for why that commit ships without lint.
+
+### NOT scoped to Sprint B
+
+This is a tooling-infrastructure task, not a design-system task. Mixing it into Sprint B would inflate scope and pull in unrelated review surface (the ESLint flat-config rewrite is its own focused review). Pick it up opportunistically — anyone doing CI/tooling work can knock it out in 30–60 minutes.
+
+---
+
 ## How this doc evolves
 
 When a deferred item gets picked up by a future sprint:

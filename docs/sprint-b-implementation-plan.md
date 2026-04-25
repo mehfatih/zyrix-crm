@@ -134,7 +134,7 @@ The four utilities defined in Phase 2b. Each commit specifies which (if any) it 
 Every Phase 2 commit MUST pass this gate before the next commit begins:
 
 1. **Type-check:** `npm run type-check` exits 0.
-2. **Lint:** `npm run lint` exits 0 (warnings tolerated, errors blocking).
+2. **Lint:** skipped — pre-existing tooling issue (Next.js 16 removed `next lint` subcommand; ESLint v9 needs flat-config migration). Tracked in `docs/sprint-b-followup.md` §4. Type-check (`tsc --noEmit`) plus visual review carries the gate.
 3. **Diff review:** Mehmet runs `git diff HEAD~1` and confirms only expected changes appear.
 4. **Visual check (en):** Mehmet opens the affected page(s) in a browser at locale `en` and confirms layout/legibility/contrast.
 5. **Visual check (ar):** For any commit touching translated UI strings or layout flow, Mehmet opens at locale `ar` (RTL) and confirms mirroring is correct (no halo/icon flipped wrong, no text-overflow).

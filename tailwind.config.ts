@@ -6,8 +6,10 @@ import aspectRatio from "@tailwindcss/aspect-ratio";
 // ============================================================================
 // ZYRIX CRM — Tailwind Configuration
 // ============================================================================
-// Brand rule: NO dark or gloomy colors anywhere.
-// Palette is exclusively cyan / sky / azure tones.
+// As of Sprint B (Apr 2026): brand identity is Dark Navy #112044 + neon blue
+// gradient. The legacy sky/cyan/zyrix tokens remain for backward-compat during
+// the migration window — do not remove without explicit follow-up sprint
+// approval. See docs/sprint-b-discovery.md and docs/sprint-b-implementation-plan.md.
 // ============================================================================
 
 const config: Config = {
@@ -192,6 +194,34 @@ const config: Config = {
           warning: "#F59E0B",
           danger: "#EF4444",
         },
+
+        // ──────────────────────────────────────────────────────────────
+        // DARK NAVY (Sprint B — Apr 2026)
+        // Surface ladder + inverted text tokens for dark surfaces.
+        // Additive — does not replace existing zyrix.* / sky / primary tokens.
+        // See docs/sprint-b-implementation-plan.md §A for swap mappings.
+        // ──────────────────────────────────────────────────────────────
+        navy: {
+          canvas: "#0A1530", // Page canvas (one notch darker than #112044)
+          900: "#112044",    // Brand base — locked by audit
+          800: "#182A55",    // Card surface
+          700: "#243766",    // Elevated card / hover
+          600: "#324A82",    // Border on dark / disabled
+          ink: "#F1F5F9",    // Headings on dark (slate-100)
+          body: "#CBD5E1",   // Body text on dark (slate-300)
+          muted: "#94A3B8",  // Captions / labels on dark (slate-400)
+        },
+
+        // ──────────────────────────────────────────────────────────────
+        // NEON BLUE (Sprint B — Apr 2026)
+        // Primary action accents on dark navy surfaces.
+        // ──────────────────────────────────────────────────────────────
+        neon: {
+          300: "#7DDFFF",        // Highlight / link-hover / icon glints
+          500: "#38BDF8",        // DEFAULT primary action on dark
+          600: "#0EA5E9",        // Alias for existing zyrix.primary
+          DEFAULT: "#38BDF8",
+        },
       },
 
       // ─────────────────────────────────────────────────────────────────
@@ -284,6 +314,10 @@ const config: Config = {
           "0 4px 12px rgba(14,165,233,0.12), 0 2px 6px rgba(14,165,233,0.06)",
         "zyrix-ai-glow":
           "0 0 0 1px rgba(14,165,233,0.15), 0 4px 12px rgba(14,165,233,0.08)",
+
+        // Dark-friendly AI glow (Sprint B — Apr 2026)
+        "zyrix-ai-glow-dark":
+          "0 0 0 1px rgba(56,189,248,0.25), 0 8px 32px -8px rgba(56,189,248,0.35)",
       },
 
       // ─────────────────────────────────────────────────────────────────
@@ -326,6 +360,16 @@ const config: Config = {
           "linear-gradient(135deg, #22D3EE 0%, #0EA5E9 50%, #0284C7 100%)",
         "zyrix-soft-gradient":
           "linear-gradient(135deg, #F0F9FF 0%, #FFFFFF 100%)",
+
+        // Dark Navy + neon gradients (Sprint B — Apr 2026)
+        "gradient-ai-primary":
+          "linear-gradient(135deg, #38BDF8 0%, #0EA5E9 50%, #7C3AED 100%)",
+        "gradient-ai-edge":
+          "linear-gradient(180deg, rgba(56,189,248,0.12), rgba(56,189,248,0))",
+        "gradient-ai-glow":
+          "radial-gradient(circle at 30% 20%, rgba(56,189,248,0.18), transparent 60%)",
+        "gradient-page-aurora":
+          "radial-gradient(60% 80% at 70% 0%, rgba(124,58,237,0.10), transparent 60%), radial-gradient(50% 60% at 20% 100%, rgba(56,189,248,0.10), transparent 70%)",
       },
 
       backgroundSize: {
