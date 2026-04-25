@@ -2882,6 +2882,43 @@
         "customers": "العملاء",
         "revenue": "الإيرادات"
       }
+    },
+    "agents": {
+      "title": "وكلاء الذكاء الاصطناعي",
+      "subtitle": "{count} مخرج معلق",
+      "widgetSubtitle": "{count} رؤية وكيل جاهزة",
+      "viewAll": "عرض الكل",
+      "draft": "مسودة",
+      "approve": "موافقة",
+      "edit": "تعديل",
+      "dismiss": "تجاهل",
+      "approved": "تمت الموافقة",
+      "dismissed": "تم التجاهل",
+      "permissionUpdated": "تم تحديث الصلاحية",
+      "editComingSoon": "التعديل قريباً",
+      "tabs": {
+        "pending": "المخرجات المعلقة",
+        "settings": "إعدادات الوكلاء",
+        "logs": "سجل النشاط"
+      },
+      "filter": { "all": "الكل" }
+    },
+    "integrations": {
+      "title": "التكاملات",
+      "subtitle": "اربط أدوات خارجية بـ Zyrix",
+      "fileStorage": "تخزين الملفات",
+      "googleDriveDescription": "أرفق ملفات من Drive للعملاء والصفقات والعروض والعقود",
+      "microsoftDescription": "اربط OneDrive و SharePoint لإدارة الملفات",
+      "connect": "اتصال",
+      "disconnect": "قطع الاتصال",
+      "connected": "متصل",
+      "disconnected": "تم قطع الاتصال",
+      "lastSync": "آخر مزامنة",
+      "itemsSynced": "عنصر تم مزامنته",
+      "errors": "أخطاء",
+      "confirmDisconnect": "قطع اتصال {provider}؟",
+      "disconnectWarning": "قطع الاتصال سيوقف مزامنة الملفات. الملفات المرفقة الحالية ستبقى مرئية ولكن التحميلات الجديدة ستفشل.",
+      "cancel": "إلغاء"
     }
   },
   "customers": {

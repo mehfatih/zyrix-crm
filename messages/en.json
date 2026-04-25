@@ -2882,6 +2882,43 @@
         "customers": "Customers",
         "revenue": "Revenue"
       }
+    },
+    "agents": {
+      "title": "AI Agents",
+      "subtitle": "{count} pending outputs",
+      "widgetSubtitle": "{count} agent insights ready",
+      "viewAll": "View all",
+      "draft": "Draft",
+      "approve": "Approve",
+      "edit": "Edit",
+      "dismiss": "Dismiss",
+      "approved": "Approved",
+      "dismissed": "Dismissed",
+      "permissionUpdated": "Permission updated",
+      "editComingSoon": "Edit coming soon",
+      "tabs": {
+        "pending": "Pending Outputs",
+        "settings": "Agent Settings",
+        "logs": "Activity Logs"
+      },
+      "filter": { "all": "All" }
+    },
+    "integrations": {
+      "title": "Integrations",
+      "subtitle": "Connect external tools to Zyrix",
+      "fileStorage": "File Storage",
+      "googleDriveDescription": "Attach files from Drive to customers, deals, quotes, contracts",
+      "microsoftDescription": "Connect OneDrive and SharePoint for file management",
+      "connect": "Connect",
+      "disconnect": "Disconnect",
+      "connected": "Connected",
+      "disconnected": "Disconnected",
+      "lastSync": "Last sync",
+      "itemsSynced": "items synced",
+      "errors": "errors",
+      "confirmDisconnect": "Disconnect {provider}?",
+      "disconnectWarning": "Disconnecting will stop file syncing. Existing attached files will remain visible but new uploads will fail.",
+      "cancel": "Cancel"
     }
   },
   "customers": {

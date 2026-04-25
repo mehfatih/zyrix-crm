@@ -39,6 +39,7 @@ import { AIExecutiveSummary } from "@/components/dashboard/AIExecutiveSummary";
 import { AIPriorityActions } from "@/components/dashboard/AIPriorityActions";
 import { AISmartKPIGrid } from "@/components/dashboard/AISmartKPIGrid";
 import { AIRevenueBrainPanel } from "@/components/dashboard/AIRevenueBrainPanel";
+import { AgentsWidget } from "@/components/dashboard/AgentsWidget";
 import { usePageContextSync } from "@/hooks/usePageContextSync";
 import { useAuth } from "@/lib/auth/context";
 
@@ -140,6 +141,9 @@ export default function DashboardPage() {
             <AIRevenueBrainPanel workspaceId={workspaceId} />
           </div>
         </div>
+
+        {/* AI Agents — top 3 pending outputs */}
+        <AgentsWidget />
 
         {/* Header with scope badge */}
         <div className="flex items-center justify-between gap-4 flex-wrap pt-4 border-t border-zyrix-border">

@@ -2882,6 +2882,43 @@
         "customers": "Müşteriler",
         "revenue": "Gelir"
       }
+    },
+    "agents": {
+      "title": "AI Ajanları",
+      "subtitle": "{count} bekleyen çıktı",
+      "widgetSubtitle": "{count} ajan öngörüsü hazır",
+      "viewAll": "Tümünü gör",
+      "draft": "Taslak",
+      "approve": "Onayla",
+      "edit": "Düzenle",
+      "dismiss": "Reddet",
+      "approved": "Onaylandı",
+      "dismissed": "Reddedildi",
+      "permissionUpdated": "İzin güncellendi",
+      "editComingSoon": "Düzenleme yakında",
+      "tabs": {
+        "pending": "Bekleyen Çıktılar",
+        "settings": "Ajan Ayarları",
+        "logs": "Etkinlik Günlüğü"
+      },
+      "filter": { "all": "Tümü" }
+    },
+    "integrations": {
+      "title": "Entegrasyonlar",
+      "subtitle": "Zyrix'e harici araçları bağlayın",
+      "fileStorage": "Dosya Depolama",
+      "googleDriveDescription": "Drive'dan müşterilere, anlaşmalara, tekliflere, sözleşmelere dosya ekleyin",
+      "microsoftDescription": "Dosya yönetimi için OneDrive ve SharePoint'i bağlayın",
+      "connect": "Bağlan",
+      "disconnect": "Bağlantıyı kes",
+      "connected": "Bağlı",
+      "disconnected": "Bağlantı kesildi",
+      "lastSync": "Son senkronizasyon",
+      "itemsSynced": "öğe senkronize edildi",
+      "errors": "hata",
+      "confirmDisconnect": "{provider} bağlantısını kes?",
+      "disconnectWarning": "Bağlantıyı kesmek dosya senkronizasyonunu durdurur. Mevcut ekli dosyalar görünür kalır ancak yeni yüklemeler başarısız olur.",
+      "cancel": "İptal"
     }
   },
   "customers": {

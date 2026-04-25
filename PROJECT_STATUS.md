@@ -332,6 +332,9 @@ prisma.$executeRawUnsafe(...)
 - **2026-04-25:** اعتماد Sky Blue #0EA5E9 كقاعدة موحدة للموبايل والويب
   (يحل محل Cyan #0891B2 السابق). تطابق كامل مع تطبيق الموبايل
   وWeb AI Spec v1.
+- **2026-04-25:** Web AI Sprint 5 — مركز التحكم بـ AI Agents (8 وكلاء + 4 مستويات صلاحيات)
+  + صفحة File Storage Integrations (Google Drive + Microsoft 365). تمت إضافة
+  AgentsWidget إلى لوحة التحكم بعد Revenue Brain.
 - **[تحديثات لاحقة تُضاف هنا]**
 
 ---
