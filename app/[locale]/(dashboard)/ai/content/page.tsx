@@ -108,7 +108,7 @@ export default function ContentWriterPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/ai`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -116,7 +116,7 @@ export default function ContentWriterPage() {
             <PenTool className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("Content Writer", "كاتب المحتوى", "İçerik Yazarı")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">

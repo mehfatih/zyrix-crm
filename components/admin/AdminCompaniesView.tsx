@@ -153,7 +153,7 @@ export default function AdminCompaniesView() {
       )}
 
       {/* Filters */}
-      <div className="rounded-xl bg-white border border-cyan-100 p-4">
+      <div className="rounded-xl bg-white border border-sky-100 p-4">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="relative sm:col-span-1">
             <Search
@@ -168,7 +168,7 @@ export default function AdminCompaniesView() {
                 setPage(1);
               }}
               placeholder={t("search")}
-              className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+              className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
             />
           </div>
           <select
@@ -177,7 +177,7 @@ export default function AdminCompaniesView() {
               setStatusFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <option value="">{t("allStatuses")}</option>
             <option value="active">{tStatus("active")}</option>
@@ -191,7 +191,7 @@ export default function AdminCompaniesView() {
               setPlanFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <option value="">{t("allPlans")}</option>
             <option value="free">Free</option>
@@ -203,10 +203,10 @@ export default function AdminCompaniesView() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl bg-white border border-cyan-100 overflow-hidden">
+      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-cyan-600" size={24} />
+            <Loader2 className="animate-spin text-sky-500" size={24} />
           </div>
         ) : error ? (
           <div className="p-6 text-sm text-red-700">{error}</div>
@@ -238,14 +238,14 @@ export default function AdminCompaniesView() {
                           href={`/${locale}/admin/companies/${c.id}`}
                           className="block"
                         >
-                          <div className="font-medium text-slate-900 hover:text-cyan-700">
+                          <div className="font-medium text-slate-900 hover:text-sky-600">
                             {c.name}
                           </div>
                           <div className="text-xs text-slate-500">{c.slug}</div>
                         </Link>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-cyan-50 text-cyan-800 ring-1 ring-cyan-200 px-2 py-0.5 text-xs font-medium capitalize">
+                        <span className="inline-flex items-center rounded-full bg-sky-50 text-sky-800 ring-1 ring-sky-200 px-2 py-0.5 text-xs font-medium capitalize">
                           {c.plan}
                         </span>
                       </td>
@@ -272,7 +272,7 @@ export default function AdminCompaniesView() {
                         <div className="inline-flex items-center gap-1">
                           <Link
                             href={`/${locale}/admin/companies/${c.id}`}
-                            className="p-1.5 rounded hover:bg-cyan-50 text-cyan-600"
+                            className="p-1.5 rounded hover:bg-sky-50 text-sky-500"
                             title={t("view")}
                           >
                             <Eye size={16} />
@@ -381,7 +381,7 @@ export default function AdminCompaniesView() {
                     type="text"
                     value={actionReason}
                     onChange={(e) => setActionReason(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 bg-white py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    className="w-full rounded-lg border border-slate-300 bg-white py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
                   />
                 </div>
               )}

@@ -55,14 +55,14 @@ function iconForAction(action: string): { Icon: any; color: string } {
   if (action === "user.login_failed" || action === "user.2fa_challenge_failed")
     return { Icon: AlertCircle, color: "text-rose-700 bg-rose-50" };
   if (action === "user.logout") return { Icon: LogOut, color: "text-slate-600 bg-slate-100" };
-  if (action.startsWith("2fa.")) return { Icon: Shield, color: "text-cyan-700 bg-cyan-50" };
+  if (action.startsWith("2fa.")) return { Icon: Shield, color: "text-sky-600 bg-sky-50" };
   if (action.includes(".create") || action.includes(".add"))
     return { Icon: Plus, color: "text-emerald-600 bg-emerald-50" };
   if (action.includes(".delete") || action.includes(".remove"))
     return { Icon: Trash2, color: "text-rose-700 bg-rose-50" };
   if (action.includes(".update") || action.includes(".edit"))
     return { Icon: Edit, color: "text-amber-700 bg-amber-50" };
-  if (action.includes(".invite")) return { Icon: UserPlus, color: "text-cyan-700 bg-cyan-50" };
+  if (action.includes(".invite")) return { Icon: UserPlus, color: "text-sky-600 bg-sky-50" };
   if (action.includes("password") || action.includes("token") || action.includes("key"))
     return { Icon: KeyRound, color: "text-violet-700 bg-violet-50" };
   return { Icon: History, color: "text-slate-600 bg-slate-100" };
@@ -226,11 +226,11 @@ export default function AuditLogPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
               <History className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Audit log", "سجل التدقيق", "Denetim kaydı")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -281,14 +281,14 @@ export default function AuditLogPage() {
               onClick={() => setFilterOpen((o) => !o)}
               className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
                 filterOpen || hasFilters
-                  ? "bg-cyan-50 border-cyan-300 text-cyan-700"
+                  ? "bg-sky-50 border-sky-300 text-sky-600"
                   : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
               }`}
             >
               <Filter className="w-4 h-4" />
               {tr("Filter", "تصفية", "Filtrele")}
               {hasFilters && (
-                <span className="ml-1 rtl:ml-0 rtl:mr-1 w-2 h-2 rounded-full bg-cyan-500" />
+                <span className="ml-1 rtl:ml-0 rtl:mr-1 w-2 h-2 rounded-full bg-sky-400" />
               )}
             </button>
           </div>
@@ -307,7 +307,7 @@ export default function AuditLogPage() {
                   setActionFilter(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 <option value="">{tr("All actions", "كل الإجراءات", "Tüm eylemler")}</option>
                 {actions.map((a) => (
@@ -327,7 +327,7 @@ export default function AuditLogPage() {
                   setUserFilter(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 <option value="">
                   {tr("All users", "كل المستخدمين", "Tüm kullanıcılar")}
@@ -349,7 +349,7 @@ export default function AuditLogPage() {
                   setEntityTypeFilter(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 <option value="">
                   {tr("All types", "كل الأنواع", "Tüm türler")}
@@ -372,7 +372,7 @@ export default function AuditLogPage() {
                   setSince(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
             <div>
@@ -386,13 +386,13 @@ export default function AuditLogPage() {
                   setUntil(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
             {hasFilters && (
               <button
                 onClick={clearFilters}
-                className="col-span-full inline-flex items-center justify-center gap-1 text-xs text-slate-600 hover:text-cyan-700"
+                className="col-span-full inline-flex items-center justify-center gap-1 text-xs text-slate-600 hover:text-sky-600"
               >
                 <X className="w-3 h-3" />
                 {tr("Clear filters", "إزالة المرشحات", "Filtreleri temizle")}
@@ -404,7 +404,7 @@ export default function AuditLogPage() {
         {/* Timeline */}
         {loading && !page ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -413,9 +413,9 @@ export default function AuditLogPage() {
         ) : !page || page.items.length === 0 ? (
           <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
             <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <History className="w-6 h-6 text-cyan-600" />
+              <History className="w-6 h-6 text-sky-500" />
             </div>
-            <p className="text-sm font-semibold text-cyan-900">
+            <p className="text-sm font-semibold text-sky-900">
               {tr(
                 "No events yet",
                 "لا توجد أحداث بعد",
@@ -555,7 +555,7 @@ function EventRow({
 
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-cyan-900">
+          <span className="text-sm font-semibold text-sky-900">
             {humanizeAction(entry.action, locale)}
           </span>
           {entry.user && (
@@ -583,7 +583,7 @@ function EventRow({
         {hasDetails && (
           <button
             onClick={() => setExpanded((e) => !e)}
-            className="mt-1 text-xs text-cyan-700 hover:underline"
+            className="mt-1 text-xs text-sky-600 hover:underline"
           >
             {expanded
               ? tr("Hide details", "إخفاء التفاصيل", "Detayları gizle")

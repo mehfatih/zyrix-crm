@@ -196,7 +196,7 @@ export default async function FeaturesPage({
                     : cat.color === "sky"
                       ? "bg-sky-50 text-sky-700"
                       : cat.color === "cyan"
-                        ? "bg-cyan-50 text-cyan-700"
+                        ? "bg-sky-50 text-sky-600"
                         : cat.color === "emerald"
                           ? "bg-emerald-50 text-emerald-700"
                           : "bg-violet-50 text-violet-700"
@@ -233,7 +233,7 @@ export default async function FeaturesPage({
       ))}
 
       {/* LANGUAGE & AI BAND */}
-      <section className="bg-gradient-to-br from-primary-600 to-cyan-600 text-white">
+      <section className="bg-gradient-to-br from-primary-600 to-sky-500 text-white">
         <div className="container-zyrix section text-center">
           <Sparkles className="w-10 h-10 mx-auto mb-4 opacity-80" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -270,7 +270,7 @@ export default async function FeaturesPage({
               <div className="p-4 bg-bg-subtle font-bold text-ink-light text-xs uppercase tracking-wider text-center border-s border-line-soft">
                 {t("comparison.generic")}
               </div>
-              <div className="p-4 bg-gradient-to-br from-primary-600 to-cyan-600 text-white font-bold text-xs uppercase tracking-wider text-center">
+              <div className="p-4 bg-gradient-to-br from-primary-600 to-sky-500 text-white font-bold text-xs uppercase tracking-wider text-center">
                 Zyrix
               </div>
 
@@ -295,7 +295,7 @@ export default async function FeaturesPage({
       </section>
 
       {/* FINAL CTA */}
-      <section className="section bg-gradient-to-br from-primary-50 via-sky-50 to-cyan-100">
+      <section className="section bg-gradient-to-br from-primary-50 via-sky-50 to-sky-100">
         <div className="container-zyrix">
           <div className="card-gradient max-w-4xl mx-auto text-center py-12 md:py-16 shadow-xl">
             <Clock className="w-10 h-10 text-primary-600 mx-auto mb-4" />

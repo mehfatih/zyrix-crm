@@ -46,14 +46,14 @@ export default function PortalLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-cyan-50 to-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-sky-50 to-white flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo/Brand */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500 to-sky-500 rounded-2xl shadow-lg mb-3">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-sky-400 to-sky-500 rounded-2xl shadow-lg mb-3">
             <Sparkles className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-cyan-900">
+          <h1 className="text-2xl font-bold text-sky-900">
             {t("brandTitle")}
           </h1>
           <p className="text-sm text-slate-600 mt-1">{t("brandSubtitle")}</p>
@@ -65,12 +65,12 @@ export default function PortalLoginPage() {
               <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-50 rounded-full mb-4">
                 <CheckCircle2 className="w-8 h-8 text-emerald-500" />
               </div>
-              <h2 className="text-lg font-bold text-cyan-900 mb-2">
+              <h2 className="text-lg font-bold text-sky-900 mb-2">
                 {t("sent.title")}
               </h2>
               <p className="text-sm text-slate-600 mb-1">
                 {t("sent.sentTo")}{" "}
-                <span className="font-medium text-cyan-700">{email}</span>
+                <span className="font-medium text-sky-600">{email}</span>
               </p>
               <p className="text-xs text-slate-500 mt-4">{t("sent.hint")}</p>
               <button
@@ -78,14 +78,14 @@ export default function PortalLoginPage() {
                   setSent(false);
                   setEmail("");
                 }}
-                className="text-xs text-cyan-700 hover:text-cyan-900 mt-4"
+                className="text-xs text-sky-600 hover:text-sky-900 mt-4"
               >
                 {t("sent.tryAgain")}
               </button>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-4">
-              <h2 className="text-lg font-bold text-cyan-900 mb-1">
+              <h2 className="text-lg font-bold text-sky-900 mb-1">
                 {t("title")}
               </h2>
               <p className="text-sm text-slate-600 mb-4">{t("subtitle")}</p>
@@ -103,7 +103,7 @@ export default function PortalLoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("emailPlaceholder")}
                     disabled={loading}
-                    className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2.5 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-60"
+                    className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2.5 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function PortalLoginPage() {
               <button
                 type="submit"
                 disabled={loading || !email.trim()}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium shadow-sm disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm disabled:opacity-50"
               >
                 {loading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />

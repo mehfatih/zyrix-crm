@@ -92,13 +92,13 @@ export default function LanguageSwitcher() {
           height: 40,
           borderRadius: "9999px",
           background: "#FFFFFF",
-          border: "1.5px solid #0891B2",
+          border: "1.5px solid #0EA5E9",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
           fontSize: 14,
           fontWeight: 700,
-          color: "#0891B2",
+          color: "#0EA5E9",
           cursor: "pointer",
           boxShadow: open
             ? "0 4px 16px rgba(8,145,178,0.15)"
@@ -145,7 +145,7 @@ export default function LanguageSwitcher() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   background: active ? "rgba(8,145,178,0.08)" : "transparent",
-                  color: active ? "#0891B2" : "#164E63",
+                  color: active ? "#0EA5E9" : "#0C4A6E",
                   fontSize: 14,
                   fontWeight: active ? 700 : 500,
                   borderRadius: 8,
@@ -174,7 +174,7 @@ export default function LanguageSwitcher() {
                   </span>
                 </span>
                 {active && (
-                  <Check size={16} style={{ color: "#0891B2" }} aria-hidden="true" />
+                  <Check size={16} style={{ color: "#0EA5E9" }} aria-hidden="true" />
                 )}
               </button>
             );

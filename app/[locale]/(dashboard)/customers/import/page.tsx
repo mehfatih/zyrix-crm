@@ -135,8 +135,8 @@ export default function CsvImportPage() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-                <Upload className="w-6 h-6 text-cyan-600" />
+              <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+                <Upload className="w-6 h-6 text-sky-500" />
                 {t("title")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">{t("subtitle")}</p>
@@ -154,9 +154,9 @@ export default function CsvImportPage() {
         {/* Stepper */}
         <div className="flex items-center gap-3">
           <StepBubble n={1} label={t("steps.upload")} active={step === "upload"} done={step !== "upload"} />
-          <div className={`h-0.5 flex-1 rounded ${step !== "upload" ? "bg-cyan-500" : "bg-slate-200"}`} />
+          <div className={`h-0.5 flex-1 rounded ${step !== "upload" ? "bg-sky-400" : "bg-slate-200"}`} />
           <StepBubble n={2} label={t("steps.preview")} active={step === "preview"} done={step === "result"} />
-          <div className={`h-0.5 flex-1 rounded ${step === "result" ? "bg-cyan-500" : "bg-slate-200"}`} />
+          <div className={`h-0.5 flex-1 rounded ${step === "result" ? "bg-sky-400" : "bg-slate-200"}`} />
           <StepBubble n={3} label={t("steps.result")} active={step === "result"} done={false} />
         </div>
 
@@ -171,8 +171,8 @@ export default function CsvImportPage() {
                 onChange={handleFileChange}
                 className="hidden"
               />
-              <Upload className="w-10 h-10 text-cyan-400 mx-auto mb-3" />
-              <h3 className="text-base font-semibold text-cyan-900 mb-1">
+              <Upload className="w-10 h-10 text-sky-300 mx-auto mb-3" />
+              <h3 className="text-base font-semibold text-sky-900 mb-1">
                 {fileName || t("upload.title")}
               </h3>
               <p className="text-xs text-slate-500 mb-4">
@@ -180,7 +180,7 @@ export default function CsvImportPage() {
               </p>
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg"
+                className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg"
               >
                 {fileName ? t("upload.changeFile") : t("upload.selectFile")}
               </button>
@@ -195,7 +195,7 @@ export default function CsvImportPage() {
                 {["fullName", "email", "phone", "company", "country", "city", "status", "notes"].map((c) => (
                   <span
                     key={c}
-                    className="px-2 py-0.5 text-[10px] font-mono bg-white border border-sky-200 text-cyan-700 rounded"
+                    className="px-2 py-0.5 text-[10px] font-mono bg-white border border-sky-200 text-sky-600 rounded"
                   >
                     {c}
                   </span>
@@ -210,7 +210,7 @@ export default function CsvImportPage() {
               <button
                 onClick={() => csvText && setStep("preview")}
                 disabled={!csvText}
-                className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
+                className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
               >
                 {t("next")}
                 <ArrowRight className="w-4 h-4" />
@@ -224,7 +224,7 @@ export default function CsvImportPage() {
           <div className="bg-white border border-sky-100 rounded-xl p-6 space-y-4">
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div>
-                <h3 className="text-base font-semibold text-cyan-900">
+                <h3 className="text-base font-semibold text-sky-900">
                   {t("preview.title")}
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -236,7 +236,7 @@ export default function CsvImportPage() {
                   type="checkbox"
                   checked={skipDuplicates}
                   onChange={(e) => setSkipDuplicates(e.target.checked)}
-                  className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                  className="rounded border-sky-300 text-sky-500 focus:ring-sky-400"
                 />
                 {t("preview.skipDuplicates")}
               </label>
@@ -288,7 +288,7 @@ export default function CsvImportPage() {
               <button
                 onClick={handleImport}
                 disabled={loading}
-                className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
+                className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
               >
                 {loading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -310,7 +310,7 @@ export default function CsvImportPage() {
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-50 rounded-full mb-3">
                     <CheckCircle2 className="w-8 h-8 text-emerald-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-cyan-900 mb-1">
+                  <h3 className="text-xl font-bold text-sky-900 mb-1">
                     {t("result.success")}
                   </h3>
                 </>
@@ -319,7 +319,7 @@ export default function CsvImportPage() {
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-50 rounded-full mb-3">
                     <AlertCircle className="w-8 h-8 text-amber-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-cyan-900 mb-1">
+                  <h3 className="text-xl font-bold text-sky-900 mb-1">
                     {t("result.noneImported")}
                   </h3>
                 </>
@@ -382,7 +382,7 @@ export default function CsvImportPage() {
               </button>
               <button
                 onClick={() => router.push(`/${locale}/customers`)}
-                className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg"
+                className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg"
               >
                 <Users className="w-4 h-4" />
                 {t("result.viewCustomers")}
@@ -416,13 +416,13 @@ function StepBubble({
           done
             ? "bg-emerald-500 text-white"
             : active
-              ? "bg-cyan-600 text-white"
+              ? "bg-sky-500 text-white"
               : "bg-slate-200 text-slate-500"
         }`}
       >
         {done ? <CheckCircle2 className="w-4 h-4" /> : n}
       </div>
-      <span className={`text-xs font-medium ${active ? "text-cyan-900" : "text-slate-500"} hidden md:inline`}>
+      <span className={`text-xs font-medium ${active ? "text-sky-900" : "text-slate-500"} hidden md:inline`}>
         {label}
       </span>
     </div>

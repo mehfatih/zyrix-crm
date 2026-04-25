@@ -81,7 +81,7 @@ export default function StickyCTA() {
             gap: 8,
             padding: "12px 18px",
             borderRadius: 12,
-            background: "linear-gradient(135deg, #0891B2 0%, #06B6D4 100%)",
+            background: "linear-gradient(135deg, #0EA5E9 0%, #22D3EE 100%)",
             color: "#FFFFFF",
             fontWeight: 700,
             fontSize: 14,
@@ -104,7 +104,7 @@ export default function StickyCTA() {
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "#0E7490",
+            color: "#0284C7",
           }}
         >
           <X size={18} />
@@ -132,7 +132,7 @@ export default function StickyCTA() {
             gap: 10,
             padding: "14px 22px",
             borderRadius: 9999,
-            background: "linear-gradient(135deg, #0891B2 0%, #06B6D4 100%)",
+            background: "linear-gradient(135deg, #0EA5E9 0%, #22D3EE 100%)",
             color: "#FFFFFF",
             fontWeight: 700,
             fontSize: 15,
@@ -165,7 +165,7 @@ export default function StickyCTA() {
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "#0E7490",
+            color: "#0284C7",
             cursor: "pointer",
             boxShadow: "0 4px 12px rgba(8, 145, 178, 0.12)",
           }}

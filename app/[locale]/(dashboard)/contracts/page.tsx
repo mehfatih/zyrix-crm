@@ -279,8 +279,8 @@ export default function ContractsPage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <FileSignature className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <FileSignature className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
@@ -289,7 +289,7 @@ export default function ContractsPage() {
             <ExportButton entityType="contracts" />
             <button
               onClick={openCreate}
-              className="flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm"
             >
               <Plus className="w-4 h-4" />
               {t("newContract")}
@@ -334,7 +334,7 @@ export default function ContractsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
           <select
@@ -342,7 +342,7 @@ export default function ContractsPage() {
             onChange={(e) =>
               setStatusFilter(e.target.value as ContractStatus | "")
             }
-            className="px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <option value="">{t("filters.allStatuses")}</option>
             <option value="draft">{t("status.draft")}</option>
@@ -359,7 +359,7 @@ export default function ContractsPage() {
               type="checkbox"
               checked={expiringOnly}
               onChange={(e) => setExpiringOnly(e.target.checked)}
-              className="w-4 h-4 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+              className="w-4 h-4 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
             />
             <span className="text-slate-700">{t("filters.expiringOnly")}</span>
           </label>
@@ -368,7 +368,7 @@ export default function ContractsPage() {
         {/* Table */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
@@ -423,11 +423,11 @@ export default function ContractsPage() {
                         onClick={() => setViewing(c)}
                         className="border-b border-sky-50 hover:bg-sky-50/40 cursor-pointer"
                       >
-                        <td className="px-4 py-3 font-mono text-xs text-cyan-700 font-medium">
+                        <td className="px-4 py-3 font-mono text-xs text-sky-600 font-medium">
                           {c.contractNumber}
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-medium text-cyan-900">
+                          <div className="font-medium text-sky-900">
                             {c.customer.fullName}
                           </div>
                           {c.customer.companyName && (
@@ -463,7 +463,7 @@ export default function ContractsPage() {
                             <span className="text-xs text-slate-400">—</span>
                           )}
                         </td>
-                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-cyan-900">
+                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-sky-900">
                           {formatMoney(Number(c.value), c.currency, locale)}
                         </td>
                         <td className="px-4 py-3">
@@ -472,7 +472,7 @@ export default function ContractsPage() {
                               e.stopPropagation();
                               setViewing(c);
                             }}
-                            className="text-slate-400 hover:text-cyan-600"
+                            className="text-slate-400 hover:text-sky-500"
                           >
                             <ExternalLink className="w-4 h-4" />
                           </button>
@@ -554,7 +554,7 @@ function ContractFormModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {editing ? t("form.editTitle") : t("form.createTitle")}
           </h2>
           <button
@@ -759,7 +759,7 @@ function ContractFormModal({
           <button
             onClick={onSave}
             disabled={saving}
-            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -810,7 +810,7 @@ function ContractDetailModal({
         <div className="p-5 border-b border-sky-100 flex items-start justify-between gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-xs text-cyan-700 font-semibold">
+              <span className="font-mono text-xs text-sky-600 font-semibold">
                 {contract.contractNumber}
               </span>
               <span
@@ -819,7 +819,7 @@ function ContractDetailModal({
                 {t(`status.${contract.status}`)}
               </span>
             </div>
-            <h2 className="text-lg font-bold text-cyan-900">
+            <h2 className="text-lg font-bold text-sky-900">
               {contract.title}
             </h2>
             <p className="text-sm text-slate-600 mt-0.5 flex items-center gap-1">
@@ -871,12 +871,12 @@ function ContractDetailModal({
             />
           </div>
 
-          <div className="bg-cyan-50 border border-cyan-100 rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-sky-50 border border-sky-100 rounded-lg p-4 flex items-center justify-between">
             <div>
               <div className="text-xs text-slate-500 uppercase font-medium">
                 {t("detail.value")}
               </div>
-              <div className="text-2xl font-bold text-cyan-900 mt-1">
+              <div className="text-2xl font-bold text-sky-900 mt-1">
                 {formatMoney(
                   Number(contract.value),
                   contract.currency,
@@ -884,7 +884,7 @@ function ContractDetailModal({
                 )}
               </div>
             </div>
-            <DollarSign className="w-8 h-8 text-cyan-400" />
+            <DollarSign className="w-8 h-8 text-sky-300" />
           </div>
 
           {contract.fileUrl && (
@@ -892,7 +892,7 @@ function ContractDetailModal({
               href={contract.fileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 bg-sky-50/50 border border-sky-200 rounded-lg text-sm text-cyan-700 hover:bg-sky-100"
+              className="flex items-center gap-2 px-3 py-2 bg-sky-50/50 border border-sky-200 rounded-lg text-sm text-sky-600 hover:bg-sky-100"
             >
               <FileText className="w-4 h-4" />
               <span className="flex-1 truncate">
@@ -929,7 +929,7 @@ function ContractDetailModal({
           <div className="flex items-center gap-2">
             <button
               onClick={onEdit}
-              className="px-3 py-1.5 text-sm text-cyan-700 hover:bg-cyan-50 rounded-lg flex items-center gap-1.5"
+              className="px-3 py-1.5 text-sm text-sky-600 hover:bg-sky-50 rounded-lg flex items-center gap-1.5"
             >
               <Pencil className="w-4 h-4" />
               {t("actions.edit")}
@@ -980,7 +980,7 @@ function MetaBox({
       <div className="text-xs text-slate-500 uppercase font-medium">
         {label}
       </div>
-      <div className="text-sm text-cyan-900 font-medium mt-0.5 flex items-center gap-1.5">
+      <div className="text-sm text-sky-900 font-medium mt-0.5 flex items-center gap-1.5">
         <Icon className="w-3.5 h-3.5" />
         {value}
       </div>
@@ -1000,7 +1000,7 @@ function StatCard({
   color: "cyan" | "emerald" | "amber" | "red";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-cyan-50", iconText: "text-cyan-600" },
+    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
     emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
     amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
     red: { iconBg: "bg-red-50", iconText: "text-red-600" },
@@ -1013,7 +1013,7 @@ function StatCard({
       </div>
       <div className="flex-1 min-w-0">
         <div className="text-xs text-slate-500 truncate">{label}</div>
-        <div className="text-lg font-bold text-cyan-900 truncate">{value}</div>
+        <div className="text-lg font-bold text-sky-900 truncate">{value}</div>
       </div>
     </div>
   );

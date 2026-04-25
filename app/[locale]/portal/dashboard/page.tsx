@@ -76,21 +76,21 @@ export default function PortalDashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-sky-50 to-cyan-50 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-cyan-600" />
+      <div className="min-h-screen bg-gradient-to-br from-sky-50 to-sky-50 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-sky-500" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-sky-50 to-cyan-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-sky-50 to-sky-50 flex items-center justify-center p-4">
         <div className="max-w-md bg-white border border-red-200 rounded-xl p-6 shadow-xl text-center">
           <AlertTriangle className="w-10 h-10 text-red-500 mx-auto mb-3" />
           <p className="text-sm text-slate-600">{error}</p>
           <button
             onClick={() => router.push(`/${locale}/portal`)}
-            className="mt-4 px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium"
+            className="mt-4 px-4 py-2 bg-sky-500 text-white rounded-lg text-sm font-medium"
           >
             {t("backToLogin")}
           </button>
@@ -102,16 +102,16 @@ export default function PortalDashboardPage() {
   if (!data) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-cyan-50/30 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-sky-50/30 to-white">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur border-b border-sky-100 sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-sky-500 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-400 to-sky-500 flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
-              <div className="text-sm font-bold text-cyan-900">
+              <div className="text-sm font-bold text-sky-900">
                 {data.customer.company.name}
               </div>
               <div className="text-xs text-slate-500">{t("customerPortal")}</div>
@@ -119,7 +119,7 @@ export default function PortalDashboardPage() {
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-slate-600 hover:text-cyan-700 rounded-lg"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-slate-600 hover:text-sky-600 rounded-lg"
           >
             <LogOut className="w-4 h-4" />
             {t("logout")}
@@ -130,7 +130,7 @@ export default function PortalDashboardPage() {
       <div className="max-w-5xl mx-auto p-4 md:p-8 space-y-6">
         {/* Welcome */}
         <div>
-          <h1 className="text-2xl font-bold text-cyan-900">
+          <h1 className="text-2xl font-bold text-sky-900">
             {t("welcome", { name: data.customer.fullName })}
           </h1>
           <p className="text-sm text-slate-600 mt-1">{t("welcomeSubtitle")}</p>
@@ -236,7 +236,7 @@ export default function PortalDashboardPage() {
         {/* Footer */}
         <div className="text-center text-xs text-slate-500 py-6">
           {t("footer.needHelp")}{" "}
-          <span className="text-cyan-700 font-medium">
+          <span className="text-sky-600 font-medium">
             {data.customer.company.name}
           </span>
         </div>
@@ -262,9 +262,9 @@ function Section({
   return (
     <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
       <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-        <Icon className="w-4 h-4 text-cyan-600" />
+        <Icon className="w-4 h-4 text-sky-500" />
         <div>
-          <h3 className="text-sm font-bold text-cyan-900">{title}</h3>
+          <h3 className="text-sm font-bold text-sky-900">{title}</h3>
           <p className="text-xs text-slate-500">{subtitle}</p>
         </div>
       </div>
@@ -297,7 +297,7 @@ function InfoRow({
         <Icon className="w-3 h-3" />
         {label}
       </div>
-      <div className="text-sm text-cyan-900 font-medium mt-0.5 truncate">
+      <div className="text-sm text-sky-900 font-medium mt-0.5 truncate">
         {value}
       </div>
     </div>
@@ -316,7 +316,7 @@ function StatTile({
   color: "cyan" | "sky" | "amber";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-cyan-50", iconText: "text-cyan-600" },
+    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
     sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
     amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
   };
@@ -328,7 +328,7 @@ function StatTile({
       </div>
       <div className="flex-1">
         <div className="text-xs text-slate-500">{label}</div>
-        <div className="text-xl font-bold text-cyan-900">{value}</div>
+        <div className="text-xl font-bold text-sky-900">{value}</div>
       </div>
     </div>
   );
@@ -346,7 +346,7 @@ function QuoteRow({
   const statusStyle: Record<string, string> = {
     draft: "bg-slate-50 text-slate-600",
     sent: "bg-sky-50 text-sky-700",
-    viewed: "bg-cyan-50 text-cyan-700",
+    viewed: "bg-sky-50 text-sky-600",
     accepted: "bg-emerald-50 text-emerald-700",
     rejected: "bg-red-50 text-red-700",
     expired: "bg-amber-50 text-amber-700",
@@ -362,7 +362,7 @@ function QuoteRow({
     >
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-mono text-xs text-cyan-700 font-medium">
+          <span className="font-mono text-xs text-sky-600 font-medium">
             {quote.quoteNumber}
           </span>
           <span
@@ -371,7 +371,7 @@ function QuoteRow({
             {t(`status.${quote.status}`, { fallback: quote.status })}
           </span>
         </div>
-        <div className="text-sm font-medium text-cyan-900 mt-0.5 truncate">
+        <div className="text-sm font-medium text-sky-900 mt-0.5 truncate">
           {quote.title}
         </div>
         {quote.validUntil && (
@@ -382,7 +382,7 @@ function QuoteRow({
         )}
       </div>
       <div className="text-right rtl:text-left">
-        <div className="font-bold text-cyan-900">
+        <div className="font-bold text-sky-900">
           {formatMoney(Number(quote.total), quote.currency, locale)}
         </div>
         <ExternalLink className="w-3.5 h-3.5 text-slate-400 inline-block ltr:ml-1 rtl:mr-1 mt-1" />
@@ -423,7 +423,7 @@ function ContractRow({
     <>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-mono text-xs text-cyan-700 font-medium">
+          <span className="font-mono text-xs text-sky-600 font-medium">
             {contract.contractNumber}
           </span>
           <span
@@ -435,7 +435,7 @@ function ContractRow({
             })}
           </span>
         </div>
-        <div className="text-sm font-medium text-cyan-900 mt-0.5 truncate">
+        <div className="text-sm font-medium text-sky-900 mt-0.5 truncate">
           {contract.title}
         </div>
         {contract.endDate && (
@@ -446,7 +446,7 @@ function ContractRow({
         )}
       </div>
       <div className="text-right rtl:text-left">
-        <div className="font-bold text-cyan-900">
+        <div className="font-bold text-sky-900">
           {formatMoney(Number(contract.value), contract.currency, locale)}
         </div>
         {contract.fileUrl && (

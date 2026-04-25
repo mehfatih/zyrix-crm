@@ -70,21 +70,36 @@ GitHub: Version control
 **المعتمد:**
 ```js
 const COLOR = {
-  primary:      "#0891B2", // Primary Cyan
-  primaryDark:  "#0E7490", // للعناوين المميزة
-  primaryLight: "#67E8F9", // hover states
-  accent:       "#06B6D4", // ثانوي
-  azure:        "#38BDF8", // أزرق سماوي
-  sky:          "#7DD3FC", // سماوي فاتح
-  bg:           "#F0F9FF", // خلفية رئيسية
-  bgCard:       "#ECFEFF", // خلفية بطاقة
-  text:         "#164E63", // نص (ليس أسود)
-  textMid:      "#0E7490",
-  textLight:    "#475569",
-  border:       "#BAE6FD",
-  success:      "#059669",
-  warning:      "#F59E0B",
-  danger:       "#DC2626",
+  // === NEW STANDARD (Apr 2026) - Unified Mobile + Web ===
+  primary:      "#0EA5E9", // Sky Blue 500 (master)
+  primaryDark:  "#0284C7", // Sky 600 (headings, active states)
+  primaryLight: "#7DD3FC", // Sky 300 (hover, soft accents)
+  accent:       "#22D3EE", // Cyan 400 (secondary)
+  azure:        "#38BDF8", // Sky 400
+  sky:          "#BAE6FD", // Sky 200 (very soft surfaces)
+
+  // Backgrounds
+  bg:           "#F0F9FF", // Sky 50 (page background)
+  bgCard:       "#FFFFFF", // Pure white for cards
+  bgCardAlt:    "#F8FAFC", // Slate 50 (alt surface)
+  aiSurface:    "#F0F9FF", // AI chip backgrounds
+  aiBorder:     "#BAE6FD", // AI element borders
+
+  // Text
+  text:         "#0C4A6E", // Sky 950 (headings - never pure black)
+  textMid:      "#0369A1", // Sky 700
+  textBody:     "#1E293B", // Slate 800 (body)
+  textLight:    "#64748B", // Slate 500 (muted)
+
+  // Lines
+  border:       "#E2E8F0", // Slate 200
+  borderSky:    "#BAE6FD", // Sky 200
+
+  // Semantic
+  success:      "#22C55E", // Green 500
+  warning:      "#F59E0B", // Amber 500
+  danger:       "#EF4444", // Red 500
+  info:         "#0EA5E9", // Same as primary
 };
 ```
 
@@ -314,6 +329,9 @@ prisma.$executeRawUnsafe(...)
 ## 📅 سجل التحديثات
 
 - **2026-04:** إنشاء الملف + تحديد الخطة الكاملة على 12 شهر
+- **2026-04-25:** اعتماد Sky Blue #0EA5E9 كقاعدة موحدة للموبايل والويب
+  (يحل محل Cyan #0891B2 السابق). تطابق كامل مع تطبيق الموبايل
+  وWeb AI Spec v1.
 - **[تحديثات لاحقة تُضاف هنا]**
 
 ---

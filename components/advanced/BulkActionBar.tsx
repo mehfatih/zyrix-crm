@@ -79,7 +79,7 @@ export default function BulkActionBar({
       <div className="bg-white border border-sky-200 rounded-xl shadow-2xl px-4 py-3 flex items-center gap-3 flex-wrap">
         {/* Selection count */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-700 flex items-center justify-center text-xs font-bold">
+          <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center text-xs font-bold">
             {selectedIds.length}
           </div>
           <span className="text-sm font-medium text-slate-700">
@@ -102,7 +102,7 @@ export default function BulkActionBar({
                   setShowTagMenu(false);
                 }}
                 disabled={loading !== null}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-cyan-50 rounded-lg"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-sky-50 rounded-lg"
               >
                 {loading === "assignOwner" ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -118,7 +118,7 @@ export default function BulkActionBar({
                     <button
                       key={u.id}
                       onClick={() => run("assignOwner", { ownerId: u.id })}
-                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
+                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
                     >
                       {u.fullName}
                     </button>
@@ -138,7 +138,7 @@ export default function BulkActionBar({
                   setShowTagMenu(false);
                 }}
                 disabled={loading !== null}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-cyan-50 rounded-lg"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-sky-50 rounded-lg"
               >
                 {loading === "changeStatus" ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -154,7 +154,7 @@ export default function BulkActionBar({
                     <button
                       key={s}
                       onClick={() => run("changeStatus", { status: s })}
-                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50 capitalize"
+                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-sky-50 capitalize"
                     >
                       {s}
                     </button>
@@ -173,7 +173,7 @@ export default function BulkActionBar({
                   setShowOwnerMenu(false);
                 }}
                 disabled={loading !== null}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-cyan-50 rounded-lg"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-sky-50 rounded-lg"
               >
                 {loading === "changeStage" ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -189,7 +189,7 @@ export default function BulkActionBar({
                     <button
                       key={s}
                       onClick={() => run("changeStage", { stage: s })}
-                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50 capitalize"
+                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-sky-50 capitalize"
                     >
                       {s.replace("_", " ")}
                     </button>
@@ -209,7 +209,7 @@ export default function BulkActionBar({
                   setShowStatusMenu(false);
                 }}
                 disabled={loading !== null}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-cyan-50 rounded-lg"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-sky-50 rounded-lg"
               >
                 {loading === "addTag" ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -225,7 +225,7 @@ export default function BulkActionBar({
                     <button
                       key={tag.id}
                       onClick={() => run("addTag", { tagId: tag.id })}
-                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
+                      className="w-full text-left rtl:text-right px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
                     >
                       {tag.name}
                     </button>

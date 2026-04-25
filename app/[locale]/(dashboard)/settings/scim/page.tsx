@@ -120,15 +120,15 @@ export default function ScimPage() {
         <div className="flex items-start gap-3">
           <Link
             href={`/${locale}/settings`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
             <Network className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr(
                 "SCIM provisioning",
                 "توفير SCIM",
@@ -197,7 +197,7 @@ export default function ScimPage() {
         {/* Tokens */}
         <section className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <h2 className="text-sm font-bold text-cyan-900 inline-flex items-center gap-2">
+            <h2 className="text-sm font-bold text-sky-900 inline-flex items-center gap-2">
               <Key className="w-4 h-4" />
               {tr("SCIM tokens", "رموز SCIM", "SCIM jetonları")}
             </h2>
@@ -211,11 +211,11 @@ export default function ScimPage() {
                   "Etiket (örn. Okta prod)"
                 )}
                 maxLength={120}
-                className="px-3 py-1.5 border border-sky-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="px-3 py-1.5 border border-sky-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
               <button
                 onClick={handleIssue}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-semibold"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold"
               >
                 <Plus className="w-3 h-3" />
                 {tr("Issue", "إصدار", "Yayınla")}
@@ -224,7 +224,7 @@ export default function ScimPage() {
           </div>
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+              <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
             </div>
           ) : tokens.length === 0 ? (
             <p className="text-xs text-slate-500 py-2">
@@ -241,10 +241,10 @@ export default function ScimPage() {
                   key={t.id}
                   className="flex items-center gap-3 p-2 rounded-lg border border-sky-100 bg-sky-50/30"
                 >
-                  <Key className="w-3.5 h-3.5 text-cyan-600" />
+                  <Key className="w-3.5 h-3.5 text-sky-500" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs font-semibold text-cyan-900">
+                      <span className="text-xs font-semibold text-sky-900">
                         {t.label}
                       </span>
                       <code
@@ -285,7 +285,7 @@ export default function ScimPage() {
 
         {/* Setup instructions */}
         <section className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
-          <h2 className="text-sm font-bold text-cyan-900">
+          <h2 className="text-sm font-bold text-sky-900">
             {tr("Setup", "الإعداد", "Kurulum")}
           </h2>
           <div className="flex flex-wrap gap-1 text-xs font-semibold">
@@ -302,7 +302,7 @@ export default function ScimPage() {
                 onClick={() => setActiveProvider(key)}
                 className={`px-3 py-1.5 rounded-lg border transition-colors ${
                   activeProvider === key
-                    ? "bg-cyan-600 text-white border-cyan-600"
+                    ? "bg-sky-500 text-white border-sky-500"
                     : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
                 }`}
               >
@@ -312,7 +312,7 @@ export default function ScimPage() {
           </div>
           <div className="rounded-lg bg-sky-50 border border-sky-100 p-3 space-y-2 text-xs text-slate-700">
             <div>
-              <div className="font-bold text-cyan-900 text-[10px] uppercase tracking-wide">
+              <div className="font-bold text-sky-900 text-[10px] uppercase tracking-wide">
                 {tr("SCIM base URL", "رابط SCIM", "SCIM temel URL")}
               </div>
               <div className="flex items-center gap-2 mt-1">
@@ -324,14 +324,14 @@ export default function ScimPage() {
                 </code>
                 <button
                   onClick={() => copyToClipboard(SCIM_BASE)}
-                  className="px-2 py-1 rounded bg-cyan-600 text-white text-[10px] font-bold uppercase"
+                  className="px-2 py-1 rounded bg-sky-500 text-white text-[10px] font-bold uppercase"
                 >
                   <Copy className="w-3 h-3 inline" />
                 </button>
               </div>
             </div>
             <div>
-              <div className="font-bold text-cyan-900 text-[10px] uppercase tracking-wide">
+              <div className="font-bold text-sky-900 text-[10px] uppercase tracking-wide">
                 {tr("Authentication", "المصادقة", "Kimlik doğrulama")}
               </div>
               <p className="mt-1">

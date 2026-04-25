@@ -48,7 +48,7 @@ const PLATFORM_COLORS: Record<string, string> = {
   ideasoft: "#7C3AED",
   tsoft: "#EA580C",
   ikas: "#18181B",
-  turhost: "#0891B2",
+  turhost: "#0EA5E9",
   other: "#64748B",
 };
 
@@ -126,11 +126,11 @@ export default function EcommerceReportsPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
               <BarChart3 className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("E-commerce analytics", "تحليلات التجارة الإلكترونية", "E-ticaret analitiği")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -178,7 +178,7 @@ export default function EcommerceReportsPage() {
                   onClick={() => setWindowDays(p.days)}
                   className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                     windowDays === p.days
-                      ? "bg-cyan-600 text-white"
+                      ? "bg-sky-500 text-white"
                       : "text-slate-600 hover:bg-sky-50"
                   }`}
                 >
@@ -191,7 +191,7 @@ export default function EcommerceReportsPage() {
 
         {loading && !data ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <ErrorBanner message={error} onRetry={() => load(windowDays)} tr={tr} />
@@ -309,7 +309,7 @@ function Kpi({
   const bgs: Record<string, string> = {
     emerald: "bg-emerald-50 text-emerald-600",
     sky: "bg-sky-50 text-sky-600",
-    cyan: "bg-cyan-50 text-cyan-600",
+    cyan: "bg-sky-50 text-sky-500",
     teal: "bg-teal-50 text-teal-600",
   };
   return (
@@ -320,7 +320,7 @@ function Kpi({
         </div>
         <span className="text-xs font-medium text-slate-600">{label}</span>
       </div>
-      <div className="text-2xl font-bold text-cyan-900 tabular-nums" dir="ltr" style={{ unicodeBidi: "embed" }}>
+      <div className="text-2xl font-bold text-sky-900 tabular-nums" dir="ltr" style={{ unicodeBidi: "embed" }}>
         {value}
       </div>
       {typeof growth === "number" && (
@@ -412,7 +412,7 @@ function RevenueTrend({
   return (
     <div className="bg-white border border-sky-100 rounded-xl p-4">
       <div className="flex items-center justify-between gap-2 mb-3">
-        <h3 className="text-sm font-semibold text-cyan-900">
+        <h3 className="text-sm font-semibold text-sky-900">
           {tr("Revenue trend", "اتجاه الإيرادات", "Gelir trendi")}
         </h3>
         <span className="text-[11px] text-slate-500">
@@ -442,7 +442,7 @@ function RevenueTrend({
         <path
           d={pathD}
           fill="none"
-          stroke="#0891B2"
+          stroke="#0EA5E9"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -450,7 +450,7 @@ function RevenueTrend({
         {/* points on hover hint — render every 4th for clutter control */}
         {points.map((p, i) =>
           i % Math.ceil(points.length / 10) === 0 || i === points.length - 1 ? (
-            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#0891B2" />
+            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#0EA5E9" />
           ) : null
         )}
         {/* y-axis labels */}
@@ -468,8 +468,8 @@ function RevenueTrend({
         </text>
         <defs>
           <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0891B2" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#0891B2" stopOpacity="0" />
+            <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
@@ -502,7 +502,7 @@ function PlatformBreakdown({
   return (
     <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
       <header className="px-4 py-2.5 border-b border-sky-50 bg-sky-50/40">
-        <h3 className="text-sm font-semibold text-cyan-900">
+        <h3 className="text-sm font-semibold text-sky-900">
           {tr("Platform breakdown", "تفصيل حسب المنصة", "Platform dağılımı")}
         </h3>
       </header>
@@ -521,7 +521,7 @@ function PlatformBreakdown({
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-semibold text-cyan-900 capitalize">
+                    <span className="text-sm font-semibold text-sky-900 capitalize">
                       {p.platform}
                     </span>
                     {p.storesConnected > 0 && (
@@ -548,7 +548,7 @@ function PlatformBreakdown({
                 </div>
                 <div className="text-right min-w-[90px]">
                   <div
-                    className="text-sm font-bold text-cyan-900 tabular-nums"
+                    className="text-sm font-bold text-sky-900 tabular-nums"
                     dir="ltr"
                     style={{ unicodeBidi: "embed" }}
                   >
@@ -603,7 +603,7 @@ function TopCustomers({
   return (
     <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
       <header className="px-4 py-2.5 border-b border-sky-50 bg-sky-50/40">
-        <h3 className="text-sm font-semibold text-cyan-900 flex items-center gap-1.5">
+        <h3 className="text-sm font-semibold text-sky-900 flex items-center gap-1.5">
           <Crown className="w-4 h-4 text-amber-500" />
           {tr("Top customers by lifetime value", "أعلى العملاء بالقيمة الإجمالية", "Yaşam boyu değere göre en iyi müşteriler")}
         </h3>
@@ -673,13 +673,13 @@ function StoresStatus({
   return (
     <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
       <header className="px-4 py-2.5 border-b border-sky-50 bg-sky-50/40 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-cyan-900 flex items-center gap-1.5">
-          <Store className="w-4 h-4 text-cyan-600" />
+        <h3 className="text-sm font-semibold text-sky-900 flex items-center gap-1.5">
+          <Store className="w-4 h-4 text-sky-500" />
           {tr("Store health", "حالة المتاجر", "Mağaza durumu")}
         </h3>
         <Link
           href={`/${locale}/settings/integrations`}
-          className="text-[11px] text-cyan-700 hover:text-cyan-900 font-medium inline-flex items-center gap-0.5"
+          className="text-[11px] text-sky-600 hover:text-sky-900 font-medium inline-flex items-center gap-0.5"
         >
           {tr("Manage", "إدارة", "Yönet")}
           <RefreshCw className="w-2.5 h-2.5" />
@@ -704,7 +704,7 @@ function StoresStatus({
               </div>
               <div className="flex-1 min-w-0">
                 <p
-                  className="text-xs font-semibold text-cyan-900 truncate"
+                  className="text-xs font-semibold text-sky-900 truncate"
                   dir="ltr"
                   style={{ unicodeBidi: "embed" }}
                 >
@@ -760,11 +760,11 @@ function EmptyState({
   tr: (en: string, ar: string, trk: string) => string;
 }) {
   return (
-    <div className="bg-gradient-to-br from-cyan-50 to-sky-50 border border-sky-100 border-dashed rounded-xl p-12 text-center">
+    <div className="bg-gradient-to-br from-sky-50 to-sky-50 border border-sky-100 border-dashed rounded-xl p-12 text-center">
       <div className="w-14 h-14 mx-auto rounded-xl bg-white border border-sky-200 flex items-center justify-center mb-4">
-        <Store className="w-6 h-6 text-cyan-600" />
+        <Store className="w-6 h-6 text-sky-500" />
       </div>
-      <h2 className="text-lg font-bold text-cyan-900 mb-1">
+      <h2 className="text-lg font-bold text-sky-900 mb-1">
         {tr(
           "Connect a store to see analytics",
           "اربط متجراً لعرض التحليلات",
@@ -780,7 +780,7 @@ function EmptyState({
       </p>
       <Link
         href={`/${locale}/settings/integrations`}
-        className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow transition-colors"
+        className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg shadow transition-colors"
       >
         {tr("Connect a store", "ربط متجر", "Mağaza bağla")}
       </Link>

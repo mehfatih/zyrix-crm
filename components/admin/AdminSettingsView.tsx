@@ -176,9 +176,9 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
       </div>
 
       {/* Change password card */}
-      <div className="rounded-xl bg-white border border-cyan-100 p-6">
+      <div className="rounded-xl bg-white border border-sky-100 p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Lock size={18} className="text-cyan-600" />
+          <Lock size={18} className="text-sky-500" />
           <h2 className="text-sm font-semibold text-slate-900">
             {t("changePassword")}
           </h2>
@@ -213,7 +213,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
           <button
             onClick={handleChangePassword}
             disabled={changingPw}
-            className="inline-flex items-center gap-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-sky-500 hover:bg-sky-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
           >
             {changingPw && <Loader2 size={14} className="animate-spin" />}
             <KeyRound size={14} />
@@ -223,10 +223,10 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
       </div>
 
       {/* Super admins card */}
-      <div className="rounded-xl bg-white border border-cyan-100 overflow-hidden">
-        <div className="px-6 py-4 border-b border-cyan-50 flex items-center justify-between">
+      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
+        <div className="px-6 py-4 border-b border-sky-50 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <ShieldCheck size={18} className="text-cyan-600" />
+            <ShieldCheck size={18} className="text-sky-500" />
             <h2 className="text-sm font-semibold text-slate-900">
               {t("superAdmins")}
             </h2>
@@ -236,7 +236,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
           </div>
           <button
             onClick={() => setShowInvite(true)}
-            className="inline-flex items-center gap-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 px-3 py-1.5 text-xs font-semibold text-white"
+            className="inline-flex items-center gap-2 rounded-lg bg-sky-500 hover:bg-sky-600 px-3 py-1.5 text-xs font-semibold text-white"
           >
             <UserPlus size={14} />
             {t("invite")}
@@ -245,7 +245,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-cyan-600" size={24} />
+            <Loader2 className="animate-spin text-sky-500" size={24} />
           </div>
         ) : error ? (
           <div className="p-6">
@@ -279,7 +279,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-cyan-50">
+              <tbody className="divide-y divide-sky-50">
                 {admins.map((row) => {
                   const isSelf = me?.id === row.id;
                   return (
@@ -289,7 +289,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                           {row.email}
                         </div>
                         {isSelf && (
-                          <div className="text-xs text-cyan-700 font-semibold">
+                          <div className="text-xs text-sky-600 font-semibold">
                             {t("you")}
                           </div>
                         )}
@@ -339,8 +339,8 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
       {/* Invite modal */}
       {showInvite && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-cyan-100">
-            <div className="px-6 py-4 border-b border-cyan-100 flex items-center justify-between">
+          <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-sky-100">
+            <div className="px-6 py-4 border-b border-sky-100 flex items-center justify-between">
               <h2 className="text-base font-semibold text-slate-900">
                 {invitedResult ? t("inviteSentTitle") : t("inviteNewAdmin")}
               </h2>
@@ -364,7 +364,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                     {t("tempPassword")}
                   </div>
                   <div className="flex items-center gap-2">
-                    <code className="flex-1 bg-sky-50 border border-cyan-200 rounded-lg px-3 py-2 text-sm font-mono text-cyan-900 break-all">
+                    <code className="flex-1 bg-sky-50 border border-sky-200 rounded-lg px-3 py-2 text-sm font-mono text-sky-900 break-all">
                       {invitedResult.tempPassword}
                     </code>
                     <button
@@ -375,7 +375,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                         setCopiedTemp(true);
                         setTimeout(() => setCopiedTemp(false), 1500);
                       }}
-                      className="p-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white"
+                      className="p-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white"
                       title={t("copy")}
                     >
                       {copiedTemp ? <Check size={14} /> : <Copy size={14} />}
@@ -390,7 +390,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                     setShowInvite(false);
                     setInvitedResult(null);
                   }}
-                  className="w-full rounded-lg bg-cyan-600 hover:bg-cyan-700 px-4 py-2 text-sm font-semibold text-white"
+                  className="w-full rounded-lg bg-sky-500 hover:bg-sky-600 px-4 py-2 text-sm font-semibold text-white"
                 >
                   {t("done")}
                 </button>
@@ -407,7 +407,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                     value={inviteEmail}
                     onChange={(e) => setInviteEmail(e.target.value)}
                     placeholder="admin@example.com"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
                   />
                 </div>
                 <div>
@@ -419,7 +419,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                     value={inviteName}
                     onChange={(e) => setInviteName(e.target.value)}
                     placeholder="Full name (optional)"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
                   />
                 </div>
                 <div className="flex items-center justify-end gap-2 pt-2">
@@ -433,7 +433,7 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                   <button
                     onClick={handleInvite}
                     disabled={inviting}
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-sky-500 hover:bg-sky-600 rounded-lg disabled:opacity-50"
                   >
                     {inviting && <Loader2 size={14} className="animate-spin" />}
                     <UserPlus size={14} />
@@ -467,7 +467,7 @@ function PwField({
         type="password"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none"
+        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
         autoComplete="new-password"
       />
     </div>

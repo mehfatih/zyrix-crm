@@ -99,17 +99,17 @@ export default function TemplateApplicationsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/templates`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft
               className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
             />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
             <History className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr(
                 "Applied templates",
                 "القوالب المُطبَّقة",
@@ -128,7 +128,7 @@ export default function TemplateApplicationsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700 flex items-start gap-2">
@@ -138,9 +138,9 @@ export default function TemplateApplicationsPage() {
         ) : apps.length === 0 ? (
           <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
             <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <History className="w-6 h-6 text-cyan-600" />
+              <History className="w-6 h-6 text-sky-500" />
             </div>
-            <p className="text-sm font-semibold text-cyan-900">
+            <p className="text-sm font-semibold text-sky-900">
               {tr(
                 "No templates applied yet",
                 "لم يتم تطبيق أي قوالب بعد",
@@ -156,7 +156,7 @@ export default function TemplateApplicationsPage() {
             </p>
             <Link
               href={`/${locale}/templates`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
             >
               {tr("Browse templates", "تصفح القوالب", "Şablonlara göz at")}
             </Link>
@@ -187,7 +187,7 @@ export default function TemplateApplicationsPage() {
                   <div className="text-3xl flex-shrink-0">{app.icon}</div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-sm font-semibold text-cyan-900 truncate">
+                      <h3 className="text-sm font-semibold text-sky-900 truncate">
                         {nameFor(app)}
                       </h3>
                       <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase text-slate-600 bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5">

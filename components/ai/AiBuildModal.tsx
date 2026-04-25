@@ -110,12 +110,12 @@ export function AiBuildModal({
     >
       <div className="w-full max-w-2xl mt-10 rounded-2xl bg-white border border-sky-200 shadow-xl overflow-hidden">
         {/* Header */}
-        <div className="flex items-center gap-3 p-4 border-b border-sky-100 bg-gradient-to-br from-cyan-50 via-sky-50 to-blue-50">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+        <div className="flex items-center gap-3 p-4 border-b border-sky-100 bg-gradient-to-br from-sky-50 via-sky-50 to-blue-50">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
             <Sparkles className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-sm font-bold text-cyan-900">
+            <h2 className="text-sm font-bold text-sky-900">
               {tr("Build with AI", "بناء بالذكاء الاصطناعي", "AI ile oluştur")}
             </h2>
             <p className="text-xs text-slate-600">
@@ -177,7 +177,7 @@ export function AiBuildModal({
                   onClick={() => setArtifactType(t)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold border ${
                     artifactType === t
-                      ? "bg-cyan-600 text-white border-cyan-600"
+                      ? "bg-sky-500 text-white border-sky-500"
                       : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
                   }`}
                 >
@@ -195,7 +195,7 @@ export function AiBuildModal({
             onChange={(e) => setInput(e.target.value)}
             placeholder={placeholders[mode]}
             rows={3}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           />
           {error && (
             <div className="rounded-lg border border-rose-200 bg-rose-50 p-2 flex items-start gap-2 text-xs text-rose-700">
@@ -207,7 +207,7 @@ export function AiBuildModal({
             <button
               onClick={handleSubmit}
               disabled={!input.trim() || loading}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -221,12 +221,12 @@ export function AiBuildModal({
           {result && (
             <div className="rounded-xl border border-sky-100 bg-sky-50/40 p-3 space-y-2 max-h-[50vh] overflow-auto">
               {mode === "report" && (result as AiReportOutput).narrative && (
-                <p className="text-sm text-cyan-900 font-semibold">
+                <p className="text-sm text-sky-900 font-semibold">
                   {(result as AiReportOutput).narrative}
                 </p>
               )}
               {mode === "architect" && (result as AiArchitectOutput).rationale && (
-                <p className="text-sm text-cyan-900 font-semibold">
+                <p className="text-sm text-sky-900 font-semibold">
                   {(result as AiArchitectOutput).rationale}
                 </p>
               )}
@@ -260,7 +260,7 @@ function ModeTab({
       onClick={onClick}
       className={`flex-1 inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold border-b-2 transition-colors ${
         active
-          ? "border-cyan-600 text-cyan-700 bg-cyan-50/40"
+          ? "border-sky-500 text-sky-600 bg-sky-50/40"
           : "border-transparent text-slate-500 hover:text-slate-800"
       }`}
     >

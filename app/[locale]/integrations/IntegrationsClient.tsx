@@ -217,18 +217,18 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-16 md:py-24 bg-gradient-to-br from-cyan-50 via-sky-50 to-white overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-gradient-to-br from-sky-50 via-sky-50 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 ltr:left-10 rtl:right-10 w-64 h-64 bg-cyan-200 rounded-full blur-3xl" />
+          <div className="absolute top-20 ltr:left-10 rtl:right-10 w-64 h-64 bg-sky-200 rounded-full blur-3xl" />
           <div className="absolute bottom-10 ltr:right-10 rtl:left-10 w-80 h-80 bg-sky-200 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-6xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-sky-200 text-cyan-700 rounded-full text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-sky-200 text-sky-600 rounded-full text-xs font-semibold mb-4">
               <Plug className="w-3 h-3" />
               {t.heroEyebrow}
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold text-cyan-900 mb-4 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-sky-900 mb-4 leading-tight">
               {t.heroTitle}
             </h1>
             <p className="text-base md:text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
@@ -237,7 +237,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
             <div className="flex items-center gap-3 justify-center flex-wrap">
               <Link
                 href={`/${locale}/signup`}
-                className="inline-flex items-center gap-1.5 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold shadow-lg shadow-cyan-600/20 transition-colors"
+                className="inline-flex items-center gap-1.5 px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold shadow-lg shadow-sky-500/20 transition-colors"
               >
                 {t.heroCtaPrimary}
                 <ArrowRight className="w-4 h-4 ltr:translate-x-0 rtl:-scale-x-100" />
@@ -273,7 +273,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2.5 text-sm bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2.5 text-sm bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
             <div className="flex items-center gap-2 flex-wrap">
@@ -290,7 +290,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
           ) : filtered.length === 0 ? (
             <div className="text-center py-20">
               <Search className="w-10 h-10 text-sky-300 mx-auto mb-2" />
-              <h3 className="text-base font-semibold text-cyan-900 mb-1">{t.noResults}</h3>
+              <h3 className="text-base font-semibold text-sky-900 mb-1">{t.noResults}</h3>
               <p className="text-sm text-slate-500">{t.tryDifferent}</p>
             </div>
           ) : (
@@ -304,9 +304,9 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
       </section>
 
       {/* How it works */}
-      <section className="py-16 bg-gradient-to-br from-sky-50 to-cyan-50">
+      <section className="py-16 bg-gradient-to-br from-sky-50 to-sky-50">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-cyan-900 text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-sky-900 text-center mb-10">
             {t.howItWorks}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -321,13 +321,13 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
       {/* CTA */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-cyan-900 mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-sky-900 mb-3">
             {t.ctaTitle}
           </h2>
           <p className="text-base text-slate-600 mb-6">{t.ctaSubtitle}</p>
           <Link
             href={`/${locale}/signup`}
-            className="inline-flex items-center gap-1.5 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold shadow-lg shadow-cyan-600/20"
+            className="inline-flex items-center gap-1.5 px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold shadow-lg shadow-sky-500/20"
           >
             {t.ctaButton}
             <ArrowRight className="w-4 h-4 ltr:translate-x-0 rtl:-scale-x-100" />
@@ -340,7 +340,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
 
 function StatCard({ value, label, color }: { value: number; label: string; color: string }) {
   const colors: Record<string, string> = {
-    cyan: "text-cyan-600",
+    cyan: "text-sky-500",
     sky: "text-sky-600",
     emerald: "text-emerald-600",
     indigo: "text-indigo-600",
@@ -370,7 +370,7 @@ function RegionChip({
     <button
       onClick={onClick}
       className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-        active ? "bg-cyan-600 text-white shadow-sm" : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+        active ? "bg-sky-500 text-white shadow-sm" : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
       }`}
     >
       <Icon className="w-3.5 h-3.5" />
@@ -386,7 +386,7 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
   const description = platform.description[locale as "en" | "ar" | "tr"] || platform.description.en;
   const statusColors: Record<string, string> = {
     native: "bg-emerald-100 text-emerald-700 border-emerald-200",
-    api: "bg-cyan-100 text-cyan-700 border-cyan-200",
+    api: "bg-sky-100 text-sky-600 border-sky-200",
     csv_only: "bg-amber-100 text-amber-700 border-amber-200",
     planned: "bg-slate-100 text-slate-500 border-slate-200",
   };
@@ -401,7 +401,7 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
           {platform.name.charAt(0)}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-base font-bold text-cyan-900 truncate flex items-center gap-1">
+          <h3 className="text-base font-bold text-sky-900 truncate flex items-center gap-1">
             {platform.name}
             {platform.popularity >= 85 && <Zap className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />}
           </h3>
@@ -416,7 +416,7 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
 
       <div className="flex items-center gap-1 mb-3 flex-wrap">
         {platform.supports.customers && (
-          <span className="inline-flex items-center gap-0.5 text-[10px] text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded">
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded">
             <Users className="w-2.5 h-2.5" />
             {t.capCustomers}
           </span>
@@ -447,7 +447,7 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
           href={platform.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-400 hover:text-cyan-600 flex items-center gap-0.5"
+          className="text-slate-400 hover:text-sky-500 flex items-center gap-0.5"
           title={t.visitWebsite}
         >
           <ExternalLink className="w-3 h-3" />
@@ -459,7 +459,7 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
 
 function StepCard({ n, title, desc, color }: { n: number; title: string; desc: string; color: string }) {
   const colors: Record<string, string> = {
-    cyan: "bg-cyan-600",
+    cyan: "bg-sky-500",
     sky: "bg-sky-600",
     emerald: "bg-emerald-600",
     indigo: "bg-indigo-600",
@@ -469,7 +469,7 @@ function StepCard({ n, title, desc, color }: { n: number; title: string; desc: s
       <div className={`w-10 h-10 rounded-full ${colors[color]} text-white flex items-center justify-center font-bold mx-auto mb-3`}>
         {n}
       </div>
-      <h3 className="text-sm font-bold text-cyan-900 mb-1">{title}</h3>
+      <h3 className="text-sm font-bold text-sky-900 mb-1">{title}</h3>
       <p className="text-xs text-slate-500">{desc}</p>
     </div>
   );

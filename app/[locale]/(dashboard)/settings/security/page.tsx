@@ -106,11 +106,11 @@ export default function SecuritySettingsPage() {
       <div className="p-6 max-w-3xl mx-auto space-y-5" dir={isRtl ? "rtl" : "ltr"}>
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
             <Shield className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {t("Security", "الأمان", "Güvenlik")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -125,7 +125,7 @@ export default function SecuritySettingsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -151,7 +151,7 @@ export default function SecuritySettingsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h2 className="text-base font-bold text-cyan-900">
+                    <h2 className="text-base font-bold text-sky-900">
                       {t(
                         "Two-factor authentication (2FA)",
                         "المصادقة الثنائية (2FA)",
@@ -188,7 +188,7 @@ export default function SecuritySettingsPage() {
                     {!status?.enabled ? (
                       <button
                         onClick={startEnroll}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
                       >
                         <Smartphone className="w-4 h-4" />
                         {t("Enable 2FA", "تفعيل 2FA", "2FA'yı etkinleştir")}
@@ -236,12 +236,12 @@ export default function SecuritySettingsPage() {
             {/* Helpful link to audit log */}
             <a
               href={`/${locale}/settings/audit`}
-              className="block rounded-xl border border-sky-100 bg-gradient-to-r from-sky-50 to-cyan-50 p-4 hover:border-cyan-300 transition-colors"
+              className="block rounded-xl border border-sky-100 bg-gradient-to-r from-sky-50 to-sky-50 p-4 hover:border-sky-300 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <Key className="w-5 h-5 text-cyan-600 flex-shrink-0" />
+                <Key className="w-5 h-5 text-sky-500 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-cyan-900">
+                  <h3 className="text-sm font-semibold text-sky-900">
                     {t(
                       "Review recent activity",
                       "راجع النشاط الأخير",
@@ -376,13 +376,13 @@ function EnrollModal({
 
   return (
     <Modal onClose={onClose} locale={locale}>
-      <h2 className="text-lg font-bold text-cyan-900">
+      <h2 className="text-lg font-bold text-sky-900">
         {tr("Enable 2FA", "تفعيل 2FA", "2FA'yı etkinleştir")}
       </h2>
 
       {stage === "loading" && (
         <div className="flex items-center justify-center py-8">
-          <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
         </div>
       )}
 
@@ -404,7 +404,7 @@ function EnrollModal({
           </div>
 
           <details className="rounded-lg border border-sky-200 bg-sky-50 p-3">
-            <summary className="text-xs font-semibold text-cyan-800 cursor-pointer">
+            <summary className="text-xs font-semibold text-sky-800 cursor-pointer">
               {tr(
                 "Can't scan? Enter the secret manually",
                 "لا يمكنك المسح؟ أدخل السر يدويًا",
@@ -424,7 +424,7 @@ function EnrollModal({
                   setSecretCopied(true);
                   setTimeout(() => setSecretCopied(false), 2000);
                 }}
-                className="p-1.5 text-slate-500 hover:text-cyan-600 hover:bg-sky-100 rounded"
+                className="p-1.5 text-slate-500 hover:text-sky-500 hover:bg-sky-100 rounded"
               >
                 {secretCopied ? (
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
@@ -451,7 +451,7 @@ function EnrollModal({
               onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
               placeholder="000000"
               maxLength={6}
-              className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
 
@@ -460,7 +460,7 @@ function EnrollModal({
           <button
             onClick={submit}
             disabled={code.length !== 6 || submitting}
-            className="w-full py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-semibold text-sm disabled:opacity-50 inline-flex items-center justify-center gap-2"
+            className="w-full py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg font-semibold text-sm disabled:opacity-50 inline-flex items-center justify-center gap-2"
           >
             {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
             {tr("Confirm and enable", "تأكيد وتفعيل", "Onayla ve etkinleştir")}
@@ -522,7 +522,7 @@ function DisableModal({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoFocus
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
         />
       </div>
       {err && <p className="text-sm text-rose-700 mt-2">{err}</p>}
@@ -574,7 +574,7 @@ function RegenerateModal({
 
   return (
     <Modal onClose={onClose} locale={locale}>
-      <h2 className="text-lg font-bold text-cyan-900">
+      <h2 className="text-lg font-bold text-sky-900">
         {tr(
           "Regenerate backup codes?",
           "إعادة إنشاء رموز الاسترداد؟",
@@ -599,7 +599,7 @@ function RegenerateModal({
         <button
           onClick={submit}
           disabled={submitting}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
         >
           {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
           {tr("Generate new codes", "إنشاء رموز جديدة", "Yeni kodlar oluştur")}
@@ -711,7 +711,7 @@ function BackupCodesModal({
           type="checkbox"
           checked={acknowledged}
           onChange={(e) => setAcknowledged(e.target.checked)}
-          className="mt-0.5 w-4 h-4 text-cyan-600 rounded"
+          className="mt-0.5 w-4 h-4 text-sky-500 rounded"
         />
         <span className="text-sm text-slate-700">
           {tr(
@@ -725,7 +725,7 @@ function BackupCodesModal({
       <button
         onClick={onClose}
         disabled={!acknowledged}
-        className="mt-4 w-full py-2.5 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-semibold text-sm"
+        className="mt-4 w-full py-2.5 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-semibold text-sm"
       >
         {tr("Done", "تم", "Tamam")}
       </button>

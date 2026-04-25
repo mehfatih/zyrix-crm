@@ -233,17 +233,17 @@ export default function ApiDocsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/settings/api`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft
               className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
             />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
             <FileText className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr(
                 "API documentation",
                 "توثيق الـ API",
@@ -261,7 +261,7 @@ export default function ApiDocsPage() {
         </div>
 
         {/* Base URL + OpenAPI links */}
-        <div className="rounded-xl border border-sky-100 bg-gradient-to-br from-cyan-50/40 to-sky-50/40 p-4">
+        <div className="rounded-xl border border-sky-100 bg-gradient-to-br from-sky-50/40 to-sky-50/40 p-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wide">
@@ -281,7 +281,7 @@ export default function ApiDocsPage() {
                 href={`${BASE_URL}/v1/openapi.json`}
                 target="_blank"
                 rel="noopener"
-                className="inline-flex items-center gap-1.5 mt-1 px-3 py-1 bg-white border border-sky-200 hover:border-cyan-400 rounded text-xs font-semibold text-cyan-700"
+                className="inline-flex items-center gap-1.5 mt-1 px-3 py-1 bg-white border border-sky-200 hover:border-sky-300 rounded text-xs font-semibold text-sky-600"
               >
                 <Code2 className="w-3.5 h-3.5" />
                 /v1/openapi.json
@@ -293,7 +293,7 @@ export default function ApiDocsPage() {
 
         {/* Auth example */}
         <section>
-          <h2 className="text-sm font-bold text-cyan-900 mb-2 flex items-center gap-2">
+          <h2 className="text-sm font-bold text-sky-900 mb-2 flex items-center gap-2">
             <Globe className="w-4 h-4" />
             {tr(
               "Authentication",
@@ -325,7 +325,7 @@ curl -H "Authorization: Bearer zy_live_..." \\
         {/* Endpoint sections */}
         {ENDPOINTS.map((section, si) => (
           <section key={si}>
-            <h2 className="text-sm font-bold text-cyan-900 mb-2">
+            <h2 className="text-sm font-bold text-sky-900 mb-2">
               {section.section[locale]}
             </h2>
             <div className="space-y-2">
@@ -424,7 +424,7 @@ function EndpointCard({
         </span>
         <button
           onClick={() => onCopy(endpoint.path)}
-          className="w-6 h-6 rounded text-slate-400 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+          className="w-6 h-6 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
           title={tr("Copy URL", "نسخ الرابط", "URL'yi kopyala")}
         >
           {copiedPath === endpoint.path ? (
@@ -435,7 +435,7 @@ function EndpointCard({
         </button>
       </div>
       <div className="p-3 space-y-2">
-        <div className="text-sm font-semibold text-cyan-900">
+        <div className="text-sm font-semibold text-sky-900">
           {endpoint.label[locale]}
         </div>
         <p className="text-xs text-slate-600">

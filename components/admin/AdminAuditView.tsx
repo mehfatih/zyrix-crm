@@ -87,17 +87,17 @@ export default function AdminAuditView({ locale }: Props) {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="flex size-10 items-center justify-center rounded-xl bg-cyan-50 text-cyan-700">
+        <div className="flex size-10 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
           <FileText className="size-5" />
         </div>
         <div>
-          <h1 className="text-2xl font-semibold text-cyan-900">{t("title")}</h1>
+          <h1 className="text-2xl font-semibold text-sky-900">{t("title")}</h1>
           <p className="text-sm text-slate-500">{t("subtitle")}</p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="rounded-xl border border-cyan-100 bg-white p-4">
+      <div className="rounded-xl border border-sky-100 bg-white p-4">
         <div className="flex flex-wrap items-end gap-3">
           <div className="min-w-[200px] flex-1">
             <label className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-600">
@@ -110,7 +110,7 @@ export default function AdminAuditView({ locale }: Props) {
                 setActionFilter(e.target.value);
                 setPage(1);
               }}
-              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
             >
               <option value="">{t("allActions")}</option>
               {ACTION_OPTIONS.map((a) => (
@@ -132,7 +132,7 @@ export default function AdminAuditView({ locale }: Props) {
                 setPage(1);
               }}
               placeholder="company-uuid"
-              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
             />
           </div>
         </div>
@@ -146,14 +146,14 @@ export default function AdminAuditView({ locale }: Props) {
 
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <Loader2 className="size-8 animate-spin text-cyan-600" />
+          <Loader2 className="size-8 animate-spin text-sky-500" />
         </div>
       ) : !data || data.items.length === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
           {t("noLogs")}
         </div>
       ) : (
-        <div className="rounded-xl border border-cyan-100 bg-white">
+        <div className="rounded-xl border border-sky-100 bg-white">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-sky-50">
@@ -222,7 +222,7 @@ export default function AdminAuditView({ locale }: Props) {
                               onClick={() =>
                                 setExpandedId(isExpanded ? null : log.id)
                               }
-                              className="inline-flex items-center gap-1 rounded text-xs font-medium text-cyan-700 hover:text-cyan-900"
+                              className="inline-flex items-center gap-1 rounded text-xs font-medium text-sky-600 hover:text-sky-900"
                             >
                               {isExpanded ? (
                                 <>

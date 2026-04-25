@@ -133,11 +133,11 @@ export default function WorkflowsListPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
               <Zap className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Automations", "الأتمتة", "Otomasyonlar")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -160,7 +160,7 @@ export default function WorkflowsListPage() {
             </Link>
             <Link
               href={`/${locale}/workflows/new`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("New workflow", "workflow جديد", "Yeni iş akışı")}
@@ -171,7 +171,7 @@ export default function WorkflowsListPage() {
         {/* Body */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -217,10 +217,10 @@ function EmptyState({
 }) {
   return (
     <div className="rounded-2xl border border-dashed border-sky-200 bg-white p-12 text-center">
-      <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-cyan-100 to-sky-200 flex items-center justify-center mb-4">
-        <Zap className="w-8 h-8 text-cyan-700" />
+      <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-sky-100 to-sky-200 flex items-center justify-center mb-4">
+        <Zap className="w-8 h-8 text-sky-600" />
       </div>
-      <h2 className="text-lg font-bold text-cyan-900">
+      <h2 className="text-lg font-bold text-sky-900">
         {tr(
           "No automations yet",
           "لا أتمتة بعد",
@@ -236,7 +236,7 @@ function EmptyState({
       </p>
       <Link
         href={`/${locale}/workflows/new`}
-        className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+        className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
       >
         <Plus className="w-4 h-4" />
         {tr("Create workflow", "إنشاء workflow", "İş akışı oluştur")}
@@ -290,7 +290,7 @@ function WorkflowCard({
         <div
           className={`w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center ${
             workflow.isEnabled
-              ? "bg-gradient-to-br from-cyan-100 to-sky-200 text-cyan-700"
+              ? "bg-gradient-to-br from-sky-100 to-sky-200 text-sky-600"
               : "bg-slate-100 text-slate-400"
           }`}
         >
@@ -303,7 +303,7 @@ function WorkflowCard({
             <div className="flex-1 min-w-0">
               <Link
                 href={`/${locale}/workflows/${workflow.id}`}
-                className="text-base font-semibold text-cyan-900 hover:text-cyan-700 truncate block"
+                className="text-base font-semibold text-sky-900 hover:text-sky-600 truncate block"
               >
                 {workflow.name}
               </Link>
@@ -466,7 +466,7 @@ function StatChip({
   tone: "cyan" | "emerald" | "rose" | "amber";
 }) {
   const toneClass: Record<string, string> = {
-    cyan: "bg-cyan-50 text-cyan-700 border-cyan-100",
+    cyan: "bg-sky-50 text-sky-600 border-sky-100",
     emerald: "bg-emerald-50 text-emerald-700 border-emerald-100",
     rose: "bg-rose-50 text-rose-700 border-rose-100",
     amber: "bg-amber-50 text-amber-700 border-amber-100",

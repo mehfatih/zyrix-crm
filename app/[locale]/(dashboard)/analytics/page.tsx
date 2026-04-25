@@ -47,7 +47,7 @@ const CATEGORY_META: Record<
     ar: "المسار",
     tr: "Pipeline",
     icon: Briefcase,
-    tone: "from-cyan-500 to-sky-600",
+    tone: "from-sky-400 to-sky-600",
   },
   customers: {
     en: "Customers",
@@ -97,11 +97,11 @@ export default function AnalyticsHubPage() {
       >
         <div className="flex items-start justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
               <BarChart3 className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Analytics", "التحليلات", "Analitik")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -115,7 +115,7 @@ export default function AnalyticsHubPage() {
           </div>
           <Link
             href={`/${locale}/analytics/scheduled`}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
           >
             <Mail className="w-3.5 h-3.5" />
             {tr(
@@ -128,7 +128,7 @@ export default function AnalyticsHubPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -147,7 +147,7 @@ export default function AnalyticsHubPage() {
                     >
                       <Icon className="w-3.5 h-3.5" />
                     </div>
-                    <h2 className="text-sm font-bold text-cyan-900">
+                    <h2 className="text-sm font-bold text-sky-900">
                       {meta?.[locale] ?? cat}
                     </h2>
                   </div>
@@ -156,13 +156,13 @@ export default function AnalyticsHubPage() {
                       <Link
                         key={m.key}
                         href={`/${locale}/analytics/builder?m=${m.key}`}
-                        className="group rounded-xl border border-sky-100 bg-white hover:border-cyan-400 hover:shadow-sm transition-all p-4 flex items-start gap-3"
+                        className="group rounded-xl border border-sky-100 bg-white hover:border-sky-300 hover:shadow-sm transition-all p-4 flex items-start gap-3"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-sky-50 text-cyan-700 flex items-center justify-center flex-shrink-0">
+                        <div className="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0">
                           {chartIcon(m.chart)}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="text-sm font-semibold text-cyan-900">
+                          <div className="text-sm font-semibold text-sky-900">
                             {m.label[locale]}
                           </div>
                           <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
@@ -170,7 +170,7 @@ export default function AnalyticsHubPage() {
                           </p>
                         </div>
                         <ArrowRight
-                          className={`w-4 h-4 text-slate-300 group-hover:text-cyan-600 transition-colors flex-shrink-0 mt-1 ${
+                          className={`w-4 h-4 text-slate-300 group-hover:text-sky-500 transition-colors flex-shrink-0 mt-1 ${
                             isRtl ? "-scale-x-100" : ""
                           }`}
                         />

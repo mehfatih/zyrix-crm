@@ -51,7 +51,7 @@ export default function DocsArticleNav({ headings, locale }: DocsArticleNavProps
                 h.level === 3 ? "ps-6" : "ps-3"
               } pe-2 py-1 -ms-[2px] border-s-2 ${
                 activeId === h.id
-                  ? "border-cyan-500 text-cyan-700 font-semibold"
+                  ? "border-sky-400 text-sky-600 font-semibold"
                   : "border-transparent text-slate-500 hover:text-slate-800"
               }`}
             >

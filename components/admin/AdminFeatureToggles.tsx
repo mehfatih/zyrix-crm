@@ -40,7 +40,7 @@ const CATEGORY_META: Record<
   sales: {
     label: { en: "Sales", ar: "المبيعات", tr: "Satış" },
     icon: Briefcase,
-    tone: "from-cyan-500 to-sky-600",
+    tone: "from-sky-400 to-sky-600",
   },
   growth: {
     label: { en: "Growth", ar: "النمو", tr: "Büyüme" },
@@ -75,7 +75,7 @@ const CATEGORY_META: Record<
   integrations: {
     label: { en: "Integrations", ar: "التكاملات", tr: "Entegrasyonlar" },
     icon: Plug,
-    tone: "from-teal-500 to-cyan-600",
+    tone: "from-teal-500 to-sky-500",
   },
   platform: {
     label: { en: "Platform", ar: "المنصة", tr: "Platform" },
@@ -216,7 +216,7 @@ export function AdminFeatureToggles({
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12 rounded-xl border border-sky-100 bg-white">
-        <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+        <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
       </div>
     );
   }
@@ -249,7 +249,7 @@ export function AdminFeatureToggles({
                 >
                   <Icon className="w-3 h-3" />
                 </div>
-                <h3 className="text-sm font-bold text-cyan-900">
+                <h3 className="text-sm font-bold text-sky-900">
                   {meta?.label[locale] ?? cat}
                 </h3>
               </div>
@@ -289,7 +289,7 @@ export function AdminFeatureToggles({
                               {includedPlans.map((p) => (
                                 <span
                                   key={p}
-                                  className="inline-flex items-center rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200 px-2 py-0.5 text-[10px] font-medium"
+                                  className="inline-flex items-center rounded-full bg-sky-50 text-sky-600 border border-sky-200 px-2 py-0.5 text-[10px] font-medium"
                                 >
                                   {PLAN_LABELS[p][locale]}
                                 </span>
@@ -308,7 +308,7 @@ export function AdminFeatureToggles({
                         role="switch"
                         aria-checked={enabled}
                         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors flex-shrink-0 ${
-                          enabled ? "bg-cyan-600" : "bg-slate-300"
+                          enabled ? "bg-sky-500" : "bg-slate-300"
                         }`}
                       >
                         <span
@@ -328,10 +328,10 @@ export function AdminFeatureToggles({
 
       {/* Floating save bar — appears only when there are unsaved changes */}
       {hasChanges && (
-        <div className="sticky bottom-4 rounded-xl border border-cyan-300 bg-cyan-50 p-3 flex items-center justify-between gap-3 shadow-lg">
+        <div className="sticky bottom-4 rounded-xl border border-sky-300 bg-sky-50 p-3 flex items-center justify-between gap-3 shadow-lg">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse" />
-            <span className="text-xs font-semibold text-cyan-900">
+            <div className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
+            <span className="text-xs font-semibold text-sky-900">
               {tr(
                 "Unsaved feature changes",
                 "تغييرات غير محفوظة",
@@ -352,7 +352,7 @@ export function AdminFeatureToggles({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-xs font-semibold"
             >
               {saving ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />

@@ -95,18 +95,18 @@ export default function WorkflowDetailPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/workflows`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
             <Zap className="w-5 h-5" />
           </div>
           {loading || !wf ? (
-            <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+            <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
           ) : (
             <div className="flex-1 min-w-0">
-              <h1 className="text-xl font-bold text-cyan-900 truncate">
+              <h1 className="text-xl font-bold text-sky-900 truncate">
                 {wf.name}
               </h1>
               {wf.description && (
@@ -196,8 +196,8 @@ export default function WorkflowDetailPage() {
             {/* Executions */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <History className="w-4 h-4 text-cyan-700" />
-                <h2 className="text-sm font-bold text-cyan-900">
+                <History className="w-4 h-4 text-sky-600" />
+                <h2 className="text-sm font-bold text-sky-900">
                   {tr(
                     "Recent executions",
                     "تشغيلات أخيرة",
@@ -229,10 +229,10 @@ function StatBox({
   tone: "cyan" | "emerald" | "rose" | "sky" | "slate";
 }) {
   const toneClass: Record<string, string> = {
-    cyan: "bg-cyan-50 border-cyan-100 text-cyan-900",
+    cyan: "bg-sky-50 border-sky-100 text-sky-900",
     emerald: "bg-emerald-50 border-emerald-100 text-emerald-900",
     rose: "bg-rose-50 border-rose-100 text-rose-900",
-    sky: "bg-sky-50 border-sky-100 text-cyan-900",
+    sky: "bg-sky-50 border-sky-100 text-sky-900",
     slate: "bg-slate-50 border-slate-100 text-slate-700",
   };
   return (
@@ -281,7 +281,7 @@ export function ExecutionsList({
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               {showWorkflowName && e.workflowName && (
-                <span className="text-sm font-semibold text-cyan-900 truncate">
+                <span className="text-sm font-semibold text-sky-900 truncate">
                   {e.workflowName}
                 </span>
               )}
@@ -330,7 +330,7 @@ function StatusIcon({ status }: { status: WorkflowExecution["status"] }) {
   if (status === "skipped_conditions")
     return <SkipForward className="w-4 h-4 text-slate-500 flex-shrink-0" />;
   if (status === "running")
-    return <Loader2 className="w-4 h-4 text-cyan-600 animate-spin flex-shrink-0" />;
+    return <Loader2 className="w-4 h-4 text-sky-500 animate-spin flex-shrink-0" />;
   return <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />;
 }
 
@@ -354,7 +354,7 @@ function StatusBadge({
     completed: "bg-emerald-50 text-emerald-700 border-emerald-200",
     failed: "bg-rose-50 text-rose-700 border-rose-200",
     pending: "bg-amber-50 text-amber-700 border-amber-200",
-    running: "bg-cyan-50 text-cyan-700 border-cyan-200",
+    running: "bg-sky-50 text-sky-600 border-sky-200",
     skipped_conditions: "bg-slate-50 text-slate-600 border-slate-200",
   };
   return (

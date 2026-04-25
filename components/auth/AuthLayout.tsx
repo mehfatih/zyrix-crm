@@ -20,7 +20,7 @@ export function AuthLayout({
   subtitle,
 }: AuthLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-sky-50 via-cyan-50 to-sky-100">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-sky-50 via-sky-50 to-sky-100">
       {/* Header */}
       <header className="w-full px-6 py-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">

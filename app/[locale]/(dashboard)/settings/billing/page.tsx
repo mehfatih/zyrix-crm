@@ -194,7 +194,7 @@ export default function BillingPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="flex items-center justify-center py-24">
-          <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
         </div>
       </DashboardShell>
     );
@@ -209,11 +209,11 @@ export default function BillingPage() {
       <div className="p-6 max-w-5xl mx-auto space-y-6" dir={isRtl ? "rtl" : "ltr"}>
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
             <CreditCard className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("Billing", "الفوترة", "Faturalama")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -268,13 +268,13 @@ export default function BillingPage() {
         {/* Trial banner */}
         {billing?.company.trialEndsAt &&
           new Date(billing.company.trialEndsAt) > new Date() && (
-            <div className="rounded-xl bg-gradient-to-r from-cyan-50 to-sky-50 border border-cyan-200 p-4 flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-cyan-700 flex-shrink-0 mt-0.5" />
+            <div className="rounded-xl bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-200 p-4 flex items-start gap-3">
+              <Sparkles className="w-5 h-5 text-sky-600 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-cyan-900">
+                <p className="text-sm font-semibold text-sky-900">
                   {tr("Free trial active", "النسخة التجريبية مفعّلة", "Ücretsiz deneme aktif")}
                 </p>
-                <p className="text-xs text-cyan-800 mt-1">
+                <p className="text-xs text-sky-800 mt-1">
                   {tr(
                     `Trial ends on ${new Date(billing.company.trialEndsAt).toLocaleDateString()}. Upgrade any time to keep your features.`,
                     `تنتهي النسخة التجريبية في ${new Date(billing.company.trialEndsAt).toLocaleDateString()}. ترقّ في أي وقت للحفاظ على ميزاتك.`,
@@ -292,7 +292,7 @@ export default function BillingPage() {
               className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-white"
               style={{
                 background: sub?.plan
-                  ? `linear-gradient(135deg, ${plans.find((p) => p.slug === sub.plan.slug)?.color || "#0891B2"}, #0E7490)`
+                  ? `linear-gradient(135deg, ${plans.find((p) => p.slug === sub.plan.slug)?.color || "#0EA5E9"}, #0284C7)`
                   : "linear-gradient(135deg, #64748B, #475569)",
               }}
             >
@@ -306,7 +306,7 @@ export default function BillingPage() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-lg font-bold text-cyan-900 capitalize">
+                <h2 className="text-lg font-bold text-sky-900 capitalize">
                   {sub?.plan
                     ? locale === "ar"
                       ? sub.plan.nameAr
@@ -378,7 +378,7 @@ export default function BillingPage() {
         {/* Plans picker */}
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <h3 className="text-lg font-bold text-cyan-900">
+            <h3 className="text-lg font-bold text-sky-900">
               {tr("Available plans", "الخطط المتاحة", "Mevcut planlar")}
             </h3>
             <div className="inline-flex bg-white border border-sky-200 rounded-lg p-0.5">
@@ -388,7 +388,7 @@ export default function BillingPage() {
                   onClick={() => setCycle(c.key)}
                   className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                     cycle === c.key
-                      ? "bg-cyan-600 text-white"
+                      ? "bg-sky-500 text-white"
                       : "text-slate-600 hover:bg-sky-50"
                   }`}
                 >
@@ -416,21 +416,21 @@ export default function BillingPage() {
                     key={plan.id}
                     className={`rounded-2xl border p-5 relative transition-all ${
                       isCurrent
-                        ? "border-cyan-500 ring-2 ring-cyan-100 bg-cyan-50/50"
+                        ? "border-sky-400 ring-2 ring-sky-100 bg-sky-50/50"
                         : plan.isFeatured
-                          ? "border-cyan-300 bg-white hover:border-cyan-500"
-                          : "border-sky-100 bg-white hover:border-cyan-300"
+                          ? "border-sky-300 bg-white hover:border-sky-400"
+                          : "border-sky-100 bg-white hover:border-sky-300"
                     }`}
                   >
                     {plan.isFeatured && !isCurrent && (
-                      <span className="absolute -top-2 right-4 text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-gradient-to-r from-cyan-500 to-sky-600 text-white shadow">
+                      <span className="absolute -top-2 right-4 text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-gradient-to-r from-sky-400 to-sky-600 text-white shadow">
                         {tr("Recommended", "موصى به", "Önerilen")}
                       </span>
                     )}
                     <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center text-white mb-3"
                       style={{
-                        background: `linear-gradient(135deg, ${plan.color}, #0E7490)`,
+                        background: `linear-gradient(135deg, ${plan.color}, #0284C7)`,
                       }}
                     >
                       {plan.slug === "free" ? (
@@ -441,7 +441,7 @@ export default function BillingPage() {
                         <Sparkles className="w-4 h-4" />
                       )}
                     </div>
-                    <h4 className="text-base font-bold text-cyan-900 capitalize">
+                    <h4 className="text-base font-bold text-sky-900 capitalize">
                       {nameForPlan(plan)}
                     </h4>
                     <p className="text-xs text-slate-600 mt-1">
@@ -449,7 +449,7 @@ export default function BillingPage() {
                     </p>
                     <div className="mt-3">
                       <span
-                        className="text-2xl font-bold text-cyan-900 tabular-nums"
+                        className="text-2xl font-bold text-sky-900 tabular-nums"
                         dir="ltr"
                       >
                         {price === 0
@@ -482,7 +482,7 @@ export default function BillingPage() {
                       className={`w-full mt-4 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors ${
                         isCurrent
                           ? "bg-slate-100 text-slate-500 cursor-not-allowed"
-                          : "bg-cyan-600 hover:bg-cyan-700 text-white disabled:opacity-50"
+                          : "bg-sky-500 hover:bg-sky-600 text-white disabled:opacity-50"
                       }`}
                     >
                       {actingPlan === plan.slug && (
@@ -514,8 +514,8 @@ export default function BillingPage() {
         {/* Invoices */}
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <Receipt className="w-5 h-5 text-cyan-600" />
-            <h3 className="text-lg font-bold text-cyan-900">
+            <Receipt className="w-5 h-5 text-sky-500" />
+            <h3 className="text-lg font-bold text-sky-900">
               {tr("Invoices", "الفواتير", "Faturalar")}
             </h3>
           </div>

@@ -32,7 +32,7 @@ const TYPE_ICON: Record<NotificationType, LucideIcon> = {
 };
 
 const TYPE_COLOR: Record<NotificationType, { bg: string; text: string }> = {
-  deal: { bg: "#ecfeff", text: "#0e7490" },
+  deal: { bg: "#ecfeff", text: "#0284C7" },
   task: { bg: "#ecfdf5", text: "#047857" },
   message: { bg: "#fff1f2", text: "#be123c" },
   system: { bg: "#f5f3ff", text: "#6d28d9" },
@@ -62,7 +62,7 @@ export function NotificationItem({
         notification.read
           ? "bg-slate-50 border-transparent"
           : "bg-white border-l-[#f97373]"
-      } hover:bg-cyan-50/40`}
+      } hover:bg-sky-50/40`}
     >
       <div
         className="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center"

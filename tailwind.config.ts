@@ -165,6 +165,33 @@ const config: Config = {
         "sky-bright": "#7DD3FC",
         "rose-accent": "#F9A8D4",
         "teal-bright": "#5EEAD4",
+
+        // ──────────────────────────────────────────────────────────────
+        // ZYRIX SKY BLUE (NEW STANDARD — Apr 2026)
+        // Unified Mobile + Web tokens. Use these going forward.
+        // ──────────────────────────────────────────────────────────────
+        zyrix: {
+          primary: "#0EA5E9",
+          primaryDark: "#0284C7",
+          primaryLight: "#7DD3FC",
+          accent: "#22D3EE",
+          azure: "#38BDF8",
+          sky: "#BAE6FD",
+          bg: "#F0F9FF",
+          cardBg: "#FFFFFF",
+          cardBgAlt: "#F8FAFC",
+          aiSurface: "#F0F9FF",
+          aiBorder: "#BAE6FD",
+          textHeading: "#0C4A6E",
+          textMid: "#0369A1",
+          textBody: "#1E293B",
+          textMuted: "#64748B",
+          border: "#E2E8F0",
+          borderSky: "#BAE6FD",
+          success: "#22C55E",
+          warning: "#F59E0B",
+          danger: "#EF4444",
+        },
       },
 
       // ─────────────────────────────────────────────────────────────────
@@ -249,6 +276,14 @@ const config: Config = {
         "glow-lg": "0 0 48px rgba(34, 211, 238, 0.45)",
         inner: "inset 0 2px 4px 0 rgba(8, 145, 178, 0.05)",
         none: "none",
+
+        // Zyrix Sky Blue shadows (NEW STANDARD — Apr 2026)
+        "zyrix-card":
+          "0 1px 3px rgba(14,165,233,0.08), 0 1px 2px rgba(14,165,233,0.04)",
+        "zyrix-card-hover":
+          "0 4px 12px rgba(14,165,233,0.12), 0 2px 6px rgba(14,165,233,0.06)",
+        "zyrix-ai-glow":
+          "0 0 0 1px rgba(14,165,233,0.15), 0 4px 12px rgba(14,165,233,0.08)",
       },
 
       // ─────────────────────────────────────────────────────────────────
@@ -285,6 +320,12 @@ const config: Config = {
           "linear-gradient(135deg, #FB7185 0%, #FDBA74 100%)",
         "success-gradient":
           "linear-gradient(135deg, #34D399 0%, #5EEAD4 100%)",
+
+        // Zyrix AI gradients (NEW STANDARD — Apr 2026)
+        "zyrix-ai-gradient":
+          "linear-gradient(135deg, #22D3EE 0%, #0EA5E9 50%, #0284C7 100%)",
+        "zyrix-soft-gradient":
+          "linear-gradient(135deg, #F0F9FF 0%, #FFFFFF 100%)",
       },
 
       backgroundSize: {

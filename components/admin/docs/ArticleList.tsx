@@ -158,7 +158,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search articles by title, slug, category…"
-            className="w-full ps-9 pe-3 py-2 text-sm border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-cyan-400"
+            className="w-full ps-9 pe-3 py-2 text-sm border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-sky-300"
           />
         </div>
         <select
@@ -214,7 +214,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                 >
                   <Td>
                     <div className="font-semibold text-slate-900 flex items-center gap-2">
-                      <BookOpen className="w-3.5 h-3.5 text-cyan-600" />
+                      <BookOpen className="w-3.5 h-3.5 text-sky-500" />
                       {row.title}
                       {row.recentlyUpdated && (
                         <span className="ms-1 inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -244,7 +244,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                       {(row.plans || []).map((p) => (
                         <span
                           key={p}
-                          className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-cyan-50 text-cyan-700 border border-cyan-100 capitalize"
+                          className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-sky-50 text-sky-600 border border-sky-100 capitalize"
                         >
                           {p}
                         </span>
@@ -263,7 +263,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                       className={`mt-1 inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-medium rounded-md border transition-colors ${
                         row.recentlyUpdated
                           ? "bg-emerald-50 border-emerald-200 text-emerald-700"
-                          : "bg-white border-slate-200 text-slate-500 hover:border-cyan-300"
+                          : "bg-white border-slate-200 text-slate-500 hover:border-sky-300"
                       }`}
                     >
                       {row.recentlyUpdated ? (
@@ -301,13 +301,13 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                       <Link
                         href={href}
                         target="_blank"
-                        className="text-xs text-cyan-700 hover:underline"
+                        className="text-xs text-sky-600 hover:underline"
                       >
                         View
                       </Link>
                       <Link
                         href={`/en/admin/docs/${row.locale}/${row.category}/${row.slug}/edit`}
-                        className="inline-flex items-center gap-1 text-xs text-slate-600 hover:text-cyan-700"
+                        className="inline-flex items-center gap-1 text-xs text-slate-600 hover:text-sky-600"
                       >
                         <Pencil className="w-3 h-3" />
                         Edit

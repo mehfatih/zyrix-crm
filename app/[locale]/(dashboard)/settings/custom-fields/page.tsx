@@ -39,7 +39,7 @@ import { DashboardShell } from "@/components/layout/DashboardShell";
 const FIELD_TYPES: { id: CustomField["fieldType"]; Icon: typeof Type; color: string }[] = [
   { id: "text", Icon: Type, color: "text-slate-600" },
   { id: "number", Icon: Hash, color: "text-emerald-600" },
-  { id: "date", Icon: Calendar, color: "text-cyan-600" },
+  { id: "date", Icon: Calendar, color: "text-sky-500" },
   { id: "select", Icon: List, color: "text-indigo-600" },
   { id: "multi_select", Icon: List, color: "text-violet-600" },
   { id: "boolean", Icon: ToggleLeft, color: "text-amber-600" },
@@ -95,15 +95,15 @@ export default function CustomFieldsPage() {
       <div className="p-6 space-y-6 max-w-5xl mx-auto">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <Settings2 className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <Settings2 className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg shadow-sm"
           >
             <Plus className="w-4 h-4" />
             {t("createNew")}
@@ -131,18 +131,18 @@ export default function CustomFieldsPage() {
         {/* Fields list */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="bg-white border border-sky-100 rounded-xl p-12 text-center">
             <Sparkles className="w-10 h-10 text-sky-300 mx-auto mb-2" />
-            <h3 className="text-lg font-semibold text-cyan-900 mb-1">
+            <h3 className="text-lg font-semibold text-sky-900 mb-1">
               {t("empty.title", { entity: t(activeTab === "customer" ? "customers" : "deals") })}
             </h3>
             <p className="text-sm text-slate-500 mb-4">{t("empty.subtitle")}</p>
             <button
               onClick={openCreate}
-              className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg"
+              className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg"
             >
               {t("createFirst")}
             </button>
@@ -165,7 +165,7 @@ export default function CustomFieldsPage() {
                   const Icon = typeMeta?.Icon || Type;
                   return (
                     <tr key={f.id} className="hover:bg-sky-50/20">
-                      <td className="px-4 py-3 text-cyan-900 font-medium">
+                      <td className="px-4 py-3 text-sky-900 font-medium">
                         {f.label}
                       </td>
                       <td className="px-4 py-3">
@@ -195,7 +195,7 @@ export default function CustomFieldsPage() {
                               setEditing(f);
                               setShowEditor(true);
                             }}
-                            className="p-1.5 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded"
+                            className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded"
                             title={t("edit")}
                           >
                             <Pencil className="w-3.5 h-3.5" />
@@ -252,15 +252,15 @@ function TabButton({
       onClick={onClick}
       className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium border-b-2 ${
         active
-          ? "border-cyan-600 text-cyan-700"
-          : "border-transparent text-slate-600 hover:text-cyan-700"
+          ? "border-sky-500 text-sky-600"
+          : "border-transparent text-slate-600 hover:text-sky-600"
       }`}
     >
       <Icon className="w-4 h-4" />
       {label}
       <span
         className={`px-1.5 py-0.5 text-[10px] font-bold rounded-full ${
-          active ? "bg-cyan-100 text-cyan-700" : "bg-slate-100 text-slate-500"
+          active ? "bg-sky-100 text-sky-600" : "bg-slate-100 text-slate-500"
         }`}
       >
         {count}
@@ -338,7 +338,7 @@ function FieldEditor({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {field ? t("editor.titleEdit") : t("editor.titleNew")}
           </h2>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-700">
@@ -389,7 +389,7 @@ function FieldEditor({
               value={form.label}
               onChange={(e) => setForm({ ...form, label: e.target.value })}
               placeholder={t("editor.labelPlaceholder")}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
 
@@ -403,7 +403,7 @@ function FieldEditor({
                 value={form.fieldKey}
                 onChange={(e) => setForm({ ...form, fieldKey: e.target.value })}
                 placeholder={t("editor.keyPlaceholder")}
-                className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
               <p className="text-[10px] text-slate-500 mt-1">{t("editor.keyHint")}</p>
             </div>
@@ -419,7 +419,7 @@ function FieldEditor({
                 onChange={(e) => setOptionsText(e.target.value)}
                 rows={5}
                 placeholder={t("editor.optionsPlaceholder")}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
               <p className="text-[10px] text-slate-500 mt-1">{t("editor.optionsHint")}</p>
             </div>
@@ -442,7 +442,7 @@ function FieldEditor({
               type="checkbox"
               checked={form.required ?? false}
               onChange={(e) => setForm({ ...form, required: e.target.checked })}
-              className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+              className="rounded border-sky-300 text-sky-500 focus:ring-sky-400"
             />
             {t("editor.required")}
           </label>
@@ -458,7 +458,7 @@ function FieldEditor({
           <button
             onClick={save}
             disabled={saving}
-            className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
+            className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
           >
             {saving && <Loader2 className="w-4 h-4 animate-spin" />}
             {t("editor.save")}

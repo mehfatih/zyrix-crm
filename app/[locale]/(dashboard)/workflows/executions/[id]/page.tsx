@@ -52,18 +52,18 @@ export default function ExecutionDetailPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/workflows/executions`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
             <WorkflowIcon className="w-5 h-5" />
           </div>
           {loading || !exec ? (
-            <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+            <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
           ) : (
             <div className="flex-1 min-w-0">
-              <h1 className="text-xl font-bold text-cyan-900 truncate">
+              <h1 className="text-xl font-bold text-sky-900 truncate">
                 {exec.workflowName ??
                   tr("Execution", "تنفيذ", "Yürütme")}
               </h1>
@@ -98,7 +98,7 @@ export default function ExecutionDetailPage() {
                   <div className="text-[10px] uppercase text-slate-500 font-semibold">
                     {tr("Attempts", "محاولات", "Denemeler")}
                   </div>
-                  <div className="text-sm font-semibold text-cyan-900 mt-1 tabular-nums">
+                  <div className="text-sm font-semibold text-sky-900 mt-1 tabular-nums">
                     {exec.attempts}
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function ExecutionDetailPage() {
 
             {/* Step timeline */}
             <div>
-              <h2 className="text-sm font-bold text-cyan-900 mb-3 flex items-center gap-2">
+              <h2 className="text-sm font-bold text-sky-900 mb-3 flex items-center gap-2">
                 <Play className="w-4 h-4" />
                 {tr("Action steps", "خطوات الإجراءات", "Eylem adımları")}
               </h2>
@@ -193,7 +193,7 @@ export default function ExecutionDetailPage() {
 
             {/* Trigger payload */}
             <details className="rounded-xl border border-sky-100 bg-white">
-              <summary className="cursor-pointer p-3 flex items-center gap-2 text-sm font-semibold text-cyan-900 hover:bg-sky-50/40">
+              <summary className="cursor-pointer p-3 flex items-center gap-2 text-sm font-semibold text-sky-900 hover:bg-sky-50/40">
                 <Code2 className="w-4 h-4" />
                 {tr(
                   "Trigger payload",
@@ -264,7 +264,7 @@ function StepTimeline({
               </span>
               <StepIcon status={step.status} />
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold text-cyan-900">
+                <div className="text-sm font-semibold text-sky-900">
                   {step.actionType}
                 </div>
                 <div className="text-[11px] text-slate-500 tabular-nums">
@@ -337,7 +337,7 @@ function StatusPill({
     success: "bg-emerald-50 text-emerald-700 border-emerald-200",
     failed: "bg-rose-50 text-rose-700 border-rose-200",
     pending: "bg-amber-50 text-amber-700 border-amber-200",
-    running: "bg-cyan-50 text-cyan-700 border-cyan-200",
+    running: "bg-sky-50 text-sky-600 border-sky-200",
     skipped: "bg-slate-50 text-slate-600 border-slate-200",
     skipped_conditions: "bg-slate-50 text-slate-600 border-slate-200",
   };

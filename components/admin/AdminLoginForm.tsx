@@ -57,18 +57,18 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-cyan-50 to-sky-100 px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-sky-50 to-sky-100 px-4 py-8">
       <div className="w-full max-w-md">
         {/* Admin mode badge */}
         <div className="mb-6 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-cyan-600 text-white px-4 py-1.5 text-xs font-semibold tracking-wide">
+          <div className="inline-flex items-center gap-2 rounded-full bg-sky-500 text-white px-4 py-1.5 text-xs font-semibold tracking-wide">
             <ShieldCheck size={14} />
             {t("badge")}
           </div>
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl bg-white border border-cyan-200 shadow-xl shadow-cyan-900/10 p-8">
+        <div className="rounded-2xl bg-white border border-sky-200 shadow-xl shadow-sky-900/10 p-8">
           <div className="mb-6 text-center">
             <h1 className="text-2xl font-bold text-slate-900">
               {t("loginTitle")}
@@ -99,7 +99,7 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
                   placeholder="admin@zyrix.co"
                 />
               </div>
@@ -125,7 +125,7 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-10 rtl:pr-9 rtl:pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-10 rtl:pr-9 rtl:pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
                   placeholder="••••••••"
                 />
                 <button
@@ -140,7 +140,7 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
               <div className="mt-1.5 text-end ltr:text-right rtl:text-left">
                 <Link
                   href={`/${locale}/admin/forgot-password`}
-                  className="text-xs font-medium text-cyan-700 hover:text-cyan-900"
+                  className="text-xs font-medium text-sky-600 hover:text-sky-900"
                 >
                   {t("forgot.linkFromLogin")}
                 </Link>
@@ -153,7 +153,7 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
                 type="checkbox"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+                className="h-4 w-4 rounded border-slate-300 text-sky-500 focus:ring-sky-400"
               />
               {t("rememberMe")}
             </label>
@@ -169,7 +169,7 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2.5 px-4 text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2.5 px-4 text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? t("signingIn") : t("signIn")}
             </button>

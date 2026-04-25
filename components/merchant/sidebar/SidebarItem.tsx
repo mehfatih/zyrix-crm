@@ -62,8 +62,8 @@ export function SidebarItem({
           collapsed ? "justify-center px-0" : "ltr:pl-3 rtl:pr-3 ltr:pr-2 rtl:pl-2 gap-3"
         } ${
           active
-            ? "bg-cyan-50 text-cyan-700 font-semibold"
-            : "text-slate-700 hover:bg-cyan-50/60 hover:text-slate-900"
+            ? "bg-sky-50 text-sky-600 font-semibold"
+            : "text-slate-700 hover:bg-sky-50/60 hover:text-slate-900"
         }`}
       >
         {/* Left accent bar when active */}
@@ -77,7 +77,7 @@ export function SidebarItem({
 
         <Icon
           className={`w-[18px] h-[18px] flex-shrink-0 ${
-            active ? "text-cyan-600" : "text-slate-500 group-hover:text-slate-700"
+            active ? "text-sky-500" : "text-slate-500 group-hover:text-slate-700"
           }`}
         />
 
@@ -116,7 +116,7 @@ export function SidebarItem({
           className={`absolute top-1/2 -translate-y-1/2 ltr:right-1 rtl:left-1 w-6 h-6 rounded-md items-center justify-center transition-opacity ${
             pinned
               ? "flex text-orange-500 hover:bg-orange-50"
-              : "hidden group-hover:flex text-slate-400 hover:text-cyan-600 hover:bg-cyan-50"
+              : "hidden group-hover:flex text-slate-400 hover:text-sky-500 hover:bg-sky-50"
           }`}
         >
           <Pin className="w-3 h-3" />

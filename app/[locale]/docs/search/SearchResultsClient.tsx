@@ -75,7 +75,7 @@ export default function SearchResultsClient({ locale, records }: Props) {
       </h1>
 
       <div className="max-w-2xl mb-8">
-        <div className="flex items-center gap-2 px-4 py-3 bg-white border-2 border-cyan-200 rounded-xl">
+        <div className="flex items-center gap-2 px-4 py-3 bg-white border-2 border-sky-200 rounded-xl">
           <Search className="w-5 h-5 text-slate-400" />
           <input
             type="text"
@@ -101,10 +101,10 @@ export default function SearchResultsClient({ locale, records }: Props) {
                 return (
                   <li
                     key={r.id}
-                    className="bg-white border border-sky-100 rounded-xl p-5 hover:border-cyan-300 transition-colors"
+                    className="bg-white border border-sky-100 rounded-xl p-5 hover:border-sky-300 transition-colors"
                   >
                     <Link href={href} className="block">
-                      <div className="text-xs uppercase tracking-wider font-semibold text-cyan-700 mb-1">
+                      <div className="text-xs uppercase tracking-wider font-semibold text-sky-600 mb-1">
                         {getCategoryLabel(r.category as CategoryId, locale)}
                       </div>
                       <div className="text-base font-bold text-slate-900 mb-1">

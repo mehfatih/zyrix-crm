@@ -185,8 +185,8 @@ export default function CommissionPage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <DollarSign className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <DollarSign className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
@@ -210,7 +210,7 @@ export default function CommissionPage() {
                 setEditingRule(null);
                 setRuleModalOpen(true);
               }}
-              className="flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm"
             >
               <Plus className="w-4 h-4" />
               {t("newRule")}
@@ -235,8 +235,8 @@ export default function CommissionPage() {
                 onClick={() => setTab(tb.id)}
                 className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
                   active
-                    ? "border-cyan-600 text-cyan-700"
-                    : "border-transparent text-slate-600 hover:text-cyan-700"
+                    ? "border-sky-500 text-sky-600"
+                    : "border-transparent text-slate-600 hover:text-sky-600"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -248,7 +248,7 @@ export default function CommissionPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
@@ -358,7 +358,7 @@ function RulesList({
                     <Power className="w-3.5 h-3.5 text-slate-400" />
                   )}
                   <div>
-                    <div className="font-medium text-cyan-900">{r.name}</div>
+                    <div className="font-medium text-sky-900">{r.name}</div>
                     {r.description && (
                       <div className="text-xs text-slate-500 truncate max-w-sm">
                         {r.description}
@@ -393,7 +393,7 @@ function RulesList({
                 <div className="flex items-center gap-1 ltr:justify-end rtl:justify-start">
                   <button
                     onClick={() => onEdit(r)}
-                    className="p-1 text-slate-400 hover:text-cyan-700"
+                    className="p-1 text-slate-400 hover:text-sky-600"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
@@ -461,7 +461,7 @@ function EntriesList({
             onClick={() => setStatusFilter(f.id)}
             className={`px-3 py-1 rounded text-xs font-medium ${
               statusFilter === f.id
-                ? "bg-cyan-600 text-white"
+                ? "bg-sky-500 text-white"
                 : "bg-sky-50 text-slate-700 hover:bg-sky-100"
             }`}
           >
@@ -515,7 +515,7 @@ function EntriesList({
                         {formatDate(e.createdAt, locale)}
                       </td>
                       <td className="px-4 py-3">
-                        <div className="font-medium text-cyan-900">
+                        <div className="font-medium text-sky-900">
                           {e.user.fullName}
                         </div>
                       </td>
@@ -525,7 +525,7 @@ function EntriesList({
                       <td className="px-4 py-3 text-slate-700 text-xs">
                         {e.rule.name}
                       </td>
-                      <td className="px-4 py-3 ltr:text-right rtl:text-left font-bold text-cyan-900">
+                      <td className="px-4 py-3 ltr:text-right rtl:text-left font-bold text-sky-900">
                         {formatMoney(Number(e.amount), e.currency, locale)}
                       </td>
                       <td className="px-4 py-3">
@@ -616,7 +616,7 @@ function StatsView({
       <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
         <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
           <Award className="w-4 h-4 text-amber-600" />
-          <h3 className="text-sm font-semibold text-cyan-900">
+          <h3 className="text-sm font-semibold text-sky-900">
             {t("stats.topUsers")}
           </h3>
         </div>
@@ -631,11 +631,11 @@ function StatsView({
                 key={idx}
                 className="px-5 py-3 flex items-center gap-3 hover:bg-sky-50/30"
               >
-                <div className="w-8 h-8 rounded-full bg-cyan-50 text-cyan-700 font-bold text-sm flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-sky-50 text-sky-600 font-bold text-sm flex items-center justify-center">
                   {idx + 1}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-cyan-900 truncate">
+                  <div className="font-medium text-sky-900 truncate">
                     {u.user.fullName}
                   </div>
                   <div className="text-xs text-slate-500 truncate">
@@ -681,7 +681,7 @@ function StatCard({
         </div>
         <div className="text-xs text-slate-500">{label}</div>
       </div>
-      <div className="text-2xl font-bold text-cyan-900">
+      <div className="text-2xl font-bold text-sky-900">
         {formatMoneyShort(amount)}
       </div>
       <div className="text-xs text-slate-500 mt-0.5">
@@ -796,7 +796,7 @@ function RuleModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {editing ? t("modal.editTitle") : t("modal.createTitle")}
           </h2>
           <button
@@ -817,7 +817,7 @@ function RuleModal({
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder={t("modal.namePlaceholder")}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
 
@@ -831,7 +831,7 @@ function RuleModal({
               onChange={(e) =>
                 setForm({ ...form, description: e.target.value })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
 
@@ -848,7 +848,7 @@ function RuleModal({
                     onClick={() => setForm({ ...form, type: ty })}
                     className={`px-3 py-2 rounded-lg text-xs font-medium border transition-colors ${
                       active
-                        ? "bg-cyan-50 text-cyan-700 border-cyan-300"
+                        ? "bg-sky-50 text-sky-600 border-sky-300"
                         : "bg-white text-slate-600 border-sky-200 hover:border-sky-400"
                     }`}
                   >
@@ -869,7 +869,7 @@ function RuleModal({
                 step="0.01"
                 value={form.rate}
                 onChange={(e) => setForm({ ...form, rate: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
           )}
@@ -886,7 +886,7 @@ function RuleModal({
                 onChange={(e) =>
                   setForm({ ...form, amount: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
           )}
@@ -899,7 +899,7 @@ function RuleModal({
                 </label>
                 <button
                   onClick={addTier}
-                  className="text-xs text-cyan-700 hover:text-cyan-800 font-medium flex items-center gap-1"
+                  className="text-xs text-sky-600 hover:text-sky-800 font-medium flex items-center gap-1"
                 >
                   <Plus className="w-3 h-3" />
                   {t("modal.addTier")}
@@ -970,7 +970,7 @@ function RuleModal({
                     appliesTo: e.target.value as AppliesTo,
                   })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 <option value="all">{t("modal.applies.all")}</option>
                 <option value="deal_stage">
@@ -997,7 +997,7 @@ function RuleModal({
                   placeholder={
                     form.appliesTo === "deal_stage" ? "won" : "50000"
                   }
-                  className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
                 />
               </div>
             )}
@@ -1011,7 +1011,7 @@ function RuleModal({
                 onChange={(e) =>
                   setForm({ ...form, isActive: e.target.checked })
                 }
-                className="w-4 h-4 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                className="w-4 h-4 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
               />
               <span className="text-sm text-slate-700">
                 {t("modal.isActive")}
@@ -1036,7 +1036,7 @@ function RuleModal({
           <button
             onClick={save}
             disabled={saving}
-            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin" />

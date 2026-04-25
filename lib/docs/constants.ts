@@ -245,13 +245,13 @@ export const ACCENT_CLASSES: Record<
     hoverBorder: "hover:border-pink-400",
   },
   cyan: {
-    text: "text-cyan-700",
-    bg: "bg-cyan-500",
-    border: "border-cyan-200",
-    ring: "ring-cyan-200",
-    chipBg: "bg-cyan-50",
-    chipText: "text-cyan-700",
-    hoverBorder: "hover:border-cyan-400",
+    text: "text-sky-600",
+    bg: "bg-sky-400",
+    border: "border-sky-200",
+    ring: "ring-sky-200",
+    chipBg: "bg-sky-50",
+    chipText: "text-sky-600",
+    hoverBorder: "hover:border-sky-300",
   },
 };
 

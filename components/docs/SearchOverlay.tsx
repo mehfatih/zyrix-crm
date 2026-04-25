@@ -168,11 +168,11 @@ export default function SearchOverlay({
                       onClick={onClose}
                       className={`flex items-start gap-3 px-4 py-3 border-b border-sky-50 ${
                         i === activeIndex
-                          ? "bg-cyan-50"
+                          ? "bg-sky-50"
                           : "hover:bg-sky-50"
                       }`}
                     >
-                      <FileText className="w-4 h-4 text-cyan-600 flex-shrink-0 mt-1" />
+                      <FileText className="w-4 h-4 text-sky-500 flex-shrink-0 mt-1" />
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-semibold text-slate-900 truncate">
                           {highlight(r.title, query)}

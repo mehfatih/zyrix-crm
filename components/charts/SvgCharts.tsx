@@ -55,7 +55,7 @@ export function BarChart({
   yKey,
   formatX = (v) => String(v),
   formatY = (v) => String(v),
-  color = "#0891B2",
+  color = "#0EA5E9",
 }: Props) {
   const { values, max, labels } = useChartMetrics(rows, xKey, yKey);
   if (rows.length === 0) return <EmptyState />;
@@ -142,7 +142,7 @@ export function LineChart({
   yKey,
   formatX = (v) => String(v),
   formatY = (v) => String(v),
-  color = "#0891B2",
+  color = "#0EA5E9",
 }: Props) {
   const { values, max, labels } = useChartMetrics(rows, xKey, yKey);
   if (rows.length === 0) return <EmptyState />;
@@ -225,7 +225,7 @@ export function LineChart({
 // ──────────────────────────────────────────────────────────────────────
 
 const PIE_PALETTE = [
-  "#0891B2", "#38BDF8", "#6366F1", "#8B5CF6", "#EC4899",
+  "#0EA5E9", "#38BDF8", "#6366F1", "#8B5CF6", "#EC4899",
   "#F59E0B", "#10B981", "#EF4444", "#64748B", "#14B8A6",
 ];
 

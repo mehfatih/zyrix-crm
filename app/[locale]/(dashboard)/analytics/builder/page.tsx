@@ -127,15 +127,15 @@ function BuilderPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/analytics`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
             <BarChart3Icon className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl font-bold text-cyan-900 truncate">
+            <h1 className="text-2xl font-bold text-sky-900 truncate">
               {selected
                 ? selected.label[locale]
                 : tr("Pick a metric", "اختر مقياس", "Metrik seç")}
@@ -170,7 +170,7 @@ function BuilderPage() {
               </button>
               <Link
                 href={`/${locale}/analytics/scheduled?new=${selected.key}`}
-                className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
               >
                 <Mail className="w-3.5 h-3.5" />
                 {tr("Schedule", "جدولة", "Zamanla")}
@@ -182,13 +182,13 @@ function BuilderPage() {
         {/* Metric picker */}
         {loading ? (
           <div className="flex items-center justify-center py-8">
-            <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+            <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
           </div>
         ) : (
           <select
             value={selectedKey}
             onChange={(e) => handlePickMetric(e.target.value)}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           >
             <option value="">
               {tr(
@@ -217,7 +217,7 @@ function BuilderPage() {
         )}
         {selected && running && (
           <div className="flex items-center justify-center py-16 rounded-xl border border-sky-100 bg-white">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         )}
       </div>
@@ -318,7 +318,7 @@ function MetricRenderer({
                 {definition.columns.map((c) => (
                   <th
                     key={c.key}
-                    className="px-3 py-2 text-start font-semibold text-cyan-900 text-xs whitespace-nowrap"
+                    className="px-3 py-2 text-start font-semibold text-sky-900 text-xs whitespace-nowrap"
                   >
                     {c.label[locale]}
                   </th>

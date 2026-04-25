@@ -47,6 +47,8 @@ import { BrandSwitcher } from "@/components/layout/BrandSwitcher";
 import type { Locale } from "@/i18n";
 import { getInitials, cn } from "@/lib/utils";
 import GlobalSearchBar from "@/components/advanced/GlobalSearchBar";
+import { useAIStore } from "@/lib/stores/aiStore";
+import { AISidePanel } from "@/components/ai/AISidePanel";
 
 interface DashboardShellProps {
   locale: string;
@@ -274,7 +276,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
                     {(item as any).unreadCount > 99 ? "99+" : (item as any).unreadCount}
                   </span>
                 ) : item.badge ? (
-                  <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase bg-cyan-100 text-cyan-700 rounded">
+                  <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase bg-sky-100 text-sky-600 rounded">
                     {item.badge}
                   </span>
                 ) : null}
@@ -305,7 +307,7 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           }}
           className={`group relative h-1.5 cursor-ns-resize flex items-center justify-center flex-shrink-0 border-y transition-colors ${
             isDragging
-              ? "bg-cyan-100 border-cyan-300"
+              ? "bg-sky-100 border-sky-300"
               : "bg-line-soft border-transparent hover:bg-sky-50 hover:border-sky-200"
           }`}
           title="Drag to resize — double-click to reset"
@@ -452,6 +454,14 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
       <main className="flex-1 lg:ml-64 flex flex-col min-h-screen">
         <div className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-line-soft px-4 py-2.5 flex items-center gap-3">
           <GlobalSearchBar />
+          <button
+            onClick={() => useAIStore.getState().toggle()}
+            className="relative flex items-center gap-2 rounded-lg bg-zyrix-ai-gradient px-3 py-1.5 text-xs font-bold text-white shadow-zyrix-card hover:shadow-zyrix-ai-glow transition-shadow"
+            aria-label="Ask AI"
+          >
+            <Sparkles size={14} />
+            <span className="hidden sm:inline">Ask AI</span>
+          </button>
         </div>
         <div className="flex-1">{children}</div>
       </main>
@@ -467,6 +477,9 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
         onContinue={dismissWarning}
         onLogoutNow={handleManualLogoutFromWarning}
       />
+
+      {/* AI side panel — available on every authenticated page */}
+      <AISidePanel />
     </div>
   );
 }

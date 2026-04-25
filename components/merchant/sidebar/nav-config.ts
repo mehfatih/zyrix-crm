@@ -71,7 +71,7 @@ export const GROUP_ACCENTS: Record<GroupId, { bar: string; label: string }> = {
   work: { bar: "#10b981", label: "WORK" },
   engage: { bar: "#f97373", label: "ENGAGE" },
   grow: { bar: "#a78bfa", label: "GROW" },
-  system: { bar: "#06b6d4", label: "SYSTEM" },
+  system: { bar: "#22D3EE", label: "SYSTEM" },
 };
 
 export function getItemGroup(id: string): GroupId {

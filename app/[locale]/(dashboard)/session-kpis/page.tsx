@@ -115,11 +115,11 @@ export default function SessionKpisPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
               <Activity className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Session activity", "نشاط الجلسات", "Oturum etkinliği")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -146,7 +146,7 @@ export default function SessionKpisPage() {
                 onClick={() => setPreset(k)}
                 className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
                   preset === k
-                    ? "bg-cyan-600 text-white"
+                    ? "bg-sky-500 text-white"
                     : "text-slate-700 hover:bg-sky-50"
                 }`}
               >
@@ -165,7 +165,7 @@ export default function SessionKpisPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : !data ? null : (
           <>
@@ -173,7 +173,7 @@ export default function SessionKpisPage() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               <StatCard
                 icon={TrendingUp}
-                tone="from-cyan-500 to-sky-600"
+                tone="from-sky-400 to-sky-600"
                 label={tr("Total closes", "إجمالي عمليات الإغلاق", "Toplam kapanma")}
                 value={data.totals.totalCloses}
                 hint={tr(
@@ -215,7 +215,7 @@ export default function SessionKpisPage() {
                     ? "from-rose-500 to-pink-600"
                     : data.totals.autoLogoutRatio > 0.2
                       ? "from-amber-500 to-orange-600"
-                      : "from-cyan-500 to-teal-600"
+                      : "from-sky-400 to-teal-600"
                 }
                 label={tr(
                   "Auto ratio",
@@ -244,8 +244,8 @@ export default function SessionKpisPage() {
             {/* Per-user table */}
             <div className="rounded-xl border border-sky-100 bg-white overflow-hidden">
               <div className="px-4 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-                <Users className="w-4 h-4 text-cyan-700" />
-                <h2 className="text-sm font-bold text-cyan-900">
+                <Users className="w-4 h-4 text-sky-600" />
+                <h2 className="text-sm font-bold text-sky-900">
                   {tr(
                     `Per ${canSeeAll ? "employee" : "person"}`,
                     canSeeAll ? "لكل موظف" : "لكل شخص",
@@ -276,7 +276,7 @@ export default function SessionKpisPage() {
                         key={row.userId}
                         className="px-4 py-3 flex items-center gap-3 flex-wrap"
                       >
-                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
                           {row.userName
                             ? row.userName
                                 .split(" ")
@@ -334,7 +334,7 @@ export default function SessionKpisPage() {
                         {/* Total + ratio pill */}
                         <div className="flex items-center gap-2 flex-shrink-0">
                           <div className="text-right">
-                            <div className="text-base font-bold text-cyan-900 font-mono tabular-nums">
+                            <div className="text-base font-bold text-sky-900 font-mono tabular-nums">
                               {row.totalCloses}
                             </div>
                             <div className="text-[9px] font-semibold uppercase text-slate-400 tracking-wide">
@@ -369,7 +369,7 @@ export default function SessionKpisPage() {
                 <div className="text-xs font-semibold uppercase text-slate-500 tracking-wide">
                   {tr("Logins", "تسجيلات الدخول", "Giriş yapmalar")}
                 </div>
-                <div className="text-2xl font-bold text-cyan-900 font-mono tabular-nums">
+                <div className="text-2xl font-bold text-sky-900 font-mono tabular-nums">
                   {data.totals.logins}
                 </div>
               </div>
@@ -417,7 +417,7 @@ function StatCard({
           <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wide">
             {label}
           </div>
-          <div className="text-2xl font-bold text-cyan-900 font-mono tabular-nums leading-tight">
+          <div className="text-2xl font-bold text-sky-900 font-mono tabular-nums leading-tight">
             {value}
           </div>
           <div className="text-[10px] text-slate-500 mt-0.5">{hint}</div>

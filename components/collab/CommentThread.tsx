@@ -118,8 +118,8 @@ export default function CommentThread({ entityType, entityId, locale }: Props) {
     <div className="space-y-4" dir={isRtl ? "rtl" : "ltr"}>
       {/* Header */}
       <div className="flex items-center gap-2">
-        <MessageSquare className="w-4 h-4 text-cyan-700" />
-        <h2 className="text-sm font-bold text-cyan-900">
+        <MessageSquare className="w-4 h-4 text-sky-600" />
+        <h2 className="text-sm font-bold text-sky-900">
           {tr("Comments", "التعليقات", "Yorumlar")}
           <span className="text-xs font-normal text-slate-500 ms-1">
             ({topLevel.length})
@@ -150,7 +150,7 @@ export default function CommentThread({ entityType, entityId, locale }: Props) {
       {/* Thread */}
       {loading ? (
         <div className="flex items-center justify-center py-6">
-          <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+          <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
         </div>
       ) : topLevel.length === 0 ? (
         <div className="rounded-xl border border-dashed border-sky-200 bg-white p-6 text-center">
@@ -251,7 +251,7 @@ function CommentCard({
           <Avatar name={comment.author.fullName} />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-sm font-semibold text-cyan-900">
+              <span className="text-sm font-semibold text-sky-900">
                 {comment.author.fullName}
               </span>
               <span
@@ -288,7 +288,7 @@ function CommentCard({
                 {!isReply && (
                   <button
                     onClick={onStartReply}
-                    className="inline-flex items-center gap-1 text-slate-500 hover:text-cyan-700 font-semibold"
+                    className="inline-flex items-center gap-1 text-slate-500 hover:text-sky-600 font-semibold"
                   >
                     <CornerDownRight className="w-3 h-3" />
                     {tr("Reply", "رد", "Yanıtla")}
@@ -297,7 +297,7 @@ function CommentCard({
                 {canEdit && (
                   <button
                     onClick={() => onStartEdit(comment)}
-                    className="inline-flex items-center gap-1 text-slate-500 hover:text-cyan-700 font-semibold"
+                    className="inline-flex items-center gap-1 text-slate-500 hover:text-sky-600 font-semibold"
                   >
                     <Edit2 className="w-3 h-3" />
                     {tr("Edit", "تعديل", "Düzenle")}
@@ -483,7 +483,7 @@ function CommentForm({
 
   return (
     <div className="relative">
-      <div className="rounded-xl border border-sky-200 focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-200 bg-white overflow-hidden">
+      <div className="rounded-xl border border-sky-200 focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-sky-200 bg-white overflow-hidden">
         <textarea
           ref={textareaRef}
           value={body}
@@ -518,7 +518,7 @@ function CommentForm({
             <button
               onClick={handleSubmit}
               disabled={!body.trim() || submitting}
-              className="inline-flex items-center gap-1 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 disabled:bg-slate-300 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 text-white rounded-lg text-xs font-semibold"
             >
               {submitting ? (
                 <Loader2 className="w-3 h-3 animate-spin" />
@@ -542,7 +542,7 @@ function CommentForm({
             >
               <Avatar name={u.fullName} small />
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-semibold text-cyan-900 truncate">
+                <div className="text-xs font-semibold text-sky-900 truncate">
                   {u.fullName}
                 </div>
                 <div className="text-[10px] text-slate-500 truncate">
@@ -570,7 +570,7 @@ function Avatar({ name, small }: { name: string; small?: boolean }) {
     .toUpperCase();
   return (
     <div
-      className={`rounded-full bg-gradient-to-br from-cyan-400 to-sky-600 text-white font-bold flex items-center justify-center flex-shrink-0 ${
+      className={`rounded-full bg-gradient-to-br from-sky-300 to-sky-600 text-white font-bold flex items-center justify-center flex-shrink-0 ${
         small ? "w-6 h-6 text-[10px]" : "w-8 h-8 text-xs"
       }`}
     >
@@ -607,7 +607,7 @@ function renderCommentBody(
     parts.push(
       <span
         key={`m-${key++}`}
-        className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-800 text-xs font-semibold mx-0.5"
+        className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 text-xs font-semibold mx-0.5"
       >
         <AtSign className="w-2.5 h-2.5" />
         {match[2]}

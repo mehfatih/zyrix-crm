@@ -64,7 +64,7 @@ export default async function FaqPage({
       rightRail={<DocsArticleNav headings={headings} locale={L} />}
     >
       <nav className="text-xs text-slate-500 mb-4 flex items-center gap-1 flex-wrap">
-        <Link href={`/${L}/docs`} className="hover:text-cyan-700">
+        <Link href={`/${L}/docs`} className="hover:text-sky-600">
           {copy.title}
         </Link>
         <span>›</span>
@@ -75,7 +75,7 @@ export default async function FaqPage({
           {doc.frontmatter.title}
         </h1>
         <div
-          className="prose prose-slate max-w-none prose-a:text-cyan-700 prose-a:no-underline hover:prose-a:underline"
+          className="prose prose-slate max-w-none prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </article>

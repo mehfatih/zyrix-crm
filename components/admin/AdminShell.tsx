@@ -108,7 +108,7 @@ export default function AdminShell({
   if (!ready) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-sky-50">
-        <Loader2 className="animate-spin text-cyan-600" size={32} />
+        <Loader2 className="animate-spin text-sky-500" size={32} />
       </div>
     );
   }
@@ -120,18 +120,18 @@ export default function AdminShell({
   return (
     <div className="min-h-screen flex bg-sky-50">
       {/* Sidebar */}
-      <aside className="hidden md:flex md:w-64 md:flex-col bg-white border-e border-cyan-100 shadow-sm">
+      <aside className="hidden md:flex md:w-64 md:flex-col bg-white border-e border-sky-100 shadow-sm">
         {/* Brand */}
-        <div className="h-16 flex items-center px-5 border-b border-cyan-100">
+        <div className="h-16 flex items-center px-5 border-b border-sky-100">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-cyan-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center">
               <ShieldCheck size={18} className="text-white" />
             </div>
             <div className="leading-tight">
               <div className="text-sm font-bold text-slate-900">
                 {t("brand")}
               </div>
-              <div className="text-[10px] font-semibold text-cyan-700 tracking-wide">
+              <div className="text-[10px] font-semibold text-sky-600 tracking-wide">
                 {t("badge")}
               </div>
             </div>
@@ -149,13 +149,13 @@ export default function AdminShell({
                 href={`/${locale}${item.href}`}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-cyan-50 text-cyan-700"
+                    ? "bg-sky-50 text-sky-600"
                     : "text-slate-700 hover:bg-slate-50"
                 }`}
               >
                 <Icon
                   size={18}
-                  className={active ? "text-cyan-600" : "text-slate-500"}
+                  className={active ? "text-sky-500" : "text-slate-500"}
                 />
                 <span>{tNav(item.labelKey)}</span>
               </Link>
@@ -164,10 +164,10 @@ export default function AdminShell({
         </nav>
 
         {/* User & logout */}
-        <div className="border-t border-cyan-100 p-3">
+        <div className="border-t border-sky-100 p-3">
           <div className="rounded-lg bg-sky-50 p-3 mb-2">
             <div className="text-xs text-slate-500">{me?.email}</div>
-            <div className="text-xs font-semibold text-cyan-700 mt-0.5">
+            <div className="text-xs font-semibold text-sky-600 mt-0.5">
               {t(`role.${me?.role ?? "super_admin"}`)}
             </div>
           </div>
@@ -184,12 +184,12 @@ export default function AdminShell({
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Topbar (admin mode indicator) */}
-        <div className="h-2 bg-gradient-to-r from-cyan-600 via-cyan-500 to-sky-500" />
+        <div className="h-2 bg-gradient-to-r from-sky-500 via-sky-400 to-sky-500" />
 
         {/* Mobile topbar */}
-        <div className="md:hidden flex items-center justify-between h-14 px-4 bg-white border-b border-cyan-100">
+        <div className="md:hidden flex items-center justify-between h-14 px-4 bg-white border-b border-sky-100">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-cyan-600 flex items-center justify-center">
+            <div className="w-7 h-7 rounded-lg bg-sky-500 flex items-center justify-center">
               <ShieldCheck size={14} className="text-white" />
             </div>
             <div className="text-sm font-bold text-slate-900">

@@ -127,7 +127,7 @@ export default function HomeHero({ locale }: { locale: string }) {
                   padding: "14px 28px",
                   borderRadius: 12,
                   background:
-                    "linear-gradient(135deg, #0891B2 0%, #06B6D4 100%)",
+                    "linear-gradient(135deg, #0EA5E9 0%, #22D3EE 100%)",
                   color: "#FFFFFF",
                   fontWeight: 700,
                   fontSize: 16,
@@ -154,10 +154,10 @@ export default function HomeHero({ locale }: { locale: string }) {
                   padding: "13px 28px",
                   borderRadius: 12,
                   background: "#FFFFFF",
-                  color: "#0891B2",
+                  color: "#0EA5E9",
                   fontWeight: 700,
                   fontSize: 16,
-                  border: "1.5px solid #0891B2",
+                  border: "1.5px solid #0EA5E9",
                   boxShadow: "0 1px 3px rgba(8, 145, 178, 0.08)",
                   transition: "background-color 180ms ease",
                   textDecoration: "none",
@@ -359,7 +359,7 @@ function DeviceMock({
             style={{
               fontSize: 11,
               fontWeight: 700,
-              color: "#0891B2",
+              color: "#0EA5E9",
               letterSpacing: "0.05em",
             }}
           >
@@ -380,7 +380,7 @@ function DeviceMock({
           <div
             style={{
               fontSize: 10,
-              color: "#0E7490",
+              color: "#0284C7",
               fontWeight: 700,
               letterSpacing: "0.06em",
             }}

@@ -188,7 +188,7 @@ export function QuickAddModal({
       >
         {/* Header */}
         <div className="flex items-center gap-3 px-6 pt-5 pb-3">
-          <Sparkles className="w-5 h-5 text-cyan-600" />
+          <Sparkles className="w-5 h-5 text-sky-500" />
           <h2 className="text-[20px] font-bold text-[#0C4A6E] flex-1">
             {t("title")}
           </h2>
@@ -204,7 +204,7 @@ export function QuickAddModal({
 
         {/* Search */}
         <div className="px-6 pb-4">
-          <div className="flex items-center gap-2 h-11 px-3 rounded-xl border border-sky-100 bg-[#F0F9FF] focus-within:border-cyan-400 focus-within:bg-white transition-colors">
+          <div className="flex items-center gap-2 h-11 px-3 rounded-xl border border-sky-100 bg-[#F0F9FF] focus-within:border-sky-300 focus-within:bg-white transition-colors">
             <Search className="w-4 h-4 text-slate-400" />
             <input
               ref={inputRef}
@@ -258,7 +258,7 @@ export function QuickAddModal({
           <button
             type="button"
             onClick={onClose}
-            className="h-9 px-4 rounded-lg text-sm font-semibold text-cyan-700 bg-[#F0F9FF] hover:bg-cyan-50 transition-colors"
+            className="h-9 px-4 rounded-lg text-sm font-semibold text-sky-600 bg-[#F0F9FF] hover:bg-sky-50 transition-colors"
           >
             {t("cancel")}
           </button>

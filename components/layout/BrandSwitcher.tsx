@@ -154,14 +154,14 @@ export function BrandSwitcher() {
             <button
               onClick={() => handlePick(null)}
               className={`w-full flex items-center gap-2 px-3 py-2 text-left rtl:text-right hover:bg-sky-50 ${
-                !activeBrandId ? "bg-cyan-50" : ""
+                !activeBrandId ? "bg-sky-50" : ""
               }`}
             >
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center flex-shrink-0">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center flex-shrink-0">
                 <Layers className="w-3.5 h-3.5" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-semibold text-cyan-900">
+                <div className="text-xs font-semibold text-sky-900">
                   {tr("All brands", "كل العلامات", "Tüm markalar")}
                 </div>
                 <div className="text-[10px] text-slate-500">
@@ -169,7 +169,7 @@ export function BrandSwitcher() {
                 </div>
               </div>
               {!activeBrandId && (
-                <Check className="w-3.5 h-3.5 text-cyan-600 flex-shrink-0" />
+                <Check className="w-3.5 h-3.5 text-sky-500 flex-shrink-0" />
               )}
             </button>
 
@@ -181,12 +181,12 @@ export function BrandSwitcher() {
                   key={b.id}
                   onClick={() => handlePick(b.id)}
                   className={`w-full flex items-center gap-2 px-3 py-2 text-left rtl:text-right hover:bg-sky-50 ${
-                    activeBrandId === b.id ? "bg-cyan-50" : ""
+                    activeBrandId === b.id ? "bg-sky-50" : ""
                   }`}
                 >
                   <BrandBadge brand={b} />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-cyan-900 truncate flex items-center gap-1">
+                    <div className="text-xs font-semibold text-sky-900 truncate flex items-center gap-1">
                       {b.name}
                       {b.isDefault && (
                         <span className="text-[9px] font-bold uppercase px-1 py-0.5 rounded bg-amber-100 text-amber-800">
@@ -199,7 +199,7 @@ export function BrandSwitcher() {
                     </code>
                   </div>
                   {activeBrandId === b.id && (
-                    <Check className="w-3.5 h-3.5 text-cyan-600 flex-shrink-0" />
+                    <Check className="w-3.5 h-3.5 text-sky-500 flex-shrink-0" />
                   )}
                 </button>
               ))}
@@ -209,7 +209,7 @@ export function BrandSwitcher() {
             <Link
               href={`/${locale}/settings/brands`}
               onClick={() => setOpen(false)}
-              className="block w-full text-center text-[11px] font-semibold text-cyan-700 hover:text-cyan-900 py-1.5"
+              className="block w-full text-center text-[11px] font-semibold text-sky-600 hover:text-sky-900 py-1.5"
             >
               <Plus className="w-3 h-3 inline me-1" />
               {tr("Manage brands", "إدارة العلامات", "Markaları yönet")}
@@ -226,7 +226,7 @@ function BrandDot({ color }: { color: string | null }) {
     <span
       className="w-2 h-2 rounded-full flex-shrink-0"
       style={{
-        background: color ?? "linear-gradient(135deg, #0891B2, #38BDF8)",
+        background: color ?? "linear-gradient(135deg, #0EA5E9, #38BDF8)",
       }}
     />
   );
@@ -243,7 +243,7 @@ function BrandBadge({ brand }: { brand: Brand }) {
     <div
       className="w-7 h-7 rounded-lg text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0 shadow-sm"
       style={{
-        background: brand.primaryColor ?? "linear-gradient(135deg, #0891B2, #38BDF8)",
+        background: brand.primaryColor ?? "linear-gradient(135deg, #0EA5E9, #38BDF8)",
       }}
     >
       {brand.logoUrl ? (

@@ -127,11 +127,11 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
     <div className="p-6 max-w-5xl mx-auto space-y-5" dir={isRtl ? "rtl" : "ltr"}>
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
             <Network className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">Network rules</h1>
+            <h1 className="text-2xl font-bold text-sky-900">Network rules</h1>
             <p className="text-sm text-slate-600 mt-0.5">
               Platform-level geo blocks, rate limits, and reserved DDoS
               heuristics.
@@ -140,7 +140,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
         </div>
         <button
           onClick={() => setShowNew(true)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
         >
           <Plus className="w-3.5 h-3.5" />
           New rule
@@ -161,9 +161,9 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
       )}
 
       {showNew && (
-        <div className="rounded-xl border border-cyan-200 bg-cyan-50/30 p-4 space-y-3">
+        <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-cyan-900">New rule</h2>
+            <h2 className="text-sm font-bold text-sky-900">New rule</h2>
             <button
               onClick={() => setShowNew(false)}
               className="text-slate-500 hover:text-slate-800"
@@ -188,7 +188,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
                     );
                   else setNewConfig('{\n  "windowMs": 1000,\n  "spike": 200\n}');
                 }}
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 {(Object.keys(TYPE_META) as NetworkRuleType[]).map((t) => (
                   <option key={t} value={t}>
@@ -205,7 +205,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
                 value={newLabel}
                 onChange={(e) => setNewLabel(e.target.value)}
                 placeholder="e.g. Block Tor exit nodes"
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
           </div>
@@ -218,7 +218,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
               onChange={(e) => setNewConfig(e.target.value)}
               rows={6}
               dir="ltr"
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-xs font-mono bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-xs font-mono bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
             <p className="text-[11px] text-slate-500 mt-1">
               {TYPE_META[newType].hint}
@@ -227,7 +227,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
           <div className="flex items-center justify-end">
             <button
               onClick={handleCreate}
-              className="inline-flex items-center gap-1.5 px-3 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
             >
               Save rule
             </button>
@@ -237,7 +237,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
 
       {loading ? (
         <div className="flex items-center justify-center py-10">
-          <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
         </div>
       ) : rules.length === 0 ? (
         <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
@@ -252,13 +252,13 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
               <div
                 key={r.id}
                 className={`rounded-xl border p-4 flex items-start gap-3 ${
-                  r.active ? "border-cyan-100 bg-white" : "border-slate-200 bg-slate-50 opacity-80"
+                  r.active ? "border-sky-100 bg-white" : "border-slate-200 bg-slate-50 opacity-80"
                 }`}
               >
                 <div
                   className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
                     r.active
-                      ? "bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white"
+                      ? "bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white"
                       : "bg-slate-200 text-slate-500"
                   }`}
                 >
@@ -266,7 +266,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-sm font-bold text-cyan-900">{r.label}</h3>
+                    <h3 className="text-sm font-bold text-sky-900">{r.label}</h3>
                     <code className="text-[10px] font-mono text-slate-500">
                       {r.type}
                     </code>
@@ -286,7 +286,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
                 <div className="flex items-center gap-1 flex-shrink-0">
                   <button
                     onClick={() => handleToggle(r)}
-                    className="w-7 h-7 rounded text-slate-500 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+                    className="w-7 h-7 rounded text-slate-500 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
                     title={r.active ? "Pause" : "Activate"}
                   >
                     {r.active ? (

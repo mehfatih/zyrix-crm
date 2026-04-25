@@ -19,7 +19,7 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0891B2",
+  themeColor: "#0EA5E9",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -140,7 +140,7 @@ export async function generateMetadata({
     },
 
     other: {
-      "msapplication-TileColor": "#0891B2",
+      "msapplication-TileColor": "#0EA5E9",
       "msapplication-TileImage": "/logo.png",
     },
 

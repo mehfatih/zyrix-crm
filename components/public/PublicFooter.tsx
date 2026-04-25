@@ -169,8 +169,8 @@ export default function PublicFooter() {
   return (
     <footer className="bg-slate-900 text-slate-300 relative overflow-hidden">
       {/* Top decorative gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-40 bg-cyan-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sky-400 to-transparent" />
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-40 bg-sky-400/10 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Top grid */}
@@ -181,7 +181,7 @@ export default function PublicFooter() {
               href={`/${locale}`}
               className="flex items-center gap-3 mb-4 group"
             >
-              <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-cyan-500 to-sky-600 shadow-lg shadow-cyan-500/20">
+              <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-sky-400 to-sky-600 shadow-lg shadow-sky-400/20">
                 <Image
                   src="/logo.png"
                   alt="Zyrix"
@@ -194,7 +194,7 @@ export default function PublicFooter() {
                 <span className="text-xl font-bold text-white tracking-tight">
                   Zyrix
                 </span>
-                <span className="text-[10px] font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+                <span className="text-[10px] font-semibold tracking-[0.2em] text-sky-300 uppercase">
                   CRM
                 </span>
               </div>
@@ -326,7 +326,7 @@ function FooterLink({
     <li>
       <Link
         href={href}
-        className="text-sm text-slate-400 hover:text-cyan-400 transition-colors"
+        className="text-sm text-slate-400 hover:text-sky-300 transition-colors"
       >
         {children}
       </Link>
@@ -348,7 +348,7 @@ function ContactItem({
   const content = (
     <div className="flex items-center gap-3 group">
       <div className="w-9 h-9 rounded-lg bg-slate-800 group-hover:bg-slate-700 flex items-center justify-center flex-shrink-0 transition-colors">
-        <Icon className="w-4 h-4 text-cyan-400" />
+        <Icon className="w-4 h-4 text-sky-300" />
       </div>
       <div className="min-w-0">
         <div className="text-[10px] uppercase text-slate-500 font-semibold tracking-wider">

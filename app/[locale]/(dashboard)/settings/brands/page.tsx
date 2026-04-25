@@ -156,7 +156,7 @@ export default function BrandsPage() {
           <div className="flex items-center gap-3">
             <Link
               href={`/${locale}/settings`}
-              className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+              className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
             >
               <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
             </Link>
@@ -164,7 +164,7 @@ export default function BrandsPage() {
               <Store className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Brands", "العلامات التجارية", "Markalar")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -179,7 +179,7 @@ export default function BrandsPage() {
           {!creatingNew && !editing && (
             <button
               onClick={() => setCreatingNew(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("New brand", "علامة جديدة", "Yeni marka")}
@@ -222,7 +222,7 @@ export default function BrandsPage() {
         {/* List */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : brands.length === 0 && !creatingNew ? (
           <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
@@ -243,7 +243,7 @@ export default function BrandsPage() {
                   type="checkbox"
                   checked={showArchived}
                   onChange={(e) => setShowArchived(e.target.checked)}
-                  className="accent-cyan-600"
+                  className="accent-sky-500"
                 />
                 {tr("Show archived", "عرض المؤرشفة", "Arşivlenmişleri göster")}
               </label>
@@ -316,7 +316,7 @@ function BrandRow({
           className="w-12 h-12 rounded-lg text-white flex items-center justify-center flex-shrink-0 shadow-sm"
           style={{
             background:
-              brand.primaryColor ?? "linear-gradient(135deg, #0891B2, #38BDF8)",
+              brand.primaryColor ?? "linear-gradient(135deg, #0EA5E9, #38BDF8)",
           }}
         >
           {brand.logoUrl ? (
@@ -332,7 +332,7 @@ function BrandRow({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-cyan-900">{brand.name}</h3>
+            <h3 className="text-sm font-bold text-sky-900">{brand.name}</h3>
             {brand.isDefault && (
               <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200">
                 <Star className="w-2.5 h-2.5" />
@@ -385,7 +385,7 @@ function BrandRow({
             <>
               <button
                 onClick={onEdit}
-                className="w-7 h-7 rounded text-slate-400 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+                className="w-7 h-7 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
                 title={tr("Edit", "تعديل", "Düzenle")}
               >
                 <Pencil className="w-3.5 h-3.5" />
@@ -440,7 +440,7 @@ function BrandForm({
   const [slug, setSlug] = useState(editing?.slug ?? "");
   const [slugEditedManually, setSlugEditedManually] = useState(!!editing);
   const [primaryColor, setPrimaryColor] = useState(
-    editing?.primaryColor ?? "#0891B2"
+    editing?.primaryColor ?? "#0EA5E9"
   );
   const [logoUrl, setLogoUrl] = useState(editing?.logoUrl ?? "");
   const [description, setDescription] = useState(editing?.description ?? "");
@@ -494,9 +494,9 @@ function BrandForm({
   };
 
   return (
-    <div className="rounded-xl border border-cyan-200 bg-cyan-50/30 p-4 space-y-4">
+    <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-cyan-900">
+        <h2 className="text-sm font-bold text-sky-900">
           {editing
             ? tr("Edit brand", "تعديل العلامة", "Markayı düzenle")
             : tr("New brand", "علامة جديدة", "Yeni marka")}
@@ -525,7 +525,7 @@ function BrandForm({
             onChange={(e) => setName(e.target.value)}
             placeholder="Levana Cosmetics"
             maxLength={100}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           />
         </div>
         <div>
@@ -545,7 +545,7 @@ function BrandForm({
             placeholder="levana"
             maxLength={62}
             dir="ltr"
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           />
         </div>
       </div>
@@ -555,7 +555,7 @@ function BrandForm({
           <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
             {tr("Brand color", "لون العلامة", "Marka rengi")}
           </label>
-          <div className="flex items-center gap-2 rounded-lg border border-sky-200 focus-within:ring-2 focus-within:ring-cyan-500 overflow-hidden bg-white">
+          <div className="flex items-center gap-2 rounded-lg border border-sky-200 focus-within:ring-2 focus-within:ring-sky-400 overflow-hidden bg-white">
             <input
               type="color"
               value={primaryColor}
@@ -566,7 +566,7 @@ function BrandForm({
               type="text"
               value={primaryColor}
               onChange={(e) => setPrimaryColor(e.target.value)}
-              placeholder="#0891B2"
+              placeholder="#0EA5E9"
               pattern="^#[0-9a-fA-F]{6}$"
               dir="ltr"
               className="flex-1 px-2 py-2 text-sm font-mono focus:outline-none bg-transparent"
@@ -582,7 +582,7 @@ function BrandForm({
             onChange={(e) => setLogoUrl(e.target.value)}
             placeholder="https://cdn.example.com/logo.png"
             dir="ltr"
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           />
         </div>
       </div>
@@ -601,7 +601,7 @@ function BrandForm({
             "ما نوع المنتجات أو الخدمات لهذه العلامة؟",
             "Bu marka ne tür ürün veya hizmet sunuyor?"
           )}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
         />
       </div>
 
@@ -632,7 +632,7 @@ function BrandForm({
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-bold text-cyan-900">
+          <div className="text-sm font-bold text-sky-900">
             {name || tr("Brand name", "اسم العلامة", "Marka adı")}
           </div>
           <code className="text-xs text-slate-500 font-mono" dir="ltr">
@@ -651,7 +651,7 @@ function BrandForm({
         <button
           onClick={handleSave}
           disabled={saving}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
         >
           {saving ? (
             <Loader2 className="w-4 h-4 animate-spin" />

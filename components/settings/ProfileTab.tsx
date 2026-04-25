@@ -172,7 +172,7 @@ export function ProfileTab() {
           {t("avatar") || "Profile picture"}
         </h3>
         <div className="flex items-center gap-4">
-          <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow overflow-hidden flex-shrink-0">
+          <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow overflow-hidden flex-shrink-0">
             {form.avatarUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img

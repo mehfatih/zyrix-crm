@@ -81,13 +81,13 @@ export default function PublicHeader({ accentColor = "cyan" }: PublicHeaderProps
     }
   > = {
     cyan: {
-      text: "text-cyan-700",
-      bg: "bg-cyan-600 hover:bg-cyan-700",
-      ring: "ring-cyan-200",
-      headerBg: "bg-cyan-50/60 backdrop-blur-sm",
-      headerBgScrolled: "bg-cyan-50/95 backdrop-blur-lg shadow-sm",
-      border: "border-cyan-200/60",
-      underline: "bg-cyan-500",
+      text: "text-sky-600",
+      bg: "bg-sky-500 hover:bg-sky-600",
+      ring: "ring-sky-200",
+      headerBg: "bg-sky-50/60 backdrop-blur-sm",
+      headerBgScrolled: "bg-sky-50/95 backdrop-blur-lg shadow-sm",
+      border: "border-sky-200/60",
+      underline: "bg-sky-400",
     },
     sky: {
       text: "text-sky-700",
@@ -171,7 +171,7 @@ export default function PublicHeader({ accentColor = "cyan" }: PublicHeaderProps
           className="flex items-center gap-2.5 group flex-shrink-0"
           aria-label="Zyrix CRM"
         >
-          <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-gradient-to-br from-cyan-500 to-sky-600 shadow-sm group-hover:shadow-md transition-all duration-300">
+          <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-gradient-to-br from-sky-400 to-sky-600 shadow-sm group-hover:shadow-md transition-all duration-300">
             <Image
               src="/logo.png"
               alt="Zyrix"

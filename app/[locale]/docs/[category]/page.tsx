@@ -76,7 +76,7 @@ export default async function CategoryPage({
   return (
     <DocsShell locale={L} articles={sidebarArticles} searchRecords={records}>
       <nav className="text-xs text-slate-500 mb-4 flex items-center gap-1 flex-wrap">
-        <Link href={`/${L}/docs`} className="hover:text-cyan-700">
+        <Link href={`/${L}/docs`} className="hover:text-sky-600">
           {copy.title}
         </Link>
         <span>›</span>
@@ -121,7 +121,7 @@ export default async function CategoryPage({
               <p className="text-sm text-slate-600 line-clamp-2">
                 {firstParagraph(d.body)}
               </p>
-              <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-cyan-700">
+              <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-sky-600">
                 {locale === "ar" ? <ArrowLeft className="w-3.5 h-3.5" /> : null}
                 {copy.next}
                 {locale !== "ar" ? <ArrowRight className="w-3.5 h-3.5" /> : null}

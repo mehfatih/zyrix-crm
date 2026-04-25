@@ -188,15 +188,15 @@ export default function SalesAssistantPage() {
           <div className="p-3 border-b border-sky-100 flex items-center gap-2">
             <Link
               href={`/${locale}/ai`}
-              className="w-8 h-8 rounded-lg text-slate-500 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+              className="w-8 h-8 rounded-lg text-slate-500 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
             >
               <ArrowLeft
                 className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
               />
             </Link>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-bold text-cyan-900 truncate flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
+              <div className="text-sm font-bold text-sky-900 truncate flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-sky-500" />
                 {tr("Sales Assistant", "مساعد المبيعات", "Satış Asistanı")}
               </div>
             </div>
@@ -210,7 +210,7 @@ export default function SalesAssistantPage() {
 
           <button
             onClick={startNewThread}
-            className="mx-3 mt-3 mb-2 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+            className="mx-3 mt-3 mb-2 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
           >
             <Plus className="w-4 h-4" />
             {tr("New chat", "محادثة جديدة", "Yeni sohbet")}
@@ -219,7 +219,7 @@ export default function SalesAssistantPage() {
           <div className="flex-1 overflow-y-auto px-2 pb-3">
             {loadingThreads ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-4 h-4 animate-spin text-cyan-600" />
+                <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
               </div>
             ) : threads.length === 0 ? (
               <p className="text-center text-xs text-slate-500 py-8 px-4">
@@ -236,7 +236,7 @@ export default function SalesAssistantPage() {
                     key={t.id}
                     className={`group relative rounded-lg ${
                       activeThread?.id === t.id
-                        ? "bg-cyan-50 text-cyan-900"
+                        ? "bg-sky-50 text-sky-900"
                         : "text-slate-700 hover:bg-sky-50/50"
                     }`}
                   >
@@ -290,7 +290,7 @@ export default function SalesAssistantPage() {
             >
               <Menu className="w-4 h-4" />
             </button>
-            <div className="flex-1 min-w-0 text-sm font-bold text-cyan-900 truncate">
+            <div className="flex-1 min-w-0 text-sm font-bold text-sky-900 truncate">
               {activeThread?.title || tr("New chat", "محادثة جديدة", "Yeni sohbet")}
             </div>
           </div>
@@ -299,7 +299,7 @@ export default function SalesAssistantPage() {
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6">
             {loadingThread ? (
               <div className="flex items-center justify-center py-16">
-                <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+                <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
               </div>
             ) : error ? (
               <div className="max-w-2xl mx-auto rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -325,7 +325,7 @@ export default function SalesAssistantPage() {
           {/* Input */}
           <div className="p-3 md:p-4 border-t border-sky-100 bg-white">
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-end gap-2 rounded-xl border border-sky-200 focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-200 bg-white overflow-hidden">
+              <div className="flex items-end gap-2 rounded-xl border border-sky-200 focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-sky-200 bg-white overflow-hidden">
                 <textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -350,7 +350,7 @@ export default function SalesAssistantPage() {
                 <button
                   onClick={handleSend}
                   disabled={!input.trim() || sending}
-                  className="m-1 w-9 h-9 rounded-lg bg-cyan-600 hover:bg-cyan-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white flex items-center justify-center flex-shrink-0 transition-colors"
+                  className="m-1 w-9 h-9 rounded-lg bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 disabled:cursor-not-allowed text-white flex items-center justify-center flex-shrink-0 transition-colors"
                 >
                   {sending ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -424,10 +424,10 @@ function EmptyState({
   return (
     <div className="max-w-2xl mx-auto">
       <div className="text-center mb-6">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow-lg mx-auto">
+        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow-lg mx-auto">
           <Sparkles className="w-8 h-8" />
         </div>
-        <h2 className="text-xl font-bold text-cyan-900 mt-4">
+        <h2 className="text-xl font-bold text-sky-900 mt-4">
           {tr(
             "Sales Assistant",
             "مساعد المبيعات",
@@ -448,9 +448,9 @@ function EmptyState({
           <button
             key={i}
             onClick={() => onPick(s)}
-            className="text-left rtl:text-right p-3 rounded-xl border border-sky-100 bg-white hover:border-cyan-400 hover:bg-sky-50/40 text-sm text-slate-700 transition-colors flex items-start gap-2"
+            className="text-left rtl:text-right p-3 rounded-xl border border-sky-100 bg-white hover:border-sky-300 hover:bg-sky-50/40 text-sm text-slate-700 transition-colors flex items-start gap-2"
           >
-            <Zap className="w-4 h-4 text-cyan-600 flex-shrink-0 mt-0.5" />
+            <Zap className="w-4 h-4 text-sky-500 flex-shrink-0 mt-0.5" />
             <span>{s}</span>
           </button>
         ))}
@@ -475,7 +475,7 @@ function MessageBubble({
         <Code2 className="w-3.5 h-3.5" />
         <span>
           {tr("Calling", "يستدعي", "Çağırıyor")}{" "}
-          <code className="font-mono text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded">
+          <code className="font-mono text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded">
             {message.toolCall.name ?? "tool"}
           </code>
         </span>
@@ -501,7 +501,7 @@ function MessageBubble({
         className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
           isUser
             ? "bg-slate-200 text-slate-600"
-            : "bg-gradient-to-br from-cyan-500 to-sky-600 text-white"
+            : "bg-gradient-to-br from-sky-400 to-sky-600 text-white"
         }`}
       >
         {isUser ? <UserIcon className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -510,7 +510,7 @@ function MessageBubble({
         <div
           className={`rounded-xl px-3.5 py-2.5 text-sm ${
             isUser
-              ? "bg-cyan-600 text-white"
+              ? "bg-sky-500 text-white"
               : "bg-white border border-sky-100 text-slate-800"
           }`}
         >
@@ -530,7 +530,7 @@ function ThinkingBubble({
 }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-cyan-500 to-sky-600 text-white">
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-sky-400 to-sky-600 text-white">
         <Bot className="w-4 h-4" />
       </div>
       <div className="rounded-xl px-3.5 py-2.5 bg-white border border-sky-100 text-sm text-slate-500 inline-flex items-center gap-1.5">

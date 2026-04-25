@@ -74,7 +74,7 @@ export function MerchantHeader({
         <button
           type="button"
           onClick={onOpenSidebar}
-          className="lg:hidden w-9 h-9 rounded-md flex items-center justify-center text-slate-500 hover:bg-cyan-50"
+          className="lg:hidden w-9 h-9 rounded-md flex items-center justify-center text-slate-500 hover:bg-sky-50"
           aria-label="Open menu"
         >
           <span className="block w-5 h-0.5 bg-current relative before:block before:absolute before:content-[''] before:w-5 before:h-0.5 before:bg-current before:-top-1.5 after:block after:absolute after:content-[''] after:w-5 after:h-0.5 after:bg-current after:top-1.5" />
@@ -94,7 +94,7 @@ export function MerchantHeader({
       <button
         type="button"
         onClick={openSearch}
-        className="hidden md:flex items-center gap-2 h-9 px-3 rounded-lg border border-sky-100 text-slate-400 hover:border-cyan-200 hover:text-cyan-700 transition-colors"
+        className="hidden md:flex items-center gap-2 h-9 px-3 rounded-lg border border-sky-100 text-slate-400 hover:border-sky-200 hover:text-sky-600 transition-colors"
         title={sidebarT("searchPlaceholder")}
       >
         <Search className="w-4 h-4" />
@@ -108,7 +108,7 @@ export function MerchantHeader({
       <button
         type="button"
         onClick={() => openQuickAdd()}
-        className="h-9 px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg shadow-sm active:scale-[0.97] transition-transform"
+        className="h-9 px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-sky-500 hover:bg-sky-600 rounded-lg shadow-sm active:scale-[0.97] transition-transform"
         title={t("create")}
       >
         <Plus className="w-4 h-4" />
@@ -126,7 +126,7 @@ export function MerchantHeader({
         <button
           type="button"
           onClick={() => setAvatarOpen((v) => !v)}
-          className="flex items-center gap-1.5 rounded-full hover:bg-cyan-50 p-1 pr-2 rtl:pl-2 rtl:pr-1"
+          className="flex items-center gap-1.5 rounded-full hover:bg-sky-50 p-1 pr-2 rtl:pl-2 rtl:pr-1"
         >
           {user.avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -136,7 +136,7 @@ export function MerchantHeader({
               className="w-8 h-8 rounded-full object-cover"
             />
           ) : (
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center text-xs font-semibold">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center text-xs font-semibold">
               {getInitials(user.fullName)}
             </div>
           )}
@@ -154,14 +154,14 @@ export function MerchantHeader({
             <Link
               href={`/${locale}/merchant/settings`}
               onClick={() => setAvatarOpen(false)}
-              className="block px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
+              className="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
             >
               {t("profile")}
             </Link>
             <Link
               href={`/${locale}/merchant/settings`}
               onClick={() => setAvatarOpen(false)}
-              className="block px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
+              className="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
             >
               {t("settings")}
             </Link>

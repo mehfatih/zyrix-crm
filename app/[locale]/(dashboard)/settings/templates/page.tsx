@@ -114,8 +114,8 @@ export default function TemplatesPage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <Mail className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <Mail className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
@@ -125,7 +125,7 @@ export default function TemplatesPage() {
               setEditing(null);
               setShowEditor(true);
             }}
-            className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg shadow-sm"
           >
             <Plus className="w-4 h-4" />
             {t("createNew")}
@@ -141,7 +141,7 @@ export default function TemplatesPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
           <div className="flex items-center gap-1 flex-wrap">
@@ -172,12 +172,12 @@ export default function TemplatesPage() {
         {/* Grid */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="bg-white border border-sky-100 rounded-xl p-12 text-center">
             <Sparkles className="w-10 h-10 text-sky-300 mx-auto mb-2" />
-            <h3 className="text-lg font-semibold text-cyan-900 mb-1">
+            <h3 className="text-lg font-semibold text-sky-900 mb-1">
               {templates.length === 0 ? t("empty.title") : t("empty.noResults")}
             </h3>
             <p className="text-sm text-slate-500 mb-4">
@@ -189,7 +189,7 @@ export default function TemplatesPage() {
                   setEditing(null);
                   setShowEditor(true);
                 }}
-                className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg"
+                className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg"
               >
                 {t("createFirst")}
               </button>
@@ -260,7 +260,7 @@ function TemplateCard({
   const categoryColors: Record<string, string> = {
     slate: "bg-slate-100 text-slate-700",
     emerald: "bg-emerald-100 text-emerald-700",
-    cyan: "bg-cyan-100 text-cyan-700",
+    cyan: "bg-sky-100 text-sky-600",
     amber: "bg-amber-100 text-amber-700",
     indigo: "bg-indigo-100 text-indigo-700",
     violet: "bg-violet-100 text-violet-700",
@@ -285,7 +285,7 @@ function TemplateCard({
         )}
       </div>
 
-      <h3 className="text-sm font-semibold text-cyan-900 mb-1 truncate">
+      <h3 className="text-sm font-semibold text-sky-900 mb-1 truncate">
         {template.name}
       </h3>
       <p className="text-xs text-slate-600 mb-2 line-clamp-1">
@@ -302,7 +302,7 @@ function TemplateCard({
           {template.variables.slice(0, 3).map((v, i) => (
             <span
               key={i}
-              className="px-1.5 py-0.5 text-[10px] font-mono bg-sky-50 text-cyan-700 rounded"
+              className="px-1.5 py-0.5 text-[10px] font-mono bg-sky-50 text-sky-600 rounded"
             >
               {`{{${v}}}`}
             </span>
@@ -318,7 +318,7 @@ function TemplateCard({
       <div className="flex items-center justify-between gap-1 pt-2 border-t border-sky-50">
         <button
           onClick={onPreview}
-          className="flex items-center gap-1 px-2 py-1 text-xs text-slate-600 hover:text-cyan-700 hover:bg-cyan-50 rounded"
+          className="flex items-center gap-1 px-2 py-1 text-xs text-slate-600 hover:text-sky-600 hover:bg-sky-50 rounded"
         >
           <Eye className="w-3 h-3" />
           {t("preview")}
@@ -326,14 +326,14 @@ function TemplateCard({
         <div className="flex items-center gap-0.5">
           <button
             onClick={onEdit}
-            className="p-1.5 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded"
+            className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded"
             title={t("edit")}
           >
             <Pencil className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={onDuplicate}
-            className="p-1.5 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded"
+            className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded"
             title={t("duplicate")}
           >
             <Copy className="w-3.5 h-3.5" />
@@ -405,7 +405,7 @@ function TemplateEditor({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {template ? t("editor.titleEdit") : t("editor.titleNew")}
           </h2>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-700">
@@ -420,14 +420,14 @@ function TemplateEditor({
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </Field>
             <Field label={t("editor.category")}>
               <select
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -443,7 +443,7 @@ function TemplateEditor({
               type="text"
               value={form.description || ""}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </Field>
 
@@ -453,7 +453,7 @@ function TemplateEditor({
               value={form.subject}
               onChange={(e) => setForm({ ...form, subject: e.target.value })}
               placeholder={t("editor.subjectPlaceholder")}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </Field>
 
@@ -463,7 +463,7 @@ function TemplateEditor({
               onChange={(e) => setForm({ ...form, bodyHtml: e.target.value })}
               rows={12}
               placeholder={t("editor.bodyPlaceholder")}
-              className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </Field>
 
@@ -472,7 +472,7 @@ function TemplateEditor({
               type="checkbox"
               checked={form.isShared ?? true}
               onChange={(e) => setForm({ ...form, isShared: e.target.checked })}
-              className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+              className="rounded border-sky-300 text-sky-500 focus:ring-sky-400"
             />
             {t("editor.shared")}
           </label>
@@ -492,7 +492,7 @@ function TemplateEditor({
             <button
               onClick={save}
               disabled={saving}
-              className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
+              className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-semibold rounded-lg"
             >
               {saving && <Loader2 className="w-4 h-4 animate-spin" />}
               {t("editor.save")}
@@ -527,8 +527,8 @@ function TemplatePreview({
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Eye className="w-5 h-5 text-cyan-600" />
-            <h2 className="text-lg font-bold text-cyan-900">{t("preview")}</h2>
+            <Eye className="w-5 h-5 text-sky-500" />
+            <h2 className="text-lg font-bold text-sky-900">{t("preview")}</h2>
           </div>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-700">
             <X className="w-5 h-5" />
@@ -595,7 +595,7 @@ function CategoryChip({
   const activeColors: Record<string, string> = {
     slate: "bg-slate-800 text-white",
     emerald: "bg-emerald-600 text-white",
-    cyan: "bg-cyan-600 text-white",
+    cyan: "bg-sky-500 text-white",
     amber: "bg-amber-600 text-white",
     indigo: "bg-indigo-600 text-white",
     violet: "bg-violet-600 text-white",

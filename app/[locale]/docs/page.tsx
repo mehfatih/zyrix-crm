@@ -75,7 +75,7 @@ export default async function DocsHubPage({
     <DocsShell locale={L} articles={sidebarArticles} searchRecords={records}>
       {/* Hero */}
       <section className="text-center mb-12 lg:mb-16">
-        <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 rounded-full mb-4">
+        <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-sky-600 bg-sky-50 border border-sky-200 rounded-full mb-4">
           <BookOpen className="w-3.5 h-3.5" />
           {copy.title}
         </span>
@@ -116,7 +116,7 @@ export default async function DocsHubPage({
               <li key={`${d.category}/${d.slug}`}>
                 <Link
                   href={`/${L}/docs/${d.category}/${d.slug}`}
-                  className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg hover:bg-cyan-50 text-sm text-slate-700 hover:text-cyan-700"
+                  className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg hover:bg-sky-50 text-sm text-slate-700 hover:text-sky-600"
                 >
                   <span className="truncate">{d.frontmatter.title}</span>
                   <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 rtl:rotate-180" />
@@ -148,8 +148,8 @@ export default async function DocsHubPage({
 
       {/* Video placeholder */}
       <section className="mb-14">
-        <div className="bg-gradient-to-br from-sky-50 via-cyan-50 to-white border border-sky-100 rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <div className="w-14 h-14 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-sky-50 via-sky-50 to-white border border-sky-100 rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div className="w-14 h-14 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center">
             <PlayCircle className="w-7 h-7" />
           </div>
           <div className="flex-1">
@@ -165,14 +165,14 @@ export default async function DocsHubPage({
 
       {/* Contact CTA */}
       <section className="mb-6">
-        <div className="bg-gradient-to-br from-cyan-50 via-sky-50 to-indigo-50 rounded-2xl p-8 border border-cyan-100 text-center">
-          <MessageCircle className="w-8 h-8 text-cyan-600 mx-auto mb-3" />
+        <div className="bg-gradient-to-br from-sky-50 via-sky-50 to-indigo-50 rounded-2xl p-8 border border-sky-100 text-center">
+          <MessageCircle className="w-8 h-8 text-sky-500 mx-auto mb-3" />
           <h3 className="text-xl font-bold text-slate-900 mb-2">
             {copy.questions}
           </h3>
           <Link
             href={`/${L}/contact`}
-            className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors"
+            className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors"
           >
             {copy.contactSupport}
             <ArrowRight className="w-4 h-4 rtl:rotate-180" />
@@ -186,7 +186,7 @@ export default async function DocsHubPage({
 function HeroSearchCue({ locale }: { locale: DocLocale }) {
   const copy = DOCS_COPY[locale];
   return (
-    <div className="flex items-center gap-2 px-4 py-3 bg-white border-2 border-cyan-200 rounded-xl shadow-sm">
+    <div className="flex items-center gap-2 px-4 py-3 bg-white border-2 border-sky-200 rounded-xl shadow-sm">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"

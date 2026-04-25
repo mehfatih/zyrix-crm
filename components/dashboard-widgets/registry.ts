@@ -271,7 +271,7 @@ export function getWidgetMeta(type: string): WidgetMeta | undefined {
 // Tailwind-safe accent class tables — keeping these as static strings so
 // the JIT can include them in the final bundle (dynamic `bg-${x}-50` won't work).
 export const ACCENT_BG: Record<string, string> = {
-  cyan: "bg-cyan-50 text-cyan-700",
+  cyan: "bg-sky-50 text-sky-600",
   emerald: "bg-emerald-50 text-emerald-700",
   sky: "bg-sky-50 text-sky-700",
   indigo: "bg-indigo-50 text-indigo-700",

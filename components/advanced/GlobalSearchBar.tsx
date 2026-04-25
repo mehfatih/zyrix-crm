@@ -100,7 +100,7 @@ export default function GlobalSearchBar() {
           }}
           onFocus={() => setOpen(true)}
           placeholder={t("placeholder")}
-          className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-16 rtl:pl-16 py-2 text-sm bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-16 rtl:pl-16 py-2 text-sm bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
         />
         <kbd className="absolute ltr:right-3 rtl:left-3 top-1/2 -translate-y-1/2 text-[10px] font-mono bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200 hidden sm:block">
           ⌘K
@@ -111,7 +111,7 @@ export default function GlobalSearchBar() {
         <div className="absolute top-full mt-1 left-0 right-0 bg-white border border-sky-200 rounded-xl shadow-xl max-h-[70vh] overflow-y-auto z-50">
           {loading && !results ? (
             <div className="p-6 text-center">
-              <Loader2 className="w-5 h-5 animate-spin text-cyan-600 mx-auto" />
+              <Loader2 className="w-5 h-5 animate-spin text-sky-500 mx-auto" />
             </div>
           ) : results && results.totalMatches === 0 ? (
             <div className="p-6 text-center text-sm text-slate-500">
@@ -217,7 +217,7 @@ function ResultSection({
 }) {
   if (items.length === 0) return null;
   const colors: Record<string, string> = {
-    cyan: "bg-cyan-50 text-cyan-700",
+    cyan: "bg-sky-50 text-sky-600",
     emerald: "bg-emerald-50 text-emerald-700",
     indigo: "bg-indigo-50 text-indigo-700",
     amber: "bg-amber-50 text-amber-700",
@@ -249,7 +249,7 @@ function ResultSection({
             <div className="text-[10px] text-slate-400 whitespace-nowrap">
               {item.meta}
             </div>
-            <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-cyan-600 ltr:translate-x-0 rtl:-scale-x-100 flex-shrink-0" />
+            <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-sky-500 ltr:translate-x-0 rtl:-scale-x-100 flex-shrink-0" />
           </Link>
         ))}
       </div>

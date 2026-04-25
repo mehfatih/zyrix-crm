@@ -2761,5 +2761,30 @@
       "step3": "Paste the domain and credentials into the connect dialog",
       "step4": "Click Sync to import customers and orders into Zyrix CRM"
     }
+  },
+  "ai": {
+    "trustBadge": {
+      "label": "AI",
+      "whyTitle": "Why this confidence?",
+      "signals": "Signals",
+      "recommendedAction": "Recommended action"
+    },
+    "sidePanel": {
+      "aiAssistant": "AI Assistant",
+      "whatYouAreSeeing": "What you're seeing",
+      "whatAINotices": "What AI notices",
+      "recentChanges": "Recent changes",
+      "askAI": "Ask AI",
+      "openChat": "Open chat",
+      "selectedEntity": "Selected",
+      "placeholder": {
+        "notices": "AI insights for this page will appear here as activity occurs.",
+        "changes": "Changes since your last visit will be summarized here.",
+        "ask": "Ask anything about this page or the data on it."
+      }
+    },
+    "topbar": {
+      "askAI": "Ask AI"
+    }
   }
 }

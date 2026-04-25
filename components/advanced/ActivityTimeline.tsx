@@ -53,7 +53,7 @@ const ICON_MAP: Record<string, typeof Activity> = {
 };
 
 const COLOR_MAP: Record<string, { bg: string; text: string; ring: string }> = {
-  cyan: { bg: "bg-cyan-50", text: "text-cyan-600", ring: "ring-cyan-200" },
+  cyan: { bg: "bg-sky-50", text: "text-sky-500", ring: "ring-sky-200" },
   blue: { bg: "bg-blue-50", text: "text-blue-600", ring: "ring-blue-200" },
   indigo: { bg: "bg-indigo-50", text: "text-indigo-600", ring: "ring-indigo-200" },
   violet: { bg: "bg-violet-50", text: "text-violet-600", ring: "ring-violet-200" },
@@ -106,7 +106,7 @@ export default function ActivityTimeline({
   if (loading) {
     return (
       <div className="flex items-center justify-center py-10">
-        <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+        <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
       </div>
     );
   }
@@ -115,7 +115,7 @@ export default function ActivityTimeline({
     return (
       <div className="bg-white border border-sky-100 rounded-xl p-10 text-center">
         <Sparkles className="w-10 h-10 text-sky-300 mx-auto mb-2" />
-        <h3 className="text-base font-semibold text-cyan-900 mb-1">
+        <h3 className="text-base font-semibold text-sky-900 mb-1">
           {t("empty.title")}
         </h3>
         <p className="text-sm text-slate-500">{t("empty.subtitle")}</p>
@@ -132,7 +132,7 @@ export default function ActivityTimeline({
             onClick={() => setFilter(null)}
             className={`px-2.5 py-1 text-xs font-medium rounded-full ${
               filter === null
-                ? "bg-cyan-600 text-white"
+                ? "bg-sky-500 text-white"
                 : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
             }`}
           >
@@ -146,7 +146,7 @@ export default function ActivityTimeline({
                 onClick={() => setFilter(type)}
                 className={`px-2.5 py-1 text-xs font-medium rounded-full ${
                   filter === type
-                    ? "bg-cyan-600 text-white"
+                    ? "bg-sky-500 text-white"
                     : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
                 }`}
               >
@@ -217,11 +217,11 @@ function TimelineEventItem({
   const card = (
     <div
       className={`flex-1 min-w-0 bg-white border border-sky-50 rounded-lg p-3 shadow-sm ${
-        href ? "hover:border-cyan-200 hover:bg-sky-50/40 transition-colors" : ""
+        href ? "hover:border-sky-200 hover:bg-sky-50/40 transition-colors" : ""
       }`}
     >
       <div className="flex items-start justify-between gap-2 flex-wrap">
-        <h4 className="text-sm font-semibold text-cyan-900">{event.title}</h4>
+        <h4 className="text-sm font-semibold text-sky-900">{event.title}</h4>
         <time className="text-[10px] text-slate-500 flex-shrink-0">
           {formatTimeAgo(event.timestamp, locale)}
         </time>

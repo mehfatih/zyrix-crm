@@ -25,7 +25,7 @@ export function ComingSoonPage({ locale, titleKey }: ComingSoonPageProps) {
       <nav className="flex items-center gap-1.5 text-sm text-slate-500 mb-4">
         <Link
           href={`/${locale}/merchant`}
-          className="hover:text-cyan-700 transition-colors"
+          className="hover:text-sky-600 transition-colors"
         >
           {t("breadcrumbHome")}
         </Link>
@@ -40,9 +40,9 @@ export function ComingSoonPage({ locale, titleKey }: ComingSoonPageProps) {
 
       {/* Coming-soon card */}
       <div className="relative bg-white rounded-2xl border border-sky-100 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/40 via-white to-sky-50/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-50/40 via-white to-sky-50/40 pointer-events-none" />
         <div className="relative p-8 md:p-12 text-center">
-          <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow-lg shadow-cyan-500/20 mb-5">
+          <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow-lg shadow-sky-400/20 mb-5">
             <Hammer className="w-7 h-7" />
           </div>
           <h2 className="text-xl md:text-2xl font-bold text-[#0C4A6E] mb-2">
@@ -53,7 +53,7 @@ export function ComingSoonPage({ locale, titleKey }: ComingSoonPageProps) {
           </p>
           <Link
             href={`/${locale}/merchant`}
-            className="inline-flex items-center gap-1.5 h-10 px-4 rounded-lg bg-cyan-600 text-white font-semibold text-sm hover:bg-cyan-700 transition-colors"
+            className="inline-flex items-center gap-1.5 h-10 px-4 rounded-lg bg-sky-500 text-white font-semibold text-sm hover:bg-sky-600 transition-colors"
           >
             <BackIcon className="w-4 h-4" />
             {t("goHome")}

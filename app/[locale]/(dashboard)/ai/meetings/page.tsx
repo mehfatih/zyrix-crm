@@ -97,15 +97,15 @@ export default function MeetingNotesPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/ai`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-sky-500 text-white flex items-center justify-center shadow">
             <FileAudio className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("Meeting Notes", "ملاحظات الاجتماعات", "Toplantı Notları")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -273,7 +273,7 @@ function ResultSection({
     sky: {
       border: "border-sky-100",
       bg: "bg-sky-50/40",
-      text: "text-cyan-900",
+      text: "text-sky-900",
     },
     amber: {
       border: "border-amber-100",
@@ -305,7 +305,7 @@ function ResultSection({
         {copyable && (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-sky-200 rounded text-[10px] font-semibold text-slate-600 hover:text-cyan-700"
+            className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-sky-200 rounded text-[10px] font-semibold text-slate-600 hover:text-sky-600"
           >
             {copied ? (
               <Check className="w-3 h-3 text-emerald-600" />
@@ -333,9 +333,9 @@ function ActionItemsSection({
   tr: (en: string, ar: string, trk: string) => string;
 }) {
   return (
-    <div className="rounded-xl border border-cyan-100 bg-cyan-50/30 overflow-hidden">
-      <div className="p-3 border-b border-cyan-100 flex items-center justify-between">
-        <div className="inline-flex items-center gap-2 text-sm font-bold text-cyan-900">
+    <div className="rounded-xl border border-sky-100 bg-sky-50/30 overflow-hidden">
+      <div className="p-3 border-b border-sky-100 flex items-center justify-between">
+        <div className="inline-flex items-center gap-2 text-sm font-bold text-sky-900">
           <CheckSquare className="w-4 h-4" />
           {tr("Action items", "قائمة المهام", "Eylem öğeleri")}
           <span className="text-xs font-normal text-slate-500">
@@ -349,12 +349,12 @@ function ActionItemsSection({
             key={i}
             className="flex items-start gap-2 p-2 rounded-lg hover:bg-white text-sm"
           >
-            <span className="w-5 h-5 rounded bg-cyan-100 text-cyan-700 text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span className="w-5 h-5 rounded bg-sky-100 text-sky-600 text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
               {i + 1}
             </span>
             <div className="flex-1 min-w-0">
               {item.owner && (
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-800 text-[10px] font-semibold me-2">
+                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-semibold me-2">
                   <UserIcon className="w-2.5 h-2.5" />
                   {item.owner}
                 </span>
@@ -387,7 +387,7 @@ function ListSection({
     sky: {
       border: "border-sky-100",
       bg: "bg-sky-50/30",
-      text: "text-cyan-900",
+      text: "text-sky-900",
       bullet: "bg-sky-400",
     },
     amber: {

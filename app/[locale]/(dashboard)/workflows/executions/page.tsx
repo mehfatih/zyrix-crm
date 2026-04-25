@@ -83,15 +83,15 @@ export default function ExecutionsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/workflows`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
             <History className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-cyan-900">
+            <h1 className="text-xl font-bold text-sky-900">
               {tr("Execution history", "سجل التنفيذ", "Yürütme geçmişi")}
             </h1>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -121,7 +121,7 @@ export default function ExecutionsPage() {
               onClick={() => setStatus(s)}
               className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                 status === s
-                  ? "bg-cyan-600 text-white"
+                  ? "bg-sky-500 text-white"
                   : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
               }`}
             >
@@ -132,7 +132,7 @@ export default function ExecutionsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">

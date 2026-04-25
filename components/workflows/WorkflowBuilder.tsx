@@ -137,7 +137,7 @@ export function WorkflowBuilder({ locale, initial, onSaved }: Props) {
   if (catalogLoading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+        <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
       </div>
     );
   }
@@ -160,15 +160,15 @@ export function WorkflowBuilder({ locale, initial, onSaved }: Props) {
       <div className="flex items-center gap-3">
         <Link
           href={`/${locale}/workflows`}
-          className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+          className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
         >
           <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
         </Link>
-        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
           <Zap className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-cyan-900">
+          <h1 className="text-xl font-bold text-sky-900">
             {initial
               ? tr("Edit workflow", "تعديل workflow", "İş akışını düzenle")
               : tr(
@@ -207,7 +207,7 @@ export function WorkflowBuilder({ locale, initial, onSaved }: Props) {
                 "رحّب بالعملاء الجدد عبر واتساب",
                 "Yeni müşterileri WhatsApp ile karşıla"
               )}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
           <div>
@@ -221,7 +221,7 @@ export function WorkflowBuilder({ locale, initial, onSaved }: Props) {
             <input
               value={description || ""}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
           <label className="flex items-center gap-2 cursor-pointer select-none">
@@ -229,7 +229,7 @@ export function WorkflowBuilder({ locale, initial, onSaved }: Props) {
               type="checkbox"
               checked={isEnabled}
               onChange={(e) => setIsEnabled(e.target.checked)}
-              className="w-4 h-4 rounded text-cyan-600 focus:ring-cyan-500"
+              className="w-4 h-4 rounded text-sky-500 focus:ring-sky-400"
             />
             <span className="text-sm text-slate-700">
               {tr(
@@ -279,9 +279,9 @@ export function WorkflowBuilder({ locale, initial, onSaved }: Props) {
         {triggerType === "webhook.received" && initial && (
           <div className="mt-3 rounded-lg bg-sky-50 border border-sky-200 p-3 text-xs">
             <div className="flex items-start gap-2">
-              <WebhookIcon className="w-4 h-4 text-cyan-700 flex-shrink-0 mt-0.5" />
+              <WebhookIcon className="w-4 h-4 text-sky-600 flex-shrink-0 mt-0.5" />
               <div className="flex-1 min-w-0">
-                <div className="font-semibold text-cyan-900">
+                <div className="font-semibold text-sky-900">
                   {tr(
                     "External webhook URL",
                     "رابط الـ webhook الخارجي",
@@ -362,7 +362,7 @@ export function WorkflowBuilder({ locale, initial, onSaved }: Props) {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="inline-flex items-center gap-1.5 px-5 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow"
+          className="inline-flex items-center gap-1.5 px-5 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow"
         >
           {saving ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -395,7 +395,7 @@ function SectionCard({
     <div className="rounded-xl border border-sky-100 bg-white p-5">
       {title && (
         <div className="mb-3">
-          <h2 className="text-sm font-bold text-cyan-900">{title}</h2>
+          <h2 className="text-sm font-bold text-sky-900">{title}</h2>
           {subtitle && (
             <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
           )}
@@ -452,11 +452,11 @@ function TriggerPicker({
                   onClick={() => onChange(t.type)}
                   className={`text-left rtl:text-right p-3 rounded-lg border transition-all ${
                     isSelected
-                      ? "border-cyan-500 bg-cyan-50 ring-2 ring-cyan-200"
-                      : "border-sky-100 bg-white hover:border-cyan-300"
+                      ? "border-sky-400 bg-sky-50 ring-2 ring-sky-200"
+                      : "border-sky-100 bg-white hover:border-sky-300"
                   }`}
                 >
-                  <div className="text-sm font-semibold text-cyan-900">
+                  <div className="text-sm font-semibold text-sky-900">
                     {t.label[locale]}
                   </div>
                   <div className="text-xs text-slate-500 mt-0.5 line-clamp-2">
@@ -504,13 +504,13 @@ function FieldInput({
           onChange={(e) => onChange(e.target.value)}
           placeholder={field.placeholder}
           rows={3}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-mono"
+          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 font-mono"
         />
       ) : field.type === "select" ? (
         <select
           value={String(value ?? "")}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
         >
           <option value="">
             {locale === "ar"
@@ -533,7 +533,7 @@ function FieldInput({
             onChange(e.target.value === "" ? "" : Number(e.target.value))
           }
           placeholder={field.placeholder}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
         />
       ) : field.type === "boolean" ? (
         <label className="inline-flex items-center gap-2 cursor-pointer">
@@ -541,7 +541,7 @@ function FieldInput({
             type="checkbox"
             checked={Boolean(value)}
             onChange={(e) => onChange(e.target.checked)}
-            className="w-4 h-4 rounded text-cyan-600 focus:ring-cyan-500"
+            className="w-4 h-4 rounded text-sky-500 focus:ring-sky-400"
           />
           <span className="text-sm text-slate-700">{labelStr}</span>
         </label>
@@ -551,7 +551,7 @@ function FieldInput({
           value={String(value ?? "")}
           onChange={(e) => onChange(e.target.value)}
           placeholder={field.placeholder}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
         />
       )}
       {field.helpText && (
@@ -609,12 +609,12 @@ function ConditionBuilder({
               "حقل (مثال deal.value)",
               "alan (örn. deal.value)"
             )}
-            className="flex-1 min-w-[140px] px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-cyan-500 font-mono bg-white"
+            className="flex-1 min-w-[140px] px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-sky-400 font-mono bg-white"
           />
           <select
             value={c.operator}
             onChange={(e) => patch(i, { operator: e.target.value })}
-            className="px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           >
             {operators.map((op) => (
               <option key={op} value={op}>
@@ -630,7 +630,7 @@ function ConditionBuilder({
               value={String(c.value ?? "")}
               onChange={(e) => patch(i, { value: e.target.value })}
               placeholder={tr("value", "قيمة", "değer")}
-              className="flex-1 min-w-[100px] px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+              className="flex-1 min-w-[100px] px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
             />
           )}
           <button
@@ -644,7 +644,7 @@ function ConditionBuilder({
       ))}
       <button
         onClick={add}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-dashed border-sky-300 hover:border-cyan-400 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-600"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-dashed border-sky-300 hover:border-sky-300 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-600"
       >
         <Plus className="w-3.5 h-3.5" />
         {tr("Add condition", "إضافة شرط", "Koşul ekle")}
@@ -735,7 +735,7 @@ function ActionChain({
               <button
                 onClick={() => moveUp(i)}
                 disabled={i === 0}
-                className="w-5 h-5 text-slate-400 hover:text-cyan-700 disabled:opacity-30 text-xs"
+                className="w-5 h-5 text-slate-400 hover:text-sky-600 disabled:opacity-30 text-xs"
                 title={tr("Move up", "فوق", "Yukarı")}
               >
                 ▲
@@ -743,16 +743,16 @@ function ActionChain({
               <button
                 onClick={() => moveDown(i)}
                 disabled={i === actions.length - 1}
-                className="w-5 h-5 text-slate-400 hover:text-cyan-700 disabled:opacity-30 text-xs"
+                className="w-5 h-5 text-slate-400 hover:text-sky-600 disabled:opacity-30 text-xs"
                 title={tr("Move down", "تحت", "Aşağı")}
               >
                 ▼
               </button>
               <GripVertical className="w-3.5 h-3.5 text-slate-300" />
-              <span className="w-5 h-5 rounded-full bg-cyan-100 text-cyan-700 text-[10px] font-bold flex items-center justify-center">
+              <span className="w-5 h-5 rounded-full bg-sky-100 text-sky-600 text-[10px] font-bold flex items-center justify-center">
                 {i + 1}
               </span>
-              <span className="text-sm font-semibold text-cyan-900 flex-1 truncate">
+              <span className="text-sm font-semibold text-sky-900 flex-1 truncate">
                 {spec.label[locale]}
               </span>
               <button
@@ -790,7 +790,7 @@ function ActionChain({
                       onChange={(e) =>
                         patchAction(a.id, { stopOnError: e.target.checked })
                       }
-                      className="w-3.5 h-3.5 rounded text-cyan-600"
+                      className="w-3.5 h-3.5 rounded text-sky-500"
                     />
                     <span className="text-xs text-slate-600">
                       {tr(
@@ -821,7 +821,7 @@ function ActionChain({
                               : Number(e.target.value),
                         })
                       }
-                      className="w-full px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      className="w-full px-2 py-1 border border-sky-200 rounded text-xs focus:outline-none focus:ring-2 focus:ring-sky-400"
                     />
                   </div>
                 </div>
@@ -834,15 +834,15 @@ function ActionChain({
       {!showPicker ? (
         <button
           onClick={() => setShowPicker(true)}
-          className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white border border-dashed border-sky-300 hover:border-cyan-400 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-600"
+          className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white border border-dashed border-sky-300 hover:border-sky-300 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-600"
         >
           <Plus className="w-3.5 h-3.5" />
           {tr("Add action", "إضافة إجراء", "Eylem ekle")}
         </button>
       ) : (
-        <div className="rounded-lg border border-cyan-200 bg-cyan-50/40 p-2">
+        <div className="rounded-lg border border-sky-200 bg-sky-50/40 p-2">
           <div className="flex items-center justify-between mb-2 px-2">
-            <span className="text-xs font-semibold text-cyan-900">
+            <span className="text-xs font-semibold text-sky-900">
               {tr("Pick an action", "اختر إجراء", "Eylem seç")}
             </span>
             <button
@@ -857,9 +857,9 @@ function ActionChain({
               <button
                 key={a.type}
                 onClick={() => addAction(a.type)}
-                className="text-left rtl:text-right p-2 bg-white border border-sky-100 hover:border-cyan-400 rounded text-xs"
+                className="text-left rtl:text-right p-2 bg-white border border-sky-100 hover:border-sky-300 rounded text-xs"
               >
-                <div className="font-semibold text-cyan-900">
+                <div className="font-semibold text-sky-900">
                   {a.label[locale]}
                 </div>
                 <div className="text-slate-500 line-clamp-1 text-[10px] mt-0.5">
@@ -875,9 +875,9 @@ function ActionChain({
       {triggerPayloadFields.length > 0 && actions.length > 0 && (
         <div className="rounded-lg bg-sky-50/60 border border-sky-100 p-2.5 text-[11px]">
           <div className="flex items-start gap-2">
-            <Info className="w-3.5 h-3.5 text-cyan-700 flex-shrink-0 mt-0.5" />
+            <Info className="w-3.5 h-3.5 text-sky-600 flex-shrink-0 mt-0.5" />
             <div>
-              <div className="font-semibold text-cyan-900">
+              <div className="font-semibold text-sky-900">
                 {tr(
                   "Available variables for this trigger",
                   "المتغيرات المتاحة لهذا المُحفِّز",

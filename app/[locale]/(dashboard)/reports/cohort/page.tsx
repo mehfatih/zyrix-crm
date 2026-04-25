@@ -100,11 +100,11 @@ export default function CohortReportPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Cohort retention", "الاحتفاظ بالعملاء", "Müşteri tutma")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -125,7 +125,7 @@ export default function CohortReportPage() {
                 onClick={() => setMonthsBack(p.months)}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                   monthsBack === p.months
-                    ? "bg-cyan-600 text-white"
+                    ? "bg-sky-500 text-white"
                     : "text-slate-600 hover:bg-sky-50"
                 }`}
               >
@@ -137,8 +137,8 @@ export default function CohortReportPage() {
 
         {/* Info banner */}
         <div className="rounded-lg bg-sky-50 border border-sky-200 p-3 flex items-start gap-2">
-          <Info className="w-4 h-4 text-cyan-700 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-cyan-900 leading-relaxed">
+          <Info className="w-4 h-4 text-sky-600 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-sky-900 leading-relaxed">
             {tr(
               "A customer counts as 'active' in a month if they had a deal created/updated, an activity completed, or their record was touched. Month 0 is always 100% by definition.",
               "يُحتسب العميل 'نشطًا' في شهر معين إذا تم إنشاء/تحديث صفقة، أو إكمال نشاط، أو تم تحديث بياناته. الشهر 0 دائمًا 100% بالتعريف.",
@@ -150,7 +150,7 @@ export default function CohortReportPage() {
         {/* Content */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 flex items-start gap-2">
@@ -160,9 +160,9 @@ export default function CohortReportPage() {
         ) : !report || report.cohorts.length === 0 ? (
           <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
             <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <Users className="w-6 h-6 text-cyan-600" />
+              <Users className="w-6 h-6 text-sky-500" />
             </div>
-            <p className="text-sm font-semibold text-cyan-900">
+            <p className="text-sm font-semibold text-sky-900">
               {tr(
                 "Not enough data yet",
                 "لا توجد بيانات كافية بعد",
@@ -228,7 +228,7 @@ export default function CohortReportPage() {
                     .reverse()
                     .map((cohort) => (
                       <tr key={cohort.cohortMonth}>
-                        <td className="px-3 py-2 text-xs font-semibold text-cyan-900 whitespace-nowrap sticky left-0 rtl:left-auto rtl:right-0 bg-white">
+                        <td className="px-3 py-2 text-xs font-semibold text-sky-900 whitespace-nowrap sticky left-0 rtl:left-auto rtl:right-0 bg-white">
                           {formatMonth(cohort.cohortMonth, locale)}
                         </td>
                         <td className="text-center px-2 py-2 text-xs tabular-nums text-slate-700">

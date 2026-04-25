@@ -122,7 +122,7 @@ export default function ContactView({ locale: _locale }: Props) {
               secondary={t("channels.office.subtitle")}
             />
 
-            <div className="rounded-2xl bg-gradient-to-br from-primary-50 via-sky-50 to-cyan-50 p-6 border border-primary-100">
+            <div className="rounded-2xl bg-gradient-to-br from-primary-50 via-sky-50 to-sky-50 p-6 border border-primary-100">
               <h3 className="text-sm font-bold text-ink-mid mb-2">
                 {t("hours.title")}
               </h3>

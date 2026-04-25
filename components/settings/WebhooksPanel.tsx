@@ -163,7 +163,7 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
   if (loading) {
     return (
       <div className="bg-white border border-sky-100 rounded-xl p-6 flex items-center justify-center">
-        <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+        <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
       </div>
     );
   }
@@ -177,15 +177,15 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
     <section className="space-y-3">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <h2 className="text-sm font-semibold text-cyan-900 flex items-center gap-2">
-            <Webhook className="w-4 h-4 text-cyan-600" />
+          <h2 className="text-sm font-semibold text-sky-900 flex items-center gap-2">
+            <Webhook className="w-4 h-4 text-sky-500" />
             {locale === "ar"
               ? "استقبال الويب هوكس"
               : locale === "tr"
                 ? "Webhook dinleyicileri"
                 : "Webhook listeners"}
             {subs.length > 0 && (
-              <span className="px-2 py-0.5 text-[10px] bg-cyan-100 text-cyan-700 rounded-full font-semibold">
+              <span className="px-2 py-0.5 text-[10px] bg-sky-100 text-sky-600 rounded-full font-semibold">
                 {subs.length}
               </span>
             )}
@@ -200,7 +200,7 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
         </div>
         <button
           onClick={() => setShowAdd(true)}
-          className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg shadow-sm"
+          className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-sky-500 hover:bg-sky-600 rounded-lg shadow-sm"
         >
           <Plus className="w-3.5 h-3.5" />
           {locale === "ar"
@@ -242,7 +242,7 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
       {/* Recent events */}
       {events.length > 0 && (
         <details className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-          <summary className="px-4 py-2.5 text-xs font-semibold text-cyan-900 cursor-pointer hover:bg-sky-50 flex items-center gap-2">
+          <summary className="px-4 py-2.5 text-xs font-semibold text-sky-900 cursor-pointer hover:bg-sky-50 flex items-center gap-2">
             <Clock className="w-3.5 h-3.5" />
             {locale === "ar"
               ? `آخر ${events.length} حدث`
@@ -353,11 +353,11 @@ function WebhookRow({
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-semibold text-cyan-900 capitalize">
+            <span className="text-xs font-semibold text-sky-900 capitalize">
               {sub.platform}
             </span>
             <span className="text-slate-300">·</span>
-            <code className="text-[11px] font-mono px-1.5 py-0.5 bg-sky-50 text-cyan-800 rounded">
+            <code className="text-[11px] font-mono px-1.5 py-0.5 bg-sky-50 text-sky-800 rounded">
               {sub.topic}
             </code>
             {!sub.isActive && (
@@ -387,7 +387,7 @@ function WebhookRow({
             </code>
             <button
               onClick={copyUrl}
-              className="p-1.5 text-slate-500 hover:text-cyan-600 hover:bg-sky-50 rounded"
+              className="p-1.5 text-slate-500 hover:text-sky-500 hover:bg-sky-50 rounded"
               title={locale === "ar" ? "نسخ" : locale === "tr" ? "kopyala" : "copy"}
             >
               {copied ? (
@@ -434,7 +434,7 @@ function WebhookRow({
                     ? "başlat"
                     : "resume"
             }
-            className="p-1.5 text-slate-500 hover:text-cyan-700 hover:bg-sky-50 rounded"
+            className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded"
           >
             {sub.isActive ? (
               <Power className="w-3.5 h-3.5" />
@@ -451,7 +451,7 @@ function WebhookRow({
                   ? "gizli anahtarı yenile"
                   : "rotate secret"
             }
-            className="p-1.5 text-slate-500 hover:text-cyan-700 hover:bg-sky-50 rounded"
+            className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded"
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
@@ -636,7 +636,7 @@ function EventRow({
         <button
           onClick={handleRetry}
           disabled={retrying}
-          className="p-1 text-slate-500 hover:text-cyan-700 hover:bg-sky-50 rounded disabled:opacity-50"
+          className="p-1 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded disabled:opacity-50"
           title={
             locale === "ar"
               ? "إعادة المحاولة الآن"
@@ -707,7 +707,7 @@ function AddWebhookDialog({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between mb-4">
-          <h3 className="text-base font-semibold text-cyan-900">
+          <h3 className="text-base font-semibold text-sky-900">
             {locale === "ar"
               ? "إضافة ويب هوك"
               : locale === "tr"
@@ -772,8 +772,8 @@ function AddWebhookDialog({
                     onClick={() => setTopic(p)}
                     className={`text-[10px] px-2 py-0.5 rounded-full border ${
                       topic === p
-                        ? "bg-cyan-600 text-white border-cyan-600"
-                        : "bg-white text-slate-600 border-slate-200 hover:border-cyan-300"
+                        ? "bg-sky-500 text-white border-sky-500"
+                        : "bg-white text-slate-600 border-slate-200 hover:border-sky-300"
                     }`}
                   >
                     {p}
@@ -784,8 +784,8 @@ function AddWebhookDialog({
           </div>
 
           <div className="bg-sky-50 border border-sky-100 rounded-lg p-2.5 flex items-start gap-2">
-            <Info className="w-3.5 h-3.5 text-cyan-600 flex-shrink-0 mt-0.5" />
-            <p className="text-[11px] text-cyan-900 leading-relaxed">
+            <Info className="w-3.5 h-3.5 text-sky-500 flex-shrink-0 mt-0.5" />
+            <p className="text-[11px] text-sky-900 leading-relaxed">
               {locale === "ar"
                 ? "بعد الإنشاء، سنعرض لك السر الموقع ورابط الاستقبال. تلصقهما في لوحة تحكم المنصة."
                 : locale === "tr"
@@ -811,7 +811,7 @@ function AddWebhookDialog({
           <button
             onClick={submit}
             disabled={saving || !topic.trim()}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-white bg-sky-500 hover:bg-sky-600 rounded-lg disabled:opacity-50"
           >
             {saving ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -870,9 +870,9 @@ function SecretRevealDialog({
     <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full p-5">
         <div className="flex items-start gap-2 mb-3">
-          <Key className="w-5 h-5 text-cyan-600 mt-0.5" />
+          <Key className="w-5 h-5 text-sky-500 mt-0.5" />
           <div className="flex-1 min-w-0">
-            <h3 className="text-base font-semibold text-cyan-900">{title}</h3>
+            <h3 className="text-base font-semibold text-sky-900">{title}</h3>
             <p className="text-xs text-slate-600 mt-0.5 capitalize">
               {platform} · <span className="font-mono text-slate-700">{topic}</span>
             </p>
@@ -909,7 +909,7 @@ function SecretRevealDialog({
               </code>
               <button
                 onClick={() => copy(publicUrl, setCopiedUrl)}
-                className="p-2 text-slate-500 hover:text-cyan-600 hover:bg-sky-50 rounded border border-slate-200"
+                className="p-2 text-slate-500 hover:text-sky-500 hover:bg-sky-50 rounded border border-slate-200"
               >
                 {copiedUrl ? (
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
@@ -938,7 +938,7 @@ function SecretRevealDialog({
               </code>
               <button
                 onClick={() => copy(secret, setCopiedSecret)}
-                className="p-2 text-slate-500 hover:text-cyan-600 hover:bg-sky-50 rounded border border-slate-200"
+                className="p-2 text-slate-500 hover:text-sky-500 hover:bg-sky-50 rounded border border-slate-200"
               >
                 {copiedSecret ? (
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
@@ -955,7 +955,7 @@ function SecretRevealDialog({
             type="checkbox"
             checked={confirmed}
             onChange={(e) => setConfirmed(e.target.checked)}
-            className="mt-0.5 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+            className="mt-0.5 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
           />
           <span>
             {locale === "ar"
@@ -970,7 +970,7 @@ function SecretRevealDialog({
           <button
             onClick={onClose}
             disabled={!confirmed}
-            className="px-4 py-2 text-sm font-semibold text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-4 py-2 text-sm font-semibold text-white bg-sky-500 hover:bg-sky-600 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {locale === "ar" ? "تم" : locale === "tr" ? "tamam" : "Done"}
           </button>

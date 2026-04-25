@@ -36,7 +36,7 @@ export function CreateEntityPlaceholder({
       <div className="bg-white border border-sky-100 rounded-3xl overflow-hidden shadow-sm">
         <div
           className="h-2"
-          style={{ background: `linear-gradient(90deg, ${accent}, #06B6D4)` }}
+          style={{ background: `linear-gradient(90deg, ${accent}, #22D3EE)` }}
         />
         <div className="p-8">
           <div
@@ -56,7 +56,7 @@ export function CreateEntityPlaceholder({
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href={`/${locale}/merchant/${target}`}
-              className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold shadow-sm transition-colors"
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold shadow-sm transition-colors"
             >
               {t("gotoSection", { entity: entityLabel })}
               <ArrowRight
@@ -65,7 +65,7 @@ export function CreateEntityPlaceholder({
             </Link>
             <Link
               href={`/${locale}/merchant`}
-              className="inline-flex items-center h-10 px-4 rounded-xl text-cyan-700 text-sm font-semibold hover:bg-cyan-50 transition-colors"
+              className="inline-flex items-center h-10 px-4 rounded-xl text-sky-600 text-sm font-semibold hover:bg-sky-50 transition-colors"
             >
               {t("backToHome")}
             </Link>

@@ -20,8 +20,8 @@ export default function PortalCallbackPage() {
 
 function CallbackLoading() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-cyan-50 flex items-center justify-center">
-      <Loader2 className="w-8 h-8 animate-spin text-cyan-600" />
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-sky-50 flex items-center justify-center">
+      <Loader2 className="w-8 h-8 animate-spin text-sky-500" />
     </div>
   );
 }
@@ -55,9 +55,9 @@ function CallbackInner() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-cyan-50 to-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-sky-50 to-white flex items-center justify-center px-4">
       <div className="w-full max-w-md text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500 to-sky-500 rounded-2xl shadow-lg mb-4">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-sky-400 to-sky-500 rounded-2xl shadow-lg mb-4">
           <Sparkles className="w-8 h-8 text-white" />
         </div>
 
@@ -70,15 +70,15 @@ function CallbackInner() {
             <p className="text-sm text-slate-600 mb-4">{error}</p>
             <button
               onClick={() => router.push(`/${locale}/portal`)}
-              className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium rounded-lg"
+              className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg"
             >
               {t("backToLogin")}
             </button>
           </div>
         ) : (
           <div className="bg-white border border-sky-100 rounded-2xl p-6 shadow-xl">
-            <Loader2 className="w-10 h-10 animate-spin text-cyan-600 mx-auto mb-3" />
-            <h2 className="text-lg font-bold text-cyan-900">{t("title")}</h2>
+            <Loader2 className="w-10 h-10 animate-spin text-sky-500 mx-auto mb-3" />
+            <h2 className="text-lg font-bold text-sky-900">{t("title")}</h2>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
           </div>
         )}

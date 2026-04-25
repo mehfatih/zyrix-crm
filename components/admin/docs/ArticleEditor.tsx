@@ -133,7 +133,7 @@ export default function ArticleEditor({
         <p className="text-slate-500 mb-3">Article not found.</p>
         <Link
           href={`/${adminLocale}/admin/docs`}
-          className="inline-flex items-center gap-1 text-sm text-cyan-700 hover:underline"
+          className="inline-flex items-center gap-1 text-sm text-sky-600 hover:underline"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to docs
@@ -148,7 +148,7 @@ export default function ArticleEditor({
         <div>
           <Link
             href={`/${adminLocale}/admin/docs`}
-            className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-cyan-700 mb-2"
+            className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-sky-600 mb-2"
           >
             <ArrowLeft className="w-3 h-3" />
             All articles
@@ -162,7 +162,7 @@ export default function ArticleEditor({
           <Link
             href={`/${row.locale}/docs/${row.category}/${row.slug}`}
             target="_blank"
-            className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-sky-200 text-slate-600 hover:border-cyan-300"
+            className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-sky-200 text-slate-600 hover:border-sky-300"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             View public
@@ -171,7 +171,7 @@ export default function ArticleEditor({
             type="button"
             disabled={saving}
             onClick={save}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md bg-cyan-600 text-white hover:bg-cyan-700 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-500 text-white hover:bg-sky-600 disabled:opacity-50"
           >
             {saving ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -211,7 +211,7 @@ export default function ArticleEditor({
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-cyan-400"
+            className="w-full px-3 py-2 border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-sky-300"
           />
         </div>
 
@@ -269,7 +269,7 @@ export default function ArticleEditor({
                   }
                   className={`px-3 py-1 text-xs font-semibold rounded-full border capitalize ${
                     on
-                      ? "bg-cyan-50 border-cyan-300 text-cyan-700"
+                      ? "bg-sky-50 border-sky-300 text-sky-600"
                       : "bg-white border-sky-200 text-slate-500"
                   }`}
                 >
@@ -289,7 +289,7 @@ export default function ArticleEditor({
             onChange={(e) => setNotes(e.target.value)}
             rows={4}
             placeholder="Notes for other editors — not shown publicly."
-            className="w-full px-3 py-2 border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-cyan-400 text-sm"
+            className="w-full px-3 py-2 border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-sky-300 text-sm"
           />
         </div>
 
@@ -313,7 +313,7 @@ function StatCard({
   tone?: "cyan" | "emerald" | "rose";
 }) {
   const toneClasses = {
-    cyan: "bg-cyan-50 text-cyan-700 border-cyan-200",
+    cyan: "bg-sky-50 text-sky-600 border-sky-200",
     emerald: "bg-emerald-50 text-emerald-700 border-emerald-200",
     rose: "bg-rose-50 text-rose-700 border-rose-200",
   }[tone];

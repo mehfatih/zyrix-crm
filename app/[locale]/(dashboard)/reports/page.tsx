@@ -136,8 +136,8 @@ export default function ReportsPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <BarChart3 className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <BarChart3 className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
@@ -157,7 +157,7 @@ export default function ReportsPage() {
                 }}
                 className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
                   baseCurrency === merchantCurrency
-                    ? "bg-cyan-600 text-white"
+                    ? "bg-sky-500 text-white"
                     : "text-slate-700 hover:bg-sky-50"
                 }`}
               >
@@ -178,7 +178,7 @@ export default function ReportsPage() {
                   }}
                   className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
                     baseCurrency === "USD"
-                      ? "bg-cyan-600 text-white"
+                      ? "bg-sky-500 text-white"
                       : "text-slate-700 hover:bg-sky-50"
                   }`}
                 >
@@ -196,7 +196,7 @@ export default function ReportsPage() {
 
             {/* Advanced: full currency dropdown for power users */}
             <details className="relative">
-              <summary className="list-none cursor-pointer px-2 py-1.5 text-[11px] font-semibold text-slate-500 hover:text-cyan-700">
+              <summary className="list-none cursor-pointer px-2 py-1.5 text-[11px] font-semibold text-slate-500 hover:text-sky-600">
                 {locale === "ar" ? "المزيد" : locale === "tr" ? "Daha fazla" : "More"}
               </summary>
               <select
@@ -205,7 +205,7 @@ export default function ReportsPage() {
                   userChangedCurrency.current = true;
                   setBaseCurrency(e.target.value);
                 }}
-                className="absolute top-8 end-0 px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-lg z-10"
+                className="absolute top-8 end-0 px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400 shadow-lg z-10"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -221,7 +221,7 @@ export default function ReportsPage() {
               <Settings2 className="w-4 h-4" />
               {t("manageRates")}
               {rates.length > 0 && (
-                <span className="bg-cyan-100 text-cyan-700 text-xs px-1.5 py-0.5 rounded-full">
+                <span className="bg-sky-100 text-sky-600 text-xs px-1.5 py-0.5 rounded-full">
                   {rates.length}
                 </span>
               )}
@@ -233,7 +233,7 @@ export default function ReportsPage() {
               className="p-2 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg"
               title={t("refresh")}
             >
-              <RefreshCw className="w-4 h-4 text-cyan-600" />
+              <RefreshCw className="w-4 h-4 text-sky-500" />
             </button>
           </div>
         </div>
@@ -259,13 +259,13 @@ export default function ReportsPage() {
         {/* Related reports — deep links to specialized dashboards */}
         <Link
           href={`/${locale}/reports/ecommerce`}
-          className="group flex items-center gap-3 bg-gradient-to-r from-cyan-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-cyan-300 hover:shadow-sm transition-all"
+          className="group flex items-center gap-3 bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-sky-300 hover:shadow-sm transition-all"
         >
           <div className="w-10 h-10 rounded-lg bg-white border border-sky-200 flex items-center justify-center flex-shrink-0">
-            <Store className="w-5 h-5 text-cyan-600" />
+            <Store className="w-5 h-5 text-sky-500" />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-cyan-900">
+            <h3 className="text-sm font-semibold text-sky-900">
               {locale === "ar"
                 ? "تحليلات التجارة الإلكترونية"
                 : locale === "tr"
@@ -281,7 +281,7 @@ export default function ReportsPage() {
             </p>
           </div>
           <ArrowRight
-            className={`w-4 h-4 text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
+            className={`w-4 h-4 text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
               locale === "ar" ? "-scale-x-100" : ""
             }`}
           />
@@ -291,13 +291,13 @@ export default function ReportsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <Link
             href={`/${locale}/reports/cohort`}
-            className="group flex items-center gap-3 bg-gradient-to-r from-cyan-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-cyan-300 hover:shadow-sm transition-all"
+            className="group flex items-center gap-3 bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-sky-300 hover:shadow-sm transition-all"
           >
             <div className="w-10 h-10 rounded-lg bg-white border border-sky-200 flex items-center justify-center flex-shrink-0">
-              <Users className="w-5 h-5 text-cyan-600" />
+              <Users className="w-5 h-5 text-sky-500" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-semibold text-cyan-900">
+              <h3 className="text-sm font-semibold text-sky-900">
                 {locale === "ar"
                   ? "الاحتفاظ بالعملاء"
                   : locale === "tr"
@@ -313,7 +313,7 @@ export default function ReportsPage() {
               </p>
             </div>
             <ArrowRight
-              className={`w-4 h-4 text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
+              className={`w-4 h-4 text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
                 locale === "ar" ? "-scale-x-100" : ""
               }`}
             />
@@ -321,13 +321,13 @@ export default function ReportsPage() {
 
           <Link
             href={`/${locale}/reports/funnel`}
-            className="group flex items-center gap-3 bg-gradient-to-r from-cyan-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-cyan-300 hover:shadow-sm transition-all"
+            className="group flex items-center gap-3 bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-100 rounded-xl p-3.5 hover:border-sky-300 hover:shadow-sm transition-all"
           >
             <div className="w-10 h-10 rounded-lg bg-white border border-sky-200 flex items-center justify-center flex-shrink-0">
-              <GitBranch className="w-5 h-5 text-cyan-600" />
+              <GitBranch className="w-5 h-5 text-sky-500" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-semibold text-cyan-900">
+              <h3 className="text-sm font-semibold text-sky-900">
                 {locale === "ar"
                   ? "مسار التحويل"
                   : locale === "tr"
@@ -343,7 +343,7 @@ export default function ReportsPage() {
               </p>
             </div>
             <ArrowRight
-              className={`w-4 h-4 text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
+              className={`w-4 h-4 text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ${
                 locale === "ar" ? "-scale-x-100" : ""
               }`}
             />
@@ -378,8 +378,8 @@ export default function ReportsPage() {
                 onClick={() => setTab(tb.id)}
                 className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 whitespace-nowrap ${
                   active
-                    ? "border-cyan-600 text-cyan-700"
-                    : "border-transparent text-slate-600 hover:text-cyan-700"
+                    ? "border-sky-500 text-sky-600"
+                    : "border-transparent text-slate-600 hover:text-sky-600"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -391,7 +391,7 @@ export default function ReportsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
@@ -464,7 +464,7 @@ function SummaryView({
           value={summary.revenue90d.total}
           currency={baseCurrency}
           hint={`${summary.revenue90d.dealCount} ${t("summary.deals")}`}
-          gradient="from-cyan-500 to-sky-600"
+          gradient="from-sky-400 to-sky-600"
         />
         <BigKpi
           label={t("summary.openPipeline")}
@@ -479,7 +479,7 @@ function SummaryView({
       </div>
 
       <div className="bg-white border border-sky-100 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-cyan-900 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-sky-900 mb-3 flex items-center gap-2">
           <ArrowRightLeft className="w-4 h-4" />
           {t("summary.currenciesInUse")}
         </h3>
@@ -492,13 +492,13 @@ function SummaryView({
                 key={i}
                 className={`inline-flex items-center px-3 py-1 rounded-lg text-sm font-mono font-semibold ${
                   c === baseCurrency
-                    ? "bg-cyan-50 text-cyan-700 ring-1 ring-cyan-200"
+                    ? "bg-sky-50 text-sky-600 ring-1 ring-sky-200"
                     : "bg-sky-50 text-sky-700"
                 }`}
               >
                 {c}
                 {c === baseCurrency && (
-                  <span className="ltr:ml-1 rtl:mr-1 text-[10px] text-cyan-500">
+                  <span className="ltr:ml-1 rtl:mr-1 text-[10px] text-sky-400">
                     ({t("summary.base")})
                   </span>
                 )}
@@ -543,7 +543,7 @@ function RevenueView({
       {currencyKeys.length > 0 && (
         <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
           <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50">
-            <h3 className="text-sm font-semibold text-cyan-900">
+            <h3 className="text-sm font-semibold text-sky-900">
               {t("revenue.byCurrency")}
             </h3>
           </div>
@@ -574,7 +574,7 @@ function RevenueView({
                     key={i}
                     className="border-b border-sky-50 hover:bg-sky-50/30"
                   >
-                    <td className="px-4 py-2 font-mono font-semibold text-cyan-700">
+                    <td className="px-4 py-2 font-mono font-semibold text-sky-600">
                       {c}
                       {isUnconvertible && (
                         <AlertTriangle
@@ -603,7 +603,7 @@ function RevenueView({
       {revenue.deals.length > 0 && (
         <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
           <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50">
-            <h3 className="text-sm font-semibold text-cyan-900">
+            <h3 className="text-sm font-semibold text-sky-900">
               {t("revenue.recentDeals")}
             </h3>
           </div>
@@ -614,7 +614,7 @@ function RevenueView({
                 className="px-5 py-3 hover:bg-sky-50/30 flex items-center gap-3"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-cyan-900 truncate">
+                  <div className="text-sm font-medium text-sky-900 truncate">
                     {d.title}
                   </div>
                   <div className="text-xs text-slate-500 truncate">
@@ -625,7 +625,7 @@ function RevenueView({
                   </div>
                 </div>
                 <div className="text-right rtl:text-left flex-shrink-0">
-                  <div className="text-sm font-bold text-cyan-900">
+                  <div className="text-sm font-bold text-sky-900">
                     {formatMoneyCurrency(d.convertedValue, baseCurrency)}
                   </div>
                   {d.currency !== baseCurrency && (
@@ -663,7 +663,7 @@ function PipelineView({
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-gradient-to-r from-cyan-500 to-sky-600 rounded-xl p-6 text-white">
+        <div className="bg-gradient-to-r from-sky-400 to-sky-600 rounded-xl p-6 text-white">
           <div className="text-sm opacity-80 mb-1">
             {t("pipeline.totalOpen")}
           </div>
@@ -694,7 +694,7 @@ function PipelineView({
 
       {stages.length > 0 && (
         <div className="bg-white border border-sky-100 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-cyan-900 mb-4 flex items-center gap-2">
+          <h3 className="text-sm font-semibold text-sky-900 mb-4 flex items-center gap-2">
             <PieChart className="w-4 h-4" />
             {t("pipeline.byStage")}
           </h3>
@@ -705,20 +705,20 @@ function PipelineView({
                 <div key={i}>
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-cyan-900 capitalize">
+                      <span className="text-sm font-medium text-sky-900 capitalize">
                         {stage.replace("_", " ")}
                       </span>
                       <span className="text-xs text-slate-500">
                         ({data.count})
                       </span>
                     </div>
-                    <div className="text-sm font-bold text-cyan-900">
+                    <div className="text-sm font-bold text-sky-900">
                       {formatMoneyCurrency(data.value, baseCurrency)}
                     </div>
                   </div>
                   <div className="bg-sky-50 rounded-full h-2 overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-cyan-500 to-sky-500 rounded-full"
+                      className="h-full bg-gradient-to-r from-sky-400 to-sky-500 rounded-full"
                       style={{ width: `${widthPct}%` }}
                     />
                   </div>
@@ -801,7 +801,7 @@ function RatesModal({
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-cyan-900">
+            <h2 className="text-lg font-bold text-sky-900">
               {t("rates.title")}
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -875,7 +875,7 @@ function RatesModal({
                   <button
                     onClick={add}
                     disabled={saving}
-                    className="px-2 py-1.5 bg-cyan-600 text-white rounded disabled:opacity-60"
+                    className="px-2 py-1.5 bg-sky-500 text-white rounded disabled:opacity-60"
                   >
                     {saving ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -910,11 +910,11 @@ function RatesModal({
                     key={i}
                     className="flex items-center gap-2 bg-sky-50/40 border border-sky-100 rounded-lg px-3 py-2"
                   >
-                    <span className="font-mono text-sm font-semibold text-cyan-700">
+                    <span className="font-mono text-sm font-semibold text-sky-600">
                       1 {r.fromCurrency}
                     </span>
                     <ArrowRightLeft className="w-3 h-3 text-slate-400" />
-                    <span className="font-mono text-sm font-bold text-cyan-900">
+                    <span className="font-mono text-sm font-bold text-sky-900">
                       {Number(r.rate).toFixed(4)} {r.toCurrency}
                     </span>
                     <div className="ltr:ml-auto rtl:mr-auto">
@@ -935,7 +935,7 @@ function RatesModal({
         <div className="p-4 border-t border-sky-100 flex justify-end bg-sky-50/30">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium rounded-lg"
+            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg"
           >
             {t("rates.done")}
           </button>

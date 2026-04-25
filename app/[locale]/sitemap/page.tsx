@@ -70,9 +70,9 @@ const CATEGORIES: Record<
 > = {
   marketing: {
     label: { en: "Marketing", ar: "التسويق", tr: "Pazarlama" },
-    gradient: "from-cyan-500 to-sky-600",
-    color: "text-cyan-600",
-    ring: "ring-cyan-400",
+    gradient: "from-sky-400 to-sky-600",
+    color: "text-sky-500",
+    ring: "ring-sky-300",
     Icon: Globe,
   },
   product: {
@@ -244,7 +244,7 @@ export default function SitemapPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         {/* Hero */}
         <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-sky-600 bg-sky-50 border border-sky-200 rounded-full mb-4">
             <MapIcon className="w-3.5 h-3.5" />
             {t.badge}
           </span>
@@ -283,7 +283,7 @@ export default function SitemapPage() {
         </div>
 
         {/* Central radial diagram */}
-        <div className="relative mb-12 min-h-[880px] md:min-h-[1020px] overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-white to-cyan-50/40 border border-slate-200 shadow-inner">
+        <div className="relative mb-12 min-h-[880px] md:min-h-[1020px] overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-white to-sky-50/40 border border-slate-200 shadow-inner">
           <RadialMap
             nodes={filteredNodes}
             locale={L}
@@ -445,8 +445,8 @@ function RadialMap({
             <stop offset="100%" stopColor="transparent" />
           </radialGradient>
           <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#22D3EE" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#22D3EE" stopOpacity="0.1" />
           </linearGradient>
         </defs>
 
@@ -483,7 +483,7 @@ function RadialMap({
           cy="50"
           r="4"
           fill="none"
-          stroke="#06b6d4"
+          stroke="#22D3EE"
           strokeWidth="0.3"
           opacity="0.5"
         >
@@ -507,7 +507,7 @@ function RadialMap({
           cy="50"
           r="4"
           fill="none"
-          stroke="#06b6d4"
+          stroke="#22D3EE"
           strokeWidth="0.3"
           opacity="0.5"
         >
@@ -537,7 +537,7 @@ function RadialMap({
       >
         <Link
           href={`/${locale}`}
-          className="group w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow-2xl shadow-cyan-500/40 hover:scale-110 transition-transform"
+          className="group w-20 h-20 rounded-2xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow-2xl shadow-sky-400/40 hover:scale-110 transition-transform"
         >
           <div className="flex flex-col items-center">
             <MapIcon className="w-7 h-7" />
@@ -641,8 +641,8 @@ function FilterChip({
 }) {
   const colors: Record<string, { active: string; inactive: string }> = {
     marketing: {
-      active: "bg-cyan-600 text-white ring-cyan-400",
-      inactive: "bg-white text-slate-700 hover:bg-cyan-50 ring-slate-200",
+      active: "bg-sky-500 text-white ring-sky-300",
+      inactive: "bg-white text-slate-700 hover:bg-sky-50 ring-slate-200",
     },
     product: {
       active: "bg-emerald-600 text-white ring-emerald-400",

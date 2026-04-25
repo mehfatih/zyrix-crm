@@ -123,7 +123,7 @@ function ScheduledPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/analytics`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -131,7 +131,7 @@ function ScheduledPage() {
             <Mail className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("Scheduled reports", "التقارير المجدولة", "Zamanlanmış raporlar")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -145,7 +145,7 @@ function ScheduledPage() {
           {!creatingNew && !editing && (
             <button
               onClick={() => setCreatingNew(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("New report", "تقرير جديد", "Yeni rapor")}
@@ -190,7 +190,7 @@ function ScheduledPage() {
         {/* List */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : reports.length === 0 && !creatingNew ? (
           <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
@@ -287,7 +287,7 @@ function ReportRow({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-cyan-900">{report.name}</h3>
+            <h3 className="text-sm font-bold text-sky-900">{report.name}</h3>
             {!report.isEnabled && (
               <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
                 {tr("Paused", "متوقف", "Duraklatıldı")}
@@ -355,7 +355,7 @@ function ReportRow({
           </button>
           <button
             onClick={onEdit}
-            className="w-7 h-7 rounded text-slate-400 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+            className="w-7 h-7 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
           >
             <Pencil className="w-3.5 h-3.5" />
           </button>
@@ -475,9 +475,9 @@ function ScheduledReportForm({
   };
 
   return (
-    <div className="rounded-xl border border-cyan-200 bg-cyan-50/30 p-4 space-y-4">
+    <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-cyan-900">
+        <h2 className="text-sm font-bold text-sky-900">
           {editing
             ? tr("Edit report", "تعديل التقرير", "Raporu düzenle")
             : tr("New scheduled report", "تقرير مجدول جديد", "Yeni zamanlanmış rapor")}
@@ -510,7 +510,7 @@ function ScheduledReportForm({
             "Haftalık Satış Özeti"
           )}
           maxLength={120}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
         />
       </div>
 
@@ -526,7 +526,7 @@ function ScheduledReportForm({
               onClick={() => setCadence(c)}
               className={`px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
                 cadence === c
-                  ? "bg-cyan-600 text-white border-cyan-600"
+                  ? "bg-sky-500 text-white border-sky-500"
                   : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
               }`}
             >
@@ -550,7 +550,7 @@ function ScheduledReportForm({
             <select
               value={dayOfWeek}
               onChange={(e) => setDayOfWeek(Number(e.target.value))}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
             >
               {dayNames.map((d, i) => (
                 <option key={i} value={i}>
@@ -568,7 +568,7 @@ function ScheduledReportForm({
             <select
               value={dayOfMonth}
               onChange={(e) => setDayOfMonth(Number(e.target.value))}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
             >
               {Array.from({ length: 28 }, (_, i) => i + 1).map((d) => (
                 <option key={d} value={d}>
@@ -585,7 +585,7 @@ function ScheduledReportForm({
           <select
             value={hour}
             onChange={(e) => setHour(Number(e.target.value))}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           >
             {Array.from({ length: 24 }, (_, i) => i).map((h) => (
               <option key={h} value={h}>
@@ -611,10 +611,10 @@ function ScheduledReportForm({
                 type="checkbox"
                 checked={selectedMetrics.includes(m.key)}
                 onChange={() => toggleMetric(m.key)}
-                className="mt-0.5 accent-cyan-600"
+                className="mt-0.5 accent-sky-500"
               />
               <div className="flex-1">
-                <div className="text-sm font-semibold text-cyan-900">
+                <div className="text-sm font-semibold text-sky-900">
                   {m.label[locale]}
                 </div>
                 <div className="text-[11px] text-slate-500">
@@ -644,12 +644,12 @@ function ScheduledReportForm({
             }}
             placeholder="team@example.com"
             dir="ltr"
-            className="flex-1 px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white"
+            className="flex-1 px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
           />
           <button
             onClick={addRecipient}
             disabled={!recipientInput.trim()}
-            className="px-3 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+            className="px-3 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
           >
             {tr("Add", "إضافة", "Ekle")}
           </button>
@@ -687,7 +687,7 @@ function ScheduledReportForm({
         <button
           onClick={handleSave}
           disabled={saving}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
         >
           {saving ? (
             <Loader2 className="w-4 h-4 animate-spin" />

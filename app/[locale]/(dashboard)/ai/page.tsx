@@ -28,7 +28,7 @@ export default function AiHubPage() {
       key: "sales",
       href: `/${locale}/ai/sales`,
       icon: MessageSquare,
-      gradient: "from-cyan-500 via-sky-500 to-blue-600",
+      gradient: "from-sky-400 via-sky-500 to-blue-600",
       label: tr("Sales Assistant", "مساعد المبيعات", "Satış Asistanı"),
       tagline: tr(
         "Ask anything about your pipeline",
@@ -96,7 +96,7 @@ export default function AiHubPage() {
       key: "meeting",
       href: `/${locale}/ai/meetings`,
       icon: FileAudio,
-      gradient: "from-emerald-500 via-teal-500 to-cyan-600",
+      gradient: "from-emerald-500 via-teal-500 to-sky-500",
       label: tr(
         "Meeting Notes",
         "ملاحظات الاجتماعات",
@@ -140,11 +140,11 @@ export default function AiHubPage() {
       >
         {/* Header */}
         <div className="flex items-start gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-purple-500 to-fuchsia-600 text-white flex items-center justify-center shadow flex-shrink-0">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-purple-500 to-fuchsia-600 text-white flex items-center justify-center shadow flex-shrink-0">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("AI Agents", "وكلاء الذكاء الاصطناعي", "AI Ajanları")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -165,7 +165,7 @@ export default function AiHubPage() {
               <Link
                 key={agent.key}
                 href={agent.href}
-                className="group block rounded-2xl border border-sky-100 bg-white hover:border-cyan-400 hover:shadow-lg transition-all overflow-hidden"
+                className="group block rounded-2xl border border-sky-100 bg-white hover:border-sky-300 hover:shadow-lg transition-all overflow-hidden"
               >
                 <div className="flex items-start gap-4 p-5">
                   <div
@@ -175,14 +175,14 @@ export default function AiHubPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h2 className="text-lg font-bold text-cyan-900">
+                      <h2 className="text-lg font-bold text-sky-900">
                         {agent.label}
                       </h2>
                       <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white">
                         AI
                       </span>
                     </div>
-                    <p className="text-sm text-cyan-700 font-medium mt-0.5">
+                    <p className="text-sm text-sky-600 font-medium mt-0.5">
                       {agent.tagline}
                     </p>
                     <p className="text-sm text-slate-600 mt-2 leading-relaxed">
@@ -194,14 +194,14 @@ export default function AiHubPage() {
                           key={i}
                           className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-sky-50 border border-sky-100 text-[11px] text-slate-600"
                         >
-                          <Zap className="w-3 h-3 text-cyan-600" />
+                          <Zap className="w-3 h-3 text-sky-500" />
                           "{example}"
                         </span>
                       ))}
                     </div>
                   </div>
                   <ArrowRight
-                    className={`w-5 h-5 text-slate-300 group-hover:text-cyan-600 transition-colors flex-shrink-0 mt-2 ${
+                    className={`w-5 h-5 text-slate-300 group-hover:text-sky-500 transition-colors flex-shrink-0 mt-2 ${
                       isRtl ? "-scale-x-100" : ""
                     }`}
                   />

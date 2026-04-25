@@ -17,7 +17,7 @@ const STAGE_LABELS: Record<string, string> = {
 
 const STAGE_COLORS: Record<string, string> = {
   lead: "border-t-sky-500",
-  qualified: "border-t-cyan-500",
+  qualified: "border-t-sky-400",
   proposal: "border-t-amber-500",
   negotiation: "border-t-purple-500",
 };

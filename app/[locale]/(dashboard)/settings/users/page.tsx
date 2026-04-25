@@ -137,17 +137,17 @@ export default function TeamUsersPage() {
           <div className="flex items-center gap-3">
             <Link
               href={`/${locale}/settings`}
-              className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+              className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
             >
               <ArrowLeft
                 className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
               />
             </Link>
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Team members", "أعضاء الفريق", "Ekip üyeleri")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -189,7 +189,7 @@ export default function TeamUsersPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : users.length === 0 ? (
           <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
@@ -276,7 +276,7 @@ function UserRow({
           : "border-sky-100 bg-white"
       }`}
     >
-      <div className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center font-bold text-sm">
+      <div className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center font-bold text-sm">
         {user.avatarUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -290,9 +290,9 @@ function UserRow({
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <h3 className="text-sm font-bold text-cyan-900">{user.fullName}</h3>
+          <h3 className="text-sm font-bold text-sky-900">{user.fullName}</h3>
           {isSelf && (
-            <span className="inline-flex items-center text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-cyan-50 text-cyan-700 border border-cyan-200">
+            <span className="inline-flex items-center text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-50 text-sky-600 border border-sky-200">
               {tr("You", "أنت", "Sen")}
             </span>
           )}
@@ -322,7 +322,7 @@ function UserRow({
                 onChange={(e) =>
                   onBuiltInChange(user, e.target.value as BuiltInRole)
                 }
-                className="w-full appearance-none bg-white border border-sky-200 rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-cyan-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed"
+                className="w-full appearance-none bg-white border border-sky-200 rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed"
               >
                 {ROLE_ORDER.map((r) => (
                   <option key={r} value={r}>
@@ -362,7 +362,7 @@ function UserRow({
                 onChange={(e) =>
                   onCustomRoleChange(user, e.target.value || null)
                 }
-                className="w-full appearance-none bg-white border border-sky-200 rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-cyan-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed"
+                className="w-full appearance-none bg-white border border-sky-200 rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed"
               >
                 <option value="">
                   {tr(
@@ -388,7 +388,7 @@ function UserRow({
       </div>
       <div className="flex items-center flex-shrink-0">
         {saving ? (
-          <Loader2 className="w-4 h-4 animate-spin text-cyan-600" />
+          <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
         ) : user.customRoleId ? (
           <span
             className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-50 text-sky-800 border border-sky-200"

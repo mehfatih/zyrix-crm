@@ -125,7 +125,7 @@ export function GlobalSearch({
           type="button"
           onClick={() => setOpen(true)}
           title={placeholder}
-          className="w-10 h-9 mx-auto flex items-center justify-center rounded-[10px] border border-sky-100 text-slate-500 hover:bg-cyan-50 hover:text-cyan-700 transition-colors"
+          className="w-10 h-9 mx-auto flex items-center justify-center rounded-[10px] border border-sky-100 text-slate-500 hover:bg-sky-50 hover:text-sky-600 transition-colors"
         >
           <Search className="w-4 h-4" />
         </button>
@@ -151,7 +151,7 @@ export function GlobalSearch({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="w-full h-9 flex items-center gap-2 px-3 rounded-[10px] border border-sky-100 bg-white hover:border-cyan-200 transition-colors text-left"
+        className="w-full h-9 flex items-center gap-2 px-3 rounded-[10px] border border-sky-100 bg-white hover:border-sky-200 transition-colors text-left"
       >
         <Search className="w-4 h-4 text-slate-400" />
         <span className="flex-1 text-sm text-slate-400 truncate">
@@ -251,9 +251,9 @@ function Overlay({
                         <Link
                           href={href}
                           onClick={onClose}
-                          className="flex items-start gap-3 px-4 py-2.5 hover:bg-cyan-50"
+                          className="flex items-start gap-3 px-4 py-2.5 hover:bg-sky-50"
                         >
-                          <FileText className="w-4 h-4 text-cyan-600 flex-shrink-0 mt-0.5" />
+                          <FileText className="w-4 h-4 text-sky-500 flex-shrink-0 mt-0.5" />
                           <div className="min-w-0">
                             <div className="text-sm font-semibold text-slate-900 truncate">
                               {d.title}

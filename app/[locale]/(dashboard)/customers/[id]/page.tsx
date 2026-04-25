@@ -30,7 +30,7 @@ type Tab = "overview" | "timeline";
 
 const STATUS_COLORS: Record<string, string> = {
   new: "bg-sky-100 text-sky-700",
-  qualified: "bg-cyan-100 text-cyan-700",
+  qualified: "bg-sky-100 text-sky-600",
   customer: "bg-emerald-100 text-emerald-700",
   lost: "bg-slate-100 text-slate-600",
 };
@@ -62,7 +62,7 @@ export default function CustomerDetailPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="p-8 flex items-center justify-center">
-          <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
         </div>
       </DashboardShell>
     );
@@ -75,7 +75,7 @@ export default function CustomerDetailPage() {
           <p className="text-sm text-slate-500">Customer not found.</p>
           <Link
             href={`/${locale}/customers`}
-            className="inline-flex items-center gap-1.5 mt-3 text-sm text-cyan-600 hover:underline"
+            className="inline-flex items-center gap-1.5 mt-3 text-sm text-sky-500 hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to customers
@@ -96,11 +96,11 @@ export default function CustomerDetailPage() {
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0">
+          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0">
             {getInitials(customer.fullName)}
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl font-bold text-cyan-900 truncate">
+            <h1 className="text-2xl font-bold text-sky-900 truncate">
               {customer.fullName}
             </h1>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
@@ -169,8 +169,8 @@ function TabButton({
       className={cn(
         "flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors",
         active
-          ? "border-cyan-600 text-cyan-700"
-          : "border-transparent text-slate-600 hover:text-cyan-700"
+          ? "border-sky-500 text-sky-600"
+          : "border-transparent text-slate-600 hover:text-sky-600"
       )}
     >
       <Icon className="w-4 h-4" />

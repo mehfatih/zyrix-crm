@@ -36,9 +36,9 @@ export default function CheckoutSuccessView({ locale }: Props) {
 
 function SuccessLoadingFallback() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-cyan-100 p-8 text-center">
-        <Loader2 className="w-8 h-8 text-cyan-600 animate-spin mx-auto" />
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-sky-100 p-8 text-center">
+        <Loader2 className="w-8 h-8 text-sky-500 animate-spin mx-auto" />
       </div>
     </div>
   );
@@ -112,13 +112,13 @@ function SuccessContent({ locale }: Props) {
   }, [params, t]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-cyan-100 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-sky-100 p-8">
         {status === "confirming" && (
           <div className="text-center py-6">
             <Loader2
               size={44}
-              className="animate-spin text-cyan-600 mx-auto mb-5"
+              className="animate-spin text-sky-500 mx-auto mb-5"
             />
             <h1 className="text-lg font-bold text-slate-900">
               {t("activating")}
@@ -154,7 +154,7 @@ function SuccessContent({ locale }: Props) {
                     <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
                       {t("amount")}
                     </div>
-                    <div className="text-base font-bold text-cyan-700 mt-0.5">
+                    <div className="text-base font-bold text-sky-600 mt-0.5">
                       {session.currency} {session.amount.toFixed(2)}
                     </div>
                   </div>
@@ -164,7 +164,7 @@ function SuccessContent({ locale }: Props) {
 
             <Link
               href={`/${locale}/dashboard`}
-              className="inline-flex items-center justify-center w-full bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg px-4 py-2.5 text-sm font-semibold mt-6"
+              className="inline-flex items-center justify-center w-full bg-sky-500 hover:bg-sky-600 text-white rounded-lg px-4 py-2.5 text-sm font-semibold mt-6"
             >
               {t("goToDashboard")}
             </Link>
@@ -191,7 +191,7 @@ function SuccessContent({ locale }: Props) {
               </Link>
               <Link
                 href={`/${locale}/dashboard`}
-                className="flex-1 text-center rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2.5 text-sm font-semibold"
+                className="flex-1 text-center rounded-lg bg-sky-500 hover:bg-sky-600 text-white px-4 py-2.5 text-sm font-semibold"
               >
                 {t("goToDashboard")}
               </Link>

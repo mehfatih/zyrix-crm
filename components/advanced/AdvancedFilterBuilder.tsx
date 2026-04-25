@@ -104,8 +104,8 @@ export default function AdvancedFilterBuilder({
     <div className="bg-white border border-sky-100 rounded-xl p-4 space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-cyan-600" />
-          <h3 className="text-sm font-semibold text-cyan-900">
+          <Filter className="w-4 h-4 text-sky-500" />
+          <h3 className="text-sm font-semibold text-sky-900">
             {t("title")}
           </h3>
         </div>
@@ -123,7 +123,7 @@ export default function AdvancedFilterBuilder({
               onClick={() => setLogic(l)}
               className={`px-3 py-1 text-xs font-medium rounded ${
                 logic === l
-                  ? "bg-white text-cyan-700 shadow-sm"
+                  ? "bg-white text-sky-600 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -153,7 +153,7 @@ export default function AdvancedFilterBuilder({
       {conditions.length < 10 && (
         <button
           onClick={addCondition}
-          className="flex items-center gap-1.5 px-2 py-1 text-xs text-cyan-700 hover:bg-cyan-50 rounded"
+          className="flex items-center gap-1.5 px-2 py-1 text-xs text-sky-600 hover:bg-sky-50 rounded"
         >
           <Plus className="w-3.5 h-3.5" />
           {t("addCondition")}
@@ -182,7 +182,7 @@ export default function AdvancedFilterBuilder({
           <button
             onClick={apply}
             disabled={loading}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white text-xs font-semibold rounded-lg"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-xs font-semibold rounded-lg"
           >
             {loading ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />

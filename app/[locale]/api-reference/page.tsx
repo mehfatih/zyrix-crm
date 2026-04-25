@@ -218,7 +218,7 @@ export default async function ApiReferencePage({
           <p className="text-sm text-slate-600">{t.comingSoon}</p>
           <Link
             href={`/${locale}/docs`}
-            className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-cyan-600 hover:text-cyan-700"
+            className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-sky-500 hover:text-sky-600"
           >
             <BookOpen className="w-4 h-4" />
             Documentation
@@ -242,7 +242,7 @@ function CalloutCard({
   color: "cyan" | "emerald" | "amber";
 }) {
   const c: Record<string, string> = {
-    cyan: "bg-cyan-50 text-cyan-700 border-cyan-200",
+    cyan: "bg-sky-50 text-sky-600 border-sky-200",
     emerald: "bg-emerald-50 text-emerald-700 border-emerald-200",
     amber: "bg-amber-50 text-amber-700 border-amber-200",
   };

@@ -205,15 +205,15 @@ export default function TaxPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <Percent className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <Percent className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm"
           >
             <Plus className="w-4 h-4" />
             {t("addRate")}
@@ -222,13 +222,13 @@ export default function TaxPage() {
 
         {/* Presets quick-seed */}
         {presets.length > 0 && (
-          <div className="bg-gradient-to-r from-sky-50 to-cyan-50 border border-sky-200 rounded-xl p-5">
+          <div className="bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-200 rounded-xl p-5">
             <div className="flex items-start gap-3 mb-3">
               <div className="bg-white rounded-lg p-2 shadow-sm">
-                <Zap className="w-5 h-5 text-cyan-600" />
+                <Zap className="w-5 h-5 text-sky-500" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-cyan-900">
+                <h3 className="text-sm font-semibold text-sky-900">
                   {t("presets.title")}
                 </h3>
                 <p className="text-xs text-slate-600">
@@ -247,7 +247,7 @@ export default function TaxPage() {
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors border ${
                       already
                         ? "bg-emerald-50 text-emerald-700 border-emerald-200 cursor-not-allowed"
-                        : "bg-white hover:bg-cyan-50 text-cyan-700 border-sky-200"
+                        : "bg-white hover:bg-sky-50 text-sky-600 border-sky-200"
                     }`}
                   >
                     {seedingCountry === p.countryCode ? (
@@ -274,7 +274,7 @@ export default function TaxPage() {
         {/* Content */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
@@ -295,11 +295,11 @@ export default function TaxPage() {
                 className="bg-white border border-sky-100 rounded-xl overflow-hidden"
               >
                 <div className="bg-sky-50 px-5 py-3 border-b border-sky-100 flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-cyan-600" />
+                  <Globe className="w-4 h-4 text-sky-500" />
                   <span className="text-base">
                     {COUNTRY_FLAG[country] || ""}
                   </span>
-                  <h3 className="text-sm font-semibold text-cyan-900">
+                  <h3 className="text-sm font-semibold text-sky-900">
                     {country === "—" ? t("noCountry") : country}
                   </h3>
                   <span className="text-xs text-slate-500">
@@ -332,7 +332,7 @@ export default function TaxPage() {
                       >
                         <td className="px-4 py-2.5">
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-cyan-900">
+                            <span className="font-medium text-sky-900">
                               {r.name}
                             </span>
                             {r.isDefault && (
@@ -351,7 +351,7 @@ export default function TaxPage() {
                         <td className="px-4 py-2.5 font-mono text-xs text-slate-600">
                           {r.code || "—"}
                         </td>
-                        <td className="px-4 py-2.5 ltr:text-right rtl:text-left font-bold text-cyan-900">
+                        <td className="px-4 py-2.5 ltr:text-right rtl:text-left font-bold text-sky-900">
                           {Number(r.ratePercent)}%
                         </td>
                         <td className="px-4 py-2.5">
@@ -369,7 +369,7 @@ export default function TaxPage() {
                           <div className="flex items-center gap-1 ltr:justify-end rtl:justify-start">
                             <button
                               onClick={() => openEdit(r)}
-                              className="p-1 text-slate-400 hover:text-cyan-700"
+                              className="p-1 text-slate-400 hover:text-sky-600"
                             >
                               <Pencil className="w-4 h-4" />
                             </button>
@@ -439,7 +439,7 @@ function TaxFormModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {editing ? t("form.editTitle") : t("form.createTitle")}
           </h2>
           <button
@@ -460,7 +460,7 @@ function TaxFormModal({
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder={t("form.namePlaceholder")}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
 
@@ -477,7 +477,7 @@ function TaxFormModal({
                   onChange={(e) =>
                     setForm({ ...form, ratePercent: e.target.value })
                   }
-                  className="w-full ltr:pr-8 rtl:pl-8 px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="w-full ltr:pr-8 rtl:pl-8 px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
                 />
                 <span className="absolute top-1/2 -translate-y-1/2 ltr:right-3 rtl:left-3 text-xs text-slate-500">
                   %
@@ -493,7 +493,7 @@ function TaxFormModal({
                 value={form.code}
                 onChange={(e) => setForm({ ...form, code: e.target.value })}
                 placeholder="e.g. KDV_18"
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 font-mono"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 font-mono"
               />
             </div>
           </div>
@@ -507,7 +507,7 @@ function TaxFormModal({
               onChange={(e) =>
                 setForm({ ...form, countryCode: e.target.value })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             >
               <option value="">— {t("form.noCountry")} —</option>
               <option value="TR">🇹🇷 Turkey</option>
@@ -531,7 +531,7 @@ function TaxFormModal({
                 setForm({ ...form, description: e.target.value })
               }
               rows={2}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 resize-none"
+              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 resize-none"
             />
           </div>
 
@@ -543,7 +543,7 @@ function TaxFormModal({
                 onChange={(e) =>
                   setForm({ ...form, isDefault: e.target.checked })
                 }
-                className="w-4 h-4 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                className="w-4 h-4 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
               />
               <span className="text-sm text-slate-700">
                 {t("form.isDefault")}
@@ -556,7 +556,7 @@ function TaxFormModal({
                 onChange={(e) =>
                   setForm({ ...form, isActive: e.target.checked })
                 }
-                className="w-4 h-4 rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                className="w-4 h-4 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
               />
               <span className="text-sm text-slate-700">
                 {t("form.isActive")}
@@ -581,7 +581,7 @@ function TaxFormModal({
           <button
             onClick={onSave}
             disabled={saving}
-            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving && <Loader2 className="w-4 h-4 animate-spin" />}
             {editing ? t("actions.save") : t("actions.create")}

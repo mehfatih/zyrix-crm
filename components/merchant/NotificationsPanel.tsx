@@ -150,7 +150,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
         onClick={() => setOpen((v) => !v)}
         title={t("title")}
         aria-label={t("title")}
-        className="relative w-10 h-10 rounded-lg flex items-center justify-center text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 transition-colors"
+        className="relative w-10 h-10 rounded-lg flex items-center justify-center text-slate-500 hover:text-sky-600 hover:bg-sky-50 transition-colors"
       >
         <Bell className="w-5 h-5" />
         {unreadCount > 0 && (
@@ -185,7 +185,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
               className={`inline-flex items-center gap-1 text-xs font-semibold ${
                 unreadCount === 0
                   ? "text-slate-300 cursor-not-allowed"
-                  : "text-cyan-700 hover:text-cyan-800"
+                  : "text-sky-600 hover:text-sky-800"
               }`}
             >
               <CheckCheck className="w-3.5 h-3.5" />
@@ -210,7 +210,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
                   onClick={() => setTab(f)}
                   className={`relative px-3 py-2.5 text-sm font-medium transition-colors ${
                     active
-                      ? "text-cyan-700"
+                      ? "text-sky-600"
                       : "text-slate-500 hover:text-slate-700"
                   }`}
                 >
@@ -218,7 +218,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
                   {active && (
                     <span
                       aria-hidden
-                      className="absolute left-3 right-3 bottom-0 h-0.5 rounded-full bg-cyan-500"
+                      className="absolute left-3 right-3 bottom-0 h-0.5 rounded-full bg-sky-400"
                     />
                   )}
                 </button>
@@ -243,7 +243,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
             )}
             {showEmptyNone && (
               <div className="px-6 py-10 text-center">
-                <div className="mx-auto w-14 h-14 rounded-full bg-sky-50 text-cyan-600 flex items-center justify-center mb-3">
+                <div className="mx-auto w-14 h-14 rounded-full bg-sky-50 text-sky-500 flex items-center justify-center mb-3">
                   <Inbox className="w-7 h-7" />
                 </div>
                 <div className="text-sm font-bold text-[#0C4A6E]">
@@ -271,7 +271,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
             <Link
               href={`/${locale}/merchant/notifications`}
               onClick={() => setOpen(false)}
-              className="inline-block text-xs font-semibold text-cyan-700 hover:text-cyan-800"
+              className="inline-block text-xs font-semibold text-sky-600 hover:text-sky-800"
             >
               {t("viewAll")}
             </Link>

@@ -148,7 +148,7 @@ export function NotificationBell() {
       <button
         ref={triggerRef}
         onClick={() => setOpen((v) => !v)}
-        className="relative w-9 h-9 rounded-lg text-slate-500 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center transition-colors"
+        className="relative w-9 h-9 rounded-lg text-slate-500 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center transition-colors"
         aria-label={tr("Notifications", "الإشعارات", "Bildirimler")}
       >
         <Bell className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
@@ -169,7 +169,7 @@ export function NotificationBell() {
         >
           {/* Header */}
           <div className="flex items-center justify-between gap-2 p-3 border-b border-sky-100">
-            <h3 className="text-sm font-bold text-cyan-900 flex items-center gap-1.5">
+            <h3 className="text-sm font-bold text-sky-900 flex items-center gap-1.5">
               <Bell className="w-4 h-4" />
               {tr("Notifications", "الإشعارات", "Bildirimler")}
               {unreadCount > 0 && (
@@ -182,7 +182,7 @@ export function NotificationBell() {
               <button
                 onClick={handleMarkAllRead}
                 disabled={markingAll}
-                className="text-[11px] font-semibold text-cyan-700 hover:text-cyan-900 inline-flex items-center gap-1 disabled:opacity-50"
+                className="text-[11px] font-semibold text-sky-600 hover:text-sky-900 inline-flex items-center gap-1 disabled:opacity-50"
               >
                 {markingAll ? (
                   <Loader2 className="w-3 h-3 animate-spin" />
@@ -198,7 +198,7 @@ export function NotificationBell() {
           <div className="max-h-96 overflow-y-auto">
             {loading ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-4 h-4 animate-spin text-cyan-600" />
+                <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
               </div>
             ) : items.length === 0 ? (
               <div className="py-10 text-center">
@@ -232,7 +232,7 @@ export function NotificationBell() {
             <Link
               href={`/${locale}/notifications`}
               onClick={() => setOpen(false)}
-              className="block text-center text-xs font-semibold text-cyan-700 hover:text-cyan-900 py-1"
+              className="block text-center text-xs font-semibold text-sky-600 hover:text-sky-900 py-1"
             >
               {tr(
                 "View all notifications",
@@ -269,21 +269,21 @@ function NotificationRow({
   return (
     <div
       className={`group flex items-start gap-3 p-3 cursor-pointer hover:bg-sky-50/50 relative ${
-        unread ? "bg-cyan-50/30" : ""
+        unread ? "bg-sky-50/30" : ""
       }`}
       onClick={onClick}
     >
       <div
         className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
           unread
-            ? "bg-gradient-to-br from-cyan-500 to-sky-600 text-white"
+            ? "bg-gradient-to-br from-sky-400 to-sky-600 text-white"
             : "bg-slate-100 text-slate-500"
         }`}
       >
         <Icon className="w-4 h-4" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-xs font-semibold text-cyan-900 line-clamp-2">
+        <div className="text-xs font-semibold text-sky-900 line-clamp-2">
           {notification.title}
         </div>
         {notification.body && (
@@ -296,7 +296,7 @@ function NotificationRow({
         </div>
       </div>
       {unread && (
-        <span className="absolute top-3 end-2 w-2 h-2 rounded-full bg-cyan-500 flex-shrink-0" />
+        <span className="absolute top-3 end-2 w-2 h-2 rounded-full bg-sky-400 flex-shrink-0" />
       )}
       <button
         onClick={(e) => {

@@ -35,7 +35,7 @@ const STATUS_COLORS: Record<string, string> = {
 
 const ROLE_COLORS: Record<string, string> = {
   super_admin: "bg-red-50 text-red-700 ring-red-200",
-  owner: "bg-cyan-50 text-cyan-700 ring-cyan-200",
+  owner: "bg-sky-50 text-sky-600 ring-sky-200",
   admin: "bg-sky-50 text-sky-700 ring-sky-200",
   manager: "bg-indigo-50 text-indigo-700 ring-indigo-200",
   member: "bg-slate-50 text-slate-700 ring-slate-200",
@@ -173,7 +173,7 @@ export default function AdminUsersView() {
       )}
 
       {/* Filters */}
-      <div className="rounded-xl bg-white border border-cyan-100 p-4">
+      <div className="rounded-xl bg-white border border-sky-100 p-4">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="relative">
             <Search
@@ -188,7 +188,7 @@ export default function AdminUsersView() {
                 setPage(1);
               }}
               placeholder={t("search")}
-              className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
           <select
@@ -197,7 +197,7 @@ export default function AdminUsersView() {
               setRoleFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <option value="">{t("allRoles")}</option>
             <option value="super_admin">{tRole("super_admin")}</option>
@@ -212,7 +212,7 @@ export default function AdminUsersView() {
               setStatusFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <option value="">{t("allStatuses")}</option>
             <option value="active">{tStatus("active")}</option>
@@ -222,10 +222,10 @@ export default function AdminUsersView() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl bg-white border border-cyan-100 overflow-hidden">
+      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-cyan-600" size={24} />
+            <Loader2 className="animate-spin text-sky-500" size={24} />
           </div>
         ) : error ? (
           <div className="p-6 text-sm text-red-700">{error}</div>
@@ -245,7 +245,7 @@ export default function AdminUsersView() {
                       <span className="inline-flex items-center gap-1">
                         {t("role")}
                         <span
-                          className="inline-flex items-center justify-center rounded-full text-slate-400 hover:text-cyan-600 cursor-help"
+                          className="inline-flex items-center justify-center rounded-full text-slate-400 hover:text-sky-500 cursor-help"
                           title={t("roleTooltip")}
                         >
                           <Info size={12} />
@@ -409,7 +409,7 @@ export default function AdminUsersView() {
                   type="text"
                   value={actionReason}
                   onChange={(e) => setActionReason(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 bg-white py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="w-full rounded-lg border border-slate-300 bg-white py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
                 />
               </div>
             )}
@@ -428,7 +428,7 @@ export default function AdminUsersView() {
               <button
                 onClick={handleConfirm}
                 disabled={actionBusy}
-                className="rounded-lg bg-cyan-600 hover:bg-cyan-700 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+                className="rounded-lg bg-sky-500 hover:bg-sky-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
               >
                 {actionBusy ? "..." : "Confirm"}
               </button>
@@ -463,7 +463,7 @@ export default function AdminUsersView() {
                   setTempPassword(null);
                   setCopied(false);
                 }}
-                className="rounded-lg bg-cyan-600 hover:bg-cyan-700 px-4 py-2 text-sm font-semibold text-white"
+                className="rounded-lg bg-sky-500 hover:bg-sky-600 px-4 py-2 text-sm font-semibold text-white"
               >
                 Done
               </button>

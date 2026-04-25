@@ -77,8 +77,8 @@ export default function CashflowPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <TrendingUp className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <TrendingUp className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
@@ -91,8 +91,8 @@ export default function CashflowPage() {
                 onClick={() => setHorizon(h)}
                 className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${
                   horizon === h
-                    ? "bg-cyan-600 text-white"
-                    : "text-slate-600 hover:bg-cyan-50"
+                    ? "bg-sky-500 text-white"
+                    : "text-slate-600 hover:bg-sky-50"
                 }`}
               >
                 {h}d
@@ -103,7 +103,7 @@ export default function CashflowPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
@@ -156,13 +156,13 @@ export default function CashflowPage() {
 
             {/* Historical context banner */}
             {historical && (
-              <div className="bg-gradient-to-r from-sky-50 to-cyan-50 border border-sky-200 rounded-xl p-5">
+              <div className="bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-200 rounded-xl p-5">
                 <div className="flex items-start gap-3 mb-3">
                   <div className="bg-white rounded-lg p-2 shadow-sm">
-                    <Award className="w-5 h-5 text-cyan-600" />
+                    <Award className="w-5 h-5 text-sky-500" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-cyan-900">
+                    <h3 className="text-sm font-semibold text-sky-900">
                       {t("historical.title")}
                     </h3>
                     <p className="text-xs text-slate-600">
@@ -203,7 +203,7 @@ export default function CashflowPage() {
 
             {/* Chart */}
             <div className="bg-white border border-sky-100 rounded-xl p-5">
-              <h3 className="text-sm font-semibold text-cyan-900 mb-4 flex items-center gap-2">
+              <h3 className="text-sm font-semibold text-sky-900 mb-4 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4" />
                 {t("chart.title", { horizon: String(horizon) })}
               </h3>
@@ -228,7 +228,7 @@ export default function CashflowPage() {
               {/* By stage */}
               <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
                 <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50">
-                  <h3 className="text-sm font-semibold text-cyan-900">
+                  <h3 className="text-sm font-semibold text-sky-900">
                     {t("byStage.title")}
                   </h3>
                 </div>
@@ -251,14 +251,14 @@ export default function CashflowPage() {
                               <div
                                 className={`w-2.5 h-2.5 rounded-full ${color}`}
                               />
-                              <span className="text-sm font-medium text-cyan-900 capitalize">
+                              <span className="text-sm font-medium text-sky-900 capitalize">
                                 {s.stage.replace(/_/g, " ")}
                               </span>
                               <span className="text-xs text-slate-500">
                                 ({s.count})
                               </span>
                             </div>
-                            <span className="text-sm font-semibold text-cyan-900">
+                            <span className="text-sm font-semibold text-sky-900">
                               {formatMoney(
                                 s.weightedValue,
                                 forecast.currency,
@@ -283,7 +283,7 @@ export default function CashflowPage() {
               <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
                 <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
                   <ArrowUpRight className="w-4 h-4 text-emerald-600" />
-                  <h3 className="text-sm font-semibold text-cyan-900">
+                  <h3 className="text-sm font-semibold text-sky-900">
                     {t("topDeals.title")}
                   </h3>
                 </div>
@@ -298,11 +298,11 @@ export default function CashflowPage() {
                         key={idx}
                         className="px-5 py-3 flex items-start gap-3 hover:bg-sky-50/30"
                       >
-                        <div className="w-7 h-7 rounded-full bg-cyan-50 text-cyan-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        <div className="w-7 h-7 rounded-full bg-sky-50 text-sky-600 font-bold text-xs flex items-center justify-center flex-shrink-0">
                           {idx + 1}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-medium text-cyan-900 text-sm truncate">
+                          <div className="font-medium text-sky-900 text-sm truncate">
                             {d.title}
                           </div>
                           <div className="text-xs text-slate-500 truncate">
@@ -437,7 +437,7 @@ function ForecastBarChart({
                   textAnchor="middle"
                   fontSize={10}
                   fontWeight={600}
-                  fill="#0E7490"
+                  fill="#0284C7"
                 >
                   {formatMoneyShort(b.weightedValue)}
                 </text>
@@ -468,8 +468,8 @@ function ForecastBarChart({
 
         <defs>
           <linearGradient id="barGradient" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#0891B2" />
+            <stop offset="0%" stopColor="#22D3EE" />
+            <stop offset="100%" stopColor="#0EA5E9" />
           </linearGradient>
         </defs>
       </svg>
@@ -494,7 +494,7 @@ function KpiCard({
   color: "cyan" | "sky" | "emerald" | "amber";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-cyan-50", iconText: "text-cyan-600" },
+    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
     sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
     emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
     amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
@@ -508,7 +508,7 @@ function KpiCard({
         </div>
         <div className="text-xs text-slate-500">{label}</div>
       </div>
-      <div className="text-xl font-bold text-cyan-900 truncate">{value}</div>
+      <div className="text-xl font-bold text-sky-900 truncate">{value}</div>
       <div className="text-xs text-slate-500 mt-0.5">{hint}</div>
     </div>
   );
@@ -528,7 +528,7 @@ function HistBox({
       <div className="text-xs text-slate-500">{label}</div>
       <div
         className={`text-sm font-bold mt-0.5 ${
-          positive ? "text-emerald-700" : "text-cyan-900"
+          positive ? "text-emerald-700" : "text-sky-900"
         }`}
       >
         {value}

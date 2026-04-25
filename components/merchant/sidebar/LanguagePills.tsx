@@ -38,7 +38,7 @@ export function LanguagePills({ current, collapsed }: LanguagePillsProps) {
       <button
         type="button"
         onClick={() => switchTo(next)}
-        className="w-10 h-7 mx-auto flex items-center justify-center rounded-md border border-cyan-200 text-cyan-700 text-[11px] font-bold uppercase hover:bg-cyan-50"
+        className="w-10 h-7 mx-auto flex items-center justify-center rounded-md border border-sky-200 text-sky-600 text-[11px] font-bold uppercase hover:bg-sky-50"
         title={`Switch to ${next}`}
       >
         {PILL_LABELS[current as Locale] || current}
@@ -57,8 +57,8 @@ export function LanguagePills({ current, collapsed }: LanguagePillsProps) {
             onClick={() => switchTo(loc)}
             className={`flex-1 h-7 text-[11px] font-bold uppercase rounded-md border transition-colors ${
               active
-                ? "bg-cyan-600 text-white border-cyan-600"
-                : "bg-white text-cyan-700 border-cyan-200 hover:bg-cyan-50"
+                ? "bg-sky-500 text-white border-sky-500"
+                : "bg-white text-sky-600 border-sky-200 hover:bg-sky-50"
             }`}
           >
             {PILL_LABELS[loc]}

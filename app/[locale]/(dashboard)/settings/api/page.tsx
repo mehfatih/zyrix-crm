@@ -108,11 +108,11 @@ export default function ApiKeysPage() {
       >
         {/* Header */}
         <div className="flex items-start gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow flex-shrink-0">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow flex-shrink-0">
             <Key className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("API keys", "مفاتيح API", "API anahtarları")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -129,13 +129,13 @@ export default function ApiKeysPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link
             href={`/${locale}/settings/api/docs`}
-            className="flex items-center gap-3 p-3 rounded-xl border border-sky-100 bg-white hover:border-cyan-400 hover:bg-sky-50/40 transition-colors"
+            className="flex items-center gap-3 p-3 rounded-xl border border-sky-100 bg-white hover:border-sky-300 hover:bg-sky-50/40 transition-colors"
           >
-            <div className="w-10 h-10 rounded-lg bg-cyan-50 text-cyan-700 flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-cyan-900">
+              <div className="text-sm font-semibold text-sky-900">
                 {tr(
                   "API documentation",
                   "توثيق الـ API",
@@ -198,7 +198,7 @@ export default function ApiKeysPage() {
         {/* Active keys section */}
         <section>
           <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
-            <h2 className="text-sm font-bold text-cyan-900 flex items-center gap-2">
+            <h2 className="text-sm font-bold text-sky-900 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4" />
               {tr("Active keys", "المفاتيح النشطة", "Etkin anahtarlar")}
               <span className="text-xs text-slate-500 font-normal">
@@ -208,7 +208,7 @@ export default function ApiKeysPage() {
             {canManage && (
               <button
                 onClick={() => setShowCreate(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
               >
                 <Plus className="w-3.5 h-3.5" />
                 {tr("New key", "مفتاح جديد", "Yeni anahtar")}
@@ -218,7 +218,7 @@ export default function ApiKeysPage() {
 
           {loading ? (
             <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+              <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
             </div>
           ) : error ? (
             <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -226,8 +226,8 @@ export default function ApiKeysPage() {
             </div>
           ) : active.length === 0 ? (
             <div className="rounded-xl border border-dashed border-sky-200 bg-white p-8 text-center">
-              <Key className="w-6 h-6 text-cyan-600 mx-auto mb-2" />
-              <p className="text-sm font-semibold text-cyan-900">
+              <Key className="w-6 h-6 text-sky-500 mx-auto mb-2" />
+              <p className="text-sm font-semibold text-sky-900">
                 {tr(
                   "No active API keys",
                   "لا مفاتيح API نشطة",
@@ -356,14 +356,14 @@ function KeyRow({
         className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
           isRevoked
             ? "bg-slate-100 text-slate-500"
-            : "bg-cyan-50 text-cyan-700"
+            : "bg-sky-50 text-sky-600"
         }`}
       >
         <Key className="w-4 h-4" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-cyan-900 truncate">
+          <span className="text-sm font-semibold text-sky-900 truncate">
             {item.name}
           </span>
           <span
@@ -494,7 +494,7 @@ function CreateKeyModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {tr("Create API key", "إنشاء مفتاح API", "API anahtarı oluştur")}
           </h2>
           <button
@@ -525,7 +525,7 @@ function CreateKeyModal({
                 "تكامل Zapier",
                 "Zapier entegrasyonu"
               )}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
             <p className="text-[11px] text-slate-500 mt-1">
               {tr(
@@ -546,11 +546,11 @@ function CreateKeyModal({
                 onClick={() => setScope("read")}
                 className={`p-3 rounded-lg border text-left rtl:text-right ${
                   scope === "read"
-                    ? "border-cyan-500 bg-cyan-50 ring-2 ring-cyan-200"
-                    : "border-sky-100 bg-white hover:border-cyan-300"
+                    ? "border-sky-400 bg-sky-50 ring-2 ring-sky-200"
+                    : "border-sky-100 bg-white hover:border-sky-300"
                 }`}
               >
-                <div className="text-sm font-semibold text-cyan-900">
+                <div className="text-sm font-semibold text-sky-900">
                   {tr("Read only", "قراءة فقط", "Yalnızca okuma")}
                 </div>
                 <div className="text-[11px] text-slate-500 mt-0.5">
@@ -566,11 +566,11 @@ function CreateKeyModal({
                 onClick={() => setScope("write")}
                 className={`p-3 rounded-lg border text-left rtl:text-right ${
                   scope === "write"
-                    ? "border-cyan-500 bg-cyan-50 ring-2 ring-cyan-200"
-                    : "border-sky-100 bg-white hover:border-cyan-300"
+                    ? "border-sky-400 bg-sky-50 ring-2 ring-sky-200"
+                    : "border-sky-100 bg-white hover:border-sky-300"
                 }`}
               >
-                <div className="text-sm font-semibold text-cyan-900">
+                <div className="text-sm font-semibold text-sky-900">
                   {tr("Full access", "وصول كامل", "Tam erişim")}
                 </div>
                 <div className="text-[11px] text-slate-500 mt-0.5">
@@ -595,7 +595,7 @@ function CreateKeyModal({
           <button
             onClick={handleCreate}
             disabled={creating}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
           >
             {creating ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -658,7 +658,7 @@ function ShowKeyOnceModal({
             <Check className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h2 className="text-lg font-bold text-cyan-900">
+            <h2 className="text-lg font-bold text-sky-900">
               {tr(
                 "Key created",
                 "تم إنشاء المفتاح",
@@ -696,14 +696,14 @@ function ShowKeyOnceModal({
               type={revealed ? "text" : "password"}
               readOnly
               value={keyData.plaintextKey}
-              className="w-full px-3 py-2 pe-20 border border-sky-200 rounded-lg text-sm font-mono bg-slate-50 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 pe-20 border border-sky-200 rounded-lg text-sm font-mono bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-400"
               dir="ltr"
               onFocus={(e) => e.target.select()}
             />
             <button
               type="button"
               onClick={() => setRevealed((v) => !v)}
-              className="absolute top-1/2 -translate-y-1/2 end-2 w-7 h-7 rounded text-slate-500 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+              className="absolute top-1/2 -translate-y-1/2 end-2 w-7 h-7 rounded text-slate-500 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
               aria-label={revealed ? "Hide" : "Show"}
             >
               {revealed ? (
@@ -718,7 +718,7 @@ function ShowKeyOnceModal({
             className={`w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
               copied
                 ? "bg-emerald-600 text-white"
-                : "bg-cyan-600 hover:bg-cyan-700 text-white"
+                : "bg-sky-500 hover:bg-sky-600 text-white"
             }`}
           >
             {copied ? (
@@ -741,7 +741,7 @@ function ShowKeyOnceModal({
             type="checkbox"
             checked={confirmed}
             onChange={(e) => setConfirmed(e.target.checked)}
-            className="mt-0.5 w-4 h-4 rounded text-cyan-600 focus:ring-cyan-500"
+            className="mt-0.5 w-4 h-4 rounded text-sky-500 focus:ring-sky-400"
           />
           <span className="text-xs text-slate-700">
             {tr(

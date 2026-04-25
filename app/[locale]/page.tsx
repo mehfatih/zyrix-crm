@@ -201,7 +201,7 @@ export default async function HomePage({
       </section>
 
       {/* FINAL CTA */}
-      <section className="section bg-gradient-to-br from-primary-50 via-sky-50 to-cyan-100">
+      <section className="section bg-gradient-to-br from-primary-50 via-sky-50 to-sky-100">
         <div className="container-zyrix">
           <div className="card-gradient max-w-4xl mx-auto text-center py-12 md:py-20 shadow-xl">
             <h2 className="mb-4">{t("cta.title")}</h2>
@@ -273,7 +273,7 @@ const ACCENT_STYLES: Record<
   FeatureAccent,
   { bg: string; fg: string; border: string }
 > = {
-  cyan: { bg: "#ECFEFF", fg: "#0891B2", border: "rgba(8, 145, 178, 0.25)" },
+  cyan: { bg: "#ECFEFF", fg: "#0EA5E9", border: "rgba(8, 145, 178, 0.25)" },
   coral: { bg: "rgba(251, 113, 133, 0.12)", fg: "#E11D48", border: "rgba(251, 113, 133, 0.35)" },
   peach: { bg: "rgba(253, 186, 116, 0.18)", fg: "#C2410C", border: "rgba(253, 186, 116, 0.5)" },
   mint: { bg: "rgba(52, 211, 153, 0.14)", fg: "#047857", border: "rgba(52, 211, 153, 0.4)" },

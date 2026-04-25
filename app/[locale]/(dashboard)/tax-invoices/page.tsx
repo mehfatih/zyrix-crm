@@ -77,7 +77,7 @@ const STATUS_META: Record<
   },
   submitted: {
     label: { en: "Submitted", ar: "مُرسلة", tr: "Gönderildi" },
-    tone: "bg-sky-50 text-cyan-800 border-sky-200",
+    tone: "bg-sky-50 text-sky-800 border-sky-200",
     icon: Globe,
   },
   approved: {
@@ -142,11 +142,11 @@ export default function TaxInvoicesPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-sky-500 text-white flex items-center justify-center shadow">
               <Receipt className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Tax invoices", "الفواتير الضريبية", "Vergi faturaları")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -161,7 +161,7 @@ export default function TaxInvoicesPage() {
           {!showIssue && (
             <button
               onClick={() => setShowIssue(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("Issue invoice", "إصدار فاتورة", "Fatura oluştur")}
@@ -196,7 +196,7 @@ export default function TaxInvoicesPage() {
             onClick={() => setRegimeFilter("")}
             className={`px-3 py-1 rounded-full text-xs font-semibold ${
               !regimeFilter
-                ? "bg-cyan-600 text-white"
+                ? "bg-sky-500 text-white"
                 : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
             }`}
           >
@@ -211,7 +211,7 @@ export default function TaxInvoicesPage() {
               onClick={() => setRegimeFilter(r)}
               className={`px-3 py-1 rounded-full text-xs font-semibold ${
                 regimeFilter === r
-                  ? "bg-cyan-600 text-white"
+                  ? "bg-sky-500 text-white"
                   : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
               }`}
             >
@@ -223,7 +223,7 @@ export default function TaxInvoicesPage() {
         {/* List */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : invoices.length === 0 ? (
           <div className="rounded-xl border border-dashed border-sky-200 bg-white p-12 text-center">
@@ -275,7 +275,7 @@ function InvoiceRow({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <code className="text-sm font-mono font-bold text-cyan-900" dir="ltr">
+            <code className="text-sm font-mono font-bold text-sky-900" dir="ltr">
               {REGIME_META[invoice.regime].country}-{invoice.invoiceNumber}
             </code>
             <span
@@ -375,7 +375,7 @@ function QrPreview({
             >
               <X className="w-4 h-4" />
             </button>
-            <h3 className="text-sm font-bold text-cyan-900 text-center mb-2">
+            <h3 className="text-sm font-bold text-sky-900 text-center mb-2">
               {tr("ZATCA QR code", "رمز QR زاتكا", "ZATCA QR kodu")}
             </h3>
             <p className="text-xs text-slate-500 text-center mb-4">
@@ -521,9 +521,9 @@ function IssueInvoiceForm({
   };
 
   return (
-    <div className="rounded-xl border border-cyan-200 bg-cyan-50/30 p-4 space-y-4">
+    <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-cyan-900">
+        <h2 className="text-sm font-bold text-sky-900">
           {tr("New tax invoice", "فاتورة ضريبية جديدة", "Yeni vergi faturası")}
         </h2>
         <button
@@ -554,7 +554,7 @@ function IssueInvoiceForm({
               onClick={() => handleRegimeChange(r)}
               className={`px-3 py-2 rounded-lg text-xs font-semibold border ${
                 regime === r
-                  ? "bg-cyan-600 text-white border-cyan-600"
+                  ? "bg-sky-500 text-white border-sky-500"
                   : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
               }`}
             >
@@ -575,7 +575,7 @@ function IssueInvoiceForm({
               onClick={() => setType("standard")}
               className={`px-3 py-2 rounded-lg text-xs font-semibold border ${
                 type === "standard"
-                  ? "bg-cyan-600 text-white border-cyan-600"
+                  ? "bg-sky-500 text-white border-sky-500"
                   : "bg-white border-sky-200 text-slate-700"
               }`}
             >
@@ -585,7 +585,7 @@ function IssueInvoiceForm({
               onClick={() => setType("simplified")}
               className={`px-3 py-2 rounded-lg text-xs font-semibold border ${
                 type === "simplified"
-                  ? "bg-cyan-600 text-white border-cyan-600"
+                  ? "bg-sky-500 text-white border-sky-500"
                   : "bg-white border-sky-200 text-slate-700"
               }`}
             >
@@ -605,20 +605,20 @@ function IssueInvoiceForm({
             value={sellerName}
             onChange={(e) => setSellerName(e.target.value)}
             placeholder={tr("Company name", "اسم الشركة", "Şirket adı")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
           />
           <input
             value={sellerVatNo}
             onChange={(e) => setSellerVatNo(e.target.value)}
             placeholder={tr("VAT number", "الرقم الضريبي", "VKN/VAT")}
             dir="ltr"
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
           />
           <input
             value={sellerAddress}
             onChange={(e) => setSellerAddress(e.target.value)}
             placeholder={tr("Address", "العنوان", "Adres")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white"
+            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white"
           />
         </fieldset>
         <fieldset className="border border-sky-100 rounded-lg p-3">
@@ -629,20 +629,20 @@ function IssueInvoiceForm({
             value={buyerName}
             onChange={(e) => setBuyerName(e.target.value)}
             placeholder={tr("Customer name", "اسم العميل", "Müşteri adı")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
           />
           <input
             value={buyerVatNo}
             onChange={(e) => setBuyerVatNo(e.target.value)}
             placeholder={tr("VAT / TCKN / VKN", "الرقم الضريبي", "VKN/TCKN")}
             dir="ltr"
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
           />
           <input
             value={buyerAddress}
             onChange={(e) => setBuyerAddress(e.target.value)}
             placeholder={tr("Address", "العنوان", "Adres")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white"
+            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white"
           />
         </fieldset>
       </div>
@@ -656,16 +656,16 @@ function IssueInvoiceForm({
           <table className="w-full text-xs">
             <thead className="bg-sky-50/50 border-b border-sky-100">
               <tr>
-                <th className="px-2 py-1.5 text-start font-semibold text-cyan-900">
+                <th className="px-2 py-1.5 text-start font-semibold text-sky-900">
                   {tr("Description", "الوصف", "Açıklama")}
                 </th>
-                <th className="px-2 py-1.5 text-start font-semibold text-cyan-900 w-20">
+                <th className="px-2 py-1.5 text-start font-semibold text-sky-900 w-20">
                   {tr("Qty", "الكمية", "Adet")}
                 </th>
-                <th className="px-2 py-1.5 text-start font-semibold text-cyan-900 w-28">
+                <th className="px-2 py-1.5 text-start font-semibold text-sky-900 w-28">
                   {tr("Unit price", "السعر", "Birim")}
                 </th>
-                <th className="px-2 py-1.5 text-end font-semibold text-cyan-900 w-28">
+                <th className="px-2 py-1.5 text-end font-semibold text-sky-900 w-28">
                   {tr("Total", "الإجمالي", "Toplam")}
                 </th>
                 <th className="w-8"></th>
@@ -678,7 +678,7 @@ function IssueInvoiceForm({
                     <input
                       value={it.description}
                       onChange={(e) => updateItem(idx, { description: e.target.value })}
-                      className="w-full px-1.5 py-1 border border-transparent focus:border-cyan-500 rounded text-xs focus:outline-none bg-transparent"
+                      className="w-full px-1.5 py-1 border border-transparent focus:border-sky-400 rounded text-xs focus:outline-none bg-transparent"
                     />
                   </td>
                   <td className="px-2 py-1">
@@ -688,7 +688,7 @@ function IssueInvoiceForm({
                       step="0.01"
                       value={it.quantity}
                       onChange={(e) => updateItem(idx, { quantity: Number(e.target.value) })}
-                      className="w-full px-1.5 py-1 border border-transparent focus:border-cyan-500 rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
+                      className="w-full px-1.5 py-1 border border-transparent focus:border-sky-400 rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
                     />
                   </td>
                   <td className="px-2 py-1">
@@ -698,7 +698,7 @@ function IssueInvoiceForm({
                       step="0.01"
                       value={it.unitPrice}
                       onChange={(e) => updateItem(idx, { unitPrice: Number(e.target.value) })}
-                      className="w-full px-1.5 py-1 border border-transparent focus:border-cyan-500 rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
+                      className="w-full px-1.5 py-1 border border-transparent focus:border-sky-400 rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
                     />
                   </td>
                   <td className="px-2 py-1 text-end font-mono text-xs tabular-nums text-slate-700">
@@ -776,7 +776,7 @@ function IssueInvoiceForm({
             className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono bg-white tabular-nums"
           />
         </div>
-        <div className="rounded-lg bg-cyan-600 text-white p-2 flex flex-col justify-center">
+        <div className="rounded-lg bg-sky-500 text-white p-2 flex flex-col justify-center">
           <div className="text-[10px] opacity-80 font-bold uppercase">
             {tr("Total", "الإجمالي", "Toplam")}
           </div>
@@ -802,7 +802,7 @@ function IssueInvoiceForm({
         <button
           onClick={handleSubmit}
           disabled={saving}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
         >
           {saving ? (
             <Loader2 className="w-4 h-4 animate-spin" />

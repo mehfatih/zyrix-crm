@@ -66,7 +66,7 @@ export default function DocsSidebar({
         <button
           type="button"
           onClick={onSearchClick}
-          className="w-full flex items-center gap-2 px-3 py-2 text-sm bg-white border border-sky-100 rounded-lg hover:border-cyan-300 transition-colors text-slate-500"
+          className="w-full flex items-center gap-2 px-3 py-2 text-sm bg-white border border-sky-100 rounded-lg hover:border-sky-300 transition-colors text-slate-500"
         >
           <Search className="w-4 h-4 text-slate-400" />
           <span className="flex-1 text-start truncate">
@@ -83,7 +83,7 @@ export default function DocsSidebar({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={copy.searchPlaceholder}
-        className="w-full px-3 py-1.5 text-sm bg-white border border-sky-100 rounded-lg focus:outline-none focus:border-cyan-400 mb-3"
+        className="w-full px-3 py-1.5 text-sm bg-white border border-sky-100 rounded-lg focus:outline-none focus:border-sky-300 mb-3"
       />
 
       <nav className="space-y-1 text-sm">
@@ -119,7 +119,7 @@ export default function DocsSidebar({
                           href={href}
                           className={`block px-2 py-1.5 rounded-md transition-colors ${
                             isActive(href)
-                              ? "bg-cyan-50 text-cyan-700 font-semibold"
+                              ? "bg-sky-50 text-sky-600 font-semibold"
                               : "text-slate-600 hover:bg-sky-50 hover:text-slate-900"
                           }`}
                         >

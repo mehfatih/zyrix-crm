@@ -57,7 +57,7 @@ const POSTS: {
     },
     date: "2026-04-18",
     readTime: 8,
-    color: "from-cyan-500 to-sky-600",
+    color: "from-sky-400 to-sky-600",
   },
   {
     slug: "whatsapp-sales-playbook",
@@ -185,7 +185,7 @@ export default async function BlogPage({
     <PublicLayout>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-sky-600 bg-sky-50 border border-sky-200 rounded-full mb-4">
             <BookOpen className="w-3.5 h-3.5" />
             {t.hero.badge}
           </span>
@@ -212,7 +212,7 @@ export default async function BlogPage({
               </div>
               <div className="md:col-span-3 p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="px-2 py-0.5 text-xs font-semibold text-cyan-700 bg-cyan-50 rounded">
+                  <span className="px-2 py-0.5 text-xs font-semibold text-sky-600 bg-sky-50 rounded">
                     {POSTS[0].category[L]}
                   </span>
                   <span className="text-xs text-slate-500 flex items-center gap-1">
@@ -220,7 +220,7 @@ export default async function BlogPage({
                     {formatDate(POSTS[0].date, L)}
                   </span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 group-hover:text-cyan-700 transition-colors">
+                <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">
                   {POSTS[0].title[L]}
                 </h2>
                 <p className="text-slate-600 mb-4">{POSTS[0].excerpt[L]}</p>
@@ -229,7 +229,7 @@ export default async function BlogPage({
                     <Clock className="w-3 h-3" />
                     {POSTS[0].readTime} {t.minRead}
                   </span>
-                  <span className="text-sm font-semibold text-cyan-600 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-sm font-semibold text-sky-500 flex items-center gap-1 group-hover:gap-2 transition-all">
                     {t.readMore}
                     <ArrowRight className="w-4 h-4" />
                   </span>
@@ -259,7 +259,7 @@ export default async function BlogPage({
                     {post.category[L]}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-cyan-700 transition-colors line-clamp-2">
+                <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors line-clamp-2">
                   {post.title[L]}
                 </h3>
                 <p className="text-sm text-slate-600 line-clamp-3 mb-3">
@@ -281,8 +281,8 @@ export default async function BlogPage({
         </div>
 
         {/* Coming soon */}
-        <div className="mt-16 text-center bg-gradient-to-br from-cyan-50 to-sky-50 rounded-2xl p-8 border border-cyan-100">
-          <Sparkles className="w-8 h-8 text-cyan-600 mx-auto mb-3" />
+        <div className="mt-16 text-center bg-gradient-to-br from-sky-50 to-sky-50 rounded-2xl p-8 border border-sky-100">
+          <Sparkles className="w-8 h-8 text-sky-500 mx-auto mb-3" />
           <h3 className="text-xl font-bold text-slate-900 mb-2">
             {t.comingSoon}
           </h3>

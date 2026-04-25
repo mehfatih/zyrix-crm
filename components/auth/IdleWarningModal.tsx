@@ -43,7 +43,7 @@ export function IdleWarningModal({
   // Color shifts from cyan (safe) → amber (warning) → rose (urgent)
   const ringColor =
     secondsLeft > 30
-      ? "stroke-cyan-500"
+      ? "stroke-sky-400"
       : secondsLeft > 10
         ? "stroke-amber-500"
         : "stroke-rose-500";
@@ -91,7 +91,7 @@ export function IdleWarningModal({
 
         <h2
           id="idle-warning-title"
-          className="text-lg font-bold text-cyan-900 mb-1"
+          className="text-lg font-bold text-sky-900 mb-1"
         >
           {tr(
             "Still there?",
@@ -119,7 +119,7 @@ export function IdleWarningModal({
           <button
             onClick={onContinue}
             autoFocus
-            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold shadow-sm"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold shadow-sm"
           >
             <ShieldCheck className="w-3.5 h-3.5" />
             {tr(

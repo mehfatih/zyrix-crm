@@ -100,8 +100,8 @@ const ENTRIES: {
 
 const KIND_META: Record<EntryKind, { bg: string; text: string; Icon: typeof Sparkles; label: { en: string; ar: string; tr: string } }> = {
   feature: {
-    bg: "bg-cyan-100",
-    text: "text-cyan-700",
+    bg: "bg-sky-100",
+    text: "text-sky-600",
     Icon: Plus,
     label: { en: "New", ar: "جديد", tr: "Yeni" },
   },
@@ -177,7 +177,7 @@ export default async function ChangelogPage({
 
               {/* Version header */}
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-cyan-500/20">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-sky-400/20">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">

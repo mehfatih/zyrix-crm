@@ -62,7 +62,7 @@ export default function ArticleAnalytics() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div className="lg:col-span-3 flex items-center justify-between">
         <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-cyan-600" />
+          <BarChart3 className="w-5 h-5 text-sky-500" />
           Docs analytics
         </h2>
         <div className="flex gap-2 text-xs">
@@ -73,7 +73,7 @@ export default function ArticleAnalytics() {
               onClick={() => setDays(d)}
               className={`px-2.5 py-1 rounded-md border ${
                 days === d
-                  ? "bg-cyan-50 border-cyan-300 text-cyan-700 font-semibold"
+                  ? "bg-sky-50 border-sky-300 text-sky-600 font-semibold"
                   : "bg-white border-sky-100 text-slate-500"
               }`}
             >
@@ -140,7 +140,7 @@ function Panel({
   return (
     <div className="bg-white border border-sky-100 rounded-xl p-5">
       <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-        <Icon className="w-4 h-4 text-cyan-600" />
+        <Icon className="w-4 h-4 text-sky-500" />
         {title}
       </h3>
       {rows.length === 0 ? (
@@ -158,7 +158,7 @@ function Panel({
                 </div>
                 <div className="text-[11px] text-slate-400">{r.secondary}</div>
               </div>
-              <span className="text-sm font-bold text-cyan-700 tabular-nums">
+              <span className="text-sm font-bold text-sky-600 tabular-nums">
                 {r.value}
               </span>
             </li>

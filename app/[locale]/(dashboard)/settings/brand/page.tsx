@@ -79,7 +79,7 @@ export default function BrandingSettingsPage() {
 
   // Form state
   const [displayName, setDisplayName] = useState("");
-  const [primaryColor, setPrimaryColor] = useState("#0891B2");
+  const [primaryColor, setPrimaryColor] = useState("#0EA5E9");
   const [accentColor, setAccentColor] = useState("#38BDF8");
   const [logoUrl, setLogoUrl] = useState("");
   const [faviconUrl, setFaviconUrl] = useState("");
@@ -104,7 +104,7 @@ export default function BrandingSettingsPage() {
       setSettings(data);
       if (data) {
         setDisplayName(data.displayName ?? "");
-        setPrimaryColor(data.primaryColor ?? "#0891B2");
+        setPrimaryColor(data.primaryColor ?? "#0EA5E9");
         setAccentColor(data.accentColor ?? "#38BDF8");
         setLogoUrl(data.logoUrl ?? "");
         setFaviconUrl(data.faviconUrl ?? "");
@@ -175,7 +175,7 @@ export default function BrandingSettingsPage() {
       await resetBrandSettings();
       setSettings(null);
       setDisplayName("");
-      setPrimaryColor("#0891B2");
+      setPrimaryColor("#0EA5E9");
       setAccentColor("#38BDF8");
       setLogoUrl("");
       setFaviconUrl("");
@@ -249,7 +249,7 @@ export default function BrandingSettingsPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="flex items-center justify-center py-16">
-          <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
         </div>
       </DashboardShell>
     );
@@ -265,7 +265,7 @@ export default function BrandingSettingsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/settings`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -273,7 +273,7 @@ export default function BrandingSettingsPage() {
             <Palette className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("Branding", "التخصيص", "Marka")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -323,7 +323,7 @@ export default function BrandingSettingsPage() {
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="Acme CRM"
               maxLength={100}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </FormField>
 
@@ -403,7 +403,7 @@ export default function BrandingSettingsPage() {
               disabled={!canLogo(plan)}
               placeholder="https://cdn.yourcompany.com/logo.png"
               dir="ltr"
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:bg-slate-50 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:cursor-not-allowed"
             />
           </FormField>
           {logoUrl && canLogo(plan) && (
@@ -437,7 +437,7 @@ export default function BrandingSettingsPage() {
               disabled={!canLogo(plan)}
               placeholder="https://cdn.yourcompany.com/favicon.png"
               dir="ltr"
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:bg-slate-50 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:cursor-not-allowed"
             />
           </FormField>
         </SectionCard>
@@ -466,7 +466,7 @@ export default function BrandingSettingsPage() {
                 disabled={!canCustomEmail(plan)}
                 placeholder="Acme Support"
                 maxLength={100}
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:bg-slate-50"
+                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50"
               />
             </FormField>
             <FormField label={tr("From email", "بريد المرسل", "Gönderen e-posta")}>
@@ -477,7 +477,7 @@ export default function BrandingSettingsPage() {
                 placeholder="support@acme.com"
                 type="email"
                 dir="ltr"
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:bg-slate-50"
+                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50"
               />
             </FormField>
           </div>
@@ -505,7 +505,7 @@ export default function BrandingSettingsPage() {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="inline-flex items-center gap-1.5 px-5 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow"
+            className="inline-flex items-center gap-1.5 px-5 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow"
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -549,13 +549,13 @@ export default function BrandingSettingsPage() {
                       onChange={(e) => setDomainInput(e.target.value)}
                       placeholder="crm.yourcompany.com"
                       dir="ltr"
-                      className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
                     />
                   </FormField>
                   <button
                     onClick={handleSetupDomain}
                     disabled={!domainInput.trim()}
-                    className="inline-flex items-center gap-1.5 px-3 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
                   >
                     <Globe className="w-4 h-4" />
                     {tr("Set up domain", "إعداد الدومين", "Alan adını kur")}
@@ -609,7 +609,7 @@ function SectionCard({
       <div className="p-4 border-b border-sky-50">
         <div className="flex items-start gap-2">
           <div className="flex-1">
-            <h2 className="text-base font-bold text-cyan-900 flex items-center gap-2">
+            <h2 className="text-base font-bold text-sky-900 flex items-center gap-2">
               {icon}
               {title}
               {locked && (
@@ -658,7 +658,7 @@ function ColorInput({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-sky-200 focus-within:ring-2 focus-within:ring-cyan-500 overflow-hidden">
+    <div className="flex items-center gap-2 rounded-lg border border-sky-200 focus-within:ring-2 focus-within:ring-sky-400 overflow-hidden">
       <input
         type="color"
         value={value}
@@ -669,7 +669,7 @@ function ColorInput({
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="#0891B2"
+        placeholder="#0EA5E9"
         pattern="^#[0-9a-fA-F]{6}$"
         dir="ltr"
         className="flex-1 px-2 py-2 text-sm font-mono focus:outline-none bg-transparent"
@@ -706,9 +706,9 @@ function DomainVerifyPanel({
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2 p-3 rounded-lg bg-cyan-50 border border-cyan-100">
-        <Globe className="w-4 h-4 text-cyan-700" />
-        <code className="text-sm font-mono text-cyan-900 flex-1" dir="ltr">
+      <div className="flex items-center gap-2 p-3 rounded-lg bg-sky-50 border border-sky-100">
+        <Globe className="w-4 h-4 text-sky-600" />
+        <code className="text-sm font-mono text-sky-900 flex-1" dir="ltr">
           {setup.customDomain}
         </code>
         {verified ? (
@@ -808,7 +808,7 @@ function DnsRecordRow({
         </code>
         <button
           onClick={() => onCopy(`${copyKey}-name`, name)}
-          className="w-6 h-6 rounded text-slate-400 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+          className="w-6 h-6 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
         >
           {copiedKey === `${copyKey}-name` ? (
             <Check className="w-3 h-3 text-emerald-600" />
@@ -826,7 +826,7 @@ function DnsRecordRow({
         </code>
         <button
           onClick={() => onCopy(`${copyKey}-value`, value)}
-          className="w-6 h-6 rounded text-slate-400 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+          className="w-6 h-6 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
         >
           {copiedKey === `${copyKey}-value` ? (
             <Check className="w-3 h-3 text-emerald-600" />

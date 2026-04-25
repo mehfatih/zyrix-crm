@@ -2761,5 +2761,30 @@
       "step3": "Alan adı ve kimlik bilgilerini bağlantı iletişim kutusuna yapıştırın",
       "step4": "Müşterileri ve siparişleri Zyrix CRM'ye aktarmak için Senkronize'ye tıklayın"
     }
+  },
+  "ai": {
+    "trustBadge": {
+      "label": "AI",
+      "whyTitle": "Bu güven neden?",
+      "signals": "Sinyaller",
+      "recommendedAction": "Önerilen eylem"
+    },
+    "sidePanel": {
+      "aiAssistant": "AI Asistan",
+      "whatYouAreSeeing": "Şu anda gördükleriniz",
+      "whatAINotices": "AI'ın fark ettikleri",
+      "recentChanges": "Son değişiklikler",
+      "askAI": "AI'a sor",
+      "openChat": "Sohbeti aç",
+      "selectedEntity": "Seçili",
+      "placeholder": {
+        "notices": "Bu sayfa için AI öngörüleri etkinlik gerçekleştikçe burada görünecektir.",
+        "changes": "Son ziyaretinizden bu yana yapılan değişiklikler burada özetlenecektir.",
+        "ask": "Bu sayfa veya üzerindeki veriler hakkında her şeyi sorabilirsiniz."
+      }
+    },
+    "topbar": {
+      "askAI": "AI'a sor"
+    }
   }
 }

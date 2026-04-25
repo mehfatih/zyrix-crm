@@ -203,19 +203,19 @@ export default function OnboardingPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-white to-cyan-50">
-        <Loader2 className="w-8 h-8 animate-spin text-cyan-600" />
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-white to-sky-50">
+        <Loader2 className="w-8 h-8 animate-spin text-sky-500" />
       </div>
     );
   }
   if (error && !status) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-white to-cyan-50 p-6">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-white to-sky-50 p-6">
         <div className="max-w-md text-center space-y-3">
           <p className="text-rose-700 font-medium">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-semibold"
+            className="px-4 py-2 bg-sky-500 text-white rounded-lg text-sm font-semibold"
           >
             {t("Try again", "حاول مرة أخرى", "Tekrar dene")}
           </button>
@@ -240,16 +240,16 @@ export default function OnboardingPage() {
   return (
     <div
       dir={isRtl ? "rtl" : "ltr"}
-      className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 flex flex-col"
+      className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-50 flex flex-col"
     >
       {/* Top bar with brand + progress */}
       <header className="w-full border-b border-sky-100 bg-white/60 backdrop-blur-sm">
         <div className="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-md bg-gradient-to-br from-cyan-500 to-sky-600 text-white text-xs font-bold flex items-center justify-center">
+            <div className="w-7 h-7 rounded-md bg-gradient-to-br from-sky-400 to-sky-600 text-white text-xs font-bold flex items-center justify-center">
               Z
             </div>
-            <span className="text-sm font-semibold text-cyan-900">
+            <span className="text-sm font-semibold text-sky-900">
               Zyrix CRM
             </span>
           </div>
@@ -259,7 +259,7 @@ export default function OnboardingPage() {
         </div>
         <div className="h-1 bg-sky-100 w-full">
           <div
-            className="h-full bg-gradient-to-r from-cyan-500 to-sky-600 transition-all duration-500"
+            className="h-full bg-gradient-to-r from-sky-400 to-sky-600 transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -271,7 +271,7 @@ export default function OnboardingPage() {
           {/* ─── Step 1: Company ──────────────────────────────── */}
           {step === "company" && (
             <StepFrame
-              icon={<Building2 className="w-6 h-6 text-cyan-600" />}
+              icon={<Building2 className="w-6 h-6 text-sky-500" />}
               title={t(
                 "Tell us about your company",
                 "أخبرنا عن شركتك",
@@ -292,7 +292,7 @@ export default function OnboardingPage() {
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder={t("Acme Inc.", "شركة النموذج", "Acme Ltd.")}
-                  className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+                  className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm"
                 />
               </label>
               <label className="block">
@@ -302,7 +302,7 @@ export default function OnboardingPage() {
                 <select
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm bg-white"
+                  className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm bg-white"
                 >
                   <option value="">{t("Select country…", "اختر البلد…", "Ülke seçin…")}</option>
                   {COUNTRIES.map((c) => (
@@ -318,7 +318,7 @@ export default function OnboardingPage() {
           {/* ─── Step 2: Language ─────────────────────────────── */}
           {step === "language" && (
             <StepFrame
-              icon={<Languages className="w-6 h-6 text-cyan-600" />}
+              icon={<Languages className="w-6 h-6 text-sky-500" />}
               title={t(
                 "Choose your language",
                 "اختر لغتك",
@@ -343,13 +343,13 @@ export default function OnboardingPage() {
                     onClick={() => setPreferredLocale(opt.code)}
                     className={`text-left px-4 py-3 border rounded-lg transition-all ${
                       preferredLocale === opt.code
-                        ? "border-cyan-500 bg-cyan-50 ring-2 ring-cyan-100"
-                        : "border-sky-200 bg-white hover:border-cyan-300"
+                        ? "border-sky-400 bg-sky-50 ring-2 ring-sky-100"
+                        : "border-sky-200 bg-white hover:border-sky-300"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div>
-                        <div className="text-sm font-semibold text-cyan-900">
+                        <div className="text-sm font-semibold text-sky-900">
                           {opt.label}
                         </div>
                         <div className="text-xs text-slate-500 mt-0.5">
@@ -357,7 +357,7 @@ export default function OnboardingPage() {
                         </div>
                       </div>
                       {preferredLocale === opt.code && (
-                        <Check className="w-4 h-4 text-cyan-600 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-sky-500 flex-shrink-0" />
                       )}
                     </div>
                   </button>
@@ -369,7 +369,7 @@ export default function OnboardingPage() {
           {/* ─── Step 3: Currency ─────────────────────────────── */}
           {step === "currency" && (
             <StepFrame
-              icon={<DollarSign className="w-6 h-6 text-cyan-600" />}
+              icon={<DollarSign className="w-6 h-6 text-sky-500" />}
               title={t(
                 "Pick your base currency",
                 "اختر عملتك الأساسية",
@@ -388,8 +388,8 @@ export default function OnboardingPage() {
                     onClick={() => setBaseCurrency(c)}
                     className={`px-3 py-3 border rounded-lg text-sm font-semibold transition-all ${
                       baseCurrency === c
-                        ? "border-cyan-500 bg-cyan-50 text-cyan-900 ring-2 ring-cyan-100"
-                        : "border-sky-200 bg-white text-slate-700 hover:border-cyan-300"
+                        ? "border-sky-400 bg-sky-50 text-sky-900 ring-2 ring-sky-100"
+                        : "border-sky-200 bg-white text-slate-700 hover:border-sky-300"
                     }`}
                   >
                     {c}
@@ -402,7 +402,7 @@ export default function OnboardingPage() {
           {/* ─── Step 4: Connect e-commerce platform ──────────── */}
           {step === "ecommerce" && (
             <StepFrame
-              icon={<ShoppingCart className="w-6 h-6 text-cyan-600" />}
+              icon={<ShoppingCart className="w-6 h-6 text-sky-500" />}
               title={t(
                 "Connect your online store",
                 "اربط متجرك الإلكتروني",
@@ -426,7 +426,7 @@ export default function OnboardingPage() {
                   href={`/${locale}/settings/integrations`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-semibold hover:bg-cyan-700"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500 text-white rounded-lg text-sm font-semibold hover:bg-sky-600"
                 >
                   {t("Open integrations", "افتح التكاملات", "Entegrasyonları aç")}
                   <ArrowRight
@@ -440,7 +440,7 @@ export default function OnboardingPage() {
           {/* ─── Step 5: WhatsApp ─────────────────────────────── */}
           {step === "whatsapp" && (
             <StepFrame
-              icon={<MessageCircle className="w-6 h-6 text-cyan-600" />}
+              icon={<MessageCircle className="w-6 h-6 text-sky-500" />}
               title={t(
                 "Connect WhatsApp",
                 "اربط واتساب",
@@ -457,7 +457,7 @@ export default function OnboardingPage() {
                   href={`/${locale}/settings/integrations#whatsapp`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-semibold hover:bg-cyan-700"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500 text-white rounded-lg text-sm font-semibold hover:bg-sky-600"
                 >
                   {t("Set up WhatsApp", "إعداد واتساب", "WhatsApp'ı kur")}
                   <ArrowRight
@@ -471,7 +471,7 @@ export default function OnboardingPage() {
           {/* ─── Step 6: Invite colleague ─────────────────────── */}
           {step === "team" && (
             <StepFrame
-              icon={<UserPlus className="w-6 h-6 text-cyan-600" />}
+              icon={<UserPlus className="w-6 h-6 text-sky-500" />}
               title={t(
                 "Invite your first teammate",
                 "ادعُ أول زميل",
@@ -510,7 +510,7 @@ export default function OnboardingPage() {
                       value={inviteEmail}
                       onChange={(e) => setInviteEmail(e.target.value)}
                       placeholder="colleague@company.com"
-                      className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+                      className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm"
                     />
                   </label>
                   <label className="block">
@@ -522,7 +522,7 @@ export default function OnboardingPage() {
                       onChange={(e) =>
                         setInviteRole(e.target.value as "manager" | "member")
                       }
-                      className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm bg-white"
+                      className="mt-1 w-full px-3 py-2 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm bg-white"
                     >
                       <option value="member">
                         {t("Member — regular access", "عضو — وصول عادي", "Üye — normal erişim")}
@@ -538,7 +538,7 @@ export default function OnboardingPage() {
                   <button
                     onClick={handleSendInvite}
                     disabled={!inviteEmail.trim() || inviting}
-                    className="w-full px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50 inline-flex items-center justify-center gap-2"
+                    className="w-full px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50 inline-flex items-center justify-center gap-2"
                   >
                     {inviting ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -555,7 +555,7 @@ export default function OnboardingPage() {
           {/* ─── Step 7: Done ─────────────────────────────────── */}
           {step === "done" && (
             <StepFrame
-              icon={<PartyPopper className="w-6 h-6 text-cyan-600" />}
+              icon={<PartyPopper className="w-6 h-6 text-sky-500" />}
               title={t("You're all set!", "أنت جاهز!", "Hazırsınız!")}
               subtitle={t(
                 "Let's create your first customer to see how it all works.",
@@ -563,14 +563,14 @@ export default function OnboardingPage() {
                 "Her şeyin nasıl çalıştığını görmek için ilk müşterinizi oluşturalım."
               )}
             >
-              <div className="rounded-lg border border-cyan-200 bg-gradient-to-br from-cyan-50 to-sky-50 p-5 space-y-3">
+              <div className="rounded-lg border border-sky-200 bg-gradient-to-br from-sky-50 to-sky-50 p-5 space-y-3">
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                  <div className="text-sm text-cyan-900">
+                  <div className="text-sm text-sky-900">
                     <div className="font-semibold">
                       {companyName || status?.company.name}
                     </div>
-                    <div className="text-xs text-cyan-700 mt-0.5">
+                    <div className="text-xs text-sky-600 mt-0.5">
                       {COUNTRIES.find((c) => c.code === country)?.[locale] || country} ·{" "}
                       {baseCurrency} ·{" "}
                       {preferredLocale === "ar"
@@ -584,7 +584,7 @@ export default function OnboardingPage() {
                 {inviteSent && (
                   <div className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm text-cyan-900">
+                    <div className="text-sm text-sky-900">
                       {t(
                         `Invitation sent to ${inviteEmail}`,
                         `تم إرسال دعوة إلى ${inviteEmail}`,
@@ -608,7 +608,7 @@ export default function OnboardingPage() {
           <button
             onClick={goPrev}
             disabled={stepIdx === 0}
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 hover:text-cyan-700 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 hover:text-sky-600 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
             {t("Back", "السابق", "Geri")}
@@ -618,7 +618,7 @@ export default function OnboardingPage() {
             {canSkip && (
               <button
                 onClick={goNext}
-                className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-500 hover:text-cyan-700"
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-500 hover:text-sky-600"
               >
                 <SkipForward className="w-4 h-4" />
                 {t("Skip for now", "تخطَّ الآن", "Şimdilik atla")}
@@ -629,7 +629,7 @@ export default function OnboardingPage() {
               <button
                 onClick={handleFinish}
                 disabled={saving}
-                className="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-cyan-600 to-sky-600 hover:from-cyan-700 hover:to-sky-700 text-white rounded-lg text-sm font-semibold shadow-sm disabled:opacity-60"
+                className="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white rounded-lg text-sm font-semibold shadow-sm disabled:opacity-60"
               >
                 {saving ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -646,7 +646,7 @@ export default function OnboardingPage() {
               <button
                 onClick={goNext}
                 disabled={!canGoNext}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {t("Next", "التالي", "İleri")}
                 <ArrowRight
@@ -683,7 +683,7 @@ function StepFrame({
           {icon}
         </div>
         <div className="flex-1">
-          <h1 className="text-xl font-bold text-cyan-900">{title}</h1>
+          <h1 className="text-xl font-bold text-sky-900">{title}</h1>
           <p className="text-sm text-slate-600 mt-1 leading-relaxed">
             {subtitle}
           </p>

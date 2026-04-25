@@ -128,11 +128,11 @@ export default function NotificationsPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
               <Bell className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Notifications", "الإشعارات", "Bildirimler")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -153,7 +153,7 @@ export default function NotificationsPage() {
           {unreadCount > 0 && (
             <button
               onClick={handleMarkAllRead}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
             >
               <CheckCheck className="w-3.5 h-3.5" />
               {tr("Mark all read", "قراءة الكل", "Tümünü okundu")}
@@ -169,7 +169,7 @@ export default function NotificationsPage() {
               onClick={() => setFilter(k)}
               className={`px-3 py-1 rounded-full text-xs font-semibold ${
                 filter === k
-                  ? "bg-cyan-600 text-white"
+                  ? "bg-sky-500 text-white"
                   : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
               }`}
             >
@@ -186,7 +186,7 @@ export default function NotificationsPage() {
         {/* Items */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -262,21 +262,21 @@ function NotificationListRow({
   return (
     <div
       className={`group flex items-start gap-3 p-4 cursor-pointer hover:bg-sky-50/40 ${
-        unread ? "bg-cyan-50/20" : ""
+        unread ? "bg-sky-50/20" : ""
       }`}
       onClick={onClick}
     >
       <div
         className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
           unread
-            ? "bg-gradient-to-br from-cyan-500 to-sky-600 text-white"
+            ? "bg-gradient-to-br from-sky-400 to-sky-600 text-white"
             : "bg-slate-100 text-slate-500"
         }`}
       >
         <Icon className="w-5 h-5" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-semibold text-cyan-900">
+        <div className="text-sm font-semibold text-sky-900">
           {notification.title}
         </div>
         {notification.body && (
@@ -292,7 +292,7 @@ function NotificationListRow({
         </div>
       </div>
       {unread && (
-        <span className="w-2 h-2 rounded-full bg-cyan-500 flex-shrink-0 mt-2" />
+        <span className="w-2 h-2 rounded-full bg-sky-400 flex-shrink-0 mt-2" />
       )}
       <button
         onClick={(e) => {

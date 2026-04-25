@@ -117,11 +117,11 @@ export default function TemplatesPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr(
                   "Templates marketplace",
                   "متجر القوالب",
@@ -159,7 +159,7 @@ export default function TemplatesPage() {
                 onClick={() => setIndustry(f.key)}
                 className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                   industry === f.key
-                    ? "bg-cyan-600 text-white"
+                    ? "bg-sky-500 text-white"
                     : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
                 }`}
               >
@@ -177,7 +177,7 @@ export default function TemplatesPage() {
                 onClick={() => setRegion(f.key)}
                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                   region === f.key
-                    ? "bg-cyan-600 text-white"
+                    ? "bg-sky-500 text-white"
                     : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
                 }`}
               >
@@ -205,7 +205,7 @@ export default function TemplatesPage() {
         {/* Grid */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
@@ -213,7 +213,7 @@ export default function TemplatesPage() {
           </div>
         ) : templates.length === 0 ? (
           <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
-            <p className="text-sm font-semibold text-cyan-900">
+            <p className="text-sm font-semibold text-sky-900">
               {tr("No templates match", "لا توجد قوالب مطابقة", "Eşleşen şablon yok")}
             </p>
             <p className="text-xs text-slate-500 mt-1">
@@ -230,7 +230,7 @@ export default function TemplatesPage() {
               <button
                 key={tmpl.id}
                 onClick={() => setSelectedSlug(tmpl.slug)}
-                className="text-left rtl:text-right group relative rounded-2xl border border-sky-100 bg-white hover:border-cyan-400 hover:shadow-md transition-all overflow-hidden"
+                className="text-left rtl:text-right group relative rounded-2xl border border-sky-100 bg-white hover:border-sky-300 hover:shadow-md transition-all overflow-hidden"
               >
                 {tmpl.isFeatured && (
                   <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3 z-10">
@@ -255,7 +255,7 @@ export default function TemplatesPage() {
                     <span className="text-slate-300">·</span>
                     <span>{tmpl.region}</span>
                   </div>
-                  <h3 className="text-base font-bold text-cyan-900">
+                  <h3 className="text-base font-bold text-sky-900">
                     {nameFor(tmpl)}
                   </h3>
                   <p className="text-xs text-slate-600 line-clamp-2 min-h-[2rem]">
@@ -269,14 +269,14 @@ export default function TemplatesPage() {
                         {tr("min", "د", "dk")}
                       </span>
                       {tmpl.hasSeedData && (
-                        <span className="inline-flex items-center gap-1 text-cyan-700">
+                        <span className="inline-flex items-center gap-1 text-sky-600">
                           <Users className="w-3 h-3" />
                           {tr("demo data", "بيانات تجريبية", "demo verisi")}
                         </span>
                       )}
                     </div>
                     <ArrowRight
-                      className={`w-3.5 h-3.5 text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity ${
+                      className={`w-3.5 h-3.5 text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity ${
                         isRtl ? "-scale-x-100" : ""
                       }`}
                     />
@@ -380,7 +380,7 @@ function TemplateDetailModal({
       >
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : err ? (
           <div className="p-6 text-sm text-rose-700">{err}</div>
@@ -409,7 +409,7 @@ function TemplateDetailModal({
                   <div className="w-14 h-14 mx-auto rounded-full bg-emerald-50 flex items-center justify-center mb-3">
                     <Check className="w-7 h-7 text-emerald-600" />
                   </div>
-                  <h3 className="text-lg font-bold text-cyan-900">
+                  <h3 className="text-lg font-bold text-sky-900">
                     {tr(
                       "Template applied!",
                       "تم تطبيق القالب!",
@@ -429,9 +429,9 @@ function TemplateDetailModal({
                       .map(([key, count]) => (
                         <div
                           key={key}
-                          className="rounded-lg bg-cyan-50 border border-cyan-100 p-2 text-center"
+                          className="rounded-lg bg-sky-50 border border-sky-100 p-2 text-center"
                         >
-                          <div className="text-xl font-bold text-cyan-900 tabular-nums">
+                          <div className="text-xl font-bold text-sky-900 tabular-nums">
                             {count}
                           </div>
                           <div className="text-[10px] text-slate-600 capitalize">
@@ -445,7 +445,7 @@ function TemplateDetailModal({
                       onClose();
                       router.refresh();
                     }}
-                    className="mt-6 inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+                    className="mt-6 inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
                   >
                     {tr("Done", "تم", "Tamam")}
                   </button>
@@ -464,7 +464,7 @@ function TemplateDetailModal({
                         {detail.setupMinutes} {tr("min setup", "د إعداد", "dk kurulum")}
                       </span>
                     </div>
-                    <h2 className="text-xl font-bold text-cyan-900 mt-2">
+                    <h2 className="text-xl font-bold text-sky-900 mt-2">
                       {nameFor(detail)}
                     </h2>
                     <p className="text-sm text-slate-600 mt-1 leading-relaxed">
@@ -580,7 +580,7 @@ function TemplateDetailModal({
                       <button
                         onClick={handleApply}
                         disabled={applying}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
                       >
                         {applying ? (
                           <Loader2 className="w-4 h-4 animate-spin" />
@@ -613,7 +613,7 @@ function BundleItem({
   preview?: string;
 }) {
   const bg: Record<string, string> = {
-    cyan: "bg-cyan-50 text-cyan-700",
+    cyan: "bg-sky-50 text-sky-600",
     indigo: "bg-indigo-50 text-indigo-700",
     sky: "bg-sky-50 text-sky-700",
     violet: "bg-violet-50 text-violet-700",
@@ -628,7 +628,7 @@ function BundleItem({
         {icon}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium text-cyan-900">{label}</div>
+        <div className="text-sm font-medium text-sky-900">{label}</div>
         {preview && (
           <div className="text-xs text-slate-500 truncate">{preview}</div>
         )}

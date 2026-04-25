@@ -71,20 +71,20 @@ export function UserCard({
           className="w-11 h-11 rounded-full object-cover"
         />
       ) : (
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center font-semibold text-sm">
+        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center font-semibold text-sm">
           {getInitials(fullName)}
         </div>
       )}
       {online && (
         <span
           aria-hidden
-          className="absolute inset-0 rounded-full ring-2 ring-cyan-400 pointer-events-none"
+          className="absolute inset-0 rounded-full ring-2 ring-sky-300 pointer-events-none"
         />
       )}
       {online && (
         <span
           aria-hidden
-          className="absolute bottom-0 ltr:right-0 rtl:left-0 w-3 h-3 rounded-full bg-cyan-500 ring-2 ring-white"
+          className="absolute bottom-0 ltr:right-0 rtl:left-0 w-3 h-3 rounded-full bg-sky-400 ring-2 ring-white"
         />
       )}
     </div>
@@ -103,7 +103,7 @@ export function UserCard({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-cyan-50/60 transition-colors text-left"
+        className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/60 transition-colors text-left"
       >
         {avatar}
         <div className="flex-1 min-w-0">
@@ -133,7 +133,7 @@ export function UserCard({
           <Link
             href={`/${locale}/merchant/settings`}
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
+            className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
           >
             <UserCircle className="w-4 h-4 text-slate-500" />
             {t.profile}
@@ -141,7 +141,7 @@ export function UserCard({
           <Link
             href={`/${locale}/merchant/settings`}
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-cyan-50"
+            className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
           >
             <Settings className="w-4 h-4 text-slate-500" />
             {t.settings}

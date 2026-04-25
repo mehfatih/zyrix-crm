@@ -88,7 +88,7 @@ export default function DashboardPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="p-6 flex items-center justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-cyan-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-sky-500" />
         </div>
       </DashboardShell>
     );
@@ -115,7 +115,7 @@ export default function DashboardPage() {
         {/* Header with scope badge */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">{t("title")}</h1>
+            <h1 className="text-2xl font-bold text-sky-900">{t("title")}</h1>
             <div className="flex items-center gap-2 mt-1">
               <ScopeBadge scope={scope} t={t} />
               <span className="text-sm text-slate-500">
@@ -127,7 +127,7 @@ export default function DashboardPage() {
 
         {/* Onboarding banner — shows until wizard is completed */}
         {onboarding && !onboarding.completed && !bannerDismissed && (
-          <div className="relative rounded-2xl bg-gradient-to-r from-cyan-500 via-sky-500 to-cyan-600 text-white p-5 shadow-md overflow-hidden">
+          <div className="relative rounded-2xl bg-gradient-to-r from-sky-400 via-sky-500 to-sky-500 text-white p-5 shadow-md overflow-hidden">
             <div className="absolute right-0 top-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
             <div className="relative flex items-start gap-4">
               <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
@@ -151,7 +151,7 @@ export default function DashboardPage() {
                 <div className="mt-4 flex items-center gap-3 flex-wrap">
                   <Link
                     href={`/${locale}/onboarding`}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white text-cyan-700 rounded-lg text-sm font-bold hover:bg-cyan-50 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white text-sky-600 rounded-lg text-sm font-bold hover:bg-sky-50 transition-colors"
                   >
                     {locale === "ar"
                       ? "ابدأ الإعداد"
@@ -296,7 +296,7 @@ function MemberView({
               >
                 <PriorityDot priority={ta.priority} />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-cyan-900 truncate">
+                  <div className="text-sm font-medium text-sky-900 truncate">
                     {ta.title}
                   </div>
                   <div className="text-xs text-slate-500 truncate">
@@ -328,14 +328,14 @@ function MemberView({
                 className="flex items-center gap-3 p-3 hover:bg-sky-50/30"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-cyan-900 truncate">
+                  <div className="text-sm font-medium text-sky-900 truncate">
                     {d.title}
                   </div>
                   <div className="text-xs text-slate-500 truncate">
                     {d.customer.fullName} · {d.stage}
                   </div>
                 </div>
-                <div className="text-sm font-bold text-cyan-900">
+                <div className="text-sm font-bold text-sky-900">
                   {formatMoneyCurrency(Number(d.value), d.currency)}
                 </div>
               </Link>
@@ -435,7 +435,7 @@ function CompanyView({
                     {i + 1}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-cyan-900 truncate">
+                    <div className="text-sm font-medium text-sky-900 truncate">
                       {c.fullName}
                     </div>
                     {c.companyName && (
@@ -498,15 +498,15 @@ function QuickLinks({
           <Link
             key={i}
             href={l.href}
-            className="bg-white border border-sky-100 hover:border-cyan-300 rounded-xl p-4 flex items-center gap-3 group transition-colors"
+            className="bg-white border border-sky-100 hover:border-sky-300 rounded-xl p-4 flex items-center gap-3 group transition-colors"
           >
-            <div className="w-10 h-10 rounded-lg bg-cyan-50 text-cyan-600 group-hover:bg-cyan-100 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-500 group-hover:bg-sky-100 flex items-center justify-center">
               <Icon className="w-5 h-5" />
             </div>
-            <div className="flex-1 text-sm font-medium text-slate-700 group-hover:text-cyan-900">
+            <div className="flex-1 text-sm font-medium text-slate-700 group-hover:text-sky-900">
               {l.label}
             </div>
-            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-600" />
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-sky-500" />
           </Link>
         );
       })}
@@ -535,8 +535,8 @@ function ScopeBadge({
       Icon: Users,
     },
     team: {
-      bg: "bg-cyan-50",
-      text: "text-cyan-700",
+      bg: "bg-sky-50",
+      text: "text-sky-600",
       label: t("scope.team"),
       Icon: Crown,
     },
@@ -573,7 +573,7 @@ function KpiCard({
   color: "cyan" | "sky" | "emerald" | "amber";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-cyan-50", iconText: "text-cyan-600" },
+    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
     sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
     emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
     amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
@@ -587,7 +587,7 @@ function KpiCard({
         </div>
         <div className="text-xs text-slate-500 truncate">{label}</div>
       </div>
-      <div className="text-2xl font-bold text-cyan-900">{value}</div>
+      <div className="text-2xl font-bold text-sky-900">{value}</div>
       <div className="text-xs text-slate-500 mt-0.5 truncate">{hint}</div>
     </div>
   );
@@ -604,10 +604,10 @@ function MiniKpi({
 }) {
   return (
     <div className="bg-gradient-to-br from-white to-sky-50/30 border border-sky-100 rounded-xl p-4 flex items-center gap-3">
-      <Icon className="w-6 h-6 text-cyan-500" />
+      <Icon className="w-6 h-6 text-sky-400" />
       <div className="flex-1">
         <div className="text-xs text-slate-500">{label}</div>
-        <div className="text-xl font-bold text-cyan-900">{value}</div>
+        <div className="text-xl font-bold text-sky-900">{value}</div>
       </div>
     </div>
   );
@@ -625,8 +625,8 @@ function Panel({
   return (
     <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
       <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-        <Icon className="w-4 h-4 text-cyan-600" />
-        <h3 className="text-sm font-semibold text-cyan-900">{title}</h3>
+        <Icon className="w-4 h-4 text-sky-500" />
+        <h3 className="text-sm font-semibold text-sky-900">{title}</h3>
       </div>
       {children}
     </div>
@@ -665,7 +665,7 @@ function LeaderboardRow({
         {rank}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium text-cyan-900 truncate">
+        <div className="text-sm font-medium text-sky-900 truncate">
           {entry.user.fullName}
         </div>
         <div className="text-xs text-slate-500">

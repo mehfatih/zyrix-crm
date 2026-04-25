@@ -115,7 +115,7 @@ export default function AdminBillingView({ locale }: Props) {
         name: plan.name,
         count: 0,
         mrr: 0,
-        color: plan.color || "#0891B2",
+        color: plan.color || "#0EA5E9",
       };
       entry.count += 1;
       if (isPayingStatus) entry.mrr += price || 0;
@@ -147,7 +147,7 @@ export default function AdminBillingView({ locale }: Props) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="animate-spin text-cyan-600" size={28} />
+        <Loader2 className="animate-spin text-sky-500" size={28} />
       </div>
     );
   }
@@ -176,15 +176,15 @@ export default function AdminBillingView({ locale }: Props) {
           <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
           <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
         </div>
-        <div className="inline-flex rounded-lg border border-cyan-200 bg-white p-1 shadow-sm">
+        <div className="inline-flex rounded-lg border border-sky-200 bg-white p-1 shadow-sm">
           {(["USD", "TRY", "SAR"] as Currency[]).map((c) => (
             <button
               key={c}
               onClick={() => setCurrency(c)}
               className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                 currency === c
-                  ? "bg-cyan-600 text-white"
-                  : "text-slate-600 hover:text-cyan-700"
+                  ? "bg-sky-500 text-white"
+                  : "text-slate-600 hover:text-sky-600"
               }`}
             >
               {c}
@@ -228,7 +228,7 @@ export default function AdminBillingView({ locale }: Props) {
       </div>
 
       {/* Revenue by plan */}
-      <div className="rounded-xl bg-white border border-cyan-100 p-6">
+      <div className="rounded-xl bg-white border border-sky-100 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm font-semibold text-slate-900">
             {t("revenueByPlan")}
@@ -288,8 +288,8 @@ export default function AdminBillingView({ locale }: Props) {
       </div>
 
       {/* Active subscriptions table */}
-      <div className="rounded-xl bg-white border border-cyan-100 overflow-hidden">
-        <div className="px-6 py-4 border-b border-cyan-50 flex items-center justify-between">
+      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
+        <div className="px-6 py-4 border-b border-sky-50 flex items-center justify-between">
           <h2 className="text-sm font-semibold text-slate-900">
             {t("activeSubscriptionsTitle")}
           </h2>
@@ -324,7 +324,7 @@ export default function AdminBillingView({ locale }: Props) {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-cyan-50">
+              <tbody className="divide-y divide-sky-50">
                 {activeSubs.map((c) => {
                   const plan = planMap.get(c.plan);
                   const priceKey = (
@@ -346,7 +346,7 @@ export default function AdminBillingView({ locale }: Props) {
                         <div className="text-xs text-slate-500">{c.slug}</div>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-cyan-50 px-2 py-0.5 text-xs font-semibold text-cyan-700 ring-1 ring-cyan-200 capitalize">
+                        <span className="inline-flex items-center rounded-md bg-sky-50 px-2 py-0.5 text-xs font-semibold text-sky-600 ring-1 ring-sky-200 capitalize">
                           {c.plan}
                         </span>
                       </td>
@@ -374,7 +374,7 @@ export default function AdminBillingView({ locale }: Props) {
       </div>
 
       {/* Failed payments placeholder */}
-      <div className="rounded-xl bg-white border border-cyan-100 p-6">
+      <div className="rounded-xl bg-white border border-sky-100 p-6">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle size={18} className="text-amber-500" />
           <h2 className="text-sm font-semibold text-slate-900">
@@ -408,7 +408,7 @@ const COLOR_MAP: Record<ColorKey, { bg: string; text: string; ring: string }> =
       text: "text-emerald-700",
       ring: "ring-emerald-100",
     },
-    cyan: { bg: "bg-cyan-50", text: "text-cyan-700", ring: "ring-cyan-100" },
+    cyan: { bg: "bg-sky-50", text: "text-sky-600", ring: "ring-sky-100" },
     sky: { bg: "bg-sky-50", text: "text-sky-700", ring: "ring-sky-100" },
     amber: { bg: "bg-amber-50", text: "text-amber-700", ring: "ring-amber-100" },
   };
@@ -430,7 +430,7 @@ function MoneyCard({
 }) {
   const c = COLOR_MAP[color];
   return (
-    <div className="rounded-xl bg-white border border-cyan-100 p-5">
+    <div className="rounded-xl bg-white border border-sky-100 p-5">
       <div className="flex items-start justify-between">
         <div>
           <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
@@ -467,7 +467,7 @@ function CountCard({
 }) {
   const c = COLOR_MAP[color];
   return (
-    <div className="rounded-xl bg-white border border-cyan-100 p-5">
+    <div className="rounded-xl bg-white border border-sky-100 p-5">
       <div className="flex items-start justify-between">
         <div>
           <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">

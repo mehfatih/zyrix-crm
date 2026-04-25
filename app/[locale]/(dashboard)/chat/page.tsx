@@ -209,8 +209,8 @@ export default function ChatPage() {
         <aside className="w-full md:w-80 bg-white border-b md:border-b-0 ltr:md:border-r rtl:md:border-l border-sky-100 flex flex-col max-h-[40vh] md:max-h-none">
           <div className="p-4 border-b border-sky-100 flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-bold text-cyan-900 flex items-center gap-1.5">
-                <MessageSquare className="w-4 h-4 text-cyan-600" />
+              <h2 className="text-sm font-bold text-sky-900 flex items-center gap-1.5">
+                <MessageSquare className="w-4 h-4 text-sky-500" />
                 {t("title")}
               </h2>
               <p className="text-xs text-slate-500">{t("subtitle")}</p>
@@ -218,7 +218,7 @@ export default function ChatPage() {
             <button
               onClick={() => setShowTeam(!showTeam)}
               title={t("newChat")}
-              className="p-1.5 text-cyan-600 hover:bg-cyan-50 rounded-lg"
+              className="p-1.5 text-sky-500 hover:bg-sky-50 rounded-lg"
             >
               <Plus className="w-4 h-4" />
             </button>
@@ -233,7 +233,7 @@ export default function ChatPage() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder={t("searchTeam")}
-                  className="w-full ltr:pl-8 rtl:pr-8 ltr:pr-2 rtl:pl-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                  className="w-full ltr:pl-8 rtl:pr-8 ltr:pr-2 rtl:pl-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-1 focus:ring-sky-400"
                 />
               </div>
               <div className="max-h-48 overflow-y-auto space-y-1">
@@ -250,7 +250,7 @@ export default function ChatPage() {
                     >
                       <Avatar name={u.fullName} small />
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-cyan-900 truncate text-xs">
+                        <div className="font-medium text-sky-900 truncate text-xs">
                           {u.fullName}
                         </div>
                         <div className="text-[10px] text-slate-500 truncate">
@@ -267,7 +267,7 @@ export default function ChatPage() {
           <div className="flex-1 overflow-y-auto">
             {loadingThreads ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+                <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
               </div>
             ) : threads.length === 0 ? (
               <div className="text-center py-8 px-4">
@@ -289,14 +289,14 @@ export default function ChatPage() {
                       onClick={() => setSelectedPartnerId(th.partnerId)}
                       className={`w-full text-left rtl:text-right px-3 py-3 flex items-center gap-3 transition-colors ${
                         selected
-                          ? "bg-cyan-50"
+                          ? "bg-sky-50"
                           : "hover:bg-sky-50/50"
                       }`}
                     >
                       <Avatar name={th.user.fullName} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-1">
-                          <span className="font-medium text-cyan-900 truncate text-sm">
+                          <span className="font-medium text-sky-900 truncate text-sm">
                             {th.user.fullName}
                           </span>
                           <span className="text-[10px] text-slate-400 flex-shrink-0">
@@ -313,7 +313,7 @@ export default function ChatPage() {
                             {th.lastMessage || t("noMessagesYet")}
                           </span>
                           {th.unread > 0 && (
-                            <span className="flex-shrink-0 bg-cyan-600 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] px-1 flex items-center justify-center">
+                            <span className="flex-shrink-0 bg-sky-500 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] px-1 flex items-center justify-center">
                               {th.unread > 99 ? "99+" : th.unread}
                             </span>
                           )}
@@ -340,7 +340,7 @@ export default function ChatPage() {
             <div className="flex-1 flex items-center justify-center p-8">
               <div className="text-center">
                 <MessageSquare className="w-12 h-12 mx-auto text-sky-300 mb-3" />
-                <h3 className="text-lg font-bold text-cyan-900">
+                <h3 className="text-lg font-bold text-sky-900">
                   {t("selectChat")}
                 </h3>
                 <p className="text-sm text-slate-500 mt-1">
@@ -355,7 +355,7 @@ export default function ChatPage() {
                 <div className="px-5 py-3 border-b border-sky-100 bg-white flex items-center gap-3">
                   <Avatar name={partner.fullName} />
                   <div className="flex-1 min-w-0">
-                    <div className="font-bold text-cyan-900">
+                    <div className="font-bold text-sky-900">
                       {partner.fullName}
                     </div>
                     <div className="text-xs text-slate-500 truncate">
@@ -369,7 +369,7 @@ export default function ChatPage() {
               <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-3 bg-gradient-to-b from-sky-50/20 to-white">
                 {loadingConv ? (
                   <div className="flex items-center justify-center py-10">
-                    <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+                    <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
                   </div>
                 ) : messages.length === 0 ? (
                   <div className="text-center py-10 text-slate-500">
@@ -410,12 +410,12 @@ export default function ChatPage() {
                   placeholder={t("messagePlaceholder")}
                   rows={1}
                   disabled={sending}
-                  className="flex-1 px-3 py-2 text-sm border border-sky-200 rounded-lg resize-none min-h-[40px] max-h-[120px] focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-60"
+                  className="flex-1 px-3 py-2 text-sm border border-sky-200 rounded-lg resize-none min-h-[40px] max-h-[120px] focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:opacity-60"
                 />
                 <button
                   type="submit"
                   disabled={!draft.trim() || sending}
-                  className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium disabled:opacity-50 flex-shrink-0"
+                  className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium disabled:opacity-50 flex-shrink-0"
                 >
                   {sending ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -450,7 +450,7 @@ function MessageBubble({
       <div
         className={`max-w-[75%] rounded-2xl px-4 py-2 shadow-sm ${
           fromMe
-            ? "bg-cyan-600 text-white rounded-br-sm"
+            ? "bg-sky-500 text-white rounded-br-sm"
             : "bg-white border border-sky-100 text-slate-800 rounded-bl-sm"
         }`}
       >
@@ -459,7 +459,7 @@ function MessageBubble({
         </div>
         <div
           className={`text-[10px] mt-1 ${
-            fromMe ? "text-cyan-100" : "text-slate-400"
+            fromMe ? "text-sky-100" : "text-slate-400"
           }`}
         >
           {formatTimeShort(message.createdAt, locale)}
@@ -489,7 +489,7 @@ function Avatar({
   const sz = small ? "w-7 h-7 text-xs" : "w-9 h-9 text-sm";
   return (
     <div
-      className={`${sz} rounded-full bg-gradient-to-br from-cyan-500 to-sky-500 text-white font-bold flex items-center justify-center flex-shrink-0`}
+      className={`${sz} rounded-full bg-gradient-to-br from-sky-400 to-sky-500 text-white font-bold flex items-center justify-center flex-shrink-0`}
     >
       {initials || <User className="w-4 h-4" />}
     </div>

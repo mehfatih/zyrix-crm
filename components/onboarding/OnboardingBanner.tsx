@@ -109,28 +109,28 @@ export function OnboardingBanner({ locale }: { locale: string }) {
   return (
     <div
       dir={isAr ? "rtl" : "ltr"}
-      className="rounded-xl border border-cyan-200 bg-gradient-to-br from-cyan-50 via-sky-50 to-blue-50 p-4 shadow-sm"
+      className="rounded-xl border border-sky-200 bg-gradient-to-br from-sky-50 via-sky-50 to-blue-50 p-4 shadow-sm"
     >
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
           <Sparkles className="w-5 h-5" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-cyan-900">
+            <h3 className="text-sm font-bold text-sky-900">
               {tr(
                 "Finish setting up your workspace",
                 "أكمل إعداد مساحة العمل",
                 "Çalışma alanınızı kurmayı tamamlayın"
               )}
             </h3>
-            <span className="text-xs font-semibold text-cyan-700 tabular-nums">
+            <span className="text-xs font-semibold text-sky-600 tabular-nums">
               {percent}%
             </span>
           </div>
           <div className="mt-2 w-full h-1.5 rounded-full bg-white/70 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-cyan-500 to-sky-500 transition-all"
+              className="h-full bg-gradient-to-r from-sky-400 to-sky-500 transition-all"
               style={{ width: `${percent}%` }}
             />
           </div>
@@ -163,7 +163,7 @@ export function OnboardingBanner({ locale }: { locale: string }) {
           <div className="mt-3 flex items-center gap-2">
             <Link
               href={`/${locale}/onboarding`}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-semibold"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold"
             >
               {tr("Resume setup", "استئناف الإعداد", "Kuruluma devam et")}
               <ArrowRight

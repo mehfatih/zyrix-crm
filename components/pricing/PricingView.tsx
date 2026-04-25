@@ -125,12 +125,12 @@ export default function PricingView({ locale }: { locale: string }) {
     <section className="px-4 pb-6">
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
         {/* Billing toggle */}
-        <div className="inline-flex rounded-full bg-white border border-cyan-200 p-1">
+        <div className="inline-flex rounded-full bg-white border border-sky-200 p-1">
           <button
             onClick={() => setBilling("monthly")}
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
               billing === "monthly"
-                ? "bg-cyan-600 text-white"
+                ? "bg-sky-500 text-white"
                 : "text-slate-700 hover:bg-sky-50"
             }`}
           >
@@ -140,7 +140,7 @@ export default function PricingView({ locale }: { locale: string }) {
             onClick={() => setBilling("yearly")}
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
               billing === "yearly"
-                ? "bg-cyan-600 text-white"
+                ? "bg-sky-500 text-white"
                 : "text-slate-700 hover:bg-sky-50"
             }`}
           >
@@ -153,7 +153,7 @@ export default function PricingView({ locale }: { locale: string }) {
 
         {/* Currency — independent of header language switcher */}
         <div
-          className="inline-flex rounded-full bg-white border border-cyan-200 p-1"
+          className="inline-flex rounded-full bg-white border border-sky-200 p-1"
           aria-label="Billing currency"
         >
           {(["USD", "TRY", "SAR"] as Currency[]).map((c) => (
@@ -162,7 +162,7 @@ export default function PricingView({ locale }: { locale: string }) {
               onClick={() => handleCurrencyChange(c)}
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 currency === c
-                  ? "bg-cyan-600 text-white"
+                  ? "bg-sky-500 text-white"
                   : "text-slate-700 hover:bg-sky-50"
               }`}
             >
@@ -179,7 +179,7 @@ export default function PricingView({ locale }: { locale: string }) {
       <div className="max-w-6xl mx-auto">
         {loading && (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-cyan-600" size={28} />
+            <Loader2 className="animate-spin text-sky-500" size={28} />
           </div>
         )}
         {error && !loading && (
@@ -220,11 +220,11 @@ export default function PricingView({ locale }: { locale: string }) {
           {[1, 2, 3, 4].map((n) => (
             <details
               key={n}
-              className="group rounded-xl bg-white border border-cyan-100 overflow-hidden"
+              className="group rounded-xl bg-white border border-sky-100 overflow-hidden"
             >
               <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between text-sm font-semibold text-slate-900 hover:bg-sky-50 transition-colors">
                 <span>{tFaq(`q${n}`)}</span>
-                <span className="ltr:ml-3 rtl:mr-3 text-cyan-600 group-open:rotate-45 transition-transform text-xl leading-none">
+                <span className="ltr:ml-3 rtl:mr-3 text-sky-500 group-open:rotate-45 transition-transform text-xl leading-none">
                   +
                 </span>
               </summary>
@@ -298,12 +298,12 @@ function PlanCard({
     <div
       className={`relative rounded-2xl bg-white p-6 flex flex-col ${
         featured
-          ? "border-2 border-cyan-500 shadow-xl shadow-cyan-900/10"
-          : "border border-cyan-100"
+          ? "border-2 border-sky-400 shadow-xl shadow-sky-900/10"
+          : "border border-sky-100"
       }`}
     >
       {featured && (
-        <div className="absolute -top-3 ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-cyan-600 text-white px-3 py-1 text-xs font-semibold">
+        <div className="absolute -top-3 ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-sky-500 text-white px-3 py-1 text-xs font-semibold">
           <Star size={12} />
           {t("mostPopular")}
         </div>
@@ -357,10 +357,10 @@ function PlanCard({
         href={ctaHref}
         className={`block text-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors mb-6 ${
           featured
-            ? "bg-cyan-600 hover:bg-cyan-700 text-white"
+            ? "bg-sky-500 hover:bg-sky-600 text-white"
             : isFree
             ? "bg-slate-900 hover:bg-slate-800 text-white"
-            : "bg-sky-50 hover:bg-sky-100 text-cyan-700 border border-cyan-200"
+            : "bg-sky-50 hover:bg-sky-100 text-sky-600 border border-sky-200"
         }`}
       >
         {isEnterprise ? t("contactSales") : t("getStarted")}
@@ -410,7 +410,7 @@ function PlanCard({
             <li key={slug} className="flex items-start gap-2 text-sm">
               <Check
                 size={14}
-                className="text-cyan-600 mt-0.5 flex-shrink-0"
+                className="text-sky-500 mt-0.5 flex-shrink-0"
               />
               <span className="text-slate-700">{safeTrans(tFeat, slug)}</span>
             </li>

@@ -24,7 +24,7 @@ const ROUTE_ACCENTS: { match: RegExp; accent: AccentColor; bg: string }[] = [
   {
     match: /^\/[a-z]{2}\/features/,
     accent: "teal",
-    bg: "bg-gradient-to-br from-teal-50 via-cyan-50/40 to-white",
+    bg: "bg-gradient-to-br from-teal-50 via-sky-50/40 to-white",
   },
   {
     match: /^\/[a-z]{2}\/pricing/,
@@ -82,7 +82,7 @@ export default function PublicLayout({
 
   // Map each accent to a bold color halo visible behind hero sections
   const haloMap: Record<AccentColor, string> = {
-    cyan: "bg-cyan-400/20",
+    cyan: "bg-sky-300/20",
     sky: "bg-sky-400/20",
     teal: "bg-teal-400/20",
     indigo: "bg-indigo-400/20",

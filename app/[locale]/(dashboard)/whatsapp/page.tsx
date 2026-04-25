@@ -197,7 +197,7 @@ export default function WhatsappPage() {
         <aside className="w-full md:w-96 bg-white border-b md:border-b-0 ltr:md:border-r rtl:md:border-l border-sky-100 flex flex-col max-h-[45vh] md:max-h-none">
           <div className="p-4 border-b border-sky-100 flex items-center justify-between">
             <div>
-              <h1 className="text-sm font-bold text-cyan-900 flex items-center gap-1.5">
+              <h1 className="text-sm font-bold text-sky-900 flex items-center gap-1.5">
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
                 {t("title")}
               </h1>
@@ -205,7 +205,7 @@ export default function WhatsappPage() {
             </div>
             <button
               onClick={loadInbox}
-              className="p-1.5 text-cyan-600 hover:bg-cyan-50 rounded-lg"
+              className="p-1.5 text-sky-500 hover:bg-sky-50 rounded-lg"
               title={t("refresh")}
             >
               <RefreshCw className="w-4 h-4" />
@@ -221,7 +221,7 @@ export default function WhatsappPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t("searchPlaceholder")}
-                className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg bg-sky-50/30 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:bg-white"
+                className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg bg-sky-50/30 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white"
               />
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function WhatsappPage() {
                       />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-1">
-                          <span className="font-medium text-cyan-900 truncate text-sm">
+                          <span className="font-medium text-sky-900 truncate text-sm">
                             {conv.customer?.fullName || conv.phoneNumber}
                           </span>
                           <span className="text-[10px] text-slate-400 flex-shrink-0">
@@ -306,10 +306,10 @@ export default function WhatsappPage() {
           {!selectedPhone ? (
             <div className="flex-1 flex items-center justify-center p-8">
               <div className="text-center max-w-sm">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 mb-4 shadow-lg">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-sky-400 mb-4 shadow-lg">
                   <MessageCircle className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-lg font-bold text-cyan-900">
+                <h2 className="text-lg font-bold text-sky-900">
                   {t("pickConversation")}
                 </h2>
                 <p className="text-sm text-slate-600 mt-1">
@@ -329,7 +329,7 @@ export default function WhatsappPage() {
                   name={thread.customer?.fullName || thread.phoneNumber}
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="font-bold text-cyan-900">
+                  <div className="font-bold text-sky-900">
                     {thread.customer?.fullName || thread.phoneNumber}
                   </div>
                   <div className="text-xs text-slate-500 truncate flex items-center gap-2 flex-wrap">
@@ -409,7 +409,7 @@ export default function WhatsappPage() {
                   onClick={handleSuggest}
                   disabled={suggesting || thread.messages.length === 0}
                   title={t("aiSuggest")}
-                  className="flex-shrink-0 p-2 bg-gradient-to-br from-cyan-500 to-sky-500 hover:from-cyan-600 hover:to-sky-600 text-white rounded-lg disabled:opacity-50"
+                  className="flex-shrink-0 p-2 bg-gradient-to-br from-sky-400 to-sky-500 hover:from-sky-500 hover:to-sky-600 text-white rounded-lg disabled:opacity-50"
                 >
                   {suggesting ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -503,11 +503,11 @@ function AIInsightChip({ extracted }: { extracted: any }) {
   if (parts.length === 0) return null;
   return (
     <div className="mt-1.5 pt-1.5 border-t border-slate-100 flex items-center gap-1.5 flex-wrap">
-      <Bot className="w-2.5 h-2.5 text-cyan-500" />
+      <Bot className="w-2.5 h-2.5 text-sky-400" />
       {parts.map((p, i) => (
         <span
           key={i}
-          className="text-[9px] px-1.5 py-0.5 bg-cyan-50 text-cyan-700 rounded"
+          className="text-[9px] px-1.5 py-0.5 bg-sky-50 text-sky-600 rounded"
         >
           {p}
         </span>
@@ -526,7 +526,7 @@ function WhatsappAvatar({ name }: { name: string }) {
     .join("")
     .toUpperCase();
   return (
-    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 text-white font-bold flex items-center justify-center flex-shrink-0">
+    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-sky-400 text-white font-bold flex items-center justify-center flex-shrink-0">
       {initials || <User className="w-5 h-5" />}
     </div>
   );

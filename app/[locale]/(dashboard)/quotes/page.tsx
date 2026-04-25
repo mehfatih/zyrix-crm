@@ -358,8 +358,8 @@ export default function QuotesPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <FileText className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <FileText className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
@@ -368,7 +368,7 @@ export default function QuotesPage() {
             <ExportButton entityType="quotes" />
             <button
               onClick={openCreate}
-              className="flex items-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
             >
               <Plus className="w-4 h-4" />
               {t("newQuote")}
@@ -413,7 +413,7 @@ export default function QuotesPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </div>
           <select
@@ -421,7 +421,7 @@ export default function QuotesPage() {
             onChange={(e) =>
               setStatusFilter(e.target.value as QuoteStatus | "")
             }
-            className="px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <option value="">{t("filters.allStatuses")}</option>
             <option value="draft">{t("status.draft")}</option>
@@ -437,7 +437,7 @@ export default function QuotesPage() {
         <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
           {loading ? (
             <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+              <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
             </div>
           ) : error ? (
             <div className="p-6 text-center text-red-700 bg-red-50">
@@ -486,11 +486,11 @@ export default function QuotesPage() {
                         onClick={() => setViewQuote(quote)}
                         className="border-b border-sky-50 hover:bg-sky-50/40 cursor-pointer transition-colors"
                       >
-                        <td className="px-4 py-3 font-mono text-xs text-cyan-700 font-medium">
+                        <td className="px-4 py-3 font-mono text-xs text-sky-600 font-medium">
                           {quote.quoteNumber}
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-medium text-cyan-900">
+                          <div className="font-medium text-sky-900">
                             {quote.customer.fullName}
                           </div>
                           {quote.customer.companyName && (
@@ -515,7 +515,7 @@ export default function QuotesPage() {
                             ? formatDate(quote.validUntil, locale)
                             : "—"}
                         </td>
-                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-cyan-900">
+                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-sky-900">
                           {formatMoney(Number(quote.total), quote.currency, locale)}
                         </td>
                         <td className="px-4 py-3">
@@ -524,7 +524,7 @@ export default function QuotesPage() {
                               e.stopPropagation();
                               setViewQuote(quote);
                             }}
-                            className="text-slate-400 hover:text-cyan-600"
+                            className="text-slate-400 hover:text-sky-500"
                           >
                             <ExternalLink className="w-4 h-4" />
                           </button>
@@ -602,9 +602,9 @@ function StatCard({
   > = {
     cyan: {
       bg: "bg-white",
-      text: "text-cyan-900",
-      iconBg: "bg-cyan-50",
-      iconText: "text-cyan-600",
+      text: "text-sky-900",
+      iconBg: "bg-sky-50",
+      iconText: "text-sky-500",
     },
     sky: {
       bg: "bg-white",
@@ -685,7 +685,7 @@ function QuoteFormModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {editingQuote ? t("form.editTitle") : t("form.createTitle")}
           </h2>
           <button
@@ -708,7 +708,7 @@ function QuoteFormModal({
                 onChange={(e) =>
                   setForm({ ...form, customerId: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 <option value="">{t("form.selectCustomer")}</option>
                 {customers.map((c, idx) => (
@@ -728,7 +728,7 @@ function QuoteFormModal({
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 placeholder={t("form.titlePlaceholder")}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
           </div>
@@ -743,7 +743,7 @@ function QuoteFormModal({
                 onChange={(e) =>
                   setForm({ ...form, currency: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               >
                 <option value="TRY">TRY — Türk Lirası</option>
                 <option value="USD">USD — US Dollar</option>
@@ -763,7 +763,7 @@ function QuoteFormModal({
                 onChange={(e) =>
                   setForm({ ...form, validUntil: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
           </div>
@@ -776,7 +776,7 @@ function QuoteFormModal({
               </label>
               <button
                 onClick={onAddItem}
-                className="text-xs text-cyan-700 hover:text-cyan-800 font-medium flex items-center gap-1"
+                className="text-xs text-sky-600 hover:text-sky-800 font-medium flex items-center gap-1"
               >
                 <Plus className="w-3 h-3" />
                 {t("form.addItem")}
@@ -796,7 +796,7 @@ function QuoteFormModal({
                         onUpdateItem(idx, { name: e.target.value })
                       }
                       placeholder={t("form.itemName")}
-                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
                     />
                     <input
                       type="number"
@@ -806,7 +806,7 @@ function QuoteFormModal({
                         onUpdateItem(idx, { quantity: e.target.value })
                       }
                       placeholder={t("form.qty")}
-                      className="col-span-3 md:col-span-2 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      className="col-span-3 md:col-span-2 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
                     />
                     <input
                       type="number"
@@ -816,7 +816,7 @@ function QuoteFormModal({
                         onUpdateItem(idx, { unitPrice: e.target.value })
                       }
                       placeholder={t("form.unitPrice")}
-                      className="col-span-4 md:col-span-3 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      className="col-span-4 md:col-span-3 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
                     />
                     <button
                       onClick={() => onRemoveItem(idx)}
@@ -834,7 +834,7 @@ function QuoteFormModal({
                         onUpdateItem(idx, { description: e.target.value })
                       }
                       placeholder={t("form.descriptionOptional")}
-                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
                     />
                     <div className="col-span-6 md:col-span-3 flex items-center gap-1">
                       <input
@@ -845,7 +845,7 @@ function QuoteFormModal({
                           onUpdateItem(idx, { discountPercent: e.target.value })
                         }
                         placeholder="0"
-                        className="flex-1 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="flex-1 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
                       />
                       <span className="text-xs text-slate-500">
                         % {t("form.discount")}
@@ -860,7 +860,7 @@ function QuoteFormModal({
                           onUpdateItem(idx, { taxPercent: e.target.value })
                         }
                         placeholder="20"
-                        className="flex-1 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="flex-1 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
                       />
                       <span className="text-xs text-slate-500">
                         % {t("form.tax")}
@@ -873,7 +873,7 @@ function QuoteFormModal({
           </div>
 
           {/* Totals preview */}
-          <div className="bg-cyan-50 border border-cyan-100 rounded-lg p-3 space-y-1 text-sm">
+          <div className="bg-sky-50 border border-sky-100 rounded-lg p-3 space-y-1 text-sm">
             <div className="flex justify-between text-slate-600">
               <span>{t("form.subtotal")}</span>
               <span>{formatMoney(totals.subtotal, form.currency, locale)}</span>
@@ -882,7 +882,7 @@ function QuoteFormModal({
               <span>{t("form.taxTotal")}</span>
               <span>{formatMoney(totals.taxAmount, form.currency, locale)}</span>
             </div>
-            <div className="flex justify-between font-bold text-cyan-900 pt-1 border-t border-cyan-200">
+            <div className="flex justify-between font-bold text-sky-900 pt-1 border-t border-sky-200">
               <span>{t("form.total")}</span>
               <span>{formatMoney(totals.total, form.currency, locale)}</span>
             </div>
@@ -898,7 +898,7 @@ function QuoteFormModal({
                 value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 resize-none"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 resize-none"
               />
             </div>
             <div>
@@ -909,7 +909,7 @@ function QuoteFormModal({
                 value={form.terms}
                 onChange={(e) => setForm({ ...form, terms: e.target.value })}
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 resize-none"
+                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 resize-none"
               />
             </div>
           </div>
@@ -931,7 +931,7 @@ function QuoteFormModal({
           <button
             onClick={onSave}
             disabled={saving}
-            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving && <Loader2 className="w-4 h-4 animate-spin" />}
             {editingQuote ? t("actions.save") : t("actions.create")}
@@ -990,7 +990,7 @@ function QuoteDetailModal({
         <div className="p-5 border-b border-sky-100 flex items-start justify-between gap-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-xs text-cyan-700 font-semibold">
+              <span className="font-mono text-xs text-sky-600 font-semibold">
                 {quote.quoteNumber}
               </span>
               <span
@@ -1000,7 +1000,7 @@ function QuoteDetailModal({
                 {t(`status.${quote.status}`)}
               </span>
             </div>
-            <h2 className="text-lg font-bold text-cyan-900">{quote.title}</h2>
+            <h2 className="text-lg font-bold text-sky-900">{quote.title}</h2>
             <p className="text-sm text-slate-600 mt-0.5">
               {quote.customer.fullName}
               {quote.customer.companyName
@@ -1061,7 +1061,7 @@ function QuoteDetailModal({
                     className="border-t border-sky-100 hover:bg-white/40"
                   >
                     <td className="px-3 py-2">
-                      <div className="font-medium text-cyan-900">
+                      <div className="font-medium text-sky-900">
                         {item.name}
                       </div>
                       {item.description && (
@@ -1080,7 +1080,7 @@ function QuoteDetailModal({
                         locale
                       )}
                     </td>
-                    <td className="px-3 py-2 ltr:text-right rtl:text-left font-medium text-cyan-900">
+                    <td className="px-3 py-2 ltr:text-right rtl:text-left font-medium text-sky-900">
                       {formatMoney(
                         Number(item.lineTotal),
                         quote.currency,
@@ -1094,7 +1094,7 @@ function QuoteDetailModal({
           </div>
 
           {/* Totals */}
-          <div className="bg-cyan-50 border border-cyan-100 rounded-lg p-3 space-y-1 text-sm">
+          <div className="bg-sky-50 border border-sky-100 rounded-lg p-3 space-y-1 text-sm">
             <div className="flex justify-between text-slate-600">
               <span>{t("form.subtotal")}</span>
               <span>
@@ -1120,7 +1120,7 @@ function QuoteDetailModal({
                 {formatMoney(Number(quote.taxAmount), quote.currency, locale)}
               </span>
             </div>
-            <div className="flex justify-between font-bold text-cyan-900 pt-1 border-t border-cyan-200 text-base">
+            <div className="flex justify-between font-bold text-sky-900 pt-1 border-t border-sky-200 text-base">
               <span>{t("form.total")}</span>
               <span>
                 {formatMoney(Number(quote.total), quote.currency, locale)}
@@ -1170,7 +1170,7 @@ function QuoteDetailModal({
           <div className="flex items-center gap-2">
             <button
               onClick={onEdit}
-              className="px-3 py-1.5 text-sm text-cyan-700 hover:bg-cyan-50 rounded-lg flex items-center gap-1.5"
+              className="px-3 py-1.5 text-sm text-sky-600 hover:bg-sky-50 rounded-lg flex items-center gap-1.5"
             >
               <Pencil className="w-4 h-4" />
               {t("actions.edit")}
@@ -1224,7 +1224,7 @@ function MetaBox({ label, value }: { label: string; value: string }) {
       <div className="text-xs text-slate-500 uppercase font-medium">
         {label}
       </div>
-      <div className="text-sm text-cyan-900 font-medium mt-0.5">{value}</div>
+      <div className="text-sm text-sky-900 font-medium mt-0.5">{value}</div>
     </div>
   );
 }

@@ -107,7 +107,7 @@ export default async function AboutPage({
               </p>
             </div>
 
-            <div className="rounded-2xl bg-gradient-to-br from-primary-50 via-sky-50 to-cyan-50 border border-primary-100 p-8 shadow-sm">
+            <div className="rounded-2xl bg-gradient-to-br from-primary-50 via-sky-50 to-sky-50 border border-primary-100 p-8 shadow-sm">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white text-primary-600 mb-5 shadow-sm">
                 <Compass className="w-6 h-6" />
               </div>
@@ -188,7 +188,7 @@ export default async function AboutPage({
               </p>
             </div>
 
-            <div className="rounded-2xl bg-gradient-to-br from-primary-50 via-sky-50 to-cyan-50 border border-primary-100 p-8 md:p-10 text-center shadow-sm">
+            <div className="rounded-2xl bg-gradient-to-br from-primary-50 via-sky-50 to-sky-50 border border-primary-100 p-8 md:p-10 text-center shadow-sm">
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white text-primary-600 mb-5 shadow-md ring-4 ring-white">
                 <span className="text-2xl font-bold">MF</span>
               </div>
@@ -211,7 +211,7 @@ export default async function AboutPage({
       </section>
 
       {/* FINAL CTA */}
-      <section className="section bg-gradient-to-br from-primary-50 via-sky-50 to-cyan-100">
+      <section className="section bg-gradient-to-br from-primary-50 via-sky-50 to-sky-100">
         <div className="container-zyrix">
           <div className="card-gradient max-w-4xl mx-auto text-center py-12 md:py-16 shadow-xl">
             <Sparkles className="w-10 h-10 text-primary-600 mx-auto mb-4" />

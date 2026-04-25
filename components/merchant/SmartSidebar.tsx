@@ -144,7 +144,7 @@ export function SmartSidebar({
           onClick={onCloseMobile}
           className="flex items-center gap-2 flex-1 min-w-0"
         >
-          <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-gradient-to-br from-cyan-500 to-sky-600 shadow-sm flex-shrink-0">
+          <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-gradient-to-br from-sky-400 to-sky-600 shadow-sm flex-shrink-0">
             <Image
               src="/logo.png"
               alt="Zyrix"
@@ -166,7 +166,7 @@ export function SmartSidebar({
             onClick={toggleCollapsed}
             title={t("collapse")}
             aria-label={t("collapse")}
-            className="w-7 h-7 rounded-md text-slate-400 hover:text-cyan-700 hover:bg-cyan-50 flex items-center justify-center"
+            className="w-7 h-7 rounded-md text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
           >
             {isRTL ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           </button>
@@ -180,7 +180,7 @@ export function SmartSidebar({
           onClick={toggleCollapsed}
           title={t("expand")}
           aria-label={t("expand")}
-          className="mx-auto mt-2 w-8 h-8 rounded-md text-slate-400 hover:text-cyan-700 hover:bg-cyan-50 flex items-center justify-center"
+          className="mx-auto mt-2 w-8 h-8 rounded-md text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
         >
           {isRTL ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
         </button>
@@ -250,7 +250,7 @@ export function SmartSidebar({
             title={t("newButton")}
             className={`w-full inline-flex items-center ${
               collapsed ? "justify-center h-10" : "gap-2 h-10 px-3"
-            } rounded-xl border border-dashed border-cyan-300 text-cyan-700 hover:bg-cyan-50 hover:border-cyan-400 transition-colors`}
+            } rounded-xl border border-dashed border-sky-300 text-sky-600 hover:bg-sky-50 hover:border-sky-300 transition-colors`}
           >
             <Plus className="w-4 h-4" />
             {!collapsed && (

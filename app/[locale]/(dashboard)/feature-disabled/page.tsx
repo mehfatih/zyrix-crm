@@ -43,7 +43,7 @@ function FeatureDisabledPage() {
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-400 to-slate-500 text-white flex items-center justify-center mx-auto mb-4 shadow">
             <ShieldOff className="w-7 h-7" />
           </div>
-          <h1 className="text-2xl font-bold text-cyan-900 mb-2">
+          <h1 className="text-2xl font-bold text-sky-900 mb-2">
             {tr(
               "Feature not available",
               "الميزة غير متاحة",
@@ -63,7 +63,7 @@ function FeatureDisabledPage() {
                 {tr("Feature", "الميزة", "Özellik")}
               </div>
               <code
-                className="text-sm font-mono text-cyan-900 font-semibold"
+                className="text-sm font-mono text-sky-900 font-semibold"
                 dir="ltr"
               >
                 {feature}
@@ -82,7 +82,7 @@ function FeatureDisabledPage() {
             </Link>
             <a
               href="mailto:support@zyrix.co"
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
             >
               <Mail className="w-4 h-4" />
               {tr("Contact support", "تواصل مع الدعم", "Destek ile iletişim")}

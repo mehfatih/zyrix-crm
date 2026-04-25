@@ -168,7 +168,7 @@ export default function OAuthInstallPanel({ locale }: Props) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+        <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
       </div>
     );
   }
@@ -234,11 +234,11 @@ export default function OAuthInstallPanel({ locale }: Props) {
       {(providers?.salla || providers?.shopify) && (
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center">
               <ExternalLink className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-cyan-900">
+              <h2 className="text-base font-bold text-sky-900">
                 {tr(
                   "Connect your online store",
                   "اربط متجرك الإلكتروني",
@@ -263,7 +263,7 @@ export default function OAuthInstallPanel({ locale }: Props) {
                     <StoreIcon className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-base font-bold text-cyan-900">
+                    <div className="text-base font-bold text-sky-900">
                       Salla
                     </div>
                     <p className="text-xs text-slate-600 mt-0.5">
@@ -278,7 +278,7 @@ export default function OAuthInstallPanel({ locale }: Props) {
                 <button
                   onClick={handleSallaInstall}
                   disabled={installing === "salla"}
-                  className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+                  className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
                 >
                   {installing === "salla" ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -308,7 +308,7 @@ export default function OAuthInstallPanel({ locale }: Props) {
                     <ShoppingBag className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-base font-bold text-cyan-900">
+                    <div className="text-base font-bold text-sky-900">
                       Shopify
                     </div>
                     <p className="text-xs text-slate-600 mt-0.5">
@@ -328,7 +328,7 @@ export default function OAuthInstallPanel({ locale }: Props) {
                       "Mağaza adınız"
                     )}
                   </span>
-                  <div className="flex items-center mt-1 rounded-lg border border-sky-200 overflow-hidden focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-200">
+                  <div className="flex items-center mt-1 rounded-lg border border-sky-200 overflow-hidden focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-sky-200">
                     <input
                       value={shopDomain}
                       onChange={(e) => setShopDomain(e.target.value)}
@@ -367,7 +367,7 @@ export default function OAuthInstallPanel({ locale }: Props) {
       {oauthConnections.length > 0 && (
         <div>
           <div className="flex items-center justify-between gap-2 mb-3">
-            <h3 className="text-sm font-bold text-cyan-900">
+            <h3 className="text-sm font-bold text-sky-900">
               {tr(
                 "Connected stores",
                 "المتاجر المتصلة",
@@ -379,7 +379,7 @@ export default function OAuthInstallPanel({ locale }: Props) {
             </h3>
             <button
               onClick={loadAll}
-              className="w-7 h-7 rounded text-slate-400 hover:text-cyan-700 hover:bg-sky-50 flex items-center justify-center"
+              className="w-7 h-7 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
               title={tr("Refresh", "تحديث", "Yenile")}
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -434,7 +434,7 @@ function ConnectionRow({
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-cyan-900 truncate">
+          <span className="text-sm font-semibold text-sky-900 truncate">
             {storeName}
           </span>
           <span className="text-[10px] font-bold uppercase rounded px-1.5 py-0.5 border bg-sky-50 text-sky-700 border-sky-200">

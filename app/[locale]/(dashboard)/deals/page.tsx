@@ -30,7 +30,7 @@ const DEAL_FILTER_FIELDS = [
 
 const STAGE_COLORS: Record<DealStage, string> = {
   lead: "bg-sky-100 text-sky-700",
-  qualified: "bg-cyan-100 text-cyan-700",
+  qualified: "bg-sky-100 text-sky-600",
   proposal: "bg-amber-100 text-amber-700",
   negotiation: "bg-purple-100 text-purple-700",
   won: "bg-success-light text-success-dark",
@@ -105,7 +105,7 @@ export default function DealsPage() {
               className={cn(
                 "inline-flex items-center gap-2 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
                 showFilter || filterResults
-                  ? "bg-cyan-600 text-white hover:bg-cyan-700"
+                  ? "bg-sky-500 text-white hover:bg-sky-600"
                   : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
               )}
             >
@@ -144,14 +144,14 @@ export default function DealsPage() {
         )}
 
         {filterResults && !showFilter && (
-          <div className="mb-4 flex items-center gap-2 px-3 py-2 bg-cyan-50 border border-cyan-100 rounded-lg">
-            <Filter className="w-4 h-4 text-cyan-700" />
-            <span className="text-sm text-cyan-800">
+          <div className="mb-4 flex items-center gap-2 px-3 py-2 bg-sky-50 border border-sky-100 rounded-lg">
+            <Filter className="w-4 h-4 text-sky-600" />
+            <span className="text-sm text-sky-800">
               Showing {filterCount} results from advanced filter
             </span>
             <button
               onClick={clearAdvancedFilter}
-              className="ml-auto inline-flex items-center gap-1 px-2 py-1 text-xs text-cyan-700 hover:bg-cyan-100 rounded"
+              className="ml-auto inline-flex items-center gap-1 px-2 py-1 text-xs text-sky-600 hover:bg-sky-100 rounded"
             >
               <X className="w-3.5 h-3.5" />
               Clear
@@ -211,7 +211,7 @@ export default function DealsPage() {
                             setSelectedIds(new Set());
                           }
                         }}
-                        className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                        className="rounded border-sky-300 text-sky-500 focus:ring-sky-400"
                       />
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-ink-light uppercase">
@@ -240,7 +240,7 @@ export default function DealsPage() {
                       key={deal.id}
                       className={cn(
                         "hover:bg-bg-subtle",
-                        selectedIds.has(deal.id) && "bg-cyan-50/40"
+                        selectedIds.has(deal.id) && "bg-sky-50/40"
                       )}
                     >
                       <td className="px-3 py-3 w-10" onClick={(e) => e.stopPropagation()}>
@@ -253,7 +253,7 @@ export default function DealsPage() {
                             else next.delete(deal.id);
                             setSelectedIds(next);
                           }}
-                          className="rounded border-sky-300 text-cyan-600 focus:ring-cyan-500"
+                          className="rounded border-sky-300 text-sky-500 focus:ring-sky-400"
                         />
                       </td>
                       <td className="px-4 py-3">

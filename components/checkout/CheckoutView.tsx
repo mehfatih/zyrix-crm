@@ -45,9 +45,9 @@ export default function CheckoutView({ locale }: Props) {
 
 function CheckoutLoadingFallback() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-cyan-100 p-8 text-center">
-        <Loader2 className="w-8 h-8 text-cyan-600 animate-spin mx-auto" />
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-sky-100 p-8 text-center">
+        <Loader2 className="w-8 h-8 text-sky-500 animate-spin mx-auto" />
       </div>
     </div>
   );
@@ -161,11 +161,11 @@ function CheckoutContent({ locale }: Props) {
   )}`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-cyan-100 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-sky-100 p-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-11 h-11 rounded-xl bg-cyan-600 flex items-center justify-center">
+          <div className="w-11 h-11 rounded-xl bg-sky-500 flex items-center justify-center">
             <CreditCard size={22} className="text-white" />
           </div>
           <div>
@@ -193,7 +193,7 @@ function CheckoutContent({ locale }: Props) {
                 <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
                   {t("currency")}
                 </div>
-                <div className="text-lg font-bold text-cyan-700 mt-1">
+                <div className="text-lg font-bold text-sky-600 mt-1">
                   {CURRENCY_SYMBOL[currency]} {currency}
                 </div>
               </div>
@@ -204,7 +204,7 @@ function CheckoutContent({ locale }: Props) {
         {/* Status */}
         {status === "init" && (
           <div className="flex items-center justify-center py-8">
-            <Loader2 size={28} className="animate-spin text-cyan-600" />
+            <Loader2 size={28} className="animate-spin text-sky-500" />
           </div>
         )}
 
@@ -212,7 +212,7 @@ function CheckoutContent({ locale }: Props) {
           <div className="text-center py-8">
             <Loader2
               size={32}
-              className="animate-spin text-cyan-600 mx-auto mb-3"
+              className="animate-spin text-sky-500 mx-auto mb-3"
             />
             <p className="text-sm font-medium text-slate-800">
               {t("redirecting")}
@@ -234,7 +234,7 @@ function CheckoutContent({ locale }: Props) {
             </p>
             <Link
               href={signupHref}
-              className="inline-flex items-center justify-center w-full bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg px-4 py-2.5 text-sm font-semibold"
+              className="inline-flex items-center justify-center w-full bg-sky-500 hover:bg-sky-600 text-white rounded-lg px-4 py-2.5 text-sm font-semibold"
             >
               {t("continueToSignup")}
             </Link>
@@ -244,7 +244,7 @@ function CheckoutContent({ locale }: Props) {
                 href={`/${locale}/signin?next=${encodeURIComponent(
                   `/${locale}/checkout?plan=${plan}&billing=${billing}&currency=${currency}`
                 )}`}
-                className="text-cyan-700 font-semibold hover:underline"
+                className="text-sky-600 font-semibold hover:underline"
               >
                 {t("signIn")}
               </Link>
@@ -267,7 +267,7 @@ function CheckoutContent({ locale }: Props) {
               </button>
               <Link
                 href={`/${locale}/pricing`}
-                className="flex-1 text-center rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2.5 text-sm font-semibold"
+                className="flex-1 text-center rounded-lg bg-sky-500 hover:bg-sky-600 text-white px-4 py-2.5 text-sm font-semibold"
               >
                 {t("backToPricing")}
               </Link>
@@ -277,7 +277,7 @@ function CheckoutContent({ locale }: Props) {
 
         {/* Trust footer */}
         <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-500">
-          <ShieldCheck size={14} className="text-cyan-600" />
+          <ShieldCheck size={14} className="text-sky-500" />
           {t("secureCheckout")}
         </div>
       </div>

@@ -27,7 +27,7 @@ export default function MerchantHome({ locale }: { locale: string }) {
       href: `/${locale}/merchant/deals`,
       icon: Briefcase,
       label: t("items.deals"),
-      color: "from-cyan-500 to-sky-600",
+      color: "from-sky-400 to-sky-600",
     },
     {
       href: `/${locale}/merchant/tasks`,
@@ -62,7 +62,7 @@ export default function MerchantHome({ locale }: { locale: string }) {
             <Link
               key={c.href}
               href={c.href}
-              className="group relative bg-white border border-sky-100 rounded-2xl p-5 hover:border-cyan-200 hover:shadow-md transition-all"
+              className="group relative bg-white border border-sky-100 rounded-2xl p-5 hover:border-sky-200 hover:shadow-md transition-all"
             >
               <div
                 className={`w-11 h-11 rounded-xl bg-gradient-to-br ${c.color} text-white flex items-center justify-center mb-3 shadow-sm`}
@@ -72,7 +72,7 @@ export default function MerchantHome({ locale }: { locale: string }) {
               <div className="text-sm font-semibold text-[#0C4A6E] flex items-center gap-1.5">
                 {c.label}
                 <ArrowRight
-                  className={`w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-600 transition-colors ${
+                  className={`w-3.5 h-3.5 text-slate-400 group-hover:text-sky-500 transition-colors ${
                     isRTL ? "rotate-180" : ""
                   }`}
                 />

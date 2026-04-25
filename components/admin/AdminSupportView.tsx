@@ -172,7 +172,7 @@ export default function AdminSupportView({ locale }: Props) {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none"
+          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
         >
           <option value="">{t("allStatuses")}</option>
           <option value="open">{t("statusOpen")}</option>
@@ -183,7 +183,7 @@ export default function AdminSupportView({ locale }: Props) {
         <select
           value={priorityFilter}
           onChange={(e) => setPriorityFilter(e.target.value)}
-          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none"
+          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
         >
           <option value="">{t("allPriorities")}</option>
           <option value="urgent">{t("priority.urgent")}</option>
@@ -196,23 +196,23 @@ export default function AdminSupportView({ locale }: Props) {
       {/* List */}
       {loading ? (
         <div className="flex items-center justify-center py-16">
-          <Loader2 className="animate-spin text-cyan-600" size={28} />
+          <Loader2 className="animate-spin text-sky-500" size={28} />
         </div>
       ) : error ? (
         <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
           {error}
         </div>
       ) : !data || data.items.length === 0 ? (
-        <div className="rounded-xl bg-white border border-cyan-100 p-10 text-center">
+        <div className="rounded-xl bg-white border border-sky-100 p-10 text-center">
           <LifeBuoy
             size={32}
-            className="mx-auto text-cyan-300"
+            className="mx-auto text-sky-300"
             strokeWidth={1.5}
           />
           <p className="mt-3 text-sm text-slate-600">{t("empty")}</p>
         </div>
       ) : (
-        <div className="rounded-xl bg-white border border-cyan-100 overflow-hidden">
+        <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-sky-50 text-xs uppercase text-slate-600">
@@ -237,7 +237,7 @@ export default function AdminSupportView({ locale }: Props) {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-cyan-50">
+              <tbody className="divide-y divide-sky-50">
                 {data.items.map((tk) => {
                   const statusM = STATUS_META[tk.status] ?? STATUS_META.open;
                   const priM = PRIORITY_META[tk.priority] ?? PRIORITY_META.medium;
@@ -341,7 +341,7 @@ function StatCard({
 }) {
   const c = STAT_COLOR[color];
   return (
-    <div className="rounded-xl bg-white border border-cyan-100 p-4">
+    <div className="rounded-xl bg-white border border-sky-100 p-4">
       <div className="flex items-center gap-3">
         <div className={`rounded-lg p-2 ${c.bg} ring-1 ${c.ring}`}>
           <Icon size={16} className={c.text} />

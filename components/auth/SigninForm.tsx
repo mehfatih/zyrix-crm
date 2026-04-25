@@ -81,13 +81,13 @@ export function SigninForm({ locale }: SigninFormProps) {
     return (
       <form onSubmit={handleVerify2FA} className="space-y-4">
         <div className="flex items-center justify-center mb-2">
-          <div className="w-14 h-14 rounded-full bg-cyan-50 flex items-center justify-center">
-            <ShieldCheck className="w-7 h-7 text-cyan-600" />
+          <div className="w-14 h-14 rounded-full bg-sky-50 flex items-center justify-center">
+            <ShieldCheck className="w-7 h-7 text-sky-500" />
           </div>
         </div>
 
         <div className="text-center">
-          <h2 className="text-lg font-bold text-cyan-900">
+          <h2 className="text-lg font-bold text-sky-900">
             {tr(
               "Two-factor verification",
               "التحقق بخطوتين",
@@ -131,7 +131,7 @@ export function SigninForm({ locale }: SigninFormProps) {
             }
             placeholder={useBackup ? "XXXX-XXXX" : "000000"}
             maxLength={useBackup ? 9 : 6}
-            className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+            className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
           />
         </div>
 
@@ -140,7 +140,7 @@ export function SigninForm({ locale }: SigninFormProps) {
           disabled={
             isSubmitting || (useBackup ? otp.length < 8 : otp.length !== 6)
           }
-          className="w-full py-3 px-4 text-sm font-semibold rounded-lg bg-cyan-600 text-white hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full py-3 px-4 text-sm font-semibold rounded-lg bg-sky-500 text-white hover:bg-sky-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
           {tr("Verify", "تحقق", "Doğrula")}
@@ -155,7 +155,7 @@ export function SigninForm({ locale }: SigninFormProps) {
               setUseBackup(false);
               setError(null);
             }}
-            className="inline-flex items-center gap-1 text-slate-600 hover:text-cyan-700"
+            className="inline-flex items-center gap-1 text-slate-600 hover:text-sky-600"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             {tr("Back", "رجوع", "Geri")}
@@ -167,7 +167,7 @@ export function SigninForm({ locale }: SigninFormProps) {
               setOtp("");
               setError(null);
             }}
-            className="inline-flex items-center gap-1 text-cyan-700 hover:text-cyan-800 hover:underline"
+            className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 hover:underline"
           >
             <KeyRound className="w-3.5 h-3.5" />
             {useBackup

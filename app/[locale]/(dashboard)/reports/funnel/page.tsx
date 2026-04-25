@@ -107,11 +107,11 @@ export default function FunnelReportPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center shadow">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow">
               <GitBranch className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-cyan-900">
+              <h1 className="text-2xl font-bold text-sky-900">
                 {tr("Pipeline funnel", "مسار التحويل", "Satış hunisi")}
               </h1>
               <p className="text-sm text-slate-600 mt-0.5">
@@ -131,7 +131,7 @@ export default function FunnelReportPage() {
                 onClick={() => setWindowDays(p.days)}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                   windowDays === p.days
-                    ? "bg-cyan-600 text-white"
+                    ? "bg-sky-500 text-white"
                     : "text-slate-600 hover:bg-sky-50"
                 }`}
               >
@@ -143,7 +143,7 @@ export default function FunnelReportPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 flex items-start gap-2">
@@ -153,9 +153,9 @@ export default function FunnelReportPage() {
         ) : !report || report.totalDeals === 0 ? (
           <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
             <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <GitBranch className="w-6 h-6 text-cyan-600" />
+              <GitBranch className="w-6 h-6 text-sky-500" />
             </div>
-            <p className="text-sm font-semibold text-cyan-900">
+            <p className="text-sm font-semibold text-sky-900">
               {tr(
                 "No deals in this window",
                 "لا توجد صفقات في هذه الفترة",
@@ -219,8 +219,8 @@ export default function FunnelReportPage() {
 
             {/* Info banner */}
             <div className="rounded-lg bg-sky-50 border border-sky-200 p-3 flex items-start gap-2">
-              <Info className="w-4 h-4 text-cyan-700 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-cyan-900 leading-relaxed">
+              <Info className="w-4 h-4 text-sky-600 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-sky-900 leading-relaxed">
                 {tr(
                   "Each bar counts deals that REACHED that stage at any point (including those that moved past it). The drop-off arrow shows the conversion rate from one stage to the next.",
                   "كل شريط يحسب الصفقات اللي وصلت للمرحلة دي في أي وقت (بما فيها اللي عدّت منها). سهم التسرب يوضّح نسبة التحويل من مرحلة للي بعدها.",
@@ -239,13 +239,13 @@ export default function FunnelReportPage() {
                   return (
                     <div key={stage.stage}>
                       <div className="flex items-center gap-3">
-                        <div className="w-32 flex-shrink-0 text-xs font-semibold text-cyan-900">
+                        <div className="w-32 flex-shrink-0 text-xs font-semibold text-sky-900">
                           {stageLabel(stage.stage, locale)}
                         </div>
                         <div className="flex-1 relative">
                           <div className="h-10 rounded-lg bg-slate-50 overflow-hidden">
                             <div
-                              className="h-full bg-gradient-to-r from-cyan-500 to-sky-500 rounded-lg transition-all flex items-center px-3"
+                              className="h-full bg-gradient-to-r from-sky-400 to-sky-500 rounded-lg transition-all flex items-center px-3"
                               style={{ width: `${widthPct}%` }}
                             >
                               <span
@@ -382,7 +382,7 @@ export default function FunnelReportPage() {
                           : ""
                       }
                     >
-                      <td className="px-4 py-2.5 font-medium text-cyan-900">
+                      <td className="px-4 py-2.5 font-medium text-sky-900">
                         {stageLabel(s.stage, locale)}
                       </td>
                       <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-slate-700">
@@ -449,7 +449,7 @@ function KpiCard({
       ? "bg-emerald-50 text-emerald-700"
       : accent === "rose"
         ? "bg-rose-50 text-rose-700"
-        : "bg-sky-50 text-cyan-700";
+        : "bg-sky-50 text-sky-600";
   return (
     <div className="rounded-xl border border-sky-100 bg-white p-4">
       <div className="flex items-center justify-between">
@@ -459,7 +459,7 @@ function KpiCard({
       </div>
       <div className="mt-3">
         <div className="text-xs font-medium text-slate-600">{label}</div>
-        <div className="text-xl font-bold text-cyan-900 tabular-nums mt-0.5">
+        <div className="text-xl font-bold text-sky-900 tabular-nums mt-0.5">
           {value}
         </div>
         {hint && <div className="text-[10px] text-slate-500 mt-1">{hint}</div>}

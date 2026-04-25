@@ -70,7 +70,7 @@ function WidgetShell({
 }) {
   const isRtl = locale === "ar";
   const accentBg: Record<string, string> = {
-    cyan: "bg-cyan-50 text-cyan-700",
+    cyan: "bg-sky-50 text-sky-600",
     emerald: "bg-emerald-50 text-emerald-700",
     sky: "bg-sky-50 text-sky-700",
     indigo: "bg-indigo-50 text-indigo-700",
@@ -86,13 +86,13 @@ function WidgetShell({
         >
           {icon}
         </div>
-        <h3 className="text-sm font-semibold text-cyan-900 flex-1 truncate">
+        <h3 className="text-sm font-semibold text-sky-900 flex-1 truncate">
           {title}
         </h3>
         {link && (
           <Link
             href={link}
-            className="text-xs text-cyan-600 hover:text-cyan-800 inline-flex items-center gap-0.5"
+            className="text-xs text-sky-500 hover:text-sky-800 inline-flex items-center gap-0.5"
           >
             {linkLabel}
             <ArrowRight
@@ -104,7 +104,7 @@ function WidgetShell({
       <div className="flex-1 min-h-0">
         {loading ? (
           <div className="h-full flex items-center justify-center">
-            <Loader2 className="w-4 h-4 animate-spin text-cyan-600" />
+            <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
           </div>
         ) : error ? (
           <p className="text-xs text-rose-700">{error}</p>
@@ -222,7 +222,7 @@ function KpiTile({
   accent: string;
 }) {
   const ring: Record<string, string> = {
-    cyan: "bg-cyan-50",
+    cyan: "bg-sky-50",
     indigo: "bg-indigo-50",
     emerald: "bg-emerald-50",
     sky: "bg-sky-50",
@@ -233,7 +233,7 @@ function KpiTile({
       <div className="text-[11px] font-medium text-slate-600 truncate">
         {label}
       </div>
-      <div className="text-xl font-bold text-cyan-900 tabular-nums mt-1">
+      <div className="text-xl font-bold text-sky-900 tabular-nums mt-1">
         {value}
       </div>
       {hint && (
@@ -337,11 +337,11 @@ export function PipelineSnapshotWidget({
                 </div>
                 <div className="flex-1 h-4 bg-slate-50 rounded">
                   <div
-                    className="h-full bg-gradient-to-r from-cyan-500 to-sky-500 rounded"
+                    className="h-full bg-gradient-to-r from-sky-400 to-sky-500 rounded"
                     style={{ width: `${(s.count / max) * 100}%` }}
                   />
                 </div>
-                <div className="w-8 text-right text-xs tabular-nums text-cyan-900 font-semibold">
+                <div className="w-8 text-right text-xs tabular-nums text-sky-900 font-semibold">
                   {s.count}
                 </div>
               </div>
@@ -389,9 +389,9 @@ export function RecentDealsWidget({
             <li key={d.id} className="flex items-center gap-2 min-w-0">
               <Link
                 href={`/${locale}/deals/${d.id}`}
-                className="flex-1 min-w-0 text-xs hover:text-cyan-700"
+                className="flex-1 min-w-0 text-xs hover:text-sky-600"
               >
-                <div className="font-medium text-cyan-900 truncate">
+                <div className="font-medium text-sky-900 truncate">
                   {d.title}
                 </div>
                 <div className="text-slate-500 truncate">
@@ -540,7 +540,7 @@ export function CohortSnapshotWidget({
             <div className="text-xs text-slate-600">
               {t(locale, "Latest cohort size", "حجم أحدث مجموعة", "En son kohort boyutu")}
             </div>
-            <div className="text-2xl font-bold text-cyan-900 tabular-nums">
+            <div className="text-2xl font-bold text-sky-900 tabular-nums">
               {latest.cohortSize}
             </div>
           </div>
@@ -611,7 +611,7 @@ export function FunnelSnapshotWidget({
             <div className="text-xs text-slate-600">
               {t(locale, "Win rate (90d)", "معدل الفوز (90ي)", "Kazanma oranı (90g)")}
             </div>
-            <div className="text-2xl font-bold text-cyan-900 tabular-nums">
+            <div className="text-2xl font-bold text-sky-900 tabular-nums">
               {data.overallConversionRate}%
             </div>
           </div>
@@ -663,7 +663,7 @@ export function CustomerCountWidget({
     >
       {stats && (
         <div>
-          <div className="text-3xl font-bold text-cyan-900 tabular-nums">
+          <div className="text-3xl font-bold text-sky-900 tabular-nums">
             {stats.total}
           </div>
           <div className="text-xs text-emerald-700 mt-1">
@@ -695,7 +695,7 @@ export function DealCountWidget({
     >
       {data && (
         <div>
-          <div className="text-3xl font-bold text-cyan-900 tabular-nums">
+          <div className="text-3xl font-bold text-sky-900 tabular-nums">
             {data.deals.open}
           </div>
           <div className="text-xs text-slate-600 mt-1">
@@ -775,9 +775,9 @@ export function TopCustomersWidget({
               </span>
               <Link
                 href={`/${locale}/customers/${c.id}`}
-                className="flex-1 min-w-0 text-xs hover:text-cyan-700"
+                className="flex-1 min-w-0 text-xs hover:text-sky-600"
               >
-                <div className="font-medium text-cyan-900 truncate">
+                <div className="font-medium text-sky-900 truncate">
                   {c.fullName}
                 </div>
                 {c.companyName && (
@@ -833,7 +833,7 @@ export function TasksDueTodayWidget({
     >
       {data && (
         <div>
-          <div className="text-3xl font-bold text-cyan-900 tabular-nums">
+          <div className="text-3xl font-bold text-sky-900 tabular-nums">
             {dueToday}
           </div>
           {overdue > 0 && (
@@ -890,7 +890,7 @@ export function UnreadMessagesWidget({
       error={err}
     >
       <div>
-        <div className="text-3xl font-bold text-cyan-900 tabular-nums">
+        <div className="text-3xl font-bold text-sky-900 tabular-nums">
           {count ?? 0}
         </div>
         <div className="text-xs text-slate-600 mt-1 flex items-center gap-1">

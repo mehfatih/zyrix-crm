@@ -151,15 +151,15 @@ export default function DataRetentionPage() {
         <div className="flex items-start gap-3">
           <Link
             href={`/${locale}/settings`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-cyan-700"
+            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
             <Database className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900">
+            <h1 className="text-2xl font-bold text-sky-900">
               {tr("Data retention", "الاحتفاظ بالبيانات", "Veri saklama")}
             </h1>
             <p className="text-sm text-slate-600 mt-0.5">
@@ -187,7 +187,7 @@ export default function DataRetentionPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-10">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : (
           <div className="space-y-3">
@@ -265,12 +265,12 @@ function PolicyRow({
   return (
     <div className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-sky-600 text-white flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center flex-shrink-0">
           <Database className="w-4 h-4" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-cyan-900">
+            <h3 className="text-sm font-bold text-sky-900">
               {labels[locale]}
             </h3>
             {legalHold && (
@@ -298,7 +298,7 @@ function PolicyRow({
               disabled={legalHold}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
                 days === p.days
-                  ? "bg-cyan-600 text-white border-cyan-600"
+                  ? "bg-sky-500 text-white border-sky-500"
                   : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
               } ${legalHold ? "opacity-50 cursor-not-allowed" : ""}`}
             >
@@ -366,7 +366,7 @@ function PolicyRow({
         <button
           onClick={handleSaveClick}
           disabled={!dirty || saving}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
         >
           {saving ? (
             <Loader2 className="w-4 h-4 animate-spin" />

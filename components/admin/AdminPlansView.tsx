@@ -117,7 +117,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="animate-spin text-cyan-600" size={24} />
+        <Loader2 className="animate-spin text-sky-500" size={24} />
       </div>
     );
   }
@@ -156,12 +156,12 @@ export default function AdminPlansView({ locale }: { locale: string }) {
             key={p.id}
             className={`relative rounded-xl bg-white border p-5 ${
               p.isFeatured
-                ? "border-cyan-400 ring-2 ring-cyan-100"
-                : "border-cyan-100"
+                ? "border-sky-300 ring-2 ring-sky-100"
+                : "border-sky-100"
             }`}
           >
             {p.isFeatured && (
-              <div className="absolute -top-3 ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-cyan-600 text-white px-2.5 py-0.5 text-xs font-semibold">
+              <div className="absolute -top-3 ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-sky-500 text-white px-2.5 py-0.5 text-xs font-semibold">
                 <Star size={10} />
                 {t("featured")}
               </div>
@@ -179,7 +179,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
               </h3>
               <button
                 onClick={() => setEditing({ ...p })}
-                className="p-1.5 rounded hover:bg-cyan-50 text-cyan-600"
+                className="p-1.5 rounded hover:bg-sky-50 text-sky-500"
                 title="Edit"
               >
                 <Pencil size={14} />
@@ -206,7 +206,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
             {/* Feature count */}
             <div className="rounded-lg bg-sky-50 px-3 py-2 text-xs">
-              <span className="font-semibold text-cyan-700">
+              <span className="font-semibold text-sky-600">
                 {p.features.length}
               </span>
               <span className="text-slate-600"> / {ALL_FEATURE_SLUGS.length} features</span>
@@ -216,8 +216,8 @@ export default function AdminPlansView({ locale }: { locale: string }) {
       </div>
 
       {/* Feature matrix */}
-      <div className="rounded-xl bg-white border border-cyan-100 overflow-hidden">
-        <div className="px-6 py-4 border-b border-cyan-100">
+      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
+        <div className="px-6 py-4 border-b border-sky-100">
           <h2 className="text-base font-bold text-slate-900">
             {t("features")}
           </h2>
@@ -269,7 +269,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
       {/* Feature-catalog defaults per plan (mirrors backend catalog) */}
       {featureCatalog.length > 0 && (
-        <div className="rounded-xl bg-white border border-cyan-200 shadow-sm">
+        <div className="rounded-xl bg-white border border-sky-200 shadow-sm">
           <div className="border-b border-slate-200 px-5 py-4">
             <h2 className="text-lg font-semibold text-slate-900">
               {locale === "ar"
@@ -388,7 +388,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
               {/* Prices */}
               <div>
-                <h4 className="text-sm font-semibold text-cyan-900 mb-2">
+                <h4 className="text-sm font-semibold text-sky-900 mb-2">
                   Prices
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -441,7 +441,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
               {/* Limits */}
               <div>
-                <h4 className="text-sm font-semibold text-cyan-900 mb-2">
+                <h4 className="text-sm font-semibold text-sky-900 mb-2">
                   Limits
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -495,7 +495,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                     onChange={(e) =>
                       setEditing({ ...editing, isActive: e.target.checked })
                     }
-                    className="rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+                    className="rounded border-slate-300 text-sky-500 focus:ring-sky-400"
                   />
                   Active
                 </label>
@@ -506,7 +506,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                     onChange={(e) =>
                       setEditing({ ...editing, isFeatured: e.target.checked })
                     }
-                    className="rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+                    className="rounded border-slate-300 text-sky-500 focus:ring-sky-400"
                   />
                   Featured
                 </label>
@@ -514,7 +514,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
               {/* Features */}
               <div>
-                <h4 className="text-sm font-semibold text-cyan-900 mb-2">
+                <h4 className="text-sm font-semibold text-sky-900 mb-2">
                   Features ({editing.features.length} / {ALL_FEATURE_SLUGS.length})
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5">
@@ -527,7 +527,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                         type="checkbox"
                         checked={editing.features.includes(slug)}
                         onChange={() => toggleFeature(slug)}
-                        className="rounded border-slate-300 text-cyan-600 focus:ring-cyan-500"
+                        className="rounded border-slate-300 text-sky-500 focus:ring-sky-400"
                       />
                       <span className="text-slate-700">{slug}</span>
                     </label>
@@ -547,7 +547,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="inline-flex items-center gap-2 rounded-lg bg-cyan-600 px-4 py-2 text-sm font-medium text-white hover:bg-cyan-700 disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-4 py-2 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-50"
               >
                 {saving ? (
                   <Loader2 size={14} className="animate-spin" />
@@ -583,7 +583,7 @@ function PriceField({
         step="0.01"
         value={typeof value === "string" ? value : value.toString()}
         onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
-        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
       />
     </div>
   );
@@ -607,7 +607,7 @@ function NumField({
         type="number"
         value={value}
         onChange={(e) => onChange(parseInt(e.target.value, 10) || 0)}
-        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
       />
     </div>
   );

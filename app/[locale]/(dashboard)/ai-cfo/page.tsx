@@ -113,13 +113,13 @@ export default function AICFOPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-cyan-900 flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-cyan-600" />
+            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
+              <Sparkles className="w-6 h-6 text-sky-500" />
               {t("title")}
             </h1>
             <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-cyan-50 to-sky-50 border border-cyan-200 rounded-full text-xs font-medium text-cyan-700">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-200 rounded-full text-xs font-medium text-sky-600">
             <Bot className="w-3.5 h-3.5" />
             {t("poweredBy")}
           </div>
@@ -128,7 +128,7 @@ export default function AICFOPage() {
         {/* Snapshot summary */}
         {loadingSnapshot ? (
           <div className="flex items-center justify-center py-10">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
           </div>
         ) : snapshot ? (
           <SnapshotCard
@@ -143,7 +143,7 @@ export default function AICFOPage() {
         {/* Templates */}
         {conversation.length === 0 && templates.length > 0 && (
           <div className="bg-white border border-sky-100 rounded-xl p-5">
-            <h3 className="text-sm font-semibold text-cyan-900 mb-3 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-sky-900 mb-3 flex items-center gap-2">
               <Zap className="w-4 h-4 text-amber-500" />
               {t("templates.title")}
             </h3>
@@ -153,9 +153,9 @@ export default function AICFOPage() {
                   key={idx}
                   onClick={() => handleTemplate(tpl)}
                   disabled={asking}
-                  className="text-left rtl:text-right px-4 py-3 bg-sky-50/40 hover:bg-cyan-50 border border-sky-100 hover:border-cyan-300 rounded-lg text-sm text-slate-700 hover:text-cyan-900 transition-colors disabled:opacity-50 flex items-start gap-2"
+                  className="text-left rtl:text-right px-4 py-3 bg-sky-50/40 hover:bg-sky-50 border border-sky-100 hover:border-sky-300 rounded-lg text-sm text-slate-700 hover:text-sky-900 transition-colors disabled:opacity-50 flex items-start gap-2"
                 >
-                  <Sparkles className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
+                  <Sparkles className="w-4 h-4 text-sky-400 flex-shrink-0 mt-0.5" />
                   <span>{tpl.label}</span>
                 </button>
               ))}
@@ -208,7 +208,7 @@ export default function AICFOPage() {
           <button
             type="submit"
             disabled={!question.trim() || asking}
-            className="flex items-center gap-1.5 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-medium disabled:opacity-50 flex-shrink-0"
+            className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium disabled:opacity-50 flex-shrink-0"
           >
             {asking ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -248,11 +248,11 @@ function SnapshotCard({
         className="w-full px-5 py-3 flex items-center justify-between hover:bg-white transition-colors"
       >
         <div className="flex items-center gap-3">
-          <div className="bg-cyan-50 text-cyan-600 p-2 rounded-lg">
+          <div className="bg-sky-50 text-sky-500 p-2 rounded-lg">
             <TrendingUp className="w-4 h-4" />
           </div>
           <div className="text-left rtl:text-right">
-            <div className="text-sm font-semibold text-cyan-900">
+            <div className="text-sm font-semibold text-sky-900">
               {t("snapshot.title")}
             </div>
             <div className="text-xs text-slate-500">
@@ -336,7 +336,7 @@ function MiniStat({
         <Icon className="w-3.5 h-3.5" />
         <span className="text-xs">{label}</span>
       </div>
-      <div className="text-lg font-bold text-cyan-900 truncate">{value}</div>
+      <div className="text-lg font-bold text-sky-900 truncate">{value}</div>
       <div className="text-xs text-slate-500 truncate">{hint}</div>
     </div>
   );
@@ -358,14 +358,14 @@ function ConversationTurn({
     <div className="space-y-3">
       {/* User question */}
       <div className="flex ltr:justify-end rtl:justify-start">
-        <div className="bg-cyan-600 text-white rounded-2xl ltr:rounded-br-sm rtl:rounded-bl-sm px-4 py-2.5 max-w-[80%] text-sm shadow-sm">
+        <div className="bg-sky-500 text-white rounded-2xl ltr:rounded-br-sm rtl:rounded-bl-sm px-4 py-2.5 max-w-[80%] text-sm shadow-sm">
           {turn.question}
         </div>
       </div>
 
       {/* AI answer */}
       <div className="flex ltr:justify-start rtl:justify-end gap-2 items-start">
-        <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-cyan-500 to-sky-500 rounded-full flex items-center justify-center shadow-sm">
+        <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-500 rounded-full flex items-center justify-center shadow-sm">
           <Sparkles className="w-4 h-4 text-white" />
         </div>
         <div className="bg-white border border-sky-100 rounded-2xl ltr:rounded-bl-sm rtl:rounded-br-sm px-5 py-4 max-w-[85%] shadow-sm">
@@ -430,7 +430,7 @@ function MarkdownRenderer({ text }: { text: string }) {
       out.push(
         <h3
           key={out.length}
-          className="text-sm font-bold text-cyan-900 mt-3 mb-1"
+          className="text-sm font-bold text-sky-900 mt-3 mb-1"
         >
           {line.slice(4)}
         </h3>
@@ -442,7 +442,7 @@ function MarkdownRenderer({ text }: { text: string }) {
       out.push(
         <h2
           key={out.length}
-          className="text-base font-bold text-cyan-900 mt-4 mb-2"
+          className="text-base font-bold text-sky-900 mt-4 mb-2"
         >
           {line.slice(3)}
         </h2>
@@ -454,7 +454,7 @@ function MarkdownRenderer({ text }: { text: string }) {
       out.push(
         <h1
           key={out.length}
-          className="text-lg font-bold text-cyan-900 mt-4 mb-2"
+          className="text-lg font-bold text-sky-900 mt-4 mb-2"
         >
           {line.slice(2)}
         </h1>
@@ -504,14 +504,14 @@ function renderInline(text: string): string {
   // Bold
   s = s.replace(
     /\*\*([^*]+)\*\*/g,
-    '<strong class="font-bold text-cyan-900">$1</strong>'
+    '<strong class="font-bold text-sky-900">$1</strong>'
   );
   // Italic
   s = s.replace(/\*([^*]+)\*/g, '<em class="italic">$1</em>');
   // Inline code
   s = s.replace(
     /`([^`]+)`/g,
-    '<code class="bg-sky-50 text-cyan-800 px-1 py-0.5 rounded text-xs font-mono">$1</code>'
+    '<code class="bg-sky-50 text-sky-800 px-1 py-0.5 rounded text-xs font-mono">$1</code>'
   );
   return s;
 }

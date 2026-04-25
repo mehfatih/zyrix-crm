@@ -42,16 +42,16 @@ export default function AdminForgotPasswordForm({ locale }: { locale: string }) 
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-cyan-50 to-sky-100 px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 via-sky-50 to-sky-100 px-4 py-8">
       <div className="w-full max-w-md">
         <div className="mb-6 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-cyan-600 text-white px-4 py-1.5 text-xs font-semibold tracking-wide">
+          <div className="inline-flex items-center gap-2 rounded-full bg-sky-500 text-white px-4 py-1.5 text-xs font-semibold tracking-wide">
             <ShieldCheck size={14} />
             {t("badge")}
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white border border-cyan-200 shadow-xl shadow-cyan-900/10 p-8">
+        <div className="rounded-2xl bg-white border border-sky-200 shadow-xl shadow-sky-900/10 p-8">
           <div className="mb-6 text-center">
             <h1 className="text-2xl font-bold text-slate-900">
               {t("forgot.title")}
@@ -63,7 +63,7 @@ export default function AdminForgotPasswordForm({ locale }: { locale: string }) 
 
           {submitted ? (
             <div className="space-y-4">
-              <div className="rounded-lg bg-cyan-50 border border-cyan-200 p-4 text-sm text-cyan-900">
+              <div className="rounded-lg bg-sky-50 border border-sky-200 p-4 text-sm text-sky-900">
                 {t("forgot.neutralSuccess")}
               </div>
               <Link
@@ -95,7 +95,7 @@ export default function AdminForgotPasswordForm({ locale }: { locale: string }) 
                     autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                    className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
                     placeholder="admin@zyrix.co"
                   />
                 </div>
@@ -110,7 +110,7 @@ export default function AdminForgotPasswordForm({ locale }: { locale: string }) 
               <button
                 type="submit"
                 disabled={loading || !validEmail(email)}
-                className="w-full rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2.5 px-4 text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2.5 px-4 text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {loading ? t("forgot.sending") : t("forgot.send")}
               </button>
@@ -118,7 +118,7 @@ export default function AdminForgotPasswordForm({ locale }: { locale: string }) 
               <div className="text-center">
                 <Link
                   href={`/${locale}/admin/login`}
-                  className="text-sm text-cyan-700 hover:text-cyan-900"
+                  className="text-sm text-sky-600 hover:text-sky-900"
                 >
                   {t("forgot.backToLogin")}
                 </Link>

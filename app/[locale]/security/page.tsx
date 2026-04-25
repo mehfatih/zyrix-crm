@@ -66,7 +66,7 @@ const PILLARS: {
   },
   {
     Icon: Key,
-    color: "from-cyan-500 to-sky-600",
+    color: "from-sky-400 to-sky-600",
     title: {
       en: "Strong authentication",
       ar: "مصادقة قوية",
@@ -245,13 +245,13 @@ export default async function SecurityPage({
         </div>
 
         <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 text-center text-white">
-          <ShieldCheck className="w-10 h-10 mx-auto mb-3 text-cyan-400" />
+          <ShieldCheck className="w-10 h-10 mx-auto mb-3 text-sky-300" />
           <h2 className="text-xl font-bold mb-2">{t.contact}</h2>
           <p className="text-sm text-slate-300 mb-4">
             {t.contactDesc}{" "}
             <a
               href="mailto:security@zyrix.co"
-              className="text-cyan-400 hover:text-cyan-300 font-mono"
+              className="text-sky-300 hover:text-sky-300 font-mono"
             >
               security@zyrix.co
             </a>
