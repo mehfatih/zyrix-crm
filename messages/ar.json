@@ -442,7 +442,27 @@
       "phone": "الهاتف",
       "phonePlaceholder": "+90 555 000 0000",
       "save": "حفظ التغييرات",
-      "success": "تم تحديث الملف الشخصي بنجاح"
+      "success": "تم تحديث الملف الشخصي بنجاح",
+      "avatar": "الصورة الشخصية",
+      "avatarUpload": "رفع الصورة الشخصية",
+      "avatarHint": "ارفع صورة شخصية. يُفضّل PNG أو JPG.",
+      "identity": "الهوية",
+      "contactInfo": "معلومات التواصل",
+      "website": "الموقع الإلكتروني",
+      "billingEmail": "بريد الفوترة",
+      "locale": "اللغة",
+      "timezone": "المنطقة الزمنية",
+      "preferredLocale": "اللغة المفضلة",
+      "preferredLocaleHint": "اختر اللغة المستخدمة داخل مساحة العمل.",
+      "notifications": "الإشعارات",
+      "notif": {
+        "email_daily_digest": "ملخص يومي عبر البريد",
+        "email_new_customer": "بريد عند إضافة عميل جديد",
+        "email_new_deal": "بريد عند إنشاء صفقة جديدة",
+        "email_deal_won": "بريد عند ربح صفقة",
+        "push_new_message": "إشعار فوري برسالة جديدة",
+        "push_task_due": "إشعار فوري بموعد مهمة"
+      }
     },
     "company": {
       "heading": "معلومات الشركة",
@@ -2901,7 +2921,9 @@
         "settings": "إعدادات الوكلاء",
         "logs": "سجل النشاط"
       },
-      "filter": { "all": "الكل" }
+      "filter": {
+        "all": "الكل"
+      }
     },
     "integrations": {
       "title": "التكاملات",

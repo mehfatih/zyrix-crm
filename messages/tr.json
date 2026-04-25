@@ -442,7 +442,27 @@
       "phone": "Telefon",
       "phonePlaceholder": "+90 555 000 0000",
       "save": "Değişiklikleri kaydet",
-      "success": "Profil başarıyla güncellendi"
+      "success": "Profil başarıyla güncellendi",
+      "avatar": "Profil fotoğrafı",
+      "avatarUpload": "Profil fotoğrafı yükle",
+      "avatarHint": "Bir profil fotoğrafı yükleyin. PNG veya JPG önerilir.",
+      "identity": "Kimlik",
+      "contactInfo": "İletişim bilgileri",
+      "website": "Web sitesi",
+      "billingEmail": "Fatura e-postası",
+      "locale": "Dil",
+      "timezone": "Saat dilimi",
+      "preferredLocale": "Tercih edilen dil",
+      "preferredLocaleHint": "Çalışma alanında kullanılacak dili seçin.",
+      "notifications": "Bildirimler",
+      "notif": {
+        "email_daily_digest": "Günlük e-posta özeti",
+        "email_new_customer": "Yeni müşteri e-postası",
+        "email_new_deal": "Yeni anlaşma e-postası",
+        "email_deal_won": "Kazanılan anlaşma e-postası",
+        "push_new_message": "Yeni mesaj push bildirimi",
+        "push_task_due": "Görev zamanı push bildirimi"
+      }
     },
     "company": {
       "heading": "Şirket Bilgileri",
@@ -2901,7 +2921,9 @@
         "settings": "Ajan Ayarları",
         "logs": "Etkinlik Günlüğü"
       },
-      "filter": { "all": "Tümü" }
+      "filter": {
+        "all": "Tümü"
+      }
     },
     "integrations": {
       "title": "Entegrasyonlar",

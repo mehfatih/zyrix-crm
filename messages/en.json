@@ -442,7 +442,27 @@
       "phone": "Phone",
       "phonePlaceholder": "+90 555 000 0000",
       "save": "Save changes",
-      "success": "Profile updated successfully"
+      "success": "Profile updated successfully",
+      "avatar": "Avatar",
+      "avatarUpload": "Upload avatar",
+      "avatarHint": "Upload a profile photo. PNG or JPG recommended.",
+      "identity": "Identity",
+      "contactInfo": "Contact information",
+      "website": "Website",
+      "billingEmail": "Billing email",
+      "locale": "Language",
+      "timezone": "Timezone",
+      "preferredLocale": "Preferred language",
+      "preferredLocaleHint": "Choose the language used across your workspace.",
+      "notifications": "Notifications",
+      "notif": {
+        "email_daily_digest": "Daily email digest",
+        "email_new_customer": "New customer email",
+        "email_new_deal": "New deal email",
+        "email_deal_won": "Deal won email",
+        "push_new_message": "New message push notification",
+        "push_task_due": "Task due push notification"
+      }
     },
     "company": {
       "heading": "Company Information",
@@ -2901,7 +2921,9 @@
         "settings": "Agent Settings",
         "logs": "Activity Logs"
       },
-      "filter": { "all": "All" }
+      "filter": {
+        "all": "All"
+      }
     },
     "integrations": {
       "title": "Integrations",
