@@ -49,7 +49,7 @@ relevant to Sprint A:
 | Audit log (merchant) | `lib/api/advanced.ts:1157` | `AuditLogEntry`, `AuditLogPage`, `AuditLogQuery` |
 | Audit log (admin) | `lib/api/admin.ts:572` | `AuditLog` |
 | Compliance audit | `lib/api/advanced.ts:962` | `ComplianceAuditReport` |
-| Role / permission | `lib/api/roles.ts` | `Role`, `Permission` (24 keys), `PermissionEntry`, `PermissionModule`, `TeamMember` |
+| Role / permission | `lib/api/roles.ts` | `Role`, `Permission` (25 keys), `PermissionEntry`, `PermissionModule`, `TeamMember` |
 
 Implication for the rest of Sprint A: any "schema" question is answered
 by reading `lib/api/*` (and ultimately the backend repo), **not** by
@@ -232,7 +232,7 @@ RBAC contract is fully defined on the frontend. Highlights:
 
 **`lib/api/roles.ts`** declares:
 
-- 24 permission keys in `PERMISSION_KEYS`, covering 8 modules:
+- 25 permission keys in `PERMISSION_KEYS`, covering 8 modules:
   `customers:read|write|delete`, `deals:read|write|delete`,
   `quotes:read|write|issue`, `contracts:read|write|sign`,
   `invoices:read|issue|void`, `reports:view_own|view_all`,
