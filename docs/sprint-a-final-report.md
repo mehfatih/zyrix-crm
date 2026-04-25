@@ -91,7 +91,7 @@ These are **not in this repo**. The backend lives at `zyrix-crm-backend`
 modify the backend repo and explicitly does not gate frontend signoff on
 backend health.
 
-**Status:** open ticket TBD against `zyrix-crm-backend`. See §9 below.
+**Status:** tracked at [`zyrix-crm-backend` issue #1](https://github.com/mehfatih/zyrix-crm-backend/issues/1). See §9 below.
 
 ---
 
@@ -206,8 +206,9 @@ approximate priority order.
 ### 9.1 Backend 500s on `/api/brand`, `/api/brands`, `/api/brands/stats` (HIGHEST PRIORITY)
 
 The user-visible "broken" experience on `/settings/brand` and
-`/settings/brands` will not resolve until the backend is fixed. Open
-ticket TBD against `zyrix-crm-backend`. Documented in
+`/settings/brands` will not resolve until the backend is fixed. Tracked at
+[`zyrix-crm-backend` issue #1](https://github.com/mehfatih/zyrix-crm-backend/issues/1).
+Documented in
 `docs/sprint-a-discovery.md` §9.1 with the exact failing requests.
 
 ### 9.2 Lint tooling broken (pre-existing, flagged per Mehmet's instruction)
