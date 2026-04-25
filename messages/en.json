@@ -2822,6 +2822,66 @@
       "export": "Export",
       "clear": "Clear",
       "failed": "Action failed"
+    },
+    "pipeline": {
+      "title": "Pipeline",
+      "subtitle": "AI-monitored deal flow with stage health and stuck deal detection",
+      "bottleneck": "Bottleneck",
+      "stuckDeals": "stuck deals",
+      "dragDealsHere": "Drag deals here",
+      "moveSuccess": "Deal moved",
+      "moveError": "Failed to move deal",
+      "stages": {
+        "lead": "Lead",
+        "qualified": "Qualified",
+        "proposal": "Proposal",
+        "negotiation": "Negotiation",
+        "closing": "Closing"
+      }
+    },
+    "dealTimeline": {
+      "label": "Deal Timeline",
+      "likely": "likely",
+      "aiScore": "AI Score",
+      "risk": "Risk",
+      "stage": "Stage",
+      "activityTimeline": "Activity Timeline",
+      "recoveryPlan": "AI Recovery Plan",
+      "generateFollowup": "Generate follow-up",
+      "createTask": "Create task",
+      "escalate": "Escalate to owner"
+    },
+    "messaging": {
+      "conversations": "Conversations",
+      "aiSuggestions": "AI Suggestions",
+      "aiSuggest": "AI Suggest",
+      "improveTone": "Improve tone",
+      "translate": "Translate",
+      "send": "Send",
+      "sent": "Message sent",
+      "writeFirst": "Write something first",
+      "toneImproved": "Tone updated",
+      "placeholder": "Type a message or use AI Suggest...",
+      "tone": {
+        "professional": "Professional",
+        "friendly": "Friendly",
+        "concise": "Concise",
+        "persuasive": "Persuasive"
+      }
+    },
+    "reports": {
+      "title": "Reports",
+      "subtitle": "AI-generated business insights",
+      "export": "Export",
+      "aiNarrative": "AI Narrative",
+      "keyInsights": "Key Insights",
+      "visualAnalysis": "Visual Analysis",
+      "types": {
+        "sales": "Sales",
+        "pipeline": "Pipeline",
+        "customers": "Customers",
+        "revenue": "Revenue"
+      }
     }
   },
   "customers": {

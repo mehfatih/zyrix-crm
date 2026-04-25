@@ -2822,6 +2822,66 @@
       "export": "Dışa aktar",
       "clear": "Temizle",
       "failed": "Eylem başarısız"
+    },
+    "pipeline": {
+      "title": "Boru Hattı",
+      "subtitle": "Aşama sağlığı ve takılan anlaşma tespiti ile AI izlenen anlaşma akışı",
+      "bottleneck": "Darboğaz",
+      "stuckDeals": "takılan anlaşma",
+      "dragDealsHere": "Anlaşmaları buraya sürükleyin",
+      "moveSuccess": "Anlaşma taşındı",
+      "moveError": "Anlaşma taşınamadı",
+      "stages": {
+        "lead": "Aday",
+        "qualified": "Yeterli",
+        "proposal": "Teklif",
+        "negotiation": "Müzakere",
+        "closing": "Kapanış"
+      }
+    },
+    "dealTimeline": {
+      "label": "Anlaşma Zaman Çizelgesi",
+      "likely": "olasılık",
+      "aiScore": "AI Skor",
+      "risk": "Risk",
+      "stage": "Aşama",
+      "activityTimeline": "Etkinlik Zaman Çizelgesi",
+      "recoveryPlan": "AI Kurtarma Planı",
+      "generateFollowup": "Takip oluştur",
+      "createTask": "Görev oluştur",
+      "escalate": "Yöneticiye yükselt"
+    },
+    "messaging": {
+      "conversations": "Konuşmalar",
+      "aiSuggestions": "AI Önerileri",
+      "aiSuggest": "AI Öner",
+      "improveTone": "Tonu iyileştir",
+      "translate": "Çevir",
+      "send": "Gönder",
+      "sent": "Gönderildi",
+      "writeFirst": "Önce bir şey yazın",
+      "toneImproved": "Ton güncellendi",
+      "placeholder": "Bir mesaj yazın veya AI Öner kullanın...",
+      "tone": {
+        "professional": "Profesyonel",
+        "friendly": "Dostça",
+        "concise": "Kısa",
+        "persuasive": "İkna edici"
+      }
+    },
+    "reports": {
+      "title": "Raporlar",
+      "subtitle": "AI tarafından oluşturulan iş öngörüleri",
+      "export": "Dışa aktar",
+      "aiNarrative": "AI Anlatımı",
+      "keyInsights": "Temel Öngörüler",
+      "visualAnalysis": "Görsel Analiz",
+      "types": {
+        "sales": "Satış",
+        "pipeline": "Boru hattı",
+        "customers": "Müşteriler",
+        "revenue": "Gelir"
+      }
     }
   },
   "customers": {

@@ -2822,6 +2822,66 @@
       "export": "تصدير",
       "clear": "مسح",
       "failed": "فشل الإجراء"
+    },
+    "pipeline": {
+      "title": "خط المبيعات",
+      "subtitle": "تدفق صفقات مراقَب بالذكاء الاصطناعي مع صحة المراحل واكتشاف الصفقات المتوقفة",
+      "bottleneck": "اختناق",
+      "stuckDeals": "صفقات متوقفة",
+      "dragDealsHere": "اسحب الصفقات هنا",
+      "moveSuccess": "تم نقل الصفقة",
+      "moveError": "فشل نقل الصفقة",
+      "stages": {
+        "lead": "محتمل",
+        "qualified": "مؤهل",
+        "proposal": "عرض",
+        "negotiation": "تفاوض",
+        "closing": "إغلاق"
+      }
+    },
+    "dealTimeline": {
+      "label": "الخط الزمني للصفقة",
+      "likely": "احتمال",
+      "aiScore": "نتيجة الذكاء",
+      "risk": "خطر",
+      "stage": "المرحلة",
+      "activityTimeline": "الخط الزمني للنشاط",
+      "recoveryPlan": "خطة الاسترداد بالذكاء الاصطناعي",
+      "generateFollowup": "إنشاء متابعة",
+      "createTask": "إنشاء مهمة",
+      "escalate": "تصعيد للمسؤول"
+    },
+    "messaging": {
+      "conversations": "المحادثات",
+      "aiSuggestions": "اقتراحات الذكاء الاصطناعي",
+      "aiSuggest": "اقترح بالذكاء",
+      "improveTone": "تحسين النبرة",
+      "translate": "ترجمة",
+      "send": "إرسال",
+      "sent": "تم الإرسال",
+      "writeFirst": "اكتب شيئاً أولاً",
+      "toneImproved": "تم تحديث النبرة",
+      "placeholder": "اكتب رسالة أو استخدم اقتراح الذكاء...",
+      "tone": {
+        "professional": "احترافي",
+        "friendly": "ودود",
+        "concise": "موجز",
+        "persuasive": "مقنع"
+      }
+    },
+    "reports": {
+      "title": "التقارير",
+      "subtitle": "رؤى أعمال مولّدة بالذكاء الاصطناعي",
+      "export": "تصدير",
+      "aiNarrative": "السرد الذكي",
+      "keyInsights": "الرؤى الرئيسية",
+      "visualAnalysis": "التحليل البصري",
+      "types": {
+        "sales": "المبيعات",
+        "pipeline": "خط المبيعات",
+        "customers": "العملاء",
+        "revenue": "الإيرادات"
+      }
     }
   },
   "customers": {
