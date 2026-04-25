@@ -2805,6 +2805,47 @@
         "pipeline": "Boru hattı",
         "activity": "Etkinlik"
       }
+    },
+    "table": {
+      "loading": "Yükleniyor...",
+      "emptyTitle": "Henüz bir şey yok",
+      "emptyHint": "Başlamak için ilk kaydınızı oluşturun",
+      "aiScore": "AI",
+      "risk": "Risk",
+      "nextAction": "Sonraki eylem"
+    },
+    "bulkActions": {
+      "selected": "seçili",
+      "askAI": "AI'a sor",
+      "draftMessages": "Mesaj taslağı",
+      "createTasks": "Görev oluştur",
+      "export": "Dışa aktar",
+      "clear": "Temizle",
+      "failed": "Eylem başarısız"
     }
+  },
+  "customers": {
+    "title": "Müşteriler",
+    "countSuffix": "müşteri",
+    "create": "Müşteri ekle",
+    "searchPlaceholder": "İsim veya şirket ile ara...",
+    "filters": "Filtreler",
+    "name": "İsim",
+    "segment": "Segment",
+    "ltv": "Yaşam Değeri",
+    "lastContact": "Son iletişim"
+  },
+  "deals": {
+    "title": "Anlaşmalar",
+    "countSuffix": "anlaşma",
+    "won": "kazanıldı",
+    "create": "Yeni anlaşma",
+    "searchPlaceholder": "Anlaşma veya müşteri ara...",
+    "filters": "Filtreler",
+    "name": "Anlaşma",
+    "stage": "Aşama",
+    "value": "Değer",
+    "daysInStage": "Gün",
+    "expectedClose": "Beklenen kapanış"
   }
 }

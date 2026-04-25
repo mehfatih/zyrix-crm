@@ -11,6 +11,7 @@ import {
 } from "@/i18n";
 import { AuthProvider } from "@/lib/auth/context";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { Toaster } from "sonner";
 import "../globals.css";
 
 const BASE = "https://crm.zyrix.co";
@@ -218,6 +219,12 @@ export default async function LocaleLayout({
               {children}
             </AuthProvider>
           </QueryProvider>
+          <Toaster
+            position="top-right"
+            richColors
+            closeButton
+            dir={isArabic ? "rtl" : "ltr"}
+          />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -2805,6 +2805,47 @@
         "pipeline": "Pipeline",
         "activity": "Activity"
       }
+    },
+    "table": {
+      "loading": "Loading...",
+      "emptyTitle": "Nothing here yet",
+      "emptyHint": "Create your first record to get started",
+      "aiScore": "AI",
+      "risk": "Risk",
+      "nextAction": "Next action"
+    },
+    "bulkActions": {
+      "selected": "selected",
+      "askAI": "Ask AI",
+      "draftMessages": "Draft messages",
+      "createTasks": "Create tasks",
+      "export": "Export",
+      "clear": "Clear",
+      "failed": "Action failed"
     }
+  },
+  "customers": {
+    "title": "Customers",
+    "countSuffix": "customers",
+    "create": "Add customer",
+    "searchPlaceholder": "Search by name or company...",
+    "filters": "Filters",
+    "name": "Name",
+    "segment": "Segment",
+    "ltv": "LTV",
+    "lastContact": "Last contact"
+  },
+  "deals": {
+    "title": "Deals",
+    "countSuffix": "deals",
+    "won": "won",
+    "create": "New deal",
+    "searchPlaceholder": "Search deals or customers...",
+    "filters": "Filters",
+    "name": "Deal",
+    "stage": "Stage",
+    "value": "Value",
+    "daysInStage": "Days",
+    "expectedClose": "Expected close"
   }
 }

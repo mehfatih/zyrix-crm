@@ -2805,6 +2805,47 @@
         "pipeline": "خط المبيعات",
         "activity": "النشاط"
       }
+    },
+    "table": {
+      "loading": "جاري التحميل...",
+      "emptyTitle": "لا يوجد شيء هنا بعد",
+      "emptyHint": "أنشئ السجل الأول لتبدأ",
+      "aiScore": "ذكاء",
+      "risk": "خطر",
+      "nextAction": "الإجراء التالي"
+    },
+    "bulkActions": {
+      "selected": "محدد",
+      "askAI": "اسأل الذكاء",
+      "draftMessages": "صياغة رسائل",
+      "createTasks": "إنشاء مهام",
+      "export": "تصدير",
+      "clear": "مسح",
+      "failed": "فشل الإجراء"
     }
+  },
+  "customers": {
+    "title": "العملاء",
+    "countSuffix": "عميل",
+    "create": "إضافة عميل",
+    "searchPlaceholder": "ابحث بالاسم أو الشركة...",
+    "filters": "تصفية",
+    "name": "الاسم",
+    "segment": "الشريحة",
+    "ltv": "القيمة الإجمالية",
+    "lastContact": "آخر تواصل"
+  },
+  "deals": {
+    "title": "الصفقات",
+    "countSuffix": "صفقة",
+    "won": "تم الفوز",
+    "create": "صفقة جديدة",
+    "searchPlaceholder": "ابحث في الصفقات أو العملاء...",
+    "filters": "تصفية",
+    "name": "الصفقة",
+    "stage": "المرحلة",
+    "value": "القيمة",
+    "daysInStage": "أيام",
+    "expectedClose": "الإغلاق المتوقع"
   }
 }
