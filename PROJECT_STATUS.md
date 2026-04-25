@@ -65,48 +65,27 @@ GitHub: Version control
 
 ## 🎨 القواعد الثابتة (غير قابلة للتفاوض)
 
-### 1. الألوان — سماوي فقط، لا قاتم أبداً
+### 1. الألوان — الهدف لـ Sprint B: Dark Navy + Neon Blue Gradient
 
-**المعتمد:**
-```js
-const COLOR = {
-  // === NEW STANDARD (Apr 2026) - Unified Mobile + Web ===
-  primary:      "#0EA5E9", // Sky Blue 500 (master)
-  primaryDark:  "#0284C7", // Sky 600 (headings, active states)
-  primaryLight: "#7DD3FC", // Sky 300 (hover, soft accents)
-  accent:       "#22D3EE", // Cyan 400 (secondary)
-  azure:        "#38BDF8", // Sky 400
-  sky:          "#BAE6FD", // Sky 200 (very soft surfaces)
+**الهدف الجديد (متوافق مع MASTER_GUIDE.md §5):**
 
-  // Backgrounds
-  bg:           "#F0F9FF", // Sky 50 (page background)
-  bgCard:       "#FFFFFF", // Pure white for cards
-  bgCardAlt:    "#F8FAFC", // Slate 50 (alt surface)
-  aiSurface:    "#F0F9FF", // AI chip backgrounds
-  aiBorder:     "#BAE6FD", // AI element borders
+- **Primary navy:** `#112044` — الخلفية الأساسية والعناصر القاتمة
+- **Accent:** Neon Blue Gradient — التفاصيل النابضة، أزرار CTA، الإبراز
+- **Depth elements:** دوائر ضوئية، نقاط، توهج (glow) لإضافة عمق بصري
+- **Goal:** توحيد UI الويب مع UI الموبايل (المتأخر حاليًا في الويب)
 
-  // Text
-  text:         "#0C4A6E", // Sky 950 (headings - never pure black)
-  textMid:      "#0369A1", // Sky 700
-  textBody:     "#1E293B", // Slate 800 (body)
-  textLight:    "#64748B", // Slate 500 (muted)
+> **ملاحظة:** التفاصيل الكاملة للـ palette (variants, surfaces, text colors,
+> semantic states، إلخ) سيتم تحديدها في **Sprint B Discovery** — لا تُكتب هنا
+> قبل ذلك لتجنب التضارب مع نتائج الـ Discovery.
 
-  // Lines
-  border:       "#E2E8F0", // Slate 200
-  borderSky:    "#BAE6FD", // Sky 200
+**الممنوع تماماً (يطبَّق حتى تنتهي ترحيلة Sprint B):**
 
-  // Semantic
-  success:      "#22C55E", // Green 500
-  warning:      "#F59E0B", // Amber 500
-  danger:       "#EF4444", // Red 500
-  info:         "#0EA5E9", // Same as primary
-};
-```
-
-**الممنوع تماماً:**
-- البنفسجي الداكن: `#2D0B6B`, `#4A1A9E`, `#6D28D9`, `#130340` (الموجودة الآن خطأ)
-- الأسود: `#000000`
-- أي لون بقيمة Lightness أقل من 40%
+- استخدام Sky Blue palette القديم (`#0EA5E9`, `#0284C7`, `#7DD3FC`, `#22D3EE`,
+  `#38BDF8`, إلخ) في الكود الجديد — هذه القيم كانت المعتمدة سابقًا
+  وتم استبدالها بهدف Dark Navy.
+- البنفسجي العشوائي خارج التدرج المعتمد (`#2D0B6B`, `#4A1A9E`, `#6D28D9`،
+  `#130340`، إلخ).
+- أي لون يصارع التدرج الموحَّد Dark Navy + Neon Blue.
 
 ### 2. Backend منفصل تماماً
 - Repo مستقل: `zyrix-crm-backend`
@@ -169,10 +148,10 @@ prisma.$executeRawUnsafe(...)
 |---|---------|------|
 | 1 | `package.json` اسمه `"zyrix-pay"` | تغيير إلى `"zyrix-crm"` |
 | 2 | Metadata في `layout.tsx` تقول FinSuite/Pay | استبدال بنصوص CRM بالثلاث لغات |
-| 3 | `app/[locale]/page.tsx` بألوان بنفسجية داكنة | استبدال بالسماوي حسب القواعد |
+| 3 | `app/[locale]/page.tsx` بألوان بنفسجية داكنة | استبدال بـ Dark Navy + Neon Blue حسب §1 (يُنفَّذ في Sprint B) |
 | 4 | مجلدات `pipeline/` و `quotes/` خارج `app/` | نقلهم إلى `app/[locale]/` |
 | 5 | `NEXT_PUBLIC_API_URL` يشير إلى `zyrix-backend-production.up.railway.app` (Pay) | تغيير إلى الـ Backend الجديد |
-| 6 | `theme-color` meta = `#6D28D9` | تغيير إلى `#0891B2` |
+| 6 | `theme-color` meta = `#6D28D9` | تغيير إلى `#112044` (Dark Navy primary، يُنفَّذ في Sprint B) |
 
 ### ❌ ما لم يتم بعد
 - Backend بالكامل (Repo لم يُنشأ)
@@ -308,7 +287,7 @@ prisma.$executeRawUnsafe(...)
 
 ## 🚨 ما لا يجب فعله أبداً
 
-1. ❌ استخدام ألوان داكنة أو بنفسجية
+1. ❌ استخدام Sky Blue palette القديم في الكود الجديد، أو ألوان عشوائية خارج هدف Dark Navy + Neon Blue (راجع §1)
 2. ❌ ربط backend هذا المشروع بباك اند Zyrix Pay أو FinSuite
 3. ❌ تسليم ملف ناقص أو partial snippet
 4. ❌ تجاهل لغة من الثلاث
@@ -335,6 +314,12 @@ prisma.$executeRawUnsafe(...)
 - **2026-04-25:** Web AI Sprint 5 — مركز التحكم بـ AI Agents (8 وكلاء + 4 مستويات صلاحيات)
   + صفحة File Storage Integrations (Google Drive + Microsoft 365). تمت إضافة
   AgentsWidget إلى لوحة التحكم بعد Revenue Brain.
+- **2026-04-25 (لاحقًا في نفس اليوم — بعد Sprint A signoff):** محاذاة الهدف اللوني
+  مع `MASTER_GUIDE.md` §5 — اعتماد **Dark Navy `#112044` + Neon Blue Gradient**
+  كهدف لـ Sprint B (تصميم جديد). هذا **يُلغي** قاعدة Sky Blue `#0EA5E9` المعتمدة
+  سابقًا في نفس اليوم. القرار اتخذه Mehmet لحلّ التضارب الموثَّق في
+  `docs/sprint-a-final-report.md` §9.6. التنفيذ الكامل (palette، theme files،
+  component classes) في Sprint B.
 - **[تحديثات لاحقة تُضاف هنا]**
 
 ---
