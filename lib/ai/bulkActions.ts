@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 
 export type BulkActionType =
   | 'ask-ai'
@@ -31,12 +31,10 @@ export interface BulkActionResult {
 }
 
 class BulkActionsService {
-  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
-
   async execute(req: BulkActionRequest): Promise<BulkActionResult> {
     try {
-      const { data } = await axios.post(
-        `${this.baseURL}/api/ai/bulk-actions`,
+      const { data } = await apiClient.post(
+        '/api/ai/bulk-actions',
         req,
         { timeout: 10000 },
       );
