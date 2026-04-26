@@ -50,3 +50,5 @@ logs/
 
 # tsx buildinfo
 *.tsbuildinfo
+# Claude Code workspace
+.claude/
