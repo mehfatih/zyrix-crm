@@ -1,0 +1,152 @@
+/* app/zyrix-theme.css
+   Zyrix v2 marketing theme — dark premium identity.
+   Used by hero, sections, cards, separators. */
+
+:root {
+  --zx-navy-900: #0a1530;
+  --zx-navy-800: #112044;
+  --zx-navy-700: #08111f;
+  --zx-neon-blue: #1a56db;
+  --zx-cyan: #22d3ee;
+  --zx-violet: #7c3aed;
+  --zx-mint: #2dd4bf;
+  --zx-amber: #f59e0b;
+  --zx-glass-bg: rgba(255, 255, 255, 0.08);
+  --zx-glass-border: rgba(255, 255, 255, 0.16);
+}
+
+/* === Glass card primitive === */
+.zyrix-glass-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.10),
+    rgba(255, 255, 255, 0.045)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 80px rgba(34, 211, 238, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 28px;
+}
+
+/* === Dark canvas background === */
+.zyrix-dark-canvas {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.20), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(124, 58, 237, 0.22), transparent 26%),
+    linear-gradient(135deg, #0a1530 0%, #112044 55%, #08111f 100%);
+  color: #fff;
+}
+
+/* === Gradient border card === */
+.zyrix-gradient-border {
+  position: relative;
+  border-radius: 24px;
+  background: rgba(10, 21, 48, 0.6);
+  isolation: isolate;
+}
+.zyrix-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 211, 238, 0.6),
+    rgba(124, 58, 237, 0.4),
+    rgba(255, 255, 255, 0.08)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* === Soft glow chip === */
+.zyrix-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cffafe;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* === Pulse dot === */
+.zyrix-pulse {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+}
+.zyrix-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(34, 211, 238, 0.45);
+  animation: zyrix-pulse-ring 2s ease-out infinite;
+}
+@keyframes zyrix-pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* === Float animation === */
+@keyframes zyrix-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.zyrix-float {
+  animation: zyrix-float 6s ease-in-out infinite;
+}
+.zyrix-float-delayed {
+  animation: zyrix-float 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* === Marquee === */
+@keyframes zyrix-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.zyrix-marquee {
+  animation: zyrix-marquee 40s linear infinite;
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  .zyrix-float,
+  .zyrix-float-delayed,
+  .zyrix-marquee {
+    animation: none !important;
+  }
+  .zyrix-pulse::after {
+    animation: none !important;
+  }
+}
