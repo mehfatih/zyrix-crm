@@ -1,4 +1,4 @@
-import { apiClient } from '@/lib/api/client';
+import axios from 'axios';
 
 export type DealStage =
   | 'lead'
@@ -36,11 +36,13 @@ export interface DealListParams {
 }
 
 class DealsAIService {
+  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
+
   async list(
     params: DealListParams,
   ): Promise<{ deals: AIDeal[]; totalCount: number }> {
     try {
-      const { data } = await apiClient.get('/api/ai/deals', {
+      const { data } = await axios.get(`${this.baseURL}/api/ai/deals`, {
         params,
         timeout: 5000,
       });

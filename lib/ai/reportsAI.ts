@@ -1,4 +1,4 @@
-import { apiClient } from '@/lib/api/client';
+import axios from 'axios';
 
 export type ReportType = 'sales' | 'pipeline' | 'customers' | 'revenue';
 
@@ -26,10 +26,12 @@ export interface AIReport {
 }
 
 class ReportsAIService {
+  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
+
   async getReport(type: ReportType): Promise<AIReport> {
     try {
-      const { data } = await apiClient.get(
-        `/api/ai/reports/${type}`,
+      const { data } = await axios.get(
+        `${this.baseURL}/api/ai/reports/${type}`,
         { timeout: 8000 },
       );
       return data;

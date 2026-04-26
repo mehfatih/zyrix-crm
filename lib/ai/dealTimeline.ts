@@ -1,4 +1,4 @@
-import { apiClient } from '@/lib/api/client';
+import axios from 'axios';
 
 export interface TimelineEvent {
   id: string;
@@ -19,10 +19,12 @@ export interface DealTimelineData {
 }
 
 class DealTimelineService {
+  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
+
   async getTimeline(dealId: string): Promise<DealTimelineData> {
     try {
-      const { data } = await apiClient.get(
-        `/api/ai/deals/${dealId}/timeline`,
+      const { data } = await axios.get(
+        `${this.baseURL}/api/ai/deals/${dealId}/timeline`,
         { timeout: 5000 },
       );
       return data;

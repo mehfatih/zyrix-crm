@@ -1,4 +1,4 @@
-import { apiClient } from '@/lib/api/client';
+import axios from 'axios';
 
 export interface AIPriorityAction {
   id: string;
@@ -32,10 +32,12 @@ export interface AIDecisionContext {
 }
 
 class DecisionEngineService {
+  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
+
   async getExecutiveSummary(ctx: AIDecisionContext): Promise<AIExecutiveSummary> {
     try {
-      const { data } = await apiClient.post(
-        '/api/ai/executive-summary',
+      const { data } = await axios.post(
+        `${this.baseURL}/api/ai/executive-summary`,
         ctx,
         { timeout: 5000 }
       );
@@ -47,8 +49,8 @@ class DecisionEngineService {
 
   async getPriorityActions(ctx: AIDecisionContext): Promise<AIPriorityAction[]> {
     try {
-      const { data } = await apiClient.post(
-        '/api/ai/priority-actions',
+      const { data } = await axios.post(
+        `${this.baseURL}/api/ai/priority-actions`,
         ctx,
         { timeout: 5000 }
       );
