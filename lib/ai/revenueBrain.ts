@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 
 export interface RevenueScenario {
   id: 'conservative' | 'expected' | 'optimistic';
@@ -25,11 +25,9 @@ export interface RevenueBrainData {
 }
 
 class RevenueBrainService {
-  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
-
   async getRevenueBrain(workspaceId: string): Promise<RevenueBrainData> {
     try {
-      const { data } = await axios.get(`${this.baseURL}/api/ai/revenue-brain`, {
+      const { data } = await apiClient.get('/api/ai/revenue-brain', {
         params: { workspaceId },
         timeout: 5000,
       });
