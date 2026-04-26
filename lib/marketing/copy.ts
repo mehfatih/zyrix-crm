@@ -1,7 +1,6 @@
 // lib/marketing/copy.ts
-// Marketing copy strings — EN / AR / TR.
-// Imported by HeroV2, sections, and footer in later sprints.
-// IMPORTANT: keep keys identical across all three locales.
+// Marketing copy strings — EN / AR / TR — v3 (pixel-match).
+// All strings here come directly from the reference image.
 
 export type Locale = "en" | "ar" | "tr";
 
@@ -9,847 +8,379 @@ export const MARKETING_COPY = {
   en: {
     nav: {
       product: "Product",
-      ai: "AI",
-      whatsapp: "WhatsApp",
-      integrations: "Integrations",
+      solutions: "Solutions",
       pricing: "Pricing",
-      about: "About",
+      resources: "Resources",
+      company: "Company",
     },
     cta: {
       signIn: "Sign in",
       startFree: "Start free",
+      startFreeFull: "Start free — No credit card",
       talkToSales: "Talk to sales",
-      watchTour: "Watch product tour",
-      exploreIntegrations: "Explore integrations",
+      seeHowItWorks: "See how it works",
+      exploreFeatures: "Explore all features",
     },
     hero: {
-      badge: "New category for MENA growth",
-      headlineLead: "The business growth OS built around",
-      headlineHighlight: "WhatsApp, AI, and cash flow.",
+      badge: "AI-POWERED. WHATSAPP-NATIVE. ARABIC-FIRST.",
+      headlineLine1: "The CRM built",
+      headlineLine2: "for how business",
+      headlineLine3: "actually happens",
       subheadline:
-        "Zyrix brings CRM, WhatsApp conversations, sales pipelines, AI CFO insights, regional tax logic, and team execution into one system built for Turkiye and MENA.",
-      trustLine:
-        "Built in Istanbul. Ready for Arabic, Turkish, English, KDV, VAT, ZATCA, and WhatsApp-first teams.",
-      chips: {
-        whatsapp: "98% WhatsApp delivery",
-        cfo: "AI CFO risk detected",
-        launch: "15 min go-live",
-        tax: "KDV / VAT ready",
-      },
-      console: {
-        title: "Zyrix Command Center",
-        live: "Live",
-        cards: {
-          whatsapp: "WhatsApp 98%",
-          pipeline: "Pipeline $1.2M",
-          cfo: "AI CFO 84%",
-          cash: "Cash risk $87k",
+        "Zyrix is the all-in-one CRM for MENA & Türkiye teams.\nWhatsApp at the core. Arabic-first by design.\nEverything else, finally connected.",
+      socialProof: "Used by 500+ companies across MENA & Türkiye",
+      dashboard: {
+        title: "Zyrix CRM",
+        revenue: "Revenue this month",
+        revenueValue: "SAR 245,000",
+        revenueDelta: "+18.6%",
+        deals: "Open Deals",
+        dealsValue: "128",
+        dealsDelta: "+24",
+        conversations: "WhatsApp Conversations",
+        conversationsValue: "1,240",
+        conversationsDelta: "+32%",
+        responseTime: "Response Time",
+        responseValue: "2m 15s",
+        responseDelta: "+28%",
+        pipeline: "Pipeline",
+        stages: { new: "New", qualified: "Qualified", proposal: "Proposal", won: "Won" },
+        stageValues: { new: "320", qualified: "128", proposal: "64", won: "24" },
+        chips: {
+          delivery: "98% WhatsApp delivery",
+          setup: "3x Faster setup",
+          insights: "AI Insights — Deal won probability high",
         },
       },
     },
-    metrics: {
-      title: "Numbers that change how you operate",
-      subtitle:
-        "Not vanity metrics. Operational advantages for teams selling in WhatsApp-first markets.",
+    trust: {
+      title: "Trusted by growing teams",
+      logos: ["HASEEB", "MADO", "KUMDA", "SABAH", "AL MAYA", "TRUE GAMING", "iStage"],
+    },
+    numbers: {
+      title: "The numbers tell the story",
+      subtitle: "Why teams switch from enterprise CRM platforms to Zyrix",
       cards: [
-        {
-          value: "48h",
-          label: "Launch Window",
-          desc: "Start with customers, pipeline, WhatsApp inbox, and reporting fast.",
-        },
         {
           value: "80%",
-          label: "Lower Seat Waste",
-          desc: "Pay per company, not per every user you invite.",
+          color: "#10B981",
+          label: "Lower cost",
+          subLabel: "than per-seat pricing",
+          icon: "shield",
         },
         {
-          value: "3+",
-          label: "Languages & Dialects",
-          desc: "Arabic, Turkish, English, with regional business tone.",
+          value: "48h",
+          color: "#A78BFA",
+          label: "From signup to",
+          subLabel: "production-ready",
+          icon: "bolt",
         },
         {
-          value: "WA",
-          label: "WhatsApp at the Core",
-          desc: "Conversations become customers, deals, tasks, and insights.",
+          value: "3",
+          color: "#22D3EE",
+          label: "Languages",
+          subLabel: "Arabic dialects",
+          icon: "globe",
         },
         {
-          value: "AI",
-          label: "AI CFO Signal",
-          desc: "Revenue risk and cash flow warnings before they become surprises.",
-        },
-      ],
-    },
-    ecosystem: {
-      title: "One operating system. Not nine separate tools.",
-      subtitle:
-        "Zyrix is built as a unified growth OS. Modules connect through the same customer brain — not glued together with integrations.",
-      center: "Zyrix Growth OS",
-      modules: [
-        {
-          name: "WhatsApp CRM",
-          desc: "Every message becomes a customer record, deal signal, or follow-up task.",
-        },
-        {
-          name: "Sales Pipeline",
-          desc: "See value, stage risk, stale deals, expected close, and next best action.",
-        },
-        {
-          name: "AI CFO",
-          desc: "Ask what blocks cash flow and get grounded answers from pipeline and revenue data.",
-        },
-        {
-          name: "Tax Engine",
-          desc: "KDV, VAT, ZATCA-ready logic for quotes, invoices, and reports.",
-        },
-        {
-          name: "Integrations",
-          desc: "Shopify, WooCommerce, Salla, Zid, Ticimax, Ideasoft and CSV/API paths.",
-        },
-        {
-          name: "Customer Portal",
-          desc: "Let customers view quotes, invoices, orders, tickets, and updates.",
-        },
-        {
-          name: "Campaigns",
-          desc: "Run segmented outreach from the same CRM brain.",
-        },
-        {
-          name: "Tasks",
-          desc: "Convert insights into team action without another to-do app.",
-        },
-      ],
-    },
-    ai: {
-      title: "AI that knows your customers, your pipeline, and your region",
-      subtitle:
-        "Zyrix does not bolt AI onto a CRM. The AI reads your business context: deals, WhatsApp conversations, invoices, taxes, tasks, and customer history.",
-      tabs: ["AI CFO", "Sales Assistant", "Content Writer", "Meeting Notes"],
-      prompts: [
-        "Which customers need action today?",
-        "What is blocking cash flow this month?",
-        "Draft a WhatsApp follow-up in Gulf Arabic.",
-        "Summarize this meeting into tasks and decisions.",
-        "Which deals are likely to stall?",
-      ],
-      sampleResponse: {
-        title: "AI CFO — November cash flow signal",
-        body: "3 customers (47% of receivables) are 14+ days late. Predicted gap: $87,400 by Nov 28. Recommended actions ready in your inbox.",
-      },
-    },
-    regional: {
-      title: "Built in Istanbul for MENA realities",
-      subtitle:
-        "Each market has its own tax logic, language tone, and selling motion. Zyrix is configured for them all.",
-      cards: [
-        {
-          flag: "🇹🇷",
-          country: "Turkiye",
-          desc: "KDV, e-Arşiv / e-Fatura direction, Turkish UI tone, local selling motion.",
-        },
-        {
-          flag: "🇸🇦",
-          country: "Saudi Arabia",
-          desc: "ZATCA readiness, Arabic-first business workflows, WhatsApp sales.",
-        },
-        {
-          flag: "🇦🇪",
-          country: "UAE / Gulf",
-          desc: "VAT, multi-currency, professional bilingual teams.",
-        },
-        {
-          flag: "🇮🇶",
-          country: "Iraq / Egypt",
-          desc: "WhatsApp-first operations, COD-like sales behavior, relationship-heavy workflows.",
-        },
-      ],
-    },
-    whatsapp: {
-      title: "Built around the channel your customers actually use",
-      subtitle:
-        "In MENA and Türkiye, WhatsApp is not a side channel. It is sales, support, follow-up, payment coordination, and relationship management.",
-      flow: [
-        "Incoming WhatsApp message",
-        "AI extracts customer intent",
-        "CRM creates / updates customer",
-        "Deal or task is generated",
-        "Follow-up is scheduled",
-        "Revenue forecast updates",
-      ],
-      bullets: [
-        "Meta Cloud API-ready inbox",
-        "Auto customer creation",
-        "Conversation timeline",
-        "Team assignment",
-        "SLA and follow-up rules",
-        "Arabic / Turkish / English message drafting",
-      ],
-    },
-    integrations: {
-      title: "Connects to where you already sell",
-      subtitle:
-        "Plug into the regional commerce stack without forcing a re-platform.",
-      cta: "Explore integrations",
-      logos: [
-        "Shopify",
-        "WooCommerce",
-        "Salla",
-        "Zid",
-        "Ticimax",
-        "Ideasoft",
-        "Magento",
-        "OpenCart",
-        "PrestaShop",
-        "Wix",
-        "BigCommerce",
-        "CSV / API",
-      ],
-    },
-    comparison: {
-      title: "Why legacy CRMs feel expensive here",
-      subtitle:
-        "Pricing models and feature priorities built for the West rarely match how MENA and Türkiye teams actually operate.",
-      legacyHeader: "Legacy CRMs",
-      zyrixHeader: "Zyrix",
-      rows: [
-        {
-          dim: "Pricing",
-          legacy: "Per-seat tax on growth",
-          zyrix: "Per-company pricing",
-        },
-        {
-          dim: "WhatsApp",
-          legacy: "Plugin / add-on",
-          zyrix: "Core channel",
-        },
-        {
-          dim: "Regional compliance",
-          legacy: "Manual setup",
-          zyrix: "KDV / VAT / ZATCA direction",
-        },
-        {
-          dim: "AI",
-          legacy: "Generic assistant",
-          zyrix: "AI CFO + workflow agents",
-        },
-        {
-          dim: "Language",
-          legacy: "Translated UI",
-          zyrix: "Arabic / Turkish / English business context",
-        },
-        {
-          dim: "Launch",
-          legacy: "Long implementation",
-          zyrix: "Fast setup path",
+          value: "Native",
+          color: "#FB923C",
+          label: "WhatsApp",
+          subLabel: "Not a bolted-on add-on",
+          icon: "chat",
         },
       ],
     },
     finalCta: {
-      title: "Build the operating system your team deserved from day one",
-      subtitle:
-        "Start with CRM + WhatsApp. Grow into AI, finance, automation, and regional operations.",
-      microCopy: "No credit card. Built for real teams in Türkiye and MENA.",
+      title: "Ready to see the difference?",
+      subtitle: "Start with a free account. Talk to sales when you're ready to scale.",
+      primary: "Start free — No credit card",
+      secondary: "Talk to sales",
     },
     footer: {
       tagline:
-        "The growth OS for WhatsApp-first teams in MENA and Türkiye.",
+        "The WhatsApp-native CRM built for MENA, Türkiye, and emerging markets. AI-powered. Arabic-first. Trusted by growing businesses.",
+      headquarters: "Headquarters",
+      headquartersValue: "Istanbul, Türkiye",
+      emailLabel: "Email",
+      emailValue: "hello@zyrix.co",
+      whatsappLabel: "WhatsApp",
+      whatsappValue: "+90 545 221 0888",
+      copyright: "© 2026 Zyrix CRM. All rights reserved.",
       columns: {
         product: {
           title: "Product",
-          links: ["CRM", "WhatsApp", "AI CFO", "Integrations", "Tax Engine", "Reports"],
+          links: ["Features", "Pricing", "Integrations", "AI CFO", "WhatsApp CRM"],
         },
-        company: {
-          title: "Company",
-          links: ["About", "Contact", "Blog", "Changelog"],
+        solutions: {
+          title: "Solutions",
+          links: ["By Industry", "By Role", "Use Cases", "Customer Stories"],
         },
         resources: {
           title: "Resources",
-          links: [
-            "Documentation",
-            "API Reference",
-            "Help Center",
-            "Security",
-            "System Status",
-          ],
+          links: ["Documentation", "API Reference", "Help Center", "Blog", "System Status"],
+        },
+        company: {
+          title: "Company",
+          links: ["About Us", "Careers", "Partners", "Contact", "Changelog"],
         },
         legal: {
           title: "Legal",
-          links: ["Privacy", "Terms", "Data Processing", "Security"],
+          links: ["Privacy Policy", "Terms of Service", "Security", "Data Processing Addendum"],
         },
       },
-      contact: {
-        city: "Istanbul",
-        email: "hello@zyrix.co",
-        whatsapp: "+90 545 221 0888",
-      },
-      miniCta: {
-        title: "Ready to see Zyrix in action?",
-        button: "Start free",
-      },
-      copyright: "© 2026 Zyrix. All rights reserved.",
     },
   },
   ar: {
     nav: {
       product: "المنتج",
-      ai: "الذكاء الاصطناعي",
-      whatsapp: "واتساب",
-      integrations: "التكاملات",
+      solutions: "الحلول",
       pricing: "الأسعار",
-      about: "عن زايركس",
+      resources: "الموارد",
+      company: "الشركة",
     },
     cta: {
       signIn: "تسجيل الدخول",
       startFree: "ابدأ مجاناً",
+      startFreeFull: "ابدأ مجاناً — بدون بطاقة ائتمان",
       talkToSales: "تواصل مع المبيعات",
-      watchTour: "شاهد جولة المنتج",
-      exploreIntegrations: "استكشف التكاملات",
+      seeHowItWorks: "شاهد كيف يعمل",
+      exploreFeatures: "استكشف كل المزايا",
     },
     hero: {
-      badge: "فئة جديدة لنمو أعمال الشرق الأوسط",
-      headlineLead: "نظام تشغيل النمو المبني حول",
-      headlineHighlight: "واتساب والذكاء الاصطناعي والتدفق النقدي.",
+      badge: "ذكاء اصطناعي. أصلي للواتساب. عربي أولاً.",
+      headlineLine1: "الـ CRM المبني",
+      headlineLine2: "لطريقة عمل الأعمال",
+      headlineLine3: "كما تحدث فعلاً",
       subheadline:
-        "زايركس يجمع إدارة العملاء، محادثات واتساب، خطوط المبيعات، رؤى المدير المالي الذكي، منطق الضرائب الإقليمي، وتنفيذ الفريق في نظام واحد مبني لتركيا والشرق الأوسط.",
-      trustLine:
-        "مبني في إسطنبول. جاهز للعربية والتركية والإنجليزية و KDV و VAT و ZATCA وفرق واتساب أولاً.",
-      chips: {
-        whatsapp: "98% تسليم واتساب",
-        cfo: "تنبيه مالي ذكي",
-        launch: "تشغيل في 15 دقيقة",
-        tax: "جاهز لـ KDV / VAT",
-      },
-      console: {
-        title: "مركز قيادة زايركس",
-        live: "مباشر",
-        cards: {
-          whatsapp: "واتساب 98%",
-          pipeline: "خط المبيعات 1.2M$",
-          cfo: "المدير المالي الذكي 84%",
-          cash: "مخاطرة نقدية 87k$",
+        "زايركس هو الـ CRM الشامل لفرق الشرق الأوسط وتركيا.\nالواتساب في القلب. عربي أولاً بالتصميم.\nكل شيء آخر، متصل أخيراً.",
+      socialProof: "تستخدمه أكثر من 500 شركة في الشرق الأوسط وتركيا",
+      dashboard: {
+        title: "زايركس CRM",
+        revenue: "إيرادات هذا الشهر",
+        revenueValue: "245,000 ريال",
+        revenueDelta: "+18.6%",
+        deals: "صفقات مفتوحة",
+        dealsValue: "128",
+        dealsDelta: "+24",
+        conversations: "محادثات الواتساب",
+        conversationsValue: "1,240",
+        conversationsDelta: "+32%",
+        responseTime: "وقت الاستجابة",
+        responseValue: "2د 15ث",
+        responseDelta: "+28%",
+        pipeline: "خط المبيعات",
+        stages: { new: "جديد", qualified: "مؤهل", proposal: "عرض", won: "مكسب" },
+        stageValues: { new: "320", qualified: "128", proposal: "64", won: "24" },
+        chips: {
+          delivery: "98% تسليم واتساب",
+          setup: "3x إعداد أسرع",
+          insights: "رؤى ذكية — احتمال فوز الصفقة عالي",
         },
       },
     },
-    metrics: {
-      title: "أرقام تغيّر طريقة عملك",
-      subtitle:
-        "ليست أرقاماً للعرض. مزايا تشغيلية للفرق التي تبيع في أسواق الواتساب أولاً.",
+    trust: {
+      title: "موثوق به من فرق نامية",
+      logos: ["HASEEB", "MADO", "KUMDA", "SABAH", "AL MAYA", "TRUE GAMING", "iStage"],
+    },
+    numbers: {
+      title: "الأرقام تحكي القصة",
+      subtitle: "لماذا تتحول الفرق من منصات CRM المؤسسية إلى زايركس",
       cards: [
-        {
-          value: "48 ساعة",
-          label: "نافذة الإطلاق",
-          desc: "ابدأ بالعملاء وخط المبيعات وصندوق الواتساب والتقارير بسرعة.",
-        },
         {
           value: "80%",
-          label: "تقليل هدر المقاعد",
-          desc: "ادفع لكل شركة، لا لكل مستخدم تدعوه.",
+          color: "#10B981",
+          label: "تكلفة أقل",
+          subLabel: "من التسعير لكل مقعد",
+          icon: "shield",
         },
         {
-          value: "+3",
-          label: "لغات ولهجات",
-          desc: "العربية والتركية والإنجليزية، بنبرة أعمال إقليمية.",
+          value: "48 ساعة",
+          color: "#A78BFA",
+          label: "من التسجيل إلى",
+          subLabel: "الإنتاج الجاهز",
+          icon: "bolt",
         },
         {
-          value: "WA",
-          label: "واتساب في القلب",
-          desc: "تصبح المحادثات عملاء وصفقات ومهام ورؤى.",
+          value: "3",
+          color: "#22D3EE",
+          label: "لغات",
+          subLabel: "ولهجات عربية",
+          icon: "globe",
         },
         {
-          value: "AI",
-          label: "إشارة المدير المالي الذكي",
-          desc: "تحذيرات المخاطر والتدفق النقدي قبل أن تصبح مفاجآت.",
-        },
-      ],
-    },
-    ecosystem: {
-      title: "نظام تشغيل واحد. ليس تسع أدوات منفصلة.",
-      subtitle:
-        "زايركس مبني كنظام تشغيل نمو موحد. الوحدات تتصل عبر نفس الدماغ — لا تُلصق بتكاملات.",
-      center: "نظام نمو زايركس",
-      modules: [
-        {
-          name: "واتساب CRM",
-          desc: "كل رسالة تصبح سجل عميل أو إشارة صفقة أو مهمة متابعة.",
-        },
-        {
-          name: "خط المبيعات",
-          desc: "شاهد القيمة ومخاطر المرحلة والصفقات الراكدة وأفضل خطوة تالية.",
-        },
-        {
-          name: "المدير المالي الذكي",
-          desc: "اسأل عن ما يعرقل التدفق النقدي واحصل على إجابات من بيانات حقيقية.",
-        },
-        {
-          name: "محرك الضرائب",
-          desc: "منطق جاهز لـ KDV و VAT و ZATCA لعروض الأسعار والفواتير والتقارير.",
-        },
-        {
-          name: "التكاملات",
-          desc: "Shopify و WooCommerce و Salla و Zid و Ticimax و Ideasoft ومسارات CSV/API.",
-        },
-        {
-          name: "بوابة العملاء",
-          desc: "اسمح للعملاء بمشاهدة العروض والفواتير والطلبات والتذاكر والتحديثات.",
-        },
-        {
-          name: "الحملات",
-          desc: "شغّل حملات تواصل مقسّمة من نفس دماغ الـ CRM.",
-        },
-        {
-          name: "المهام",
-          desc: "حوّل الرؤى إلى إجراءات للفريق بدون تطبيق مهام إضافي.",
-        },
-      ],
-    },
-    ai: {
-      title: "ذكاء اصطناعي يعرف عملاءك وخط مبيعاتك ومنطقتك",
-      subtitle:
-        "زايركس لا يضيف الذكاء الاصطناعي على CRM. الذكاء يقرأ سياق أعمالك: الصفقات، محادثات الواتساب، الفواتير، الضرائب، المهام، وتاريخ العملاء.",
-      tabs: ["المدير المالي الذكي", "مساعد المبيعات", "كاتب المحتوى", "ملاحظات الاجتماعات"],
-      prompts: [
-        "أي عملاء يحتاجون إجراءً اليوم؟",
-        "ما الذي يعرقل التدفق النقدي هذا الشهر؟",
-        "اكتب متابعة واتساب باللهجة الخليجية.",
-        "لخّص هذا الاجتماع إلى مهام وقرارات.",
-        "أي صفقات من المرجح أن تتعطل؟",
-      ],
-      sampleResponse: {
-        title: "المدير المالي الذكي — إشارة تدفق نقدي لنوفمبر",
-        body: "3 عملاء (47% من الذمم) متأخرون أكثر من 14 يوماً. الفجوة المتوقعة: 87,400$ بحلول 28 نوفمبر. الإجراءات الموصى بها جاهزة في صندوق الوارد.",
-      },
-    },
-    regional: {
-      title: "مبني في إسطنبول لواقع الشرق الأوسط",
-      subtitle:
-        "لكل سوق منطقه الضريبي ونبرته اللغوية وطريقة البيع. زايركس معدّ لها كلها.",
-      cards: [
-        {
-          flag: "🇹🇷",
-          country: "تركيا",
-          desc: "KDV واتجاه e-Arşiv / e-Fatura ونبرة واجهة تركية وحركة بيع محلية.",
-        },
-        {
-          flag: "🇸🇦",
-          country: "السعودية",
-          desc: "جاهزية ZATCA وسير عمل عربي أولاً ومبيعات واتساب.",
-        },
-        {
-          flag: "🇦🇪",
-          country: "الإمارات والخليج",
-          desc: "VAT وعملات متعددة وفرق ثنائية اللغة احترافية.",
-        },
-        {
-          flag: "🇮🇶",
-          country: "العراق ومصر",
-          desc: "تشغيل واتساب أولاً، سلوك بيع شبه COD، علاقات قوية مع العملاء.",
-        },
-      ],
-    },
-    whatsapp: {
-      title: "مبني حول القناة التي يستخدمها عملاؤك فعلاً",
-      subtitle:
-        "في الشرق الأوسط وتركيا، الواتساب ليس قناة جانبية. هو المبيعات والدعم والمتابعة وتنسيق المدفوعات وإدارة العلاقات.",
-      flow: [
-        "رسالة واتساب واردة",
-        "الذكاء يستخرج نية العميل",
-        "CRM ينشئ / يحدّث العميل",
-        "تُنشأ صفقة أو مهمة",
-        "تُجدول المتابعة",
-        "تتحدّث توقعات الإيرادات",
-      ],
-      bullets: [
-        "صندوق وارد جاهز لـ Meta Cloud API",
-        "إنشاء عملاء تلقائي",
-        "خط زمني للمحادثات",
-        "تعيين الفريق",
-        "قواعد SLA والمتابعة",
-        "صياغة رسائل بالعربية والتركية والإنجليزية",
-      ],
-    },
-    integrations: {
-      title: "يتصل بحيث تبيع بالفعل",
-      subtitle:
-        "اربطه بمنظومة التجارة الإقليمية دون إجبارك على تغيير المنصة.",
-      cta: "استكشف التكاملات",
-      logos: [
-        "Shopify",
-        "WooCommerce",
-        "Salla",
-        "Zid",
-        "Ticimax",
-        "Ideasoft",
-        "Magento",
-        "OpenCart",
-        "PrestaShop",
-        "Wix",
-        "BigCommerce",
-        "CSV / API",
-      ],
-    },
-    comparison: {
-      title: "لماذا تبدو أنظمة CRM التقليدية باهظة هنا",
-      subtitle:
-        "نماذج التسعير وأولويات الميزات المبنية للغرب نادراً ما تطابق طريقة عمل فرق الشرق الأوسط وتركيا.",
-      legacyHeader: "CRM التقليدية",
-      zyrixHeader: "زايركس",
-      rows: [
-        {
-          dim: "التسعير",
-          legacy: "ضريبة لكل مقعد على النمو",
-          zyrix: "تسعير لكل شركة",
-        },
-        {
-          dim: "الواتساب",
-          legacy: "إضافة / ملحق",
-          zyrix: "قناة أساسية",
-        },
-        {
-          dim: "الامتثال الإقليمي",
-          legacy: "إعداد يدوي",
-          zyrix: "اتجاه KDV / VAT / ZATCA",
-        },
-        {
-          dim: "الذكاء الاصطناعي",
-          legacy: "مساعد عام",
-          zyrix: "مدير مالي ذكي + وكلاء",
-        },
-        {
-          dim: "اللغة",
-          legacy: "واجهة مترجمة",
-          zyrix: "سياق أعمال بالعربية والتركية والإنجليزية",
-        },
-        {
-          dim: "الإطلاق",
-          legacy: "تنفيذ طويل",
-          zyrix: "مسار إعداد سريع",
+          value: "أصلي",
+          color: "#FB923C",
+          label: "واتساب",
+          subLabel: "ليس إضافة ملصقة",
+          icon: "chat",
         },
       ],
     },
     finalCta: {
-      title: "ابنِ نظام التشغيل الذي يستحقه فريقك من اليوم الأول",
-      subtitle:
-        "ابدأ بـ CRM + الواتساب. وانمُ إلى الذكاء الاصطناعي والمالية والأتمتة والعمليات الإقليمية.",
-      microCopy: "بدون بطاقة ائتمان. مبني لفرق حقيقية في تركيا والشرق الأوسط.",
+      title: "جاهز لرؤية الفرق؟",
+      subtitle: "ابدأ بحساب مجاني. تحدث مع المبيعات عندما تكون جاهزاً للنمو.",
+      primary: "ابدأ مجاناً — بدون بطاقة ائتمان",
+      secondary: "تواصل مع المبيعات",
     },
     footer: {
       tagline:
-        "نظام تشغيل النمو لفرق الواتساب أولاً في الشرق الأوسط وتركيا.",
+        "الـ CRM الأصلي للواتساب، مبني للشرق الأوسط وتركيا والأسواق الناشئة. مدعوم بالذكاء الاصطناعي. عربي أولاً. موثوق به من شركات نامية.",
+      headquarters: "المقر الرئيسي",
+      headquartersValue: "إسطنبول، تركيا",
+      emailLabel: "البريد الإلكتروني",
+      emailValue: "hello@zyrix.co",
+      whatsappLabel: "واتساب",
+      whatsappValue: "+90 545 221 0888",
+      copyright: "© 2026 زايركس CRM. جميع الحقوق محفوظة.",
       columns: {
         product: {
           title: "المنتج",
-          links: ["CRM", "واتساب", "المدير المالي الذكي", "التكاملات", "محرك الضرائب", "التقارير"],
+          links: ["المزايا", "الأسعار", "التكاملات", "المدير المالي الذكي", "واتساب CRM"],
         },
-        company: {
-          title: "الشركة",
-          links: ["عن زايركس", "تواصل معنا", "المدونة", "سجل التغييرات"],
+        solutions: {
+          title: "الحلول",
+          links: ["حسب الصناعة", "حسب الدور", "حالات الاستخدام", "قصص العملاء"],
         },
         resources: {
           title: "الموارد",
-          links: [
-            "الوثائق",
-            "مرجع API",
-            "مركز المساعدة",
-            "الأمان",
-            "حالة النظام",
-          ],
+          links: ["الوثائق", "مرجع API", "مركز المساعدة", "المدونة", "حالة النظام"],
+        },
+        company: {
+          title: "الشركة",
+          links: ["عن زايركس", "الوظائف", "الشركاء", "تواصل معنا", "سجل التغييرات"],
         },
         legal: {
           title: "قانوني",
-          links: ["الخصوصية", "الشروط", "معالجة البيانات", "الأمان"],
+          links: ["سياسة الخصوصية", "شروط الخدمة", "الأمان", "ملحق معالجة البيانات"],
         },
       },
-      contact: {
-        city: "إسطنبول",
-        email: "hello@zyrix.co",
-        whatsapp: "+90 545 221 0888",
-      },
-      miniCta: {
-        title: "جاهز لرؤية زايركس بالفعل؟",
-        button: "ابدأ مجاناً",
-      },
-      copyright: "© 2026 زايركس. جميع الحقوق محفوظة.",
     },
   },
   tr: {
     nav: {
       product: "Ürün",
-      ai: "AI",
-      whatsapp: "WhatsApp",
-      integrations: "Entegrasyonlar",
+      solutions: "Çözümler",
       pricing: "Fiyatlandırma",
-      about: "Hakkımızda",
+      resources: "Kaynaklar",
+      company: "Şirket",
     },
     cta: {
       signIn: "Giriş yap",
       startFree: "Ücretsiz başla",
+      startFreeFull: "Ücretsiz başla — Kredi kartı yok",
       talkToSales: "Satışla konuş",
-      watchTour: "Ürün turunu izle",
-      exploreIntegrations: "Entegrasyonları keşfet",
+      seeHowItWorks: "Nasıl çalıştığını gör",
+      exploreFeatures: "Tüm özellikleri keşfet",
     },
     hero: {
-      badge: "MENA büyümesi için yeni kategori",
-      headlineLead: "İş büyüme OS, şu eksen üzerine kurulu:",
-      headlineHighlight: "WhatsApp, AI ve nakit akışı.",
+      badge: "AI DESTEKLİ. WHATSAPP YERLİ. ARAPÇA ÖNCELİKLİ.",
+      headlineLine1: "İşin gerçekten",
+      headlineLine2: "olduğu yere göre",
+      headlineLine3: "tasarlanmış CRM",
       subheadline:
-        "Zyrix; CRM, WhatsApp konuşmaları, satış pipeline'ları, AI CFO içgörüleri, bölgesel vergi mantığı ve ekip yürütmesini Türkiye ve MENA için tek bir sistemde birleştirir.",
-      trustLine:
-        "İstanbul'da geliştirildi. Arapça, Türkçe, İngilizce, KDV, VAT, ZATCA ve WhatsApp öncelikli ekipler için hazır.",
-      chips: {
-        whatsapp: "%98 WhatsApp teslim",
-        cfo: "AI CFO risk uyarısı",
-        launch: "15 dakikada canlı",
-        tax: "KDV / VAT hazır",
-      },
-      console: {
-        title: "Zyrix Komuta Merkezi",
-        live: "Canlı",
-        cards: {
-          whatsapp: "WhatsApp %98",
-          pipeline: "Pipeline $1.2M",
-          cfo: "AI CFO %84",
-          cash: "Nakit riski $87k",
+        "Zyrix, MENA ve Türkiye ekipleri için hepsi-bir-arada CRM'dir.\nWhatsApp merkezde. Arapça öncelikli tasarım.\nDiğer her şey, nihayet bağlantılı.",
+      socialProof: "MENA ve Türkiye'de 500+ şirket tarafından kullanılıyor",
+      dashboard: {
+        title: "Zyrix CRM",
+        revenue: "Bu ayki gelir",
+        revenueValue: "245.000 SAR",
+        revenueDelta: "+%18.6",
+        deals: "Açık Fırsatlar",
+        dealsValue: "128",
+        dealsDelta: "+24",
+        conversations: "WhatsApp Konuşmaları",
+        conversationsValue: "1.240",
+        conversationsDelta: "+%32",
+        responseTime: "Yanıt Süresi",
+        responseValue: "2dk 15sn",
+        responseDelta: "+%28",
+        pipeline: "Pipeline",
+        stages: { new: "Yeni", qualified: "Nitelikli", proposal: "Teklif", won: "Kazanıldı" },
+        stageValues: { new: "320", qualified: "128", proposal: "64", won: "24" },
+        chips: {
+          delivery: "%98 WhatsApp teslimi",
+          setup: "3x Daha hızlı kurulum",
+          insights: "AI İçgörüler — Fırsat kazanma olasılığı yüksek",
         },
       },
     },
-    metrics: {
-      title: "Çalışma şeklini değiştiren rakamlar",
-      subtitle:
-        "Vitrin metriği değil. WhatsApp öncelikli pazarlarda satan ekipler için operasyonel avantaj.",
+    trust: {
+      title: "Büyüyen ekipler tarafından güvenildi",
+      logos: ["HASEEB", "MADO", "KUMDA", "SABAH", "AL MAYA", "TRUE GAMING", "iStage"],
+    },
+    numbers: {
+      title: "Sayılar hikayeyi anlatıyor",
+      subtitle: "Ekipler kurumsal CRM platformlarından neden Zyrix'e geçiyor",
       cards: [
-        {
-          value: "48s",
-          label: "Lansman Penceresi",
-          desc: "Müşteriler, pipeline, WhatsApp gelen kutusu ve raporlamayla hızlıca başla.",
-        },
         {
           value: "%80",
-          label: "Daha Az Koltuk İsrafı",
-          desc: "Davet ettiğin her kullanıcıya değil, şirket başına öde.",
+          color: "#10B981",
+          label: "Daha düşük maliyet",
+          subLabel: "koltuk başına fiyatlandırmadan",
+          icon: "shield",
         },
         {
-          value: "3+",
-          label: "Dil & Lehçe",
-          desc: "Arapça, Türkçe, İngilizce — bölgesel iş tonuyla.",
+          value: "48s",
+          color: "#A78BFA",
+          label: "Kayıttan",
+          subLabel: "üretime hazır",
+          icon: "bolt",
         },
         {
-          value: "WA",
-          label: "WhatsApp Merkezde",
-          desc: "Konuşmalar müşteriye, fırsata, göreve ve içgörüye dönüşür.",
+          value: "3",
+          color: "#22D3EE",
+          label: "Dil",
+          subLabel: "Arapça lehçeleri",
+          icon: "globe",
         },
         {
-          value: "AI",
-          label: "AI CFO Sinyali",
-          desc: "Gelir riski ve nakit akışı uyarıları sürpriz olmadan önce.",
-        },
-      ],
-    },
-    ecosystem: {
-      title: "Tek işletim sistemi. Dokuz ayrı araç değil.",
-      subtitle:
-        "Zyrix birleşik bir büyüme OS olarak inşa edildi. Modüller aynı müşteri beyninden bağlanır — entegrasyonlarla yapıştırılmaz.",
-      center: "Zyrix Growth OS",
-      modules: [
-        {
-          name: "WhatsApp CRM",
-          desc: "Her mesaj bir müşteri kaydı, fırsat sinyali veya takip görevi olur.",
-        },
-        {
-          name: "Satış Pipeline",
-          desc: "Değer, aşama riski, donmuş fırsatlar, beklenen kapanış, sonraki en iyi aksiyon.",
-        },
-        {
-          name: "AI CFO",
-          desc: "Nakit akışını neyin engellediğini sor, pipeline ve gelir verisinden yanıt al.",
-        },
-        {
-          name: "Vergi Motoru",
-          desc: "Teklif, fatura ve raporlar için KDV, VAT, ZATCA hazır mantık.",
-        },
-        {
-          name: "Entegrasyonlar",
-          desc: "Shopify, WooCommerce, Salla, Zid, Ticimax, Ideasoft ve CSV/API yolları.",
-        },
-        {
-          name: "Müşteri Portalı",
-          desc: "Müşterilerin teklif, fatura, sipariş, ticket ve güncellemeleri görmesini sağla.",
-        },
-        {
-          name: "Kampanyalar",
-          desc: "Aynı CRM beyninden segmentli yayılım kampanyaları çalıştır.",
-        },
-        {
-          name: "Görevler",
-          desc: "İçgörüleri başka bir to-do uygulamasına gerek kalmadan ekip aksiyonuna çevir.",
-        },
-      ],
-    },
-    ai: {
-      title: "Müşterilerini, pipeline'ını ve bölgeni bilen AI",
-      subtitle:
-        "Zyrix AI'yı CRM'e tutturmaz. AI iş bağlamını okur: fırsatlar, WhatsApp konuşmaları, faturalar, vergiler, görevler ve müşteri geçmişi.",
-      tabs: ["AI CFO", "Satış Asistanı", "İçerik Yazarı", "Toplantı Notları"],
-      prompts: [
-        "Bugün hangi müşterilerin aksiyona ihtiyacı var?",
-        "Bu ay nakit akışını ne engelliyor?",
-        "Körfez Arapçasıyla bir WhatsApp takip mesajı yaz.",
-        "Bu toplantıyı görevlere ve kararlara özetle.",
-        "Hangi fırsatlar muhtemelen takılacak?",
-      ],
-      sampleResponse: {
-        title: "AI CFO — Kasım nakit akışı sinyali",
-        body: "3 müşteri (alacakların %47'si) 14+ gün geç kalmış. Tahmini açık: 28 Kasım'a kadar 87.400$. Önerilen aksiyonlar gelen kutunda hazır.",
-      },
-    },
-    regional: {
-      title: "MENA gerçeklikleri için İstanbul'da inşa edildi",
-      subtitle:
-        "Her pazarın kendi vergi mantığı, dil tonu ve satış hareketi var. Zyrix hepsi için yapılandırıldı.",
-      cards: [
-        {
-          flag: "🇹🇷",
-          country: "Türkiye",
-          desc: "KDV, e-Arşiv / e-Fatura yönü, Türkçe arayüz tonu, yerel satış hareketi.",
-        },
-        {
-          flag: "🇸🇦",
-          country: "Suudi Arabistan",
-          desc: "ZATCA hazırlığı, Arapça öncelikli iş akışları, WhatsApp satışı.",
-        },
-        {
-          flag: "🇦🇪",
-          country: "BAE / Körfez",
-          desc: "VAT, çoklu para birimi, profesyonel iki dilli ekipler.",
-        },
-        {
-          flag: "🇮🇶",
-          country: "Irak / Mısır",
-          desc: "WhatsApp öncelikli operasyon, COD benzeri satış davranışı, ilişki ağırlıklı iş akışları.",
-        },
-      ],
-    },
-    whatsapp: {
-      title: "Müşterilerinin gerçekten kullandığı kanal etrafında inşa edildi",
-      subtitle:
-        "MENA ve Türkiye'de WhatsApp yan kanal değil. Satış, destek, takip, ödeme koordinasyonu ve ilişki yönetimidir.",
-      flow: [
-        "Gelen WhatsApp mesajı",
-        "AI müşteri niyetini çıkarır",
-        "CRM müşteriyi oluşturur / günceller",
-        "Fırsat veya görev üretilir",
-        "Takip planlanır",
-        "Gelir tahmini güncellenir",
-      ],
-      bullets: [
-        "Meta Cloud API hazır gelen kutusu",
-        "Otomatik müşteri oluşturma",
-        "Konuşma zaman çizelgesi",
-        "Ekip ataması",
-        "SLA ve takip kuralları",
-        "Arapça / Türkçe / İngilizce mesaj yazımı",
-      ],
-    },
-    integrations: {
-      title: "Zaten sattığın yerlere bağlanır",
-      subtitle:
-        "Yeniden platform değiştirmeden bölgesel ticaret yığınına bağlan.",
-      cta: "Entegrasyonları keşfet",
-      logos: [
-        "Shopify",
-        "WooCommerce",
-        "Salla",
-        "Zid",
-        "Ticimax",
-        "Ideasoft",
-        "Magento",
-        "OpenCart",
-        "PrestaShop",
-        "Wix",
-        "BigCommerce",
-        "CSV / API",
-      ],
-    },
-    comparison: {
-      title: "Neden eski CRM'ler burada pahalı geliyor",
-      subtitle:
-        "Batı için kurulmuş fiyatlandırma ve özellik öncelikleri MENA ve Türkiye ekiplerinin gerçek çalışma şekline nadiren uyar.",
-      legacyHeader: "Eski CRM'ler",
-      zyrixHeader: "Zyrix",
-      rows: [
-        {
-          dim: "Fiyatlandırma",
-          legacy: "Büyümeye koltuk vergisi",
-          zyrix: "Şirket başına fiyat",
-        },
-        {
-          dim: "WhatsApp",
-          legacy: "Eklenti / addon",
-          zyrix: "Çekirdek kanal",
-        },
-        {
-          dim: "Bölgesel uyumluluk",
-          legacy: "Manuel kurulum",
-          zyrix: "KDV / VAT / ZATCA yönlü",
-        },
-        {
-          dim: "AI",
-          legacy: "Genel asistan",
-          zyrix: "AI CFO + iş akışı ajanları",
-        },
-        {
-          dim: "Dil",
-          legacy: "Çevrilmiş arayüz",
-          zyrix: "Arapça / Türkçe / İngilizce iş bağlamı",
-        },
-        {
-          dim: "Lansman",
-          legacy: "Uzun uygulama",
-          zyrix: "Hızlı kurulum yolu",
+          value: "Yerli",
+          color: "#FB923C",
+          label: "WhatsApp",
+          subLabel: "Yapıştırılmış eklenti değil",
+          icon: "chat",
         },
       ],
     },
     finalCta: {
-      title: "Ekibinin ilk günden hak ettiği işletim sistemini inşa et",
-      subtitle:
-        "CRM + WhatsApp ile başla. AI, finans, otomasyon ve bölgesel operasyonlara büyü.",
-      microCopy: "Kredi kartı yok. Türkiye ve MENA'daki gerçek ekipler için.",
+      title: "Farkı görmeye hazır mısın?",
+      subtitle: "Ücretsiz hesapla başla. Ölçeklemeye hazır olduğunda satışla konuş.",
+      primary: "Ücretsiz başla — Kredi kartı yok",
+      secondary: "Satışla konuş",
     },
     footer: {
       tagline:
-        "MENA ve Türkiye'deki WhatsApp öncelikli ekipler için büyüme OS.",
+        "MENA, Türkiye ve gelişen pazarlar için inşa edilmiş WhatsApp yerli CRM. AI destekli. Arapça öncelikli. Büyüyen işletmeler tarafından güvenildi.",
+      headquarters: "Genel Merkez",
+      headquartersValue: "İstanbul, Türkiye",
+      emailLabel: "E-posta",
+      emailValue: "hello@zyrix.co",
+      whatsappLabel: "WhatsApp",
+      whatsappValue: "+90 545 221 0888",
+      copyright: "© 2026 Zyrix CRM. Tüm hakları saklıdır.",
       columns: {
         product: {
           title: "Ürün",
-          links: ["CRM", "WhatsApp", "AI CFO", "Entegrasyonlar", "Vergi Motoru", "Raporlar"],
+          links: ["Özellikler", "Fiyatlandırma", "Entegrasyonlar", "AI CFO", "WhatsApp CRM"],
         },
-        company: {
-          title: "Şirket",
-          links: ["Hakkımızda", "İletişim", "Blog", "Changelog"],
+        solutions: {
+          title: "Çözümler",
+          links: ["Sektöre Göre", "Role Göre", "Kullanım Durumları", "Müşteri Hikayeleri"],
         },
         resources: {
           title: "Kaynaklar",
-          links: [
-            "Dokümantasyon",
-            "API Referansı",
-            "Yardım Merkezi",
-            "Güvenlik",
-            "Sistem Durumu",
-          ],
+          links: ["Dokümantasyon", "API Referansı", "Yardım Merkezi", "Blog", "Sistem Durumu"],
+        },
+        company: {
+          title: "Şirket",
+          links: ["Hakkımızda", "Kariyer", "Ortaklar", "İletişim", "Changelog"],
         },
         legal: {
           title: "Yasal",
-          links: ["Gizlilik", "Şartlar", "Veri İşleme", "Güvenlik"],
+          links: ["Gizlilik Politikası", "Hizmet Şartları", "Güvenlik", "Veri İşleme Eki"],
         },
       },
-      contact: {
-        city: "İstanbul",
-        email: "hello@zyrix.co",
-        whatsapp: "+90 545 221 0888",
-      },
-      miniCta: {
-        title: "Zyrix'i çalışırken görmeye hazır mısın?",
-        button: "Ücretsiz başla",
-      },
-      copyright: "© 2026 Zyrix. Tüm hakları saklıdır.",
     },
   },
 } as const;
