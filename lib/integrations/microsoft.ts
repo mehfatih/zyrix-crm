@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 
 export interface MicrosoftSyncStatus {
   connected: boolean;
@@ -8,12 +8,13 @@ export interface MicrosoftSyncStatus {
 }
 
 class MicrosoftService {
+  // Used only for the OAuth redirect target in connect(); apiClient handles fetches.
   private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
 
   async getStatus(): Promise<MicrosoftSyncStatus> {
     try {
-      const { data } = await axios.get(
-        `${this.baseURL}/api/integrations/microsoft/status`,
+      const { data } = await apiClient.get(
+        '/api/integrations/microsoft/status',
         { timeout: 5000 },
       );
       return data;
@@ -30,7 +31,7 @@ class MicrosoftService {
 
   async disconnect(): Promise<void> {
     try {
-      await axios.post(`${this.baseURL}/api/integrations/microsoft/disconnect`);
+      await apiClient.post('/api/integrations/microsoft/disconnect');
     } catch {}
   }
 }
