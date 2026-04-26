@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 
 export type RiskLevel = 'low' | 'medium' | 'high';
 export type CustomerSegment =
@@ -42,11 +42,9 @@ export interface CustomerListParams {
 }
 
 class CustomersAIService {
-  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
-
   async list(params: CustomerListParams): Promise<CustomerListResponse> {
     try {
-      const { data } = await axios.get(`${this.baseURL}/api/ai/customers`, {
+      const { data } = await apiClient.get('/api/ai/customers', {
         params,
         timeout: 5000,
       });
