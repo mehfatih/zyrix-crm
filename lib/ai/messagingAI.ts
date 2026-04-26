@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 
 export type MessageTone = 'professional' | 'friendly' | 'concise' | 'persuasive';
 export type MessageChannel = 'email' | 'whatsapp';
@@ -21,12 +21,10 @@ export interface DraftRequest {
 }
 
 class MessagingAIService {
-  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
-
   async generateDrafts(req: DraftRequest): Promise<AIMessageDraft[]> {
     try {
-      const { data } = await axios.post(
-        `${this.baseURL}/api/ai/messages/draft`,
+      const { data } = await apiClient.post(
+        '/api/ai/messages/draft',
         req,
         { timeout: 15000 },
       );
@@ -42,8 +40,8 @@ class MessagingAIService {
     language: MessageLanguage,
   ): Promise<string> {
     try {
-      const { data } = await axios.post(
-        `${this.baseURL}/api/ai/messages/improve-tone`,
+      const { data } = await apiClient.post(
+        '/api/ai/messages/improve-tone',
         { content, tone, language },
       );
       return data.content;
@@ -54,8 +52,8 @@ class MessagingAIService {
 
   async translate(content: string, to: MessageLanguage): Promise<string> {
     try {
-      const { data } = await axios.post(
-        `${this.baseURL}/api/ai/messages/translate`,
+      const { data } = await apiClient.post(
+        '/api/ai/messages/translate',
         { content, to },
       );
       return data.content;
