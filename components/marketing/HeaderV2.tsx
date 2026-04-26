@@ -5,6 +5,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { getCopy, type Locale } from "@/lib/marketing/copy";
 
@@ -48,23 +49,26 @@ export function HeaderV2({ locale }: Props) {
           {/* Logo */}
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-2 text-white"
+            className="flex items-center text-white"
+            aria-label="Zyrix CRM home"
           >
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 text-sm font-black">
-              Z
-            </span>
-            <span className="text-lg font-extrabold tracking-tight">
-              Zyrix <span className="text-cyan-300">CRM</span>
-            </span>
+            <Image
+              src="/zyrix-crm-logo.png"
+              alt="Zyrix CRM"
+              width={120}
+              height={40}
+              priority
+              className="h-9 w-auto md:h-10"
+            />
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — pure white for max visibility */}
           <div className="hidden items-center gap-7 lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-white/72 transition-colors hover:text-white"
+                className="text-sm font-semibold text-white transition-colors hover:text-cyan-300"
               >
                 {item.label}
               </Link>
@@ -77,7 +81,7 @@ export function HeaderV2({ locale }: Props) {
 
             <Link
               href={`/${locale}/signin`}
-              className="hidden rounded-xl px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:text-white md:inline-block"
+              className="hidden rounded-xl px-3 py-2 text-sm font-semibold text-white transition-colors hover:text-cyan-300 md:inline-block"
             >
               {t.cta.signIn}
             </Link>
@@ -118,9 +122,13 @@ export function HeaderV2({ locale }: Props) {
           />
           <div className="absolute right-0 top-0 h-full w-[85%] max-w-sm overflow-y-auto bg-[#0A1530] p-6 shadow-2xl">
             <div className="mb-8 flex items-center justify-between">
-              <span className="text-lg font-extrabold text-white">
-                Zyrix <span className="text-cyan-300">CRM</span>
-              </span>
+              <Image
+                src="/zyrix-crm-logo.png"
+                alt="Zyrix CRM"
+                width={120}
+                height={40}
+                className="h-9 w-auto"
+              />
               <button
                 type="button"
                 aria-label="Close menu"
@@ -144,7 +152,7 @@ export function HeaderV2({ locale }: Props) {
                   key={item.label}
                   href={item.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="rounded-xl px-4 py-3 text-base font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                  className="rounded-xl px-4 py-3 text-base font-semibold text-white transition-colors hover:bg-white/5 hover:text-cyan-300"
                 >
                   {item.label}
                 </Link>
@@ -185,7 +193,7 @@ function LanguageSwitch({ currentLocale }: { currentLocale: Locale }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-bold uppercase text-white/85 transition-colors hover:bg-white/10"
+        className="flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-bold uppercase text-white transition-colors hover:bg-white/10"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
           <circle
@@ -214,7 +222,7 @@ function LanguageSwitch({ currentLocale }: { currentLocale: Locale }) {
               className={`block px-4 py-2.5 text-sm font-semibold transition-colors ${
                 loc === currentLocale
                   ? "bg-cyan-400/10 text-cyan-300"
-                  : "text-white/80 hover:bg-white/5 hover:text-white"
+                  : "text-white hover:bg-white/5 hover:text-cyan-300"
               }`}
             >
               {loc.toUpperCase()}

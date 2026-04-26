@@ -150,3 +150,26 @@
     animation: none !important;
   }
 }
+
+/* === Arabic typography calibration ===
+   Arabic glyphs render larger per character than Latin. Scale section
+   titles down ~12-15% only when html[lang="ar"] is active. */
+html[lang="ar"] section h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem) !important;
+  line-height: 1.25 !important;
+}
+
+html[lang="ar"] section h3 {
+  font-size: clamp(1.05rem, 2vw, 1.5rem) !important;
+  line-height: 1.35 !important;
+}
+
+html[lang="ar"] section p {
+  line-height: 1.85 !important;
+}
+
+/* Country code badges in regional cards stay LTR-readable */
+html[lang="ar"] section [data-zx-country-code] {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

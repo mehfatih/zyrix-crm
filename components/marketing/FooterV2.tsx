@@ -1,13 +1,19 @@
 // components/marketing/FooterV2.tsx
 // Premium dark footer: 4 link columns, contact strip, mini-CTA.
+// Polish: brand logo image; column titles in pure gold #D4AF37;
+// column links in pure blue #1A56DB.
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { getCopy, type Locale } from "@/lib/marketing/copy";
 
 type Props = {
   locale: Locale;
 };
+
+const GOLD = "#D4AF37";
+const PURE_BLUE = "#1A56DB";
 
 export function FooterV2({ locale }: Props) {
   const t = getCopy(locale);
@@ -46,14 +52,16 @@ export function FooterV2({ locale }: Props) {
           <div className="lg:col-span-1">
             <Link
               href={`/${locale}`}
-              className="flex items-center gap-2 text-white"
+              className="inline-flex items-center"
+              aria-label="Zyrix CRM home"
             >
-              <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 text-sm font-black">
-                Z
-              </span>
-              <span className="text-lg font-extrabold tracking-tight">
-                Zyrix <span className="text-cyan-300">CRM</span>
-              </span>
+              <Image
+                src="/zyrix-crm-logo.png"
+                alt="Zyrix CRM"
+                width={140}
+                height={48}
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="mt-4 text-sm leading-6 text-white/55">
               {t.footer.tagline}
@@ -63,13 +71,19 @@ export function FooterV2({ locale }: Props) {
           {/* 4 link columns */}
           {[cols.product, cols.company, cols.resources, cols.legal].map((col) => (
             <div key={col.title}>
-              <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white/50">
+              <h4
+                className="mb-4 text-sm font-extrabold uppercase tracking-wider"
+                style={{ color: GOLD }}
+              >
                 {col.title}
               </h4>
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <span className="text-sm text-white/70 transition-colors hover:text-cyan-300 cursor-pointer">
+                    <span
+                      className="text-sm font-semibold transition-opacity hover:opacity-80 cursor-pointer"
+                      style={{ color: PURE_BLUE }}
+                    >
                       {link}
                     </span>
                   </li>

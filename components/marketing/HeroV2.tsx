@@ -1,6 +1,6 @@
 // components/marketing/HeroV2.tsx
 // Dark cinematic hero with dashboard mock and floating chips.
-// Replaces the pastel hero in Sprint 5.
+// Arabic uses a calibrated smaller scale to avoid overflow.
 
 import React from "react";
 import { BackgroundFX } from "./BackgroundFX";
@@ -14,6 +14,15 @@ type Props = {
 export function HeroV2({ locale }: Props) {
   const t = getCopy(locale);
   const isRtl = locale === "ar";
+
+  // Calibrated headline classes: AR is denser per glyph, so size down.
+  const headlineCls = isRtl
+    ? "text-3xl font-black leading-[1.15] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
+    : "text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl";
+
+  const subheadlineCls = isRtl
+    ? "mt-6 max-w-2xl text-sm leading-7 text-white/72 md:text-base md:leading-8"
+    : "mt-7 max-w-2xl text-base leading-7 text-white/72 md:text-lg md:leading-8";
 
   return (
     <section
@@ -32,7 +41,7 @@ export function HeroV2({ locale }: Props) {
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className={headlineCls}>
             {t.hero.headlineLead}{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -46,12 +55,10 @@ export function HeroV2({ locale }: Props) {
           </h1>
 
           {/* Subheadline */}
-          <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 md:text-lg md:leading-8">
-            {t.hero.subheadline}
-          </p>
+          <p className={subheadlineCls}>{t.hero.subheadline}</p>
 
           {/* CTAs */}
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <a
               href={`/${locale}/register`}
               className="inline-flex min-h-[52px] items-center justify-center rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-600 px-7 py-4 text-base font-bold text-white shadow-[0_20px_60px_rgba(34,211,238,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(34,211,238,0.42)]"
@@ -69,7 +76,7 @@ export function HeroV2({ locale }: Props) {
           </div>
 
           {/* Trust line */}
-          <p className="mt-7 max-w-xl text-sm leading-6 text-white/55">
+          <p className={isRtl ? "mt-6 max-w-xl text-xs leading-6 text-white/55" : "mt-7 max-w-xl text-sm leading-6 text-white/55"}>
             {t.hero.trustLine}
           </p>
 
@@ -81,10 +88,7 @@ export function HeroV2({ locale }: Props) {
               t.hero.chips.launch,
               t.hero.chips.tax,
             ].map((chip) => (
-              <span
-                key={chip}
-                className="zyrix-chip whitespace-nowrap"
-              >
+              <span key={chip} className="zyrix-chip whitespace-nowrap">
                 {chip}
               </span>
             ))}
