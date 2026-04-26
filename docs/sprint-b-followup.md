@@ -164,6 +164,46 @@ This is a tooling-infrastructure task, not a design-system task. Mixing it into 
 
 ---
 
+## 5. Phase 2c.1 (DashboardShell migration) — deferred pending rendering investigation
+
+**Status:** Code committed as `c07bab7` and pushed (subsequently rebuilt via empty commit `82d6b46` and a manual "Redeploy without cache" via Vercel dashboard). Both Vercel rebuilds succeeded. However, the deployed DOM on `crm.zyrix.co/en/dashboard` still renders the sidebar `<aside>` element with the pre-migration class string (`bg-white` / `border-line-soft` / etc.) instead of the migrated string (`bg-navy-800` / `border-navy-700`). The visual outcome was supposed to be a dark-navy sidebar against a still-light page canvas (intentional Phase 2c.1 "split appearance" before 2c.2's canvas flip). Instead the chrome still reads as the pre-migration light-cyan theme.
+
+**Why deferred:** the migration code itself is verified correct — by direct file read, by `git show c07bab7`, and by the fact that the pre-migration string `border-line-soft` does not appear anywhere else in the codebase (so the rendered DOM cannot be coming from another component in this repo). The disconnect is between source-of-truth (origin/main HEAD) and what the deployed runtime actually renders. Diagnosing it requires deployment-side investigation that exceeds a typical in-flight implementation commit; better to defer Phase 2c rather than block Sprint B end-to-end on it.
+
+### What was tried (chronologically, 2026-04-26)
+
+1. **Browser cache rule-out.** Tested in Incognito with cache cleared. Sidebar still renders white. Rules out browser cache and service workers initiated from prior sessions.
+2. **CDN cache rule-out via `curl`.** Curled the deployed CSS bundle (`/_next/static/chunks/0xx1m1gtylmmd.css`, ETag `a8819dbe9142d2090055ce2b0299b380`, Last-Modified Sat 25 Apr 2026 18:26:53 GMT — matches Phase 2c.1 deploy). Verified `.bg-navy-800 { background-color: rgb(24 42 85) }` IS present in the bundle (2 occurrences including the `/80` opacity variant). DevTools Network → Response confirmed the same rule is in the bundle the browser actually receives. CSS side is correct.
+3. **Tailwind content-glob rule-out.** Verified `tailwind.config.ts` `content:` array includes `./components/**/*.{js,ts,jsx,tsx,mdx}`. DashboardShell.tsx falls in scope.
+4. **JIT static-detection rule-out.** Confirmed both `bg-navy-800` references in `components/layout/DashboardShell.tsx` (lines 202 and 455) are plain static string literals — no template interpolation, no `cn()` wrapping, no concatenation, no variable. Tailwind JIT must detect them.
+5. **Force-rebuild via empty commit.** Pushed `82d6b46` (`chore(deploy): force rebuild for Phase 2c.1 JS bundle`). Vercel rebuilt and redeployed. Symptom unchanged.
+6. **Vercel "Redeploy without cache".** Triggered manually from the Vercel dashboard. Full clean rebuild ignoring all per-chunk caches. Symptom still unchanged.
+7. **Duplicate-shell rule-out.** `find . -name "DashboardShell*"` returns exactly one file (`./components/layout/DashboardShell.tsx`). `grep -rn "border-line-soft" components/ app/` returns zero matches anywhere in the current codebase. So no other component in the repo can be producing the pre-migration class string the DOM is showing.
+
+### Hypotheses to investigate when we resume
+
+1. **Vercel project is building from a different git ref than `origin/main`.** Possible if the Vercel ↔ GitHub integration is pinned to a specific branch/commit, the project is in a monorepo subdir misconfig, or the production target points somewhere unexpected. Verify by reading the Vercel deployment log's source SHA and comparing to `git rev-parse origin/main`.
+2. **A second component renders the aside that we haven't found.** The literal `<aside class="...">` string from the rendered DOM was described but never literally captured byte-for-byte in this debugging session. Capturing it is the first follow-up step. If the rendered class is actually `bg-navy-800 border-navy-700`, the bug is CSS cascade / specificity (something later overriding our rule on this specific element), not a source/runtime mismatch.
+3. **Service worker / corporate proxy / CDN edge anomaly.** Unlikely given the Incognito test, but if a service worker registered against this domain is serving a cached old `_next/static/chunks/page.js`, it would explain the symptom precisely. Check `Application` → `Service Workers` in DevTools.
+4. **Wrong production URL.** The user observed on `crm.zyrix.co` (correct per MASTER_GUIDE), but a Vercel preview-deploy URL or staging variant could explain a stale deploy if it's been opened by accident.
+
+### Resume condition
+
+After Sprint C is signed off. Reopening Phase 2c.1 means:
+
+1. Capture the literal `<aside>` `class` attribute from the rendered DOM in Incognito (single source of truth — paraphrase doesn't suffice).
+2. Compare Vercel's most recent deployment log's source commit SHA against `git rev-parse origin/main`. They must match exactly.
+3. Run `git show origin/main:components/layout/DashboardShell.tsx | grep -n "bg-navy-800\|bg-white"` to confirm the remote-side source matches local.
+4. If all three confirm source ↔ deploy alignment, the issue is downstream of the application code — escalate to Vercel support and check for service workers / proxies.
+
+### Sprint B impact
+
+Phase 2c.2 (global canvas flip) was scheduled to land immediately after Phase 2c.1 visual sign-off. **Both 2c.1 and 2c.2 are blocked** until the rendering issue is resolved. Phase 2a (token addition, commit `85999e7`) and Phase 2b (utility addition, commit `7278931`) remain landed and have **no observable effect on production** — both are purely additive (no consumers yet for any new token or utility), so there is no functional regression on `crm.zyrix.co` from leaving them in place.
+
+The implementation plan's `Commit 2c.1` entry is marked **DEFERRED** with a pointer back to this section.
+
+---
+
 ## How this doc evolves
 
 When a deferred item gets picked up by a future sprint:

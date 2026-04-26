@@ -225,6 +225,8 @@ Examples:
 
 ### Commit `2c.1` — `style(layout): migrate DashboardShell to Dark Navy (Sprint B Phase 2c.1)`
 
+> **STATUS (2026-04-26): DEFERRED — rendering issue.** Code committed as `c07bab7` and pushed; Vercel deploy + "Redeploy without cache" both succeeded. Source-of-truth on `origin/main` and the deployed CSS bundle are both verified correct (the `.bg-navy-800` rule is in the CSS the browser receives). However, the rendered DOM still shows the pre-migration class string on the live `<aside>` element, so the visual sign-off step of §C never passed. This is **not a code defect** — it's a runtime/deployment-path mismatch that requires deeper investigation. Full debugging trail and resume conditions live in `docs/sprint-b-followup.md` §5. Phase 2c.2 (canvas flip) is consequently **blocked** until 2c.1's rendering issue is resolved. Do not advance beyond this entry until that section is unblocked.
+
 - **Files:** `components/layout/DashboardShell.tsx`
 - **Token swaps (per §A):**
   - Sidebar `<aside>`: `bg-white border-line-soft` → `bg-navy-900 border-navy-700`
