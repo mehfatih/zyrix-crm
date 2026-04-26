@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 
 export type AgentRole =
   | 'sales-followup'
@@ -117,12 +117,10 @@ export const NEVER_AUTO_EXECUTE = [
 ] as const;
 
 class AgentsService {
-  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
-
   async runAll(workspaceId: string): Promise<AgentOutput[]> {
     try {
-      const { data } = await axios.post(
-        `${this.baseURL}/api/ai/agents/run`,
+      const { data } = await apiClient.post(
+        '/api/ai/agents/run',
         { workspaceId },
         { timeout: 8000 },
       );
@@ -134,31 +132,31 @@ class AgentsService {
 
   async approveOutput(outputId: string): Promise<void> {
     try {
-      await axios.post(`${this.baseURL}/api/ai/agents/outputs/${outputId}/approve`);
+      await apiClient.post(`/api/ai/agents/outputs/${outputId}/approve`);
     } catch {}
   }
 
   async dismissOutput(outputId: string): Promise<void> {
     try {
-      await axios.post(`${this.baseURL}/api/ai/agents/outputs/${outputId}/dismiss`);
+      await apiClient.post(`/api/ai/agents/outputs/${outputId}/dismiss`);
     } catch {}
   }
 
   async editOutput(outputId: string, edits: Partial<AgentOutput>): Promise<void> {
     try {
-      await axios.post(`${this.baseURL}/api/ai/agents/outputs/${outputId}/edit`, edits);
+      await apiClient.post(`/api/ai/agents/outputs/${outputId}/edit`, edits);
     } catch {}
   }
 
   async updatePermission(role: AgentRole, level: AgentPermissionLevel): Promise<void> {
     try {
-      await axios.put(`${this.baseURL}/api/ai/agents/${role}/permission`, { level });
+      await apiClient.put(`/api/ai/agents/${role}/permission`, { level });
     } catch {}
   }
 
   async getLogs(role?: AgentRole, limit = 50): Promise<AgentOutput[]> {
     try {
-      const { data } = await axios.get(`${this.baseURL}/api/ai/agents/logs`, {
+      const { data } = await apiClient.get('/api/ai/agents/logs', {
         params: { role, limit },
         timeout: 5000,
       });
