@@ -223,7 +223,7 @@ function FloatChip({ icon, color, text }: { icon: string; color: string; text: s
 /* ---------- icons ---------- */
 
 function SidebarIcon({ name }: { name: string }) {
-  const paths: Record<string, JSX.Element> = {
+  const paths: Record<string, React.JSX.Element> = {
     home: <path d="M3 12L12 4l9 8M5 10v10h14V10" stroke="currentColor" strokeWidth="1.6" />,
     users: <path d="M16 11a4 4 0 11-8 0 4 4 0 018 0zM3 21v-2a4 4 0 014-4h10a4 4 0 014 4v2" stroke="currentColor" strokeWidth="1.6" />,
     chat: <path d="M21 12a8 8 0 11-3.5-6.6L21 4l-1.6 3.6A8 8 0 0121 12z" stroke="currentColor" strokeWidth="1.6" />,

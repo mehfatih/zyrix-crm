@@ -1,25 +1,17 @@
 // app/[locale]/page.tsx
-// Zyrix CRM — Public marketing homepage (v2 dark identity).
-// Composed of 9 sections from header to footer.
+// Zyrix CRM — Public marketing homepage v3 (pixel-match).
 
 import React from "react";
 import type { Metadata } from "next";
 
-import { HeroV2 } from "@/components/marketing/HeroV2";
-import { MetricStrip } from "@/components/marketing/MetricStrip";
-import { FeatureEcosystem } from "@/components/marketing/FeatureEcosystem";
-import { AICommandCenter } from "@/components/marketing/AICommandCenter";
-import { RegionalProof } from "@/components/marketing/RegionalProof";
-import { WhatsAppCore } from "@/components/marketing/WhatsAppCore";
-import { IntegrationsOrbit } from "@/components/marketing/IntegrationsOrbit";
-import { ComparisonMatrix } from "@/components/marketing/ComparisonMatrix";
-import { FinalCTA } from "@/components/marketing/FinalCTA";
-
-// If your layout already renders <HeaderV2 /> and <FooterV2 />, REMOVE these
-// two imports + the JSX usages at the bottom. They're included here so the
-// page works whether or not the layout wires the chrome.
-import { HeaderV2 } from "@/components/marketing/HeaderV2";
-import { FooterV2 } from "@/components/marketing/FooterV2";
+import { Header } from "@/components/marketing/v3/Header";
+import { Hero } from "@/components/marketing/v3/Hero";
+import { TrustStrip } from "@/components/marketing/v3/TrustStrip";
+import { NumbersSection } from "@/components/marketing/v3/NumbersSection";
+import { FeaturesGrid } from "@/components/marketing/v3/FeaturesGrid";
+import { WhyZyrixBeats } from "@/components/marketing/v3/WhyZyrixBeats";
+import { FinalCTAStrip } from "@/components/marketing/v3/FinalCTAStrip";
+import { Footer } from "@/components/marketing/v3/Footer";
 
 type Locale = "en" | "ar" | "tr";
 
@@ -29,19 +21,19 @@ type Props = {
 
 const META: Record<Locale, { title: string; description: string }> = {
   en: {
-    title: "Zyrix CRM — Growth OS for WhatsApp-first teams in MENA & Türkiye",
+    title: "Zyrix CRM — The CRM built for how business actually happens",
     description:
-      "CRM, WhatsApp conversations, sales pipelines, AI CFO insights, and regional tax logic in one system built for Türkiye and MENA.",
+      "All-in-one CRM for MENA & Türkiye teams. WhatsApp at the core. Arabic-first by design. AI-powered, per-company pricing.",
   },
   ar: {
-    title: "زايركس CRM — نظام تشغيل النمو لفرق الواتساب أولاً في الشرق الأوسط وتركيا",
+    title: "زايركس CRM — الـ CRM المبني لطريقة عمل الأعمال كما تحدث فعلاً",
     description:
-      "إدارة العملاء ومحادثات الواتساب وخطوط المبيعات ورؤى المدير المالي الذكي ومنطق الضرائب الإقليمي في نظام واحد لتركيا والشرق الأوسط.",
+      "CRM شامل لفرق الشرق الأوسط وتركيا. الواتساب في القلب. عربي أولاً بالتصميم. مدعوم بالذكاء الاصطناعي، تسعير لكل شركة.",
   },
   tr: {
-    title: "Zyrix CRM — MENA ve Türkiye'deki WhatsApp öncelikli ekipler için büyüme OS",
+    title: "Zyrix CRM — İşin gerçekten olduğu yere göre tasarlanmış CRM",
     description:
-      "CRM, WhatsApp konuşmaları, satış pipeline'ları, AI CFO içgörüleri ve bölgesel vergi mantığı tek bir sistemde — Türkiye ve MENA için.",
+      "MENA ve Türkiye ekipleri için hepsi-bir-arada CRM. WhatsApp merkezde. Arapça öncelikli tasarım. AI destekli, şirket başına fiyatlandırma.",
   },
 };
 
@@ -74,28 +66,16 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      {/*
-        REMOVE the next line if app/[locale]/layout.tsx already renders <HeaderV2 />.
-        Keep it if the layout has no shared header.
-      */}
-      <HeaderV2 locale={loc} />
-
+      <Header locale={loc} />
       <main>
-        <HeroV2 locale={loc} />
-        <MetricStrip locale={loc} />
-        <FeatureEcosystem locale={loc} />
-        <AICommandCenter locale={loc} />
-        <RegionalProof locale={loc} />
-        <WhatsAppCore locale={loc} />
-        <IntegrationsOrbit locale={loc} />
-        <ComparisonMatrix locale={loc} />
-        <FinalCTA locale={loc} />
+        <Hero locale={loc} />
+        <TrustStrip locale={loc} />
+        <NumbersSection locale={loc} />
+        <FeaturesGrid locale={loc} />
+        <WhyZyrixBeats locale={loc} />
+        <FinalCTAStrip locale={loc} />
       </main>
-
-      {/*
-        REMOVE the next line if app/[locale]/layout.tsx already renders <FooterV2 />.
-      */}
-      <FooterV2 locale={loc} />
+      <Footer locale={loc} />
     </>
   );
 }

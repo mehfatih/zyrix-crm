@@ -52,7 +52,7 @@ export function NumbersSection({ locale }: Props) {
 }
 
 function NumberIcon({ name, color }: { name: string; color: string }) {
-  const map: Record<string, JSX.Element> = {
+  const map: Record<string, React.JSX.Element> = {
     shield: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
         <path d="M12 2L3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6l-9-4z" />

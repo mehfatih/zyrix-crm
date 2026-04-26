@@ -180,7 +180,7 @@ function ContactIcon({ name }: { name: string }) {
 }
 
 function SocialIcon({ name }: { name: string }) {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, React.JSX.Element> = {
     linkedin: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM8 18H5V9h3v9zM6.5 7.5a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM18 18h-3v-4.5c0-1-.5-2-1.75-2-1.25 0-1.75 1-1.75 2V18h-3V9h3v1.5c.5-.75 1.5-1.5 3-1.5 2.25 0 3.5 1.5 3.5 4V18z" />
