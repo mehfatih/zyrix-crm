@@ -52,3 +52,6 @@ logs/
 *.tsbuildinfo
 # Claude Code workspace
 .claude/
+
+# Sprint 5 temporary backup
+.sprint5-backup/
