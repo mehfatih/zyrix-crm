@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 
 export interface DriveSyncStatus {
   connected: boolean;
@@ -8,12 +8,13 @@ export interface DriveSyncStatus {
 }
 
 class GoogleDriveService {
+  // Used only for the OAuth redirect target in connect(); apiClient handles fetches.
   private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
 
   async getStatus(): Promise<DriveSyncStatus> {
     try {
-      const { data } = await axios.get(
-        `${this.baseURL}/api/integrations/google-drive/status`,
+      const { data } = await apiClient.get(
+        '/api/integrations/google-drive/status',
         { timeout: 5000 },
       );
       return data;
@@ -30,7 +31,7 @@ class GoogleDriveService {
 
   async disconnect(): Promise<void> {
     try {
-      await axios.post(`${this.baseURL}/api/integrations/google-drive/disconnect`);
+      await apiClient.post('/api/integrations/google-drive/disconnect');
     } catch {}
   }
 }
