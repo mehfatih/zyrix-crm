@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiClient } from '@/lib/api/client';
 import type { AIDeal, DealStage } from './dealsAI';
 
 export interface StageHealth {
@@ -17,11 +17,9 @@ export interface PipelineSnapshot {
 }
 
 class PipelineAIService {
-  private baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
-
   async getSnapshot(workspaceId: string): Promise<PipelineSnapshot> {
     try {
-      const { data } = await axios.get(`${this.baseURL}/api/ai/pipeline`, {
+      const { data } = await apiClient.get('/api/ai/pipeline', {
         params: { workspaceId },
         timeout: 5000,
       });
@@ -33,7 +31,7 @@ class PipelineAIService {
 
   async updateDealStage(dealId: string, newStage: DealStage): Promise<void> {
     try {
-      await axios.patch(`${this.baseURL}/api/deals/${dealId}/stage`, {
+      await apiClient.patch(`/api/deals/${dealId}/stage`, {
         stage: newStage,
       });
     } catch {
