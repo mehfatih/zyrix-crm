@@ -77,6 +77,14 @@ const nextConfig: NextConfig = {
   // experimental.optimizePackageImports removed — was causing OOM during build.
   // Tree-shaking still works without it for these libraries.
 
+  // Sprint 8: Disable source maps to reduce build memory.
+  // 506 pages × source maps was hitting heap limit even with 8GB.
+  // Source maps stay enabled in dev; only production build is affected.
+  productionBrowserSourceMaps: false,
+  experimental: {
+    serverSourceMaps: false,
+  },
+
   async headers() {
     return [
       {

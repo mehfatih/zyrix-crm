@@ -55,3 +55,7 @@ logs/
 
 # Sprint 5 temporary backup
 .sprint5-backup/
+
+# Sprint 8 local backups
+.backup-sprint8/
+*.backup

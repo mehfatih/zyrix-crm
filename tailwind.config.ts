@@ -1,492 +1,92 @@
 import type { Config } from "tailwindcss";
-import typography from "@tailwindcss/typography";
-import forms from "@tailwindcss/forms";
-import aspectRatio from "@tailwindcss/aspect-ratio";
 
-// ============================================================================
-// ZYRIX CRM — Tailwind Configuration
-// ============================================================================
-// As of Sprint B (Apr 2026): brand identity is Dark Navy #112044 + neon blue
-// gradient. The legacy sky/cyan/zyrix tokens remain for backward-compat during
-// the migration window — do not remove without explicit follow-up sprint
-// approval. See docs/sprint-b-discovery.md and docs/sprint-b-implementation-plan.md.
-// ============================================================================
+/**
+ * Place at: tailwind.config.ts
+ *
+ * Replace your existing tailwind.config.ts with this file.
+ * Includes all Lovable design tokens + animations.
+ */
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
-    "./hooks/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./hooks/**/*.{ts,tsx}",
   ],
-
-  // Enable dark mode via class (NOT media) — but we won't use dark colors
-  // This is just for potential future toggle of slightly cooler palette
-  darkMode: "class",
-
+  prefix: "",
   theme: {
-    // ───────────────────────────────────────────────────────────────────
-    // Container
-    // ───────────────────────────────────────────────────────────────────
     container: {
       center: true,
-      padding: {
-        DEFAULT: "1rem",
-        sm: "1.5rem",
-        lg: "2rem",
-        xl: "3rem",
-        "2xl": "4rem",
-      },
+      padding: "2rem",
       screens: {
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1280px",
         "2xl": "1400px",
       },
     },
-
     extend: {
-      // ─────────────────────────────────────────────────────────────────
-      // ZYRIX BRAND COLORS
-      // ─────────────────────────────────────────────────────────────────
       colors: {
-        // Primary brand color
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          50: "#ECFEFF",
-          100: "#CFFAFE",
-          200: "#A5F3FC",
-          300: "#67E8F9",
-          400: "#22D3EE",
-          500: "#06B6D4",
-          600: "#0891B2", // ⭐ KERNEL — main brand color
-          700: "#0E7490",
-          800: "#155E75",
-          900: "#164E63",
-          950: "#083344",
-          DEFAULT: "#0891B2",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
-
-        // Sky (light blue)
-        sky: {
-          50: "#F0F9FF",
-          100: "#E0F2FE",
-          200: "#BAE6FD",
-          300: "#7DD3FC",
-          400: "#38BDF8",
-          500: "#0EA5E9",
-          600: "#0284C7",
-          700: "#0369A1",
-          800: "#075985",
-          900: "#0C4A6E",
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
-
-        // Azure (medium blue-cyan)
-        azure: {
-          50: "#EFF6FF",
-          100: "#DBEAFE",
-          200: "#BFDBFE",
-          300: "#93C5FD",
-          400: "#60A5FA",
-          500: "#3B82F6",
-          600: "#2563EB",
-          700: "#1D4ED8",
-          DEFAULT: "#38BDF8",
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-
-        // Cyan (pure cyan scale)
-        cyan: {
-          50: "#ECFEFF",
-          100: "#CFFAFE",
-          200: "#A5F3FC",
-          300: "#67E8F9",
-          400: "#22D3EE",
-          500: "#06B6D4",
-          600: "#0891B2",
-          700: "#0E7490",
-          800: "#155E75",
-          900: "#164E63",
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
-
-        // Semantic colors
-        success: {
-          light: "#D1FAE5",
-          DEFAULT: "#059669",
-          dark: "#047857",
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
-        warning: {
-          light: "#FEF3C7",
-          DEFAULT: "#F59E0B",
-          dark: "#B45309",
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
-        danger: {
-          light: "#FEE2E2",
-          DEFAULT: "#DC2626",
-          dark: "#B91C1C",
-        },
-        info: {
-          light: "#DBEAFE",
-          DEFAULT: "#0EA5E9",
-          dark: "#0369A1",
-        },
-
-        // Background tokens (named semantically)
-        bg: {
-          base: "#F0F9FF",
-          card: "#ECFEFF",
-          subtle: "#F8FAFC",
-          elevated: "#FFFFFF",
-          muted: "#F1F5F9",
-        },
-
-        // Text tokens
-        ink: {
-          DEFAULT: "#164E63",
-          mid: "#0E7490",
-          light: "#475569",
-          muted: "#64748B",
-          inverse: "#FFFFFF",
-        },
-
-        // Border tokens
-        line: {
-          DEFAULT: "#BAE6FD",
-          soft: "#E0F2FE",
-          strong: "#7DD3FC",
-        },
-
-        // ──────────────────────────────────────────────────────────────
-        // EXPANDED ACCENT PALETTE (WEB Sprint 1)
-        // Mirrors the mobile app's vibrant landing colors.
-        // ──────────────────────────────────────────────────────────────
-        coral: "#FB7185",
-        peach: "#FDBA74",
-        mint: "#34D399",
-        lavender: "#A78BFA",
-        sunshine: "#FCD34D",
-        "sky-bright": "#7DD3FC",
-        "rose-accent": "#F9A8D4",
-        "teal-bright": "#5EEAD4",
-
-        // ──────────────────────────────────────────────────────────────
-        // ZYRIX SKY BLUE (NEW STANDARD — Apr 2026)
-        // Unified Mobile + Web tokens. Use these going forward.
-        // ──────────────────────────────────────────────────────────────
-        zyrix: {
-          primary: "#0EA5E9",
-          primaryDark: "#0284C7",
-          primaryLight: "#7DD3FC",
-          accent: "#22D3EE",
-          azure: "#38BDF8",
-          sky: "#BAE6FD",
-          bg: "#F0F9FF",
-          cardBg: "#FFFFFF",
-          cardBgAlt: "#F8FAFC",
-          aiSurface: "#F0F9FF",
-          aiBorder: "#BAE6FD",
-          textHeading: "#0C4A6E",
-          textMid: "#0369A1",
-          textBody: "#1E293B",
-          textMuted: "#64748B",
-          border: "#E2E8F0",
-          borderSky: "#BAE6FD",
-          success: "#22C55E",
-          warning: "#F59E0B",
-          danger: "#EF4444",
-        },
-
-        // ──────────────────────────────────────────────────────────────
-        // DARK NAVY (Sprint B — Apr 2026)
-        // Surface ladder + inverted text tokens for dark surfaces.
-        // Additive — does not replace existing zyrix.* / sky / primary tokens.
-        // See docs/sprint-b-implementation-plan.md §A for swap mappings.
-        // ──────────────────────────────────────────────────────────────
-        navy: {
-          canvas: "#0A1530", // Page canvas (one notch darker than #112044)
-          900: "#112044",    // Brand base — locked by audit
-          800: "#182A55",    // Card surface
-          700: "#243766",    // Elevated card / hover
-          600: "#324A82",    // Border on dark / disabled
-          ink: "#F1F5F9",    // Headings on dark (slate-100)
-          body: "#CBD5E1",   // Body text on dark (slate-300)
-          muted: "#94A3B8",  // Captions / labels on dark (slate-400)
-        },
-
-        // ──────────────────────────────────────────────────────────────
-        // NEON BLUE (Sprint B — Apr 2026)
-        // Primary action accents on dark navy surfaces.
-        // ──────────────────────────────────────────────────────────────
-        neon: {
-          300: "#7DDFFF",        // Highlight / link-hover / icon glints
-          500: "#38BDF8",        // DEFAULT primary action on dark
-          600: "#0EA5E9",        // Alias for existing zyrix.primary
-          DEFAULT: "#38BDF8",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
-
-      // ─────────────────────────────────────────────────────────────────
-      // FONTS
-      // ─────────────────────────────────────────────────────────────────
-      fontFamily: {
-        cairo: [
-          "Cairo",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "Segoe UI",
-          "sans-serif",
-        ],
-        inter: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "Segoe UI",
-          "sans-serif",
-        ],
-        sans: [
-          "Inter",
-          "Cairo",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
-        mono: [
-          "JetBrains Mono",
-          "Fira Code",
-          "ui-monospace",
-          "SFMono-Regular",
-          "monospace",
-        ],
-      },
-
-      fontSize: {
-        "2xs": ["0.625rem", { lineHeight: "0.875rem" }],
-      },
-
-      // ─────────────────────────────────────────────────────────────────
-      // TYPOGRAPHY (prose customization)
-      // ─────────────────────────────────────────────────────────────────
-      typography: {
-        DEFAULT: {
-          css: {
-            "--tw-prose-body": "#164E63",
-            "--tw-prose-headings": "#0E7490",
-            "--tw-prose-lead": "#0E7490",
-            "--tw-prose-links": "#0891B2",
-            "--tw-prose-bold": "#164E63",
-            "--tw-prose-counters": "#0E7490",
-            "--tw-prose-bullets": "#67E8F9",
-            "--tw-prose-hr": "#BAE6FD",
-            "--tw-prose-quotes": "#0E7490",
-            "--tw-prose-quote-borders": "#67E8F9",
-            "--tw-prose-captions": "#475569",
-            "--tw-prose-code": "#0891B2",
-            "--tw-prose-pre-code": "#164E63",
-            "--tw-prose-pre-bg": "#ECFEFF",
-            "--tw-prose-th-borders": "#BAE6FD",
-            "--tw-prose-td-borders": "#E0F2FE",
-          },
-        },
-      },
-
-      // ─────────────────────────────────────────────────────────────────
-      // SHADOWS (cyan-tinted, never harsh black)
-      // ─────────────────────────────────────────────────────────────────
-      boxShadow: {
-        xs: "0 1px 2px 0 rgba(8, 145, 178, 0.05)",
-        sm: "0 1px 3px 0 rgba(8, 145, 178, 0.08), 0 1px 2px -1px rgba(8, 145, 178, 0.06)",
-        DEFAULT:
-          "0 4px 6px -1px rgba(8, 145, 178, 0.08), 0 2px 4px -2px rgba(8, 145, 178, 0.06)",
-        md: "0 6px 12px -2px rgba(8, 145, 178, 0.10), 0 3px 7px -3px rgba(8, 145, 178, 0.08)",
-        lg: "0 10px 20px -3px rgba(8, 145, 178, 0.12), 0 4px 8px -4px rgba(8, 145, 178, 0.08)",
-        xl: "0 20px 32px -5px rgba(8, 145, 178, 0.14), 0 8px 12px -6px rgba(8, 145, 178, 0.10)",
-        "2xl": "0 25px 50px -12px rgba(8, 145, 178, 0.20)",
-        glow: "0 0 24px rgba(34, 211, 238, 0.35)",
-        "glow-lg": "0 0 48px rgba(34, 211, 238, 0.45)",
-        inner: "inset 0 2px 4px 0 rgba(8, 145, 178, 0.05)",
-        none: "none",
-
-        // Zyrix Sky Blue shadows (NEW STANDARD — Apr 2026)
-        "zyrix-card":
-          "0 1px 3px rgba(14,165,233,0.08), 0 1px 2px rgba(14,165,233,0.04)",
-        "zyrix-card-hover":
-          "0 4px 12px rgba(14,165,233,0.12), 0 2px 6px rgba(14,165,233,0.06)",
-        "zyrix-ai-glow":
-          "0 0 0 1px rgba(14,165,233,0.15), 0 4px 12px rgba(14,165,233,0.08)",
-
-        // Dark-friendly AI glow (Sprint B — Apr 2026)
-        "zyrix-ai-glow-dark":
-          "0 0 0 1px rgba(56,189,248,0.25), 0 8px 32px -8px rgba(56,189,248,0.35)",
-      },
-
-      // ─────────────────────────────────────────────────────────────────
-      // BORDER RADIUS
-      // ─────────────────────────────────────────────────────────────────
       borderRadius: {
-        "4xl": "2rem",
-        "5xl": "2.5rem",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-
-      // ─────────────────────────────────────────────────────────────────
-      // BACKGROUND IMAGES (gradients)
-      // ─────────────────────────────────────────────────────────────────
-      backgroundImage: {
-        "zyrix-gradient":
-          "linear-gradient(135deg, #ECFEFF 0%, #F0F9FF 50%, #E0F2FE 100%)",
-        "zyrix-hero":
-          "linear-gradient(135deg, #F0F9FF 0%, #ECFEFF 40%, #BAE6FD 100%)",
-        "zyrix-cta":
-          "linear-gradient(135deg, #0891B2 0%, #0E7490 100%)",
-        "zyrix-accent":
-          "linear-gradient(90deg, #22D3EE 0%, #0891B2 100%)",
-        "zyrix-soft":
-          "linear-gradient(180deg, #ECFEFF 0%, #F0F9FF 100%)",
-        "shimmer":
-          "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%)",
-        "grid-pattern":
-          "linear-gradient(to right, rgba(186, 230, 253, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(186, 230, 253, 0.3) 1px, transparent 1px)",
-        "hero-gradient":
-          "linear-gradient(135deg, #06B6D4 0%, #7DD3FC 100%)",
-        "premium-gradient":
-          "linear-gradient(135deg, #A78BFA 0%, #7DD3FC 100%)",
-        "celebration-gradient":
-          "linear-gradient(135deg, #FB7185 0%, #FDBA74 100%)",
-        "success-gradient":
-          "linear-gradient(135deg, #34D399 0%, #5EEAD4 100%)",
-
-        // Zyrix AI gradients (NEW STANDARD — Apr 2026)
-        "zyrix-ai-gradient":
-          "linear-gradient(135deg, #22D3EE 0%, #0EA5E9 50%, #0284C7 100%)",
-        "zyrix-soft-gradient":
-          "linear-gradient(135deg, #F0F9FF 0%, #FFFFFF 100%)",
-
-        // Dark Navy + neon gradients (Sprint B — Apr 2026)
-        "gradient-ai-primary":
-          "linear-gradient(135deg, #38BDF8 0%, #0EA5E9 50%, #7C3AED 100%)",
-        "gradient-ai-edge":
-          "linear-gradient(180deg, rgba(56,189,248,0.12), rgba(56,189,248,0))",
-        "gradient-ai-glow":
-          "radial-gradient(circle at 30% 20%, rgba(56,189,248,0.18), transparent 60%)",
-        "gradient-page-aurora":
-          "radial-gradient(60% 80% at 70% 0%, rgba(124,58,237,0.10), transparent 60%), radial-gradient(50% 60% at 20% 100%, rgba(56,189,248,0.10), transparent 70%)",
-      },
-
-      backgroundSize: {
-        "grid-sm": "24px 24px",
-        "grid-md": "48px 48px",
-        "grid-lg": "96px 96px",
-      },
-
-      // ─────────────────────────────────────────────────────────────────
-      // ANIMATIONS & KEYFRAMES
-      // ─────────────────────────────────────────────────────────────────
-      animation: {
-        "fade-in": "fadeIn 0.4s ease-out forwards",
-        "fade-out": "fadeOut 0.3s ease-in forwards",
-        "slide-up": "slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "slide-down": "slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "slide-in-right":
-          "slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "slide-in-left":
-          "slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "scale-in": "scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "pulse-soft": "pulseSoft 2s ease-in-out infinite",
-        shimmer: "shimmer 2s linear infinite",
-        "spin-slow": "spin 3s linear infinite",
-        float: "float 3s ease-in-out infinite",
-      },
-
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        fadeOut: {
-          "0%": { opacity: "1" },
-          "100%": { opacity: "0" },
-        },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        slideDown: {
-          "0%": { opacity: "0", transform: "translateY(-16px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        slideInRight: {
-          "0%": { opacity: "0", transform: "translateX(24px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        slideInLeft: {
-          "0%": { opacity: "0", transform: "translateX(-24px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        scaleIn: {
-          "0%": { opacity: "0", transform: "scale(0.95)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
-        },
-        pulseSoft: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.75" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-8px)" },
-        },
-      },
-
-      // ─────────────────────────────────────────────────────────────────
-      // TRANSITIONS
-      // ─────────────────────────────────────────────────────────────────
       transitionTimingFunction: {
-        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "in-out-expo": "cubic-bezier(0.87, 0, 0.13, 1)",
-        smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
+        cinematic: "cubic-bezier(0.22, 1, 0.36, 1)",
+        smooth: "cubic-bezier(0.65, 0, 0.35, 1)",
       },
-
-      transitionDuration: {
-        "400": "400ms",
-        "600": "600ms",
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
-
-      // ─────────────────────────────────────────────────────────────────
-      // Z-INDEX scale
-      // ─────────────────────────────────────────────────────────────────
-      zIndex: {
-        "60": "60",
-        "70": "70",
-        "80": "80",
-        "90": "90",
-        "100": "100",
-      },
-
-      // ─────────────────────────────────────────────────────────────────
-      // SPACING (extended)
-      // ─────────────────────────────────────────────────────────────────
-      spacing: {
-        "18": "4.5rem",
-        "22": "5.5rem",
-        "26": "6.5rem",
-        "30": "7.5rem",
-        "128": "32rem",
-        "144": "36rem",
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
-
-  // ─────────────────────────────────────────────────────────────────────
-  // PLUGINS
-  // ─────────────────────────────────────────────────────────────────────
-  plugins: [
-    typography,
-    forms({ strategy: "class" }),
-    aspectRatio,
-  ],
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;
