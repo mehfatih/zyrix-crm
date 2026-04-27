@@ -2,20 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
 /**
  * Place at: components/experience/Nav.tsx
+ *
+ * Sticky pill nav. Glass-morphs on scroll.
  */
 
-const NAV = [
-  { label: "Product", href: "#features" },
-  { label: "Why Zyrix", href: "#why" },
-  { label: "Customers", href: "#trust" },
-  { label: "Pricing", href: "#pricing" },
-];
-
 export const Nav = () => {
+  const t = useTranslations("Landing.nav");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -24,6 +21,13 @@ export const Nav = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const items = [
+    { label: t("product"), href: "#features" },
+    { label: t("whyZyrix"), href: "#why" },
+    { label: t("customers"), href: "#trust" },
+    { label: t("pricing"), href: "#pricing" },
+  ];
 
   return (
     <header
@@ -43,9 +47,9 @@ export const Nav = () => {
           </Link>
 
           <nav className="hidden md:flex items-center gap-7">
-            {NAV.map((item) => (
+            {items.map((item) => (
               <a
-                key={item.label}
+                key={item.href}
                 href={item.href}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 story-link"
               >
@@ -56,13 +60,13 @@ export const Nav = () => {
 
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-              Sign in
+              {t("signIn")}
             </Button>
             <Button
               size="sm"
               className="btn-glow bg-gradient-cta text-primary-foreground border-0"
             >
-              Book a demo
+              {t("bookDemo")}
             </Button>
           </div>
         </div>

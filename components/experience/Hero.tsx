@@ -1,19 +1,32 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { ArrowRight, MessageCircle, CheckCircle2, Phone, Users, BarChart3, Inbox } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
+ * Place at: components/experience/Hero.tsx
+ *
  * Product hero — copy is CRM-positioned, WhatsApp-first, MENA-focused.
- * Dashboard mock is the dominant visual anchor.
+ * All text from Landing.hero translation namespace.
  */
 export const Hero = () => {
+  const t = useTranslations("Landing.hero");
+  const tm = useTranslations("Landing.hero.mockup");
   const y = useSmoothScroll();
+
+  // Mockup contacts (translated)
+  const contacts = [
+    { key: "1", name: tm("contact1Name"), msg: tm("contact1Msg"), time: tm("contact1Time"), unread: true },
+    { key: "2", name: tm("contact2Name"), msg: tm("contact2Msg"), time: tm("contact2Time"), unread: true },
+    { key: "3", name: tm("contact3Name"), msg: tm("contact3Msg"), time: tm("contact3Time"), unread: false },
+    { key: "4", name: tm("contact4Name"), msg: tm("contact4Msg"), time: tm("contact4Time"), unread: false },
+  ];
 
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col items-center pt-32 pb-40">
-      {/* Hero-local glow accent (subtle, defers to global aurora) */}
+      {/* Hero-local glow accent */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -26,7 +39,7 @@ export const Hero = () => {
         }}
       />
 
-      {/* Light trails connecting hero to next section */}
+      {/* Light trails */}
       <div className="absolute right-[8%] top-0 h-full pointer-events-none hidden md:block">
         <div className="light-trail h-[60%]" style={{ top: "20%", animationDelay: "0s" }} />
         <div className="light-trail h-[50%]" style={{ top: "10%", left: "40px", animationDelay: "1.4s", opacity: 0.5 }} />
@@ -39,46 +52,45 @@ export const Hero = () => {
       >
         <div className="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass mb-6" data-stagger="0">
           <MessageCircle className="w-3.5 h-3.5 text-primary" />
-          <span className="text-xs text-muted-foreground">WhatsApp-first CRM, built for MENA</span>
+          <span className="text-xs text-muted-foreground">{t("badge")}</span>
         </div>
 
         <h1
           className="reveal text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05]"
           data-stagger="100"
         >
-          The CRM built for how{" "}
-          <span className="text-gradient">business actually happens</span>
+          {t("titleStart")}{" "}
+          <span className="text-gradient">{t("titleEmphasis")}</span>
         </h1>
 
         <p className="reveal text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-9" data-stagger="200">
-          Zyrix puts WhatsApp at the core — not as an add-on. Close more deals with one inbox
-          for sales, support and operations across MENA.
+          {t("subtitle")}
         </p>
 
         <div className="reveal flex flex-wrap items-center justify-center gap-3 mb-6" data-stagger="300">
           <Button size="lg" className="btn-glow bg-gradient-cta text-primary-foreground border-0 h-12 px-7">
-            Start free
-            <ArrowRight className="ml-2 w-4 h-4" />
+            {t("ctaPrimary")}
+            <ArrowRight className="ml-2 w-4 h-4 rtl:rotate-180" />
           </Button>
           <Button size="lg" variant="ghost" className="h-12 px-5 story-link">
-            Book a demo
+            {t("ctaSecondary")}
           </Button>
         </div>
 
         <div className="reveal flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground" data-stagger="400">
-          <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> Arabic & English native</span>
-          <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> WhatsApp Business API</span>
-          <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> Setup in under a day</span>
+          <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> {t("trustItem1")}</span>
+          <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> {t("trustItem2")}</span>
+          <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> {t("trustItem3")}</span>
         </div>
       </div>
 
-      {/* DOMINANT DASHBOARD — the product is the star */}
+      {/* DOMINANT DASHBOARD MOCKUP */}
       <div
         className="reveal relative z-10 mt-16 w-full max-w-6xl px-4 md:px-6 perspective-stage"
         data-stagger="500"
         style={{ transform: `translate3d(0, ${y * -0.10}px, 0)` }}
       >
-        {/* Strong purple/blue halo behind dashboard */}
+        {/* Halo behind dashboard */}
         <div
           aria-hidden
           className="absolute -inset-16 rounded-[2.5rem] pointer-events-none blur-3xl"
@@ -91,7 +103,7 @@ export const Hero = () => {
           }}
         />
 
-        {/* Soft contact-shadow under the dashboard */}
+        {/* Contact shadow */}
         <div
           aria-hidden
           className="absolute left-1/2 -translate-x-1/2 bottom-[-30px] w-[80%] h-12 rounded-[50%] blur-2xl pointer-events-none"
@@ -108,24 +120,24 @@ export const Hero = () => {
               "0 60px 120px -30px hsl(255 95% 55% / 0.45), 0 30px 60px -20px hsl(220 100% 50% / 0.35), 0 0 0 1px hsl(var(--border))",
           }}
         >
-          {/* Mac-style window chrome */}
+          {/* Mac window chrome */}
           <div className="flex items-center gap-1.5 px-3 py-2">
             <span className="w-2.5 h-2.5 rounded-full bg-destructive/70" />
             <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
-            <div className="ml-3 text-[11px] text-muted-foreground">app.zyrix.com / inbox</div>
+            <div className="ml-3 text-[11px] text-muted-foreground">{tm("url")}</div>
           </div>
 
-          {/* Dashboard body */}
-          <div className="rounded-xl bg-gradient-to-br from-secondary to-card border border-border/60 overflow-hidden">
+          {/* Dashboard body — force LTR direction so the layout doesn't flip in Arabic */}
+          <div className="rounded-xl bg-gradient-to-br from-secondary to-card border border-border/60 overflow-hidden" dir="ltr">
             <div className="grid grid-cols-12 min-h-[460px]">
               {/* Sidebar */}
               <aside className="col-span-2 hidden md:flex flex-col gap-1 p-3 border-r border-border/60 bg-card/40">
                 {[
-                  { icon: Inbox, label: "Inbox", active: true },
-                  { icon: Users, label: "Contacts" },
-                  { icon: BarChart3, label: "Pipeline" },
-                  { icon: Phone, label: "Calls" },
+                  { icon: Inbox, label: tm("sidebarInbox"), active: true },
+                  { icon: Users, label: tm("sidebarContacts"), active: false },
+                  { icon: BarChart3, label: tm("sidebarPipeline"), active: false },
+                  { icon: Phone, label: tm("sidebarCalls"), active: false },
                 ].map((it) => (
                   <div
                     key={it.label}
@@ -144,22 +156,17 @@ export const Hero = () => {
               {/* Conversation list */}
               <div className="col-span-12 md:col-span-4 border-r border-border/60 p-3 space-y-1.5">
                 <div className="text-[11px] uppercase tracking-wider text-muted-foreground px-2 mb-2">
-                  WhatsApp · Today
+                  {tm("channelLabel")}
                 </div>
-                {[
-                  { name: "Layla A.", msg: "تمام، ابعت لي العرض النهائي", time: "2m", unread: true },
-                  { name: "Omar K.", msg: "Can we schedule a demo tomorrow?", time: "8m", unread: true },
-                  { name: "Fatima H.", msg: "Payment confirmed ✅", time: "21m" },
-                  { name: "Yousef M.", msg: "Thanks for the quick reply!", time: "1h" },
-                ].map((c, i) => (
+                {contacts.map((c, i) => (
                   <div
-                    key={c.name}
+                    key={c.key}
                     className={`flex items-start gap-2.5 px-2.5 py-2 rounded-lg transition-colors ${
                       i === 0 ? "bg-primary/10" : "hover:bg-muted/30"
                     }`}
                   >
                     <div className="w-7 h-7 rounded-full bg-gradient-cta shrink-0 flex items-center justify-center text-[10px] font-semibold text-primary-foreground">
-                      {c.name[0]}
+                      {c.name.charAt(0)}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">
@@ -177,31 +184,33 @@ export const Hero = () => {
               <div className="col-span-12 md:col-span-6 flex flex-col p-4 gap-3">
                 <div className="flex items-center justify-between pb-3 border-b border-border/60">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-gradient-cta flex items-center justify-center text-[11px] font-semibold text-primary-foreground">L</div>
+                    <div className="w-8 h-8 rounded-full bg-gradient-cta flex items-center justify-center text-[11px] font-semibold text-primary-foreground">
+                      {tm("activeName").charAt(0)}
+                    </div>
                     <div>
-                      <div className="text-sm font-medium">Layla A.</div>
-                      <div className="text-[10px] text-muted-foreground">Lead · Riyadh · WhatsApp</div>
+                      <div className="text-sm font-medium">{tm("activeName")}</div>
+                      <div className="text-[10px] text-muted-foreground">{tm("activeMeta")}</div>
                     </div>
                   </div>
                   <span className="badge-pulse text-[10px] px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/30">
-                    Hot lead
+                    {tm("hotLead")}
                   </span>
                 </div>
 
                 <div className="flex-1 space-y-2.5 overflow-hidden">
                   <div className="flex">
-                    <div className="max-w-[75%] rounded-2xl rounded-tl-sm bg-muted/50 px-3 py-2 text-xs">
-                      مرحبا، ممكن تفاصيل عن الباقات؟
+                    <div className="max-w-[75%] rounded-2xl rounded-tl-sm bg-muted/50 px-3 py-2 text-xs" dir="auto">
+                      {tm("incomingMsg")}
                     </div>
                   </div>
                   <div className="flex justify-end">
-                    <div className="max-w-[75%] rounded-2xl rounded-tr-sm bg-primary/20 border border-primary/30 px-3 py-2 text-xs">
-                      أهلاً! بنبعث لك الكتالوج خلال دقيقة 👌
+                    <div className="max-w-[75%] rounded-2xl rounded-tr-sm bg-primary/20 border border-primary/30 px-3 py-2 text-xs" dir="auto">
+                      {tm("outgoingMsg")}
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="max-w-[75%] rounded-2xl rounded-tl-sm bg-muted/50 px-3 py-2 text-xs">
-                      تمام، ابعت لي العرض النهائي
+                    <div className="max-w-[75%] rounded-2xl rounded-tl-sm bg-muted/50 px-3 py-2 text-xs" dir="auto">
+                      {tm("incoming2Msg")}
                     </div>
                   </div>
                 </div>
@@ -209,8 +218,8 @@ export const Hero = () => {
                 {/* AI suggestion bar */}
                 <div className="rounded-lg glass border border-primary/30 px-3 py-2 flex items-center gap-2">
                   <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/20 text-primary font-medium">AI</span>
-                  <span className="text-[11px] text-muted-foreground truncate">
-                    Suggested reply: "إليك العرض المخصص لشركتك..."
+                  <span className="text-[11px] text-muted-foreground truncate" dir="auto">
+                    {tm("aiSuggestion")}
                   </span>
                 </div>
               </div>

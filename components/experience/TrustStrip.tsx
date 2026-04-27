@@ -1,16 +1,19 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 /**
  * Place at: components/experience/TrustStrip.tsx
  *
- * NOTE: Replaced real company names (Talabat, Jahez, Mrsool, Sary, Noon Labs)
- * with fictional names to avoid trademark/legal issues until real partner
- * approvals are in place.
+ * Logos are placeholder brand names (not real companies).
+ * Eyebrow text comes from Landing.trust namespace.
  */
 
 const LOGOS = ["Northwave", "Levantra", "Atlasium", "Veridyn", "Bytecraft", "Solara", "oMarquis"];
 
 export const TrustStrip = () => {
+  const t = useTranslations("Landing.trust");
+
   return (
     <section id="trust" className="relative py-20 overflow-hidden section-blend-top">
       <div
@@ -24,7 +27,7 @@ export const TrustStrip = () => {
 
       <div className="container relative">
         <p className="reveal text-center text-xs uppercase tracking-[0.2em] text-muted-foreground mb-10">
-          Trusted by 1,200+ teams across MENA &amp; Türkiye
+          {t("eyebrow")}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">

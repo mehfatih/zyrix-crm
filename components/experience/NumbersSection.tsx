@@ -1,18 +1,21 @@
 "use client";
 
 import { TrendingUp, Clock, MessageCircle, Users } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useCountUp } from "@/hooks/useCountUp";
 
 /**
  * Place at: components/experience/NumbersSection.tsx
+ *
+ * 4 stat cards with count-up animation. Labels from Landing.numbers.
  */
 
-const STATS = [
-  { icon: MessageCircle, value: 80, suffix: "%", label: "Faster response on WhatsApp" },
-  { icon: Clock, value: 48, suffix: "h", label: "Average go-live time" },
-  { icon: TrendingUp, value: 3, suffix: "x", label: "Higher lead conversion" },
-  { icon: Users, value: 1200, suffix: "+", label: "MENA & Türkiye teams shipping with Zyrix" },
-];
+const STATS_CONFIG = [
+  { icon: MessageCircle, value: 80, suffix: "%", labelKey: "stat1Label" },
+  { icon: Clock, value: 48, suffix: "h", labelKey: "stat2Label" },
+  { icon: TrendingUp, value: 3, suffix: "x", labelKey: "stat3Label" },
+  { icon: Users, value: 1200, suffix: "+", labelKey: "stat4Label" },
+] as const;
 
 const StatCard = ({
   icon: Icon, value, suffix, label, delay,
@@ -42,22 +45,31 @@ const StatCard = ({
 };
 
 export const NumbersSection = () => {
+  const t = useTranslations("Landing.numbers");
+
   return (
     <section className="relative py-24 md:py-28 overflow-hidden section-blend-top section-blend-bottom">
       <div className="container relative">
         <div className="text-center mb-14 max-w-2xl mx-auto">
           <h2 className="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Real results from teams running on{" "}
-            <span className="text-gradient">Zyrix</span>
+            {t("title")}{" "}
+            <span className="text-gradient">{t("titleEmphasis")}</span>
           </h2>
           <p className="reveal text-muted-foreground" data-stagger="120">
-            Measured across 1,200+ businesses in Saudi Arabia, UAE, Egypt, Türkiye and Jordan.
+            {t("subtitle")}
           </p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-          {STATS.map((s, i) => (
-            <StatCard key={s.label} {...s} delay={i * 100} />
+          {STATS_CONFIG.map((s, i) => (
+            <StatCard
+              key={s.labelKey}
+              icon={s.icon}
+              value={s.value}
+              suffix={s.suffix}
+              label={t(s.labelKey)}
+              delay={i * 100}
+            />
           ))}
         </div>
       </div>
