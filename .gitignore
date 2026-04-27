@@ -68,3 +68,6 @@ logs/
 
 # Sprint 11 local backups
 .backup-sprint11/
+
+# Sprint 12 local backups
+.backup-sprint12/

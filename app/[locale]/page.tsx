@@ -11,6 +11,10 @@ import { WhyZyrix } from "@/components/experience/WhyZyrix";
 import { Objections } from "@/components/experience/Objections";
 import { Testimonials } from "@/components/experience/Testimonials";
 import { LiveDashboard } from "@/components/experience/LiveDashboard";
+import { HowItWorks } from "@/components/experience/HowItWorks";
+import { UseCases } from "@/components/experience/UseCases";
+import { Integrations } from "@/components/experience/Integrations";
+import { Pricing } from "@/components/experience/Pricing";
 import { FinalCTA } from "@/components/experience/FinalCTA";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
@@ -36,6 +40,10 @@ export default function HomePage() {
       <Objections />
       <Testimonials />
       <LiveDashboard />
+      <HowItWorks />
+      <UseCases />
+      <Integrations />
+      <Pricing />
       <FinalCTA />
     </main>
   );
