@@ -62,3 +62,6 @@ logs/
 
 # Sprint 9 local backups
 .backup-sprint9/
+
+# Sprint 10 local backups
+.backup-sprint10/

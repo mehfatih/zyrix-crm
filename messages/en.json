@@ -3077,6 +3077,42 @@
       "ctaPrimary": "Start free",
       "ctaSecondary": "Talk to sales",
       "footnote": "No credit card · Free for 14 days · Arabic, English & Turkish support"
+    },
+    "objections": {
+      "eyebrow": "Honest answers",
+      "title": "Everything you're worried about —",
+      "titleEmphasis": "solved",
+      "subtitle": "The real questions teams ask before switching to Zyrix.",
+      "o1Question": "We already use a CRM",
+      "o1Answer": "Zyrix replaces multiple tools — CRM, helpdesk, broadcast, automations — with one WhatsApp-first system your team will actually use every day.",
+      "o2Question": "Setup sounds complex",
+      "o2Answer": "Live in under 24 hours. No technical team required. Import contacts, connect WhatsApp, invite your team — start selling the same day.",
+      "o3Question": "Our team isn't technical",
+      "o3Answer": "Built for real sales and operations teams, not IT departments. If your team uses WhatsApp, they already know how to use Zyrix.",
+      "o4Question": "What about Arabic & Turkish workflows?",
+      "o4Answer": "Native RTL interface, dialect-aware AI (Khaleeji, Egyptian, Levantine), Turkish localization, and region-ready integrations from day one."
+    },
+    "testimonials": {
+      "eyebrow": "Real impact",
+      "title": "from teams running on Zyrix",
+      "titleEmphasis": "Outcomes that matter",
+      "subtitle": "Aggregate signals from teams across MENA & Türkiye using Zyrix as their primary CRM.",
+      "s1Value": "Faster",
+      "s1Label": "Response times on WhatsApp",
+      "s2Value": "Higher",
+      "s2Label": "Lead-to-deal conversion",
+      "s3Value": "Fewer tools",
+      "s3Label": "Replaced by Zyrix on average",
+      "t1Quote": "Zyrix replaced four tools for our team. Sales, support, and ops all work from the same WhatsApp inbox now — nothing slips through.",
+      "t1Role": "Operations Manager",
+      "t1Region": "Retail group · KSA",
+      "t2Quote": "Response times dropped from hours to minutes. We didn't hire more reps — we just gave the team a system that fits how they actually work.",
+      "t2Role": "Head of Sales",
+      "t2Region": "B2B services · UAE",
+      "t3Quote": "Finally a CRM the team doesn't fight. They were live the same day, and we never went back to the old stack.",
+      "t3Role": "Founder",
+      "t3Region": "D2C brand · Türkiye",
+      "disclaimer": "Anonymized teams across MENA & Türkiye. Specific results vary by team size and use case."
     }
   }
 }

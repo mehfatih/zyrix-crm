@@ -8,6 +8,8 @@ import { TrustStrip } from "@/components/experience/TrustStrip";
 import { NumbersSection } from "@/components/experience/NumbersSection";
 import { FeaturesGrid } from "@/components/experience/FeaturesGrid";
 import { WhyZyrix } from "@/components/experience/WhyZyrix";
+import { Objections } from "@/components/experience/Objections";
+import { Testimonials } from "@/components/experience/Testimonials";
 import { FinalCTA } from "@/components/experience/FinalCTA";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
@@ -30,6 +32,8 @@ export default function HomePage() {
       <NumbersSection />
       <FeaturesGrid />
       <WhyZyrix />
+      <Objections />
+      <Testimonials />
       <FinalCTA />
     </main>
   );

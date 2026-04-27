@@ -3077,6 +3077,42 @@
       "ctaPrimary": "Ücretsiz başla",
       "ctaSecondary": "Satış ekibiyle konuş",
       "footnote": "Kredi kartı yok · 14 gün ücretsiz · Türkçe, Arapça ve İngilizce destek"
+    },
+    "objections": {
+      "eyebrow": "Dürüst cevaplar",
+      "title": "Endişelendiğiniz her şey —",
+      "titleEmphasis": "çözüldü",
+      "subtitle": "Ekiplerin Zyrix'e geçmeden önce sordukları gerçek sorular.",
+      "o1Question": "Zaten bir CRM kullanıyoruz",
+      "o1Answer": "Zyrix birden fazla aracı — CRM, destek, toplu mesaj, otomasyon — ekibinizin her gün gerçekten kullanacağı tek bir WhatsApp odaklı sistemle değiştirir.",
+      "o2Question": "Kurulum karmaşık görünüyor",
+      "o2Answer": "24 saatten az sürede canlıda. Teknik ekip gerekmez. Kişileri içe aktarın, WhatsApp'ı bağlayın, ekibinizi davet edin — aynı gün satışa başlayın.",
+      "o3Question": "Ekibimiz teknik değil",
+      "o3Answer": "BT departmanları için değil, gerçek satış ve operasyon ekipleri için tasarlandı. Ekibiniz WhatsApp kullanıyorsa, Zyrix'i nasıl kullanacağını zaten biliyor.",
+      "o4Question": "Türkçe ve Arapça iş akışları?",
+      "o4Answer": "Yerel RTL arayüz, lehçe bilen AI (Khaleeji, Mısır, Şam), Türkçe yerelleştirme ve ilk günden bölgeye hazır entegrasyonlar."
+    },
+    "testimonials": {
+      "eyebrow": "Gerçek etki",
+      "title": "Zyrix kullanan ekiplerden",
+      "titleEmphasis": "Önemli sonuçlar",
+      "subtitle": "MENA ve Türkiye'de Zyrix'i ana CRM olarak kullanan ekiplerden toplu sinyaller.",
+      "s1Value": "Daha hızlı",
+      "s1Label": "WhatsApp'ta yanıt süreleri",
+      "s2Value": "Daha yüksek",
+      "s2Label": "Lead'den anlaşmaya dönüşüm",
+      "s3Value": "Daha az araç",
+      "s3Label": "Zyrix tarafından ortalama değiştirilen",
+      "t1Quote": "Zyrix ekibimiz için dört aracı değiştirdi. Satış, destek ve operasyon artık aynı WhatsApp gelen kutusundan çalışıyor — hiçbir şey kaçmıyor.",
+      "t1Role": "Operasyon Yöneticisi",
+      "t1Region": "Perakende grubu · Suudi Arabistan",
+      "t2Quote": "Yanıt süreleri saatlerden dakikalara düştü. Daha fazla satış temsilcisi işe almadık — ekibe gerçekten çalışma şekillerine uygun bir sistem verdik.",
+      "t2Role": "Satış Direktörü",
+      "t2Region": "B2B hizmetleri · BAE",
+      "t3Quote": "Sonunda ekibin direnmediği bir CRM. Aynı gün canlıdaydılar ve eski sisteme bir daha asla dönmedik.",
+      "t3Role": "Kurucu",
+      "t3Region": "D2C markası · Türkiye",
+      "disclaimer": "MENA ve Türkiye genelinde anonim ekipler. Belirli sonuçlar ekip büyüklüğüne ve kullanım durumuna göre değişir."
     }
   }
 }
