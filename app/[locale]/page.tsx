@@ -10,6 +10,7 @@ import { FeaturesGrid } from "@/components/experience/FeaturesGrid";
 import { WhyZyrix } from "@/components/experience/WhyZyrix";
 import { Objections } from "@/components/experience/Objections";
 import { Testimonials } from "@/components/experience/Testimonials";
+import { LiveDashboard } from "@/components/experience/LiveDashboard";
 import { FinalCTA } from "@/components/experience/FinalCTA";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
@@ -34,6 +35,7 @@ export default function HomePage() {
       <WhyZyrix />
       <Objections />
       <Testimonials />
+      <LiveDashboard />
       <FinalCTA />
     </main>
   );
