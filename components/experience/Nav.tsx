@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { ZyrixLogo } from "./ZyrixLogo";
 
 /**
  * Place at: components/experience/Nav.tsx
@@ -41,10 +41,7 @@ export const Nav = () => {
             scrolled ? "glass-strong shadow-card" : "bg-transparent"
           }`}
         >
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-cta shadow-glow" />
-            <span className="font-semibold tracking-tight text-lg">Zyrix</span>
-          </Link>
+          <ZyrixLogo variant="white" size={32} />
 
           <nav className="hidden md:flex items-center gap-7">
             {items.map((item) => (

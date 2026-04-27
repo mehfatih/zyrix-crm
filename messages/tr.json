@@ -3237,6 +3237,112 @@
       "enterpriseFeature4": "Özel başarı yöneticisi",
       "enterpriseCta": "Teklif iste",
       "disclaimer": "Nihai fiyat ekip büyüklüğüne, entegrasyonlara ve kurulum kapsamına bağlıdır. Özel teklif için satış ekibiyle iletişime geçin."
+    },
+    "growthLoops": {
+      "eyebrow": "Büyüme motoru",
+      "title": "Yerleşik döngüler.",
+      "titleAccent": "Katlanan gelir.",
+      "subtitle": "Zyrix'teki her konuşma bir sonrakini tetikler — yeniden etkileşim, tavsiye, değerlendirme, ek satış. Büyüme bir proje olmaktan çıkar, sisteme dönüşür.",
+      "note": "Tüm döngüler WhatsApp politikalarına uyumlu, hız sınırlı ve MENA & Türkiye pazarlarında test edilmiştir.",
+      "items": {
+        "reEngagement": {
+          "title": "Yeniden etkileşim",
+          "desc": "Pasif müşteriler otomatik olarak kişiselleştirilmiş AI takibi alır — durmuş anlaşmaların %28'ine kadarını geri kazanır."
+        },
+        "broadcast": {
+          "title": "Toplu kampanyalar",
+          "desc": "Davranışa göre segmentle, WhatsApp kampanyaları gönder, dönüşümü ölç. Uyumlu, hız sınırlı, banlanmaz."
+        },
+        "referral": {
+          "title": "Tavsiye döngüleri",
+          "desc": "Kazanılan her anlaşmadan sonra Zyrix tek tıkla paylaşım linkiyle tavsiye ister — müşteriyi kanala dönüştürür."
+        },
+        "reviews": {
+          "title": "Otomatik değerlendirme",
+          "desc": "Konuşmanın en uygun anında Google ve Trustpilot değerlendirme isteklerini tetikler."
+        }
+      }
+    },
+    "stickyCta": {
+      "text": "Daha fazla anlaşma kapatmaya hazır mısın?",
+      "cta": "Ücretsiz dene"
+    },
+    "footer": {
+      "cta": {
+        "eyebrow": "Hemen başla",
+        "title": "WhatsApp'ta daha fazla anlaşma kapat.",
+        "titleAccent": "Otomatik olarak.",
+        "subtitle": "MENA ve Türkiye'deki büyüyen ekiplere katıl — elektronik tabloları, çoklu araçları ve kaçırılan mesajları tek bir AI destekli iş sistemiyle değiştir.",
+        "primary": "14 günlük ücretsiz dene",
+        "secondary": "Demo rezervasyonu",
+        "disclaimer": "Kredi kartı gerekmez. İstediğin zaman iptal et."
+      },
+      "brand": {
+        "tagline": "MENA için AI destekli iş sistemi. WhatsApp öncelikli. Gelir odaklı."
+      },
+      "social": {
+        "twitter": "Twitter / X",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "whatsapp": "WhatsApp",
+        "email": "E-posta"
+      },
+      "newsletter": {
+        "title": "Haberdar ol",
+        "placeholder": "senin@email.com",
+        "cta": "Abone ol"
+      },
+      "columns": {
+        "product": {
+          "title": "Ürün",
+          "links": {
+            "features": "Özellikler",
+            "aiAgents": "AI ajanları",
+            "pricing": "Fiyatlandırma",
+            "integrations": "Entegrasyonlar",
+            "changelog": "Değişiklikler"
+          }
+        },
+        "solutions": {
+          "title": "Çözümler",
+          "links": {
+            "sales": "Satış ekipleri",
+            "ecommerce": "E-ticaret",
+            "realEstate": "Emlak",
+            "clinics": "Klinikler",
+            "agencies": "Ajanslar"
+          }
+        },
+        "company": {
+          "title": "Şirket",
+          "links": {
+            "about": "Hakkımızda",
+            "customers": "Müşteriler",
+            "careers": "Kariyer",
+            "press": "Basın",
+            "contact": "İletişim"
+          }
+        },
+        "resources": {
+          "title": "Kaynaklar",
+          "links": {
+            "docs": "Dokümantasyon",
+            "api": "API",
+            "blog": "Blog",
+            "playbook": "WhatsApp rehberi",
+            "status": "Durum"
+          }
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Zyrix Technologies. Tüm hakları saklıdır.",
+        "madeIn": "MENA ve Türkiye'de geliştirildi",
+        "privacy": "Gizlilik",
+        "terms": "Şartlar",
+        "security": "Güvenlik",
+        "dpa": "Veri İşleme",
+        "cookies": "Çerezler"
+      }
     }
   }
 }

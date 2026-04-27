@@ -3237,6 +3237,112 @@
       "enterpriseFeature4": "Dedicated success manager",
       "enterpriseCta": "Request a quote",
       "disclaimer": "Final pricing depends on team size, integrations, and rollout scope. Contact sales for a tailored quote."
+    },
+    "growthLoops": {
+      "eyebrow": "Growth engine",
+      "title": "Built-in loops.",
+      "titleAccent": "Compounding revenue.",
+      "subtitle": "Every conversation in Zyrix triggers the next — re-engagement, referral, review, upsell. Growth stops being a project and becomes a system.",
+      "note": "All loops are WhatsApp-compliant, throttled, and tested across MENA & Türkiye markets.",
+      "items": {
+        "reEngagement": {
+          "title": "Re-engagement",
+          "desc": "Inactive customers automatically receive personalized AI follow-ups — recovering up to 28% of stalled deals."
+        },
+        "broadcast": {
+          "title": "Broadcast campaigns",
+          "desc": "Segment by behavior, send WhatsApp campaigns, measure conversion. Compliant, throttled, no bans."
+        },
+        "referral": {
+          "title": "Referral loops",
+          "desc": "After every won deal, Zyrix asks for a referral with a one-tap share link — turning customers into a channel."
+        },
+        "reviews": {
+          "title": "Reviews on autopilot",
+          "desc": "Trigger Google & Trustpilot review requests at the perfect moment in the conversation."
+        }
+      }
+    },
+    "stickyCta": {
+      "text": "Ready to close more deals?",
+      "cta": "Start free trial"
+    },
+    "footer": {
+      "cta": {
+        "eyebrow": "Get started",
+        "title": "Close more deals on WhatsApp.",
+        "titleAccent": "Automatically.",
+        "subtitle": "Join growing teams across MENA & Türkiye who replaced spreadsheets, multiple tools, and missed messages with one AI-powered Business OS.",
+        "primary": "Start free 14-day trial",
+        "secondary": "Book a demo",
+        "disclaimer": "No credit card required. Cancel anytime."
+      },
+      "brand": {
+        "tagline": "The AI-powered Business OS for MENA. WhatsApp-first. Revenue-obsessed."
+      },
+      "social": {
+        "twitter": "Twitter / X",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "whatsapp": "WhatsApp",
+        "email": "Email us"
+      },
+      "newsletter": {
+        "title": "Stay in the loop",
+        "placeholder": "your@email.com",
+        "cta": "Subscribe"
+      },
+      "columns": {
+        "product": {
+          "title": "Product",
+          "links": {
+            "features": "Features",
+            "aiAgents": "AI agents",
+            "pricing": "Pricing",
+            "integrations": "Integrations",
+            "changelog": "Changelog"
+          }
+        },
+        "solutions": {
+          "title": "Solutions",
+          "links": {
+            "sales": "Sales teams",
+            "ecommerce": "E-commerce",
+            "realEstate": "Real estate",
+            "clinics": "Clinics",
+            "agencies": "Agencies"
+          }
+        },
+        "company": {
+          "title": "Company",
+          "links": {
+            "about": "About",
+            "customers": "Customers",
+            "careers": "Careers",
+            "press": "Press",
+            "contact": "Contact"
+          }
+        },
+        "resources": {
+          "title": "Resources",
+          "links": {
+            "docs": "Docs",
+            "api": "API",
+            "blog": "Blog",
+            "playbook": "WhatsApp playbook",
+            "status": "Status"
+          }
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Zyrix Technologies. All rights reserved.",
+        "madeIn": "Built in MENA & Türkiye",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "security": "Security",
+        "dpa": "DPA",
+        "cookies": "Cookies"
+      }
     }
   }
 }

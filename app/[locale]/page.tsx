@@ -15,7 +15,9 @@ import { HowItWorks } from "@/components/experience/HowItWorks";
 import { UseCases } from "@/components/experience/UseCases";
 import { Integrations } from "@/components/experience/Integrations";
 import { Pricing } from "@/components/experience/Pricing";
-import { FinalCTA } from "@/components/experience/FinalCTA";
+import { GrowthLoops } from "@/components/experience/GrowthLoops";
+import { SiteFooter } from "@/components/experience/SiteFooter";
+import { StickyCTA } from "@/components/experience/StickyCTA";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 /**
@@ -44,7 +46,9 @@ export default function HomePage() {
       <UseCases />
       <Integrations />
       <Pricing />
-      <FinalCTA />
+      <GrowthLoops />
+      <SiteFooter />
+      <StickyCTA />
     </main>
   );
 }
