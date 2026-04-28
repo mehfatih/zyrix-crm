@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ZyrixLogo } from "./ZyrixLogo";
-import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
-import type { Locale } from "@/i18n";
+import { LanguageSwitcherPill } from "./LanguageSwitcherPill";
 
 /**
  * Place at: components/experience/Nav.tsx
@@ -16,7 +15,6 @@ import type { Locale } from "@/i18n";
 
 export const Nav = () => {
   const t = useTranslations("Landing.nav");
-  const locale = useLocale() as Locale;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -52,7 +50,7 @@ export const Nav = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 story-link"
+                className="text-sm text-white/95 hover:text-white transition-colors duration-300 story-link"
               >
                 {item.label}
               </Link>
@@ -60,7 +58,7 @@ export const Nav = () => {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-3">
-            <LanguageSwitcher currentLocale={locale} />
+            <LanguageSwitcherPill />
             <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
               <Link href="/signin">{t("signIn")}</Link>
             </Button>

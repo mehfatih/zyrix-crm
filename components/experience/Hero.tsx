@@ -2,7 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
-import { ArrowRight, MessageCircle, CheckCircle2, Phone, Users, BarChart3, Inbox } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, MessageCircle, CheckCircle2, Phone, Users, BarChart3, Inbox, User, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -68,12 +69,18 @@ export const Hero = () => {
         </p>
 
         <div className="reveal flex flex-wrap items-center justify-center gap-3 mb-6" data-stagger="300">
-          <Button size="lg" className="btn-glow bg-gradient-cta text-primary-foreground border-0 h-12 px-7">
-            {t("ctaPrimary")}
-            <ArrowRight className="ml-2 w-4 h-4 rtl:rotate-180" />
+          <Button asChild size="lg" className="btn-glow bg-gradient-cta text-primary-foreground border-0 h-12 px-7">
+            <Link href="/signin">
+              <User className="mr-2 w-4 h-4" />
+              {t("customerDashboard")}
+              <ArrowRight className="ml-2 w-4 h-4 rtl:rotate-180" />
+            </Link>
           </Button>
-          <Button size="lg" variant="ghost" className="h-12 px-5 story-link">
-            {t("ctaSecondary")}
+          <Button asChild size="lg" variant="outline" className="h-12 px-5">
+            <Link href="/admin/login">
+              <Shield className="mr-2 w-4 h-4" />
+              {t("adminDashboard")}
+            </Link>
           </Button>
         </div>
 
