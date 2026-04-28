@@ -117,9 +117,9 @@ export function GoogleButton({ mode, onError }: GoogleButtonProps) {
   return (
     <div className="w-full">
       {isLoading ? (
-        <div className="w-full py-3 flex items-center justify-center gap-2 border border-line rounded-lg bg-white">
-          <Loader2 className="w-4 h-4 animate-spin text-primary-600" />
-          <span className="text-sm text-ink-light">{t("google")}...</span>
+        <div className="w-full py-3 flex items-center justify-center gap-2 border border-border rounded-lg bg-background">
+          <Loader2 className="w-4 h-4 animate-spin text-primary" />
+          <span className="text-sm text-muted-foreground">{t("google")}...</span>
         </div>
       ) : (
         <div ref={buttonRef} className="w-full flex justify-center" />

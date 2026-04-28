@@ -81,20 +81,20 @@ export function SigninForm({ locale }: SigninFormProps) {
     return (
       <form onSubmit={handleVerify2FA} className="space-y-4">
         <div className="flex items-center justify-center mb-2">
-          <div className="w-14 h-14 rounded-full bg-sky-50 flex items-center justify-center">
-            <ShieldCheck className="w-7 h-7 text-sky-500" />
+          <div className="w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center">
+            <ShieldCheck className="w-7 h-7 text-primary" />
           </div>
         </div>
 
         <div className="text-center">
-          <h2 className="text-lg font-bold text-sky-900">
+          <h2 className="text-lg font-bold text-foreground">
             {tr(
               "Two-factor verification",
               "التحقق بخطوتين",
               "İki adımlı doğrulama"
             )}
           </h2>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             {useBackup
               ? tr(
                   "Enter one of your backup codes",
@@ -110,7 +110,7 @@ export function SigninForm({ locale }: SigninFormProps) {
         </div>
 
         {error && (
-          <div className="bg-rose-50 text-rose-700 text-sm p-3 rounded-lg border border-rose-200">
+          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg border border-destructive/30">
             {error}
           </div>
         )}
@@ -131,7 +131,7 @@ export function SigninForm({ locale }: SigninFormProps) {
             }
             placeholder={useBackup ? "XXXX-XXXX" : "000000"}
             maxLength={useBackup ? 9 : 6}
-            className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
+            className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest bg-background border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
         </div>
 
@@ -140,7 +140,7 @@ export function SigninForm({ locale }: SigninFormProps) {
           disabled={
             isSubmitting || (useBackup ? otp.length < 8 : otp.length !== 6)
           }
-          className="w-full py-3 px-4 text-sm font-semibold rounded-lg bg-sky-500 text-white hover:bg-sky-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full py-3 px-4 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
           {tr("Verify", "تحقق", "Doğrula")}
@@ -155,7 +155,7 @@ export function SigninForm({ locale }: SigninFormProps) {
               setUseBackup(false);
               setError(null);
             }}
-            className="inline-flex items-center gap-1 text-slate-600 hover:text-sky-600"
+            className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             {tr("Back", "رجوع", "Geri")}
@@ -167,7 +167,7 @@ export function SigninForm({ locale }: SigninFormProps) {
               setOtp("");
               setError(null);
             }}
-            className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 hover:underline"
+            className="inline-flex items-center gap-1 text-primary hover:text-primary/80 hover:underline"
           >
             <KeyRound className="w-3.5 h-3.5" />
             {useBackup
@@ -191,18 +191,18 @@ export function SigninForm({ locale }: SigninFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
-        <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg border border-danger/20">
+        <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg border border-destructive/30">
           {error}
         </div>
       )}
 
       {/* Email */}
       <div className="space-y-1.5">
-        <label htmlFor="email" className="block text-sm font-medium text-ink">
+        <label htmlFor="email" className="block text-sm font-medium text-foreground">
           {t("email")}
         </label>
         <div className="relative">
-          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             id="email"
             name="email"
@@ -211,7 +211,7 @@ export function SigninForm({ locale }: SigninFormProps) {
             autoComplete="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder:text-ink-muted transition-all"
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder:text-muted-foreground transition-all"
             placeholder="you@company.com"
           />
         </div>
@@ -220,18 +220,18 @@ export function SigninForm({ locale }: SigninFormProps) {
       {/* Password */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <label htmlFor="password" className="block text-sm font-medium text-ink">
+          <label htmlFor="password" className="block text-sm font-medium text-foreground">
             {t("password")}
           </label>
           <Link
             href={`/${locale}/forgot-password`}
-            className="text-xs text-primary-600 hover:text-primary-700 hover:underline"
+            className="text-xs text-primary hover:text-primary hover:underline"
           >
             {t("forgotPassword")}
           </Link>
         </div>
         <div className="relative">
-          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             id="password"
             name="password"
@@ -240,13 +240,13 @@ export function SigninForm({ locale }: SigninFormProps) {
             autoComplete="current-password"
             value={form.password}
             onChange={handleChange}
-            className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder:text-ink-muted transition-all"
+            className="w-full pl-10 pr-10 py-2.5 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder:text-muted-foreground transition-all"
             placeholder="••••••••"
           />
           <button
             type="button"
             onClick={() => setShowPassword((s) => !s)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-muted hover:text-ink"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
           >
             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
@@ -259,8 +259,8 @@ export function SigninForm({ locale }: SigninFormProps) {
         disabled={isSubmitting}
         className={cn(
           "w-full py-3 px-4 text-sm font-medium rounded-lg mt-6",
-          "bg-primary-600 text-white",
-          "hover:bg-primary-700 active:bg-primary-800",
+          "bg-primary text-primary-foreground",
+          "hover:bg-primary/90 active:bg-primary/80",
           "disabled:opacity-60 disabled:cursor-not-allowed",
           "transition-all shadow-sm hover:shadow-md",
           "flex items-center justify-center gap-2"
@@ -273,10 +273,10 @@ export function SigninForm({ locale }: SigninFormProps) {
       {/* Divider */}
       <div className="relative my-4">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-line"></div>
+          <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="bg-white px-3 text-ink-muted uppercase">
+          <span className="bg-card px-3 text-muted-foreground uppercase">
             {t("orContinueWith")}
           </span>
         </div>
@@ -286,11 +286,11 @@ export function SigninForm({ locale }: SigninFormProps) {
       <GoogleButton mode="signin" onError={setError} />
 
       {/* Link to Sign Up */}
-      <p className="text-center text-sm text-ink-light pt-4">
+      <p className="text-center text-sm text-muted-foreground pt-4">
         {t("noAccount")}{" "}
         <Link
           href={`/${locale}/signup`}
-          className="text-primary-600 hover:text-primary-700 font-medium hover:underline"
+          className="text-primary hover:text-primary font-medium hover:underline"
         >
           {t("createAccount")}
         </Link>
