@@ -108,7 +108,7 @@ export const SiteFooter = () => {
         />
 
         <div className="relative container mx-auto px-4 max-w-4xl text-center">
-          <div className="reveal">
+          <div>
             <span className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-primary/80 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
               {t("cta.eyebrow")}
             </span>
