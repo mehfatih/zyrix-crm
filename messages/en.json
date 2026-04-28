@@ -3350,5 +3350,415 @@
         "cookies": "Cookies"
       }
     }
+  },
+  "SolutionsSales": {
+    "eyebrow": "FOR SALES TEAMS",
+    "hero": {
+      "title": "Close more deals. Forget the spreadsheets.",
+      "subtitle": "The CRM your sales team actually wants to use. WhatsApp-first, mobile-native, built for the way Arab and Turkish sales teams actually sell.",
+      "ctaPrimary": "Start free 14-day trial",
+      "ctaSecondary": "Talk to sales"
+    },
+    "pain": {
+      "eyebrow": "WHY SALES TEAMS PICK ZYRIX",
+      "title": "Most CRMs are designed for managers. Yours should work for the closer.",
+      "subtitle": "We talked to 200+ sales reps across MENA and Türkiye. Three problems came up every single time:",
+      "point1": "Logging activities takes longer than the activities themselves. Reps stop logging — managers stop trusting the data.",
+      "point2": "WhatsApp is where the deals actually happen, but every CRM treats it as an afterthought. Reps copy-paste between apps all day.",
+      "point3": "Mobile apps are stripped-down toys. Reps in the field can't update deals, can't access notes, can't close from their phone."
+    },
+    "features": {
+      "eyebrow": "BUILT FOR THE WAY YOU SELL",
+      "title": "Everything a closer needs. Nothing they don't.",
+      "pipeline": {
+        "title": "Visual deal pipeline",
+        "desc": "Drag-and-drop kanban. Customize stages per product line. See every deal, every value, every next step at a glance."
+      },
+      "calls": {
+        "title": "Click-to-call + auto-log",
+        "desc": "Tap to call any contact from web or mobile. Calls auto-log to the deal with duration. Optional recording for compliance."
+      },
+      "team": {
+        "title": "Team collaboration",
+        "desc": "@mention teammates on deals. Internal chat threads per opportunity. Handoffs without context loss."
+      },
+      "forecast": {
+        "title": "Sales forecasting",
+        "desc": "AI-powered forecast based on historical close rates. See projected revenue by month, quarter, rep, and region."
+      },
+      "reports": {
+        "title": "Real-time dashboards",
+        "desc": "Custom reports for managers. Drill down by rep, region, product, or stage. Export to PDF or share via link."
+      },
+      "automation": {
+        "title": "Smart automation",
+        "desc": "Auto-assign leads by territory. Auto-follow-up if no reply in 3 days. Auto-close deals stuck for 90 days. Less admin, more selling."
+      }
+    },
+    "workflow": {
+      "eyebrow": "A DAY WITH ZYRIX",
+      "title": "From lead to closed-won in 5 steps",
+      "subtitle": "How a typical deal flows through Zyrix in real Arab and Turkish sales contexts.",
+      "step1": {
+        "title": "Lead arrives via WhatsApp",
+        "desc": "Customer sends message to your business number. Zyrix auto-creates a contact and lead, tagged with source = WhatsApp."
+      },
+      "step2": {
+        "title": "Auto-assigned to right rep",
+        "desc": "Round-robin or by region/language/product. Rep gets a push notification. Contact details + conversation history already in the deal."
+      },
+      "step3": {
+        "title": "Rep qualifies + sends quote",
+        "desc": "Rep replies in WhatsApp from inside Zyrix. Sends product catalog. Generates a quote PDF in 30 seconds."
+      },
+      "step4": {
+        "title": "Follow-ups happen automatically",
+        "desc": "No reply in 2 days? Zyrix sends a polite WhatsApp follow-up. Still no reply in 5 days? Manager gets a nudge. Deal never falls through."
+      },
+      "step5": {
+        "title": "Close + handover to fulfillment",
+        "desc": "Customer agrees. Rep clicks 'Won'. Deal moves to fulfillment pipeline. Customer gets confirmation message. Internal Slack/Teams notification fires. Done."
+      }
+    },
+    "stats": {
+      "faster": "Faster deal cycles",
+      "deals": "More deals per rep",
+      "followup": "Follow-up consistency",
+      "access": "Mobile + web access"
+    },
+    "cta": {
+      "title": "Built for the way you actually sell",
+      "subtitle": "Start free. No credit card. 14 days to fall in love.",
+      "primary": "Start free trial",
+      "secondary": "Talk to a human"
+    }
+  },
+  "SolutionsEcommerce": {
+    "eyebrow": "FOR E-COMMERCE",
+    "hero": {
+      "title": "WhatsApp-first commerce. Built for MENA and Türkiye.",
+      "subtitle": "Sync your Shopify or WooCommerce store. Recover abandoned carts via WhatsApp. Track COD orders. All in one CRM that speaks Arabic and Turkish natively.",
+      "ctaPrimary": "Start free 14-day trial",
+      "ctaSecondary": "Talk to sales"
+    },
+    "pain": {
+      "eyebrow": "WHY E-COMMERCE PICKS ZYRIX",
+      "title": "Western e-commerce CRMs don't understand our market.",
+      "subtitle": "Selling in Saudi Arabia, the UAE, Iraq, or Türkiye? You face problems Shopify wasn't built for:",
+      "point1": "70% of orders are COD. Most CRMs have no concept of COD lifecycle — confirmed → shipped → collected → reconciled.",
+      "point2": "Arabic and Turkish customers expect WhatsApp replies in minutes, not 24 hours via support ticket. Bots that don't speak Arabic well lose trust fast.",
+      "point3": "Shipping in MENA means dozens of local couriers (SMSA, Aramex Saudi, Naqel, MNG, Yurtiçi…). Western CRMs only know UPS and FedEx."
+    },
+    "features": {
+      "eyebrow": "EVERYTHING YOUR STORE NEEDS",
+      "title": "Sync your store. Sell from WhatsApp. Track every order.",
+      "shopify": {
+        "title": "Shopify + WooCommerce sync",
+        "desc": "Connect your store in 2 minutes. Products, orders, customers — all sync automatically. Two-way: changes in Zyrix push back to your store."
+      },
+      "inventory": {
+        "title": "Multi-warehouse inventory",
+        "desc": "Track stock across multiple warehouses (Riyadh, Istanbul, Dubai). Auto-reroute orders to the closest warehouse. Low-stock alerts."
+      },
+      "whatsapp": {
+        "title": "WhatsApp catalog + checkout",
+        "desc": "Send product catalog via WhatsApp. Customer browses, orders, pays — all in WhatsApp. Order auto-creates in Zyrix and your store."
+      },
+      "abandoned": {
+        "title": "Abandoned cart recovery",
+        "desc": "Customer leaves cart? Zyrix sends a personalized WhatsApp message in their language. Recover 30%+ of abandoned carts."
+      },
+      "cod": {
+        "title": "COD order tracking",
+        "desc": "Track every COD order from confirmation → courier pickup → delivery → cash collected. Reconcile daily. Never lose a payment again."
+      },
+      "shipping": {
+        "title": "Local courier integrations",
+        "desc": "SMSA, Aramex, Naqel, MNG Kargo, Yurtiçi, J&T, and 25+ more. Auto-create labels. Track every package without leaving Zyrix."
+      }
+    },
+    "workflow": {
+      "eyebrow": "FROM CLICK TO CASH",
+      "title": "How a WhatsApp order flows through Zyrix",
+      "subtitle": "A real customer journey for an Arab consumer buying skincare from a Saudi Shopify store.",
+      "step1": {
+        "title": "Customer messages on WhatsApp",
+        "desc": "Customer sees Instagram ad, taps 'Message us'. WhatsApp opens. Zyrix auto-greets in Arabic and shows the product catalog."
+      },
+      "step2": {
+        "title": "Browses + adds to cart",
+        "desc": "Customer browses catalog inside WhatsApp. Adds 3 items. Zyrix calculates total in SAR including shipping and VAT. Cart held for 60 minutes."
+      },
+      "step3": {
+        "title": "Checks out — selects COD",
+        "desc": "Customer enters address. Selects Cash on Delivery. Order is confirmed. Zyrix creates the order in Shopify, books the courier (SMSA), generates the shipping label."
+      },
+      "step4": {
+        "title": "Auto-confirmation + tracking",
+        "desc": "Customer gets WhatsApp confirmation with order number and SMSA tracking URL. Zyrix monitors the SMSA API. Updates customer when picked up, when out for delivery."
+      },
+      "step5": {
+        "title": "Delivery + cash reconciliation",
+        "desc": "Courier delivers, collects cash. SMSA syncs the status to Zyrix. Cash is reconciled to the merchant's bank deposit on day 7. Order marked complete. Customer added to retargeting segment."
+      }
+    },
+    "stats": {
+      "recovery": "Cart recovery",
+      "aov": "Average order value",
+      "repeat": "Repeat purchase rate",
+      "response": "Avg WhatsApp response"
+    },
+    "cta": {
+      "title": "Stop fighting Western CRMs",
+      "subtitle": "Built for MENA + Türkiye. WhatsApp-first. COD-native. Arabic + Turkish + English.",
+      "primary": "Start free trial",
+      "secondary": "Schedule demo"
+    }
+  },
+  "SolutionsRealEstate": {
+    "eyebrow": "FOR REAL ESTATE",
+    "hero": {
+      "title": "Close more property deals. Lose fewer leads.",
+      "subtitle": "Built for real estate brokers in Riyadh, Istanbul, Dubai, and Cairo. Listings, virtual tours, viewings, contracts — all in one CRM that respects how the regional market actually works.",
+      "ctaPrimary": "Start free 14-day trial",
+      "ctaSecondary": "Talk to sales"
+    },
+    "pain": {
+      "eyebrow": "WHY BROKERS PICK ZYRIX",
+      "title": "Real estate is local. Your CRM should be too.",
+      "subtitle": "Selling property in Saudi Arabia or Türkiye is different from selling in California. Three pain points:",
+      "point1": "Buyers contact 5-10 brokers at once via WhatsApp. The broker who replies first wins. Reply in 15 minutes or lose the lead.",
+      "point2": "Property contracts have regional specifics — KSA's Tabu system, Türkiye's iskan certificates, Egypt's contract notarization. Generic CRMs ignore them.",
+      "point3": "Brokers in the field need everything mobile. Western desktop-first CRMs are useless when you're walking a property with a buyer."
+    },
+    "features": {
+      "eyebrow": "EVERYTHING A BROKER NEEDS",
+      "title": "From listing to contract — built for the regional broker",
+      "listings": {
+        "title": "Property listings",
+        "desc": "Manage residential and commercial listings. Photos, floor plans, specs. Auto-publish to Sahibinden, Property Finder, Bayut. Update once, sync everywhere."
+      },
+      "location": {
+        "title": "Location intelligence",
+        "desc": "Map view of all properties. Filter by district, school zone, distance to metro. Show comparable sales. Generate location reports for buyers."
+      },
+      "virtual": {
+        "title": "Virtual tours + media",
+        "desc": "Upload 360° tours, video walkthroughs. Generate WhatsApp-ready property links. Track which media each buyer viewed and for how long."
+      },
+      "viewings": {
+        "title": "Viewing scheduling",
+        "desc": "Buyers book viewings via WhatsApp or your website. Calendar sync. Auto-confirmations. Reminder 1 hour before. No-shows tracked."
+      },
+      "contracts": {
+        "title": "Regional contracts",
+        "desc": "Tabu (KSA), Tapu (Türkiye), Title Deed (UAE) — built-in templates. E-signature. Document collection from buyer + seller. Audit trail for legal review."
+      },
+      "brokers": {
+        "title": "Multi-broker teams",
+        "desc": "Track which broker brought which lead. Auto-assign by district, language, or property type. Commission splits. Performance dashboards by team."
+      }
+    },
+    "workflow": {
+      "eyebrow": "FROM LEAD TO HANDOVER",
+      "title": "How a property deal flows through Zyrix",
+      "subtitle": "A real journey for a Saudi family buying a villa in north Riyadh.",
+      "step1": {
+        "title": "Lead from Sahibinden / Property Finder",
+        "desc": "Buyer contacts via property listing. Zyrix creates the lead, attaches the property, notes their budget and preferred districts."
+      },
+      "step2": {
+        "title": "Broker replies within 5 minutes",
+        "desc": "Auto-assigned broker gets a push notification. Replies on WhatsApp with 3 similar properties + 360° tour links. All from inside Zyrix."
+      },
+      "step3": {
+        "title": "Viewings booked + attended",
+        "desc": "Family books 3 viewings via the broker's calendar link. Reminders sent. Broker logs viewing notes after each — what they liked, dislikes, body language."
+      },
+      "step4": {
+        "title": "Offer + negotiation",
+        "desc": "Family sends offer. Owner counter-offers. Broker tracks the negotiation thread. Documents (income proof, ID copies) collected via secure upload. All inside the deal."
+      },
+      "step5": {
+        "title": "Contract + handover",
+        "desc": "Final terms agreed. Tabu transfer paperwork generated from template. E-signature collected. Deposit paid. Tabu registration scheduled. Family hands over keys 4 weeks later. Broker earns commission, marked in pipeline."
+      }
+    },
+    "stats": {
+      "leadResponse": "Lead response time",
+      "conversions": "Viewings to offers",
+      "contractRetention": "Contract close rate",
+      "firstResponse": "Avg first reply"
+    },
+    "cta": {
+      "title": "Built for regional brokers",
+      "subtitle": "Tabu, Tapu, Title Deed — all native. Arabic, Turkish, English. Mobile-first.",
+      "primary": "Start free trial",
+      "secondary": "Talk to a real estate specialist"
+    }
+  },
+  "SolutionsClinics": {
+    "eyebrow": "FOR HEALTHCARE",
+    "hero": {
+      "title": "Patient relationships, not just records.",
+      "subtitle": "Appointment booking, follow-ups, loyalty programs, and HIPAA-compliant patient communication. Built for clinics, dental practices, and aesthetic centers across MENA and Türkiye.",
+      "ctaPrimary": "Start free 14-day trial",
+      "ctaSecondary": "Talk to sales"
+    },
+    "pain": {
+      "eyebrow": "WHY CLINICS PICK ZYRIX",
+      "title": "Patient experience is your competitive edge.",
+      "subtitle": "Healthcare is local, personal, and increasingly competitive. Three challenges every clinic faces:",
+      "point1": "30% of appointments are no-shows in the region. Manual reminders are inconsistent. Reception staff stretched thin.",
+      "point2": "Generic CRMs don't understand patient flows — appointment → consultation → treatment plan → follow-up → review. They store data, not relationships.",
+      "point3": "Patient communication regulations are tightening (Saudi NCDC, Turkish KVKK). Most CRMs aren't designed for medical compliance."
+    },
+    "features": {
+      "eyebrow": "FROM BOOKING TO LOYALTY",
+      "title": "Everything a modern clinic needs to grow.",
+      "appointments": {
+        "title": "Smart appointment booking",
+        "desc": "Patients book via website, WhatsApp, or app. See doctor availability. Confirm via WhatsApp. Reschedule with one tap. No double-booking."
+      },
+      "records": {
+        "title": "Patient records",
+        "desc": "Centralized medical history, treatment plans, prescriptions, attachments. Search across patients in seconds. Doctor and admin views with role-based access."
+      },
+      "followup": {
+        "title": "Automated follow-ups",
+        "desc": "Post-visit thank-you messages. Treatment plan reminders. Annual checkup nudges. Lab result delivery. All via WhatsApp in the patient's language."
+      },
+      "reminders": {
+        "title": "Appointment reminders",
+        "desc": "24 hours before: WhatsApp reminder. 1 hour before: confirmation prompt. Cuts no-show rates by 60-80%."
+      },
+      "loyalty": {
+        "title": "Patient loyalty",
+        "desc": "Track visits, points, referrals. Birthday wishes. Anniversary discounts. Family member identification. Turn one-time patients into lifetime ones."
+      },
+      "privacy": {
+        "title": "Compliance + privacy",
+        "desc": "HIPAA-aligned. Saudi NCDC and Turkish KVKK compliant. Patient consent tracking. Data residency in your region. Audit logs."
+      }
+    },
+    "workflow": {
+      "eyebrow": "A PATIENT JOURNEY",
+      "title": "From first visit to lifetime patient",
+      "subtitle": "How a typical patient flows through Zyrix in a dental clinic in Istanbul.",
+      "step1": {
+        "title": "Booking via WhatsApp",
+        "desc": "Patient sees Instagram ad. Sends WhatsApp message. Zyrix bot offers available slots. Patient picks one. Confirmation sent. Calendar updated."
+      },
+      "step2": {
+        "title": "Day-before reminder",
+        "desc": "Auto-WhatsApp reminder 24 hours before. Patient confirms. If no response, second reminder 4 hours before. Reception staff knows who's coming."
+      },
+      "step3": {
+        "title": "Visit + treatment plan",
+        "desc": "Doctor sees patient. Logs diagnosis, treatment plan, before/after photos. Patient receives WhatsApp summary with cost estimate, next steps, and downloadable treatment plan."
+      },
+      "step4": {
+        "title": "Follow-up + payment",
+        "desc": "Patient gets reminder for next visit (3 days for cleaning, 14 days for procedure). Payment link sent. Insurance documentation filed. Loyalty points credited."
+      },
+      "step5": {
+        "title": "Long-term care",
+        "desc": "6 months: annual checkup reminder. 1 year: birthday wishes + 10% discount. 2 years: 'we miss you' message if no visit. Patients become advocates and refer family."
+      }
+    },
+    "stats": {
+      "noShow": "No-show reduction",
+      "retention": "Patient retention",
+      "satisfaction": "Patient satisfaction",
+      "timesSaved": "Reception time saved"
+    },
+    "cta": {
+      "title": "Treat patients like people, not records",
+      "subtitle": "HIPAA-aligned. Multi-language. Compliant with regional health regulations.",
+      "primary": "Start free trial",
+      "secondary": "Schedule a clinic demo"
+    }
+  },
+  "SolutionsAgencies": {
+    "eyebrow": "FOR AGENCIES",
+    "hero": {
+      "title": "Run more clients. With fewer people. Without the chaos.",
+      "subtitle": "Multi-client management, white-label dashboards, automated reporting, and proposal-to-payment workflows. Built for marketing, digital, and consulting agencies serving MENA + Türkiye.",
+      "ctaPrimary": "Start free 14-day trial",
+      "ctaSecondary": "Talk to sales"
+    },
+    "pain": {
+      "eyebrow": "WHY AGENCIES PICK ZYRIX",
+      "title": "Agencies are scaling on broken tooling.",
+      "subtitle": "If you run an agency in MENA or Türkiye, three things eat your margin:",
+      "point1": "Each new client = 3 hours of setup in 7 different tools. Agency margins compress with each scaled-up account.",
+      "point2": "Client reporting takes 20-40% of an account manager's week. Pulling numbers from Meta, Google, TikTok, then Excel-charting it for the client. Repeated weekly.",
+      "point3": "Proposals + contracts + invoices live in 4 different SaaS subscriptions. Each costs $30-100/month. Sales cycle is fragmented."
+    },
+    "features": {
+      "eyebrow": "EVERYTHING AGENCIES NEED",
+      "title": "Run dozens of clients without losing your sanity",
+      "clients": {
+        "title": "Multi-client workspace",
+        "desc": "Separate workspace per client. Shared data, isolated permissions. Account managers see only their clients. Agency leaders see everything."
+      },
+      "reports": {
+        "title": "Automated reporting",
+        "desc": "Connect Meta Ads, Google Ads, TikTok, Snapchat, GA4. Auto-pull data daily. Generate client reports in 5 minutes. Schedule weekly emails. Custom branding per client."
+      },
+      "team": {
+        "title": "Team collaboration",
+        "desc": "Account managers, designers, copywriters, media buyers — all in one tool. Tasks. Time tracking. Capacity planning. Who's available next month?"
+      },
+      "proposals": {
+        "title": "Proposals + contracts",
+        "desc": "Pre-built proposal templates. Auto-fill from client brief. E-signature. Once signed: contract auto-generates, invoicing schedule kicks off, project tasks created."
+      },
+      "workflow": {
+        "title": "Workflow automation",
+        "desc": "New client onboarding (12 tasks across 4 teams). Monthly retainer billing. Quarterly business reviews. Set it once, runs every month forever."
+      },
+      "whitelabel": {
+        "title": "White-label client portals",
+        "desc": "Each client logs in to your-agency.zyrix.co (or custom domain). Sees their dashboards, reports, projects. Looks 100% like your agency. Charges them for the access."
+      }
+    },
+    "workflow": {
+      "eyebrow": "A CLIENT LIFECYCLE",
+      "title": "From first call to long-term retainer",
+      "subtitle": "How a digital agency in Istanbul wins and runs a Saudi e-commerce client.",
+      "step1": {
+        "title": "Lead → discovery call",
+        "desc": "Saudi brand books a call via your website. Zyrix logs the lead. Discovery questionnaire sent. Pre-call brief auto-generated for the AM."
+      },
+      "step2": {
+        "title": "Proposal + close",
+        "desc": "AM uses Zyrix template, fills in scope and pricing. Sent to client via white-label portal. Client signs. Contract + first invoice generated automatically."
+      },
+      "step3": {
+        "title": "Onboarding (12 tasks, 4 teams)",
+        "desc": "Zyrix kicks off the onboarding workflow. Designer creates brand assets. Media buyer connects accounts. Copywriter drafts content calendar. Project manager schedules kickoff. All tasks tracked."
+      },
+      "step4": {
+        "title": "Monthly execution + reporting",
+        "desc": "Campaigns run. Daily ad management. Zyrix pulls performance data daily. Monthly: report auto-generated, AM reviews, sends to client. Client sees ROAS, CPL, CAC, conversions."
+      },
+      "step5": {
+        "title": "Retention + upsell",
+        "desc": "Quarterly business reviews scheduled. Performance tracked against KPIs. Upsell opportunities flagged (new channel, market expansion). Client renews retainer at higher tier."
+      }
+    },
+    "stats": {
+      "scale": "Client capacity",
+      "margin": "Margin improvement",
+      "retention": "Client retention",
+      "report": "Time to generate report"
+    },
+    "cta": {
+      "title": "Scale your agency. Keep your sanity.",
+      "subtitle": "Multi-client workspaces. White-label. Automated reporting. Built for MENA + Türkiye agencies.",
+      "primary": "Start free trial",
+      "secondary": "Talk to an agency specialist"
+    }
   }
 }
