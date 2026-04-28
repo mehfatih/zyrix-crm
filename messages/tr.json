@@ -3760,5 +3760,190 @@
       "primary": "Ücretsiz denemeye başla",
       "secondary": "Bir ajans uzmanıyla konuş"
     }
+  },
+  "Customers": {
+    "eyebrow": "MÜŞTERİLER",
+    "title": "Arap ve Türk işletmelerinin gerçekte büyüdüğü şekilde tasarlandı.",
+    "subtitle": "Cidde'deki e-ticaret işletmelerinden İstanbul'daki diş kliniklerine, Dubai'deki emlak danışmanlarından Kahire'deki dijital ajanslara kadar — Zyrix, pazarını anlayan işletmelere güç veriyor.",
+    "logosTitle": "BÜYÜYEN EKİPLER TARAFINDAN GÜVENİLİYOR",
+    "stats": {
+      "businesses": "Aktif işletmeler",
+      "countries": "Hizmet verilen ülkeler",
+      "languages": "Yerel diller",
+      "uptime": "Platform çalışma süresi"
+    },
+    "casesEyebrow": "BAŞARI HİKAYELERİ",
+    "casesTitle": "Gerçek ekipler. Gerçek sonuçlar.",
+    "case1": {
+      "industry": "E-TİCARET",
+      "location": "Cidde, Suudi Arabistan",
+      "metric1": "Gelir büyümesi",
+      "metric2": "Sepet kurtarma",
+      "metric3": "WhatsApp yanıt süresi",
+      "quote": "Eskiden günde 4 saatimizi SMSA, Aramex ve hesaplarımız arasında Kapıda Ödeme siparişlerini mutabık kılmakla geçiriyorduk. Zyrix her şeyi otomatikleştirdi. Artık finans ekibimiz Excel yerine büyümeye odaklanıyor.",
+      "role": "Operasyon Müdürü"
+    },
+    "case2": {
+      "industry": "EMLAK",
+      "location": "İstanbul, Türkiye",
+      "metric1": "Müşteri yanıt iyileştirmesi",
+      "metric2": "Gösterimden tekliflere",
+      "metric3": "Ortalama ilk yanıt",
+      "quote": "Danışmanlarımız WhatsApp'ta yeterince hızlı yanıt veremedikleri için müşterilerinin yarısını kaybediyorlardı. Zyrix ile tüm ekip 15 dakika içinde yanıt veriyor. Dönüşüm 60 günde iki katına çıktı.",
+      "role": "Satış Direktörü"
+    },
+    "case3": {
+      "industry": "SAĞLIK",
+      "location": "Riyad, Suudi Arabistan",
+      "metric1": "Gelmeme azaltma",
+      "metric2": "Hasta tutma",
+      "metric3": "Hasta memnuniyeti",
+      "quote": "Zyrix öncesi %35 gelmeme oranımız vardı. Otomatik WhatsApp hatırlatmaları bunu %11'e düşürdü. Bu, resepsiyona ek iş yükü olmadan saf kurtarılmış gelir.",
+      "role": "Klinik Direktörü"
+    },
+    "case4": {
+      "industry": "DİJİTAL AJANS",
+      "location": "Kahire, Mısır",
+      "metric1": "Müşteri kapasitesi ölçeklendi",
+      "metric2": "Marj iyileştirmesi",
+      "metric3": "Müşteri raporu başına süre",
+      "quote": "Aynı ekiple 8 müşteri yönetmekten 27'ye geçtik. Zyrix'in otomatik raporlaması bile bize haftada 30 saat tasarruf sağlıyor. Marjlarımız nihayet anlamlı.",
+      "role": "Ajans Kurucusu"
+    },
+    "cta": {
+      "title": "Zyrix ile büyüyen 500+ işletmeye katılın",
+      "subtitle": "Ücretsiz başlayın. 30 günde sonuçları görün. Her zaman iptal edin.",
+      "primary": "Ücretsiz denemeye başla",
+      "secondary": "Satışla görüş"
+    }
+  },
+  "Careers": {
+    "eyebrow": "KARİYER",
+    "title": "Arap dünyasının hak ettiği CRM'i inşa edin.",
+    "subtitle": "Silikon Vadisi'nin uzun zamandır görmezden geldiği işletmeler için yazılım inşa eden, kasıtlı olarak küçük ve verimli bir ekibiz. Bize katılın.",
+    "location": "İstanbul, Türkiye · Uzaktan çalışmaya uygun",
+    "mission": {
+      "eyebrow": "NEDEN VARIZ",
+      "title": "Çoğu yazılım başkasının pazarı için tasarlandı.",
+      "body": "Zyrix, Arap, Türk ve MENA işletmelerinin gerçekte nasıl çalıştığına göre tasarlanmış araçları hak ettiği için var — Arapça öncelikli, WhatsApp yerel, Kapıda Ödeme bilincine sahip, düzenleme uyumlu. Silikon Vadisi ürünlerini çevirmiyoruz. Yerel bir şey inşa ediyoruz."
+    },
+    "values": {
+      "eyebrow": "BİZ KİMİZ",
+      "title": "Nasıl çalışıyoruz",
+      "customer": {
+        "title": "Müşteri öncelikli",
+        "desc": "Vanity metriklerin peşinden koşmuyoruz. Bir özellik müşterinin gününü kolaylaştırmıyorsa, onu inşa etmiyoruz."
+      },
+      "team": {
+        "title": "Küçük ekip, büyük güven",
+        "desc": "Yavaş işe alıyoruz ve tamamen güveniyoruz. Herkes kendi alanına baştan sona sahip. Daha az yönetim, daha çok teslimat."
+      },
+      "regional": {
+        "title": "Bölgesel, küresel-eksi değil",
+        "desc": "ABD ürününün sulandırılmış bir versiyonu değiliz. Bu bölge için inşa edildik — Arapça öncelikli, WhatsApp yerel, Kapıda Ödeme bilincine sahip."
+      },
+      "ship": {
+        "title": "Teslim et, sonra öğren",
+        "desc": "Her hafta dağıtıyoruz. Yanlış olmak için altı ay beklemektense kusurlu bir şeyi teslim edip iyileştirmeyi tercih ederiz."
+      },
+      "learn": {
+        "title": "Her zaman öğreniyoruz",
+        "desc": "Kişi başı yıllık 2.000$ kitap, kurs ve konferans için. Akıllıları işe alır, sonra akıllı kalmalarını sağlarız."
+      },
+      "balance": {
+        "title": "Sürdürülebilir tempo",
+        "desc": "Tükenmeden hızlı hareket ederiz. 70 saatlik haftalar yok. Özellik inşa eden mühendisler için on-call rotasyon yok. Gerçek hafta sonları."
+      }
+    },
+    "perks": {
+      "eyebrow": "NE SUNUYORUZ",
+      "title": "Tazminat + yan haklar",
+      "equity": {
+        "title": "Anlamlı hisse senedi",
+        "desc": "Tam zamanlı her işe alım hisse senedi alır. Başarımız sizin başarınızdır."
+      },
+      "remote": {
+        "title": "Uzaktan çalışmaya uygun",
+        "desc": "İstanbul merkez. Türkiye, Suudi Arabistan, BAE ve Mısır içinde uzaktan. Üç ayda bir buluşuyoruz."
+      },
+      "health": {
+        "title": "Sağlık sigortası",
+        "desc": "Sizin ve yakın ailenizin tam kapsamı. Ruh sağlığı dahil."
+      },
+      "learning": {
+        "title": "Öğrenme bütçesi",
+        "desc": "Yıllık 2.000$ kitap, kurs, konferans için. Büyümenize yardımcı olacak şekilde kullanın."
+      },
+      "equipment": {
+        "title": "En iyi ekipman",
+        "desc": "MacBook Pro M serisi. Harici monitör. En iyi işinizi yapmak için neye ihtiyacınız varsa."
+      },
+      "timeoff": {
+        "title": "Cömert izin",
+        "desc": "30 gün ücretli izin artı bölgesel tatiller. Ciddiyiz — zamanı alın."
+      }
+    },
+    "positions": {
+      "eyebrow": "AÇIK POZİSYONLAR",
+      "title": "Yakında işe alım",
+      "subtitle": "Kasıtlı olarak ölçeklenen küçük bir ekibiz. Gerçek bir ihtiyacımız olduğunda işe alıyoruz, daha önce değil.",
+      "openTitle": "Şu anda halka açık işe alım yapmıyoruz",
+      "openBody": "Ama olağanüstüyseniz ve becerileriniz inşa ettiğimizle eşleşiyorsa, sizden haber almak istiyoruz. Kim olduğunuz, ne inşa ettiğiniz ve neden Zyrix hakkında bize bir not gönderin. En iyi işe alımlar genellikle istenmeden gelen başvurulardan gelir."
+    },
+    "cta": {
+      "title": "Bir iş ilanı beklemeyin",
+      "subtitle": "Zyrix'te inanılmaz olacaksanız, bize söyleyin. Birlikte çalışmanın bir yolunu bulacağız.",
+      "primary": "İletişime geç"
+    }
+  },
+  "Press": {
+    "eyebrow": "BASIN",
+    "title": "Basın & Medya",
+    "subtitle": "MENA + Türkiye SaaS pazarını kapsayan gazeteciler, blog yazarları, analistler ve ortaklar için kaynaklar.",
+    "kit": {
+      "title": "Basın Kiti",
+      "body": "Zyrix hakkında yazmak için ihtiyacınız olan her şey — logolar, marka kuralları, ekran görüntüleri ve şirket gerçek sayfamız. EN, AR ve TR'de mevcuttur.",
+      "logos": "Logolar (PNG, SVG, açık + koyu)",
+      "brandGuide": "Marka kuralları ve renk paleti",
+      "screenshots": "Ürün ekran görüntüleri (yüksek çözünürlük)",
+      "factSheet": "Şirket gerçek sayfası",
+      "cta": "Basın kiti talep et"
+    },
+    "facts": {
+      "eyebrow": "ŞİRKET GERÇEKLERİ",
+      "title": "Hızlı gerçekler",
+      "founded": "Kuruluş",
+      "foundedValue": "2025",
+      "hq": "Genel Merkez",
+      "hqValue": "İstanbul, Türkiye",
+      "markets": "Aktif pazarlar",
+      "marketsValue": "MENA + Türkiye (12 ülke)",
+      "employees": "Ekip büyüklüğü",
+      "employeesValue": "Küçük, kasıtlı ekip",
+      "languages": "Desteklenen diller",
+      "languagesValue": "Arapça, Türkçe, İngilizce (yerel RTL)",
+      "industries": "Hizmet verilen sektörler",
+      "industriesValue": "E-ticaret, emlak, sağlık, ajanslar, satış"
+    },
+    "releases": {
+      "eyebrow": "BASIN BÜLTENLERİ",
+      "title": "Son duyurular"
+    },
+    "release1": {
+      "title": "Zyrix CRM, Türkiye ve Suudi Arabistan'da eş zamanlı olarak başlıyor",
+      "body": "Zyrix, WhatsApp öncelikli CRM platformunun Türkiye ve Suudi Arabistan'da genel kullanılabilirliğini, Arapça, Türkçe ve İngilizce için yerel destekle birlikte duyurdu. Lansman, SMSA, Aramex, MNG Kargo ve Yurtiçi Kargo entegrasyonlarıyla aynı zamana denk geliyor."
+    },
+    "release2": {
+      "title": "Zyrix, kurumsal WhatsApp için Meta Cloud API'yi entegre ediyor",
+      "body": "Meta'nın WhatsApp Cloud API'siyle doğrudan entegrasyon, Zyrix müşterilerinin şablonlu mesajlar göndermesine, işletme profillerini yönetmesine ve gelişmiş analizlere erişmesine olanak tanır — hepsi Zyrix CRM panelinin içinden."
+    },
+    "release3": {
+      "title": "Zyrix, MENA işletmeleri için çok para birimli raporlama yayınladı",
+      "body": "Yeni raporlama motoru, günlük TCMB ve SAMA kurları kullanarak otomatik FX dönüşümü ile SAR, AED, EGP, TRY, KWD, QAR, USD'yi destekler. Birden fazla Arap pazarında faaliyet gösteren işletmeler için doğru sınır ötesi mali raporlamayı sağlar."
+    },
+    "contact": {
+      "title": "Medya soruları",
+      "body": "Röportajlar, MENA SaaS pazarı üzerine uzman yorumları veya ürün bilgisi için lütfen iletişime geçin. Genellikle 24 saat içinde yanıt veriyoruz."
+    }
   }
 }
