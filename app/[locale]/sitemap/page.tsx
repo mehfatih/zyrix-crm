@@ -328,7 +328,7 @@ export default function SitemapPage() {
                         <Link
                           key={n.id}
                           href={linkify(n.href)}
-                          className="group bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-3 flex items-center gap-2.5 transition-all hover:shadow-md"
+                          className="group bg-card border border-slate-200 hover:border-slate-300 rounded-xl p-3 flex items-center gap-2.5 transition-all hover:shadow-md"
                         >
                           <div
                             className={`w-8 h-8 rounded-lg bg-gradient-to-br ${c.gradient} bg-opacity-10 ${c.color} flex items-center justify-center flex-shrink-0`}
@@ -595,7 +595,7 @@ function RadialMap({
                   sits behind it. Drop-shadow adds separation from the
                   gradient background. */}
               <span
-                className={`absolute top-full mt-2 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-sm border border-slate-200/60 text-[10px] md:text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${
+                className={`absolute top-full mt-2 px-2 py-0.5 rounded-md bg-card/95 backdrop-blur-sm border border-slate-200/60 text-[10px] md:text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${
                   isHovered
                     ? `${cat.color} scale-110 border-current/30`
                     : "text-slate-700 group-hover:text-slate-900 group-hover:border-slate-300"
@@ -642,27 +642,27 @@ function FilterChip({
   const colors: Record<string, { active: string; inactive: string }> = {
     marketing: {
       active: "bg-sky-500 text-white ring-sky-300",
-      inactive: "bg-white text-slate-700 hover:bg-sky-50 ring-slate-200",
+      inactive: "bg-card text-slate-700 hover:bg-sky-50 ring-slate-200",
     },
     product: {
       active: "bg-emerald-600 text-white ring-emerald-400",
-      inactive: "bg-white text-slate-700 hover:bg-emerald-50 ring-slate-200",
+      inactive: "bg-card text-slate-700 hover:bg-emerald-50 ring-slate-200",
     },
     admin: {
       active: "bg-violet-600 text-white ring-violet-400",
-      inactive: "bg-white text-slate-700 hover:bg-violet-50 ring-slate-200",
+      inactive: "bg-card text-slate-700 hover:bg-violet-50 ring-slate-200",
     },
     portal: {
       active: "bg-amber-600 text-white ring-amber-400",
-      inactive: "bg-white text-slate-700 hover:bg-amber-50 ring-slate-200",
+      inactive: "bg-card text-slate-700 hover:bg-amber-50 ring-slate-200",
     },
     resources: {
       active: "bg-indigo-600 text-white ring-indigo-400",
-      inactive: "bg-white text-slate-700 hover:bg-indigo-50 ring-slate-200",
+      inactive: "bg-card text-slate-700 hover:bg-indigo-50 ring-slate-200",
     },
     slate: {
       active: "bg-slate-800 text-white ring-slate-400",
-      inactive: "bg-white text-slate-700 hover:bg-slate-100 ring-slate-200",
+      inactive: "bg-card text-slate-700 hover:bg-slate-100 ring-slate-200",
     },
   };
   const c = colors[color];

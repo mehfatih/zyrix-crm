@@ -125,7 +125,7 @@ export default function PricingView({ locale }: { locale: string }) {
     <section className="px-4 pb-6">
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
         {/* Billing toggle */}
-        <div className="inline-flex rounded-full bg-white border border-sky-200 p-1">
+        <div className="inline-flex rounded-full bg-card border border-sky-200 p-1">
           <button
             onClick={() => setBilling("monthly")}
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
@@ -153,7 +153,7 @@ export default function PricingView({ locale }: { locale: string }) {
 
         {/* Currency — independent of header language switcher */}
         <div
-          className="inline-flex rounded-full bg-white border border-sky-200 p-1"
+          className="inline-flex rounded-full bg-card border border-sky-200 p-1"
           aria-label="Billing currency"
         >
           {(["USD", "TRY", "SAR"] as Currency[]).map((c) => (
@@ -220,7 +220,7 @@ export default function PricingView({ locale }: { locale: string }) {
           {[1, 2, 3, 4].map((n) => (
             <details
               key={n}
-              className="group rounded-xl bg-white border border-sky-100 overflow-hidden"
+              className="group rounded-xl bg-card border border-sky-100 overflow-hidden"
             >
               <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between text-sm font-semibold text-slate-900 hover:bg-sky-50 transition-colors">
                 <span>{tFaq(`q${n}`)}</span>
@@ -296,7 +296,7 @@ function PlanCard({
 
   return (
     <div
-      className={`relative rounded-2xl bg-white p-6 flex flex-col ${
+      className={`relative rounded-2xl bg-card p-6 flex flex-col ${
         featured
           ? "border-2 border-sky-400 shadow-xl shadow-sky-900/10"
           : "border border-sky-100"

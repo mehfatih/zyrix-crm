@@ -196,7 +196,7 @@ export default async function ChangelogPage({
               </div>
 
               {/* Entry card */}
-              <div className="ltr:ml-11 rtl:mr-11 bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+              <div className="ltr:ml-11 rtl:mr-11 bg-card border border-slate-200 rounded-xl p-6 shadow-sm">
                 <ul className="space-y-3">
                   {entry.items.map((item, i) => {
                     const meta = KIND_META[item.kind];

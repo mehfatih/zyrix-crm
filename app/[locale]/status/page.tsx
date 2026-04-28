@@ -188,7 +188,7 @@ export default async function StatusPage({
         </div>
 
         {/* Services list */}
-        <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-8">
+        <div className="bg-card border border-slate-200 rounded-2xl overflow-hidden mb-8">
           <div className="px-6 py-3 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
             <h2 className="text-sm font-bold text-slate-900">{t.services}</h2>
             <span className="text-xs text-slate-500">{t.uptime30d}</span>
@@ -233,7 +233,7 @@ export default async function StatusPage({
         </div>
 
         {/* Incidents */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-6">
+        <div className="bg-card border border-slate-200 rounded-2xl p-6">
           <h2 className="text-sm font-bold text-slate-900 mb-3">
             {t.incidents}
           </h2>

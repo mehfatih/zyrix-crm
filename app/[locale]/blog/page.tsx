@@ -203,7 +203,7 @@ export default async function BlogPage({
             href={`/${locale}/blog/${POSTS[0].slug}`}
             className="block group"
           >
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center bg-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
               <div
                 className={`md:col-span-2 relative h-64 md:h-full bg-gradient-to-br ${POSTS[0].color} flex items-center justify-center overflow-hidden`}
               >
@@ -245,7 +245,7 @@ export default async function BlogPage({
             <Link
               key={post.slug}
               href={`/${locale}/blog/${post.slug}`}
-              className="group bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
+              className="group bg-card border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
             >
               <div
                 className={`h-32 bg-gradient-to-br ${post.color} relative flex items-center justify-center`}

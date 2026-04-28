@@ -182,7 +182,7 @@ export default async function ApiReferencePage({
               <h2 className="text-xl font-bold text-slate-900 mb-4">
                 {cat.category[L]}
               </h2>
-              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+              <div className="bg-card border border-slate-200 rounded-xl overflow-hidden">
                 {cat.items.map((ep, i) => (
                   <div
                     key={i}
@@ -247,7 +247,7 @@ function CalloutCard({
     amber: "bg-amber-50 text-amber-700 border-amber-200",
   };
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-4">
+    <div className="bg-card border border-slate-200 rounded-xl p-4">
       <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg border mb-2 ${c[color]}`}>
         {icon}
       </div>
