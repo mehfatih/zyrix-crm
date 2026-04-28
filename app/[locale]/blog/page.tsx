@@ -185,14 +185,14 @@ export default async function BlogPage({
     <PublicLayout>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-sky-600 bg-sky-50 border border-sky-200 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full mb-4">
             <BookOpen className="w-3.5 h-3.5" />
             {t.hero.badge}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
@@ -203,7 +203,7 @@ export default async function BlogPage({
             href={`/${locale}/blog/${POSTS[0].slug}`}
             className="block group"
           >
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center bg-card border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
               <div
                 className={`md:col-span-2 relative h-64 md:h-full bg-gradient-to-br ${POSTS[0].color} flex items-center justify-center overflow-hidden`}
               >
@@ -212,24 +212,24 @@ export default async function BlogPage({
               </div>
               <div className="md:col-span-3 p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="px-2 py-0.5 text-xs font-semibold text-sky-600 bg-sky-50 rounded">
+                  <span className="px-2 py-0.5 text-xs font-semibold text-primary bg-primary/10 rounded">
                     {POSTS[0].category[L]}
                   </span>
-                  <span className="text-xs text-slate-500 flex items-center gap-1">
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {formatDate(POSTS[0].date, L)}
                   </span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                   {POSTS[0].title[L]}
                 </h2>
-                <p className="text-slate-600 mb-4">{POSTS[0].excerpt[L]}</p>
+                <p className="text-muted-foreground mb-4">{POSTS[0].excerpt[L]}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-500 flex items-center gap-1">
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {POSTS[0].readTime} {t.minRead}
                   </span>
-                  <span className="text-sm font-semibold text-sky-500 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-sm font-semibold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
                     {t.readMore}
                     <ArrowRight className="w-4 h-4" />
                   </span>
@@ -245,7 +245,7 @@ export default async function BlogPage({
             <Link
               key={post.slug}
               href={`/${locale}/blog/${post.slug}`}
-              className="group bg-card border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
+              className="group bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
             >
               <div
                 className={`h-32 bg-gradient-to-br ${post.color} relative flex items-center justify-center`}
@@ -255,17 +255,17 @@ export default async function BlogPage({
               </div>
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-0.5 text-[10px] font-semibold text-slate-700 bg-slate-100 rounded">
+                  <span className="px-2 py-0.5 text-[10px] font-semibold text-foreground bg-muted rounded">
                     {post.category[L]}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors line-clamp-2">
+                <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
                   {post.title[L]}
                 </h3>
-                <p className="text-sm text-slate-600 line-clamp-3 mb-3">
+                <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
                   {post.excerpt[L]}
                 </p>
-                <div className="flex items-center justify-between text-xs text-slate-500">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {formatDate(post.date, L)}
@@ -282,11 +282,11 @@ export default async function BlogPage({
 
         {/* Coming soon */}
         <div className="mt-16 text-center bg-gradient-to-br from-sky-50 to-sky-50 rounded-2xl p-8 border border-sky-100">
-          <Sparkles className="w-8 h-8 text-sky-500 mx-auto mb-3" />
-          <h3 className="text-xl font-bold text-slate-900 mb-2">
+          <Sparkles className="w-8 h-8 text-primary mx-auto mb-3" />
+          <h3 className="text-xl font-bold text-foreground mb-2">
             {t.comingSoon}
           </h3>
-          <p className="text-sm text-slate-600 max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground max-w-md mx-auto">
             {t.comingSoonDesc}
           </p>
         </div>

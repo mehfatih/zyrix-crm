@@ -102,25 +102,25 @@ const STATUS_META: Record<
 > = {
   operational: {
     bg: "bg-emerald-500",
-    text: "text-emerald-700",
+    text: "text-emerald-300",
     ring: "bg-emerald-500/20",
     label: { en: "Operational", ar: "يعمل", tr: "Çalışıyor" },
   },
   degraded: {
     bg: "bg-amber-500",
-    text: "text-amber-700",
+    text: "text-amber-300",
     ring: "bg-amber-500/20",
     label: { en: "Degraded", ar: "أداء متدنٍ", tr: "Düşük performans" },
   },
   outage: {
     bg: "bg-red-500",
-    text: "text-red-700",
+    text: "text-destructive",
     ring: "bg-red-500/20",
     label: { en: "Outage", ar: "انقطاع", tr: "Kesinti" },
   },
   maintenance: {
     bg: "bg-sky-500",
-    text: "text-sky-700",
+    text: "text-primary",
     ring: "bg-sky-500/20",
     label: { en: "Maintenance", ar: "صيانة", tr: "Bakım" },
   },
@@ -167,31 +167,31 @@ export default async function StatusPage({
     <PublicLayout>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 rounded-full mb-4">
             <Activity className="w-3.5 h-3.5" />
             {t.hero.badge}
           </span>
 
-          <div className="inline-flex items-center gap-3 px-5 py-3 bg-emerald-50 border border-emerald-200 rounded-2xl mb-6">
+          <div className="inline-flex items-center gap-3 px-5 py-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl mb-6">
             <div className="relative">
               <div className="w-3 h-3 bg-emerald-500 rounded-full" />
               <div className="absolute inset-0 w-3 h-3 bg-emerald-500 rounded-full animate-ping opacity-40" />
             </div>
-            <span className="font-semibold text-emerald-700">
+            <span className="font-semibold text-emerald-300">
               {allOperational ? t.hero.title : "Some services impacted"}
             </span>
           </div>
 
-          <p className="text-base text-slate-600 max-w-xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
 
         {/* Services list */}
-        <div className="bg-card border border-slate-200 rounded-2xl overflow-hidden mb-8">
-          <div className="px-6 py-3 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
-            <h2 className="text-sm font-bold text-slate-900">{t.services}</h2>
-            <span className="text-xs text-slate-500">{t.uptime30d}</span>
+        <div className="bg-card border border-border rounded-2xl overflow-hidden mb-8">
+          <div className="px-6 py-3 border-b border-border bg-muted/50 flex items-center justify-between">
+            <h2 className="text-sm font-bold text-foreground">{t.services}</h2>
+            <span className="text-xs text-muted-foreground">{t.uptime30d}</span>
           </div>
           <div className="divide-y divide-slate-100">
             {SERVICES.map((svc, i) => {
@@ -200,18 +200,18 @@ export default async function StatusPage({
               return (
                 <div
                   key={i}
-                  className="px-6 py-4 flex items-center gap-4 hover:bg-slate-50/40"
+                  className="px-6 py-4 flex items-center gap-4 hover:bg-muted/40"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 flex-shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center text-muted-foreground flex-shrink-0">
                     <Icon className="w-4 h-4" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-slate-900 truncate">
+                    <div className="text-sm font-medium text-foreground truncate">
                       {svc.name[L]}
                     </div>
                   </div>
                   <div className="text-right rtl:text-left flex-shrink-0">
-                    <div className="text-sm font-bold text-emerald-700 font-mono">
+                    <div className="text-sm font-bold text-emerald-300 font-mono">
                       {svc.uptime.toFixed(2)}%
                     </div>
                   </div>
@@ -233,13 +233,13 @@ export default async function StatusPage({
         </div>
 
         {/* Incidents */}
-        <div className="bg-card border border-slate-200 rounded-2xl p-6">
-          <h2 className="text-sm font-bold text-slate-900 mb-3">
+        <div className="bg-card border border-border rounded-2xl p-6">
+          <h2 className="text-sm font-bold text-foreground mb-3">
             {t.incidents}
           </h2>
           <div className="text-center py-8">
             <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-2" />
-            <p className="text-sm text-slate-600">{t.noIncidents}</p>
+            <p className="text-sm text-muted-foreground">{t.noIncidents}</p>
           </div>
         </div>
       </div>

@@ -100,26 +100,26 @@ const ENTRIES: {
 
 const KIND_META: Record<EntryKind, { bg: string; text: string; Icon: typeof Sparkles; label: { en: string; ar: string; tr: string } }> = {
   feature: {
-    bg: "bg-sky-100",
-    text: "text-sky-600",
+    bg: "bg-sky-500/15",
+    text: "text-primary",
     Icon: Plus,
     label: { en: "New", ar: "جديد", tr: "Yeni" },
   },
   improvement: {
-    bg: "bg-sky-100",
-    text: "text-sky-700",
+    bg: "bg-sky-500/15",
+    text: "text-sky-300",
     Icon: Zap,
     label: { en: "Improved", ar: "تحسين", tr: "İyileştirme" },
   },
   fix: {
-    bg: "bg-amber-100",
-    text: "text-amber-700",
+    bg: "bg-amber-500/15",
+    text: "text-amber-300",
     Icon: Wrench,
     label: { en: "Fixed", ar: "إصلاح", tr: "Düzeltildi" },
   },
   security: {
-    bg: "bg-emerald-100",
-    text: "text-emerald-700",
+    bg: "bg-emerald-500/15",
+    text: "text-emerald-300",
     Icon: Shield,
     label: { en: "Security", ar: "أمان", tr: "Güvenlik" },
   },
@@ -155,14 +155,14 @@ export default async function ChangelogPage({
     <PublicLayout>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 rounded-full mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             {t.hero.badge}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
@@ -181,14 +181,14 @@ export default async function ChangelogPage({
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">
-                  <span className="text-xl font-bold text-slate-900 font-mono">
+                  <span className="text-xl font-bold text-foreground font-mono">
                     v{entry.version}
                   </span>
-                  <span className="text-sm text-slate-500">
+                  <span className="text-sm text-muted-foreground">
                     {formatDate(entry.date, L)}
                   </span>
                   {entry.highlight && (
-                    <span className="px-2 py-0.5 text-[10px] font-bold text-emerald-700 bg-emerald-100 rounded">
+                    <span className="px-2 py-0.5 text-[10px] font-bold text-emerald-300 bg-emerald-500/15 rounded">
                       {t.latestBadge}
                     </span>
                   )}
@@ -196,7 +196,7 @@ export default async function ChangelogPage({
               </div>
 
               {/* Entry card */}
-              <div className="ltr:ml-11 rtl:mr-11 bg-card border border-slate-200 rounded-xl p-6 shadow-sm">
+              <div className="ltr:ml-11 rtl:mr-11 bg-card border border-border rounded-xl p-6 shadow-sm">
                 <ul className="space-y-3">
                   {entry.items.map((item, i) => {
                     const meta = KIND_META[item.kind];
@@ -209,7 +209,7 @@ export default async function ChangelogPage({
                           <Icon className="w-2.5 h-2.5" />
                           {meta.label[L]}
                         </span>
-                        <span className="text-sm text-slate-700">
+                        <span className="text-sm text-foreground">
                           {item.title[L]}
                         </span>
                       </li>

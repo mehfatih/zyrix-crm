@@ -197,14 +197,14 @@ export default async function SecurityPage({
     <PublicLayout>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-slate-700 bg-slate-100 border border-slate-200 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-foreground bg-muted border border-border rounded-full mb-4">
             <Shield className="w-3.5 h-3.5" />
             {t.hero.badge}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
@@ -215,24 +215,24 @@ export default async function SecurityPage({
             return (
               <div
                 key={i}
-                className="bg-card border border-slate-200 rounded-2xl p-6"
+                className="bg-card border border-border rounded-2xl p-6"
               >
                 <div
                   className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${p.color} text-white mb-4 shadow-lg`}
                 >
                   <Icon className="w-6 h-6" />
                 </div>
-                <h2 className="text-lg font-bold text-slate-900 mb-2">
+                <h2 className="text-lg font-bold text-foreground mb-2">
                   {p.title[L]}
                 </h2>
-                <p className="text-sm text-slate-600 mb-4 leading-relaxed">
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                   {p.body[L]}
                 </p>
                 <ul className="space-y-1.5">
                   {p.items.map((it, j) => (
                     <li
                       key={j}
-                      className="flex items-start gap-2 text-sm text-slate-700"
+                      className="flex items-start gap-2 text-sm text-foreground"
                     >
                       <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
                       {it[L]}
@@ -247,7 +247,7 @@ export default async function SecurityPage({
         <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 text-center text-white">
           <ShieldCheck className="w-10 h-10 mx-auto mb-3 text-sky-300" />
           <h2 className="text-xl font-bold mb-2">{t.contact}</h2>
-          <p className="text-sm text-slate-300 mb-4">
+          <p className="text-sm text-muted-foreground mb-4">
             {t.contactDesc}{" "}
             <a
               href="mailto:security@zyrix.co"

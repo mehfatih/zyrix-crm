@@ -224,14 +224,14 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
         </div>
         <div className="relative max-w-6xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-card border border-sky-200 text-sky-600 rounded-full text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-card border border-sky-500/30 text-primary rounded-full text-xs font-semibold mb-4">
               <Plug className="w-3 h-3" />
               {t.heroEyebrow}
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold text-sky-900 mb-4 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
               {t.heroTitle}
             </h1>
-            <p className="text-base md:text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               {t.heroSubtitle}
             </p>
             <div className="flex items-center gap-3 justify-center flex-wrap">
@@ -244,7 +244,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
               </Link>
               <Link
                 href={`/${locale}/pricing`}
-                className="inline-flex items-center gap-1.5 px-6 py-3 bg-card border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-lg text-sm font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 px-6 py-3 bg-card border border-sky-500/30 hover:bg-sky-500/10 text-foreground rounded-lg text-sm font-medium transition-colors"
               >
                 {t.heroCtaSecondary}
               </Link>
@@ -267,13 +267,13 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
           {/* Search + Filters */}
           <div className="flex flex-col md:flex-row gap-3 justify-between mb-8">
             <div className="relative max-w-md flex-1">
-              <Search className="w-4 h-4 text-slate-400 absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
+              <Search className="w-4 h-4 text-white/60 absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2.5 text-sm bg-card border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2.5 text-sm bg-card border border-sky-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 text-foreground"
               />
             </div>
             <div className="flex items-center gap-2 flex-wrap">
@@ -286,12 +286,12 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
 
           {/* Grid */}
           {loading ? (
-            <div className="text-center py-20 text-slate-500 text-sm">Loading...</div>
+            <div className="text-center py-20 text-muted-foreground text-sm">Loading...</div>
           ) : filtered.length === 0 ? (
             <div className="text-center py-20">
               <Search className="w-10 h-10 text-sky-300 mx-auto mb-2" />
-              <h3 className="text-base font-semibold text-sky-900 mb-1">{t.noResults}</h3>
-              <p className="text-sm text-slate-500">{t.tryDifferent}</p>
+              <h3 className="text-base font-semibold text-foreground mb-1">{t.noResults}</h3>
+              <p className="text-sm text-muted-foreground">{t.tryDifferent}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -306,7 +306,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
       {/* How it works */}
       <section className="py-16 bg-gradient-to-br from-sky-50 to-sky-50">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-sky-900 text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
             {t.howItWorks}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -321,10 +321,10 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
       {/* CTA */}
       <section className="py-16 bg-card">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-sky-900 mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             {t.ctaTitle}
           </h2>
-          <p className="text-base text-slate-600 mb-6">{t.ctaSubtitle}</p>
+          <p className="text-base text-muted-foreground mb-6">{t.ctaSubtitle}</p>
           <Link
             href={`/${locale}/signup`}
             className="inline-flex items-center gap-1.5 px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold shadow-lg shadow-sky-500/20"
@@ -340,15 +340,15 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
 
 function StatCard({ value, label, color }: { value: number; label: string; color: string }) {
   const colors: Record<string, string> = {
-    cyan: "text-sky-500",
-    sky: "text-sky-600",
-    emerald: "text-emerald-600",
-    indigo: "text-indigo-600",
+    cyan: "text-cyan-400",
+    sky: "text-primary",
+    emerald: "text-emerald-400",
+    indigo: "text-indigo-400",
   };
   return (
     <div className="bg-card/80 backdrop-blur-sm border border-sky-100 rounded-xl p-4 text-center shadow-sm">
       <div className={`text-3xl md:text-4xl font-extrabold ${colors[color]}`}>{value}+</div>
-      <div className="text-xs text-slate-600 mt-1 uppercase tracking-wide">{label}</div>
+      <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wide">{label}</div>
     </div>
   );
 }
@@ -370,12 +370,12 @@ function RegionChip({
     <button
       onClick={onClick}
       className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-        active ? "bg-sky-500 text-white shadow-sm" : "bg-card border border-sky-200 text-slate-700 hover:bg-sky-50"
+        active ? "bg-sky-500 text-white shadow-sm" : "bg-card border border-sky-500/30 text-foreground hover:bg-sky-500/10"
       }`}
     >
       <Icon className="w-3.5 h-3.5" />
       {label}
-      <span className={`ltr:ml-1 rtl:mr-1 px-1.5 py-0.5 text-[10px] font-bold rounded-full ${active ? "bg-white/20" : "bg-slate-100"}`}>
+      <span className={`ltr:ml-1 rtl:mr-1 px-1.5 py-0.5 text-[10px] font-bold rounded-full ${active ? "bg-white/20" : "bg-muted"}`}>
         {count}
       </span>
     </button>
@@ -385,14 +385,14 @@ function RegionChip({
 function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; locale: string; t: any }) {
   const description = platform.description[locale as "en" | "ar" | "tr"] || platform.description.en;
   const statusColors: Record<string, string> = {
-    native: "bg-emerald-100 text-emerald-700 border-emerald-200",
-    api: "bg-sky-100 text-sky-600 border-sky-200",
-    csv_only: "bg-amber-100 text-amber-700 border-amber-200",
-    planned: "bg-slate-100 text-slate-500 border-slate-200",
+    native: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+    api: "bg-sky-500/15 text-primary border-sky-500/30",
+    csv_only: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+    planned: "bg-muted text-muted-foreground border-border",
   };
 
   return (
-    <div className="bg-card border border-sky-100 rounded-xl p-5 hover:shadow-lg hover:border-sky-200 transition-all flex flex-col">
+    <div className="bg-card border border-border rounded-xl p-5 hover:shadow-lg hover:border-primary/40 transition-all flex flex-col">
       <div className="flex items-start gap-3 mb-3">
         <div
           className="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-white text-xl flex-shrink-0 shadow-sm"
@@ -401,34 +401,34 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
           {platform.name.charAt(0)}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-base font-bold text-sky-900 truncate flex items-center gap-1">
+          <h3 className="text-base font-bold text-foreground truncate flex items-center gap-1">
             {platform.name}
             {platform.popularity >= 85 && <Zap className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />}
           </h3>
-          <div className="flex items-center gap-1 text-xs text-slate-500 mt-0.5">
+          <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
             <MapPin className="w-3 h-3" />
             {platform.country}
           </div>
         </div>
       </div>
 
-      <p className="text-sm text-slate-600 mb-4 line-clamp-3 flex-1">{description}</p>
+      <p className="text-sm text-muted-foreground mb-4 line-clamp-3 flex-1">{description}</p>
 
       <div className="flex items-center gap-1 mb-3 flex-wrap">
         {platform.supports.customers && (
-          <span className="inline-flex items-center gap-0.5 text-[10px] text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded">
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-primary bg-sky-500/10 px-1.5 py-0.5 rounded">
             <Users className="w-2.5 h-2.5" />
             {t.capCustomers}
           </span>
         )}
         {platform.supports.orders && (
-          <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-300 bg-emerald-500/10 px-1.5 py-0.5 rounded">
             <ShoppingCart className="w-2.5 h-2.5" />
             {t.capOrders}
           </span>
         )}
         {platform.supports.webhooks && (
-          <span className="inline-flex items-center gap-0.5 text-[10px] text-violet-700 bg-violet-50 px-1.5 py-0.5 rounded">
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-violet-300 bg-violet-500/10 px-1.5 py-0.5 rounded">
             <Zap className="w-2.5 h-2.5" />
             {t.capWebhooks}
           </span>
@@ -447,7 +447,7 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
           href={platform.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-400 hover:text-sky-500 flex items-center gap-0.5"
+          className="text-white/60 hover:text-primary flex items-center gap-0.5"
           title={t.visitWebsite}
         >
           <ExternalLink className="w-3 h-3" />
@@ -469,8 +469,8 @@ function StepCard({ n, title, desc, color }: { n: number; title: string; desc: s
       <div className={`w-10 h-10 rounded-full ${colors[color]} text-white flex items-center justify-center font-bold mx-auto mb-3`}>
         {n}
       </div>
-      <h3 className="text-sm font-bold text-sky-900 mb-1">{title}</h3>
-      <p className="text-xs text-slate-500">{desc}</p>
+      <h3 className="text-sm font-bold text-foreground mb-1">{title}</h3>
+      <p className="text-xs text-muted-foreground">{desc}</p>
     </div>
   );
 }
