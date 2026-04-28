@@ -157,10 +157,11 @@
   }
 
   .text-gradient {
-    background: var(--gradient-primary);
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary)) 30%, #fbbf24);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 
   .section-blend-top::before {
