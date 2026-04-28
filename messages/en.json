@@ -2974,7 +2974,11 @@
       "customers": "Customers",
       "pricing": "Pricing",
       "signIn": "Sign in",
-      "bookDemo": "Book a demo"
+      "bookDemo": "Book a demo",
+      "features": "Features",
+      "about": "About",
+      "contact": "Contact",
+      "signUp": "Sign up"
     },
     "hero": {
       "badge": "WhatsApp-first CRM, built for MENA",

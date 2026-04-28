@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { ZyrixLogo } from "./ZyrixLogo";
 import {
@@ -15,19 +16,43 @@ import {
 const COLUMNS = [
   {
     key: "product",
-    links: ["features", "aiAgents", "pricing", "integrations", "changelog"],
+    links: [
+      { key: "features", href: "/features" },
+      { key: "aiAgents", href: "/features" },
+      { key: "pricing", href: "/pricing" },
+      { key: "integrations", href: "/integrations" },
+      { key: "changelog", href: "/changelog" },
+    ],
   },
   {
     key: "solutions",
-    links: ["sales", "ecommerce", "realEstate", "clinics", "agencies"],
+    links: [
+      { key: "sales", href: "#" },
+      { key: "ecommerce", href: "#" },
+      { key: "realEstate", href: "#" },
+      { key: "clinics", href: "#" },
+      { key: "agencies", href: "#" },
+    ],
   },
   {
     key: "company",
-    links: ["about", "customers", "careers", "press", "contact"],
+    links: [
+      { key: "about", href: "/about" },
+      { key: "customers", href: "#" },
+      { key: "careers", href: "#" },
+      { key: "press", href: "#" },
+      { key: "contact", href: "/contact" },
+    ],
   },
   {
     key: "resources",
-    links: ["docs", "api", "blog", "playbook", "status"],
+    links: [
+      { key: "docs", href: "/docs" },
+      { key: "api", href: "/api-reference" },
+      { key: "blog", href: "/blog" },
+      { key: "playbook", href: "#" },
+      { key: "status", href: "/status" },
+    ],
   },
 ] as const;
 
@@ -38,6 +63,25 @@ const SOCIAL_ICONS = [
   { Icon: MessageCircle, key: "whatsapp", href: "https://wa.me/" },
   { Icon: Mail, key: "email", href: "mailto:hello@zyrix.co" },
 ] as const;
+
+const FooterLink = ({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className?: string;
+  children: React.ReactNode;
+}) =>
+  href.startsWith("/") ? (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  ) : (
+    <a href={href} className={className}>
+      {children}
+    </a>
+  );
 
 export const SiteFooter = () => {
   const t = useTranslations("Landing.footer");
@@ -79,19 +123,19 @@ export const SiteFooter = () => {
             </p>
 
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="#signup"
+              <Link
+                href="/signup"
                 className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.6)] hover:shadow-[0_10px_50px_-5px_hsl(var(--primary)/0.8)] transition-shadow"
               >
                 {t("cta.primary")}
                 <Arrow className="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
-              </a>
-              <a
-                href="#demo"
+              </Link>
+              <Link
+                href="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-7 py-3.5 text-sm font-medium text-foreground hover:bg-white/10 hover:border-white/20 transition-colors"
               >
                 {t("cta.secondary")}
-              </a>
+              </Link>
             </div>
 
             <p className="mt-5 text-xs text-muted-foreground/70">
@@ -165,14 +209,14 @@ export const SiteFooter = () => {
                   {t(`columns.${col.key}.title`)}
                 </div>
                 <ul className="space-y-2.5">
-                  {col.links.map((linkKey) => (
-                    <li key={linkKey}>
-                      <a
-                        href="#"
+                  {col.links.map((link) => (
+                    <li key={link.key}>
+                      <FooterLink
+                        href={link.href}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        {t(`columns.${col.key}.links.${linkKey}`)}
-                      </a>
+                        {t(`columns.${col.key}.links.${link.key}`)}
+                      </FooterLink>
                     </li>
                   ))}
                 </ul>
@@ -199,15 +243,15 @@ export const SiteFooter = () => {
 
               {/* Right: legal links */}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href="/privacy" className="hover:text-foreground transition-colors">
                   {t("legal.privacy")}
-                </a>
-                <a href="#" className="hover:text-foreground transition-colors">
+                </Link>
+                <Link href="/terms" className="hover:text-foreground transition-colors">
                   {t("legal.terms")}
-                </a>
-                <a href="#" className="hover:text-foreground transition-colors">
+                </Link>
+                <Link href="/security" className="hover:text-foreground transition-colors">
                   {t("legal.security")}
-                </a>
+                </Link>
                 <a href="#" className="hover:text-foreground transition-colors">
                   {t("legal.dpa")}
                 </a>

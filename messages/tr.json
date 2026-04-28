@@ -2974,7 +2974,11 @@
       "customers": "Müşteriler",
       "pricing": "Fiyatlandırma",
       "signIn": "Giriş yap",
-      "bookDemo": "Demo talep et"
+      "bookDemo": "Demo talep et",
+      "features": "Özellikler",
+      "about": "Hakkımızda",
+      "contact": "İletişim",
+      "signUp": "Kayıt ol"
     },
     "hero": {
       "badge": "WhatsApp odaklı CRM, MENA için tasarlandı",
