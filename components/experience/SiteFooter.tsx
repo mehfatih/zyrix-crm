@@ -111,7 +111,7 @@ export const SiteFooter = () => {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-10 md:gap-8">
             {/* Brand column (spans 2) */}
             <div className="col-span-2">
-              <ZyrixLogo variant="white" size={36} />
+              <ZyrixLogo variant="white" size={44} />
               <p className="mt-5 text-sm text-muted-foreground max-w-xs leading-relaxed">
                 {t("brand.tagline")}
               </p>

@@ -41,7 +41,7 @@ export const Nav = () => {
             scrolled ? "glass-strong shadow-card" : "bg-transparent"
           }`}
         >
-          <ZyrixLogo variant="white" size={32} />
+          <ZyrixLogo variant="white" size={40} />
 
           <nav className="hidden md:flex items-center gap-7">
             {items.map((item) => (
