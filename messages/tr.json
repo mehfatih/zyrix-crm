@@ -3016,7 +3016,9 @@
         "outgoingMsg": "Merhaba! Kataloğu birazdan göndereceğim 👌",
         "incoming2Msg": "Tamam, son teklifi yollayın lütfen",
         "aiSuggestion": "Önerilen yanıt: \"Şirketiniz için özel teklifimizi paylaşıyoruz...\""
-      }
+      },
+      "customerDashboard": "Müşteri Paneli",
+      "adminDashboard": "Yönetici Paneli"
     },
     "trust": {
       "eyebrow": "MENA ve Türkiye'de 1.200'den fazla ekibin güvendiği platform"

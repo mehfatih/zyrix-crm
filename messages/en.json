@@ -3016,7 +3016,9 @@
         "outgoingMsg": "Hello! I'll send you the catalog within a minute 👌",
         "incoming2Msg": "Great, please send me the final quote",
         "aiSuggestion": "Suggested reply: \"Here's the customized offer for your company...\""
-      }
+      },
+      "customerDashboard": "Customer Dashboard",
+      "adminDashboard": "Admin Dashboard"
     },
     "trust": {
       "eyebrow": "Trusted by 1,200+ teams across MENA & Türkiye"
