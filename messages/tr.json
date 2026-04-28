@@ -927,15 +927,47 @@
       "unlimited": "Sınırsız"
     },
     "faq": {
-      "title": "Sık sorulan sorular",
-      "q1": "Planı sonradan değiştirebilir miyim?",
-      "a1": "Evet. Yükseltmeler hemen uygulanır ve orantılı hesaplanır. Düşürmeler mevcut faturalama döngüsü sonunda uygulanır.",
-      "q2": "Hangi ödeme yöntemlerini kabul ediyorsunuz?",
-      "a2": "Tüm büyük kredi kartlarını, banka havalesini, Apple Pay ve MADA'yı iyzico (Türkiye) ve HyperPay (Suudi Arabistan, BAE) üzerinden kabul ediyoruz.",
-      "q3": "Ücretsiz deneme var mı?",
-      "a3": "Ücretsiz plan sonsuza kadar ücretsizdir. Ücretli planlar 14 günlük para iade garantisi içerir.",
-      "q4": "Kullanıcı başına mı ödüyorum?",
-      "a4": "Hayır. Ekip büyüklüğünden bağımsız olarak şirket başına tek fiyat ödersiniz (planın kullanıcı limiti dahilinde). Bu genellikle kullanıcı başı fiyatlandırmaya kıyasla %50–80 tasarruf sağlar."
+      "title": "Sıkça sorulan sorular",
+      "q1": {
+        "q": "2026'da WhatsApp Business için en iyi CRM hangisi?",
+        "a": "Zyrix, WhatsApp öncelikli ticaret için özel olarak tasarlanmıştır. WhatsApp'ı sonradan eklenen bir özellik gibi gören geleneksel CRM'lerin aksine, Zyrix'teki her özellik — satış hattı, otomasyon, AI ajanları, raporlama — WhatsApp Business API etrafında tasarlanmıştır. Meta Cloud API ile doğrudan entegre oluyoruz, şablon mesajlarını, yayın listelerini ve 24 saatlik konuşma pencerelerini destekliyoruz."
+      },
+      "q2": {
+        "q": "Zyrix Arapça ve Türkçe'yi yerel olarak destekliyor mu?",
+        "a": "Evet. Zyrix Arapça (RTL desteğiyle) ve Türkçe için tamamen çevrilmiş ve uyarlanmıştır. AI ajanlarımız yerel Arapça ve Türkçe'yi anlar ve yanıtlar — makine çevirisi kalitesinde değil. Müşteri desteği, dokümantasyon ve kurulum EN/AR/TR'de mevcuttur."
+      },
+      "q3": {
+        "q": "Zyrix'i Shopify veya WooCommerce mağazama entegre edebilir miyim?",
+        "a": "Evet. Zyrix, Shopify, WooCommerce, BigCommerce ve 40+ e-ticaret platformuyla iki yönlü senkronizasyon sunar. Müşteri verileri, siparişler, envanter ve terk edilmiş sepetler otomatik olarak senkronize olur. Kurulum 2 dakika sürer — mağazanızı bağlayın, kimlik doğrulayın ve yayında olun."
+      },
+      "q4": {
+        "q": "Zyrix Kapıda Ödeme kullanan MENA işletmeleri için uygun mu?",
+        "a": "Kesinlikle. Zyrix, KKÖ yaşam döngüsü takibine sahiptir — onay, kurye teslim alma, teslimat, nakit tahsilat ve banka mutabakatı. SMSA, Aramex, Naqel (KSA), MNG Kargo, Yurtiçi Kargo, J&T (Türkiye) dahil bölgesel kuryeler ve 25+ daha fazlasıyla entegre oluyoruz."
+      },
+      "q5": {
+        "q": "Zyrix fiyatlandırması HubSpot veya Salesforce ile nasıl karşılaştırılır?",
+        "a": "Zyrix, HubSpot veya Salesforce gibi koltuk başına CRM'lerden %80'e varan oranda daha ucuzdur. Düz plan yapımız kullanıcı başına ücret olmadığı anlamına gelir — İşletme ve Kurumsal planlarda sınırsız ekip üyesi ekleyin. Ayrıca, standart olması gereken özellikler (WhatsApp, AI ajanları, raporlama) için ekstra ücret almayız."
+      },
+      "q6": {
+        "q": "Zyrix CRM için ücretsiz deneme var mı?",
+        "a": "Evet. Her ücretli plan 14 günlük ücretsiz deneme ile başlar — kredi kartı gerekmez. Ücretsiz planımız, tek kişilik kurucular ve küçük ekipler (3 kullanıcıya, 100 kişiye kadar) için kalıcı olarak ücretsizdir. İstediğiniz zaman yükseltebilir veya iptal edebilirsiniz."
+      },
+      "q7": {
+        "q": "Zyrix hangi sektörleri destekliyor?",
+        "a": "Zyrix, MENA bölgesinde ve Türkiye'de satış ekipleri, e-ticaret mağazaları, emlak komisyoncuları, tıbbi klinikler, pazarlama ajansları ve SaaS şirketleri tarafından kullanılıyor. Her sektör için özel çözüm sayfalarımız ve hazır iş akışlarımız var."
+      },
+      "q8": {
+        "q": "Zyrix Suudi PDPL, Türk KVKK ve GDPR'a uyumlu mu?",
+        "a": "Evet. Zyrix, Suudi PDPL (Kişisel Veri Koruma Kanunu), Türk KVKK (Kişisel Verileri Koruma Kanunu) ve AB GDPR ile uyumludur. Bölgenizde veri ikamet seçenekleri, tam denetim günlükleri, dururken ve aktarım sırasında şifreleme ve imzalı Veri İşleme Anlaşmaları sunuyoruz."
+      },
+      "q9": {
+        "q": "Verilerimi başka bir CRM'den Zyrix'e taşıyabilir miyim?",
+        "a": "Evet. Zyrix CSV içe aktarımı, API geçişi ve HubSpot, Salesforce, Pipedrive, Zoho, monday.com ve çoğu büyük CRM'den özel veri aktarımını destekler. Ekibimiz İşletme ve Kurumsal planlar için ücretsiz geçiş desteği sunuyor."
+      },
+      "q10": {
+        "q": "Aboneliği iptal edersem verilerime ne olur?",
+        "a": "Verileriniz size aittir. İptal sonrasında her şeyi 90 gün içinde CSV veya JSON olarak dışa aktarabilirsiniz. Bundan sonra, saklama politikamıza göre verilerinizi kalıcı olarak siliyoruz. Verilerinizi asla satmıyoruz, başka şirketlerin AI modellerini eğitmek için asla kullanmıyoruz ve istediğiniz zaman silme talep edebilirsiniz."
+      }
     }
   },
   "Checkout": {
@@ -2978,7 +3010,8 @@
       "features": "Özellikler",
       "about": "Hakkımızda",
       "contact": "İletişim",
-      "signUp": "Kayıt ol"
+      "signUp": "Kayıt ol",
+      "aiAgents": "AI Ajanları"
     },
     "hero": {
       "badge": "WhatsApp odaklı CRM, MENA için tasarlandı",
@@ -3018,7 +3051,8 @@
         "aiSuggestion": "Önerilen yanıt: \"Şirketiniz için özel teklifimizi paylaşıyoruz...\""
       },
       "customerDashboard": "Müşteri Paneli",
-      "adminDashboard": "Yönetici Paneli"
+      "adminDashboard": "Yönetici Paneli",
+      "ctaSignUp": "Kayıt ol"
     },
     "trust": {
       "eyebrow": "MENA ve Türkiye'de 1.200'den fazla ekibin güvendiği platform"
@@ -3213,36 +3247,44 @@
       "footer": "Zapier, Make veya açık REST API'miz aracılığıyla daha fazlası. Özel entegrasyonlar talep üzerine sağlanır."
     },
     "pricing": {
-      "eyebrow": "Basit ve adil fiyatlandırma",
+      "eyebrow": "Basit, adil fiyatlandırma",
       "title": "Ekibinizle",
       "titleEmphasis": "büyüyen fiyatlandırma",
-      "subtitle": "Kişi başına faturalanan CRM'lere göre %80'e kadar daha düşük. Sürpriz ücret yok, kullanıcı başına kilitleme yok. İstediğiniz zaman iptal edin.",
+      "subtitle": "Koltuk başına CRM'lerden %80'e varan oranda daha ucuz. Sürpriz ücret yok, kullanıcı başına kilitlenme yok. İstediğiniz zaman iptal edin.",
       "popular": "En popüler",
-      "starterName": "Starter",
-      "starterPrice": "14 gün ücretsiz",
-      "starterDescription": "Zyrix'i ekibinizle test etmek için ihtiyacınız olan her şey — kredi kartı gerekmez.",
-      "starterFeature1": "3 ekip üyesine kadar",
-      "starterFeature2": "WhatsApp Business API",
-      "starterFeature3": "Temel CRM çalışma alanı",
-      "starterFeature4": "E-posta desteği",
-      "starterCta": "Ücretsiz başla",
-      "proName": "Pro",
-      "proPrice": "Özel",
-      "proDescription": "Otomasyon, AI ve tam hat görünürlüğü gerektiren büyüyen ekipler için.",
-      "proFeature1": "Sınırsız ekip üyesi",
-      "proFeature2": "AI yanıtları ve lead skorlama",
-      "proFeature3": "Gelişmiş otomasyonlar",
-      "proFeature4": "Öncelikli destek",
-      "proCta": "Satışla görüş",
-      "enterpriseName": "Enterprise",
-      "enterprisePrice": "Tasarlanmış",
-      "enterpriseDescription": "Büyük operasyonlar için özel kurulum, özel altyapı ve beyaz eldiven onboarding.",
-      "enterpriseFeature1": "Özel ortam",
-      "enterpriseFeature2": "Özel SLA'lar",
-      "enterpriseFeature3": "Şirket içi seçenek",
-      "enterpriseFeature4": "Özel başarı yöneticisi",
-      "enterpriseCta": "Teklif iste",
-      "disclaimer": "Nihai fiyat ekip büyüklüğüne, entegrasyonlara ve kurulum kapsamına bağlıdır. Özel teklif için satış ekibiyle iletişime geçin."
+      "freeName": "Ücretsiz",
+      "freePrice": "$0",
+      "freeDescription": "Başlayan küçük ekipler için — kredi kartı gerekmez.",
+      "freeFeature1": "3 kullanıcı",
+      "freeFeature2": "100 kişi",
+      "freeFeature3": "1 GB depolama",
+      "freeFeature4": "Aylık 100 WhatsApp mesajı",
+      "freeCta": "Başla",
+      "starterName": "Başlangıç",
+      "starterPrice": "$19/ay",
+      "starterDescription": "Daha fazla kapasiteye ihtiyaç duyan büyüyen ekipler için.",
+      "starterFeature1": "10 kullanıcı",
+      "starterFeature2": "1.000 kişi",
+      "starterFeature3": "10 GB depolama",
+      "starterFeature4": "Aylık 2.000 WhatsApp mesajı",
+      "starterCta": "Ücretsiz dene",
+      "businessName": "İşletme",
+      "businessPrice": "$49/ay",
+      "businessDescription": "Tam ihtiyaçları olan büyüyen işletmeler için.",
+      "businessFeature1": "50 kullanıcı",
+      "businessFeature2": "10.000 kişi",
+      "businessFeature3": "100 GB depolama",
+      "businessFeature4": "Aylık 20.000 WhatsApp mesajı",
+      "businessCta": "Ücretsiz dene",
+      "enterpriseName": "Kurumsal",
+      "enterprisePrice": "Özel",
+      "enterpriseDescription": "Özel kurulumlar, ayrılmış altyapı ve birebir kurulum desteği.",
+      "enterpriseFeature1": "Sınırsız kullanıcı",
+      "enterpriseFeature2": "Sınırsız kişi",
+      "enterpriseFeature3": "Sınırsız depolama",
+      "enterpriseFeature4": "Sınırsız mesaj",
+      "enterpriseCta": "Satışla iletişime geç",
+      "disclaimer": "Nihai fiyat ekip boyutu, entegrasyonlar ve kurulum kapsamına bağlıdır. Özel teklif için satış ekibiyle iletişime geçin."
     },
     "growthLoops": {
       "eyebrow": "Büyüme motoru",
@@ -3357,7 +3399,15 @@
       "title": "Daha çok anlaşma kapatın. Excel'i unutun.",
       "subtitle": "Satış ekibinizin gerçekten kullanmak isteyeceği CRM. WhatsApp öncelikli, mobil yerel, Türk ve Arap satış ekiplerinin gerçekte sattığı şekilde tasarlandı.",
       "ctaPrimary": "14 gün ücretsiz dene",
-      "ctaSecondary": "Satışla görüş"
+      "ctaSecondary": "Satışla görüş",
+      "live": {
+        "metric1": "1.247 anlaşma",
+        "metric1Label": "Bu hafta kapatıldı",
+        "metric2": "500+ ekip",
+        "metric2Label": "MENA ve Türkiye genelinde",
+        "metric3": "2,4M mesaj",
+        "metric3Label": "Zyrix üzerinden gönderildi"
+      }
     },
     "pain": {
       "eyebrow": "SATIŞ EKİPLERİ NEDEN ZYRIX'İ SEÇİYOR",
@@ -3439,7 +3489,15 @@
       "title": "WhatsApp öncelikli ticaret. MENA ve Türkiye için tasarlandı.",
       "subtitle": "Shopify veya WooCommerce mağazanızı senkronize edin. Terk edilmiş sepetleri WhatsApp'tan kurtarın. Kapıda Ödeme siparişlerini takip edin. Hepsi Arapça ve Türkçe'yi yerel olarak konuşan tek bir CRM'de.",
       "ctaPrimary": "14 gün ücretsiz dene",
-      "ctaSecondary": "Satışla görüş"
+      "ctaSecondary": "Satışla görüş",
+      "live": {
+        "metric1": "8.340 sipariş",
+        "metric1Label": "Bugün işlendi",
+        "metric2": "320+ mağaza",
+        "metric2Label": "Zyrix'te yayında",
+        "metric3": "%32 geri kazanım",
+        "metric3Label": "Ortalama sepet kurtarma"
+      }
     },
     "pain": {
       "eyebrow": "E-TİCARET NEDEN ZYRIX'İ SEÇİYOR",
@@ -3521,7 +3579,15 @@
       "title": "Daha çok mülk anlaşması kapat. Daha az müşteri adayı kaybet.",
       "subtitle": "Riyad, İstanbul, Dubai ve Kahire'deki emlak danışmanları için tasarlandı. İlanlar, sanal turlar, gösterimler, sözleşmeler — hepsi bölgesel pazarın gerçekte nasıl çalıştığına saygı duyan tek bir CRM'de.",
       "ctaPrimary": "14 gün ücretsiz dene",
-      "ctaSecondary": "Satışla görüş"
+      "ctaSecondary": "Satışla görüş",
+      "live": {
+        "metric1": "412 ziyaret",
+        "metric1Label": "Bu hafta planlandı",
+        "metric2": "180+ ofis",
+        "metric2Label": "Bölge genelinde",
+        "metric3": "15 dk yanıt",
+        "metric3Label": "Ortalama yanıt süresi"
+      }
     },
     "pain": {
       "eyebrow": "DANIŞMANLAR NEDEN ZYRIX'İ SEÇİYOR",
@@ -3603,7 +3669,15 @@
       "title": "Hasta ilişkileri, sadece kayıtlar değil.",
       "subtitle": "Randevu rezervasyonu, takipler, sadakat programları ve HIPAA uyumlu hasta iletişimi. MENA ve Türkiye'deki klinikler, diş muayenehaneleri ve estetik merkezler için tasarlandı.",
       "ctaPrimary": "14 gün ücretsiz dene",
-      "ctaSecondary": "Satışla görüş"
+      "ctaSecondary": "Satışla görüş",
+      "live": {
+        "metric1": "2.850 randevu",
+        "metric1Label": "Bugün rezerve edildi",
+        "metric2": "240+ klinik",
+        "metric2Label": "Zyrix'e güveniyor",
+        "metric3": "%68 gelmeme düşüşü",
+        "metric3Label": "Hatırlatmalar etkinleştirildikten sonra"
+      }
     },
     "pain": {
       "eyebrow": "KLİNİKLER NEDEN ZYRIX'İ SEÇİYOR",
@@ -3685,7 +3759,15 @@
       "title": "Daha çok müşteri yönet. Daha az kişiyle. Kaos olmadan.",
       "subtitle": "Çoklu müşteri yönetimi, beyaz etiket panelleri, otomatik raporlama ve teklif-ödemeye iş akışları. MENA + Türkiye'ye hizmet veren pazarlama, dijital ve danışmanlık ajansları için tasarlandı.",
       "ctaPrimary": "14 gün ücretsiz dene",
-      "ctaSecondary": "Satışla görüş"
+      "ctaSecondary": "Satışla görüş",
+      "live": {
+        "metric1": "5.200 rapor",
+        "metric1Label": "Bu ay üretildi",
+        "metric2": "150+ ajans",
+        "metric2Label": "Zyrix ile büyüdü",
+        "metric3": "10x müşteri kapasitesi",
+        "metric3Label": "Aynı ekip, daha fazla müşteri"
+      }
     },
     "pain": {
       "eyebrow": "AJANSLAR NEDEN ZYRIX'İ SEÇİYOR",
@@ -4064,6 +4146,59 @@
       "subtitle": "Zyrix bu rehberdeki her şey için tasarlandı — hızlı ilk yanıtlar, akıllı şablonlar, ekip yönlendirmesi, otomasyon, yayın listeleri, kataloglar. Ücretsiz deneyin.",
       "primary": "14 gün ücretsiz deneme başlat",
       "secondary": "Bir uzmanla konuş"
+    }
+  },
+  "AIAgents": {
+    "eyebrow": "YAPAY ZEKA AJANLARI",
+    "hero": {
+      "title": "Gerçekten anlaşma kapatan AI ajanları",
+      "subtitle": "Lead nitelendirme, takip, randevu, çeviri ve daha fazlasını ele alan altı amaca yönelik AI ajanı — hepsi Arapça, Türkçe ve İngilizce iş bağlamlarında eğitilmiş.",
+      "ctaPrimary": "AI ajanlarını ücretsiz deneyin",
+      "ctaSecondary": "Demo izleyin"
+    },
+    "agents": {
+      "eyebrow": "EKİPLE TANIŞIN",
+      "title": "Altı ajan. Tek görev: dönüşüm.",
+      "subtitle": "Her ajan belirli bir iş için özel olarak tasarlandı — ve hepsi Zyrix içinde birlikte çalışır.",
+      "sales": {
+        "title": "Satış Ajanı",
+        "desc": "Lead'leri nitelendirir, teklifler gönderir, itirazları ele alır — Arapça, Türkçe veya İngilizce. Gerektiğinde insana devreder."
+      },
+      "support": {
+        "title": "Destek Ajanı",
+        "desc": "SSS'leri yanıtlar, iadeleri ele alır, şikayetleri yükseltir. Bilgi tabanınız ve ürün dokümanları üzerinde eğitilmiş."
+      },
+      "qualifier": {
+        "title": "Lead Nitelendirici",
+        "desc": "Doğru keşif sorularını sorar. Lead'leri puanlar. Sıcak lead'leri en iyi temsilcilerinize anında yönlendirir."
+      },
+      "scheduler": {
+        "title": "Randevu Ajanı",
+        "desc": "Toplantılar, ziyaretler, demolar rezerve eder. Google Calendar ile senkronize olur. Onaylar ve hatırlatmalar gönderir."
+      },
+      "followup": {
+        "title": "Takip Ajanı",
+        "desc": "Soğuk lead'leri yeniden ısıtır. Kişiselleştirilmiş takipler gönderir. Terk edilmiş sepetleri kurtarır. Hiçbir anlaşmanın ölmesine izin vermez."
+      },
+      "translator": {
+        "title": "Çeviri Ajanı",
+        "desc": "WhatsApp konuşmalarında gerçek zamanlı AR ↔ TR ↔ EN çeviri. Ekibiniz satar, ajan çevirir."
+      }
+    },
+    "capabilities": {
+      "eyebrow": "NE YAPARLAR",
+      "title": "Gerçekten ihtiyacınız olan yetenekler",
+      "cap1": "Yerel Arapça, Türkçe ve İngilizce anlayışı — Google Translate kalitesi değil",
+      "cap2": "Bilgi tabanınız, ürün kataloğunuz ve geçmiş konuşmalar üzerinde eğitilmiş",
+      "cap3": "Karmaşıklık yeteneği aştığında zarif bir şekilde insanlara devreder",
+      "cap4": "Tam denetim izi — her ajan kararı kayıtlı ve incelenebilir",
+      "cap5": "Her ajan ve pazar için özelleştirilebilir kişilik ve ton",
+      "cap6": "Önce gizlilik: verileriniz başka şirketlerin modellerini eğitmek için asla kullanılmaz"
+    },
+    "cta": {
+      "title": "AI ekibinizi 60 saniyede işe alın",
+      "subtitle": "Bir ajanla ücretsiz başlayın. Büyüdükçe daha fazlasını ekleyin. İstediğiniz zaman iptal edin.",
+      "primary": "Ücretsiz deneme başlat"
     }
   }
 }

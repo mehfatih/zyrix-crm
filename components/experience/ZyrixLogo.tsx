@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 
 interface ZyrixLogoProps {
   /** Variant: "white" for dark backgrounds, "blue" for light backgrounds */
@@ -28,6 +29,7 @@ export const ZyrixLogo = ({
   asLink = true,
   ariaLabel = "Zyrix CRM",
 }: ZyrixLogoProps) => {
+  const locale = useLocale();
   const src = variant === "white" ? "/zyrix-logo.png" : "/zyrix-logo-blue.png";
 
   const img = (
@@ -48,7 +50,7 @@ export const ZyrixLogo = ({
 
   return (
     <Link
-      href="/"
+      href={`/${locale}`}
       className={`inline-flex items-center transition-opacity hover:opacity-90 ${className}`}
       aria-label={ariaLabel}
     >

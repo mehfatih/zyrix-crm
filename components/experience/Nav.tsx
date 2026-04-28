@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ZyrixLogo } from "./ZyrixLogo";
 import { LanguageSwitcherPill } from "./LanguageSwitcherPill";
@@ -15,6 +15,7 @@ import { LanguageSwitcherPill } from "./LanguageSwitcherPill";
 
 export const Nav = () => {
   const t = useTranslations("Landing.nav");
+  const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export const Nav = () => {
 
   const items = [
     { label: t("features"), href: "/features" },
+    { label: t("aiAgents"), href: "/ai-platform" },
     { label: t("pricing"), href: "/pricing" },
     { label: t("about"), href: "/about" },
     { label: t("contact"), href: "/contact" },
@@ -49,7 +51,7 @@ export const Nav = () => {
             {items.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={`/${locale}${item.href}`}
                 className="text-sm text-white/95 hover:text-white transition-colors duration-300 story-link"
               >
                 {item.label}
@@ -60,14 +62,14 @@ export const Nav = () => {
           <div className="flex items-center gap-2 md:gap-3">
             <LanguageSwitcherPill />
             <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-              <Link href="/signin">{t("signIn")}</Link>
+              <Link href={`/${locale}/signin`}>{t("signIn")}</Link>
             </Button>
             <Button
               asChild
               size="sm"
               className="btn-glow bg-gradient-cta text-primary-foreground border-0"
             >
-              <Link href="/signup">{t("signUp")}</Link>
+              <Link href={`/${locale}/signup`}>{t("signUp")}</Link>
             </Button>
           </div>
         </div>

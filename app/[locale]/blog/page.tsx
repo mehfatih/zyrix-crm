@@ -4,7 +4,8 @@ import { setRequestLocale } from "next-intl/server";
 import PublicLayout from "@/components/public/PublicLayout";
 import { isValidLocale } from "@/i18n";
 import { notFound } from "next/navigation";
-import { Calendar, Clock, ArrowRight, Sparkles, BookOpen } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Sparkles, BookOpen, Mail } from "lucide-react";
+import { NewsletterForm } from "./NewsletterForm";
 
 // ============================================================================
 // BLOG PAGE — currently curated editorial, evolves into CMS later
@@ -161,22 +162,31 @@ export default async function BlogPage({
       hero: { badge: "Blog", title: "Stories, guides, and research", subtitle: "Deep-dive writing on CRM, WhatsApp sales, AI finance, and building SaaS for MENA and Türkiye." },
       readMore: "Read more",
       minRead: "min read",
-      comingSoon: "More posts coming soon",
-      comingSoonDesc: "We publish one long-form article every two weeks. Subscribe via the contact page to get them first.",
+      newsletterTitle: "Get the next post first",
+      newsletterBody: "Subscribe to receive long-form articles on building businesses in MENA and Türkiye. Two emails per month. No spam, ever.",
+      newsletterPlaceholder: "you@company.com",
+      newsletterCta: "Subscribe",
+      newsletterPrivacy: "We respect your privacy. Unsubscribe anytime.",
     },
     ar: {
       hero: { badge: "المدوّنة", title: "قصص وأدلّة وأبحاث", subtitle: "مقالات مُعمَّقة حول CRM ومبيعات واتساب والتمويل الذكي وبناء SaaS للشرق الأوسط وTürkiye." },
       readMore: "اقرأ المزيد",
       minRead: "دقيقة قراءة",
-      comingSoon: "المزيد من المقالات قريباً",
-      comingSoonDesc: "ننشر مقالاً مُعمَّقاً واحداً كل أسبوعين. اشترك عبر صفحة التواصل لتحصل عليها أولاً.",
+      newsletterTitle: "احصل على المقال التالي أولاً",
+      newsletterBody: "اشترك لاستلام مقالات مُعمَّقة حول بناء الأعمال في الشرق الأوسط وTürkiye. رسالتان شهرياً. بدون إزعاج أبداً.",
+      newsletterPlaceholder: "you@company.com",
+      newsletterCta: "اشترك",
+      newsletterPrivacy: "نحترم خصوصيتك. إلغاء الاشتراك في أي وقت.",
     },
     tr: {
       hero: { badge: "Blog", title: "Hikayeler, rehberler ve araştırmalar", subtitle: "CRM, WhatsApp satış, AI finansı ve MENA ile Türkiye için SaaS oluşturma üzerine derinlemesine yazılar." },
       readMore: "Daha fazla oku",
       minRead: "dk okuma",
-      comingSoon: "Yakında daha fazla yazı",
-      comingSoonDesc: "İki haftada bir uzun içerikli bir makale yayınlıyoruz. İlk alanlar olmak için iletişim sayfasından abone olun.",
+      newsletterTitle: "Bir sonraki yazıyı ilk siz alın",
+      newsletterBody: "MENA ve Türkiye'de işletme kurma üzerine uzun içerikli makaleler için abone olun. Ayda iki e-posta. Asla spam yok.",
+      newsletterPlaceholder: "you@company.com",
+      newsletterCta: "Abone ol",
+      newsletterPrivacy: "Gizliliğinize saygı duyuyoruz. İstediğiniz zaman aboneliği iptal edin.",
     },
   };
   const t = copy[L];
@@ -280,14 +290,18 @@ export default async function BlogPage({
           ))}
         </div>
 
-        {/* Coming soon */}
-        <div className="mt-16 text-center bg-gradient-to-br from-sky-50 to-sky-50 rounded-2xl p-8 border border-sky-100">
-          <Sparkles className="w-8 h-8 text-primary mx-auto mb-3" />
-          <h3 className="text-xl font-bold text-foreground mb-2">
-            {t.comingSoon}
-          </h3>
-          <p className="text-sm text-muted-foreground max-w-md mx-auto">
-            {t.comingSoonDesc}
+        {/* Newsletter signup — replaces the empty white block */}
+        <div className="mt-16 rounded-3xl bg-gradient-to-br from-primary/15 via-violet-500/10 to-transparent border border-primary/20 p-8 md:p-12 text-center">
+          <Mail className="w-10 h-10 text-primary mx-auto mb-6" />
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+            {t.newsletterTitle}
+          </h2>
+          <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto">
+            {t.newsletterBody}
+          </p>
+          <NewsletterForm placeholder={t.newsletterPlaceholder} cta={t.newsletterCta} />
+          <p className="text-xs text-muted-foreground mt-4">
+            {t.newsletterPrivacy}
           </p>
         </div>
       </div>

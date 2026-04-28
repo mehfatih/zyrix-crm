@@ -217,10 +217,10 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-16 md:py-24 bg-gradient-to-br from-sky-50 via-sky-50 to-white overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-gradient-to-br from-violet-500/10 via-primary/5 to-transparent overflow-hidden border-b border-border">
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 ltr:left-10 rtl:right-10 w-64 h-64 bg-sky-200 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 ltr:right-10 rtl:left-10 w-80 h-80 bg-sky-200 rounded-full blur-3xl" />
+          <div className="absolute top-20 ltr:left-10 rtl:right-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 ltr:right-10 rtl:left-10 w-80 h-80 bg-violet-500/20 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-6xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
@@ -237,14 +237,14 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
             <div className="flex items-center gap-3 justify-center flex-wrap">
               <Link
                 href={`/${locale}/signup`}
-                className="inline-flex items-center gap-1.5 px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold shadow-lg shadow-sky-500/20 transition-colors"
+                className="inline-flex items-center gap-1.5 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold shadow-lg shadow-primary/30 transition-colors"
               >
                 {t.heroCtaPrimary}
                 <ArrowRight className="w-4 h-4 ltr:translate-x-0 rtl:-scale-x-100" />
               </Link>
               <Link
                 href={`/${locale}/pricing`}
-                className="inline-flex items-center gap-1.5 px-6 py-3 bg-card border border-sky-500/30 hover:bg-sky-500/10 text-foreground rounded-lg text-sm font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 px-6 py-3 bg-card border border-border hover:border-primary/40 hover:bg-primary/5 text-foreground rounded-lg text-sm font-medium transition-colors"
               >
                 {t.heroCtaSecondary}
               </Link>
@@ -262,7 +262,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
       </section>
 
       {/* Platforms Grid */}
-      <section className="py-16 bg-card">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4">
           {/* Search + Filters */}
           <div className="flex flex-col md:flex-row gap-3 justify-between mb-8">
@@ -304,7 +304,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
       </section>
 
       {/* How it works */}
-      <section className="py-16 bg-gradient-to-br from-sky-50 to-sky-50">
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-violet-500/5 border-y border-border">
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
             {t.howItWorks}
@@ -319,7 +319,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-card">
+      <section className="py-16 bg-background border-t border-border">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             {t.ctaTitle}
@@ -327,7 +327,7 @@ export default function IntegrationsClient({ locale }: { locale: string }) {
           <p className="text-base text-muted-foreground mb-6">{t.ctaSubtitle}</p>
           <Link
             href={`/${locale}/signup`}
-            className="inline-flex items-center gap-1.5 px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold shadow-lg shadow-sky-500/20"
+            className="inline-flex items-center gap-1.5 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold shadow-lg shadow-primary/30"
           >
             {t.ctaButton}
             <ArrowRight className="w-4 h-4 ltr:translate-x-0 rtl:-scale-x-100" />
@@ -346,7 +346,7 @@ function StatCard({ value, label, color }: { value: number; label: string; color
     indigo: "text-indigo-400",
   };
   return (
-    <div className="bg-card/80 backdrop-blur-sm border border-sky-100 rounded-xl p-4 text-center shadow-sm">
+    <div className="bg-card/80 backdrop-blur-sm border border-border rounded-xl p-4 text-center shadow-sm">
       <div className={`text-3xl md:text-4xl font-extrabold ${colors[color]}`}>{value}+</div>
       <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wide">{label}</div>
     </div>
@@ -435,7 +435,7 @@ function PlatformCard({ platform, locale, t }: { platform: PublicPlatform; local
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-2 pt-3 border-t border-sky-50">
+      <div className="flex items-center justify-between gap-2 pt-3 border-t border-border">
         <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded border ${statusColors[platform.status]}`}>
           {platform.status === "native" && <Zap className="w-2.5 h-2.5" />}
           {platform.status === "api" && <CheckCircle2 className="w-2.5 h-2.5" />}
@@ -465,7 +465,7 @@ function StepCard({ n, title, desc, color }: { n: number; title: string; desc: s
     indigo: "bg-indigo-600",
   };
   return (
-    <div className="bg-card border border-sky-100 rounded-xl p-5 text-center">
+    <div className="bg-card border border-border rounded-xl p-5 text-center">
       <div className={`w-10 h-10 rounded-full ${colors[color]} text-white flex items-center justify-center font-bold mx-auto mb-3`}>
         {n}
       </div>

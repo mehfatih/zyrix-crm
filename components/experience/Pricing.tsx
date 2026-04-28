@@ -1,31 +1,43 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 
 const PLANS = [
   {
-    key: "starter",
+    key: "free",
     glow: "hsl(195 100% 60% / 0.18)",
     accent: "text-cyan-400",
     badge: false,
+    href: "/signup",
   },
   {
-    key: "pro",
-    glow: "hsl(265 90% 65% / 0.25)",
+    key: "starter",
+    glow: "hsl(265 90% 65% / 0.20)",
+    accent: "text-purple-400",
+    badge: false,
+    href: "/signup",
+  },
+  {
+    key: "business",
+    glow: "hsl(265 90% 65% / 0.30)",
     accent: "text-purple-400",
     badge: true,
+    href: "/signup",
   },
   {
     key: "enterprise",
     glow: "hsl(38 92% 60% / 0.18)",
     accent: "text-amber-400",
     badge: false,
+    href: "/contact",
   },
 ] as const;
 
 export const Pricing = () => {
   const t = useTranslations("Landing.pricing");
+  const locale = useLocale();
 
   return (
     <section
@@ -46,16 +58,16 @@ export const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
           {PLANS.map((plan, i) => (
             <div
               key={plan.key}
               className={`reveal card-interactive group relative rounded-2xl glass p-7 overflow-hidden ${
                 plan.badge
-                  ? "ring-1 ring-purple-400/30 md:scale-[1.02]"
+                  ? "ring-1 ring-purple-400/30 lg:scale-[1.02]"
                   : ""
               }`}
-              data-stagger={String(i * 100)}
+              data-stagger={String(i * 80)}
             >
               <div
                 aria-hidden
@@ -80,7 +92,7 @@ export const Pricing = () => {
                 <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
                   {t(`${plan.key}Price`)}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6 min-h-[3rem]">
                   {t(`${plan.key}Description`)}
                 </p>
 
@@ -96,8 +108,8 @@ export const Pricing = () => {
                   ))}
                 </ul>
 
-                <button
-                  type="button"
+                <Link
+                  href={`/${locale}${plan.href}`}
                   className={`w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${
                     plan.badge
                       ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 shadow-lg shadow-purple-500/25"
@@ -105,8 +117,8 @@ export const Pricing = () => {
                   }`}
                 >
                   {t(`${plan.key}Cta`)}
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                  <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
+                </Link>
               </div>
             </div>
           ))}

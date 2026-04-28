@@ -18,7 +18,7 @@ const COLUMNS = [
     key: "product",
     links: [
       { key: "features", href: "/features" },
-      { key: "aiAgents", href: "/features" },
+      { key: "aiAgents", href: "/ai-platform" },
       { key: "pricing", href: "/pricing" },
       { key: "integrations", href: "/integrations" },
       { key: "changelog", href: "/changelog" },

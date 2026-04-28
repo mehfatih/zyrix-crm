@@ -335,19 +335,19 @@ export default function PricingView({ locale }: { locale: string }) {
           {tFaq("title")}
         </h2>
         <div className="space-y-3">
-          {[1, 2, 3, 4].map((n) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
             <details
               key={n}
               className="group rounded-xl bg-card border border-border overflow-hidden"
             >
               <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between text-sm font-semibold text-foreground hover:bg-sky-500/10 transition-colors">
-                <span>{tFaq(`q${n}`)}</span>
+                <span>{tFaq(`q${n}.q`)}</span>
                 <span className="ltr:ml-3 rtl:mr-3 text-primary group-open:rotate-45 transition-transform text-xl leading-none">
                   +
                 </span>
               </summary>
               <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed">
-                {tFaq(`a${n}`)}
+                {tFaq(`q${n}.a`)}
               </div>
             </details>
           ))}

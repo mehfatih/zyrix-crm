@@ -928,14 +928,46 @@
     },
     "faq": {
       "title": "Frequently asked questions",
-      "q1": "Can I change plans later?",
-      "a1": "Yes. Upgrades apply immediately and are prorated. Downgrades apply at the end of the current billing cycle.",
-      "q2": "What payment methods do you accept?",
-      "a2": "We accept all major credit cards, bank transfer, Apple Pay, and MADA via iyzico (Turkey) and HyperPay (Saudi Arabia, UAE).",
-      "q3": "Is there a free trial?",
-      "a3": "The Free plan is free forever. Paid plans include a 14-day money-back guarantee.",
-      "q4": "Do I pay per user?",
-      "a4": "No. You pay one price per company regardless of team size (up to the plan's user limit). This typically saves 50–80% vs per-seat pricing."
+      "q1": {
+        "q": "What's the best CRM for WhatsApp Business in 2026?",
+        "a": "Zyrix is purpose-built for WhatsApp-first commerce. Unlike traditional CRMs that bolt on WhatsApp as an afterthought, every Zyrix feature — pipelines, automation, AI agents, reporting — is designed around WhatsApp Business API. We integrate directly with Meta Cloud API, support template messages, broadcast lists, and 24-hour conversation windows."
+      },
+      "q2": {
+        "q": "Does Zyrix support Arabic and Turkish languages natively?",
+        "a": "Yes. Zyrix is fully translated and adapted for Arabic (with proper RTL support) and Turkish. Our AI agents understand and respond in native Arabic and Turkish — not machine-translated quality. Customer support, documentation, and onboarding are all available in EN/AR/TR."
+      },
+      "q3": {
+        "q": "Can I integrate Zyrix with my Shopify or WooCommerce store?",
+        "a": "Yes. Zyrix offers two-way sync with Shopify, WooCommerce, BigCommerce, and 40+ e-commerce platforms. Customer data, orders, inventory, and abandoned carts sync automatically. Setup takes 2 minutes — connect your store, authenticate, and you're live."
+      },
+      "q4": {
+        "q": "Is Zyrix suitable for MENA businesses with Cash on Delivery?",
+        "a": "Absolutely. Zyrix has native COD lifecycle tracking — confirmation, courier pickup, delivery, cash collection, and bank reconciliation. We integrate with regional couriers including SMSA, Aramex, Naqel (KSA), MNG Kargo, Yurtiçi Kargo, J&T (Türkiye), and 25+ more."
+      },
+      "q5": {
+        "q": "How does Zyrix pricing compare to HubSpot or Salesforce?",
+        "a": "Zyrix is up to 80% cheaper than per-seat CRMs like HubSpot or Salesforce. Our flat plan structure means no per-user fees — add unlimited team members on Business and Enterprise plans. Plus, we don't charge extra for features that should be standard (WhatsApp, AI agents, reporting)."
+      },
+      "q6": {
+        "q": "Is there a free trial for Zyrix CRM?",
+        "a": "Yes. Every paid plan starts with a 14-day free trial — no credit card required. Our Free plan is permanently free for solo founders and small teams (up to 3 users, 100 contacts). You can upgrade or cancel anytime."
+      },
+      "q7": {
+        "q": "What industries does Zyrix support?",
+        "a": "Zyrix is used by sales teams, e-commerce stores, real estate brokers, medical clinics, marketing agencies, and SaaS companies across the MENA region and Türkiye. We have dedicated solution pages and pre-built workflows for each industry."
+      },
+      "q8": {
+        "q": "Does Zyrix comply with Saudi PDPL, Turkish KVKK, and GDPR?",
+        "a": "Yes. Zyrix is compliant with Saudi PDPL (Personal Data Protection Law), Turkish KVKK (Kişisel Verileri Koruma Kanunu), and EU GDPR. We offer data residency options in your region, full audit logs, encryption at rest and in transit, and signed Data Processing Agreements."
+      },
+      "q9": {
+        "q": "Can I migrate my data from another CRM to Zyrix?",
+        "a": "Yes. Zyrix supports CSV import, API migration, and custom data transfer from HubSpot, Salesforce, Pipedrive, Zoho, monday.com, and most major CRMs. Our team offers free migration assistance for Business and Enterprise plans."
+      },
+      "q10": {
+        "q": "What happens to my data if I cancel?",
+        "a": "Your data belongs to you. On cancellation, you can export everything as CSV or JSON within 90 days. After that, we permanently delete your data per our retention policy. We never sell your data, never use it to train AI models for other companies, and you can request deletion at any time."
+      }
     }
   },
   "Checkout": {
@@ -2978,7 +3010,8 @@
       "features": "Features",
       "about": "About",
       "contact": "Contact",
-      "signUp": "Sign up"
+      "signUp": "Sign up",
+      "aiAgents": "AI Agents"
     },
     "hero": {
       "badge": "WhatsApp-first CRM, built for MENA",
@@ -3018,7 +3051,8 @@
         "aiSuggestion": "Suggested reply: \"Here's the customized offer for your company...\""
       },
       "customerDashboard": "Customer Dashboard",
-      "adminDashboard": "Admin Dashboard"
+      "adminDashboard": "Admin Dashboard",
+      "ctaSignUp": "Sign up"
     },
     "trust": {
       "eyebrow": "Trusted by 1,200+ teams across MENA & Türkiye"
@@ -3218,30 +3252,38 @@
       "titleEmphasis": "grows with your team",
       "subtitle": "Up to 80% lower than per-seat CRMs. No surprise fees, no per-user lock-in. Cancel anytime.",
       "popular": "Most popular",
+      "freeName": "Free",
+      "freePrice": "$0",
+      "freeDescription": "For small teams getting started — no credit card.",
+      "freeFeature1": "3 users",
+      "freeFeature2": "100 contacts",
+      "freeFeature3": "1 GB storage",
+      "freeFeature4": "100 WhatsApp msgs/mo",
+      "freeCta": "Get started",
       "starterName": "Starter",
-      "starterPrice": "Free for 14 days",
-      "starterDescription": "Everything you need to test Zyrix with your team — no credit card required.",
-      "starterFeature1": "Up to 3 team members",
-      "starterFeature2": "WhatsApp Business API",
-      "starterFeature3": "Core CRM workspace",
-      "starterFeature4": "Email support",
-      "starterCta": "Start free",
-      "proName": "Pro",
-      "proPrice": "Custom",
-      "proDescription": "For growing teams that need automations, AI, and full pipeline visibility.",
-      "proFeature1": "Unlimited team members",
-      "proFeature2": "AI replies & lead scoring",
-      "proFeature3": "Advanced automations",
-      "proFeature4": "Priority support",
-      "proCta": "Talk to sales",
+      "starterPrice": "$19/mo",
+      "starterDescription": "For growing teams that need more capacity.",
+      "starterFeature1": "10 users",
+      "starterFeature2": "1,000 contacts",
+      "starterFeature3": "10 GB storage",
+      "starterFeature4": "2,000 WhatsApp msgs/mo",
+      "starterCta": "Start free trial",
+      "businessName": "Business",
+      "businessPrice": "$49/mo",
+      "businessDescription": "For growing businesses with full needs.",
+      "businessFeature1": "50 users",
+      "businessFeature2": "10,000 contacts",
+      "businessFeature3": "100 GB storage",
+      "businessFeature4": "20,000 WhatsApp msgs/mo",
+      "businessCta": "Start free trial",
       "enterpriseName": "Enterprise",
-      "enterprisePrice": "Tailored",
-      "enterpriseDescription": "Custom rollouts, dedicated infrastructure, and white-glove onboarding for large operations.",
-      "enterpriseFeature1": "Dedicated environment",
-      "enterpriseFeature2": "Custom SLAs",
-      "enterpriseFeature3": "On-premise option",
-      "enterpriseFeature4": "Dedicated success manager",
-      "enterpriseCta": "Request a quote",
+      "enterprisePrice": "Custom",
+      "enterpriseDescription": "Custom rollouts, dedicated infrastructure, and white-glove onboarding.",
+      "enterpriseFeature1": "Unlimited users",
+      "enterpriseFeature2": "Unlimited contacts",
+      "enterpriseFeature3": "Unlimited storage",
+      "enterpriseFeature4": "Unlimited messages",
+      "enterpriseCta": "Contact sales",
       "disclaimer": "Final pricing depends on team size, integrations, and rollout scope. Contact sales for a tailored quote."
     },
     "growthLoops": {
@@ -3357,7 +3399,15 @@
       "title": "Close more deals. Forget the spreadsheets.",
       "subtitle": "The CRM your sales team actually wants to use. WhatsApp-first, mobile-native, built for the way Arab and Turkish sales teams actually sell.",
       "ctaPrimary": "Start free 14-day trial",
-      "ctaSecondary": "Talk to sales"
+      "ctaSecondary": "Talk to sales",
+      "live": {
+        "metric1": "1,247 deals",
+        "metric1Label": "Closed this week",
+        "metric2": "500+ teams",
+        "metric2Label": "Across MENA & Türkiye",
+        "metric3": "2.4M messages",
+        "metric3Label": "Sent via Zyrix"
+      }
     },
     "pain": {
       "eyebrow": "WHY SALES TEAMS PICK ZYRIX",
@@ -3439,7 +3489,15 @@
       "title": "WhatsApp-first commerce. Built for MENA and Türkiye.",
       "subtitle": "Sync your Shopify or WooCommerce store. Recover abandoned carts via WhatsApp. Track COD orders. All in one CRM that speaks Arabic and Turkish natively.",
       "ctaPrimary": "Start free 14-day trial",
-      "ctaSecondary": "Talk to sales"
+      "ctaSecondary": "Talk to sales",
+      "live": {
+        "metric1": "8,340 orders",
+        "metric1Label": "Processed today",
+        "metric2": "320+ stores",
+        "metric2Label": "Live on Zyrix",
+        "metric3": "32% recovery",
+        "metric3Label": "Average cart recovery"
+      }
     },
     "pain": {
       "eyebrow": "WHY E-COMMERCE PICKS ZYRIX",
@@ -3521,7 +3579,15 @@
       "title": "Close more property deals. Lose fewer leads.",
       "subtitle": "Built for real estate brokers in Riyadh, Istanbul, Dubai, and Cairo. Listings, virtual tours, viewings, contracts — all in one CRM that respects how the regional market actually works.",
       "ctaPrimary": "Start free 14-day trial",
-      "ctaSecondary": "Talk to sales"
+      "ctaSecondary": "Talk to sales",
+      "live": {
+        "metric1": "412 viewings",
+        "metric1Label": "Booked this week",
+        "metric2": "180+ brokerages",
+        "metric2Label": "Across the region",
+        "metric3": "15min response",
+        "metric3Label": "Average reply time"
+      }
     },
     "pain": {
       "eyebrow": "WHY BROKERS PICK ZYRIX",
@@ -3603,7 +3669,15 @@
       "title": "Patient relationships, not just records.",
       "subtitle": "Appointment booking, follow-ups, loyalty programs, and HIPAA-compliant patient communication. Built for clinics, dental practices, and aesthetic centers across MENA and Türkiye.",
       "ctaPrimary": "Start free 14-day trial",
-      "ctaSecondary": "Talk to sales"
+      "ctaSecondary": "Talk to sales",
+      "live": {
+        "metric1": "2,850 appointments",
+        "metric1Label": "Booked today",
+        "metric2": "240+ clinics",
+        "metric2Label": "Trust Zyrix",
+        "metric3": "68% no-show drop",
+        "metric3Label": "After enabling reminders"
+      }
     },
     "pain": {
       "eyebrow": "WHY CLINICS PICK ZYRIX",
@@ -3685,7 +3759,15 @@
       "title": "Run more clients. With fewer people. Without the chaos.",
       "subtitle": "Multi-client management, white-label dashboards, automated reporting, and proposal-to-payment workflows. Built for marketing, digital, and consulting agencies serving MENA + Türkiye.",
       "ctaPrimary": "Start free 14-day trial",
-      "ctaSecondary": "Talk to sales"
+      "ctaSecondary": "Talk to sales",
+      "live": {
+        "metric1": "5,200 reports",
+        "metric1Label": "Generated this month",
+        "metric2": "150+ agencies",
+        "metric2Label": "Scaled with Zyrix",
+        "metric3": "10x client capacity",
+        "metric3Label": "Same team, more clients"
+      }
     },
     "pain": {
       "eyebrow": "WHY AGENCIES PICK ZYRIX",
@@ -4064,6 +4146,59 @@
       "subtitle": "Zyrix is built for everything in this playbook — fast first replies, smart templates, team routing, automation, broadcast lists, catalogs. Try it free.",
       "primary": "Start free 14-day trial",
       "secondary": "Talk to a specialist"
+    }
+  },
+  "AIAgents": {
+    "eyebrow": "AI AGENTS",
+    "hero": {
+      "title": "AI agents that actually close deals",
+      "subtitle": "Six purpose-built AI agents that handle lead qualification, follow-ups, scheduling, translation, and more — all trained on Arabic, Turkish, and English business contexts.",
+      "ctaPrimary": "Try AI agents free",
+      "ctaSecondary": "See a demo"
+    },
+    "agents": {
+      "eyebrow": "MEET THE TEAM",
+      "title": "Six agents. One mission: convert.",
+      "subtitle": "Each agent is purpose-built for a specific job — and they all work together inside Zyrix.",
+      "sales": {
+        "title": "Sales Agent",
+        "desc": "Qualifies leads, sends quotes, handles objections — in Arabic, Turkish, or English. Hands off to humans when needed."
+      },
+      "support": {
+        "title": "Support Agent",
+        "desc": "Answers FAQs, handles refunds, escalates complaints. Trained on your knowledge base + product docs."
+      },
+      "qualifier": {
+        "title": "Lead Qualifier",
+        "desc": "Asks the right discovery questions. Scores leads. Routes hot leads to your top reps instantly."
+      },
+      "scheduler": {
+        "title": "Scheduler Agent",
+        "desc": "Books meetings, viewings, demos. Syncs with Google Calendar. Sends confirmations and reminders."
+      },
+      "followup": {
+        "title": "Follow-up Agent",
+        "desc": "Re-engages cold leads. Sends personalized check-ins. Recovers abandoned carts. Never lets a deal die."
+      },
+      "translator": {
+        "title": "Translation Agent",
+        "desc": "Real-time AR ↔ TR ↔ EN translation in WhatsApp threads. Your team sells, the agent translates."
+      }
+    },
+    "capabilities": {
+      "eyebrow": "WHAT THEY DO",
+      "title": "Capabilities you actually need",
+      "cap1": "Native Arabic, Turkish, and English understanding — not Google Translate quality",
+      "cap2": "Trained on your knowledge base, product catalog, and past conversations",
+      "cap3": "Hand off to humans gracefully when complexity exceeds capability",
+      "cap4": "Full audit trail — every agent decision logged and reviewable",
+      "cap5": "Customizable personality and tone per agent and per market",
+      "cap6": "Privacy-first: your data is never used to train other companies' models"
+    },
+    "cta": {
+      "title": "Hire your AI team in 60 seconds",
+      "subtitle": "Start with one agent free. Add more as you grow. Cancel anytime.",
+      "primary": "Start free trial"
     }
   }
 }

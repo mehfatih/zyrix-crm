@@ -1,9 +1,9 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, CheckCircle2, Phone, Users, BarChart3, Inbox, User, Shield } from "lucide-react";
+import { ArrowRight, MessageCircle, CheckCircle2, Phone, Users, BarChart3, Inbox, User, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 export const Hero = () => {
   const t = useTranslations("Landing.hero");
   const tm = useTranslations("Landing.hero.mockup");
+  const locale = useLocale();
   const y = useSmoothScroll();
 
   // Mockup contacts (translated)
@@ -70,16 +71,16 @@ export const Hero = () => {
 
         <div className="reveal flex flex-wrap items-center justify-center gap-3 mb-6" data-stagger="300">
           <Button asChild size="lg" className="btn-glow bg-gradient-cta text-primary-foreground border-0 h-12 px-7">
-            <Link href="/signin">
+            <Link href={`/${locale}/signin`}>
               <User className="mr-2 w-4 h-4" />
               {t("customerDashboard")}
               <ArrowRight className="ml-2 w-4 h-4 rtl:rotate-180" />
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="h-12 px-5">
-            <Link href="/admin/login">
-              <Shield className="mr-2 w-4 h-4" />
-              {t("adminDashboard")}
+            <Link href={`/${locale}/signup`}>
+              <UserPlus className="mr-2 w-4 h-4" />
+              {t("ctaSignUp")}
             </Link>
           </Button>
         </div>

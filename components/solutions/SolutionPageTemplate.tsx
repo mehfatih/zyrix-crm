@@ -192,15 +192,38 @@ export default function SolutionPageTemplate({ namespace, accentColor = "primary
             <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
               {t("hero.subtitle")}
             </p>
-            <div className="flex flex-wrap gap-4">
+            {/* Live activity strip — replaces the 2-button hero CTA pair */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-3xl mb-8">
+              <div className="rounded-xl bg-card/60 backdrop-blur border border-border p-4 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                <div className="text-sm min-w-0">
+                  <div className="font-bold text-foreground truncate">{t("hero.live.metric1")}</div>
+                  <div className="text-xs text-muted-foreground truncate">{t("hero.live.metric1Label")}</div>
+                </div>
+              </div>
+              <div className="rounded-xl bg-card/60 backdrop-blur border border-border p-4 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse flex-shrink-0" />
+                <div className="text-sm min-w-0">
+                  <div className="font-bold text-foreground truncate">{t("hero.live.metric2")}</div>
+                  <div className="text-xs text-muted-foreground truncate">{t("hero.live.metric2Label")}</div>
+                </div>
+              </div>
+              <div className="rounded-xl bg-card/60 backdrop-blur border border-border p-4 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse flex-shrink-0" />
+                <div className="text-sm min-w-0">
+                  <div className="font-bold text-foreground truncate">{t("hero.live.metric3")}</div>
+                  <div className="text-xs text-muted-foreground truncate">{t("hero.live.metric3Label")}</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
               <Button asChild size="lg">
                 <Link href={`/${locale}/signup`}>
+                  <Sparkles className="w-4 h-4 me-2" />
                   {t("hero.ctaPrimary")}
-                  <ArrowRight className="w-4 h-4 ms-2" />
+                  <ArrowRight className="w-4 h-4 ms-2 rtl:rotate-180" />
                 </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href={`/${locale}/contact`}>{t("hero.ctaSecondary")}</Link>
               </Button>
             </div>
           </div>
