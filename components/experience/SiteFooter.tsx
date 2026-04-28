@@ -38,9 +38,9 @@ const COLUMNS = [
     key: "company",
     links: [
       { key: "about", href: "/about" },
-      { key: "customers", href: "#" },
-      { key: "careers", href: "#" },
-      { key: "press", href: "#" },
+      { key: "customers", href: "/case-studies" },
+      { key: "careers", href: "/careers" },
+      { key: "press", href: "/press" },
       { key: "contact", href: "/contact" },
     ],
   },

@@ -3760,5 +3760,190 @@
       "primary": "Start free trial",
       "secondary": "Talk to an agency specialist"
     }
+  },
+  "Customers": {
+    "eyebrow": "CUSTOMERS",
+    "title": "Built for the way Arab and Turkish businesses actually grow.",
+    "subtitle": "From e-commerce in Jeddah to dental clinics in Istanbul, real estate brokers in Dubai to digital agencies in Cairo — Zyrix powers businesses that understand their market.",
+    "logosTitle": "TRUSTED BY GROWING TEAMS",
+    "stats": {
+      "businesses": "Active businesses",
+      "countries": "Countries served",
+      "languages": "Native languages",
+      "uptime": "Platform uptime"
+    },
+    "casesEyebrow": "SUCCESS STORIES",
+    "casesTitle": "Real teams. Real results.",
+    "case1": {
+      "industry": "E-COMMERCE",
+      "location": "Jeddah, Saudi Arabia",
+      "metric1": "Revenue growth",
+      "metric2": "Cart recovery",
+      "metric3": "WhatsApp response time",
+      "quote": "We used to spend 4 hours a day reconciling COD orders across SMSA, Aramex, and our books. Zyrix automated everything. Now our finance team focuses on growth instead of spreadsheets.",
+      "role": "Operations Manager"
+    },
+    "case2": {
+      "industry": "REAL ESTATE",
+      "location": "Istanbul, Türkiye",
+      "metric1": "Lead response improvement",
+      "metric2": "Viewings to offers",
+      "metric3": "Average first reply",
+      "quote": "Our brokers used to lose half their leads because they couldn't reply fast enough on WhatsApp. With Zyrix, the whole team replies within 15 minutes. Conversion doubled in 60 days.",
+      "role": "Sales Director"
+    },
+    "case3": {
+      "industry": "HEALTHCARE",
+      "location": "Riyadh, Saudi Arabia",
+      "metric1": "No-show reduction",
+      "metric2": "Patient retention",
+      "metric3": "Patient satisfaction",
+      "quote": "We had a 35% no-show rate before Zyrix. The automated WhatsApp reminders cut it to 11%. That's pure recovered revenue with zero extra work for the front desk.",
+      "role": "Clinic Director"
+    },
+    "case4": {
+      "industry": "DIGITAL AGENCY",
+      "location": "Cairo, Egypt",
+      "metric1": "Client capacity scaled",
+      "metric2": "Margin improvement",
+      "metric3": "Time per client report",
+      "quote": "We went from managing 8 clients to 27 with the same team. Zyrix's automated reporting alone saves us 30 hours a week. Our margins finally make sense.",
+      "role": "Agency Founder"
+    },
+    "cta": {
+      "title": "Join 500+ businesses scaling with Zyrix",
+      "subtitle": "Start free. See results in 30 days. Cancel anytime.",
+      "primary": "Start free trial",
+      "secondary": "Talk to sales"
+    }
+  },
+  "Careers": {
+    "eyebrow": "CAREERS",
+    "title": "Build the CRM the Arab world deserves.",
+    "subtitle": "We're a small, intentionally lean team building software for businesses that have been ignored by Silicon Valley for too long. Join us.",
+    "location": "Istanbul, Türkiye · Remote-friendly",
+    "mission": {
+      "eyebrow": "WHY WE EXIST",
+      "title": "Most software is built for someone else's market.",
+      "body": "Zyrix exists because Arab, Turkish, and MENA businesses deserve tools built for how they actually work — Arabic-first, WhatsApp-native, COD-aware, regulation-compliant. We're not translating Silicon Valley products. We're building something native."
+    },
+    "values": {
+      "eyebrow": "WHO WE ARE",
+      "title": "How we work",
+      "customer": {
+        "title": "Customer-first",
+        "desc": "We don't chase vanity metrics. If a feature doesn't make a customer's day easier, we don't build it."
+      },
+      "team": {
+        "title": "Small team, big trust",
+        "desc": "We hire slowly and trust completely. Everyone owns their domain end-to-end. Less management, more shipping."
+      },
+      "regional": {
+        "title": "Regional, not global-minus",
+        "desc": "We're not a watered-down version of a US product. We're built for this region — Arabic-first, WhatsApp-native, COD-aware."
+      },
+      "ship": {
+        "title": "Ship, then learn",
+        "desc": "We deploy every week. We'd rather ship something imperfect and improve it than wait six months to be wrong."
+      },
+      "learn": {
+        "title": "Always learning",
+        "desc": "$2,000/year per person for books, courses, conferences. We hire smart, then we keep them smart."
+      },
+      "balance": {
+        "title": "Sustainable pace",
+        "desc": "We move fast without burning out. No 70-hour weeks. No on-call rotations for engineers building features. Real weekends."
+      }
+    },
+    "perks": {
+      "eyebrow": "WHAT WE OFFER",
+      "title": "Compensation + benefits",
+      "equity": {
+        "title": "Meaningful equity",
+        "desc": "Every full-time hire gets equity. Our success is your success."
+      },
+      "remote": {
+        "title": "Remote-friendly",
+        "desc": "Istanbul HQ. Remote within Türkiye, KSA, UAE, and Egypt. We meet quarterly."
+      },
+      "health": {
+        "title": "Health insurance",
+        "desc": "Full coverage for you and immediate family. Mental health included."
+      },
+      "learning": {
+        "title": "Learning budget",
+        "desc": "$2,000/year for books, courses, conferences. Use it however helps you grow."
+      },
+      "equipment": {
+        "title": "Best equipment",
+        "desc": "MacBook Pro M-series. External monitor. Whatever you need to do your best work."
+      },
+      "timeoff": {
+        "title": "Generous time off",
+        "desc": "30 days paid time off plus regional holidays. We mean it — take the time."
+      }
+    },
+    "positions": {
+      "eyebrow": "OPEN POSITIONS",
+      "title": "Hiring soon",
+      "subtitle": "We're a small team scaling intentionally. We hire when we have a real need, not before.",
+      "openTitle": "We're not hiring publicly right now",
+      "openBody": "But if you're exceptional and your skills match what we're building, we want to hear from you. Send us a note about who you are, what you've built, and why Zyrix. The best hires often come from unsolicited applications."
+    },
+    "cta": {
+      "title": "Don't wait for a job posting",
+      "subtitle": "If you'd be incredible at Zyrix, tell us. We'll find a way to work together.",
+      "primary": "Get in touch"
+    }
+  },
+  "Press": {
+    "eyebrow": "PRESS",
+    "title": "Press & Media",
+    "subtitle": "Resources for journalists, bloggers, analysts, and partners covering the MENA + Türkiye SaaS market.",
+    "kit": {
+      "title": "Press Kit",
+      "body": "Everything you need to write about Zyrix — logos, brand guidelines, screenshots, and our company fact sheet. Available in EN, AR, and TR.",
+      "logos": "Logos (PNG, SVG, light + dark)",
+      "brandGuide": "Brand guidelines and color palette",
+      "screenshots": "Product screenshots (high-res)",
+      "factSheet": "Company fact sheet",
+      "cta": "Request press kit"
+    },
+    "facts": {
+      "eyebrow": "COMPANY FACTS",
+      "title": "Quick facts",
+      "founded": "Founded",
+      "foundedValue": "2025",
+      "hq": "Headquarters",
+      "hqValue": "Istanbul, Türkiye",
+      "markets": "Active markets",
+      "marketsValue": "MENA + Türkiye (12 countries)",
+      "employees": "Team size",
+      "employeesValue": "Small, intentional team",
+      "languages": "Languages supported",
+      "languagesValue": "Arabic, Turkish, English (native RTL)",
+      "industries": "Industries served",
+      "industriesValue": "E-commerce, real estate, healthcare, agencies, sales"
+    },
+    "releases": {
+      "eyebrow": "PRESS RELEASES",
+      "title": "Recent announcements"
+    },
+    "release1": {
+      "title": "Zyrix CRM launches in Türkiye and KSA simultaneously",
+      "body": "Zyrix announces general availability of its WhatsApp-first CRM platform across Türkiye and Saudi Arabia, with native support for Arabic, Turkish, and English. The launch coincides with integrations for SMSA, Aramex, MNG Kargo, and Yurtiçi Kargo."
+    },
+    "release2": {
+      "title": "Zyrix integrates Meta Cloud API for enterprise WhatsApp",
+      "body": "Direct integration with Meta's WhatsApp Cloud API enables Zyrix customers to send templated messages, manage business profiles, and access advanced analytics — all from inside the Zyrix CRM dashboard."
+    },
+    "release3": {
+      "title": "Zyrix releases multi-currency reporting for MENA businesses",
+      "body": "New reporting engine supports SAR, AED, EGP, TRY, KWD, QAR, USD with automatic FX conversion using daily TCMB and SAMA rates. Enables accurate cross-border financial reporting for businesses operating in multiple Arab markets."
+    },
+    "contact": {
+      "title": "Media inquiries",
+      "body": "For interviews, expert commentary on the MENA SaaS market, or product information, please reach out. We typically respond within 24 hours."
+    }
   }
 }
