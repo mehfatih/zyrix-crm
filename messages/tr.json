@@ -3945,5 +3945,125 @@
       "title": "Medya soruları",
       "body": "Röportajlar, MENA SaaS pazarı üzerine uzman yorumları veya ürün bilgisi için lütfen iletişime geçin. Genellikle 24 saat içinde yanıt veriyoruz."
     }
+  },
+  "Playbook": {
+    "eyebrow": "REHBER",
+    "title": "MENA + Türkiye için WhatsApp Satış Rehberi",
+    "subtitle": "Suudi Arabistan, Körfez, Türkiye ve Mısır'da WhatsApp'ta satış yapan 500'den fazla işletmeden öğrenilen altı bölüm. Ücretsiz. Taktik. Sahada test edilmiş.",
+    "toc": {
+      "eyebrow": "NE ÖĞRENECEKSİNİZ",
+      "title": "İçindekiler",
+      "chapter": "BÖLÜM"
+    },
+    "ch1": {
+      "title": "İlk yanıt anlaşmayı kazanır (veya kaybeder)",
+      "intro": "WhatsApp'ta müşteri aynı anda 5-10 işletmeye mesaj gönderir. İlk yanıt veren müzakere etme hakkını kazanır. Matematik acımasız: 5 dakika içinde yanıtlayın ve konuşmayı kazanma şansınız %70; 30 dakika sonra yanıtlayın ve %8'e düşersiniz.",
+      "rule1": {
+        "title": "Kural 1: 5 dakikadan az ilk yanıt",
+        "body": "Ekibinizin ilk yanıt SLA'sını çalışma saatlerinde 5 dakikadan kısa sürede yapın. Bu pazarlık konusu değil. Yeterli temsilci işe alın, ilk niteleyiciyi otomatikleştirin veya her ikisini — ama müşteriyi asla bekletmeyin."
+      },
+      "example1": {
+        "title": "Örnek: Suudi e-ticaret mağazası, cilt bakımı",
+        "body": "Müşteri 'Merhaba, serumunuzla ilgileniyorum.' diye mesaj atar. Kötü yanıt (47 dakika sonra): 'Merhaba! Evet, ürün bağlantısı burada.' İyi yanıt (90 saniye sonra): 'Merhaba Mariam, Levana'ya hoş geldin. C vitamini serumumuz en çok satanımız — benzer cilt tipindeki birinin sonuçlarını görmek ister misin? Ayrıca, Riyad'da mısın? Orada aynı gün teslimat yapıyoruz.'"
+      },
+      "rule2": {
+        "title": "Kural 2: İlk mesajı kişiselleştirin",
+        "body": "İsimlerini kullanın (WhatsApp gösterir). Ne sorduklarına atıfta bulunun. Biliniyorsa bölgelerinden bahsedin. Genel 'Mağazamıza hoş geldiniz' yanıtları spam gibi hissettirir — ve müşteriler bunu fark eder."
+      },
+      "warning1": {
+        "title": "İnsan gibi davranan otomatik yanıtlayıcılar kullanmayın",
+        "body": "Müşteriler bir botla konuştuklarını anlar. İlk yanıt için otomasyon kullanıyorsanız, dürüst olun: 'Bir ekip üyesi 5 dakikadan kısa sürede yanıt verecek — bu arada, kataloğumuz burada.' Dürüstlük güven oluşturur. Numara yapmak güveni aşındırır."
+      }
+    },
+    "ch2": {
+      "title": "Yanıt temposunu kanala uygun ayarlayın",
+      "intro": "WhatsApp e-posta değildir. Beklenen yanıt süresi çalışma saatlerinde 5-15 dakikadır, 24-48 saat değil. Müşteriler daha hızlı yanıt veren bir rakibe sizi terk eder.",
+      "rule1": {
+        "title": "Açık çalışma saatleri belirleyin — ve onlara saygı gösterin",
+        "body": "Eğer 23:00'te kapalıysanız, bunu WhatsApp Business profilinizde ve otomatik yanıtınızda söyleyin. Müşteriler dürüst sınırlara saygı duyar. Sessiz hayalete sabırlarını kaybederler."
+      },
+      "example1": {
+        "title": "Örnek: Beklentileri ayarlama",
+        "body": "Mesai dışı otomatik yanıt: 'Ulaştığınız için teşekkürler! Ekibimiz çevrimdışı (BAE saatiyle 22:00-09:00). Yarın sabah ilk iş yanıtlayacağız. Acil siparişler için kataloğumuza göz atın: [bağlantı]. Veya tam saat 09:00'da size geri döneriz.'"
+      },
+      "rule2": {
+        "title": "Bir konuşmayı asla orta yerinde soğumaya bırakmayın",
+        "body": "Müşteri için bir şey araştırıyorsanız (stok kontrolü, onay alma), bunu açıkça söyleyin: 'Bunu deponuzla kontrol edeyim, 10 dakika içinde cevap alacağım.' Sonra teslim edin. Sessiz boşluklar anlaşmaları öldürür."
+      }
+    },
+    "ch3": {
+      "title": "Şablonlar tembellik değil, kaldıraçtır",
+      "intro": "Her yanıtı elle yazmak ölçeklenmez. Şablonlar ölçeklenir — ama yalnızca iyi yazılmışlarsa. Kötü şablonlar robotik hissettirir. İyi şablonlar konuşmayı önceden tahmin eden akıllı bir insan gibi hissettirir.",
+      "rule1": {
+        "title": "En çok sorulan 20 soru için şablonlar oluşturun",
+        "body": "Ekibinizin son 500 müşteri mesajını denetleyin. En yaygın 20 soruyu belirleyin ('Kuveyt'e gönderiyor musunuz?', 'Nasıl ödüyorum?', 'Ne zaman gelir?'). Her biri için harika bir şablon yazın. Ekibinizi şablondan başlayıp kişiselleştirmeleri konusunda eğitin."
+      },
+      "example1": {
+        "title": "Şablon: Kargo sorusu",
+        "body": "'Harika soru! Tüm GCC ülkelerine kargo gönderiyoruz. Teslimat süreleri: Suudi Arabistan 1-2 gün, BAE 2-3 gün, Kuveyt/Katar 3-4 gün, Bahreyn/Umman 4-5 gün. 200 SAR üzeri siparişlerde kargo ücretsizdir. Siparişiniz gönderildiğinde takip bilgisini paylaşmamı ister misiniz?'"
+      },
+      "example2": {
+        "title": "Şablon: Ödeme seçenekleri",
+        "body": "'Kabul ediyoruz: 💳 Mada/Visa/Mastercard çevrimiçi, 💵 Kapıda Ödeme (yalnızca Suudi Arabistan), 🏦 Banka transferi (anında). İlk siparişiniz için Kapıda Ödeme en popüler — yalnızca paketi alıp incelediğinizde ödeyin. Bunu denemek ister misiniz?'"
+      },
+      "warning1": {
+        "title": "Göndermeden önce kişiselleştirin",
+        "body": "[Ad]'ı gerçek adla değiştirin. Tonu konuşmaya uydurun. Sonuna ilgili bir soru ekleyin. Şablonlar başlangıç noktalarıdır, son mesajlar değil. Müşteriler kopyala-yapıştırı koklayabilir."
+      }
+    },
+    "ch4": {
+      "title": "Ölçeklenen bir ekip iş akışı oluşturun",
+      "intro": "Bir kişi günde 50 konuşmayı yönetebilir. Bunun ötesinde yapıya ihtiyacınız var: kim önce yanıtlar, uzmanlar ne zaman devreye girer, neyin yöneticiye yükseltileceği ve iş yükünün nasıl dağıtılacağı.",
+      "rule1": {
+        "title": "3 katmanlı modelle önceliklendirin",
+        "body": "Katman 1: Genel temsilci tüm ilk yanıtları ve temel soruları yönetir. Katman 2: Ürün uzmanı teknik soruları, özel istekleri yönetir. Katman 3: Yönetici şikayetleri, iadeleri, kurumsal anlaşmaları yönetir. Notlarla net teslimler — hiçbir müşteri kendini yeniden açıklamamalı."
+      },
+      "rule2": {
+        "title": "Round-robin veya coğrafi yönlendirme",
+        "body": "Round-robin küçük ekipler için işe yarar. Daha büyük ekipler için, dile göre yönlendirin (Arapça konuşan müşteriyi Arap temsilciye), bölgeye göre (Suudi müşteriyi yerel bağlamı bilen Suudi temsilciye), veya ürün hattına. Müşteriler daha hızlı, daha alakalı yanıtlar alır."
+      },
+      "example1": {
+        "title": "Örnek: Bağlamla teslim",
+        "body": "Kötü teslim: 'Merhaba, Ahmed'den devralıyorum.' (Müşteri düşünür: Ahmed kim? ne tartıştık?) İyi teslim: 'Merhaba Layla, ben Sarah. Ahmed'in 30ml ve 50ml serum arasında seçim yapmana yardım ettiğini görüyorum. 30ml ilk kez alan müşteriler için en popüler olanımız — ondan başlayıp beğenirsen yükseltmek ister misin?'"
+      }
+    },
+    "ch5": {
+      "title": "Sıkıcıyı otomatikleştirin. İnsanı tutun.",
+      "intro": "Otomasyon, konuşmanın öngörülebilir kısımları için arkadaşınızdır: sipariş onayları, kargo güncellemeleri, takipler. Önemli anlar için düşmanınızdır: şikayetler, özel istekler, karmaşık sorular.",
+      "rule1": {
+        "title": "Satın alma sonrasını otomatikleştirin, öncesini değil",
+        "body": "Bir müşteri satın aldıktan sonra: sipariş onayı, kargo bildirimleri, teslimat hatırlatmaları, teslimat sonrası takip — hepsi otomasyon için harika. Satın almadan önce: insanları döngüde tutun. Satın alma öncesi konuşma anlaşmaların kazanıldığı yerdir."
+      },
+      "example1": {
+        "title": "Örnek: 4 adımlı satın alma sonrası akış",
+        "body": "1. Sipariş onayı (anında): 'Siparişiniz için teşekkürler! Takip numaranız [X]. Tahmini teslimat: Çarşamba.' 2. Kargo güncellemesi (gönderildiğinde): 'Siparişiniz yolda! Buradan takip edin: [bağlantı].' 3. Teslimat onayı (teslim edildiğinde): 'Siparişiniz geldi. Beğenmenizi umuyoruz! Bir şeye ihtiyacınız var mı?' 4. Takip (3 gün sonra): 'Ürün nasıl çalışıyor? Geri bildiriminizi çok isteriz.'"
+      },
+      "warning1": {
+        "title": "Özürleri otomatikleştirmeyin",
+        "body": "Bir şikayete bot tarafından oluşturulmuş 'Bunu duyduğumuza üzüldük' yanıtı, hiç yanıt vermemekten daha kötüdür. Müşteriler saygısızlığa uğradığını hisseder. Şikayetler, iadeler ve karmaşık sorunlar için — her zaman gerçek bir insanın yanıt vermesini sağlayın. Zyrix'in otomatik yönlendirmesi şikayetleri anında insan dikkatine için işaretler."
+      }
+    },
+    "ch6": {
+      "title": "Yüksek hacimli operatörler için ileri taktikler",
+      "intro": "Ayda 1.000 konuşmayı geçtiyseniz, daha küçük operatörlerin ihtiyaç duymadığı tekniklere ihtiyacınız var. WhatsApp'taki kataloglar, yayın listeleri, CRM'inizle entegrasyonlar — doğru kullanıldığında bunlar güç çarpanlarıdır.",
+      "rule1": {
+        "title": "Kataloğu vitrin olarak kullanın",
+        "body": "WhatsApp Kataloğu (WhatsApp Business'ta) ürünleri satır içinde göstermenize olanak tanır. Müşteriler sohbetten ayrılmadan göz atar. E-ticaret için: bu, harici bağlantılar göndermeye kıyasla sürtünmeyi büyük ölçüde azaltır. Kataloğunuzu doğru ayarlayın ve dönüşüm oranlarının yükselişini izleyin."
+      },
+      "rule2": {
+        "title": "Yayın listeleri, grup sohbetleri değil",
+        "body": "Yayın listeleri 256+ kişiye aynı anda gönderir, ancak her alıcı özel bir mesaj görür. Grup sohbetleri topluluk içindir. Bunları karıştırmayın. Satış güncellemeleri, terk edilen sepet hatırlatmaları, yeniden stok uyarıları için — yayın listeleri. VIP toplulukları ve etkinlikler için — gruplar."
+      },
+      "example1": {
+        "title": "Örnek: Yayın listesi kullanım durumları",
+        "body": "Yeniden stok uyarısı: 'Merhaba! Hyaluronik Serum tekrar stokta. Geçen sefer 3 gün erken tükendik. Tekrar gitmeden önce sipariş vermek için dokun.' Terk edilen sepet: 'Merhaba Sarah, bunları dün sepetinde bıraktın: [ürünler]. Önümüzdeki 4 saat içinde sipariş ver, kargo bizden.' Müşteri takdiri: 'Merhaba Mohammed, 6 aydır bizimlesin. İşte bir sonraki siparişin için %20 indirim: [kod]. Levana müşterisi olduğun için teşekkürler.'"
+      }
+    },
+    "cta": {
+      "title": "Bu rehberi uygulamaya koyun",
+      "subtitle": "Zyrix bu rehberdeki her şey için tasarlandı — hızlı ilk yanıtlar, akıllı şablonlar, ekip yönlendirmesi, otomasyon, yayın listeleri, kataloglar. Ücretsiz deneyin.",
+      "primary": "14 gün ücretsiz deneme başlat",
+      "secondary": "Bir uzmanla konuş"
+    }
   }
 }

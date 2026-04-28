@@ -3945,5 +3945,125 @@
       "title": "Media inquiries",
       "body": "For interviews, expert commentary on the MENA SaaS market, or product information, please reach out. We typically respond within 24 hours."
     }
+  },
+  "Playbook": {
+    "eyebrow": "PLAYBOOK",
+    "title": "The WhatsApp Sales Playbook for MENA + Türkiye",
+    "subtitle": "Six chapters of hard-won lessons from 500+ businesses selling on WhatsApp across Saudi Arabia, the Gulf, Türkiye, and Egypt. Free. Tactical. Battle-tested.",
+    "toc": {
+      "eyebrow": "WHAT YOU'LL LEARN",
+      "title": "Table of contents",
+      "chapter": "CHAPTER"
+    },
+    "ch1": {
+      "title": "The first reply wins (or loses) the deal",
+      "intro": "On WhatsApp, the customer messages 5-10 businesses at once. Whoever replies first earns the right to negotiate. The math is brutal: reply within 5 minutes and you have a 70% chance of winning the conversation; reply after 30 minutes and you're at 8%.",
+      "rule1": {
+        "title": "Rule 1: Sub-5-minute first reply",
+        "body": "Build your team's first-reply SLA at under 5 minutes during business hours. This is non-negotiable. Hire enough agents, automate the initial qualifier, or both — but never let the customer wait."
+      },
+      "example1": {
+        "title": "Example: Saudi e-commerce store, skincare",
+        "body": "Customer messages 'Hi, I'm interested in your serum.' Bad reply (after 47 minutes): 'Hi! Yes, here is the product link.' Good reply (after 90 seconds): 'Hi Mariam, welcome to Levana. The vitamin C serum is our best-seller — would you like to see results from someone with similar skin? Also, are you in Riyadh? We deliver same-day there.'"
+      },
+      "rule2": {
+        "title": "Rule 2: Personalize the first message",
+        "body": "Use their name (WhatsApp shows it). Reference what they asked about. Mention their region if known. Generic 'Welcome to our store' replies feel like spam — and customers can tell."
+      },
+      "warning1": {
+        "title": "Don't use auto-responders that pretend to be human",
+        "body": "Customers know when they're talking to a bot. If you're using automation for the first reply, be honest: 'A team member will reply in under 5 minutes — meanwhile, here's our catalog.' Honesty builds trust. Pretending erodes it."
+      }
+    },
+    "ch2": {
+      "title": "Match the response cadence to the channel",
+      "intro": "WhatsApp isn't email. The expected response time is 5-15 minutes during business hours, not 24-48 hours. Customers will leave you for a competitor who replies faster.",
+      "rule1": {
+        "title": "Set explicit business hours — and respect them",
+        "body": "If you're closed at 11pm, say so in your WhatsApp Business profile and your auto-reply. Customers respect honest boundaries. They lose patience with silent ghosting."
+      },
+      "example1": {
+        "title": "Example: Setting expectations",
+        "body": "Off-hours auto-reply: 'Thanks for reaching out! Our team is offline (10pm-9am UAE time). We'll reply first thing tomorrow morning. For urgent orders, browse our catalog: [link]. Or we'll get back to you at 9am sharp.'"
+      },
+      "rule2": {
+        "title": "Never let a conversation go cold mid-thread",
+        "body": "If you're researching something for the customer (checking stock, getting approval), say so explicitly: 'Let me check this with our warehouse, I'll have an answer in 10 minutes.' Then deliver. Silent gaps kill deals."
+      }
+    },
+    "ch3": {
+      "title": "Templates are leverage, not laziness",
+      "intro": "Hand-typing every reply doesn't scale. Templates do — but only if they're written well. Bad templates feel robotic. Good templates feel like a smart human who anticipated the conversation.",
+      "rule1": {
+        "title": "Build templates for the top 20 questions",
+        "body": "Audit your team's last 500 customer messages. Identify the 20 most common questions ('Do you ship to Kuwait?', 'How do I pay?', 'When does it arrive?'). Write a great template for each. Train your team to start from the template and personalize."
+      },
+      "example1": {
+        "title": "Template: Shipping question",
+        "body": "'Great question! We ship to all GCC countries. Delivery times: KSA 1-2 days, UAE 2-3 days, Kuwait/Qatar 3-4 days, Bahrain/Oman 4-5 days. All shipping is free for orders over 200 SAR. Want me to share tracking once your order ships?'"
+      },
+      "example2": {
+        "title": "Template: Payment options",
+        "body": "'We accept: 💳 Mada/Visa/Mastercard online, 💵 Cash on Delivery (KSA only), 🏦 Bank transfer (immediate). For your first order, COD is most popular — only pay when you receive the package and inspect it. Want to try that?'"
+      },
+      "warning1": {
+        "title": "Personalize before sending",
+        "body": "Replace [Name] with the actual name. Adjust tone to match the conversation. Add a relevant question at the end. Templates are starting points, not final messages. Customers can smell a copy-paste."
+      }
+    },
+    "ch4": {
+      "title": "Build a team workflow that scales",
+      "intro": "One person can handle 50 conversations a day. Past that, you need structure: who replies first, when do specialists step in, what gets escalated to a manager, and how is the workload distributed.",
+      "rule1": {
+        "title": "Triage with the 3-tier model",
+        "body": "Tier 1: Generalist agent handles all first replies and basic questions. Tier 2: Product specialist handles technical questions, custom requests. Tier 3: Manager handles complaints, refunds, enterprise deals. Clear handoffs with notes — no customer should re-explain themselves."
+      },
+      "rule2": {
+        "title": "Round-robin or geographic routing",
+        "body": "Round-robin works for small teams. For larger teams, route by language (Arabic-speaker to Arab agent), region (Saudi customer to KSA agent who knows local context), or product line. Customers get faster, more relevant replies."
+      },
+      "example1": {
+        "title": "Example: Handoff with context",
+        "body": "Bad handoff: 'Hi, I'm taking over from Ahmed.' (Customer thinks: who is Ahmed? what did we discuss?) Good handoff: 'Hi Layla, this is Sarah. I see Ahmed was helping you choose between the 30ml and 50ml serum. The 30ml is our most popular for first-time customers — want to start with that and upgrade if you love it?'"
+      }
+    },
+    "ch5": {
+      "title": "Automate the boring. Keep the human.",
+      "intro": "Automation is your friend for the predictable parts of the conversation: order confirmations, shipping updates, follow-ups. It's your enemy for the moments that matter: complaints, custom requests, complex questions.",
+      "rule1": {
+        "title": "Automate post-purchase, not pre-purchase",
+        "body": "After a customer buys: order confirmation, shipping notifications, delivery reminders, post-delivery follow-up — all great for automation. Before they buy: keep humans in the loop. The pre-purchase conversation is where deals are won."
+      },
+      "example1": {
+        "title": "Example: 4-step post-purchase flow",
+        "body": "1. Order confirmation (immediate): 'Thanks for your order! Your tracking number is [X]. Estimated delivery: Wednesday.' 2. Shipping update (when shipped): 'Your order is on the way! Track here: [link].' 3. Delivery confirmation (when delivered): 'Your order arrived. Hope you love it! Need anything?' 4. Follow-up (3 days later): 'How's the product working out? We'd love your feedback.'"
+      },
+      "warning1": {
+        "title": "Don't automate apologies",
+        "body": "Bot-generated 'We're sorry to hear that' for a complaint is worse than no reply at all. Customers feel disrespected. For complaints, refunds, and complex issues — always have a real human respond. Zyrix's auto-routing flags complaints for immediate human attention."
+      }
+    },
+    "ch6": {
+      "title": "Advanced tactics for high-volume operators",
+      "intro": "If you're past 1,000 conversations a month, you need techniques that smaller operators don't. Catalogs in WhatsApp, broadcast lists, integrations with your CRM — these are force multipliers when used right.",
+      "rule1": {
+        "title": "Use the catalog as your storefront",
+        "body": "WhatsApp Catalog (in WhatsApp Business) lets you display products inline. Customers browse without leaving the chat. For e-commerce: this dramatically reduces friction vs. sending external links. Set up your catalog properly and watch conversion rates climb."
+      },
+      "rule2": {
+        "title": "Broadcast lists, not group chats",
+        "body": "Broadcast lists send to 256+ contacts at once but each recipient sees a private message. Group chats are for community. Don't confuse them. For sales updates, abandoned cart reminders, restock alerts — broadcast lists. For VIP communities and events — groups."
+      },
+      "example1": {
+        "title": "Example: Broadcast list use cases",
+        "body": "Restock alert: 'Hi! The Hyaluronic Serum is back in stock. We sold out 3 days early last time. Tap to order before it's gone again.' Abandoned cart: 'Hi Sarah, you left these in your cart yesterday: [products]. Order in the next 4 hours and shipping is on us.' Customer appreciation: 'Hi Mohammed, you've been with us 6 months. Here's 20% off your next order: [code]. Thank you for being a Levana customer.'"
+      }
+    },
+    "cta": {
+      "title": "Put this playbook into practice",
+      "subtitle": "Zyrix is built for everything in this playbook — fast first replies, smart templates, team routing, automation, broadcast lists, catalogs. Try it free.",
+      "primary": "Start free 14-day trial",
+      "secondary": "Talk to a specialist"
+    }
   }
 }
