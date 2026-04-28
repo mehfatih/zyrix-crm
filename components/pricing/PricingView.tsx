@@ -15,14 +15,7 @@ import { Check, Loader2, Star } from "lucide-react";
 // completely separate from the header language switcher.
 // ============================================================================
 
-type Currency = "USD" | "TRY" | "SAR";
 type Billing = "monthly" | "yearly";
-
-const CURRENCY_SYMBOL: Record<Currency, string> = {
-  USD: "$",
-  TRY: "₺",
-  SAR: "﷼",
-};
 
 // Static fallback used when the public plans API is unreachable
 // (e.g., on Vercel preview before backend is deployed). Shape matches AdminPlan.
@@ -137,22 +130,6 @@ const STATIC_PLANS: AdminPlan[] = [
   },
 ];
 
-// Available plan prices only exist in USD/TRY/SAR — map the 11 supported
-// countries onto the closest available billing currency.
-const COUNTRY_TO_PLAN_CURRENCY: Record<string, Currency> = {
-  TR: "TRY",
-  SA: "SAR",
-  AE: "SAR",
-  EG: "SAR",
-  IQ: "SAR",
-  KW: "SAR",
-  QA: "SAR",
-  BH: "SAR",
-  OM: "SAR",
-  JO: "SAR",
-  LB: "SAR",
-};
-
 export default function PricingView({ locale }: { locale: string }) {
   const t = useTranslations("Pricing");
   const tFeat = useTranslations("Pricing.features");
@@ -163,9 +140,6 @@ export default function PricingView({ locale }: { locale: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Default to USD until geo resolves — never derive from `locale`.
-  const [currency, setCurrency] = useState<Currency>("USD");
-  const [currencyTouched, setCurrencyTouched] = useState(false);
   const [billing, setBilling] = useState<Billing>("monthly");
 
   useEffect(() => {
@@ -181,38 +155,8 @@ export default function PricingView({ locale }: { locale: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // IP-based country detection -> currency default.
-  // Respects user override: if they touch the currency dropdown, we stop
-  // overwriting it on re-detection.
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/geo", { cache: "force-cache" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: { country?: string } | null) => {
-        if (cancelled || !data?.country) return;
-        const mapped = COUNTRY_TO_PLAN_CURRENCY[data.country.toUpperCase()];
-        if (mapped && !currencyTouched) setCurrency(mapped);
-      })
-      .catch(() => {
-        /* stay on USD */
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [currencyTouched]);
-
-  const handleCurrencyChange = (c: Currency) => {
-    setCurrencyTouched(true);
-    setCurrency(c);
-  };
-
   function priceFor(p: AdminPlan): number {
-    const key = (
-      billing === "monthly"
-        ? `priceMonthly${currency[0] + currency.slice(1).toLowerCase()}`
-        : `priceYearly${currency[0] + currency.slice(1).toLowerCase()}`
-    ) as keyof AdminPlan;
-    const v = p[key];
+    const v = billing === "monthly" ? p.priceMonthlyUsd : p.priceYearlyUsd;
     return typeof v === "string" ? parseFloat(v) : (v as number);
   }
 
@@ -241,7 +185,7 @@ export default function PricingView({ locale }: { locale: string }) {
 
   const controlsSection = (
     <section className="px-4 pb-6">
-      <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
+      <div className="max-w-4xl mx-auto flex items-center justify-center">
         {/* Billing toggle */}
         <div className="inline-flex rounded-full bg-card border border-sky-500/30 p-1">
           <button
@@ -268,26 +212,6 @@ export default function PricingView({ locale }: { locale: string }) {
             </span>
           </button>
         </div>
-
-        {/* Currency — independent of header language switcher */}
-        <div
-          className="inline-flex rounded-full bg-card border border-sky-500/30 p-1"
-          aria-label="Billing currency"
-        >
-          {(["USD", "TRY", "SAR"] as Currency[]).map((c) => (
-            <button
-              key={c}
-              onClick={() => handleCurrencyChange(c)}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                currency === c
-                  ? "bg-sky-500 text-white"
-                  : "text-foreground hover:bg-sky-500/10"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -312,7 +236,6 @@ export default function PricingView({ locale }: { locale: string }) {
                 key={p.id}
                 plan={p}
                 price={priceFor(p)}
-                currency={currency}
                 billing={billing}
                 name={localizedName(p)}
                 description={localizedDesc(p)}
@@ -372,7 +295,6 @@ export default function PricingView({ locale }: { locale: string }) {
 function PlanCard({
   plan,
   price,
-  currency,
   billing,
   name,
   description,
@@ -383,7 +305,6 @@ function PlanCard({
 }: {
   plan: AdminPlan;
   price: number;
-  currency: Currency;
   billing: Billing;
   name: string;
   description: string;
@@ -398,7 +319,7 @@ function PlanCard({
 
   const signupHref = `/${locale}/signup?plan=${plan.slug}`;
   const contactHref = `/${locale}/contact?plan=enterprise`;
-  const checkoutHref = `/${locale}/checkout?plan=${plan.slug}&billing=${billing}&currency=${currency}`;
+  const checkoutHref = `/${locale}/checkout?plan=${plan.slug}&billing=${billing}&currency=USD`;
 
   // Which URL does the CTA point to?
   const ctaHref = isEnterprise
@@ -456,8 +377,7 @@ function PlanCard({
           <div>
             <div className="flex items-baseline gap-1">
               <span className="text-4xl font-bold text-foreground">
-                {CURRENCY_SYMBOL[currency]}
-                {price.toLocaleString()}
+                ${price.toLocaleString()}
               </span>
               <span className="text-sm text-muted-foreground">
                 /{billing === "monthly" ? t("month") : t("year")}
