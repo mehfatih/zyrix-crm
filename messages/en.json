@@ -2966,5 +2966,383 @@
     "value": "Value",
     "daysInStage": "Days",
     "expectedClose": "Expected close"
+  },
+  "Landing": {
+    "nav": {
+      "product": "Product",
+      "whyZyrix": "Why Zyrix",
+      "customers": "Customers",
+      "pricing": "Pricing",
+      "signIn": "Sign in",
+      "bookDemo": "Book a demo"
+    },
+    "hero": {
+      "badge": "WhatsApp-first CRM, built for MENA",
+      "titleStart": "The CRM built for how",
+      "titleEmphasis": "business actually happens",
+      "subtitle": "Zyrix puts WhatsApp at the core — not as an add-on. Close more deals with one inbox for sales, support and operations across MENA & Türkiye.",
+      "ctaPrimary": "Start free",
+      "ctaSecondary": "Book a demo",
+      "trustItem1": "Arabic & English native",
+      "trustItem2": "WhatsApp Business API",
+      "trustItem3": "Setup in under a day",
+      "mockup": {
+        "url": "app.zyrix.com / inbox",
+        "sidebarInbox": "Inbox",
+        "sidebarContacts": "Contacts",
+        "sidebarPipeline": "Pipeline",
+        "sidebarCalls": "Calls",
+        "channelLabel": "WHATSAPP · TODAY",
+        "contact1Name": "Sarah Mitchell",
+        "contact1Msg": "Great, please send me the final quote",
+        "contact1Time": "2m",
+        "contact2Name": "James Carter",
+        "contact2Msg": "Can we schedule a demo tomorrow?",
+        "contact2Time": "8m",
+        "contact3Name": "Emma Wilson",
+        "contact3Msg": "Payment confirmed ✅",
+        "contact3Time": "21m",
+        "contact4Name": "Daniel Brooks",
+        "contact4Msg": "Thanks for the quick reply!",
+        "contact4Time": "1h",
+        "activeName": "Sarah Mitchell",
+        "activeMeta": "Lead · Dubai · WhatsApp",
+        "hotLead": "Hot lead",
+        "incomingMsg": "Hi, can I get details about your packages?",
+        "outgoingMsg": "Hello! I'll send you the catalog within a minute 👌",
+        "incoming2Msg": "Great, please send me the final quote",
+        "aiSuggestion": "Suggested reply: \"Here's the customized offer for your company...\""
+      }
+    },
+    "trust": {
+      "eyebrow": "Trusted by 1,200+ teams across MENA & Türkiye"
+    },
+    "numbers": {
+      "title": "Real results from teams running on",
+      "titleEmphasis": "Zyrix",
+      "subtitle": "Measured across 1,200+ businesses in Saudi Arabia, UAE, Egypt, Türkiye and Jordan.",
+      "stat1Label": "Faster response on WhatsApp",
+      "stat2Label": "Average go-live time",
+      "stat3Label": "Higher lead conversion",
+      "stat4Label": "MENA & Türkiye teams shipping with Zyrix"
+    },
+    "featuresSection": {
+      "title": "Everything your team needs to",
+      "titleEmphasis": "close on chat",
+      "subtitle": "One platform for sales, support and operations — purpose-built for WhatsApp-led businesses.",
+      "f1Title": "WhatsApp Business API, native",
+      "f1Desc": "Send broadcasts, run templates, sell from chat. Verified green tick supported on day one.",
+      "f2Title": "Unified team inbox",
+      "f2Desc": "WhatsApp, Instagram, email and calls in a single inbox with assignments, notes and SLAs.",
+      "f3Title": "Visual sales pipeline",
+      "f3Desc": "Drag deals across stages. Auto-trigger follow-ups, payments and reminders without leaving chat.",
+      "f4Title": "AI agents for Arabic & English",
+      "f4Desc": "Auto-reply, qualify leads and summarize threads in dialect — Khaleeji, Egyptian, Levantine.",
+      "f5Title": "Customer portal",
+      "f5Desc": "Self-serve quotes, invoices and tickets — branded, no extra tooling.",
+      "f6Title": "Tax engine",
+      "f6Desc": "MENA-ready VAT, e-invoicing and compliance built in by default.",
+      "f7Title": "Commission engine",
+      "f7Desc": "Set rules once. Pay out reps automatically per deal closed.",
+      "f8Title": "Live analytics",
+      "f8Desc": "Revenue, response time and conversion — real-time, no SQL."
+    },
+    "why": {
+      "title": "Why teams choose",
+      "titleEmphasis": "Zyrix",
+      "titleEnd": "over global CRMs",
+      "subtitle": "Built for the way the region actually sells — chat-first, mobile-first, Arabic-first.",
+      "r1Title": "WhatsApp at the core",
+      "r1Desc": "Not a plugin. The product is built around chat-first commerce.",
+      "r2Title": "Built for MENA",
+      "r2Desc": "Arabic dialects, RTL, local tax, local currencies — not bolted on.",
+      "r3Title": "Live in 24 hours",
+      "r3Desc": "Migration, data and team — onboarded and shipping in a day.",
+      "r4Title": "Enterprise-grade trust",
+      "r4Desc": "SOC2-aligned, region-hosted, audit logs, granular permissions.",
+      "tableHeader": "Capability",
+      "tableZyrix": "Zyrix",
+      "tableGeneric": "Generic CRM",
+      "row1": "Native WhatsApp Business API",
+      "row2": "Arabic + dialect AI",
+      "row3": "MENA tax & e-invoicing",
+      "row4": "Per-conversation pricing",
+      "row5": "24h migration",
+      "row6": "Per-seat pricing trap"
+    },
+    "cta": {
+      "titleStart": "Stop juggling tools.",
+      "titleEmphasis": "Start closing on chat.",
+      "subtitle": "Join 1,200+ MENA & Türkiye teams running sales, support and operations from a single WhatsApp-first CRM.",
+      "ctaPrimary": "Start free",
+      "ctaSecondary": "Talk to sales",
+      "footnote": "No credit card · Free for 14 days · Arabic, English & Turkish support"
+    },
+    "objections": {
+      "eyebrow": "Honest answers",
+      "title": "Everything you're worried about —",
+      "titleEmphasis": "solved",
+      "subtitle": "The real questions teams ask before switching to Zyrix.",
+      "o1Question": "We already use a CRM",
+      "o1Answer": "Zyrix replaces multiple tools — CRM, helpdesk, broadcast, automations — with one WhatsApp-first system your team will actually use every day.",
+      "o2Question": "Setup sounds complex",
+      "o2Answer": "Live in under 24 hours. No technical team required. Import contacts, connect WhatsApp, invite your team — start selling the same day.",
+      "o3Question": "Our team isn't technical",
+      "o3Answer": "Built for real sales and operations teams, not IT departments. If your team uses WhatsApp, they already know how to use Zyrix.",
+      "o4Question": "What about Arabic & Turkish workflows?",
+      "o4Answer": "Native RTL interface, dialect-aware AI (Khaleeji, Egyptian, Levantine), Turkish localization, and region-ready integrations from day one."
+    },
+    "testimonials": {
+      "eyebrow": "Real impact",
+      "title": "from teams running on Zyrix",
+      "titleEmphasis": "Outcomes that matter",
+      "subtitle": "Aggregate signals from teams across MENA & Türkiye using Zyrix as their primary CRM.",
+      "s1Value": "Faster",
+      "s1Label": "Response times on WhatsApp",
+      "s2Value": "Higher",
+      "s2Label": "Lead-to-deal conversion",
+      "s3Value": "Fewer tools",
+      "s3Label": "Replaced by Zyrix on average",
+      "t1Quote": "Zyrix replaced four tools for our team. Sales, support, and ops all work from the same WhatsApp inbox now — nothing slips through.",
+      "t1Role": "Operations Manager",
+      "t1Region": "Retail group · KSA",
+      "t2Quote": "Response times dropped from hours to minutes. We didn't hire more reps — we just gave the team a system that fits how they actually work.",
+      "t2Role": "Head of Sales",
+      "t2Region": "B2B services · UAE",
+      "t3Quote": "Finally a CRM the team doesn't fight. They were live the same day, and we never went back to the old stack.",
+      "t3Role": "Founder",
+      "t3Region": "D2C brand · Türkiye",
+      "disclaimer": "Anonymized teams across MENA & Türkiye. Specific results vary by team size and use case."
+    },
+    "liveDashboard": {
+      "eyebrow": "See it in action",
+      "title": "One workspace,",
+      "titleEmphasis": "every signal in real time",
+      "subtitle": "Conversations, leads, conversion, and response time — together in a single live view that everyone on the team can act on.",
+      "urlBar": "app.zyrix.io / inbox",
+      "today": "Today",
+      "liveOverview": "Live overview",
+      "badgeAi": "AI",
+      "badgeAutomation": "Automation",
+      "badgeWhatsapp": "WhatsApp",
+      "badgeSpeed": "Speed",
+      "kpiMessagesLabel": "Messages",
+      "kpiMessagesValue": "12,480",
+      "kpiLeadsLabel": "New leads",
+      "kpiLeadsValue": "2,134",
+      "kpiConversionLabel": "Conversion",
+      "kpiConversionValue": "34.6%",
+      "kpiResponseLabel": "Avg. response",
+      "kpiResponseValue": "18s",
+      "chartTitle": "Conversations this week",
+      "chartSubtitle": "+38.2% engagement",
+      "convWho": "Sara — Inbound lead",
+      "convStatus": "active now",
+      "convChannel": "WhatsApp",
+      "convAgo": "2m",
+      "convInbound": "Hi! Is the Pro plan available for teams?",
+      "convOutbound": "Yes — sending a tailored quote now.",
+      "convBadge1": "Delivered",
+      "convBadge2": "AI replied",
+      "convBadge3": "Lead scored",
+      "disclaimer": "Illustrative dashboard. Actual workspace adapts to your team and pipeline."
+    },
+    "howItWorks": {
+      "eyebrow": "From signup to first deal",
+      "title": "Live in",
+      "titleEmphasis": "three simple steps",
+      "subtitle": "No technical team, no migration headaches. Most teams are running on Zyrix the same day they sign up.",
+      "s1Tag": "Step 01",
+      "s1Title": "Connect WhatsApp",
+      "s1Description": "Link your business number through the official WhatsApp Business API. We handle the verification.",
+      "s1Time": "≈ 5 minutes",
+      "s2Tag": "Step 02",
+      "s2Title": "Import your contacts",
+      "s2Description": "Upload existing customers, leads, and deals from a spreadsheet, your old CRM, or start fresh.",
+      "s2Time": "≈ 10 minutes",
+      "s3Tag": "Step 03",
+      "s3Title": "Start closing deals",
+      "s3Description": "Invite your team, route conversations, and watch your pipeline move — all from one workspace.",
+      "s3Time": "Same day"
+    },
+    "useCases": {
+      "eyebrow": "Built for how you sell",
+      "title": "Designed for the way",
+      "titleEmphasis": "MENA businesses operate",
+      "subtitle": "From cash-on-delivery e-commerce to high-touch B2B sales, Zyrix adapts to your workflow.",
+      "u1Title": "E-commerce & Retail",
+      "u1Description": "Capture leads, confirm orders, and recover abandoned carts on WhatsApp.",
+      "u1Point1": "Cash-on-delivery confirmations",
+      "u1Point2": "Order tracking automations",
+      "u1Point3": "Abandoned cart recovery",
+      "u2Title": "B2B Services",
+      "u2Description": "Manage long sales cycles, complex pipelines, and account-based outreach.",
+      "u2Point1": "Custom pipeline stages",
+      "u2Point2": "Multi-touchpoint tracking",
+      "u2Point3": "Team handoff automations",
+      "u3Title": "D2C & Brands",
+      "u3Description": "Build direct customer relationships and run loyalty campaigns at scale.",
+      "u3Point1": "Broadcast campaigns",
+      "u3Point2": "Customer segmentation",
+      "u3Point3": "Repeat purchase nudges",
+      "u4Title": "Real Estate & High-Value Sales",
+      "u4Description": "Qualify high-intent buyers fast and never let a hot lead go cold.",
+      "u4Point1": "Lead scoring",
+      "u4Point2": "Instant agent routing",
+      "u4Point3": "Property catalog sharing"
+    },
+    "integrations": {
+      "eyebrow": "Plays well with others",
+      "title": "Works with the tools",
+      "titleEmphasis": "your team already uses",
+      "subtitle": "Connect Zyrix to the rest of your stack in minutes — no engineering required.",
+      "whatsappName": "WhatsApp",
+      "slackName": "Slack",
+      "stripeName": "Stripe",
+      "calendarName": "Google Calendar",
+      "emailName": "Email",
+      "sheetsName": "Google Sheets",
+      "webhooksName": "Webhooks",
+      "apiName": "REST API",
+      "footer": "And many more via Zapier, Make, or our open REST API. Custom integrations available on request."
+    },
+    "pricing": {
+      "eyebrow": "Simple, fair pricing",
+      "title": "Pricing that",
+      "titleEmphasis": "grows with your team",
+      "subtitle": "Up to 80% lower than per-seat CRMs. No surprise fees, no per-user lock-in. Cancel anytime.",
+      "popular": "Most popular",
+      "starterName": "Starter",
+      "starterPrice": "Free for 14 days",
+      "starterDescription": "Everything you need to test Zyrix with your team — no credit card required.",
+      "starterFeature1": "Up to 3 team members",
+      "starterFeature2": "WhatsApp Business API",
+      "starterFeature3": "Core CRM workspace",
+      "starterFeature4": "Email support",
+      "starterCta": "Start free",
+      "proName": "Pro",
+      "proPrice": "Custom",
+      "proDescription": "For growing teams that need automations, AI, and full pipeline visibility.",
+      "proFeature1": "Unlimited team members",
+      "proFeature2": "AI replies & lead scoring",
+      "proFeature3": "Advanced automations",
+      "proFeature4": "Priority support",
+      "proCta": "Talk to sales",
+      "enterpriseName": "Enterprise",
+      "enterprisePrice": "Tailored",
+      "enterpriseDescription": "Custom rollouts, dedicated infrastructure, and white-glove onboarding for large operations.",
+      "enterpriseFeature1": "Dedicated environment",
+      "enterpriseFeature2": "Custom SLAs",
+      "enterpriseFeature3": "On-premise option",
+      "enterpriseFeature4": "Dedicated success manager",
+      "enterpriseCta": "Request a quote",
+      "disclaimer": "Final pricing depends on team size, integrations, and rollout scope. Contact sales for a tailored quote."
+    },
+    "growthLoops": {
+      "eyebrow": "Growth engine",
+      "title": "Built-in loops.",
+      "titleAccent": "Compounding revenue.",
+      "subtitle": "Every conversation in Zyrix triggers the next — re-engagement, referral, review, upsell. Growth stops being a project and becomes a system.",
+      "note": "All loops are WhatsApp-compliant, throttled, and tested across MENA & Türkiye markets.",
+      "items": {
+        "reEngagement": {
+          "title": "Re-engagement",
+          "desc": "Inactive customers automatically receive personalized AI follow-ups — recovering up to 28% of stalled deals."
+        },
+        "broadcast": {
+          "title": "Broadcast campaigns",
+          "desc": "Segment by behavior, send WhatsApp campaigns, measure conversion. Compliant, throttled, no bans."
+        },
+        "referral": {
+          "title": "Referral loops",
+          "desc": "After every won deal, Zyrix asks for a referral with a one-tap share link — turning customers into a channel."
+        },
+        "reviews": {
+          "title": "Reviews on autopilot",
+          "desc": "Trigger Google & Trustpilot review requests at the perfect moment in the conversation."
+        }
+      }
+    },
+    "stickyCta": {
+      "text": "Ready to close more deals?",
+      "cta": "Start free trial"
+    },
+    "footer": {
+      "cta": {
+        "eyebrow": "Get started",
+        "title": "Close more deals on WhatsApp.",
+        "titleAccent": "Automatically.",
+        "subtitle": "Join growing teams across MENA & Türkiye who replaced spreadsheets, multiple tools, and missed messages with one AI-powered Business OS.",
+        "primary": "Start free 14-day trial",
+        "secondary": "Book a demo",
+        "disclaimer": "No credit card required. Cancel anytime."
+      },
+      "brand": {
+        "tagline": "The AI-powered Business OS for MENA. WhatsApp-first. Revenue-obsessed."
+      },
+      "social": {
+        "twitter": "Twitter / X",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "whatsapp": "WhatsApp",
+        "email": "Email us"
+      },
+      "newsletter": {
+        "title": "Stay in the loop",
+        "placeholder": "your@email.com",
+        "cta": "Subscribe"
+      },
+      "columns": {
+        "product": {
+          "title": "Product",
+          "links": {
+            "features": "Features",
+            "aiAgents": "AI agents",
+            "pricing": "Pricing",
+            "integrations": "Integrations",
+            "changelog": "Changelog"
+          }
+        },
+        "solutions": {
+          "title": "Solutions",
+          "links": {
+            "sales": "Sales teams",
+            "ecommerce": "E-commerce",
+            "realEstate": "Real estate",
+            "clinics": "Clinics",
+            "agencies": "Agencies"
+          }
+        },
+        "company": {
+          "title": "Company",
+          "links": {
+            "about": "About",
+            "customers": "Customers",
+            "careers": "Careers",
+            "press": "Press",
+            "contact": "Contact"
+          }
+        },
+        "resources": {
+          "title": "Resources",
+          "links": {
+            "docs": "Docs",
+            "api": "API",
+            "blog": "Blog",
+            "playbook": "WhatsApp playbook",
+            "status": "Status"
+          }
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Zyrix Technologies. All rights reserved.",
+        "madeIn": "Built in MENA & Türkiye",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "security": "Security",
+        "dpa": "DPA",
+        "cookies": "Cookies"
+      }
+    }
   }
 }

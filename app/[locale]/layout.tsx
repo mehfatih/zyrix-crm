@@ -13,6 +13,7 @@ import { AuthProvider } from "@/lib/auth/context";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { Toaster } from "sonner";
 import "../globals.css";
+import "../zyrix-theme.css";
 
 const BASE = "https://crm.zyrix.co";
 

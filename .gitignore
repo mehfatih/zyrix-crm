@@ -50,3 +50,25 @@ logs/
 
 # tsx buildinfo
 *.tsbuildinfo
+# Claude Code workspace
+.claude/
+
+# Sprint 5 temporary backup
+.sprint5-backup/
+
+# Sprint 8 local backups
+.backup-sprint8/
+*.backup
+
+# Sprint 9 local backups
+.backup-sprint9/
+
+# Sprint 10 local backups
+.backup-sprint10/
+
+# Sprint 11 local backups
+.backup-sprint11/
+
+# Sprint 12 local backups
+.backup-sprint12/
+.backup-sprint13/

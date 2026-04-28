@@ -2966,5 +2966,383 @@
     "value": "Değer",
     "daysInStage": "Gün",
     "expectedClose": "Beklenen kapanış"
+  },
+  "Landing": {
+    "nav": {
+      "product": "Ürün",
+      "whyZyrix": "Neden Zyrix",
+      "customers": "Müşteriler",
+      "pricing": "Fiyatlandırma",
+      "signIn": "Giriş yap",
+      "bookDemo": "Demo talep et"
+    },
+    "hero": {
+      "badge": "WhatsApp odaklı CRM, MENA için tasarlandı",
+      "titleStart": "İşin gerçekten yürüdüğü şekle göre",
+      "titleEmphasis": "tasarlanmış CRM",
+      "subtitle": "Zyrix WhatsApp'ı eklenti olarak değil, merkeze koyar. MENA ve Türkiye'de satış, destek ve operasyonu tek bir gelen kutusundan yöneterek daha çok anlaşma kapatın.",
+      "ctaPrimary": "Ücretsiz başla",
+      "ctaSecondary": "Demo talep et",
+      "trustItem1": "Türkçe ve İngilizce yerel",
+      "trustItem2": "WhatsApp Business API",
+      "trustItem3": "Bir günde devreye al",
+      "mockup": {
+        "url": "app.zyrix.com / inbox",
+        "sidebarInbox": "Gelen Kutusu",
+        "sidebarContacts": "Kişiler",
+        "sidebarPipeline": "Pipeline",
+        "sidebarCalls": "Aramalar",
+        "channelLabel": "WHATSAPP · BUGÜN",
+        "contact1Name": "Ayşe Kaya",
+        "contact1Msg": "Tamam, son teklifi yollayın lütfen",
+        "contact1Time": "2 dk",
+        "contact2Name": "Mehmet Demir",
+        "contact2Msg": "Yarın için demo planlayabilir miyiz?",
+        "contact2Time": "8 dk",
+        "contact3Name": "Zeynep Yılmaz",
+        "contact3Msg": "Ödeme onaylandı ✅",
+        "contact3Time": "21 dk",
+        "contact4Name": "Burak Şahin",
+        "contact4Msg": "Hızlı yanıt için teşekkürler!",
+        "contact4Time": "1 sa",
+        "activeName": "Ayşe Kaya",
+        "activeMeta": "Potansiyel · İstanbul · WhatsApp",
+        "hotLead": "Sıcak fırsat",
+        "incomingMsg": "Merhaba, paketler hakkında detay alabilir miyim?",
+        "outgoingMsg": "Merhaba! Kataloğu birazdan göndereceğim 👌",
+        "incoming2Msg": "Tamam, son teklifi yollayın lütfen",
+        "aiSuggestion": "Önerilen yanıt: \"Şirketiniz için özel teklifimizi paylaşıyoruz...\""
+      }
+    },
+    "trust": {
+      "eyebrow": "MENA ve Türkiye'de 1.200'den fazla ekibin güvendiği platform"
+    },
+    "numbers": {
+      "title": "Zyrix kullanan ekiplerden",
+      "titleEmphasis": "gerçek sonuçlar",
+      "subtitle": "Suudi Arabistan, BAE, Mısır, Türkiye ve Ürdün'deki 1.200'ü aşkın işletmeden ölçüldü.",
+      "stat1Label": "WhatsApp'ta daha hızlı yanıt",
+      "stat2Label": "Ortalama devreye alma süresi",
+      "stat3Label": "Daha yüksek dönüşüm oranı",
+      "stat4Label": "Zyrix kullanan MENA & Türkiye ekipleri"
+    },
+    "featuresSection": {
+      "title": "Ekibinizin sohbet üzerinden",
+      "titleEmphasis": "satış kapatması için her şey",
+      "subtitle": "Satış, destek ve operasyon için tek platform — WhatsApp odaklı işletmeler için tasarlandı.",
+      "f1Title": "Yerel WhatsApp Business API",
+      "f1Desc": "Toplu mesaj gönderin, şablonları çalıştırın, sohbetten satış yapın. Yeşil onay rozeti ilk günden destekli.",
+      "f2Title": "Ortak ekip gelen kutusu",
+      "f2Desc": "WhatsApp, Instagram, e-posta ve aramalar tek gelen kutusunda — atamalar, notlar ve SLA'larla.",
+      "f3Title": "Görsel satış pipeline'ı",
+      "f3Desc": "Anlaşmaları aşamalar arasında sürükleyin. Sohbetten ayrılmadan otomatik takip, ödeme ve hatırlatmalar.",
+      "f4Title": "Türkçe ve İngilizce için AI agent'lar",
+      "f4Desc": "Otomatik yanıt, lead nitelendirme ve thread özetleme — yerel dilde.",
+      "f5Title": "Müşteri portalı",
+      "f5Desc": "Self servis teklifler, faturalar ve destek talepleri — markalı, ek araçsız.",
+      "f6Title": "Vergi motoru",
+      "f6Desc": "Türkiye KDV, e-fatura ve uyumluluk varsayılan olarak entegre.",
+      "f7Title": "Komisyon motoru",
+      "f7Desc": "Kuralları bir kez tanımlayın. Kapanan her anlaşmada satıcılara otomatik ödeme yapın.",
+      "f8Title": "Canlı analitik",
+      "f8Desc": "Gelir, yanıt süresi ve dönüşüm — gerçek zamanlı, SQL'siz."
+    },
+    "why": {
+      "title": "Ekipler neden global CRM'ler yerine",
+      "titleEmphasis": "Zyrix'i",
+      "titleEnd": "tercih ediyor",
+      "subtitle": "Bölgenin gerçekten sattığı şekilde tasarlandı — sohbet odaklı, mobil odaklı, yerel dil odaklı.",
+      "r1Title": "WhatsApp merkezde, eklenti değil",
+      "r1Desc": "Eklenti değil. Ürün sohbet odaklı ticaret etrafında inşa edildi.",
+      "r2Title": "MENA ve Türkiye için tasarlandı",
+      "r2Desc": "Yerel diller, RTL, yerel vergi, yerel para birimleri — sonradan eklenmedi.",
+      "r3Title": "24 saatte canlıya alın",
+      "r3Desc": "Geçiş, veri ve ekip — bir günde devreye alındı ve satışa başladı.",
+      "r4Title": "Kurumsal düzeyde güvenlik",
+      "r4Desc": "SOC2 uyumlu, bölge içi barındırma, denetim kayıtları, ince yetkilendirme.",
+      "tableHeader": "Yetenek",
+      "tableZyrix": "Zyrix",
+      "tableGeneric": "Genel CRM",
+      "row1": "Yerel WhatsApp Business API",
+      "row2": "Türkçe ve Arapça AI",
+      "row3": "MENA & Türkiye vergi & e-fatura",
+      "row4": "Sohbet başına fiyatlandırma",
+      "row5": "24 saatlik geçiş",
+      "row6": "Kullanıcı başına fiyatlandırma tuzağı"
+    },
+    "cta": {
+      "titleStart": "Araç hokkabazlığını bırakın.",
+      "titleEmphasis": "Sohbette satış kapatmaya başlayın.",
+      "subtitle": "Satış, destek ve operasyonu tek bir WhatsApp odaklı CRM'den yöneten 1.200'den fazla MENA ve Türkiye ekibine katılın.",
+      "ctaPrimary": "Ücretsiz başla",
+      "ctaSecondary": "Satış ekibiyle konuş",
+      "footnote": "Kredi kartı yok · 14 gün ücretsiz · Türkçe, Arapça ve İngilizce destek"
+    },
+    "objections": {
+      "eyebrow": "Dürüst cevaplar",
+      "title": "Endişelendiğiniz her şey —",
+      "titleEmphasis": "çözüldü",
+      "subtitle": "Ekiplerin Zyrix'e geçmeden önce sordukları gerçek sorular.",
+      "o1Question": "Zaten bir CRM kullanıyoruz",
+      "o1Answer": "Zyrix birden fazla aracı — CRM, destek, toplu mesaj, otomasyon — ekibinizin her gün gerçekten kullanacağı tek bir WhatsApp odaklı sistemle değiştirir.",
+      "o2Question": "Kurulum karmaşık görünüyor",
+      "o2Answer": "24 saatten az sürede canlıda. Teknik ekip gerekmez. Kişileri içe aktarın, WhatsApp'ı bağlayın, ekibinizi davet edin — aynı gün satışa başlayın.",
+      "o3Question": "Ekibimiz teknik değil",
+      "o3Answer": "BT departmanları için değil, gerçek satış ve operasyon ekipleri için tasarlandı. Ekibiniz WhatsApp kullanıyorsa, Zyrix'i nasıl kullanacağını zaten biliyor.",
+      "o4Question": "Türkçe ve Arapça iş akışları?",
+      "o4Answer": "Yerel RTL arayüz, lehçe bilen AI (Khaleeji, Mısır, Şam), Türkçe yerelleştirme ve ilk günden bölgeye hazır entegrasyonlar."
+    },
+    "testimonials": {
+      "eyebrow": "Gerçek etki",
+      "title": "Zyrix kullanan ekiplerden",
+      "titleEmphasis": "Önemli sonuçlar",
+      "subtitle": "MENA ve Türkiye'de Zyrix'i ana CRM olarak kullanan ekiplerden toplu sinyaller.",
+      "s1Value": "Daha hızlı",
+      "s1Label": "WhatsApp'ta yanıt süreleri",
+      "s2Value": "Daha yüksek",
+      "s2Label": "Lead'den anlaşmaya dönüşüm",
+      "s3Value": "Daha az araç",
+      "s3Label": "Zyrix tarafından ortalama değiştirilen",
+      "t1Quote": "Zyrix ekibimiz için dört aracı değiştirdi. Satış, destek ve operasyon artık aynı WhatsApp gelen kutusundan çalışıyor — hiçbir şey kaçmıyor.",
+      "t1Role": "Operasyon Yöneticisi",
+      "t1Region": "Perakende grubu · Suudi Arabistan",
+      "t2Quote": "Yanıt süreleri saatlerden dakikalara düştü. Daha fazla satış temsilcisi işe almadık — ekibe gerçekten çalışma şekillerine uygun bir sistem verdik.",
+      "t2Role": "Satış Direktörü",
+      "t2Region": "B2B hizmetleri · BAE",
+      "t3Quote": "Sonunda ekibin direnmediği bir CRM. Aynı gün canlıdaydılar ve eski sisteme bir daha asla dönmedik.",
+      "t3Role": "Kurucu",
+      "t3Region": "D2C markası · Türkiye",
+      "disclaimer": "MENA ve Türkiye genelinde anonim ekipler. Belirli sonuçlar ekip büyüklüğüne ve kullanım durumuna göre değişir."
+    },
+    "liveDashboard": {
+      "eyebrow": "İş başında gör",
+      "title": "Tek çalışma alanı,",
+      "titleEmphasis": "tüm sinyaller gerçek zamanlı",
+      "subtitle": "Konuşmalar, potansiyel müşteriler, dönüşüm ve yanıt süresi — ekibin herkesin harekete geçebileceği tek bir canlı görünümde.",
+      "urlBar": "app.zyrix.io / inbox",
+      "today": "Bugün",
+      "liveOverview": "Canlı genel bakış",
+      "badgeAi": "AI",
+      "badgeAutomation": "Otomasyon",
+      "badgeWhatsapp": "WhatsApp",
+      "badgeSpeed": "Hız",
+      "kpiMessagesLabel": "Mesajlar",
+      "kpiMessagesValue": "12.480",
+      "kpiLeadsLabel": "Yeni müşteri adayı",
+      "kpiLeadsValue": "2.134",
+      "kpiConversionLabel": "Dönüşüm",
+      "kpiConversionValue": "%34,6",
+      "kpiResponseLabel": "Ort. yanıt",
+      "kpiResponseValue": "18sn",
+      "chartTitle": "Bu hafta konuşmalar",
+      "chartSubtitle": "+%38,2 etkileşim",
+      "convWho": "Sara — Gelen müşteri adayı",
+      "convStatus": "şu anda aktif",
+      "convChannel": "WhatsApp",
+      "convAgo": "2dk",
+      "convInbound": "Merhaba! Pro planı ekipler için mevcut mu?",
+      "convOutbound": "Evet — size özel teklifi şimdi gönderiyorum.",
+      "convBadge1": "Teslim edildi",
+      "convBadge2": "AI yanıtladı",
+      "convBadge3": "Müşteri puanlandı",
+      "disclaimer": "Örnek bir kontrol paneli. Gerçek çalışma alanınız ekibinize ve hattınıza göre uyarlanır."
+    },
+    "howItWorks": {
+      "eyebrow": "Kayıttan ilk anlaşmaya",
+      "title": "Sadece",
+      "titleEmphasis": "üç basit adımda yayında",
+      "subtitle": "Teknik ekip yok, taşıma sorunu yok. Çoğu ekip, kaydolduğu gün Zyrix üzerinde çalışmaya başlar.",
+      "s1Tag": "Adım 01",
+      "s1Title": "WhatsApp'ı bağla",
+      "s1Description": "İşletme numaranızı resmi WhatsApp Business API üzerinden bağlayın. Doğrulamayı biz hallederiz.",
+      "s1Time": "≈ 5 dakika",
+      "s2Tag": "Adım 02",
+      "s2Title": "Kişilerinizi içe aktarın",
+      "s2Description": "Mevcut müşterilerinizi, potansiyel müşterilerinizi ve anlaşmalarınızı bir tablodan, eski CRM'den içe aktarın veya sıfırdan başlayın.",
+      "s2Time": "≈ 10 dakika",
+      "s3Tag": "Adım 03",
+      "s3Title": "Anlaşma kapatmaya başlayın",
+      "s3Description": "Ekibinizi davet edin, konuşmaları yönlendirin ve hattınızın hareketini izleyin — hepsi tek bir çalışma alanından.",
+      "s3Time": "Aynı gün"
+    },
+    "useCases": {
+      "eyebrow": "Satış şeklinize göre tasarlandı",
+      "title": "MENA ve Türkiye'deki",
+      "titleEmphasis": "iş yapma şekline özel",
+      "subtitle": "Kapıda ödemeli e-ticaretten yüksek değerli B2B satışa kadar Zyrix iş akışınıza uyum sağlar.",
+      "u1Title": "E-ticaret ve perakende",
+      "u1Description": "Potansiyel müşterileri yakalayın, siparişleri onaylayın ve terk edilmiş sepetleri WhatsApp'tan kurtarın.",
+      "u1Point1": "Kapıda ödeme onayları",
+      "u1Point2": "Sipariş takip otomasyonları",
+      "u1Point3": "Terk edilmiş sepet kurtarma",
+      "u2Title": "B2B Hizmetler",
+      "u2Description": "Uzun satış döngülerini, karmaşık hatları ve hesap odaklı çalışmayı yönetin.",
+      "u2Point1": "Özel hat aşamaları",
+      "u2Point2": "Çok temas noktalı takip",
+      "u2Point3": "Ekip devir otomasyonları",
+      "u3Title": "D2C ve markalar",
+      "u3Description": "Doğrudan müşteri ilişkileri kurun ve sadakat kampanyalarını ölçeklendirin.",
+      "u3Point1": "Toplu yayın kampanyaları",
+      "u3Point2": "Müşteri segmentasyonu",
+      "u3Point3": "Tekrar alım hatırlatmaları",
+      "u4Title": "Gayrimenkul ve yüksek değerli satış",
+      "u4Description": "Yüksek niyetli alıcıları hızla nitelendirin ve sıcak hiçbir lead'i soğutmayın.",
+      "u4Point1": "Lead skorlama",
+      "u4Point2": "Anında temsilci yönlendirme",
+      "u4Point3": "Mülk kataloğu paylaşımı"
+    },
+    "integrations": {
+      "eyebrow": "Diğerleriyle iyi geçinir",
+      "title": "Ekibinizin",
+      "titleEmphasis": "zaten kullandığı araçlarla çalışır",
+      "subtitle": "Zyrix'i geri kalan teknoloji yığınınıza dakikalar içinde bağlayın — mühendis gerekmez.",
+      "whatsappName": "WhatsApp",
+      "slackName": "Slack",
+      "stripeName": "Stripe",
+      "calendarName": "Google Takvim",
+      "emailName": "E-posta",
+      "sheetsName": "Google E-Tablolar",
+      "webhooksName": "Webhooks",
+      "apiName": "REST API",
+      "footer": "Zapier, Make veya açık REST API'miz aracılığıyla daha fazlası. Özel entegrasyonlar talep üzerine sağlanır."
+    },
+    "pricing": {
+      "eyebrow": "Basit ve adil fiyatlandırma",
+      "title": "Ekibinizle",
+      "titleEmphasis": "büyüyen fiyatlandırma",
+      "subtitle": "Kişi başına faturalanan CRM'lere göre %80'e kadar daha düşük. Sürpriz ücret yok, kullanıcı başına kilitleme yok. İstediğiniz zaman iptal edin.",
+      "popular": "En popüler",
+      "starterName": "Starter",
+      "starterPrice": "14 gün ücretsiz",
+      "starterDescription": "Zyrix'i ekibinizle test etmek için ihtiyacınız olan her şey — kredi kartı gerekmez.",
+      "starterFeature1": "3 ekip üyesine kadar",
+      "starterFeature2": "WhatsApp Business API",
+      "starterFeature3": "Temel CRM çalışma alanı",
+      "starterFeature4": "E-posta desteği",
+      "starterCta": "Ücretsiz başla",
+      "proName": "Pro",
+      "proPrice": "Özel",
+      "proDescription": "Otomasyon, AI ve tam hat görünürlüğü gerektiren büyüyen ekipler için.",
+      "proFeature1": "Sınırsız ekip üyesi",
+      "proFeature2": "AI yanıtları ve lead skorlama",
+      "proFeature3": "Gelişmiş otomasyonlar",
+      "proFeature4": "Öncelikli destek",
+      "proCta": "Satışla görüş",
+      "enterpriseName": "Enterprise",
+      "enterprisePrice": "Tasarlanmış",
+      "enterpriseDescription": "Büyük operasyonlar için özel kurulum, özel altyapı ve beyaz eldiven onboarding.",
+      "enterpriseFeature1": "Özel ortam",
+      "enterpriseFeature2": "Özel SLA'lar",
+      "enterpriseFeature3": "Şirket içi seçenek",
+      "enterpriseFeature4": "Özel başarı yöneticisi",
+      "enterpriseCta": "Teklif iste",
+      "disclaimer": "Nihai fiyat ekip büyüklüğüne, entegrasyonlara ve kurulum kapsamına bağlıdır. Özel teklif için satış ekibiyle iletişime geçin."
+    },
+    "growthLoops": {
+      "eyebrow": "Büyüme motoru",
+      "title": "Yerleşik döngüler.",
+      "titleAccent": "Katlanan gelir.",
+      "subtitle": "Zyrix'teki her konuşma bir sonrakini tetikler — yeniden etkileşim, tavsiye, değerlendirme, ek satış. Büyüme bir proje olmaktan çıkar, sisteme dönüşür.",
+      "note": "Tüm döngüler WhatsApp politikalarına uyumlu, hız sınırlı ve MENA & Türkiye pazarlarında test edilmiştir.",
+      "items": {
+        "reEngagement": {
+          "title": "Yeniden etkileşim",
+          "desc": "Pasif müşteriler otomatik olarak kişiselleştirilmiş AI takibi alır — durmuş anlaşmaların %28'ine kadarını geri kazanır."
+        },
+        "broadcast": {
+          "title": "Toplu kampanyalar",
+          "desc": "Davranışa göre segmentle, WhatsApp kampanyaları gönder, dönüşümü ölç. Uyumlu, hız sınırlı, banlanmaz."
+        },
+        "referral": {
+          "title": "Tavsiye döngüleri",
+          "desc": "Kazanılan her anlaşmadan sonra Zyrix tek tıkla paylaşım linkiyle tavsiye ister — müşteriyi kanala dönüştürür."
+        },
+        "reviews": {
+          "title": "Otomatik değerlendirme",
+          "desc": "Konuşmanın en uygun anında Google ve Trustpilot değerlendirme isteklerini tetikler."
+        }
+      }
+    },
+    "stickyCta": {
+      "text": "Daha fazla anlaşma kapatmaya hazır mısın?",
+      "cta": "Ücretsiz dene"
+    },
+    "footer": {
+      "cta": {
+        "eyebrow": "Hemen başla",
+        "title": "WhatsApp'ta daha fazla anlaşma kapat.",
+        "titleAccent": "Otomatik olarak.",
+        "subtitle": "MENA ve Türkiye'deki büyüyen ekiplere katıl — elektronik tabloları, çoklu araçları ve kaçırılan mesajları tek bir AI destekli iş sistemiyle değiştir.",
+        "primary": "14 günlük ücretsiz dene",
+        "secondary": "Demo rezervasyonu",
+        "disclaimer": "Kredi kartı gerekmez. İstediğin zaman iptal et."
+      },
+      "brand": {
+        "tagline": "MENA için AI destekli iş sistemi. WhatsApp öncelikli. Gelir odaklı."
+      },
+      "social": {
+        "twitter": "Twitter / X",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "whatsapp": "WhatsApp",
+        "email": "E-posta"
+      },
+      "newsletter": {
+        "title": "Haberdar ol",
+        "placeholder": "senin@email.com",
+        "cta": "Abone ol"
+      },
+      "columns": {
+        "product": {
+          "title": "Ürün",
+          "links": {
+            "features": "Özellikler",
+            "aiAgents": "AI ajanları",
+            "pricing": "Fiyatlandırma",
+            "integrations": "Entegrasyonlar",
+            "changelog": "Değişiklikler"
+          }
+        },
+        "solutions": {
+          "title": "Çözümler",
+          "links": {
+            "sales": "Satış ekipleri",
+            "ecommerce": "E-ticaret",
+            "realEstate": "Emlak",
+            "clinics": "Klinikler",
+            "agencies": "Ajanslar"
+          }
+        },
+        "company": {
+          "title": "Şirket",
+          "links": {
+            "about": "Hakkımızda",
+            "customers": "Müşteriler",
+            "careers": "Kariyer",
+            "press": "Basın",
+            "contact": "İletişim"
+          }
+        },
+        "resources": {
+          "title": "Kaynaklar",
+          "links": {
+            "docs": "Dokümantasyon",
+            "api": "API",
+            "blog": "Blog",
+            "playbook": "WhatsApp rehberi",
+            "status": "Durum"
+          }
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Zyrix Technologies. Tüm hakları saklıdır.",
+        "madeIn": "MENA ve Türkiye'de geliştirildi",
+        "privacy": "Gizlilik",
+        "terms": "Şartlar",
+        "security": "Güvenlik",
+        "dpa": "Veri İşleme",
+        "cookies": "Çerezler"
+      }
+    }
   }
 }
