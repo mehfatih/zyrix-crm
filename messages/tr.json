@@ -3350,5 +3350,415 @@
         "cookies": "Çerezler"
       }
     }
+  },
+  "SolutionsSales": {
+    "eyebrow": "SATIŞ EKİPLERİ İÇİN",
+    "hero": {
+      "title": "Daha çok anlaşma kapatın. Excel'i unutun.",
+      "subtitle": "Satış ekibinizin gerçekten kullanmak isteyeceği CRM. WhatsApp öncelikli, mobil yerel, Türk ve Arap satış ekiplerinin gerçekte sattığı şekilde tasarlandı.",
+      "ctaPrimary": "14 gün ücretsiz dene",
+      "ctaSecondary": "Satışla görüş"
+    },
+    "pain": {
+      "eyebrow": "SATIŞ EKİPLERİ NEDEN ZYRIX'İ SEÇİYOR",
+      "title": "Çoğu CRM yöneticiler için tasarlandı. Sizinki satış elemanı için çalışmalı.",
+      "subtitle": "MENA ve Türkiye'de 200+ satış temsilcisiyle konuştuk. Üç sorun her seferinde tekrarlandı:",
+      "point1": "Aktiviteleri kayıt altına almak, aktivitelerin kendisinden uzun sürüyor. Temsilciler kaydetmeyi bırakıyor — yöneticiler veriye güvenmeyi bırakıyor.",
+      "point2": "Anlaşmalar gerçekte WhatsApp'ta oluyor, ama her CRM bunu sonradan eklenmiş bir şey gibi görüyor. Temsilciler bütün gün uygulamalar arasında kopyala-yapıştır yapıyor.",
+      "point3": "Mobil uygulamalar küçültülmüş oyuncaklar. Sahadaki temsilciler anlaşmayı güncelleyemiyor, notlara erişemiyor, telefondan kapatamıyor."
+    },
+    "features": {
+      "eyebrow": "SATTIĞINIZ ŞEKİLDE TASARLANDI",
+      "title": "Bir kapanışçının ihtiyacı olan her şey. Olmayan hiçbir şey.",
+      "pipeline": {
+        "title": "Görsel anlaşma hunisi",
+        "desc": "Sürükle-bırak kanban. Ürün hattına göre özelleştirilmiş aşamalar. Her anlaşmayı, her değeri, her sonraki adımı tek bakışta görün."
+      },
+      "calls": {
+        "title": "Tıkla-ara + otomatik kayıt",
+        "desc": "Web veya mobilden herhangi bir kişiye dokunarak arayın. Aramalar süre ile birlikte anlaşmaya otomatik kaydedilir. Uyumluluk için isteğe bağlı kayıt."
+      },
+      "team": {
+        "title": "Ekip işbirliği",
+        "desc": "Anlaşmalarda takım arkadaşlarınızı @-bahisle. Her fırsat için iç sohbet konuları. Bağlam kaybı olmadan teslimler."
+      },
+      "forecast": {
+        "title": "Satış tahmini",
+        "desc": "Tarihsel kapanış oranlarına dayalı AI destekli tahmin. Aya, çeyreğe, temsilciye ve bölgeye göre öngörülen geliri görün."
+      },
+      "reports": {
+        "title": "Gerçek zamanlı paneller",
+        "desc": "Yöneticiler için özel raporlar. Temsilci, bölge, ürün veya aşamaya göre derinlemesine inceleyin. PDF olarak dışa aktarın veya bağlantı ile paylaşın."
+      },
+      "automation": {
+        "title": "Akıllı otomasyon",
+        "desc": "Müşteri adaylarını bölgeye göre otomatik atayın. 3 günde yanıt yoksa otomatik takip. 90 gündür hareketsiz anlaşmaları otomatik kapat. Daha az yönetim, daha çok satış."
+      }
+    },
+    "workflow": {
+      "eyebrow": "ZYRIX İLE BİR GÜN",
+      "title": "Müşteri adayından kazanılan anlaşmaya 5 adımda",
+      "subtitle": "Tipik bir anlaşmanın gerçek Arap ve Türk satış bağlamlarında Zyrix üzerinden nasıl aktığı.",
+      "step1": {
+        "title": "Müşteri adayı WhatsApp'tan geliyor",
+        "desc": "Müşteri iş numaranıza mesaj gönderiyor. Zyrix otomatik olarak bir kişi ve müşteri adayı oluşturur, kaynak = WhatsApp olarak etiketler."
+      },
+      "step2": {
+        "title": "Doğru temsilciye otomatik atama",
+        "desc": "Round-robin ya da bölge/dil/ürüne göre. Temsilci push bildirimi alır. İletişim detayları + konuşma geçmişi zaten anlaşmanın içinde."
+      },
+      "step3": {
+        "title": "Temsilci nitelendirir + teklif gönderir",
+        "desc": "Temsilci Zyrix içinden WhatsApp'ta yanıt verir. Ürün kataloğunu gönderir. 30 saniyede PDF teklif oluşturur."
+      },
+      "step4": {
+        "title": "Takipler otomatik yapılır",
+        "desc": "2 günde yanıt yok mu? Zyrix kibar bir WhatsApp takibi gönderir. 5 günde hâlâ yanıt yok mu? Yönetici uyarı alır. Anlaşma asla düşmez."
+      },
+      "step5": {
+        "title": "Kapanış + tedarik teslimi",
+        "desc": "Müşteri kabul eder. Temsilci 'Kazanıldı'ya tıklar. Anlaşma tedarik hunisine geçer. Müşteri onay mesajı alır. Slack/Teams iç bildirimi tetiklenir. Tamamlandı."
+      }
+    },
+    "stats": {
+      "faster": "Daha hızlı anlaşma döngüleri",
+      "deals": "Temsilci başına daha çok anlaşma",
+      "followup": "Takip tutarlılığı",
+      "access": "Mobil + web erişimi"
+    },
+    "cta": {
+      "title": "Gerçekten sattığınız şekilde tasarlandı",
+      "subtitle": "Ücretsiz başlayın. Kredi kartı yok. Aşık olmak için 14 gün.",
+      "primary": "Ücretsiz denemeye başla",
+      "secondary": "Bir insanla konuş"
+    }
+  },
+  "SolutionsEcommerce": {
+    "eyebrow": "E-TİCARET İÇİN",
+    "hero": {
+      "title": "WhatsApp öncelikli ticaret. MENA ve Türkiye için tasarlandı.",
+      "subtitle": "Shopify veya WooCommerce mağazanızı senkronize edin. Terk edilmiş sepetleri WhatsApp'tan kurtarın. Kapıda Ödeme siparişlerini takip edin. Hepsi Arapça ve Türkçe'yi yerel olarak konuşan tek bir CRM'de.",
+      "ctaPrimary": "14 gün ücretsiz dene",
+      "ctaSecondary": "Satışla görüş"
+    },
+    "pain": {
+      "eyebrow": "E-TİCARET NEDEN ZYRIX'İ SEÇİYOR",
+      "title": "Batılı e-ticaret CRM'leri pazarımızı anlamıyor.",
+      "subtitle": "Suudi Arabistan, BAE, Irak veya Türkiye'de mi satıyorsunuz? Shopify'ın çözmek için tasarlanmadığı sorunlarla karşılaşıyorsunuz:",
+      "point1": "Siparişlerin %70'i Kapıda Ödeme. Çoğu CRM'de KÖ yaşam döngüsü kavramı yok — onaylandı → gönderildi → tahsil edildi → mutabakat sağlandı.",
+      "point2": "Arap ve Türk müşteriler WhatsApp yanıtlarını dakikalar içinde bekliyor, destek bileti üzerinden 24 saat sonra değil. Arapça'yı iyi konuşmayan botlar güveni hızla kaybediyor.",
+      "point3": "MENA'da kargo, onlarca yerel kargo şirketi (SMSA, Aramex Suudi, Naqel, MNG, Yurtiçi…) demek. Batılı CRM'ler yalnızca UPS ve FedEx'i tanıyor."
+    },
+    "features": {
+      "eyebrow": "MAĞAZANIZIN İHTİYACI OLAN HER ŞEY",
+      "title": "Mağazanı senkronize et. WhatsApp'tan sat. Her siparişi takip et.",
+      "shopify": {
+        "title": "Shopify + WooCommerce senkronu",
+        "desc": "Mağazanızı 2 dakikada bağlayın. Ürünler, siparişler, müşteriler — hepsi otomatik senkron. İki yönlü: Zyrix'teki değişiklikler mağazanıza geri gönderilir."
+      },
+      "inventory": {
+        "title": "Çoklu depo envanter",
+        "desc": "Birden fazla depo (Riyad, İstanbul, Dubai) arasında stoğu takip edin. Siparişleri otomatik olarak en yakın depoya yönlendirin. Düşük stok uyarıları."
+      },
+      "whatsapp": {
+        "title": "WhatsApp katalog + ödeme",
+        "desc": "Ürün kataloğunu WhatsApp'ta gönderin. Müşteri tarar, sipariş verir, öder — hepsi WhatsApp'ta. Sipariş Zyrix ve mağazanızda otomatik oluşur."
+      },
+      "abandoned": {
+        "title": "Terk edilen sepet kurtarma",
+        "desc": "Müşteri sepeti terk mi etti? Zyrix kendi dilinde kişiselleştirilmiş bir WhatsApp mesajı gönderir. Terk edilen sepetlerin %30'undan fazlasını kurtarın."
+      },
+      "cod": {
+        "title": "Kapıda Ödeme takibi",
+        "desc": "Her KÖ siparişini onaydan → kargo teslim alımına → teslimata → nakit tahsilatına kadar takip edin. Günlük mutabakat. Bir daha asla ödeme kaybetme."
+      },
+      "shipping": {
+        "title": "Yerel kargo entegrasyonları",
+        "desc": "SMSA, Aramex, Naqel, MNG Kargo, Yurtiçi, J&T ve 25+ daha. Etiketleri otomatik oluşturun. Zyrix'ten ayrılmadan her paketi takip edin."
+      }
+    },
+    "workflow": {
+      "eyebrow": "TIKLAMADAN NAKİTE",
+      "title": "Bir WhatsApp siparişi Zyrix'ten nasıl akar",
+      "subtitle": "Suudi bir Shopify mağazasından cilt bakım ürünleri alan Arap bir tüketici için gerçek bir müşteri yolculuğu.",
+      "step1": {
+        "title": "Müşteri WhatsApp'tan mesaj atar",
+        "desc": "Müşteri Instagram reklamını görür, 'Bize Mesaj Gönder'e dokunur. WhatsApp açılır. Zyrix otomatik olarak Arapça selamlar ve ürün kataloğunu gösterir."
+      },
+      "step2": {
+        "title": "Tarar + sepete ekler",
+        "desc": "Müşteri WhatsApp içinde kataloğu tarar. 3 ürün ekler. Zyrix kargo ve KDV dahil toplamı SAR cinsinden hesaplar. Sepet 60 dakika tutulur."
+      },
+      "step3": {
+        "title": "Ödemeye geçer — KÖ seçer",
+        "desc": "Müşteri adres girer. Kapıda Ödemeyi seçer. Sipariş onaylanır. Zyrix Shopify'da siparişi oluşturur, kargo şirketini (SMSA) ayırtır, kargo etiketi oluşturur."
+      },
+      "step4": {
+        "title": "Otomatik onay + takip",
+        "desc": "Müşteri sipariş numarası ve SMSA takip URL'si ile WhatsApp onayı alır. Zyrix SMSA API'sini izler. Alındığında, dağıtıma çıktığında müşteriyi günceller."
+      },
+      "step5": {
+        "title": "Teslimat + nakit mutabakatı",
+        "desc": "Kargo şirketi teslim eder, nakit tahsil eder. SMSA durumu Zyrix'e senkronize eder. Nakit, satıcının banka mevduatına 7. günde mutabakat sağlanır. Sipariş tamamlandı olarak işaretlenir. Müşteri yeniden hedefleme segmentine eklenir."
+      }
+    },
+    "stats": {
+      "recovery": "Sepet kurtarma",
+      "aov": "Ortalama sipariş değeri",
+      "repeat": "Tekrar satın alma oranı",
+      "response": "Ortalama WhatsApp yanıtı"
+    },
+    "cta": {
+      "title": "Batılı CRM'lerle savaşmayı bırak",
+      "subtitle": "MENA + Türkiye için tasarlandı. WhatsApp öncelikli. Kapıda Ödeme yerel. Arapça + Türkçe + İngilizce.",
+      "primary": "Ücretsiz denemeye başla",
+      "secondary": "Demo planla"
+    }
+  },
+  "SolutionsRealEstate": {
+    "eyebrow": "EMLAK İÇİN",
+    "hero": {
+      "title": "Daha çok mülk anlaşması kapat. Daha az müşteri adayı kaybet.",
+      "subtitle": "Riyad, İstanbul, Dubai ve Kahire'deki emlak danışmanları için tasarlandı. İlanlar, sanal turlar, gösterimler, sözleşmeler — hepsi bölgesel pazarın gerçekte nasıl çalıştığına saygı duyan tek bir CRM'de.",
+      "ctaPrimary": "14 gün ücretsiz dene",
+      "ctaSecondary": "Satışla görüş"
+    },
+    "pain": {
+      "eyebrow": "DANIŞMANLAR NEDEN ZYRIX'İ SEÇİYOR",
+      "title": "Emlak yereldir. CRM'iniz de öyle olmalı.",
+      "subtitle": "Suudi Arabistan veya Türkiye'de mülk satmak Kaliforniya'da satmaktan farklıdır. Üç sıkıntı noktası:",
+      "point1": "Alıcılar WhatsApp üzerinden 5-10 danışmana aynı anda ulaşıyor. İlk yanıt veren danışman kazanıyor. 15 dakika içinde yanıtla, ya da müşteriyi kaybet.",
+      "point2": "Mülk sözleşmelerinin bölgesel özellikleri var — Suudi Tabu sistemi, Türkiye iskan sertifikaları, Mısır sözleşme tasdikleri. Genel CRM'ler bunları görmezden gelir.",
+      "point3": "Sahadaki danışmanlar her şeyi mobilden yapmak zorunda. Bir alıcıyla mülk gezerken Batılı masaüstü öncelikli CRM'ler işe yaramaz."
+    },
+    "features": {
+      "eyebrow": "BİR DANIŞMANIN İHTİYACI OLAN HER ŞEY",
+      "title": "İlandan sözleşmeye — bölgesel danışman için tasarlandı",
+      "listings": {
+        "title": "Mülk ilanları",
+        "desc": "Konut ve ticari ilanları yönetin. Fotoğraflar, kat planları, özellikler. Sahibinden, Property Finder, Bayut'a otomatik yayınlayın. Bir kez güncelleyin, her yerde senkronize olsun."
+      },
+      "location": {
+        "title": "Lokasyon zekası",
+        "desc": "Tüm mülklerin harita görünümü. Mahalleye, okul bölgesine, metroya uzaklığa göre filtreleyin. Karşılaştırılabilir satışları gösterin. Alıcılar için lokasyon raporları oluşturun."
+      },
+      "virtual": {
+        "title": "Sanal turlar + medya",
+        "desc": "360° turlar, video gezintileri yükleyin. WhatsApp'a hazır mülk bağlantıları oluşturun. Her alıcının hangi medyayı ve ne kadar süre izlediğini takip edin."
+      },
+      "viewings": {
+        "title": "Gösterim planlama",
+        "desc": "Alıcılar WhatsApp veya web sitenizden gösterimleri rezerve eder. Takvim senkronu. Otomatik onaylar. 1 saat öncesi hatırlatma. Gelmeyenler takip edilir."
+      },
+      "contracts": {
+        "title": "Bölgesel sözleşmeler",
+        "desc": "Tabu (Suudi), Tapu (Türkiye), Title Deed (BAE) — yerleşik şablonlar. E-imza. Alıcı + satıcıdan belge toplama. Hukuki inceleme için denetim izi."
+      },
+      "brokers": {
+        "title": "Çoklu danışman ekipleri",
+        "desc": "Hangi danışmanın hangi müşteri adayını getirdiğini takip edin. Mahalleye, dile veya mülk türüne göre otomatik atama. Komisyon paylaşımları. Ekibe göre performans panelleri."
+      }
+    },
+    "workflow": {
+      "eyebrow": "MÜŞTERİ ADAYINDAN TESLİME",
+      "title": "Bir mülk anlaşmasının Zyrix'ten nasıl aktığı",
+      "subtitle": "Riyad'ın kuzeyinde villa satın alan Suudi bir aile için gerçek bir yolculuk.",
+      "step1": {
+        "title": "Sahibinden / Property Finder müşteri adayı",
+        "desc": "Alıcı mülk ilanından iletişime geçer. Zyrix müşteri adayını oluşturur, mülkü ekler, bütçelerini ve tercih ettikleri mahalleleri not eder."
+      },
+      "step2": {
+        "title": "Danışman 5 dakika içinde yanıt verir",
+        "desc": "Otomatik atanan danışman push bildirimi alır. WhatsApp'ta 3 benzer mülk + 360° tur bağlantılarıyla yanıt verir. Hepsi Zyrix içinden."
+      },
+      "step3": {
+        "title": "Gösterimler ayarlanır + katılım",
+        "desc": "Aile danışmanın takvim bağlantısı üzerinden 3 gösterim ayarlar. Hatırlatmalar gönderilir. Danışman her birinin ardından gösterim notlarını kaydeder — neyi sevdikleri, sevmedikleri, beden dili."
+      },
+      "step4": {
+        "title": "Teklif + müzakere",
+        "desc": "Aile teklif gönderir. Sahip karşı teklif verir. Danışman müzakere konusunu takip eder. Belgeler (gelir kanıtı, kimlik kopyaları) güvenli yükleme ile toplanır. Hepsi anlaşmanın içinde."
+      },
+      "step5": {
+        "title": "Sözleşme + teslim",
+        "desc": "Nihai şartlar üzerinde anlaşılır. Tabu transfer evrakları şablondan oluşturulur. E-imza toplanır. Depozito ödenir. Tabu kaydı planlanır. Aile 4 hafta sonra anahtarları teslim alır. Danışman komisyon kazanır, hunide işaretlenir."
+      }
+    },
+    "stats": {
+      "leadResponse": "Müşteri yanıt süresi",
+      "conversions": "Gösterimden teklife",
+      "contractRetention": "Sözleşme kapanış oranı",
+      "firstResponse": "Ortalama ilk yanıt"
+    },
+    "cta": {
+      "title": "Bölgesel danışmanlar için tasarlandı",
+      "subtitle": "Tabu, Tapu, Title Deed — hepsi yerel. Arapça, Türkçe, İngilizce. Mobil öncelikli.",
+      "primary": "Ücretsiz denemeye başla",
+      "secondary": "Bir emlak uzmanıyla konuş"
+    }
+  },
+  "SolutionsClinics": {
+    "eyebrow": "SAĞLIK İÇİN",
+    "hero": {
+      "title": "Hasta ilişkileri, sadece kayıtlar değil.",
+      "subtitle": "Randevu rezervasyonu, takipler, sadakat programları ve HIPAA uyumlu hasta iletişimi. MENA ve Türkiye'deki klinikler, diş muayenehaneleri ve estetik merkezler için tasarlandı.",
+      "ctaPrimary": "14 gün ücretsiz dene",
+      "ctaSecondary": "Satışla görüş"
+    },
+    "pain": {
+      "eyebrow": "KLİNİKLER NEDEN ZYRIX'İ SEÇİYOR",
+      "title": "Hasta deneyimi sizin rekabet avantajınızdır.",
+      "subtitle": "Sağlık hizmetleri yerel, kişisel ve giderek daha rekabetçi. Her kliniğin karşılaştığı üç zorluk:",
+      "point1": "Bölgede randevuların %30'u gelmeyenler. Manuel hatırlatmalar tutarsız. Resepsiyon personeli yorgun.",
+      "point2": "Genel CRM'ler hasta akışlarını anlamıyor — randevu → konsültasyon → tedavi planı → takip → değerlendirme. Veri saklıyorlar, ilişkiler değil.",
+      "point3": "Hasta iletişim düzenlemeleri sıkılaşıyor (Suudi NCDC, Türk KVKK). Çoğu CRM tıbbi uyumluluk için tasarlanmamış."
+    },
+    "features": {
+      "eyebrow": "REZERVASYONDAN SADAKATE",
+      "title": "Modern bir kliniğin büyümek için ihtiyacı olan her şey.",
+      "appointments": {
+        "title": "Akıllı randevu rezervasyonu",
+        "desc": "Hastalar web sitesinden, WhatsApp'tan veya uygulamadan rezerve eder. Doktor müsaitliğini görün. WhatsApp'tan onaylayın. Tek dokunuşla yeniden planlayın. Çift rezervasyon yok."
+      },
+      "records": {
+        "title": "Hasta kayıtları",
+        "desc": "Merkezi tıbbi geçmiş, tedavi planları, reçeteler, ekler. Hastalar arasında saniyeler içinde arama. Doktor ve yönetici görünümleri rol bazlı erişimle."
+      },
+      "followup": {
+        "title": "Otomatik takipler",
+        "desc": "Ziyaret sonrası teşekkür mesajları. Tedavi planı hatırlatmaları. Yıllık kontrol uyarıları. Lab sonuçlarının teslimi. Hepsi WhatsApp'tan hastanın dilinde."
+      },
+      "reminders": {
+        "title": "Randevu hatırlatmaları",
+        "desc": "24 saat önce: WhatsApp hatırlatması. 1 saat önce: onay istemi. Gelmeme oranlarını %60-80 azaltır."
+      },
+      "loyalty": {
+        "title": "Hasta sadakati",
+        "desc": "Ziyaretleri, puanları, yönlendirmeleri takip edin. Doğum günü dilekleri. Yıldönümü indirimleri. Aile üyesi tanımlama. Tek seferlik hastaları yaşam boyu hastalara dönüştürün."
+      },
+      "privacy": {
+        "title": "Uyumluluk + gizlilik",
+        "desc": "HIPAA uyumlu. Suudi NCDC ve Türk KVKK uyumlu. Hasta onay takibi. Bölgenizde veri ikametgahı. Denetim günlükleri."
+      }
+    },
+    "workflow": {
+      "eyebrow": "BİR HASTA YOLCULUĞU",
+      "title": "İlk ziyaretten ömür boyu hastaya",
+      "subtitle": "İstanbul'da bir diş kliniğinde tipik bir hastanın Zyrix üzerinden nasıl aktığı.",
+      "step1": {
+        "title": "WhatsApp'tan rezervasyon",
+        "desc": "Hasta Instagram reklamını görür. WhatsApp mesajı gönderir. Zyrix botu mevcut slotları sunar. Hasta birini seçer. Onay gönderilir. Takvim güncellenir."
+      },
+      "step2": {
+        "title": "Bir gün önce hatırlatma",
+        "desc": "24 saat önce otomatik WhatsApp hatırlatması. Hasta onaylar. Yanıt yoksa, 4 saat önce ikinci hatırlatma. Resepsiyon personeli kimin geldiğini bilir."
+      },
+      "step3": {
+        "title": "Ziyaret + tedavi planı",
+        "desc": "Doktor hastayı görür. Tanıyı, tedavi planını, öncesi/sonrası fotoğrafları kaydeder. Hasta maliyet tahmini, sonraki adımlar ve indirilebilir tedavi planı içeren WhatsApp özeti alır."
+      },
+      "step4": {
+        "title": "Takip + ödeme",
+        "desc": "Hasta sonraki ziyaret için hatırlatma alır (temizlik için 3 gün, prosedür için 14 gün). Ödeme bağlantısı gönderilir. Sigorta belgeleri dosyalanır. Sadakat puanları yatırılır."
+      },
+      "step5": {
+        "title": "Uzun vadeli bakım",
+        "desc": "6 ay: yıllık kontrol hatırlatması. 1 yıl: doğum günü dilekleri + %10 indirim. 2 yıl: ziyaret yoksa 'sizi özlüyoruz' mesajı. Hastalar savunucu olur ve aileyi yönlendirir."
+      }
+    },
+    "stats": {
+      "noShow": "Gelmeme azaltma",
+      "retention": "Hasta tutma",
+      "satisfaction": "Hasta memnuniyeti",
+      "timesSaved": "Resepsiyon zamanı tasarrufu"
+    },
+    "cta": {
+      "title": "Hastalara kayıtlar gibi değil, insanlar gibi davranın",
+      "subtitle": "HIPAA uyumlu. Çoklu dil. Bölgesel sağlık düzenlemeleriyle uyumlu.",
+      "primary": "Ücretsiz denemeye başla",
+      "secondary": "Klinik demosu planla"
+    }
+  },
+  "SolutionsAgencies": {
+    "eyebrow": "AJANSLAR İÇİN",
+    "hero": {
+      "title": "Daha çok müşteri yönet. Daha az kişiyle. Kaos olmadan.",
+      "subtitle": "Çoklu müşteri yönetimi, beyaz etiket panelleri, otomatik raporlama ve teklif-ödemeye iş akışları. MENA + Türkiye'ye hizmet veren pazarlama, dijital ve danışmanlık ajansları için tasarlandı.",
+      "ctaPrimary": "14 gün ücretsiz dene",
+      "ctaSecondary": "Satışla görüş"
+    },
+    "pain": {
+      "eyebrow": "AJANSLAR NEDEN ZYRIX'İ SEÇİYOR",
+      "title": "Ajanslar bozuk araçlarla ölçekleniyor.",
+      "subtitle": "MENA veya Türkiye'de bir ajans yönetiyorsanız, üç şey kar marjınızı yiyor:",
+      "point1": "Her yeni müşteri = 7 farklı araçta 3 saat kurulum. Ajans marjları her büyütülmüş hesapla sıkışıyor.",
+      "point2": "Müşteri raporlaması, hesap yöneticisinin haftasının %20-40'ını alıyor. Meta, Google, TikTok'tan rakamları çekmek, sonra müşteri için Excel grafikleri çizmek. Her hafta tekrarlanıyor.",
+      "point3": "Teklifler + sözleşmeler + faturalar 4 farklı SaaS aboneliğinde yaşıyor. Her biri 30-100$/ay. Satış döngüsü parçalanmış."
+    },
+    "features": {
+      "eyebrow": "AJANSLARIN İHTİYACI OLAN HER ŞEY",
+      "title": "Aklınızı kaybetmeden onlarca müşteri yönetin",
+      "clients": {
+        "title": "Çoklu müşteri çalışma alanı",
+        "desc": "Her müşteri için ayrı çalışma alanı. Paylaşılan veri, izole edilmiş izinler. Hesap yöneticileri yalnızca kendi müşterilerini görür. Ajans liderleri her şeyi görür."
+      },
+      "reports": {
+        "title": "Otomatik raporlama",
+        "desc": "Meta Ads, Google Ads, TikTok, Snapchat, GA4 bağlayın. Veriyi günlük olarak otomatik çekin. 5 dakikada müşteri raporları oluşturun. Haftalık e-postaları planlayın. Her müşteriye özel marka."
+      },
+      "team": {
+        "title": "Ekip işbirliği",
+        "desc": "Hesap yöneticileri, tasarımcılar, metin yazarları, medya alıcıları — hepsi tek bir araçta. Görevler. Zaman takibi. Kapasite planlama. Önümüzdeki ay kim müsait?"
+      },
+      "proposals": {
+        "title": "Teklifler + sözleşmeler",
+        "desc": "Önceden oluşturulmuş teklif şablonları. Müşteri brifinginden otomatik doldurma. E-imza. İmzalandığında: sözleşme otomatik oluşur, faturalandırma planı başlar, proje görevleri oluşturulur."
+      },
+      "workflow": {
+        "title": "İş akışı otomasyonu",
+        "desc": "Yeni müşteri onboarding (4 ekipte 12 görev). Aylık hizmet bedeli faturalandırması. Çeyreklik iş incelemeleri. Bir kez ayarlayın, her ay sonsuza kadar çalışsın."
+      },
+      "whitelabel": {
+        "title": "Beyaz etiket müşteri portalları",
+        "desc": "Her müşteri your-agency.zyrix.co (veya özel alan adı) üzerinden giriş yapar. Panellerini, raporlarını, projelerini görür. %100 sizin ajansınız gibi görünür. Erişim için onlardan ücret alın."
+      }
+    },
+    "workflow": {
+      "eyebrow": "BİR MÜŞTERİ YAŞAM DÖNGÜSÜ",
+      "title": "İlk aramadan uzun vadeli müşteriye",
+      "subtitle": "İstanbul'daki bir dijital ajans, bir Suudi e-ticaret müşterisini nasıl kazanır ve yönetir.",
+      "step1": {
+        "title": "Müşteri adayı → keşif görüşmesi",
+        "desc": "Suudi bir marka web sitenizden bir görüşme rezerve eder. Zyrix müşteri adayını kaydeder. Keşif anketi gönderilir. Hesap yöneticisi için görüşme öncesi brif otomatik oluşturulur."
+      },
+      "step2": {
+        "title": "Teklif + kapanış",
+        "desc": "Hesap yöneticisi Zyrix şablonunu kullanır, kapsam ve fiyatlandırmayı doldurur. Müşteriye beyaz etiket portalı üzerinden gönderilir. Müşteri imzalar. Sözleşme + ilk fatura otomatik oluşturulur."
+      },
+      "step3": {
+        "title": "Onboarding (4 ekipte 12 görev)",
+        "desc": "Zyrix onboarding iş akışını başlatır. Tasarımcı marka varlıklarını oluşturur. Medya alıcısı hesapları bağlar. Metin yazarı içerik takvimini taslak haline getirir. Proje yöneticisi başlangıcı planlar. Tüm görevler takip edilir."
+      },
+      "step4": {
+        "title": "Aylık yürütme + raporlama",
+        "desc": "Kampanyalar yürür. Günlük reklam yönetimi. Zyrix performans verisini günlük çeker. Aylık: rapor otomatik oluşturulur, hesap yöneticisi inceler, müşteriye gönderir. Müşteri ROAS, CPL, CAC, dönüşümleri görür."
+      },
+      "step5": {
+        "title": "Tutma + üst satış",
+        "desc": "Çeyreklik iş incelemeleri planlanır. Performans KPI'lara karşı takip edilir. Üst satış fırsatları işaretlenir (yeni kanal, pazar genişlemesi). Müşteri daha yüksek katmanda hizmet bedelini yeniler."
+      }
+    },
+    "stats": {
+      "scale": "Müşteri kapasitesi",
+      "margin": "Marj iyileştirme",
+      "retention": "Müşteri tutma",
+      "report": "Rapor oluşturma süresi"
+    },
+    "cta": {
+      "title": "Ajansını ölçeklendir. Aklını koru.",
+      "subtitle": "Çoklu müşteri çalışma alanları. Beyaz etiket. Otomatik raporlama. MENA + Türkiye ajansları için tasarlandı.",
+      "primary": "Ücretsiz denemeye başla",
+      "secondary": "Bir ajans uzmanıyla konuş"
+    }
   }
 }

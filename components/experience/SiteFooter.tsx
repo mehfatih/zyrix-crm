@@ -27,11 +27,11 @@ const COLUMNS = [
   {
     key: "solutions",
     links: [
-      { key: "sales", href: "#" },
-      { key: "ecommerce", href: "#" },
-      { key: "realEstate", href: "#" },
-      { key: "clinics", href: "#" },
-      { key: "agencies", href: "#" },
+      { key: "sales", href: "/solutions/sales" },
+      { key: "ecommerce", href: "/solutions/ecommerce" },
+      { key: "realEstate", href: "/solutions/real-estate" },
+      { key: "clinics", href: "/solutions/clinics" },
+      { key: "agencies", href: "/solutions/agencies" },
     ],
   },
   {
