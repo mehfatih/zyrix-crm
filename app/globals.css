@@ -13,20 +13,21 @@
     --background: 222 55% 11%;
     --foreground: 220 30% 96%;
 
-    --card: 230 30% 8%;
+    /* Cards lifted off the canvas: ~6% lighter than background */
+    --card: 222 40% 17%;
     --card-foreground: 220 30% 96%;
 
-    --popover: 230 30% 8%;
+    --popover: 222 40% 17%;
     --popover-foreground: 220 30% 96%;
 
     --primary: 250 95% 68%;
     --primary-foreground: 230 40% 6%;
     --primary-glow: 270 100% 75%;
 
-    --secondary: 230 25% 14%;
+    --secondary: 222 35% 22%;
     --secondary-foreground: 220 30% 96%;
 
-    --muted: 230 20% 12%;
+    --muted: 222 35% 22%;
     --muted-foreground: 220 15% 82%;
 
     --accent: 195 100% 60%;
@@ -36,8 +37,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 220 30% 96%;
 
-    --border: 230 25% 18%;
-    --input: 230 25% 14%;
+    --border: 222 30% 28%;
+    --input: 222 30% 28%;
     --ring: 250 95% 68%;
 
     --radius: 1rem;

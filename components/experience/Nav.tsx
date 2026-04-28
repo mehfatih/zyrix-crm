@@ -27,7 +27,6 @@ export const Nav = () => {
 
   const items = [
     { label: t("features"), href: "/features" },
-    { label: t("aiAgents"), href: "/ai-platform" },
     { label: t("pricing"), href: "/pricing" },
     { label: t("about"), href: "/about" },
     { label: t("contact"), href: "/contact" },
