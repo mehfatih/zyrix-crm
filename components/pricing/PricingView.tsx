@@ -24,6 +24,119 @@ const CURRENCY_SYMBOL: Record<Currency, string> = {
   SAR: "﷼",
 };
 
+// Static fallback used when the public plans API is unreachable
+// (e.g., on Vercel preview before backend is deployed). Shape matches AdminPlan.
+const STATIC_PLANS: AdminPlan[] = [
+  {
+    id: "static-free",
+    slug: "free",
+    name: "Free",
+    nameAr: "مجاني",
+    nameTr: "Ücretsiz",
+    description: "For small teams getting started",
+    descriptionAr: "للفرق الصغيرة التي تبدأ",
+    descriptionTr: "Yeni başlayan küçük ekipler için",
+    priceMonthlyUsd: 0,
+    priceYearlyUsd: 0,
+    priceMonthlyTry: 0,
+    priceYearlyTry: 0,
+    priceMonthlySar: 0,
+    priceYearlySar: 0,
+    maxUsers: 3,
+    maxCustomers: 100,
+    maxDeals: 50,
+    maxStorageGb: 1,
+    maxWhatsappMsg: 100,
+    maxAiTokens: 10000,
+    features: ["3 users", "100 contacts", "1 GB storage", "100 WhatsApp msgs/mo"],
+    isActive: true,
+    isFeatured: false,
+    sortOrder: 1,
+    color: "#22d3ee",
+  },
+  {
+    id: "static-starter",
+    slug: "starter",
+    name: "Starter",
+    nameAr: "المبتدئ",
+    nameTr: "Başlangıç",
+    description: "For growing teams that need more",
+    descriptionAr: "للفرق النامية التي تحتاج إلى المزيد",
+    descriptionTr: "Daha fazlasına ihtiyaç duyan büyüyen ekipler için",
+    priceMonthlyUsd: 19,
+    priceYearlyUsd: 190,
+    priceMonthlyTry: 760,
+    priceYearlyTry: 7600,
+    priceMonthlySar: 71,
+    priceYearlySar: 710,
+    maxUsers: 10,
+    maxCustomers: 1000,
+    maxDeals: 500,
+    maxStorageGb: 10,
+    maxWhatsappMsg: 2000,
+    maxAiTokens: 100000,
+    features: ["10 users", "1,000 contacts", "10 GB storage", "2,000 WhatsApp msgs/mo"],
+    isActive: true,
+    isFeatured: false,
+    sortOrder: 2,
+    color: "#10b981",
+  },
+  {
+    id: "static-business",
+    slug: "business",
+    name: "Business",
+    nameAr: "الأعمال",
+    nameTr: "İşletme",
+    description: "For growing businesses with full needs",
+    descriptionAr: "للأعمال النامية ذات الاحتياجات الكاملة",
+    descriptionTr: "Tam ihtiyaçları olan büyüyen işletmeler için",
+    priceMonthlyUsd: 49,
+    priceYearlyUsd: 490,
+    priceMonthlyTry: 1960,
+    priceYearlyTry: 19600,
+    priceMonthlySar: 184,
+    priceYearlySar: 1840,
+    maxUsers: 50,
+    maxCustomers: 10000,
+    maxDeals: 5000,
+    maxStorageGb: 100,
+    maxWhatsappMsg: 20000,
+    maxAiTokens: 1000000,
+    features: ["50 users", "10,000 contacts", "100 GB storage", "20,000 WhatsApp msgs/mo"],
+    isActive: true,
+    isFeatured: true,
+    sortOrder: 3,
+    color: "#8b5cf6",
+  },
+  {
+    id: "static-enterprise",
+    slug: "enterprise",
+    name: "Enterprise",
+    nameAr: "المؤسسات",
+    nameTr: "Kurumsal",
+    description: "Custom plan for large organizations",
+    descriptionAr: "خطة مخصصة للمؤسسات الكبيرة",
+    descriptionTr: "Büyük kuruluşlar için özel plan",
+    priceMonthlyUsd: 0,
+    priceYearlyUsd: 0,
+    priceMonthlyTry: 0,
+    priceYearlyTry: 0,
+    priceMonthlySar: 0,
+    priceYearlySar: 0,
+    maxUsers: 999999,
+    maxCustomers: 999999,
+    maxDeals: 999999,
+    maxStorageGb: 9999,
+    maxWhatsappMsg: 999999,
+    maxAiTokens: 999999999,
+    features: ["Unlimited users", "Unlimited contacts", "Unlimited storage", "Unlimited messages"],
+    isActive: true,
+    isFeatured: false,
+    sortOrder: 4,
+    color: "#f59e0b",
+  },
+];
+
 // Available plan prices only exist in USD/TRY/SAR — map the 11 supported
 // countries onto the closest available billing currency.
 const COUNTRY_TO_PLAN_CURRENCY: Record<string, Currency> = {
@@ -58,7 +171,12 @@ export default function PricingView({ locale }: { locale: string }) {
   useEffect(() => {
     fetchPublicPlans()
       .then((res) => setPlans(res))
-      .catch(() => setError(t("loadError")))
+      .catch((err) => {
+        // Backend unavailable (e.g. Vercel preview before backend deploy):
+        // fall back to static plans so the page still renders something useful.
+        console.warn("Pricing API unavailable, using static fallback:", err);
+        setPlans(STATIC_PLANS);
+      })
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -239,7 +357,7 @@ export default function PricingView({ locale }: { locale: string }) {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-white">
+    <div>
       {heroSection}
       {controlsSection}
       {plansSection}

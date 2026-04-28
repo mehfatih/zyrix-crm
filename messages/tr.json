@@ -161,7 +161,7 @@
     "home": "Ana sayfa",
     "product": "Ürün",
     "features": "Özellikler",
-    "pricing": "Fiyatlandırma",
+    "pricing": "Fiyatlar",
     "customers": "Müşterilerimiz",
     "resources": "Kaynaklar",
     "blog": "Blog",
@@ -300,7 +300,7 @@
       "product": {
         "title": "Ürün",
         "features": "Özellikler",
-        "pricing": "Fiyatlandırma",
+        "pricing": "Fiyatlar",
         "integrations": "Entegrasyonlar",
         "changelog": "Değişiklik günlüğü",
         "roadmap": "Yol haritası"
@@ -2972,7 +2972,7 @@
       "product": "Ürün",
       "whyZyrix": "Neden Zyrix",
       "customers": "Müşteriler",
-      "pricing": "Fiyatlandırma",
+      "pricing": "Fiyatlar",
       "signIn": "Giriş yap",
       "bookDemo": "Demo talep et",
       "features": "Özellikler",
@@ -3304,7 +3304,7 @@
           "links": {
             "features": "Özellikler",
             "aiAgents": "AI ajanları",
-            "pricing": "Fiyatlandırma",
+            "pricing": "Fiyatlar",
             "integrations": "Entegrasyonlar",
             "changelog": "Değişiklikler"
           }

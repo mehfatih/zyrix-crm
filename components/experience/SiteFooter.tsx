@@ -50,7 +50,7 @@ const COLUMNS = [
       { key: "docs", href: "/docs" },
       { key: "api", href: "/api-reference" },
       { key: "blog", href: "/blog" },
-      { key: "playbook", href: "#" },
+      { key: "playbook", href: "/playbook" },
       { key: "status", href: "/status" },
     ],
   },
@@ -124,14 +124,14 @@ export const SiteFooter = () => {
 
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
-                href="/signup"
+                href={`/${locale}/signup`}
                 className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.6)] hover:shadow-[0_10px_50px_-5px_hsl(var(--primary)/0.8)] transition-shadow"
               >
                 {t("cta.primary")}
                 <Arrow className="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
               </Link>
               <Link
-                href="/contact"
+                href={`/${locale}/contact`}
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-7 py-3.5 text-sm font-medium text-foreground hover:bg-white/10 hover:border-white/20 transition-colors"
               >
                 {t("cta.secondary")}
@@ -212,7 +212,7 @@ export const SiteFooter = () => {
                   {col.links.map((link) => (
                     <li key={link.key}>
                       <FooterLink
-                        href={link.href}
+                        href={link.href.startsWith("/") ? `/${locale}${link.href}` : link.href}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {t(`columns.${col.key}.links.${link.key}`)}
@@ -243,13 +243,13 @@ export const SiteFooter = () => {
 
               {/* Right: legal links */}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-                <Link href="/privacy" className="hover:text-foreground transition-colors">
+                <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">
                   {t("legal.privacy")}
                 </Link>
-                <Link href="/terms" className="hover:text-foreground transition-colors">
+                <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">
                   {t("legal.terms")}
                 </Link>
-                <Link href="/security" className="hover:text-foreground transition-colors">
+                <Link href={`/${locale}/security`} className="hover:text-foreground transition-colors">
                   {t("legal.security")}
                 </Link>
                 <a href="#" className="hover:text-foreground transition-colors">
