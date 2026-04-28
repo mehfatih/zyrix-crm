@@ -9,5 +9,5 @@ import PublicLayout from "@/components/public/PublicLayout";
 // ============================================================================
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
-  return <PublicLayout accent="sky">{children}</PublicLayout>;
+  return <PublicLayout>{children}</PublicLayout>;
 }

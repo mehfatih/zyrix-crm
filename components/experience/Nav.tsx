@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ZyrixLogo } from "./ZyrixLogo";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import type { Locale } from "@/i18n";
 
 /**
  * Place at: components/experience/Nav.tsx
@@ -13,6 +16,7 @@ import { ZyrixLogo } from "./ZyrixLogo";
 
 export const Nav = () => {
   const t = useTranslations("Landing.nav");
+  const locale = useLocale() as Locale;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -23,10 +27,10 @@ export const Nav = () => {
   }, []);
 
   const items = [
-    { label: t("product"), href: "#features" },
-    { label: t("whyZyrix"), href: "#why" },
-    { label: t("customers"), href: "#trust" },
-    { label: t("pricing"), href: "#pricing" },
+    { label: t("features"), href: "/features" },
+    { label: t("pricing"), href: "/pricing" },
+    { label: t("about"), href: "/about" },
+    { label: t("contact"), href: "/contact" },
   ];
 
   return (
@@ -45,25 +49,27 @@ export const Nav = () => {
 
           <nav className="hidden md:flex items-center gap-7">
             {items.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 story-link"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-              {t("signIn")}
+          <div className="flex items-center gap-2 md:gap-3">
+            <LanguageSwitcher currentLocale={locale} />
+            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+              <Link href="/signin">{t("signIn")}</Link>
             </Button>
             <Button
+              asChild
               size="sm"
               className="btn-glow bg-gradient-cta text-primary-foreground border-0"
             >
-              {t("bookDemo")}
+              <Link href="/signup">{t("signUp")}</Link>
             </Button>
           </div>
         </div>
