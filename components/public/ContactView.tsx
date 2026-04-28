@@ -12,6 +12,7 @@ import {
   Phone,
 } from "lucide-react";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 
 // ============================================================================
 // CONTACT VIEW
@@ -76,17 +77,17 @@ export default function ContactView({ locale: _locale }: Props) {
   }
 
   return (
-    <div className="container-zyrix py-12 md:py-20">
+    <div className="container mx-auto px-4 max-w-6xl py-12 md:py-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-xs font-bold uppercase tracking-widest text-primary-600 mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
             {t("eyebrow")}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-ink-mid mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {t("title")}
           </h1>
-          <p className="text-lg text-ink-light max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </div>
@@ -122,11 +123,11 @@ export default function ContactView({ locale: _locale }: Props) {
               secondary={t("channels.office.subtitle")}
             />
 
-            <div className="rounded-2xl bg-gradient-to-br from-primary-50 via-sky-50 to-sky-50 p-6 border border-primary-100">
-              <h3 className="text-sm font-bold text-ink-mid mb-2">
+            <div className="rounded-2xl bg-card p-6 border border-border">
+              <h3 className="text-sm font-bold text-foreground mb-2">
                 {t("hours.title")}
               </h3>
-              <p className="text-sm text-ink-light leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {t("hours.body")}
               </p>
             </div>
@@ -134,34 +135,34 @@ export default function ContactView({ locale: _locale }: Props) {
 
           {/* Form */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl border border-line-soft p-6 md:p-8 shadow-sm">
+            <div className="bg-card rounded-2xl border border-border p-6 md:p-8 shadow-sm">
               {state === "sent" ? (
                 <div className="py-8 text-center">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4 ring-4 ring-emerald-50">
-                    <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/15 flex items-center justify-center mx-auto mb-4 ring-4 ring-emerald-500/10">
+                    <CheckCircle2 className="w-8 h-8 text-emerald-400" />
                   </div>
-                  <h2 className="text-xl font-bold text-ink-mid mb-2">
+                  <h2 className="text-xl font-bold text-foreground mb-2">
                     {t("sentTitle")}
                   </h2>
-                  <p className="text-sm text-ink-light max-w-sm mx-auto">
+                  <p className="text-sm text-muted-foreground max-w-sm mx-auto">
                     {t("sentBody")}
                   </p>
                   <button
                     onClick={() => setState("idle")}
-                    className="mt-6 text-sm font-semibold text-primary-600 hover:text-primary-700 hover:underline"
+                    className="mt-6 text-sm font-semibold text-primary hover:text-primary/80 hover:underline"
                   >
                     {t("sendAnother")}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <h2 className="text-xl font-bold text-ink-mid mb-1">
+                  <h2 className="text-xl font-bold text-foreground mb-1">
                     {t("formTitle")}
                   </h2>
-                  <p className="text-sm text-ink-light">{t("formSubtitle")}</p>
+                  <p className="text-sm text-muted-foreground">{t("formSubtitle")}</p>
 
                   {errorMsg && (
-                    <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+                    <div className="rounded-lg bg-destructive/10 border border-destructive/30 p-3 text-sm text-destructive">
                       {errorMsg}
                     </div>
                   )}
@@ -243,27 +244,27 @@ export default function ContactView({ locale: _locale }: Props) {
                     />
                   </Field>
 
-                  <p className="text-xs text-ink-light">
+                  <p className="text-xs text-muted-foreground">
                     {t("consent")}
                   </p>
 
-                  <button
+                  <Button
                     type="submit"
                     disabled={state === "submitting"}
-                    className="btn-cta w-full justify-center"
+                    className="w-full justify-center"
                   >
                     {state === "submitting" ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <Loader2 className="w-4 h-4 animate-spin mr-2" />
                         {t("sending")}
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-4 h-4 mr-2" />
                         {t("submit")}
                       </>
                     )}
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>
@@ -275,17 +276,20 @@ export default function ContactView({ locale: _locale }: Props) {
         :global(.zx-input) {
           width: 100%;
           border-radius: 0.5rem;
-          border: 1px solid rgb(186 230 253);
-          background: white;
+          border: 1px solid hsl(var(--border));
+          background: hsl(var(--card));
           padding: 0.625rem 0.875rem;
           font-size: 0.875rem;
-          color: rgb(22 78 99);
+          color: hsl(var(--foreground));
           outline: none;
           transition: border-color 120ms, box-shadow 120ms;
         }
         :global(.zx-input:focus) {
-          border-color: rgb(8 145 178);
-          box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+          border-color: hsl(var(--primary));
+          box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2);
+        }
+        :global(.zx-input::placeholder) {
+          color: hsl(var(--muted-foreground));
         }
       `}</style>
     </div>
@@ -303,9 +307,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-xs font-bold uppercase tracking-wider text-ink-mid mb-1.5">
+      <span className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
         {label}
-        {required && <span className="text-red-500 ms-0.5">*</span>}
+        {required && <span className="text-destructive ms-0.5">*</span>}
       </span>
       {children}
     </label>
@@ -326,16 +330,16 @@ function InfoCard({
   href?: string;
 }) {
   const inner = (
-    <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-line-soft hover:border-primary-200 hover:shadow-md transition-all duration-300">
-      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center">
+    <div className="flex items-start gap-3 p-4 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-md transition-all duration-300">
+      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
         {icon}
       </div>
       <div className="min-w-0">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-ink-mid mb-1">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-foreground mb-1">
           {title}
         </h3>
-        <div className="text-sm font-semibold text-ink truncate" dir="ltr" style={{ unicodeBidi: "embed" }}>{primary}</div>
-        <p className="text-xs text-ink-light mt-0.5">{secondary}</p>
+        <div className="text-sm font-semibold text-foreground truncate" dir="ltr" style={{ unicodeBidi: "embed" }}>{primary}</div>
+        <p className="text-xs text-muted-foreground mt-0.5">{secondary}</p>
       </div>
     </div>
   );

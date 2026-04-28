@@ -244,14 +244,14 @@ export default function SitemapPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         {/* Hero */}
         <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-sky-600 bg-sky-50 border border-sky-200 rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full mb-4">
             <MapIcon className="w-3.5 h-3.5" />
             {t.badge}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
             {t.title}
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.subtitle}
           </p>
         </div>
@@ -291,7 +291,7 @@ export default function SitemapPage() {
             setHoveredNode={setHoveredNode}
             linkify={linkify}
           />
-          <p className="text-center text-xs text-slate-400 pb-4">
+          <p className="text-center text-xs text-white/60 pb-4">
             {t.searchHint}
           </p>
         </div>
@@ -313,10 +313,10 @@ export default function SitemapPage() {
                       <CIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h2 className="text-lg font-bold text-slate-900">
+                      <h2 className="text-lg font-bold text-foreground">
                         {c.label[L]}
                       </h2>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-muted-foreground">
                         {t.categories[cat]} · {nodes.length} {t.totalPages}
                       </p>
                     </div>
@@ -328,17 +328,17 @@ export default function SitemapPage() {
                         <Link
                           key={n.id}
                           href={linkify(n.href)}
-                          className="group bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-3 flex items-center gap-2.5 transition-all hover:shadow-md"
+                          className="group bg-card border border-slate-200 hover:border-slate-300 rounded-xl p-3 flex items-center gap-2.5 transition-all hover:shadow-md"
                         >
                           <div
                             className={`w-8 h-8 rounded-lg bg-gradient-to-br ${c.gradient} bg-opacity-10 ${c.color} flex items-center justify-center flex-shrink-0`}
                           >
                             <Icon className="w-4 h-4" />
                           </div>
-                          <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900 flex-1 truncate">
+                          <span className="text-sm font-medium text-foreground group-hover:text-primary flex-1 truncate">
                             {n.label[L]}
                           </span>
-                          <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-700 flex-shrink-0 ltr:translate-x-0 rtl:-scale-x-100 transition-transform" />
+                          <ArrowRight className="w-3.5 h-3.5 text-white/60 group-hover:text-foreground flex-shrink-0 ltr:translate-x-0 rtl:-scale-x-100 transition-transform" />
                         </Link>
                       );
                     })}
@@ -595,10 +595,10 @@ function RadialMap({
                   sits behind it. Drop-shadow adds separation from the
                   gradient background. */}
               <span
-                className={`absolute top-full mt-2 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-sm border border-slate-200/60 text-[10px] md:text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${
+                className={`absolute top-full mt-2 px-2 py-0.5 rounded-md bg-card/95 backdrop-blur-sm border border-slate-200/60 text-[10px] md:text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${
                   isHovered
                     ? `${cat.color} scale-110 border-current/30`
-                    : "text-slate-700 group-hover:text-slate-900 group-hover:border-slate-300"
+                    : "text-foreground group-hover:text-primary group-hover:border-border"
                 }`}
               >
                 {n.label[locale]}
@@ -642,27 +642,27 @@ function FilterChip({
   const colors: Record<string, { active: string; inactive: string }> = {
     marketing: {
       active: "bg-sky-500 text-white ring-sky-300",
-      inactive: "bg-white text-slate-700 hover:bg-sky-50 ring-slate-200",
+      inactive: "bg-card text-foreground hover:bg-sky-500/10 ring-border",
     },
     product: {
       active: "bg-emerald-600 text-white ring-emerald-400",
-      inactive: "bg-white text-slate-700 hover:bg-emerald-50 ring-slate-200",
+      inactive: "bg-card text-foreground hover:bg-emerald-500/10 ring-border",
     },
     admin: {
       active: "bg-violet-600 text-white ring-violet-400",
-      inactive: "bg-white text-slate-700 hover:bg-violet-50 ring-slate-200",
+      inactive: "bg-card text-foreground hover:bg-violet-500/10 ring-border",
     },
     portal: {
       active: "bg-amber-600 text-white ring-amber-400",
-      inactive: "bg-white text-slate-700 hover:bg-amber-50 ring-slate-200",
+      inactive: "bg-card text-foreground hover:bg-amber-500/10 ring-border",
     },
     resources: {
       active: "bg-indigo-600 text-white ring-indigo-400",
-      inactive: "bg-white text-slate-700 hover:bg-indigo-50 ring-slate-200",
+      inactive: "bg-card text-foreground hover:bg-indigo-500/10 ring-border",
     },
     slate: {
       active: "bg-slate-800 text-white ring-slate-400",
-      inactive: "bg-white text-slate-700 hover:bg-slate-100 ring-slate-200",
+      inactive: "bg-card text-foreground hover:bg-muted ring-border",
     },
   };
   const c = colors[color];

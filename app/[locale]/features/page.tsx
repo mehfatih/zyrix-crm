@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PublicShell } from "@/components/layout/PublicShell";
+import { Button } from "@/components/ui/button";
 import { isValidLocale } from "@/i18n";
 import { notFound } from "next/navigation";
 import {
@@ -122,17 +123,17 @@ export default async function FeaturesPage({
   return (
     <PublicShell locale={locale}>
       {/* HERO */}
-      <section className="hero-bg relative overflow-hidden">
-        <div className="container-zyrix section pt-16 md:pt-24 pb-12 text-center relative">
-          <span className="badge inline-flex mb-6">
-            <span className="badge-dot animate-pulse-soft" />
+      <section className="relative overflow-hidden">
+        <div className="container mx-auto px-4 max-w-6xl py-16 md:py-24 pt-16 md:pt-24 pb-12 text-center relative">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             {t("eyebrow")}
           </span>
           <h1 className="mb-6 text-balance">
-            <span className="text-ink-mid">{t("hero.titlePrefix")}</span>{" "}
+            <span className="text-foreground">{t("hero.titlePrefix")}</span>{" "}
             <span className="text-gradient">{t("hero.titleHighlight")}</span>
           </h1>
-          <p className="text-lg md:text-xl text-ink-light max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {t("hero.subtitle")}
           </p>
 
@@ -142,7 +143,7 @@ export default async function FeaturesPage({
               <a
                 key={c.id}
                 href={`#${c.id}`}
-                className="inline-flex items-center gap-2 rounded-full bg-white border border-line px-4 py-2 text-sm font-medium text-ink-mid hover:border-primary-400 hover:text-primary-700 transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors shadow-sm"
               >
                 {c.icon}
                 {t(`categories.${c.id}.title`)}
@@ -153,8 +154,8 @@ export default async function FeaturesPage({
       </section>
 
       {/* VALUE PROPS STRIP */}
-      <section className="bg-white border-y border-line-soft">
-        <div className="container-zyrix py-8">
+      <section className="bg-card border-y border-border">
+        <div className="container mx-auto px-4 max-w-6xl py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <ValueProp
               icon={<Globe className="w-5 h-5" />}
@@ -185,30 +186,30 @@ export default async function FeaturesPage({
         <section
           key={cat.id}
           id={cat.id}
-          className={idx % 2 === 0 ? "bg-bg-base" : "bg-white"}
+          className={idx % 2 === 0 ? "bg-background" : "bg-card"}
         >
-          <div className="container-zyrix section">
+          <div className="container mx-auto px-4 max-w-6xl py-16 md:py-24">
             <div className="max-w-2xl mb-10">
               <div
                 className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 ${
                   cat.color === "primary"
-                    ? "bg-primary-50 text-primary-700"
+                    ? "bg-primary/10 text-primary"
                     : cat.color === "sky"
-                      ? "bg-sky-50 text-sky-700"
+                      ? "bg-cyan-500/10 text-cyan-300"
                       : cat.color === "cyan"
-                        ? "bg-sky-50 text-sky-600"
+                        ? "bg-cyan-500/10 text-cyan-300"
                         : cat.color === "emerald"
-                          ? "bg-emerald-50 text-emerald-700"
-                          : "bg-violet-50 text-violet-700"
+                          ? "bg-emerald-500/10 text-emerald-300"
+                          : "bg-violet-500/10 text-violet-300"
                 }`}
               >
                 {cat.icon}
                 {t(`categories.${cat.id}.title`)}
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-ink-mid mb-3">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
                 {t(`categories.${cat.id}.heading`)}
               </h2>
-              <p className="text-base text-ink-light leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 {t(`categories.${cat.id}.subtitle`)}
               </p>
             </div>
@@ -233,8 +234,8 @@ export default async function FeaturesPage({
       ))}
 
       {/* LANGUAGE & AI BAND */}
-      <section className="bg-gradient-to-br from-primary-600 to-sky-500 text-white">
-        <div className="container-zyrix section text-center">
+      <section className="bg-gradient-to-br from-primary to-cyan-500 text-white">
+        <div className="container mx-auto px-4 max-w-6xl py-16 md:py-24 text-center">
           <Sparkles className="w-10 h-10 mx-auto mb-4 opacity-80" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t("aiBand.title")}
@@ -251,26 +252,26 @@ export default async function FeaturesPage({
       </section>
 
       {/* COMPARISON */}
-      <section className="bg-bg-base">
-        <div className="container-zyrix section">
+      <section className="bg-background">
+        <div className="container mx-auto px-4 max-w-6xl py-16 md:py-24">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-ink-mid mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
               {t("comparison.title")}
             </h2>
-            <p className="text-base text-ink-light max-w-2xl mx-auto">
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
               {t("comparison.subtitle")}
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto overflow-hidden rounded-2xl border border-line-soft bg-white shadow-sm">
+          <div className="max-w-4xl mx-auto overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
             <div className="grid grid-cols-3 text-sm">
-              <div className="p-4 bg-bg-subtle font-bold text-ink-mid text-xs uppercase tracking-wider">
+              <div className="p-4 bg-muted font-bold text-foreground text-xs uppercase tracking-wider">
                 {t("comparison.feature")}
               </div>
-              <div className="p-4 bg-bg-subtle font-bold text-ink-light text-xs uppercase tracking-wider text-center border-s border-line-soft">
+              <div className="p-4 bg-muted font-bold text-muted-foreground text-xs uppercase tracking-wider text-center border-s border-border">
                 {t("comparison.generic")}
               </div>
-              <div className="p-4 bg-gradient-to-br from-primary-600 to-sky-500 text-white font-bold text-xs uppercase tracking-wider text-center">
+              <div className="p-4 bg-gradient-to-br from-primary to-cyan-500 text-white font-bold text-xs uppercase tracking-wider text-center">
                 Zyrix
               </div>
 
@@ -295,31 +296,29 @@ export default async function FeaturesPage({
       </section>
 
       {/* FINAL CTA */}
-      <section className="section bg-gradient-to-br from-primary-50 via-sky-50 to-sky-100">
-        <div className="container-zyrix">
-          <div className="card-gradient max-w-4xl mx-auto text-center py-12 md:py-16 shadow-xl">
-            <Clock className="w-10 h-10 text-primary-600 mx-auto mb-4" />
-            <h2 className="mb-4">{t("cta.title")}</h2>
-            <p className="text-lg text-ink-light mb-8 max-w-xl mx-auto">
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="bg-card border border-border rounded-xl max-w-4xl mx-auto text-center py-12 md:py-16 shadow-xl px-6">
+            <Clock className="w-10 h-10 text-primary mx-auto mb-4" />
+            <h2 className="mb-4 text-3xl md:text-4xl font-bold text-foreground">{t("cta.title")}</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
               {t("cta.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                href={`/${locale}/signup`}
-                className="btn-cta text-base py-3.5 px-8 w-full sm:w-auto"
-              >
-                <Sparkles className="w-4 h-4" />
-                {t("cta.primary")}
-              </Link>
-              <Link
-                href={`/${locale}/pricing`}
-                className="btn-secondary text-base py-3.5 px-8 w-full sm:w-auto"
-              >
-                {t("cta.secondary")}
-                <ArrowRight
-                  className={`w-4 h-4 ${isArabic ? "rotate-180" : ""}`}
-                />
-              </Link>
+              <Button asChild size="lg" className="text-base py-3.5 px-8 w-full sm:w-auto">
+                <Link href={`/${locale}/signup`}>
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  {t("cta.primary")}
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="text-base py-3.5 px-8 w-full sm:w-auto">
+                <Link href={`/${locale}/pricing`}>
+                  {t("cta.secondary")}
+                  <ArrowRight
+                    className={`w-4 h-4 ml-2 ${isArabic ? "rotate-180" : ""}`}
+                  />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -343,19 +342,19 @@ function FeatureCard({
   badge?: string;
 }) {
   return (
-    <div className="group rounded-2xl bg-white border border-line-soft p-6 hover:border-primary-200 hover:shadow-md transition-all duration-300">
+    <div className="group rounded-2xl bg-card border border-border p-6 hover:border-primary/40 hover:shadow-md transition-all duration-300">
       <div className="flex items-start justify-between mb-3">
-        <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-primary-50 text-primary-600 group-hover:bg-primary-100 transition-colors">
+        <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
           {icon}
         </div>
         {badge && (
-          <span className="badge text-[10px] py-0.5 bg-amber-50 text-amber-700 border border-amber-200">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30">
             {badge}
           </span>
         )}
       </div>
-      <h3 className="text-base font-semibold text-ink-mid mb-2">{title}</h3>
-      <p className="text-sm text-ink-light leading-relaxed">{body}</p>
+      <h3 className="text-base font-semibold text-foreground mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
     </div>
   );
 }
@@ -371,12 +370,12 @@ function ValueProp({
 }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center">
+      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
         {icon}
       </div>
       <div>
-        <h4 className="text-sm font-bold text-ink-mid mb-0.5">{title}</h4>
-        <p className="text-xs text-ink-light leading-relaxed">{body}</p>
+        <h4 className="text-sm font-bold text-foreground mb-0.5">{title}</h4>
+        <p className="text-xs text-muted-foreground leading-relaxed">{body}</p>
       </div>
     </div>
   );
@@ -402,13 +401,13 @@ function ComparisonRow({
 }) {
   return (
     <>
-      <div className="p-4 border-t border-line-soft text-ink-mid font-medium">
+      <div className="p-4 border-t border-border text-foreground font-medium">
         {label}
       </div>
-      <div className="p-4 border-t border-line-soft border-s text-center text-ink-light text-sm">
+      <div className="p-4 border-t border-border border-s text-center text-muted-foreground text-sm">
         {generic}
       </div>
-      <div className="p-4 border-t border-line-soft text-center bg-primary-50/30 text-primary-800 font-semibold text-sm">
+      <div className="p-4 border-t border-border text-center bg-primary/15 text-primary font-semibold text-sm">
         {zyrix}
       </div>
     </>

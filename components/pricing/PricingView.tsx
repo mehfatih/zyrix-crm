@@ -112,10 +112,10 @@ export default function PricingView({ locale }: { locale: string }) {
 
   const heroSection = (
     <section className="pt-12 pb-6 px-4 text-center">
-      <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+      <h1 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
         {t("title")}
       </h1>
-      <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+      <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
         {t("subtitle")}
       </p>
     </section>
@@ -125,13 +125,13 @@ export default function PricingView({ locale }: { locale: string }) {
     <section className="px-4 pb-6">
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
         {/* Billing toggle */}
-        <div className="inline-flex rounded-full bg-white border border-sky-200 p-1">
+        <div className="inline-flex rounded-full bg-card border border-sky-500/30 p-1">
           <button
             onClick={() => setBilling("monthly")}
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
               billing === "monthly"
                 ? "bg-sky-500 text-white"
-                : "text-slate-700 hover:bg-sky-50"
+                : "text-foreground hover:bg-sky-500/10"
             }`}
           >
             {t("monthly")}
@@ -141,11 +141,11 @@ export default function PricingView({ locale }: { locale: string }) {
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
               billing === "yearly"
                 ? "bg-sky-500 text-white"
-                : "text-slate-700 hover:bg-sky-50"
+                : "text-foreground hover:bg-sky-500/10"
             }`}
           >
             {t("yearly")}
-            <span className="ltr:ml-1.5 rtl:mr-1.5 inline-flex items-center rounded-full bg-emerald-100 text-emerald-700 px-1.5 py-0.5 text-[10px] font-semibold">
+            <span className="ltr:ml-1.5 rtl:mr-1.5 inline-flex items-center rounded-full bg-emerald-500/15 text-emerald-300 px-1.5 py-0.5 text-[10px] font-semibold">
               {t("yearlySave")}
             </span>
           </button>
@@ -153,7 +153,7 @@ export default function PricingView({ locale }: { locale: string }) {
 
         {/* Currency — independent of header language switcher */}
         <div
-          className="inline-flex rounded-full bg-white border border-sky-200 p-1"
+          className="inline-flex rounded-full bg-card border border-sky-500/30 p-1"
           aria-label="Billing currency"
         >
           {(["USD", "TRY", "SAR"] as Currency[]).map((c) => (
@@ -163,7 +163,7 @@ export default function PricingView({ locale }: { locale: string }) {
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 currency === c
                   ? "bg-sky-500 text-white"
-                  : "text-slate-700 hover:bg-sky-50"
+                  : "text-foreground hover:bg-sky-500/10"
               }`}
             >
               {c}
@@ -179,11 +179,11 @@ export default function PricingView({ locale }: { locale: string }) {
       <div className="max-w-6xl mx-auto">
         {loading && (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-sky-500" size={28} />
+            <Loader2 className="animate-spin text-primary" size={28} />
           </div>
         )}
         {error && !loading && (
-          <div className="max-w-md mx-auto rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800 text-center">
+          <div className="max-w-md mx-auto rounded-lg bg-destructive/10 border border-destructive/30 p-4 text-sm text-destructive text-center">
             {error}
           </div>
         )}
@@ -213,22 +213,22 @@ export default function PricingView({ locale }: { locale: string }) {
   const faqSection = (
     <section className="px-4 pb-16">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">
+        <h2 className="text-2xl font-bold text-foreground text-center mb-8">
           {tFaq("title")}
         </h2>
         <div className="space-y-3">
           {[1, 2, 3, 4].map((n) => (
             <details
               key={n}
-              className="group rounded-xl bg-white border border-sky-100 overflow-hidden"
+              className="group rounded-xl bg-card border border-border overflow-hidden"
             >
-              <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between text-sm font-semibold text-slate-900 hover:bg-sky-50 transition-colors">
+              <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between text-sm font-semibold text-foreground hover:bg-sky-500/10 transition-colors">
                 <span>{tFaq(`q${n}`)}</span>
-                <span className="ltr:ml-3 rtl:mr-3 text-sky-500 group-open:rotate-45 transition-transform text-xl leading-none">
+                <span className="ltr:ml-3 rtl:mr-3 text-primary group-open:rotate-45 transition-transform text-xl leading-none">
                   +
                 </span>
               </summary>
-              <div className="px-5 pb-4 text-sm text-slate-600 leading-relaxed">
+              <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed">
                 {tFaq(`a${n}`)}
               </div>
             </details>
@@ -296,10 +296,10 @@ function PlanCard({
 
   return (
     <div
-      className={`relative rounded-2xl bg-white p-6 flex flex-col ${
+      className={`relative rounded-2xl bg-card p-6 flex flex-col ${
         featured
           ? "border-2 border-sky-400 shadow-xl shadow-sky-900/10"
-          : "border border-sky-100"
+          : "border border-border"
       }`}
     >
       {featured && (
@@ -316,9 +316,9 @@ function PlanCard({
             className="w-2 h-8 rounded-full"
             style={{ backgroundColor: plan.color }}
           />
-          <h3 className="text-xl font-bold text-slate-900">{name}</h3>
+          <h3 className="text-xl font-bold text-foreground">{name}</h3>
         </div>
-        <p className="mt-2 text-sm text-slate-600 min-h-[2.5rem]">
+        <p className="mt-2 text-sm text-muted-foreground min-h-[2.5rem]">
           {description}
         </p>
       </div>
@@ -327,25 +327,25 @@ function PlanCard({
       <div className="mb-5">
         {isEnterprise ? (
           <div>
-            <div className="text-3xl font-bold text-slate-900">
+            <div className="text-3xl font-bold text-foreground">
               {t("customPrice")}
             </div>
-            <div className="text-xs text-slate-500 mt-1">
+            <div className="text-xs text-muted-foreground mt-1">
               {t("contactSales")}
             </div>
           </div>
         ) : (
           <div>
             <div className="flex items-baseline gap-1">
-              <span className="text-4xl font-bold text-slate-900">
+              <span className="text-4xl font-bold text-foreground">
                 {CURRENCY_SYMBOL[currency]}
                 {price.toLocaleString()}
               </span>
-              <span className="text-sm text-slate-500">
+              <span className="text-sm text-muted-foreground">
                 /{billing === "monthly" ? t("month") : t("year")}
               </span>
             </div>
-            <div className="text-xs text-slate-500 mt-1">
+            <div className="text-xs text-muted-foreground mt-1">
               {t("perCompany")}
             </div>
           </div>
@@ -359,15 +359,15 @@ function PlanCard({
           featured
             ? "bg-sky-500 hover:bg-sky-600 text-white"
             : isFree
-            ? "bg-slate-900 hover:bg-slate-800 text-white"
-            : "bg-sky-50 hover:bg-sky-100 text-sky-600 border border-sky-200"
+            ? "bg-foreground hover:bg-foreground/90 text-background"
+            : "bg-sky-500/10 hover:bg-sky-500/20 text-primary border border-sky-500/30"
         }`}
       >
         {isEnterprise ? t("contactSales") : t("getStarted")}
       </Link>
 
       {/* Limits summary */}
-      <div className="space-y-2 text-sm mb-5 pb-5 border-b border-slate-100">
+      <div className="space-y-2 text-sm mb-5 pb-5 border-b border-border">
         <LimitRow
           label={tLimits("users")}
           value={plan.maxUsers >= 999999 ? tLimits("unlimited") : plan.maxUsers.toLocaleString()}
@@ -402,7 +402,7 @@ function PlanCard({
 
       {/* Features list */}
       <div className="flex-1">
-        <div className="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">
+        <div className="text-xs font-semibold text-foreground uppercase tracking-wide mb-3">
           {t("includes")}
         </div>
         <ul className="space-y-2">
@@ -410,13 +410,13 @@ function PlanCard({
             <li key={slug} className="flex items-start gap-2 text-sm">
               <Check
                 size={14}
-                className="text-sky-500 mt-0.5 flex-shrink-0"
+                className="text-primary mt-0.5 flex-shrink-0"
               />
-              <span className="text-slate-700">{safeTrans(tFeat, slug)}</span>
+              <span className="text-foreground">{safeTrans(tFeat, slug)}</span>
             </li>
           ))}
           {plan.features.length > visibleFeatures.length && (
-            <li className="text-xs text-slate-500 italic ltr:pl-6 rtl:pr-6">
+            <li className="text-xs text-muted-foreground italic ltr:pl-6 rtl:pr-6">
               + {plan.features.length - visibleFeatures.length} more
             </li>
           )}
@@ -429,8 +429,8 @@ function PlanCard({
 function LimitRow({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="flex items-center justify-between">
-      <span className="text-slate-600">{label}</span>
-      <span className="font-semibold text-slate-900">{value}</span>
+      <span className="text-muted-foreground">{label}</span>
+      <span className="font-semibold text-foreground">{value}</span>
     </div>
   );
 }

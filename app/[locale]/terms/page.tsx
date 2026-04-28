@@ -37,23 +37,23 @@ export default async function TermsPage({
 
   return (
     <PublicShell locale={locale}>
-      <article className="container-zyrix py-12 md:py-16 max-w-3xl">
+      <article className="container mx-auto px-4 max-w-3xl py-12 md:py-16">
         {/* Header */}
         <header className="mb-10">
-          <p className="text-xs font-bold uppercase tracking-widest text-primary-600 mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
             {t("eyebrow")}
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-ink-mid mb-3">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             {t("title")}
           </h1>
-          <p className="text-sm text-ink-light">
+          <p className="text-sm text-muted-foreground">
             {t("lastUpdated")}: {t("lastUpdatedDate")}
           </p>
         </header>
 
         {/* Intro */}
-        <div className="mb-8 p-6 rounded-2xl bg-bg-card border border-line-soft">
-          <p className="text-base text-ink-mid leading-relaxed m-0">
+        <div className="mb-8 p-6 rounded-2xl bg-card border border-border">
+          <p className="text-base text-foreground leading-relaxed m-0">
             {t("intro")}
           </p>
         </div>
@@ -128,17 +128,17 @@ export default async function TermsPage({
 
           <Section title={t("s10.title")}>
             <p>{t("s10.p1")}</p>
-            <div className="rounded-xl bg-primary-50 border border-primary-100 p-5 mt-4">
-              <p className="text-sm text-ink-mid m-0">
+            <div className="rounded-xl bg-primary/10 border border-primary/20 p-5 mt-4">
+              <p className="text-sm text-foreground m-0">
                 <strong>Email:</strong>{" "}
                 <a
                   href="mailto:legal@zyrix.co"
-                  className="text-primary-600 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   legal@zyrix.co
                 </a>
               </p>
-              <p className="text-sm text-ink-mid mt-2 mb-0">
+              <p className="text-sm text-foreground mt-2 mb-0">
                 <strong>Company:</strong> Zyrix, Istanbul, Türkiye
               </p>
             </div>
@@ -152,10 +152,10 @@ export default async function TermsPage({
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="text-xl md:text-2xl font-bold text-ink-mid mb-4">
+      <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
         {title}
       </h2>
-      <div className="text-ink-light leading-relaxed space-y-3 [&_ul]:list-disc [&_ul]:ps-6 [&_ul]:space-y-2 [&_ul_li]:text-sm [&_p]:text-sm md:[&_p]:text-base [&_a]:text-primary-600 [&_a:hover]:underline [&_strong]:text-ink-mid">
+      <div className="text-muted-foreground leading-relaxed space-y-3 [&_ul]:list-disc [&_ul]:ps-6 [&_ul]:space-y-2 [&_ul_li]:text-sm [&_p]:text-sm md:[&_p]:text-base [&_a]:text-primary [&_a:hover]:underline [&_strong]:text-foreground">
         {children}
       </div>
     </section>
