@@ -87,7 +87,7 @@ export function AIPipelineBoard({ workspaceId, onDealClick }: Props) {
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <div className="overflow-x-auto pb-4">
-        <div className="flex min-w-max gap-4">
+        <div className="flex min-w-max items-stretch gap-4">
           {STAGES.map((stage) => {
             const stageDeals = data.deals.filter((d) => d.stage === stage.id);
             const health = data.stageHealth[stage.id];
@@ -128,7 +128,7 @@ function StageColumn({
   const { setNodeRef, isOver } = useDroppable({ id: stageId });
 
   return (
-    <div className="flex w-72 flex-col">
+    <div className="flex w-72 flex-col self-stretch">
       <div
         className={`rounded-t-xl border border-b-0 border-border border-t-4 bg-card p-3 ${tone}`}
       >
@@ -138,11 +138,11 @@ function StageColumn({
             {deals.length}
           </span>
         </div>
-        <div className="mt-1 text-base font-bold text-primary">
+        <div className="mt-1 text-base font-bold text-primary tabular-nums">
           ${(health.totalValue / 1000).toFixed(0)}k
         </div>
         {health.isBottleneck && (
-          <div className="mt-2 flex items-center gap-1 rounded-md bg-amber-500/10 px-2 py-1 text-[11px] font-semibold text-amber-300">
+          <div className="mt-2 flex items-center gap-1 rounded-md bg-amber-500/10 px-2 py-1 text-[11px] font-semibold text-amber-300 border border-amber-500/30">
             <AlertTriangle size={11} />
             <span>
               {t('bottleneck')} {health.avgDaysInStage}d / {health.baselineDays}d
@@ -158,10 +158,9 @@ function StageColumn({
 
       <div
         ref={setNodeRef}
-        className={`flex-1 space-y-2 rounded-b-xl border border-border bg-muted p-2 transition-colors ${
+        className={`flex-1 min-h-[600px] space-y-2 rounded-b-xl border border-border bg-muted p-2 transition-colors ${
           isOver ? 'bg-violet-500/10' : ''
         }`}
-        style={{ minHeight: 400 }}
       >
         {deals.map((deal) => (
           <DealCard
@@ -172,7 +171,7 @@ function StageColumn({
           />
         ))}
         {deals.length === 0 && (
-          <div className="flex h-32 items-center justify-center rounded-lg border-2 border-dashed border-border text-xs text-muted-foreground">
+          <div className="flex flex-1 min-h-[400px] items-center justify-center rounded-lg border-2 border-dashed border-border text-xs text-muted-foreground">
             {t('dragDealsHere')}
           </div>
         )}

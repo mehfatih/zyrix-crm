@@ -41,6 +41,10 @@ import { listCustomers, type Customer } from "@/lib/api/customers";
 import { extractErrorMessage } from "@/lib/errors";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ExportButton from "@/components/advanced/ExportButton";
+import {
+  TopFiveHero,
+  type TopFiveItem,
+} from "@/components/shared/TopFiveHero";
 
 // ============================================================================
 // CONTRACTS PAGE
@@ -148,7 +152,7 @@ export default function ContractsPage() {
       const [c, s, cs] = await Promise.all([
         fetchContracts(q),
         fetchContractStats(),
-        listCustomers({ limit: 200 }),
+        listCustomers({ limit: 100 }),
       ]);
       setContracts(c.items);
       setStats(s);
@@ -326,6 +330,22 @@ export default function ContractsPage() {
           />
         </div>
 
+        {/* Top 5 hero */}
+        <TopFiveHero
+          eyebrow="TOP 5 CONTRACTS"
+          title="Highest-value agreements"
+          accentText="text-indigo-300"
+          items={contracts.map<TopFiveItem>((c) => ({
+            id: c.id,
+            primary: c.title || `Contract ${c.contractNumber}`,
+            secondary: c.customer.companyName ?? c.customer.fullName,
+            metric: parseFloat(c.value) || 0,
+            badge: c.status,
+          }))}
+          chartTitle="VALUE BY CONTRACT"
+          chartSubtitle="Top 5 agreement value"
+        />
+
         {/* Filters */}
         <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3 flex-wrap">
           <div className="relative flex-1 min-w-[220px]">
@@ -335,7 +355,7 @@ export default function ContractsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm bg-background text-foreground placeholder:text-muted-foreground border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <select
@@ -343,7 +363,7 @@ export default function ContractsPage() {
             onChange={(e) =>
               setStatusFilter(e.target.value as ContractStatus | "")
             }
-            className="px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="px-3 py-2 text-sm bg-background text-foreground border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">{t("filters.allStatuses")}</option>
             <option value="draft">{t("status.draft")}</option>
