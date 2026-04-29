@@ -17,6 +17,7 @@ import {
   Receipt,
 } from "lucide-react";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import { TaxInvoicesPresetStrip } from "@/components/tax-invoices/TaxInvoicesPresetStrip";
 import { useAuth } from "@/lib/auth/context";
 import {
   regimesForCountry,
@@ -190,6 +191,9 @@ export default function TaxInvoicesPage() {
             }}
           />
         )}
+
+        {/* Sprint 14v — Locale-aware tax-system preset */}
+        <TaxInvoicesPresetStrip />
 
         {/* Regime filter pills */}
         <div className="flex items-center gap-1.5 flex-wrap">
