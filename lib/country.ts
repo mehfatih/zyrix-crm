@@ -26,7 +26,8 @@ export type CountryCode =
   | "BH"
   | "OM"
   | "JO"
-  | "LB";
+  | "LB"
+  | "US";
 
 export type InvoiceRegime = "zatca" | "efatura" | "earsiv" | "none";
 export type DateFormat = "dd/MM/yyyy" | "MM/dd/yyyy" | "yyyy-MM-dd";
@@ -188,6 +189,21 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     dateFormat: "dd/MM/yyyy",
     locale: "ar-LB",
     phonePrefix: "+961",
+  },
+  US: {
+    code: "US",
+    name: { en: "United States", ar: "الولايات المتحدة", tr: "Amerika" },
+    currency: "USD",
+    currencySymbol: "$",
+    taxName: { en: "Sales Tax", ar: "ضريبة المبيعات", tr: "Satış Vergisi" },
+    // US sales tax is state-dependent. Stored as 0 here as a sensible
+    // baseline; per-state rates are managed inside the Tax Engine.
+    taxRate: 0,
+    zatca: false,
+    eFatura: false,
+    dateFormat: "MM/dd/yyyy",
+    locale: "en-US",
+    phonePrefix: "+1",
   },
 };
 
