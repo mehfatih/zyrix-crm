@@ -14,7 +14,6 @@ import {
   Sparkles,
   Star,
   Globe,
-  Zap,
 } from "lucide-react";
 import {
   fetchTaxRates,
@@ -28,6 +27,7 @@ import {
   type CreateTaxRateDto,
 } from "@/lib/api/tax";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import { TaxPresetStrip } from "@/components/tax/TaxPresetStrip";
 
 // ============================================================================
 // TAX ENGINE PAGE
@@ -196,7 +196,9 @@ export default function TaxPage() {
   }, {});
 
   const seededCountries = new Set(
-    rates.filter((r) => r.countryCode).map((r) => r.countryCode)
+    rates
+      .map((r) => r.countryCode)
+      .filter((c): c is string => Boolean(c))
   );
 
   return (
@@ -221,55 +223,14 @@ export default function TaxPage() {
           </button>
         </div>
 
-        {/* Presets quick-seed */}
+        {/* Presets quick-seed — Sprint 14t: country-aware single-card + dropdown */}
         {presets.length > 0 && (
-          <div className="bg-gradient-to-r from-sky-50 to-sky-50 border border-border rounded-xl p-5">
-            <div className="flex items-start gap-3 mb-3">
-              <div className="bg-card rounded-lg p-2 shadow-sm">
-                <Zap className="w-5 h-5 text-cyan-300" />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">
-                  {t("presets.title")}
-                </h3>
-                <p className="text-xs text-muted-foreground">
-                  {t("presets.subtitle")}
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {presets.map((p, idx) => {
-                const already = seededCountries.has(p.countryCode);
-                return (
-                  <button
-                    key={idx}
-                    onClick={() => handleSeed(p.countryCode)}
-                    disabled={seedingCountry === p.countryCode || already}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors border ${
-                      already
-                        ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 cursor-not-allowed"
-                        : "bg-card hover:bg-muted text-cyan-300 border-border"
-                    }`}
-                  >
-                    {seedingCountry === p.countryCode ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    ) : (
-                      <span className="text-base">
-                        {COUNTRY_FLAG[p.countryCode] || "🏳️"}
-                      </span>
-                    )}
-                    {p.countryCode}
-                    <span className="text-xs text-muted-foreground">
-                      ({p.rateCount} {t("presets.rates")})
-                    </span>
-                    {already && (
-                      <span className="text-xs">✓ {t("presets.added")}</span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+          <TaxPresetStrip
+            presets={presets}
+            seededCountries={seededCountries}
+            seedingCountry={seedingCountry}
+            onSeed={handleSeed}
+          />
         )}
 
         {/* Content */}

@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
   DollarSign,
+  Coins,
   Plus,
   Loader2,
   Trash2,
@@ -45,6 +46,12 @@ import {
 } from "@/lib/api/commission";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ExportButton from "@/components/advanced/ExportButton";
+import {
+  TopFiveHero,
+  type TopFiveItem,
+} from "@/components/shared/TopFiveHero";
+import { useUserCountry } from "@/hooks/useUserCountry";
+import { formatMoney as formatMoneyLocale } from "@/lib/locale-tax";
 
 // ============================================================================
 // COMMISSION ENGINE PAGE
@@ -92,6 +99,7 @@ export default function CommissionPage() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "en";
   const t = useTranslations("Commission");
+  const { country, config: countryConfig } = useUserCountry();
 
   const [tab, setTab] = useState<Tab>("rules");
   const [rules, setRules] = useState<CommissionRule[]>([]);
@@ -186,9 +194,15 @@ export default function CommissionPage() {
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
             <p className="text-lime-300 text-xs font-bold uppercase tracking-widest mb-2">COMMISSIONS</p>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-              <DollarSign className="w-6 h-6 text-cyan-300" />
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-3 flex-wrap">
+              <span className="w-9 h-9 rounded-lg bg-lime-500/15 border border-lime-500/30 flex items-center justify-center">
+                <Coins className="w-5 h-5 text-lime-300" />
+              </span>
               {t("title")}
+              <span className="text-lime-200 text-sm font-bold px-2 py-1 rounded-md bg-lime-500/15 border border-lime-500/30 tabular-nums inline-flex items-center gap-1.5">
+                <span>{countryConfig.currency}</span>
+                <span className="text-lime-300">{countryConfig.currencySymbol}</span>
+              </span>
             </h1>
             <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
@@ -218,6 +232,22 @@ export default function CommissionPage() {
             </button>
           </div>
         </div>
+
+        {/* Top 5 earners hero (Sprint 14t) */}
+        <TopFiveHero
+          eyebrow="TOP 5 EARNERS"
+          title="Highest commission this period"
+          accentText="text-lime-300"
+          items={(stats?.topUsers ?? []).map<TopFiveItem>((u) => ({
+            id: u.user.id,
+            primary: u.user.fullName,
+            secondary: `${u.count} entr${u.count === 1 ? "y" : "ies"}`,
+            metric: u.amount,
+          }))}
+          formatMetric={(v) => formatMoneyLocale(v, country)}
+          chartTitle="COMMISSION EARNED"
+          chartSubtitle="Top 5 representatives"
+        />
 
         {/* Tabs */}
         <div className="border-b border-border flex gap-1 overflow-x-auto">
