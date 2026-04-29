@@ -4283,5 +4283,14 @@
       "label": "Add section",
       "empty": "All sections already added."
     }
+  },
+  "upgrade": {
+    "eyebrow": "PREMIUM FEATURE",
+    "unlockTitle": "Unlock {feature}",
+    "whatYouGet": "What you get",
+    "unlockButton": "Upgrade to unlock",
+    "backButton": "Back to dashboard",
+    "alreadyPro": "Already on a higher plan?",
+    "contactSupport": "Contact support"
   }
 }
