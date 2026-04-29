@@ -1887,7 +1887,20 @@
     },
     "empty": {
       "title": "Her şey yolunda!",
-      "subtitle": "Tüm müşterilerle yakın zamanda iletişim kuruldu. Harika iş."
+      "subtitle": "Tüm müşterilerle yakın zamanda iletişim kuruldu. Harika iş.",
+      "contactedLast7d": "Son 7 günde {count} müşteriyle iletişim kuruldu",
+      "avgResponseHours": "Ort. yanıt süresi: {hours} saat"
+    },
+    "trend": {
+      "title": "30 Günlük Trend",
+      "subtitle": "Her takip durumuna giren müşterilerin günlük sayısı.",
+      "chartType": {
+        "line": "Çizgi",
+        "area": "Alan",
+        "bar": "Sütun"
+      },
+      "empty": "Son 30 günde takip etkinliği yok.",
+      "insetTitle": "Risk Altındaki Değer"
     },
     "groups": {
       "critical": "Kritik — acil ilgi gerekiyor",
