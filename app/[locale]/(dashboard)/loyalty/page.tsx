@@ -42,6 +42,10 @@ import {
 import { listCustomers, type Customer } from "@/lib/api/customers";
 import { extractErrorMessage } from "@/lib/errors";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import {
+  TopFiveHero,
+  type TopFiveItem,
+} from "@/components/shared/TopFiveHero";
 
 // ============================================================================
 // LOYALTY PAGE
@@ -104,7 +108,7 @@ export default function LoyaltyPage() {
         fetchLoyaltyStats(),
         fetchTopMembers(10),
         fetchLoyaltyTransactions({ limit: 100 }),
-        listCustomers({ limit: 200 }),
+        listCustomers({ limit: 100 }),
       ]);
       setProgram(p);
       setStats(s);
@@ -179,6 +183,23 @@ export default function LoyaltyPage() {
             </button>
           </div>
         )}
+
+        {/* Top 5 hero */}
+        <TopFiveHero
+          eyebrow="TOP 5 LOYAL CUSTOMERS"
+          title="Highest balance members"
+          accentText="text-rose-300"
+          items={topMembers.map<TopFiveItem>((m) => ({
+            id: m.customer.id,
+            primary: m.customer.fullName,
+            secondary: m.customer.companyName ?? undefined,
+            metric: m.balance,
+            metricLabel: "pts",
+          }))}
+          chartTitle="POINTS BALANCE"
+          chartSubtitle="Top 5 member balances"
+          formatMetric={(v) => v.toLocaleString()}
+        />
 
         {/* Tabs */}
         <div className="border-b border-border flex gap-1 overflow-x-auto">

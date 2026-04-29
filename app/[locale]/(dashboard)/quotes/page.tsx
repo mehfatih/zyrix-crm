@@ -43,6 +43,10 @@ import { listCustomers, type Customer } from "@/lib/api/customers";
 import { extractErrorMessage } from "@/lib/errors";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ExportButton from "@/components/advanced/ExportButton";
+import {
+  TopFiveHero,
+  type TopFiveItem,
+} from "@/components/shared/TopFiveHero";
 
 // ============================================================================
 // QUOTES PAGE
@@ -163,7 +167,7 @@ export default function QuotesPage() {
       const [s, q, c] = await Promise.all([
         fetchQuoteStats(),
         fetchQuotes(p),
-        listCustomers({ limit: 200 }),
+        listCustomers({ limit: 100 }),
       ]);
       setStats(s);
       setQuotes(q.items);
@@ -405,6 +409,23 @@ export default function QuotesPage() {
           />
         </div>
 
+        {/* Top 5 hero */}
+        <TopFiveHero
+          eyebrow="TOP 5 QUOTES"
+          title="Highest-value proposals"
+          accentText="text-sky-300"
+          items={quotes.map<TopFiveItem>((q) => ({
+            id: q.id,
+            primary: q.title || `Quote ${q.quoteNumber}`,
+            secondary:
+              q.customer?.companyName ?? q.customer?.fullName ?? undefined,
+            metric: parseFloat(q.total) || 0,
+            badge: q.status,
+          }))}
+          chartTitle="VALUE BY QUOTE"
+          chartSubtitle="Top 5 proposal value"
+        />
+
         {/* Filters */}
         <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3 flex-wrap">
           <div className="relative flex-1 min-w-[220px]">
@@ -414,7 +435,7 @@ export default function QuotesPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm bg-background text-foreground placeholder:text-muted-foreground border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <select
@@ -422,7 +443,7 @@ export default function QuotesPage() {
             onChange={(e) =>
               setStatusFilter(e.target.value as QuoteStatus | "")
             }
-            className="px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="px-3 py-2 text-sm bg-background text-foreground border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">{t("filters.allStatuses")}</option>
             <option value="draft">{t("status.draft")}</option>
