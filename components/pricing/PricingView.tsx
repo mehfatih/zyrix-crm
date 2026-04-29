@@ -3,23 +3,55 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { fetchPublicPlans, type AdminPlan } from "@/lib/api/admin";
 import { Check, Loader2, Star } from "lucide-react";
+import { fetchPublicPlans, type AdminPlan } from "@/lib/api/admin";
+import { useDisplayCurrency } from "@/hooks/useDisplayCurrency";
+import { CurrencySwitcher } from "@/components/billing/CurrencySwitcher";
+import { PlanPriceTag } from "@/components/billing/PlanPriceTag";
+import {
+  PLAN_PRICES_USD,
+  isContactSalesPlan,
+  isPlanId,
+  type PlanId,
+} from "@/lib/billing/currency";
+import { buildCheckoutUrl } from "@/lib/billing/checkout-url";
 
 // ============================================================================
-// PUBLIC PRICING VIEW
+// PUBLIC PRICING VIEW — sprint 14aa
 // ----------------------------------------------------------------------------
-// Currency is derived from the visitor's *country* (IP-detected for logged-out
-// users), NOT the URL language. So an Arabic speaker in Türkiye visiting /ar
-// still sees TRY. Users can override with the currency dropdown, which is
-// completely separate from the header language switcher.
+// Wired to the Sprint 14z currency engine. USD is the canonical price source
+// (PLAN_PRICES_USD). The visitor's display currency is resolved by
+// useDisplayCurrency (locale → localStorage override). The CurrencySwitcher
+// at the top lets visitors override their detected currency.
 // ============================================================================
 
 type Billing = "monthly" | "yearly";
 
-// Static fallback used when the public plans API is unreachable
-// (e.g., on Vercel preview before backend is deployed). Shape matches AdminPlan.
-const STATIC_PLANS: AdminPlan[] = [
+// Static metadata fallback used when the public plans API is unreachable.
+// Prices are NEVER stored here — the single source is PLAN_PRICES_USD.
+// Slugs MUST match PlanId so PLAN_PRICES_USD lookups resolve.
+const STATIC_PLANS: Pick<
+  AdminPlan,
+  | "id"
+  | "slug"
+  | "name"
+  | "nameAr"
+  | "nameTr"
+  | "description"
+  | "descriptionAr"
+  | "descriptionTr"
+  | "maxUsers"
+  | "maxCustomers"
+  | "maxDeals"
+  | "maxStorageGb"
+  | "maxWhatsappMsg"
+  | "maxAiTokens"
+  | "features"
+  | "isActive"
+  | "isFeatured"
+  | "sortOrder"
+  | "color"
+>[] = [
   {
     id: "static-free",
     slug: "free",
@@ -29,12 +61,6 @@ const STATIC_PLANS: AdminPlan[] = [
     description: "For small teams getting started",
     descriptionAr: "للفرق الصغيرة التي تبدأ",
     descriptionTr: "Yeni başlayan küçük ekipler için",
-    priceMonthlyUsd: 0,
-    priceYearlyUsd: 0,
-    priceMonthlyTry: 0,
-    priceYearlyTry: 0,
-    priceMonthlySar: 0,
-    priceYearlySar: 0,
     maxUsers: 3,
     maxCustomers: 100,
     maxDeals: 50,
@@ -56,12 +82,6 @@ const STATIC_PLANS: AdminPlan[] = [
     description: "For growing teams that need more",
     descriptionAr: "للفرق النامية التي تحتاج إلى المزيد",
     descriptionTr: "Daha fazlasına ihtiyaç duyan büyüyen ekipler için",
-    priceMonthlyUsd: 19,
-    priceYearlyUsd: 190,
-    priceMonthlyTry: 760,
-    priceYearlyTry: 7600,
-    priceMonthlySar: 71,
-    priceYearlySar: 710,
     maxUsers: 10,
     maxCustomers: 1000,
     maxDeals: 500,
@@ -83,12 +103,6 @@ const STATIC_PLANS: AdminPlan[] = [
     description: "For growing businesses with full needs",
     descriptionAr: "للأعمال النامية ذات الاحتياجات الكاملة",
     descriptionTr: "Tam ihtiyaçları olan büyüyen işletmeler için",
-    priceMonthlyUsd: 49,
-    priceYearlyUsd: 490,
-    priceMonthlyTry: 1960,
-    priceYearlyTry: 19600,
-    priceMonthlySar: 184,
-    priceYearlySar: 1840,
     maxUsers: 50,
     maxCustomers: 10000,
     maxDeals: 5000,
@@ -110,12 +124,6 @@ const STATIC_PLANS: AdminPlan[] = [
     description: "Custom plan for large organizations",
     descriptionAr: "خطة مخصصة للمؤسسات الكبيرة",
     descriptionTr: "Büyük kuruluşlar için özel plan",
-    priceMonthlyUsd: 0,
-    priceYearlyUsd: 0,
-    priceMonthlyTry: 0,
-    priceYearlyTry: 0,
-    priceMonthlySar: 0,
-    priceYearlySar: 0,
     maxUsers: 999999,
     maxCustomers: 999999,
     maxDeals: 999999,
@@ -130,24 +138,28 @@ const STATIC_PLANS: AdminPlan[] = [
   },
 ];
 
+// Loose-typed view of a plan after it leaves either fetchPublicPlans() or
+// STATIC_PLANS — only fields we actually consume.
+type PlanRecord = (typeof STATIC_PLANS)[number];
+
 export default function PricingView({ locale }: { locale: string }) {
   const t = useTranslations("Pricing");
   const tFeat = useTranslations("Pricing.features");
   const tLimits = useTranslations("Pricing.limits");
   const tFaq = useTranslations("Pricing.faq");
 
-  const [plans, setPlans] = useState<AdminPlan[] | null>(null);
+  const [plans, setPlans] = useState<PlanRecord[] | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   const [billing, setBilling] = useState<Billing>("monthly");
 
+  // Sprint 14aa — currency engine.
+  const { currency } = useDisplayCurrency();
+
   useEffect(() => {
     fetchPublicPlans()
-      .then((res) => setPlans(res))
+      .then((res) => setPlans(res as PlanRecord[]))
       .catch((err) => {
-        // Backend unavailable (e.g. Vercel preview before backend deploy):
-        // fall back to static plans so the page still renders something useful.
         console.warn("Pricing API unavailable, using static fallback:", err);
         setPlans(STATIC_PLANS);
       })
@@ -155,18 +167,13 @@ export default function PricingView({ locale }: { locale: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function priceFor(p: AdminPlan): number {
-    const v = billing === "monthly" ? p.priceMonthlyUsd : p.priceYearlyUsd;
-    return typeof v === "string" ? parseFloat(v) : (v as number);
-  }
-
-  function localizedName(p: AdminPlan) {
+  function localizedName(p: PlanRecord) {
     if (locale === "ar") return p.nameAr || p.name;
     if (locale === "tr") return p.nameTr || p.name;
     return p.name;
   }
 
-  function localizedDesc(p: AdminPlan) {
+  function localizedDesc(p: PlanRecord) {
     if (locale === "ar") return p.descriptionAr || p.description || "";
     if (locale === "tr") return p.descriptionTr || p.description || "";
     return p.description || "";
@@ -185,7 +192,10 @@ export default function PricingView({ locale }: { locale: string }) {
 
   const controlsSection = (
     <section className="px-4 pb-6">
-      <div className="max-w-4xl mx-auto flex items-center justify-center">
+      <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
+        {/* Currency switcher */}
+        <CurrencySwitcher />
+
         {/* Billing toggle */}
         <div className="inline-flex rounded-full bg-card border border-sky-500/30 p-1">
           <button
@@ -224,19 +234,14 @@ export default function PricingView({ locale }: { locale: string }) {
             <Loader2 className="animate-spin text-primary" size={28} />
           </div>
         )}
-        {error && !loading && (
-          <div className="max-w-md mx-auto rounded-lg bg-destructive/10 border border-destructive/30 p-4 text-sm text-destructive text-center">
-            {error}
-          </div>
-        )}
         {plans && !loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((p) => (
               <PlanCard
                 key={p.id}
                 plan={p}
-                price={priceFor(p)}
                 billing={billing}
+                currency={currency}
                 name={localizedName(p)}
                 description={localizedDesc(p)}
                 locale={locale}
@@ -294,8 +299,8 @@ export default function PricingView({ locale }: { locale: string }) {
 // ─────────────────────────────────────────────────────────────────────────
 function PlanCard({
   plan,
-  price,
   billing,
+  currency,
   name,
   description,
   locale,
@@ -303,9 +308,9 @@ function PlanCard({
   tLimits,
   t,
 }: {
-  plan: AdminPlan;
-  price: number;
+  plan: PlanRecord;
   billing: Billing;
+  currency: ReturnType<typeof useDisplayCurrency>["currency"];
   name: string;
   description: string;
   locale: string;
@@ -313,22 +318,22 @@ function PlanCard({
   tLimits: ReturnType<typeof useTranslations>;
   t: ReturnType<typeof useTranslations>;
 }) {
-  const isEnterprise = plan.slug === "enterprise";
+  const knownPlan = isPlanId(plan.slug);
+  const isContactSales = knownPlan && isContactSalesPlan(plan.slug as PlanId);
   const isFree = plan.slug === "free";
   const featured = plan.isFeatured;
 
-  const signupHref = `/${locale}/signup?plan=${plan.slug}`;
-  const contactHref = `/${locale}/contact?plan=enterprise`;
-  const checkoutHref = `/${locale}/checkout?plan=${plan.slug}&billing=${billing}&currency=USD`;
+  // Sprint 14aa — single source of truth for the URL.
+  const ctaHref = knownPlan
+    ? buildCheckoutUrl(locale, plan.slug as PlanId, billing, currency)
+    : `/${locale}/contact?plan=${plan.slug}`;
 
-  // Which URL does the CTA point to?
-  const ctaHref = isEnterprise
-    ? contactHref
-    : isFree
-      ? signupHref
-      : checkoutHref;
+  // Sprint 14aa — single source of truth for the price.
+  const usdAmount =
+    knownPlan && !isContactSales
+      ? PLAN_PRICES_USD[plan.slug as PlanId][billing]
+      : null;
 
-  // Top features to display prominently (from full list)
   const visibleFeatures = useMemo(() => {
     return plan.features.slice(0, 8);
   }, [plan.features]);
@@ -362,27 +367,25 @@ function PlanCard({
         </p>
       </div>
 
-      {/* Price */}
+      {/* Price — sprint 14aa: contact-sales gets a custom block, paid plans get PlanPriceTag */}
       <div className="mb-5">
-        {isEnterprise ? (
+        {isContactSales ? (
           <div>
             <div className="text-3xl font-bold text-foreground">
               {t("customPrice")}
             </div>
             <div className="text-xs text-muted-foreground mt-1">
-              {t("contactSales")}
+              {t("contactForQuote")}
             </div>
           </div>
         ) : (
           <div>
-            <div className="flex items-baseline gap-1">
-              <span className="text-4xl font-bold text-foreground">
-                ${price.toLocaleString()}
-              </span>
-              <span className="text-sm text-muted-foreground">
-                /{billing === "monthly" ? t("month") : t("year")}
-              </span>
-            </div>
+            <PlanPriceTag
+              usdAmount={usdAmount ?? 0}
+              currency={currency}
+              period={billing}
+              size="lg"
+            />
             <div className="text-xs text-muted-foreground mt-1">
               {t("perCompany")}
             </div>
@@ -397,11 +400,11 @@ function PlanCard({
           featured
             ? "bg-sky-500 hover:bg-sky-600 text-white"
             : isFree
-            ? "bg-foreground hover:bg-foreground/90 text-background"
-            : "bg-sky-500/10 hover:bg-sky-500/20 text-primary border border-sky-500/30"
+              ? "bg-card border border-border text-foreground hover:bg-muted"
+              : "bg-sky-500/10 hover:bg-sky-500/20 text-primary border border-sky-500/30"
         }`}
       >
-        {isEnterprise ? t("contactSales") : t("getStarted")}
+        {isContactSales ? t("contactSales") : t("getStarted")}
       </Link>
 
       {/* Limits summary */}
@@ -475,7 +478,7 @@ function LimitRow({ label, value }: { label: string; value: string | number }) {
 
 function safeTrans(
   t: ReturnType<typeof useTranslations>,
-  key: string
+  key: string,
 ): string {
   try {
     return t(key);

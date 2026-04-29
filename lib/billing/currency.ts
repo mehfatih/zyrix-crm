@@ -8,7 +8,7 @@
 
 import type { CountryCode } from "@/lib/country";
 
-export type PlanId = "free" | "starter" | "business" | "scale";
+export type PlanId = "free" | "starter" | "business" | "enterprise";
 
 export type DisplayCurrency =
   | "USD"
@@ -21,12 +21,21 @@ export type DisplayCurrency =
 
 export type BillingPeriod = "monthly" | "yearly";
 
-export const PLAN_PRICES_USD: Record<PlanId, { monthly: number; yearly: number }> = {
+// Sprint 14aa — null prices indicate a contact-sales tier (no fixed price).
+export const PLAN_PRICES_USD: Record<
+  PlanId,
+  { monthly: number | null; yearly: number | null }
+> = {
   free: { monthly: 0, yearly: 0 },
   starter: { monthly: 19, yearly: 182 },
   business: { monthly: 49, yearly: 470 },
-  scale: { monthly: 99, yearly: 950 },
+  enterprise: { monthly: null, yearly: null },
 };
+
+export function isContactSalesPlan(plan: PlanId): boolean {
+  const p = PLAN_PRICES_USD[plan];
+  return p.monthly === null && p.yearly === null;
+}
 
 export const FX_RATES: Record<DisplayCurrency, number> = {
   USD: 1,
@@ -98,10 +107,17 @@ export function convertPrice(usdAmount: number, currency: DisplayCurrency): numb
   }
 }
 
+/**
+ * Format a USD price into the visitor's display currency.
+ * Sprint 14aa — accepts null (contact-sales tier). When null, returns
+ * "—"; the caller is responsible for rendering the localized "Custom"
+ * label or a custom block.
+ */
 export function formatPlanPrice(
-  usdAmount: number,
+  usdAmount: number | null,
   currency: DisplayCurrency,
 ): string {
+  if (usdAmount === null) return "—";
   const converted = convertPrice(usdAmount, currency);
   const cfg = CURRENCY_CONFIG[currency];
   const intl = new Intl.NumberFormat(cfg.intlLocale, {
