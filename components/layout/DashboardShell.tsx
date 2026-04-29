@@ -2,41 +2,28 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
 import { useDraggableSplit } from "@/hooks/useDraggableSplit";
 import { useIdleTimeout } from "@/hooks/useIdleTimeout";
 import { recordSessionEvent } from "@/lib/api/session-events";
 import {
-  LayoutDashboard,
-  Users,
-  Briefcase,
-  MessageCircle,
-  MessageSquare,
   Activity,
-  CheckSquare,
-  FileText,
-  FileSignature,
-  Receipt,
-  Award,
-  Percent,
-  TrendingUp,
-  Bell,
-  Sparkles,
-  DollarSign,
-  Mail,
-  BarChart3,
-  Settings,
-  LogOut,
   CreditCard,
-  Shield,
   History,
-  Zap,
   Key,
+  LogOut,
+  Mail,
   Palette,
-  Store,
+  Settings,
+  Shield,
   ShieldCheck,
+  Sparkles,
+  Store,
+  Users,
 } from "lucide-react";
+import { SIDEBAR_GROUPS } from "@/lib/nav/sidebar-catalog";
 import { useAuth } from "@/lib/auth/context";
 import { fetchUnreadCount } from "@/lib/api/chat";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -56,10 +43,52 @@ interface DashboardShellProps {
   children: ReactNode;
 }
 
+const SIDEBAR_SCROLL_KEY = "zyrix.sidebar.scrollTop";
+
 export function DashboardShell({ locale, children }: DashboardShellProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations();
   const { user, company, isLoading, isAuthenticated, logout } = useAuth();
+
+  // Sprint 14ab — preserve sidebar scroll across navigations.
+  // sessionStorage so the position dies with the tab; rAF throttling
+  // so we don't slam storage on every wheel tick.
+  const sidebarNavRef = useRef<HTMLElement | null>(null);
+
+  // Restore on every pathname change (including first mount).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const saved = sessionStorage.getItem(SIDEBAR_SCROLL_KEY);
+    const el = sidebarNavRef.current;
+    if (saved && el) {
+      const value = parseInt(saved, 10);
+      if (!Number.isNaN(value)) el.scrollTop = value;
+    }
+  }, [pathname]);
+
+  // Persist on scroll, throttled via requestAnimationFrame.
+  useEffect(() => {
+    const el = sidebarNavRef.current;
+    if (!el) return;
+    let frame: number | null = null;
+    const handler = () => {
+      if (frame !== null) return;
+      frame = requestAnimationFrame(() => {
+        try {
+          sessionStorage.setItem(SIDEBAR_SCROLL_KEY, String(el.scrollTop));
+        } catch {
+          /* sessionStorage unavailable / quota — ignore */
+        }
+        frame = null;
+      });
+    };
+    el.addEventListener("scroll", handler, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", handler);
+      if (frame !== null) cancelAnimationFrame(frame);
+    };
+  }, []);
 
   // Resizable split between the main nav (top) and Settings (bottom)
   // inside the sidebar. splitContainerRef measures the flex height
@@ -130,61 +159,21 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
   // that nav item. Missing keys default to visible.
   const enabledFeatures: Record<string, boolean> =
     company.enabledFeatures ?? {};
-  const navItems = [
-    {
-      href: `/${locale}/dashboard`,
-      icon: LayoutDashboard,
-      label: "Dashboard",
-    },
-    { href: `/${locale}/customers`, icon: Users, label: "Customers" },
-    { href: `/${locale}/deals`, icon: Briefcase, label: "Deals" },
-    { href: `/${locale}/pipeline`, icon: Activity, label: "Pipeline" },
-    { href: `/${locale}/quotes`, icon: FileText, label: "Quotes", featureKey: "quotes" },
-    { href: `/${locale}/contracts`, icon: FileSignature, label: "Contracts", featureKey: "contracts" },
-    { href: `/${locale}/loyalty`, icon: Award, label: "Loyalty", featureKey: "loyalty" },
-    { href: `/${locale}/tax`, icon: Percent, label: "Tax" },
-    { href: `/${locale}/commission`, icon: DollarSign, label: "Commission", featureKey: "commission" },
-    { href: `/${locale}/cashflow`, icon: TrendingUp, label: "Cash Flow" },
-    { href: `/${locale}/reports`, icon: BarChart3, label: "Reports" },
-    { href: `/${locale}/session-kpis`, icon: Activity, label: "Session KPIs", managersOnly: true },
-    { href: `/${locale}/tax-invoices`, icon: Receipt, label: "Tax Invoices", featureKey: "tax_invoices" },
-    { href: `/${locale}/analytics`, icon: BarChart3, label: "Analytics", featureKey: "analytics_reports" },
-    { href: `/${locale}/followup`, icon: Bell, label: "Follow-up" },
-    { href: `/${locale}/campaigns`, icon: Mail, label: "Campaigns", featureKey: "marketing_automation" },
-    {
-      href: `/${locale}/ai-cfo`,
-      icon: Sparkles,
-      label: "AI CFO",
-      badge: "AI",
-      featureKey: "ai_cfo",
-    },
-    { href: `/${locale}/tasks`, icon: CheckSquare, label: "Tasks" },
-    { href: `/${locale}/templates`, icon: Sparkles, label: "Templates" },
-    { href: `/${locale}/workflows`, icon: Zap, label: "Automations" },
-    { href: `/${locale}/ai`, icon: Sparkles, label: "AI Agents", badge: "AI" },
-    { href: `/${locale}/chat`, icon: MessageSquare, label: "Team Chat", unreadCount: chatUnread },
-    {
-      href: `/${locale}/whatsapp`,
-      icon: MessageCircle,
-      label: "WhatsApp",
-      badge: "Beta",
-    },
-  ].filter((item) => {
-    // Manager-only items (like Session KPIs) are hidden from regular
-    // members — they can still access their own row via the direct
-    // URL, the backend's role-scope filter ensures they only see
-    // their own data, but the sidebar link is managerial-only.
-    const managersOnly = (item as { managersOnly?: boolean }).managersOnly;
-    if (managersOnly) {
-      const role = user.role;
-      if (role !== "owner" && role !== "admin" && role !== "manager") {
-        return false;
-      }
-    }
-    const key = (item as { featureKey?: string }).featureKey;
-    if (!key) return true;
-    return enabledFeatures[key] !== false;
-  });
+
+  const userRole = user.role;
+  const isManagerOrAbove =
+    userRole === "owner" || userRole === "admin" || userRole === "manager";
+
+  // Sprint 14ab — apply the same role / feature-flag filter rules to
+  // the new grouped catalog. Empty groups are dropped from rendering.
+  const visibleGroups = SIDEBAR_GROUPS.map((group) => ({
+    ...group,
+    items: group.items.filter((item) => {
+      if (item.managersOnly && !isManagerOrAbove) return false;
+      if (item.featureKey && enabledFeatures[item.featureKey] === false) return false;
+      return true;
+    }),
+  })).filter((group) => group.items.length > 0);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -242,43 +231,60 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           ref={splitContainerRef}
           className="flex-1 min-h-0 flex flex-col"
         >
-          {/* Main nav — top panel */}
+          {/* Main nav — top panel. Sprint 14ab: 7 groups + scroll preserve. */}
           <nav
+            ref={sidebarNavRef}
             className="min-h-0 overflow-y-auto p-3 space-y-1"
             style={{ flexBasis: `${topFlexPercent}%`, flexGrow: 0, flexShrink: 0 }}
           >
-          {navItems.map((item) => {
-            const isActive = pathname?.startsWith(item.href);
-            const Icon = item.icon;
-            // Slug = last URL segment (after /<locale>/)
-            const slug = item.href.split("/").filter(Boolean).slice(-1)[0] ?? "";
-            const accent = getAccentClasses(slug);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
-                  isActive
-                    ? `${accent.bg} ${accent.text} border-l-2 ${accent.border} font-medium`
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
-              >
-                <Icon className={cn("w-4 h-4 flex-shrink-0", isActive ? accent.icon : "")} />
-                <span className="flex-1">{item.label}</span>
-                {(item as any).unreadCount && (item as any).unreadCount > 0 ? (
-                  <span className="px-1.5 min-w-[18px] h-[18px] text-[10px] font-bold bg-rose-500 text-white rounded-full flex items-center justify-center">
-                    {(item as any).unreadCount > 99 ? "99+" : (item as any).unreadCount}
-                  </span>
-                ) : item.badge ? (
-                  <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase bg-violet-500/15 text-violet-300 border border-violet-500/30 rounded">
-                    {item.badge}
-                  </span>
-                ) : null}
-              </Link>
-            );
-          })}
-        </nav>
+            {visibleGroups.map((group, groupIdx) => (
+              <div key={group.id}>
+                {/* Group header — small uppercase label flanked by thin lines */}
+                <div className={cn("px-1 pb-2", groupIdx === 0 ? "pt-1" : "pt-5")}>
+                  <div className="flex items-center gap-2">
+                    <div className="h-px flex-1 bg-border/40" />
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
+                      {t(group.labelKey)}
+                    </span>
+                    <div className="h-px flex-1 bg-border/40" />
+                  </div>
+                </div>
+
+                {group.items.map((item) => {
+                  const fullHref = `/${locale}${item.href}`;
+                  const isActive = pathname?.startsWith(fullHref);
+                  const Icon = item.icon;
+                  const slug = item.href.split("/").filter(Boolean).slice(-1)[0] ?? "";
+                  const accent = getAccentClasses(slug);
+                  const unread = item.showUnreadCount ? chatUnread : 0;
+                  return (
+                    <Link
+                      key={item.id}
+                      href={fullHref}
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
+                        isActive
+                          ? `${accent.bg} ${accent.text} border-l-2 ${accent.border} font-medium`
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      )}
+                    >
+                      <Icon className={cn("w-4 h-4 flex-shrink-0", isActive ? accent.icon : "")} />
+                      <span className="flex-1">{t(item.labelKey)}</span>
+                      {unread > 0 ? (
+                        <span className="px-1.5 min-w-[18px] h-[18px] text-[10px] font-bold bg-rose-500 text-white rounded-full flex items-center justify-center">
+                          {unread > 99 ? "99+" : unread}
+                        </span>
+                      ) : item.badge ? (
+                        <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase bg-violet-500/15 text-violet-300 border border-violet-500/30 rounded">
+                          {item.badge}
+                        </span>
+                      ) : null}
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
+          </nav>
 
         {/* Draggable splitter — drag up/down to resize the two panels.
             Double-click resets to default (55/45). isDragging toggles

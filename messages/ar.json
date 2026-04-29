@@ -4310,5 +4310,40 @@
       "yearly": "سنوي",
       "yearlyBadge": "وفّر 20%"
     }
+  },
+  "Sidebar": {
+    "groups": {
+      "dailyOps": "العمليات اليومية",
+      "crmCore": "أساسيات CRM",
+      "salesDocs": "مستندات المبيعات",
+      "finance": "المالية",
+      "growth": "النمو",
+      "intelligence": "ذكاء الأعمال",
+      "aiAutomation": "الذكاء الاصطناعي والأتمتة"
+    },
+    "comingSoon": "قريبًا",
+    "dashboard": "لوحة التحكم",
+    "tasks": "المهام",
+    "followup": "المتابعة",
+    "teamChat": "دردشة الفريق",
+    "customers": "العملاء",
+    "deals": "الصفقات",
+    "pipeline": "المسار",
+    "campaigns": "الحملات",
+    "quotes": "العروض",
+    "contracts": "العقود",
+    "whatsapp": "واتساب",
+    "cashFlow": "التدفق النقدي",
+    "tax": "الضريبة",
+    "taxInvoices": "الفواتير الضريبية",
+    "commission": "العمولة",
+    "loyalty": "الولاء",
+    "analytics": "التحليلات",
+    "reports": "التقارير",
+    "sessionKpis": "مؤشرات الجلسة",
+    "aiCfo": "المدير المالي الذكي",
+    "aiAgents": "وكلاء الذكاء الاصطناعي",
+    "automations": "الأتمتة",
+    "templates": "القوالب"
   }
 }
