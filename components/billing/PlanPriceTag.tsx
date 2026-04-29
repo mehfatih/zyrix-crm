@@ -8,17 +8,20 @@ import {
 } from "@/lib/billing/currency";
 
 // ────────────────────────────────────────────────────────────────────
-// Sprint 14z — PlanPriceTag
+// Sprint 14z / 14aa — PlanPriceTag
 // Reusable price label. Prints the converted price + "/ month"|"/ year"
-// suffix in the active locale.
+// suffix in the active locale. Sprint 14aa added null-price support
+// (contact-sales tiers) — falls back to customLabel or "—".
 // ────────────────────────────────────────────────────────────────────
 
 interface Props {
-  usdAmount: number;
+  usdAmount: number | null;
   currency: DisplayCurrency;
   period: BillingPeriod;
   size?: "sm" | "md" | "lg";
   hidePeriodWhenFree?: boolean;
+  /** Label to render when usdAmount is null (e.g. "Custom"). Default: "—". */
+  customLabel?: string;
 }
 
 const SIZE_CLASSES: Record<NonNullable<Props["size"]>, { value: string; period: string }> = {
@@ -33,9 +36,19 @@ export function PlanPriceTag({
   period,
   size = "md",
   hidePeriodWhenFree = true,
+  customLabel,
 }: Props) {
   const t = useTranslations("billing");
   const sz = SIZE_CLASSES[size];
+
+  if (usdAmount === null) {
+    return (
+      <span className={`${sz.value} text-foreground`}>
+        {customLabel ?? "—"}
+      </span>
+    );
+  }
+
   const isFree = usdAmount === 0;
 
   if (isFree) {

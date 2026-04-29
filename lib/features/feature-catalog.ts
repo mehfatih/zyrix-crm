@@ -33,7 +33,7 @@ export type UpgradeTier = "pro" | "business" | "enterprise";
 // Sprint 14z — planId the upgrade flow lands on for this feature.
 // Mirrors the canonical PlanId type but kept as a string here to avoid
 // a runtime cycle between the feature catalog and the billing module.
-export type FeatureTargetPlan = "starter" | "business" | "scale";
+export type FeatureTargetPlan = "starter" | "business" | "enterprise";
 
 export interface FeatureDef {
   id: string;
@@ -126,7 +126,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: Bot,
     accentColor: "violet",
     upgradeTier: "business",
-    targetPlan: "scale",
+    targetPlan: "business",
   },
 
   ai_cfo: {
