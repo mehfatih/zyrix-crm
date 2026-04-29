@@ -85,15 +85,15 @@ function KPICard({ kpi }: { kpi: SmartKPI }) {
     kpi.trend === 'up' ? TrendingUp : kpi.trend === 'down' ? TrendingDown : Activity;
   const trendColor =
     kpi.trend === 'up'
-      ? 'text-emerald-300 bg-emerald-50'
+      ? 'text-emerald-300 bg-emerald-500/15 border border-emerald-500/30'
       : kpi.trend === 'down'
-        ? 'text-rose-300 bg-red-50'
-        : 'text-muted-foreground bg-muted';
+        ? 'text-rose-300 bg-rose-500/15 border border-rose-500/30'
+        : 'text-muted-foreground bg-muted border border-border';
 
   return (
     <article className="rounded-xl border border-border bg-card p-4 transition-shadow hover:shadow-md">
       <div className="flex items-center justify-between">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10 text-primary">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15 border border-violet-500/30 text-violet-300">
           <Icon size={16} />
         </div>
         <div

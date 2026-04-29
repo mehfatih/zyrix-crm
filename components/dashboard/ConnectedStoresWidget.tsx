@@ -96,21 +96,21 @@ export default function ConnectedStoresWidget({ locale }: Props) {
     return (
       <Link
         href={`/${locale}/settings/integrations`}
-        className="group block bg-gradient-to-br from-sky-50 to-sky-50 border border-border border-dashed rounded-xl p-5 hover:border-sky-300 hover:shadow-sm transition-all"
+        className="group block bg-card border border-emerald-500/20 hover:border-emerald-500/40 rounded-xl p-5 transition-colors"
       >
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center flex-shrink-0">
-            <Store className="w-5 h-5 text-cyan-300" />
+        <div className="flex items-start gap-4">
+          <div className="bg-emerald-500/15 border border-emerald-500/30 p-2.5 rounded-lg flex-shrink-0">
+            <Store className="w-5 h-5 text-emerald-300" />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-foreground">
+            <h3 className="text-sm font-bold text-foreground">
               {tr(
                 "Connect your e-commerce store",
                 "اربط متجرك الإلكتروني",
                 "E-ticaret mağazanı bağla"
               )}
             </h3>
-            <p className="text-xs text-muted-foreground mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
               {tr(
                 "Import customers and orders from 40+ platforms — Shopify, Salla, WooCommerce, and more.",
                 "استورد العملاء والطلبات من أكثر من 40 منصة — Shopify و Salla و WooCommerce وأكثر.",
@@ -118,7 +118,7 @@ export default function ConnectedStoresWidget({ locale }: Props) {
               )}
             </p>
           </div>
-          <div className="flex items-center gap-1 text-xs font-medium text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex items-center gap-1 text-xs font-medium text-emerald-300 group-hover:text-emerald-200 flex-shrink-0">
             <Plus className="w-3.5 h-3.5" />
             {tr("Connect", "ربط", "bağla")}
           </div>
@@ -129,13 +129,13 @@ export default function ConnectedStoresWidget({ locale }: Props) {
 
   return (
     <section className="bg-card border border-border rounded-xl overflow-hidden">
-      <header className="px-4 py-2.5 flex items-center justify-between gap-2 border-b border-sky-50 bg-muted/40">
+      <header className="px-4 py-2.5 flex items-center justify-between gap-2 border-b border-border bg-muted/40">
         <div className="flex items-center gap-2">
-          <Store className="w-4 h-4 text-cyan-300" />
+          <Store className="w-4 h-4 text-emerald-300" />
           <h2 className="text-sm font-semibold text-foreground">
             {tr("Your stores", "متاجرك", "Mağazaların")}
           </h2>
-          <span className="px-1.5 py-0.5 text-[10px] bg-sky-100 text-cyan-300 rounded-full font-semibold">
+          <span className="px-1.5 py-0.5 text-[10px] bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-full font-semibold">
             {stores.length}
           </span>
         </div>
