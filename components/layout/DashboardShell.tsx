@@ -241,12 +241,12 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
               <div key={group.id}>
                 {/* Group header — small uppercase label flanked by thin lines */}
                 <div className={cn("px-1 pb-2", groupIdx === 0 ? "pt-1" : "pt-5")}>
-                  <div className="flex items-center gap-2">
-                    <div className="h-px flex-1 bg-border/40" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
+                  <div className="flex items-center gap-3">
+                    <div className="h-px flex-1 bg-border/50" />
+                    <span className="text-[13px] font-bold uppercase tracking-wider text-zinc-300 whitespace-nowrap">
                       {t(group.labelKey)}
                     </span>
-                    <div className="h-px flex-1 bg-border/40" />
+                    <div className="h-px flex-1 bg-border/50" />
                   </div>
                 </div>
 
@@ -332,7 +332,10 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           className="min-h-0 overflow-y-auto p-3 space-y-0.5"
           style={{ flexBasis: `${100 - topFlexPercent}%`, flexGrow: 0, flexShrink: 0 }}
         >
+          {/* Sprint 14ad — language switcher framed with thin dividers */}
+          <div className="border-t border-border/40 mb-2" />
           <LanguageSwitcher currentLocale={locale as Locale} />
+          <div className="border-t border-border/40 mt-2 mb-2" />
           <Link
             href={`/${locale}/settings`}
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
