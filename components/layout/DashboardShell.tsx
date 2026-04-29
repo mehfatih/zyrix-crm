@@ -36,7 +36,6 @@ import GlobalSearchBar from "@/components/advanced/GlobalSearchBar";
 import { useAIStore } from "@/lib/stores/aiStore";
 import { AISidePanel } from "@/components/ai/AISidePanel";
 
-import { getAccentClasses } from "./page-accents";
 
 interface DashboardShellProps {
   locale: string;
@@ -252,23 +251,33 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
 
                 {group.items.map((item) => {
                   const fullHref = `/${locale}${item.href}`;
-                  const isActive = pathname?.startsWith(fullHref);
+                  // Sprint 14ae — unified violet active state across the entire sidebar.
+                  // Dashboard is special-cased to exact match so it doesn't stay
+                  // highlighted when the user navigates to other top-level routes.
+                  const isActive =
+                    item.id === "dashboard"
+                      ? pathname === fullHref
+                      : pathname?.startsWith(fullHref) ?? false;
                   const Icon = item.icon;
-                  const slug = item.href.split("/").filter(Boolean).slice(-1)[0] ?? "";
-                  const accent = getAccentClasses(slug);
                   const unread = item.showUnreadCount ? chatUnread : 0;
                   return (
                     <Link
                       key={item.id}
                       href={fullHref}
+                      aria-current={isActive ? "page" : undefined}
                       className={cn(
-                        "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
+                        "flex items-center gap-3 px-3 py-2 rounded-lg text-sm border transition-colors",
                         isActive
-                          ? `${accent.bg} ${accent.text} border-l-2 ${accent.border} font-medium`
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          ? "bg-violet-500/15 border-violet-500/35 text-violet-100 font-semibold ring-1 ring-violet-500/20 ring-inset"
+                          : "border-transparent text-foreground/80 hover:bg-card/60 hover:text-foreground"
                       )}
                     >
-                      <Icon className={cn("w-4 h-4 flex-shrink-0", isActive ? accent.icon : "")} />
+                      <Icon
+                        className={cn(
+                          "w-4 h-4 flex-shrink-0",
+                          isActive ? "text-violet-300" : "text-muted-foreground"
+                        )}
+                      />
                       <span className="flex-1">{t(item.labelKey)}</span>
                       {unread > 0 ? (
                         <span className="px-1.5 min-w-[18px] h-[18px] text-[10px] font-bold bg-rose-500 text-white rounded-full flex items-center justify-center">
@@ -336,90 +345,79 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           <div className="border-t border-border/40 mb-2" />
           <LanguageSwitcher currentLocale={locale as Locale} />
           <div className="border-t border-border/40 mt-2 mb-2" />
-          <Link
-            href={`/${locale}/settings`}
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Settings className="w-4 h-4" />
-            Settings
-          </Link>
-          <Link
-            href={`/${locale}/settings/templates`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Mail className="w-3.5 h-3.5" />
-            Email templates
-          </Link>
-          <Link
-            href={`/${locale}/settings/custom-fields`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Activity className="w-3.5 h-3.5" />
-            Custom fields
-          </Link>
-          <Link
-            href={`/${locale}/settings/integrations`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            E-commerce
-          </Link>
-          <Link
-            href={`/${locale}/settings/billing`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <CreditCard className="w-3.5 h-3.5" />
-            Billing
-          </Link>
-          <Link
-            href={`/${locale}/settings/security`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Shield className="w-3.5 h-3.5" />
-            Security
-          </Link>
-          <Link
-            href={`/${locale}/settings/users`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Users className="w-3.5 h-3.5" />
-            Team
-          </Link>
-          <Link
-            href={`/${locale}/settings/roles`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            Roles
-          </Link>
-          <Link
-            href={`/${locale}/settings/audit`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <History className="w-3.5 h-3.5" />
-            Audit log
-          </Link>
-          <Link
-            href={`/${locale}/settings/api`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Key className="w-3.5 h-3.5" />
-            API keys
-          </Link>
-          <Link
-            href={`/${locale}/settings/brand`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Palette className="w-3.5 h-3.5" />
-            Branding
-          </Link>
-          <Link
-            href={`/${locale}/settings/brands`}
-            className="flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Store className="w-3.5 h-3.5" />
-            Brands
-          </Link>
+          {/* Sprint 14ae — settings sub-sidebar with violet active state */}
+          {(() => {
+            const settingsItems: Array<{
+              slug: string;
+              icon: typeof Settings;
+              label: string;
+            }> = [
+              { slug: "templates", icon: Mail, label: "Email templates" },
+              { slug: "custom-fields", icon: Activity, label: "Custom fields" },
+              { slug: "integrations", icon: Sparkles, label: "E-commerce" },
+              { slug: "billing", icon: CreditCard, label: "Billing" },
+              { slug: "security", icon: Shield, label: "Security" },
+              { slug: "users", icon: Users, label: "Team" },
+              { slug: "roles", icon: ShieldCheck, label: "Roles" },
+              { slug: "audit", icon: History, label: "Audit log" },
+              { slug: "api", icon: Key, label: "API keys" },
+              { slug: "brand", icon: Palette, label: "Branding" },
+              { slug: "brands", icon: Store, label: "Brands" },
+            ];
+            const settingsRoot = `/${locale}/settings`;
+            const settingsRootActive = pathname === settingsRoot;
+            return (
+              <>
+                <Link
+                  href={settingsRoot}
+                  aria-current={settingsRootActive ? "page" : undefined}
+                  className={cn(
+                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm border transition-colors",
+                    settingsRootActive
+                      ? "bg-violet-500/12 border-violet-500/30 text-violet-100 font-semibold"
+                      : "border-transparent text-muted-foreground hover:bg-card/60 hover:text-foreground"
+                  )}
+                >
+                  <Settings
+                    className={cn(
+                      "w-4 h-4",
+                      settingsRootActive
+                        ? "text-violet-300"
+                        : ""
+                    )}
+                  />
+                  Settings
+                </Link>
+                {settingsItems.map((s) => {
+                  const href = `/${locale}/settings/${s.slug}`;
+                  const isActive =
+                    pathname === href || pathname?.startsWith(`${href}/`);
+                  const SubIcon = s.icon;
+                  return (
+                    <Link
+                      key={s.slug}
+                      href={href}
+                      aria-current={isActive ? "page" : undefined}
+                      className={cn(
+                        "flex items-center gap-3 ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-1.5 rounded-lg text-xs border transition-colors",
+                        isActive
+                          ? "bg-violet-500/12 border-violet-500/30 text-violet-100 font-medium"
+                          : "border-transparent text-muted-foreground hover:bg-card/60 hover:text-foreground"
+                      )}
+                    >
+                      <SubIcon
+                        className={cn(
+                          "w-3.5 h-3.5",
+                          isActive ? "text-violet-300" : ""
+                        )}
+                      />
+                      {s.label}
+                    </Link>
+                  );
+                })}
+              </>
+            );
+          })()}
         </div>
         </div>
 
