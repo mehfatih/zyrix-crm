@@ -32,6 +32,15 @@ export type CountryCode =
 export type InvoiceRegime = "zatca" | "efatura" | "earsiv" | "none";
 export type DateFormat = "dd/MM/yyyy" | "MM/dd/yyyy" | "yyyy-MM-dd";
 
+// Sprint 14v — per-country e-invoice identity. Drives the
+// /tax-invoices identity strip + dynamic subtitle. Subtitle is
+// localized so RTL/Turkish UIs read naturally.
+export interface EInvoiceSystem {
+  name: string;
+  shortLabel: string;
+  subtitle: { en: string; ar: string; tr: string };
+}
+
 export interface CountryConfig {
   code: CountryCode;
   name: { en: string; ar: string; tr: string };
@@ -41,6 +50,7 @@ export interface CountryConfig {
   taxRate: number;
   zatca: boolean;
   eFatura: boolean;
+  eInvoiceSystem: EInvoiceSystem;
   dateFormat: DateFormat;
   locale: string;
   phonePrefix: string;
@@ -56,6 +66,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 15,
     zatca: true,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "ZATCA E-Invoice (Fatoora)",
+      shortLabel: "ZATCA",
+      subtitle: {
+        en: "ZATCA-compliant tax invoices with XML + QR code for Saudi Arabia.",
+        ar: "فواتير ضريبية متوافقة مع زاتكا مع XML ورمز QR للسعودية.",
+        tr: "Suudi Arabistan için ZATCA uyumlu vergi faturaları, XML + QR kod ile.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-SA",
     phonePrefix: "+966",
@@ -69,6 +88,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 5,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "FTA E-Invoice",
+      shortLabel: "FTA",
+      subtitle: {
+        en: "FTA-compliant tax invoices with XML + QR code for the United Arab Emirates.",
+        ar: "فواتير ضريبية متوافقة مع FTA مع XML ورمز QR للإمارات العربية المتحدة.",
+        tr: "Birleşik Arap Emirlikleri için FTA uyumlu vergi faturaları, XML + QR kod ile.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-AE",
     phonePrefix: "+971",
@@ -82,6 +110,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 20,
     zatca: false,
     eFatura: true,
+    eInvoiceSystem: {
+      name: "e-Fatura / e-Arşiv",
+      shortLabel: "e-Fatura",
+      subtitle: {
+        en: "e-Fatura and e-Arşiv compliant tax invoices for Turkey.",
+        ar: "فواتير ضريبية متوافقة مع e-Fatura و e-Arşiv لتركيا.",
+        tr: "Türkiye için e-Fatura ve e-Arşiv uyumlu vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "tr-TR",
     phonePrefix: "+90",
@@ -95,6 +132,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 14,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "ETA E-Invoice",
+      shortLabel: "ETA",
+      subtitle: {
+        en: "ETA-compliant electronic tax invoices for Egypt.",
+        ar: "فواتير ضريبية إلكترونية متوافقة مع ETA لمصر.",
+        tr: "Mısır için ETA uyumlu elektronik vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-EG",
     phonePrefix: "+20",
@@ -108,6 +154,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 0,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "Iraq Tax Invoice",
+      shortLabel: "IQ Tax",
+      subtitle: {
+        en: "Tax invoices for Iraq.",
+        ar: "فواتير ضريبية للعراق.",
+        tr: "Irak için vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-IQ",
     phonePrefix: "+964",
@@ -121,6 +176,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 0,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "Kuwait Tax Invoice",
+      shortLabel: "KW Tax",
+      subtitle: {
+        en: "Compliant tax invoices for Kuwait under the Ministry of Finance framework.",
+        ar: "فواتير ضريبية متوافقة لدولة الكويت تحت إطار وزارة المالية.",
+        tr: "Kuveyt için Maliye Bakanlığı çerçevesinde uyumlu vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-KW",
     phonePrefix: "+965",
@@ -134,6 +198,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 0,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "Dhareeba Tax Invoice",
+      shortLabel: "Dhareeba",
+      subtitle: {
+        en: "Dhareeba-compliant tax invoices for Qatar.",
+        ar: "فواتير ضريبية متوافقة مع نظام ضريبة لقطر.",
+        tr: "Katar için Dhareeba uyumlu vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-QA",
     phonePrefix: "+974",
@@ -147,6 +220,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 10,
     zatca: true,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "NBR E-Invoice",
+      shortLabel: "NBR",
+      subtitle: {
+        en: "NBR-compliant tax invoices for Bahrain.",
+        ar: "فواتير ضريبية متوافقة مع NBR للبحرين.",
+        tr: "Bahreyn için NBR uyumlu vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-BH",
     phonePrefix: "+973",
@@ -160,6 +242,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 5,
     zatca: true,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "OTA E-Invoice",
+      shortLabel: "OTA",
+      subtitle: {
+        en: "OTA-compliant tax invoices for Oman.",
+        ar: "فواتير ضريبية متوافقة مع OTA لعُمان.",
+        tr: "Umman için OTA uyumlu vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-OM",
     phonePrefix: "+968",
@@ -173,6 +264,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 16,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "ISTD E-Invoice",
+      shortLabel: "ISTD",
+      subtitle: {
+        en: "ISTD-compliant tax invoices for Jordan.",
+        ar: "فواتير ضريبية متوافقة مع ISTD للأردن.",
+        tr: "Ürdün için ISTD uyumlu vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-JO",
     phonePrefix: "+962",
@@ -186,6 +286,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 11,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "Lebanon Tax Invoice",
+      shortLabel: "LB Tax",
+      subtitle: {
+        en: "Tax invoices for Lebanon.",
+        ar: "فواتير ضريبية للبنان.",
+        tr: "Lübnan için vergi faturaları.",
+      },
+    },
     dateFormat: "dd/MM/yyyy",
     locale: "ar-LB",
     phonePrefix: "+961",
@@ -201,6 +310,15 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     taxRate: 0,
     zatca: false,
     eFatura: false,
+    eInvoiceSystem: {
+      name: "US Sales Tax Invoice",
+      shortLabel: "Sales Tax",
+      subtitle: {
+        en: "US sales-tax-compliant invoices with itemized state/local breakdown.",
+        ar: "فواتير أمريكية متوافقة مع ضريبة المبيعات مع تفصيل ولاية/محلي.",
+        tr: "Eyalet/yerel kalemli ABD satış vergisi uyumlu faturalar.",
+      },
+    },
     dateFormat: "MM/dd/yyyy",
     locale: "en-US",
     phonePrefix: "+1",

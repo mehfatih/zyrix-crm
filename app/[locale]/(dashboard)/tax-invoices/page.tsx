@@ -17,8 +17,10 @@ import {
   Receipt,
 } from "lucide-react";
 import { DashboardShell } from "@/components/layout/DashboardShell";
-import { TaxInvoicesPresetStrip } from "@/components/tax-invoices/TaxInvoicesPresetStrip";
+import { TaxInvoicesIdentityStrip } from "@/components/tax-invoices/TaxInvoicesIdentityStrip";
 import { useAuth } from "@/lib/auth/context";
+import { useUserCountry } from "@/hooks/useUserCountry";
+import { COUNTRIES } from "@/lib/country";
 import {
   regimesForCountry,
   availableCurrencies,
@@ -106,9 +108,12 @@ export default function TaxInvoicesPage() {
   const { company } = useAuth();
   const allowedRegimes = regimesForCountry(company?.country);
 
+  // Sprint 14v — resolve user country (locale → localStorage override)
+  // for the dynamic subtitle and identity strip.
+  const { country } = useUserCountry();
+  const config = COUNTRIES[country];
+
   const [invoices, setInvoices] = useState<TaxInvoice[]>([]);
-  const [total, setTotal] = useState(0);
-  const [regimeFilter, setRegimeFilter] = useState<TaxRegime | "">("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showIssue, setShowIssue] = useState(false);
@@ -118,17 +123,15 @@ export default function TaxInvoicesPage() {
     setError(null);
     try {
       const page = await listTaxInvoices({
-        regime: regimeFilter || undefined,
         limit: 50,
       });
       setInvoices(page.items);
-      setTotal(page.total);
     } catch (e: any) {
       setError(e?.response?.data?.error?.message || e?.message);
     } finally {
       setLoading(false);
     }
-  }, [regimeFilter]);
+  }, []);
 
   useEffect(() => {
     load();
@@ -152,11 +155,7 @@ export default function TaxInvoicesPage() {
                 {tr("Tax invoices", "الفواتير الضريبية", "Vergi faturaları")}
               </h1>
               <p className="text-sm text-muted-foreground mt-0.5">
-                {tr(
-                  "ZATCA (Saudi) + e-Fatura/e-Arşiv (Turkey) compliant invoices with XML + QR code.",
-                  "فواتير مطابقة لزاتكا (السعودية) + e-Fatura/e-Arşiv (تركيا) مع XML + رمز QR.",
-                  "ZATCA (Suudi) + e-Fatura/e-Arşiv (Türkiye) uyumlu faturalar, XML + QR kod ile."
-                )}
+                {config.eInvoiceSystem.subtitle[locale]}
               </p>
             </div>
           </div>
@@ -192,38 +191,8 @@ export default function TaxInvoicesPage() {
           />
         )}
 
-        {/* Sprint 14v — Locale-aware tax-system preset */}
-        <TaxInvoicesPresetStrip />
-
-        {/* Regime filter pills */}
-        <div className="flex items-center gap-1.5 flex-wrap">
-          <button
-            onClick={() => setRegimeFilter("")}
-            className={`px-3 py-1 rounded-full text-xs font-semibold ${
-              !regimeFilter
-                ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"
-                : "bg-card border border-border text-foreground hover:bg-muted"
-            }`}
-          >
-            {tr("All", "الكل", "Tümü")}
-            <span className="ms-1 opacity-70">({total})</span>
-          </button>
-          {(Object.keys(REGIME_META) as TaxRegime[])
-            .filter((r) => allowedRegimes.includes(r))
-            .map((r) => (
-            <button
-              key={r}
-              onClick={() => setRegimeFilter(r)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                regimeFilter === r
-                  ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"
-                  : "bg-card border border-border text-foreground hover:bg-muted"
-              }`}
-            >
-              {REGIME_META[r].label[locale]}
-            </button>
-          ))}
-        </div>
+        {/* Sprint 14v — Locale-aware e-invoice identity strip */}
+        <TaxInvoicesIdentityStrip />
 
         {/* List */}
         {loading ? (
