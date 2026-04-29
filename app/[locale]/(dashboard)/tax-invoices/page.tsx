@@ -72,22 +72,22 @@ const STATUS_META: Record<
 > = {
   draft: {
     label: { en: "Draft", ar: "مسودة", tr: "Taslak" },
-    tone: "bg-slate-100 text-slate-700 border-slate-200",
+    tone: "bg-muted text-foreground border-border",
     icon: Clock,
   },
   submitted: {
     label: { en: "Submitted", ar: "مُرسلة", tr: "Gönderildi" },
-    tone: "bg-sky-50 text-sky-800 border-sky-200",
+    tone: "bg-muted text-foreground border-border",
     icon: Globe,
   },
   approved: {
     label: { en: "Approved", ar: "معتمدة", tr: "Onaylandı" },
-    tone: "bg-emerald-50 text-emerald-800 border-emerald-200",
+    tone: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
     icon: CheckCircle2,
   },
   rejected: {
     label: { en: "Rejected", ar: "مرفوضة", tr: "Reddedildi" },
-    tone: "bg-rose-50 text-rose-800 border-rose-200",
+    tone: "bg-rose-500/10 text-rose-800 border-rose-500/30",
     icon: AlertTriangle,
   },
 };
@@ -146,10 +146,10 @@ export default function TaxInvoicesPage() {
               <Receipt className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Tax invoices", "الفواتير الضريبية", "Vergi faturaları")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "ZATCA (Saudi) + e-Fatura/e-Arşiv (Turkey) compliant invoices with XML + QR code.",
                   "فواتير مطابقة لزاتكا (السعودية) + e-Fatura/e-Arşiv (تركيا) مع XML + رمز QR.",
@@ -161,7 +161,7 @@ export default function TaxInvoicesPage() {
           {!showIssue && (
             <button
               onClick={() => setShowIssue(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("Issue invoice", "إصدار فاتورة", "Fatura oluştur")}
@@ -170,7 +170,7 @@ export default function TaxInvoicesPage() {
         </div>
 
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         )}
@@ -196,8 +196,8 @@ export default function TaxInvoicesPage() {
             onClick={() => setRegimeFilter("")}
             className={`px-3 py-1 rounded-full text-xs font-semibold ${
               !regimeFilter
-                ? "bg-sky-500 text-white"
-                : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+                ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"
+                : "bg-card border border-border text-foreground hover:bg-muted"
             }`}
           >
             {tr("All", "الكل", "Tümü")}
@@ -211,8 +211,8 @@ export default function TaxInvoicesPage() {
               onClick={() => setRegimeFilter(r)}
               className={`px-3 py-1 rounded-full text-xs font-semibold ${
                 regimeFilter === r
-                  ? "bg-sky-500 text-white"
-                  : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+                  ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"
+                  : "bg-card border border-border text-foreground hover:bg-muted"
               }`}
             >
               {REGIME_META[r].label[locale]}
@@ -223,12 +223,12 @@ export default function TaxInvoicesPage() {
         {/* List */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : invoices.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-sky-200 bg-white p-12 text-center">
-            <FileText className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-            <p className="text-sm text-slate-500">
+          <div className="rounded-xl border border-dashed border-border bg-card p-12 text-center">
+            <FileText className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+            <p className="text-sm text-muted-foreground">
               {tr(
                 "No tax invoices yet — issue your first one.",
                 "لا فواتير ضريبية بعد — أصدر أول واحدة.",
@@ -237,7 +237,7 @@ export default function TaxInvoicesPage() {
             </p>
           </div>
         ) : (
-          <div className="rounded-xl border border-sky-100 bg-white overflow-hidden divide-y divide-sky-50">
+          <div className="rounded-xl border border-border bg-card overflow-hidden divide-y divide-border">
             {invoices.map((inv) => (
               <InvoiceRow
                 key={inv.id}
@@ -268,14 +268,14 @@ function InvoiceRow({
 }) {
   const StatusIcon = STATUS_META[invoice.status].icon;
   return (
-    <div className="p-4 hover:bg-sky-50/30">
+    <div className="p-4 hover:bg-muted">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center flex-shrink-0">
           <Receipt className="w-5 h-5" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <code className="text-sm font-mono font-bold text-sky-900" dir="ltr">
+            <code className="text-sm font-mono font-bold text-foreground" dir="ltr">
               {REGIME_META[invoice.regime].country}-{invoice.invoiceNumber}
             </code>
             <span
@@ -284,19 +284,19 @@ function InvoiceRow({
               <StatusIcon className="w-2.5 h-2.5" />
               {STATUS_META[invoice.status].label[locale]}
             </span>
-            <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
+            <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-muted text-foreground border border-border">
               {REGIME_META[invoice.regime].label[locale]}
             </span>
           </div>
-          <div className="text-xs text-slate-700 mt-0.5 truncate">
+          <div className="text-xs text-foreground mt-0.5 truncate">
             {invoice.buyerName}
             {invoice.buyerVatNo && (
-              <span className="text-slate-400 ms-2 font-mono" dir="ltr">
+              <span className="text-muted-foreground ms-2 font-mono" dir="ltr">
                 {invoice.buyerVatNo}
               </span>
             )}
           </div>
-          <div className="flex items-center gap-3 text-[11px] text-slate-500 mt-1 flex-wrap">
+          <div className="flex items-center gap-3 text-[11px] text-muted-foreground mt-1 flex-wrap">
             <span className="font-mono tabular-nums" dir="ltr">
               {new Date(invoice.issuedAt).toLocaleDateString(
                 locale === "ar" ? "ar-SA" : locale === "tr" ? "tr-TR" : "en-US"
@@ -310,7 +310,7 @@ function InvoiceRow({
             </span>
           </div>
           {invoice.rejectionReason && (
-            <div className="mt-1 text-[11px] text-rose-700 bg-rose-50 rounded px-2 py-1 border border-rose-100">
+            <div className="mt-1 text-[11px] text-rose-300 bg-rose-500/10 rounded px-2 py-1 border border-rose-100">
               {invoice.rejectionReason}
             </div>
           )}
@@ -320,7 +320,7 @@ function InvoiceRow({
             <a
               href={buildTaxInvoiceXmlUrl(invoice.id)}
               download
-              className="inline-flex items-center gap-1 px-2 py-1 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-md text-[11px] font-semibold"
+              className="inline-flex items-center gap-1 px-2 py-1 bg-card border border-border hover:bg-muted text-foreground rounded-md text-[11px] font-semibold"
             >
               <Download className="w-3 h-3" />
               XML
@@ -356,7 +356,7 @@ function QrPreview({
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1 px-2 py-1 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-md text-[11px] font-semibold"
+        className="inline-flex items-center gap-1 px-2 py-1 bg-card border border-border hover:bg-muted text-foreground rounded-md text-[11px] font-semibold"
       >
         QR
       </button>
@@ -367,18 +367,18 @@ function QrPreview({
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-xl p-6 max-w-xs w-full relative"
+            className="bg-card rounded-xl p-6 max-w-xs w-full relative"
           >
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-2 end-2 w-7 h-7 rounded hover:bg-slate-100 flex items-center justify-center text-slate-500"
+              className="absolute top-2 end-2 w-7 h-7 rounded hover:bg-muted flex items-center justify-center text-muted-foreground"
             >
               <X className="w-4 h-4" />
             </button>
-            <h3 className="text-sm font-bold text-sky-900 text-center mb-2">
+            <h3 className="text-sm font-bold text-foreground text-center mb-2">
               {tr("ZATCA QR code", "رمز QR زاتكا", "ZATCA QR kodu")}
             </h3>
-            <p className="text-xs text-slate-500 text-center mb-4">
+            <p className="text-xs text-muted-foreground text-center mb-4">
               {tr(
                 "Scan with the ZATCA verification app.",
                 "امسح بتطبيق التحقق من زاتكا.",
@@ -392,12 +392,12 @@ function QrPreview({
               className="w-full h-auto mx-auto"
             />
             <details className="mt-3 text-[10px]">
-              <summary className="cursor-pointer text-slate-500">
+              <summary className="cursor-pointer text-muted-foreground">
                 {tr("Raw TLV", "TLV الخام", "Ham TLV")}
               </summary>
               <code
                 dir="ltr"
-                className="mt-1 block break-all font-mono text-slate-600 bg-slate-50 p-2 rounded"
+                className="mt-1 block break-all font-mono text-muted-foreground bg-muted p-2 rounded"
               >
                 {qrCode}
               </code>
@@ -521,28 +521,28 @@ function IssueInvoiceForm({
   };
 
   return (
-    <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-4">
+    <div className="rounded-xl border border-border bg-muted/40 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-sky-900">
+        <h2 className="text-sm font-bold text-foreground">
           {tr("New tax invoice", "فاتورة ضريبية جديدة", "Yeni vergi faturası")}
         </h2>
         <button
           onClick={onCancel}
-          className="w-7 h-7 rounded text-slate-500 hover:bg-slate-100 flex items-center justify-center"
+          className="w-7 h-7 rounded text-muted-foreground hover:bg-muted flex items-center justify-center"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {err && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-2 text-xs text-rose-700">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-2 text-xs text-rose-300">
           {err}
         </div>
       )}
 
       {/* Regime picker */}
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Regime", "النظام الضريبي", "Rejim")}
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -554,8 +554,8 @@ function IssueInvoiceForm({
               onClick={() => handleRegimeChange(r)}
               className={`px-3 py-2 rounded-lg text-xs font-semibold border ${
                 regime === r
-                  ? "bg-sky-500 text-white border-sky-500"
-                  : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
+                  ? "bg-cyan-500/15 text-cyan-300 border-cyan-500/40"
+                  : "bg-card border-border text-foreground hover:bg-muted"
               }`}
             >
               {REGIME_META[r].label[locale]}
@@ -567,7 +567,7 @@ function IssueInvoiceForm({
       {/* Type picker (only for ZATCA) */}
       {regime === "zatca" && (
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Type", "النوع", "Tür")}
           </label>
           <div className="grid grid-cols-2 gap-2">
@@ -575,8 +575,8 @@ function IssueInvoiceForm({
               onClick={() => setType("standard")}
               className={`px-3 py-2 rounded-lg text-xs font-semibold border ${
                 type === "standard"
-                  ? "bg-sky-500 text-white border-sky-500"
-                  : "bg-white border-sky-200 text-slate-700"
+                  ? "bg-cyan-500/15 text-cyan-300 border-cyan-500/40"
+                  : "bg-card border-border text-foreground"
               }`}
             >
               {tr("Standard (B2B)", "قياسية (B2B)", "Standart (B2B)")}
@@ -585,8 +585,8 @@ function IssueInvoiceForm({
               onClick={() => setType("simplified")}
               className={`px-3 py-2 rounded-lg text-xs font-semibold border ${
                 type === "simplified"
-                  ? "bg-sky-500 text-white border-sky-500"
-                  : "bg-white border-sky-200 text-slate-700"
+                  ? "bg-cyan-500/15 text-cyan-300 border-cyan-500/40"
+                  : "bg-card border-border text-foreground"
               }`}
             >
               {tr("Simplified (B2C)", "مبسطة (B2C)", "Basitleştirilmiş (B2C)")}
@@ -597,75 +597,75 @@ function IssueInvoiceForm({
 
       {/* Parties */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <fieldset className="border border-sky-100 rounded-lg p-3">
-          <legend className="text-[10px] font-bold uppercase text-slate-500 tracking-wide px-1">
+        <fieldset className="border border-border rounded-lg p-3">
+          <legend className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide px-1">
             {tr("Seller (you)", "البائع (أنت)", "Satıcı (sen)")}
           </legend>
           <input
             value={sellerName}
             onChange={(e) => setSellerName(e.target.value)}
             placeholder={tr("Company name", "اسم الشركة", "Şirket adı")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs focus:outline-none focus:ring-1 focus:ring-primary bg-card mb-1.5"
           />
           <input
             value={sellerVatNo}
             onChange={(e) => setSellerVatNo(e.target.value)}
             placeholder={tr("VAT number", "الرقم الضريبي", "VKN/VAT")}
             dir="ltr"
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-primary bg-card mb-1.5"
           />
           <input
             value={sellerAddress}
             onChange={(e) => setSellerAddress(e.target.value)}
             placeholder={tr("Address", "العنوان", "Adres")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs focus:outline-none focus:ring-1 focus:ring-primary bg-card"
           />
         </fieldset>
-        <fieldset className="border border-sky-100 rounded-lg p-3">
-          <legend className="text-[10px] font-bold uppercase text-slate-500 tracking-wide px-1">
+        <fieldset className="border border-border rounded-lg p-3">
+          <legend className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide px-1">
             {tr("Buyer", "المشتري", "Alıcı")}
           </legend>
           <input
             value={buyerName}
             onChange={(e) => setBuyerName(e.target.value)}
             placeholder={tr("Customer name", "اسم العميل", "Müşteri adı")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs focus:outline-none focus:ring-1 focus:ring-primary bg-card mb-1.5"
           />
           <input
             value={buyerVatNo}
             onChange={(e) => setBuyerVatNo(e.target.value)}
             placeholder={tr("VAT / TCKN / VKN", "الرقم الضريبي", "VKN/TCKN")}
             dir="ltr"
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white mb-1.5"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs font-mono focus:outline-none focus:ring-1 focus:ring-primary bg-card mb-1.5"
           />
           <input
             value={buyerAddress}
             onChange={(e) => setBuyerAddress(e.target.value)}
             placeholder={tr("Address", "العنوان", "Adres")}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-sky-400 bg-white"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs focus:outline-none focus:ring-1 focus:ring-primary bg-card"
           />
         </fieldset>
       </div>
 
       {/* Line items */}
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Line items", "بنود الفاتورة", "Kalemler")}
         </label>
-        <div className="rounded-lg border border-sky-200 bg-white overflow-hidden">
+        <div className="rounded-lg border border-border bg-card overflow-hidden">
           <table className="w-full text-xs">
-            <thead className="bg-sky-50/50 border-b border-sky-100">
+            <thead className="bg-muted/40 border-b border-border">
               <tr>
-                <th className="px-2 py-1.5 text-start font-semibold text-sky-900">
+                <th className="px-2 py-1.5 text-start font-semibold text-foreground">
                   {tr("Description", "الوصف", "Açıklama")}
                 </th>
-                <th className="px-2 py-1.5 text-start font-semibold text-sky-900 w-20">
+                <th className="px-2 py-1.5 text-start font-semibold text-foreground w-20">
                   {tr("Qty", "الكمية", "Adet")}
                 </th>
-                <th className="px-2 py-1.5 text-start font-semibold text-sky-900 w-28">
+                <th className="px-2 py-1.5 text-start font-semibold text-foreground w-28">
                   {tr("Unit price", "السعر", "Birim")}
                 </th>
-                <th className="px-2 py-1.5 text-end font-semibold text-sky-900 w-28">
+                <th className="px-2 py-1.5 text-end font-semibold text-foreground w-28">
                   {tr("Total", "الإجمالي", "Toplam")}
                 </th>
                 <th className="w-8"></th>
@@ -673,12 +673,12 @@ function IssueInvoiceForm({
             </thead>
             <tbody>
               {items.map((it, idx) => (
-                <tr key={idx} className="border-b border-sky-50 last:border-b-0">
+                <tr key={idx} className="border-b border-border last:border-b-0">
                   <td className="px-2 py-1">
                     <input
                       value={it.description}
                       onChange={(e) => updateItem(idx, { description: e.target.value })}
-                      className="w-full px-1.5 py-1 border border-transparent focus:border-sky-400 rounded text-xs focus:outline-none bg-transparent"
+                      className="w-full px-1.5 py-1 border border-transparent focus:border-primary rounded text-xs focus:outline-none bg-transparent"
                     />
                   </td>
                   <td className="px-2 py-1">
@@ -688,7 +688,7 @@ function IssueInvoiceForm({
                       step="0.01"
                       value={it.quantity}
                       onChange={(e) => updateItem(idx, { quantity: Number(e.target.value) })}
-                      className="w-full px-1.5 py-1 border border-transparent focus:border-sky-400 rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
+                      className="w-full px-1.5 py-1 border border-transparent focus:border-primary rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
                     />
                   </td>
                   <td className="px-2 py-1">
@@ -698,17 +698,17 @@ function IssueInvoiceForm({
                       step="0.01"
                       value={it.unitPrice}
                       onChange={(e) => updateItem(idx, { unitPrice: Number(e.target.value) })}
-                      className="w-full px-1.5 py-1 border border-transparent focus:border-sky-400 rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
+                      className="w-full px-1.5 py-1 border border-transparent focus:border-primary rounded text-xs font-mono focus:outline-none bg-transparent tabular-nums"
                     />
                   </td>
-                  <td className="px-2 py-1 text-end font-mono text-xs tabular-nums text-slate-700">
+                  <td className="px-2 py-1 text-end font-mono text-xs tabular-nums text-foreground">
                     {Number(it.lineTotal).toFixed(2)}
                   </td>
                   <td className="px-1 py-1">
                     {items.length > 1 && (
                       <button
                         onClick={() => removeItem(idx)}
-                        className="w-6 h-6 rounded text-slate-400 hover:text-rose-700 hover:bg-rose-50 flex items-center justify-center"
+                        className="w-6 h-6 rounded text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 flex items-center justify-center"
                       >
                         <Trash2 className="w-3 h-3" />
                       </button>
@@ -721,7 +721,7 @@ function IssueInvoiceForm({
         </div>
         <button
           onClick={addItem}
-          className="mt-2 inline-flex items-center gap-1 px-2 py-1 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-md text-xs font-semibold"
+          className="mt-2 inline-flex items-center gap-1 px-2 py-1 bg-card border border-border hover:bg-muted text-foreground rounded-md text-xs font-semibold"
         >
           <Plus className="w-3 h-3" />
           {tr("Add line", "إضافة بند", "Kalem ekle")}
@@ -731,14 +731,14 @@ function IssueInvoiceForm({
       {/* Totals + tax rate */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Currency", "العملة", "Para birimi")}
           </label>
           <select
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
             dir="ltr"
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono bg-white"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs font-mono bg-card"
           >
             {currencyOptions.map((c) => (
               <option key={c.code} value={c.code}>
@@ -748,7 +748,7 @@ function IssueInvoiceForm({
           </select>
         </div>
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {getCountryProfile(countryIso2)?.taxName[locale] ??
               tr("Tax", "ضريبة", "Vergi")}{" "}
             %
@@ -760,11 +760,11 @@ function IssueInvoiceForm({
             step="0.01"
             value={taxRate}
             onChange={(e) => setTaxRate(Number(e.target.value))}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono bg-white tabular-nums"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs font-mono bg-card tabular-nums"
           />
         </div>
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Discount", "خصم", "İndirim")}
           </label>
           <input
@@ -773,10 +773,10 @@ function IssueInvoiceForm({
             step="0.01"
             value={discountAmount}
             onChange={(e) => setDiscountAmount(Number(e.target.value))}
-            className="w-full px-2 py-1.5 border border-sky-200 rounded text-xs font-mono bg-white tabular-nums"
+            className="w-full px-2 py-1.5 border border-border rounded text-xs font-mono bg-card tabular-nums"
           />
         </div>
-        <div className="rounded-lg bg-sky-500 text-white p-2 flex flex-col justify-center">
+        <div className="rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 p-2 flex flex-col justify-center">
           <div className="text-[10px] opacity-80 font-bold uppercase">
             {tr("Total", "الإجمالي", "Toplam")}
           </div>
@@ -795,14 +795,14 @@ function IssueInvoiceForm({
       <div className="flex items-center justify-end gap-2">
         <button
           onClick={onCancel}
-          className="px-3 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900"
+          className="px-3 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           {tr("Cancel", "إلغاء", "İptal")}
         </button>
         <button
           onClick={handleSubmit}
           disabled={saving}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white rounded-lg text-sm font-semibold"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 disabled:opacity-50 text-primary-foreground rounded-lg text-sm font-semibold"
         >
           {saving ? (
             <Loader2 className="w-4 h-4 animate-spin" />

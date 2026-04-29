@@ -24,10 +24,11 @@ export default function PipelinePage() {
     <DashboardShell locale={locale}>
       <div className="space-y-5 p-4 sm:p-6 lg:p-8">
         <header>
-          <h1 className="text-2xl font-bold text-zyrix-textHeading">
+          <p className="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">PIPELINE</p>
+          <h1 className="text-2xl font-bold text-foreground">
             {t('title')}
           </h1>
-          <p className="mt-0.5 text-sm text-zyrix-textMuted">{t('subtitle')}</p>
+          <p className="mt-0.5 text-sm text-muted-foreground">{t('subtitle')}</p>
         </header>
 
         <AIPipelineBoard workspaceId="current" onDealClick={setSelectedDeal} />

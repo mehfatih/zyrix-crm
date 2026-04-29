@@ -130,7 +130,7 @@ function StageColumn({
   return (
     <div className="flex w-72 flex-col">
       <div
-        className={`rounded-t-xl border border-b-0 border-zyrix-border border-t-4 bg-white p-3 ${tone}`}
+        className={`rounded-t-xl border border-b-0 border-zyrix-border border-t-4 bg-card p-3 ${tone}`}
       >
         <div className="flex items-center justify-between">
           <span className="text-sm font-bold text-zyrix-textHeading">{label}</span>
@@ -142,7 +142,7 @@ function StageColumn({
           ${(health.totalValue / 1000).toFixed(0)}k
         </div>
         {health.isBottleneck && (
-          <div className="mt-2 flex items-center gap-1 rounded-md bg-amber-50 px-2 py-1 text-[11px] font-semibold text-amber-700">
+          <div className="mt-2 flex items-center gap-1 rounded-md bg-amber-500/10 px-2 py-1 text-[11px] font-semibold text-amber-300">
             <AlertTriangle size={11} />
             <span>
               {t('bottleneck')} {health.avgDaysInStage}d / {health.baselineDays}d
@@ -150,7 +150,7 @@ function StageColumn({
           </div>
         )}
         {health.stuckDealIds.length > 0 && (
-          <div className="mt-1 text-[11px] font-semibold text-red-600">
+          <div className="mt-1 text-[11px] font-semibold text-rose-300">
             {health.stuckDealIds.length} {t('stuckDeals')}
           </div>
         )}
@@ -213,7 +213,7 @@ function DealCard({
       {...attributes}
       {...listeners}
       onClick={onClick}
-      className={`cursor-grab rounded-lg border border-zyrix-border border-l-[3px] bg-white p-3 hover:shadow-zyrix-card active:cursor-grabbing ${borderColor}`}
+      className={`cursor-grab rounded-lg border border-zyrix-border border-l-[3px] bg-card p-3 hover:shadow-zyrix-card active:cursor-grabbing ${borderColor}`}
     >
       <div className="flex items-start justify-between gap-2">
         <h4 className="line-clamp-1 text-sm font-bold text-zyrix-textHeading">
@@ -247,7 +247,7 @@ function PipelineSkeleton() {
   return (
     <div className="flex gap-4">
       {[1, 2, 3, 4, 5].map((i) => (
-        <div key={i} className="h-96 w-72 animate-pulse rounded-xl bg-white" />
+        <div key={i} className="h-96 w-72 animate-pulse rounded-xl bg-card" />
       ))}
     </div>
   );
