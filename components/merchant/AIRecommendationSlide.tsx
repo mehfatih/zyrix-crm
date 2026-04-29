@@ -44,7 +44,7 @@ export function AIRecommendationSlide({
       </div>
 
       <span
-        className="hidden sm:inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-white text-sky-600 text-sm font-semibold shadow-sm hover:shadow-md transition-shadow flex-shrink-0"
+        className="hidden sm:inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-card text-cyan-300 text-sm font-semibold shadow-sm hover:shadow-md transition-shadow flex-shrink-0"
       >
         {ctaLabel}
         {ArrowIcon}

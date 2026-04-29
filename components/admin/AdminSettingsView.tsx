@@ -171,15 +171,15 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-        <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       {/* Change password card */}
-      <div className="rounded-xl bg-white border border-sky-100 p-6">
+      <div className="rounded-xl bg-card border border-border p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Lock size={18} className="text-sky-500" />
-          <h2 className="text-sm font-semibold text-slate-900">
+          <Lock size={18} className="text-cyan-300" />
+          <h2 className="text-sm font-semibold text-foreground">
             {t("changePassword")}
           </h2>
         </div>
@@ -200,12 +200,12 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
             onChange={setConfirmPassword}
           />
           {pwError && (
-            <div className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+            <div className="text-sm text-rose-300 bg-rose-500/10 border border-rose-500/30 rounded-lg px-3 py-2">
               {pwError}
             </div>
           )}
           {pwSuccess && (
-            <div className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 inline-flex items-center gap-2">
+            <div className="text-sm text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-3 py-2 inline-flex items-center gap-2">
               <Check size={14} />
               {t("passwordChanged")}
             </div>
@@ -223,14 +223,14 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
       </div>
 
       {/* Super admins card */}
-      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
+      <div className="rounded-xl bg-card border border-border overflow-hidden">
         <div className="px-6 py-4 border-b border-sky-50 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <ShieldCheck size={18} className="text-sky-500" />
-            <h2 className="text-sm font-semibold text-slate-900">
+            <ShieldCheck size={18} className="text-cyan-300" />
+            <h2 className="text-sm font-semibold text-foreground">
               {t("superAdmins")}
             </h2>
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-muted-foreground">
               ({admins?.length ?? 0})
             </span>
           </div>
@@ -245,22 +245,22 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-sky-500" size={24} />
+            <Loader2 className="animate-spin text-cyan-300" size={24} />
           </div>
         ) : error ? (
           <div className="p-6">
-            <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+            <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-4 text-sm text-red-800">
               {error}
             </div>
           </div>
         ) : !admins || admins.length === 0 ? (
-          <div className="p-10 text-center text-sm text-slate-500">
+          <div className="p-10 text-center text-sm text-muted-foreground">
             {t("noSuperAdmins")}
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-sky-50 text-xs uppercase text-slate-600">
+              <thead className="bg-muted text-xs uppercase text-muted-foreground">
                 <tr>
                   <th className="px-4 py-3 text-start font-semibold">
                     {t("email")}
@@ -283,44 +283,44 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                 {admins.map((row) => {
                   const isSelf = me?.id === row.id;
                   return (
-                    <tr key={row.id} className="hover:bg-sky-50/50">
+                    <tr key={row.id} className="hover:bg-muted/50">
                       <td className="px-4 py-3">
-                        <div className="font-medium text-slate-900">
+                        <div className="font-medium text-foreground">
                           {row.email}
                         </div>
                         {isSelf && (
-                          <div className="text-xs text-sky-600 font-semibold">
+                          <div className="text-xs text-cyan-300 font-semibold">
                             {t("you")}
                           </div>
                         )}
                       </td>
-                      <td className="px-4 py-3 text-slate-700">
+                      <td className="px-4 py-3 text-foreground">
                         {row.fullName}
                       </td>
                       <td className="px-4 py-3">
                         {row.twoFactorEnabled ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 px-2 py-0.5 text-xs font-medium">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 ring-1 ring-emerald-500/30 px-2 py-0.5 text-xs font-medium">
                             <Check size={12} />
                             {t("enabled")}
                           </span>
                         ) : (
-                          <span className="inline-flex items-center rounded-full bg-slate-100 text-slate-600 ring-1 ring-slate-200 px-2 py-0.5 text-xs font-medium">
+                          <span className="inline-flex items-center rounded-full bg-muted text-muted-foreground ring-1 ring-border px-2 py-0.5 text-xs font-medium">
                             {t("disabled")}
                           </span>
                         )}
                       </td>
-                      <td className="px-4 py-3 text-xs text-slate-600">
+                      <td className="px-4 py-3 text-xs text-muted-foreground">
                         {row.lastLoginAt
                           ? new Date(row.lastLoginAt).toLocaleString()
                           : t("never")}
                       </td>
                       <td className="px-4 py-3 text-end">
                         {isSelf ? (
-                          <span className="text-xs text-slate-400">—</span>
+                          <span className="text-xs text-muted-foreground">—</span>
                         ) : (
                           <button
                             onClick={() => handleRevoke(row)}
-                            className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 hover:text-red-800"
+                            className="inline-flex items-center gap-1 text-xs font-semibold text-rose-300 hover:text-red-800"
                           >
                             <Trash2 size={12} />
                             {t("revoke")}
@@ -339,9 +339,9 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
       {/* Invite modal */}
       {showInvite && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-sky-100">
-            <div className="px-6 py-4 border-b border-sky-100 flex items-center justify-between">
-              <h2 className="text-base font-semibold text-slate-900">
+          <div className="w-full max-w-md bg-card rounded-2xl shadow-2xl border border-border">
+            <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+              <h2 className="text-base font-semibold text-foreground">
                 {invitedResult ? t("inviteSentTitle") : t("inviteNewAdmin")}
               </h2>
               <button
@@ -349,22 +349,22 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                   setShowInvite(false);
                   setInvitedResult(null);
                 }}
-                className="p-1.5 rounded hover:bg-slate-100 text-slate-500"
+                className="p-1.5 rounded hover:bg-muted text-muted-foreground"
               >
                 <X size={18} />
               </button>
             </div>
             {invitedResult ? (
               <div className="p-6 space-y-4">
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-muted-foreground">
                   {t("inviteSentDescription", { email: invitedResult.email })}
                 </p>
                 <div>
-                  <div className="text-xs font-semibold text-slate-700 mb-1">
+                  <div className="text-xs font-semibold text-foreground mb-1">
                     {t("tempPassword")}
                   </div>
                   <div className="flex items-center gap-2">
-                    <code className="flex-1 bg-sky-50 border border-sky-200 rounded-lg px-3 py-2 text-sm font-mono text-sky-900 break-all">
+                    <code className="flex-1 bg-muted border border-border rounded-lg px-3 py-2 text-sm font-mono text-foreground break-all">
                       {invitedResult.tempPassword}
                     </code>
                     <button
@@ -375,14 +375,14 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                         setCopiedTemp(true);
                         setTimeout(() => setCopiedTemp(false), 1500);
                       }}
-                      className="p-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white"
+                      className="p-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground"
                       title={t("copy")}
                     >
                       {copiedTemp ? <Check size={14} /> : <Copy size={14} />}
                     </button>
                   </div>
                 </div>
-                <div className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                <div className="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-lg p-3">
                   {t("tempPasswordWarning")}
                 </div>
                 <button
@@ -398,20 +398,20 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
             ) : (
               <div className="p-6 space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-foreground mb-1">
                     {t("email")}
-                    <span className="text-red-500 ms-0.5">*</span>
+                    <span className="text-rose-400 ms-0.5">*</span>
                   </label>
                   <input
                     type="email"
                     value={inviteEmail}
                     onChange={(e) => setInviteEmail(e.target.value)}
                     placeholder="admin@example.com"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                    className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-foreground mb-1">
                     {t("name")}
                   </label>
                   <input
@@ -419,14 +419,14 @@ export default function AdminSettingsView({ locale: _locale }: Props) {
                     value={inviteName}
                     onChange={(e) => setInviteName(e.target.value)}
                     placeholder="Full name (optional)"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                    className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
                   />
                 </div>
                 <div className="flex items-center justify-end gap-2 pt-2">
                   <button
                     onClick={() => setShowInvite(false)}
                     disabled={inviting}
-                    className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg"
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg"
                   >
                     {t("cancel")}
                   </button>
@@ -460,14 +460,14 @@ function PwField({
 }) {
   return (
     <div>
-      <label className="block text-xs font-semibold text-slate-700 mb-1">
+      <label className="block text-xs font-semibold text-foreground mb-1">
         {label}
       </label>
       <input
         type="password"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+        className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
         autoComplete="new-password"
       />
     </div>

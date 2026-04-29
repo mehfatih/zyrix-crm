@@ -111,10 +111,11 @@ export default function FunnelReportPage() {
               <GitBranch className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">REPORTS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Pipeline funnel", "مسار التحويل", "Satış hunisi")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Where deals die between stages — and how long they spend in each.",
                   "أين تموت الصفقات بين المراحل — وكم تقضي في كل مرحلة.",
@@ -124,7 +125,7 @@ export default function FunnelReportPage() {
             </div>
           </div>
 
-          <div className="inline-flex items-center bg-white border border-sky-200 rounded-lg p-0.5">
+          <div className="inline-flex items-center bg-card border border-border rounded-lg p-0.5">
             {WINDOW_PRESETS.map((p) => (
               <button
                 key={p.days}
@@ -132,7 +133,7 @@ export default function FunnelReportPage() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                   windowDays === p.days
                     ? "bg-sky-500 text-white"
-                    : "text-slate-600 hover:bg-sky-50"
+                    : "text-muted-foreground hover:bg-muted"
                 }`}
               >
                 {p.label[locale]}
@@ -143,26 +144,26 @@ export default function FunnelReportPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 flex items-start gap-2">
-            <AlertTriangle className="w-4 h-4 text-rose-700 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-rose-700">{error}</p>
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 text-rose-300 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-rose-300">{error}</p>
           </div>
         ) : !report || report.totalDeals === 0 ? (
-          <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
-            <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <GitBranch className="w-6 h-6 text-sky-500" />
+          <div className="rounded-xl border border-border bg-card p-10 text-center">
+            <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-3">
+              <GitBranch className="w-6 h-6 text-cyan-300" />
             </div>
-            <p className="text-sm font-semibold text-sky-900">
+            <p className="text-sm font-semibold text-foreground">
               {tr(
                 "No deals in this window",
                 "لا توجد صفقات في هذه الفترة",
                 "Bu pencerede anlaşma yok"
               )}
             </p>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {tr(
                 "Create some deals or widen the window.",
                 "أنشئ صفقات أو وسّع الفترة.",
@@ -218,9 +219,9 @@ export default function FunnelReportPage() {
             </div>
 
             {/* Info banner */}
-            <div className="rounded-lg bg-sky-50 border border-sky-200 p-3 flex items-start gap-2">
-              <Info className="w-4 h-4 text-sky-600 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-sky-900 leading-relaxed">
+            <div className="rounded-lg bg-muted border border-border p-3 flex items-start gap-2">
+              <Info className="w-4 h-4 text-cyan-300 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-foreground leading-relaxed">
                 {tr(
                   "Each bar counts deals that REACHED that stage at any point (including those that moved past it). The drop-off arrow shows the conversion rate from one stage to the next.",
                   "كل شريط يحسب الصفقات اللي وصلت للمرحلة دي في أي وقت (بما فيها اللي عدّت منها). سهم التسرب يوضّح نسبة التحويل من مرحلة للي بعدها.",
@@ -230,7 +231,7 @@ export default function FunnelReportPage() {
             </div>
 
             {/* Funnel bars */}
-            <div className="rounded-xl border border-sky-100 bg-white p-5 space-y-2">
+            <div className="rounded-xl border border-border bg-card p-5 space-y-2">
               {bars &&
                 bars.map((stage, idx) => {
                   const widthPct = (stage.totalDeals / maxCount) * 100;
@@ -239,11 +240,11 @@ export default function FunnelReportPage() {
                   return (
                     <div key={stage.stage}>
                       <div className="flex items-center gap-3">
-                        <div className="w-32 flex-shrink-0 text-xs font-semibold text-sky-900">
+                        <div className="w-32 flex-shrink-0 text-xs font-semibold text-foreground">
                           {stageLabel(stage.stage, locale)}
                         </div>
                         <div className="flex-1 relative">
-                          <div className="h-10 rounded-lg bg-slate-50 overflow-hidden">
+                          <div className="h-10 rounded-lg bg-muted overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-sky-400 to-sky-500 rounded-lg transition-all flex items-center px-3"
                               style={{ width: `${widthPct}%` }}
@@ -256,7 +257,7 @@ export default function FunnelReportPage() {
                               </span>
                             </div>
                           </div>
-                          <div className="absolute inset-y-0 right-3 rtl:right-auto rtl:left-3 flex items-center gap-3 text-[10px] text-slate-500 tabular-nums pointer-events-none">
+                          <div className="absolute inset-y-0 right-3 rtl:right-auto rtl:left-3 flex items-center gap-3 text-[10px] text-muted-foreground tabular-nums pointer-events-none">
                             <span title={tr("Open now", "مفتوحة الآن", "Şu an açık")}>
                               {stage.openDeals} {tr("open", "مفتوحة", "açık")}
                             </span>
@@ -278,32 +279,32 @@ export default function FunnelReportPage() {
                             <TrendingDown
                               className={`w-3.5 h-3.5 ${
                                 stage.conversionToNext >= 50
-                                  ? "text-emerald-600"
+                                  ? "text-emerald-300"
                                   : stage.conversionToNext >= 25
-                                    ? "text-amber-600"
-                                    : "text-rose-600"
+                                    ? "text-amber-300"
+                                    : "text-rose-300"
                               }`}
                             />
                             <span
                               className={`font-semibold ${
                                 stage.conversionToNext >= 50
-                                  ? "text-emerald-700"
+                                  ? "text-emerald-300"
                                   : stage.conversionToNext >= 25
-                                    ? "text-amber-700"
-                                    : "text-rose-700"
+                                    ? "text-amber-300"
+                                    : "text-rose-300"
                               }`}
                             >
                               {stage.conversionToNext}%
                             </span>
-                            <span className="text-slate-500">
+                            <span className="text-muted-foreground">
                               {tr(
                                 "conversion to next",
                                 "تحويل للمرحلة التالية",
                                 "sonraki aşamaya dönüşüm"
                               )}
                             </span>
-                            <span className="text-slate-400">·</span>
-                            <span className="text-slate-500">
+                            <span className="text-muted-foreground">·</span>
+                            <span className="text-muted-foreground">
                               {stage.totalDeals - nextBar.totalDeals}{" "}
                               {tr("lost here", "خسرت هنا", "burada kaybedildi")}
                             </span>
@@ -316,10 +317,10 @@ export default function FunnelReportPage() {
 
               {/* Terminal outcomes — won/lost side-by-side */}
               {(wonStage || lostStage) && (
-                <div className="pt-3 mt-3 border-t border-sky-100 grid grid-cols-2 gap-3">
+                <div className="pt-3 mt-3 border-t border-border grid grid-cols-2 gap-3">
                   {wonStage && (
-                    <div className="rounded-lg bg-emerald-50 border border-emerald-200 p-3 flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                    <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 flex items-center gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-semibold text-emerald-900">
                           {tr("Won", "مكسوبة", "Kazanılan")}
@@ -331,8 +332,8 @@ export default function FunnelReportPage() {
                     </div>
                   )}
                   {lostStage && (
-                    <div className="rounded-lg bg-rose-50 border border-rose-200 p-3 flex items-center gap-3">
-                      <XCircle className="w-5 h-5 text-rose-600 flex-shrink-0" />
+                    <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-3 flex items-center gap-3">
+                      <XCircle className="w-5 h-5 text-rose-300 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-semibold text-rose-900">
                           {tr("Lost", "مفقودة", "Kaybedilen")}
@@ -348,9 +349,9 @@ export default function FunnelReportPage() {
             </div>
 
             {/* Detailed stages table */}
-            <div className="rounded-xl border border-sky-100 bg-white overflow-hidden">
+            <div className="rounded-xl border border-border bg-card overflow-hidden">
               <table className="w-full text-sm">
-                <thead className="bg-sky-50 text-xs text-slate-600 uppercase">
+                <thead className="bg-muted text-xs text-muted-foreground uppercase">
                   <tr>
                     <th className="text-left rtl:text-right px-4 py-2.5">
                       {tr("Stage", "المرحلة", "Aşama")}
@@ -382,13 +383,13 @@ export default function FunnelReportPage() {
                           : ""
                       }
                     >
-                      <td className="px-4 py-2.5 font-medium text-sky-900">
+                      <td className="px-4 py-2.5 font-medium text-foreground">
                         {stageLabel(s.stage, locale)}
                       </td>
-                      <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-slate-700">
+                      <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-foreground">
                         {s.totalDeals}
                       </td>
-                      <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-slate-700">
+                      <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-foreground">
                         {s.openDeals}
                       </td>
                       <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums">
@@ -396,23 +397,23 @@ export default function FunnelReportPage() {
                           <span
                             className={
                               s.conversionToNext >= 50
-                                ? "text-emerald-700 font-semibold"
+                                ? "text-emerald-300 font-semibold"
                                 : s.conversionToNext >= 25
-                                  ? "text-amber-700"
-                                  : "text-rose-700 font-semibold"
+                                  ? "text-amber-300"
+                                  : "text-rose-300 font-semibold"
                             }
                           >
                             {s.conversionToNext}%
                           </span>
                         ) : (
-                          <span className="text-slate-400">—</span>
+                          <span className="text-muted-foreground">—</span>
                         )}
                       </td>
-                      <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-slate-600">
+                      <td className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-muted-foreground">
                         {s.avgDaysInStage > 0 ? `${s.avgDaysInStage}d` : "—"}
                       </td>
                       <td
-                        className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-slate-700"
+                        className="text-right rtl:text-left px-4 py-2.5 tabular-nums text-foreground"
                         dir="ltr"
                       >
                         {s.totalValue > 0
@@ -446,23 +447,23 @@ function KpiCard({
 }) {
   const accentBg =
     accent === "emerald"
-      ? "bg-emerald-50 text-emerald-700"
+      ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
       : accent === "rose"
-        ? "bg-rose-50 text-rose-700"
-        : "bg-sky-50 text-sky-600";
+        ? "bg-rose-500/10 text-rose-300 border border-rose-500/30"
+        : "bg-muted text-cyan-300";
   return (
-    <div className="rounded-xl border border-sky-100 bg-white p-4">
+    <div className="rounded-xl border border-border bg-card p-4">
       <div className="flex items-center justify-between">
         <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${accentBg}`}>
           {icon}
         </div>
       </div>
       <div className="mt-3">
-        <div className="text-xs font-medium text-slate-600">{label}</div>
-        <div className="text-xl font-bold text-sky-900 tabular-nums mt-0.5">
+        <div className="text-xs font-medium text-muted-foreground">{label}</div>
+        <div className="text-xl font-bold text-foreground tabular-nums mt-0.5">
           {value}
         </div>
-        {hint && <div className="text-[10px] text-slate-500 mt-1">{hint}</div>}
+        {hint && <div className="text-[10px] text-muted-foreground mt-1">{hint}</div>}
       </div>
     </div>
   );

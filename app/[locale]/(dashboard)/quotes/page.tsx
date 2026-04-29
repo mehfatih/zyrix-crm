@@ -53,39 +53,39 @@ const STATUS_META: Record<
   { bg: string; text: string; ring: string; Icon: typeof FileText }
 > = {
   draft: {
-    bg: "bg-slate-50",
-    text: "text-slate-700",
-    ring: "ring-slate-200",
+    bg: "bg-muted",
+    text: "text-foreground",
+    ring: "ring-border",
     Icon: FileText,
   },
   sent: {
-    bg: "bg-sky-50",
-    text: "text-sky-700",
-    ring: "ring-sky-200",
+    bg: "bg-muted",
+    text: "text-cyan-300",
+    ring: "ring-cyan-500/30",
     Icon: Send,
   },
   viewed: {
-    bg: "bg-indigo-50",
+    bg: "bg-indigo-500/10",
     text: "text-indigo-700",
     ring: "ring-indigo-200",
     Icon: Eye,
   },
   accepted: {
-    bg: "bg-emerald-50",
-    text: "text-emerald-700",
-    ring: "ring-emerald-200",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-300",
+    ring: "ring-emerald-500/30",
     Icon: CheckCircle2,
   },
   rejected: {
-    bg: "bg-red-50",
-    text: "text-red-700",
-    ring: "ring-red-200",
+    bg: "bg-rose-500/10",
+    text: "text-rose-300",
+    ring: "ring-rose-500/30",
     Icon: XCircle,
   },
   expired: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    ring: "ring-amber-200",
+    bg: "bg-amber-500/10",
+    text: "text-amber-300",
+    ring: "ring-amber-500/30",
     Icon: Clock,
   },
 };
@@ -358,17 +358,18 @@ export default function QuotesPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-              <FileText className="w-6 h-6 text-sky-500" />
+            <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">PROPOSALS</p>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <FileText className="w-6 h-6 text-cyan-300" />
               {t("title")}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
           <div className="flex items-center gap-2">
             <ExportButton entityType="quotes" />
             <button
               onClick={openCreate}
-              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium transition-colors shadow-sm"
             >
               <Plus className="w-4 h-4" />
               {t("newQuote")}
@@ -405,15 +406,15 @@ export default function QuotesPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white border border-sky-100 rounded-xl p-4 flex items-center gap-3 flex-wrap">
+        <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3 flex-wrap">
           <div className="relative flex-1 min-w-[220px]">
-            <Search className="w-4 h-4 text-slate-400 absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
+            <Search className="w-4 h-4 text-muted-foreground absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <select
@@ -421,7 +422,7 @@ export default function QuotesPage() {
             onChange={(e) =>
               setStatusFilter(e.target.value as QuoteStatus | "")
             }
-            className="px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+            className="px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">{t("filters.allStatuses")}</option>
             <option value="draft">{t("status.draft")}</option>
@@ -434,18 +435,18 @@ export default function QuotesPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
           {loading ? (
             <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+              <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
             </div>
           ) : error ? (
-            <div className="p-6 text-center text-red-700 bg-red-50">
+            <div className="p-6 text-center text-rose-300 bg-rose-500/10">
               <AlertTriangle className="w-5 h-5 inline ltr:mr-2 rtl:ml-2" />
               {error}
             </div>
           ) : quotes.length === 0 ? (
-            <div className="py-16 text-center text-slate-500">
+            <div className="py-16 text-center text-muted-foreground">
               <Sparkles className="w-10 h-10 mx-auto mb-3 text-sky-300" />
               <p className="text-sm">{t("empty.title")}</p>
               <p className="text-xs mt-1">{t("empty.subtitle")}</p>
@@ -453,8 +454,8 @@ export default function QuotesPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-sky-50 border-b border-sky-100">
-                  <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+                <thead className="bg-muted border-b border-border">
+                  <tr className="text-left rtl:text-right text-xs uppercase text-muted-foreground">
                     <th className="px-4 py-3 font-semibold">
                       {t("table.number")}
                     </th>
@@ -484,22 +485,22 @@ export default function QuotesPage() {
                       <tr
                         key={idx}
                         onClick={() => setViewQuote(quote)}
-                        className="border-b border-sky-50 hover:bg-sky-50/40 cursor-pointer transition-colors"
+                        className="border-b border-sky-50 hover:bg-muted/40 cursor-pointer transition-colors"
                       >
-                        <td className="px-4 py-3 font-mono text-xs text-sky-600 font-medium">
+                        <td className="px-4 py-3 font-mono text-xs text-cyan-300 font-medium">
                           {quote.quoteNumber}
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-medium text-sky-900">
+                          <div className="font-medium text-foreground">
                             {quote.customer.fullName}
                           </div>
                           {quote.customer.companyName && (
-                            <div className="text-xs text-slate-500">
+                            <div className="text-xs text-muted-foreground">
                               {quote.customer.companyName}
                             </div>
                           )}
                         </td>
-                        <td className="px-4 py-3 text-slate-700 max-w-xs truncate">
+                        <td className="px-4 py-3 text-foreground max-w-xs truncate">
                           {quote.title}
                         </td>
                         <td className="px-4 py-3">
@@ -510,12 +511,12 @@ export default function QuotesPage() {
                             {t(`status.${quote.status}`)}
                           </span>
                         </td>
-                        <td className="px-4 py-3 text-slate-600">
+                        <td className="px-4 py-3 text-muted-foreground">
                           {quote.validUntil
                             ? formatDate(quote.validUntil, locale)
                             : "—"}
                         </td>
-                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-sky-900">
+                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-foreground">
                           {formatMoney(Number(quote.total), quote.currency, locale)}
                         </td>
                         <td className="px-4 py-3">
@@ -524,7 +525,7 @@ export default function QuotesPage() {
                               e.stopPropagation();
                               setViewQuote(quote);
                             }}
-                            className="text-slate-400 hover:text-sky-500"
+                            className="text-muted-foreground hover:text-cyan-300"
                           >
                             <ExternalLink className="w-4 h-4" />
                           </button>
@@ -601,40 +602,40 @@ function StatCard({
     { bg: string; text: string; iconBg: string; iconText: string }
   > = {
     cyan: {
-      bg: "bg-white",
-      text: "text-sky-900",
-      iconBg: "bg-sky-50",
-      iconText: "text-sky-500",
+      bg: "bg-card",
+      text: "text-foreground",
+      iconBg: "bg-muted",
+      iconText: "text-cyan-300",
     },
     sky: {
-      bg: "bg-white",
-      text: "text-sky-900",
-      iconBg: "bg-sky-50",
-      iconText: "text-sky-600",
+      bg: "bg-card",
+      text: "text-foreground",
+      iconBg: "bg-muted",
+      iconText: "text-cyan-300",
     },
     emerald: {
-      bg: "bg-white",
+      bg: "bg-card",
       text: "text-emerald-900",
-      iconBg: "bg-emerald-50",
-      iconText: "text-emerald-600",
+      iconBg: "bg-emerald-500/10",
+      iconText: "text-emerald-300",
     },
     amber: {
-      bg: "bg-white",
+      bg: "bg-card",
       text: "text-amber-900",
-      iconBg: "bg-amber-50",
-      iconText: "text-amber-600",
+      iconBg: "bg-amber-500/10",
+      iconText: "text-amber-300",
     },
   };
   const c = colors[color];
   return (
     <div
-      className={`${c.bg} border border-sky-100 rounded-xl p-4 flex items-center gap-3`}
+      className={`${c.bg} border border-border rounded-xl p-4 flex items-center gap-3`}
     >
       <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
         <Icon className="w-5 h-5" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-xs text-slate-500 truncate">{label}</div>
+        <div className="text-xs text-muted-foreground truncate">{label}</div>
         <div className={`text-lg font-bold ${c.text} truncate`}>{value}</div>
       </div>
     </div>
@@ -681,16 +682,16 @@ function QuoteFormModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-3xl w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-3xl w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-sky-900">
+        <div className="p-5 border-b border-border flex items-center justify-between">
+          <h2 className="text-lg font-bold text-foreground">
             {editingQuote ? t("form.editTitle") : t("form.createTitle")}
           </h2>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -700,7 +701,7 @@ function QuoteFormModal({
           {/* Top row: customer + title */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.customer")} *
               </label>
               <select
@@ -708,7 +709,7 @@ function QuoteFormModal({
                 onChange={(e) =>
                   setForm({ ...form, customerId: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">{t("form.selectCustomer")}</option>
                 {customers.map((c, idx) => (
@@ -720,7 +721,7 @@ function QuoteFormModal({
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.titleLabel")} *
               </label>
               <input
@@ -728,14 +729,14 @@ function QuoteFormModal({
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 placeholder={t("form.titlePlaceholder")}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.currency")}
               </label>
               <select
@@ -743,7 +744,7 @@ function QuoteFormModal({
                 onChange={(e) =>
                   setForm({ ...form, currency: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="TRY">TRY — Türk Lirası</option>
                 <option value="USD">USD — US Dollar</option>
@@ -754,7 +755,7 @@ function QuoteFormModal({
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.validUntil")}
               </label>
               <input
@@ -763,7 +764,7 @@ function QuoteFormModal({
                 onChange={(e) =>
                   setForm({ ...form, validUntil: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>
@@ -771,12 +772,12 @@ function QuoteFormModal({
           {/* Items */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-medium text-slate-700">
+              <label className="text-xs font-medium text-foreground">
                 {t("form.items")} *
               </label>
               <button
                 onClick={onAddItem}
-                className="text-xs text-sky-600 hover:text-sky-800 font-medium flex items-center gap-1"
+                className="text-xs text-cyan-300 hover:text-foreground font-medium flex items-center gap-1"
               >
                 <Plus className="w-3 h-3" />
                 {t("form.addItem")}
@@ -786,7 +787,7 @@ function QuoteFormModal({
               {form.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-sky-50/40 border border-sky-100 rounded-lg p-3 space-y-2"
+                  className="bg-muted/40 border border-border rounded-lg p-3 space-y-2"
                 >
                   <div className="grid grid-cols-12 gap-2">
                     <input
@@ -796,7 +797,7 @@ function QuoteFormModal({
                         onUpdateItem(idx, { name: e.target.value })
                       }
                       placeholder={t("form.itemName")}
-                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-sm border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <input
                       type="number"
@@ -806,7 +807,7 @@ function QuoteFormModal({
                         onUpdateItem(idx, { quantity: e.target.value })
                       }
                       placeholder={t("form.qty")}
-                      className="col-span-3 md:col-span-2 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                      className="col-span-3 md:col-span-2 px-2 py-1.5 text-sm border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <input
                       type="number"
@@ -816,12 +817,12 @@ function QuoteFormModal({
                         onUpdateItem(idx, { unitPrice: e.target.value })
                       }
                       placeholder={t("form.unitPrice")}
-                      className="col-span-4 md:col-span-3 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                      className="col-span-4 md:col-span-3 px-2 py-1.5 text-sm border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <button
                       onClick={() => onRemoveItem(idx)}
                       disabled={form.items.length === 1}
-                      className="col-span-1 flex items-center justify-center text-slate-400 hover:text-red-600 disabled:opacity-30"
+                      className="col-span-1 flex items-center justify-center text-muted-foreground hover:text-rose-300 disabled:opacity-30"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -834,7 +835,7 @@ function QuoteFormModal({
                         onUpdateItem(idx, { description: e.target.value })
                       }
                       placeholder={t("form.descriptionOptional")}
-                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                      className="col-span-12 md:col-span-6 px-2 py-1.5 text-xs border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <div className="col-span-6 md:col-span-3 flex items-center gap-1">
                       <input
@@ -845,9 +846,9 @@ function QuoteFormModal({
                           onUpdateItem(idx, { discountPercent: e.target.value })
                         }
                         placeholder="0"
-                        className="flex-1 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                        className="flex-1 px-2 py-1.5 text-xs border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                       />
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-muted-foreground">
                         % {t("form.discount")}
                       </span>
                     </div>
@@ -860,9 +861,9 @@ function QuoteFormModal({
                           onUpdateItem(idx, { taxPercent: e.target.value })
                         }
                         placeholder="20"
-                        className="flex-1 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                        className="flex-1 px-2 py-1.5 text-xs border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                       />
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-muted-foreground">
                         % {t("form.tax")}
                       </span>
                     </div>
@@ -873,16 +874,16 @@ function QuoteFormModal({
           </div>
 
           {/* Totals preview */}
-          <div className="bg-sky-50 border border-sky-100 rounded-lg p-3 space-y-1 text-sm">
-            <div className="flex justify-between text-slate-600">
+          <div className="bg-muted border border-border rounded-lg p-3 space-y-1 text-sm">
+            <div className="flex justify-between text-muted-foreground">
               <span>{t("form.subtotal")}</span>
               <span>{formatMoney(totals.subtotal, form.currency, locale)}</span>
             </div>
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-muted-foreground">
               <span>{t("form.taxTotal")}</span>
               <span>{formatMoney(totals.taxAmount, form.currency, locale)}</span>
             </div>
-            <div className="flex justify-between font-bold text-sky-900 pt-1 border-t border-sky-200">
+            <div className="flex justify-between font-bold text-foreground pt-1 border-t border-border">
               <span>{t("form.total")}</span>
               <span>{formatMoney(totals.total, form.currency, locale)}</span>
             </div>
@@ -891,47 +892,47 @@ function QuoteFormModal({
           {/* Notes + terms */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.notes")}
               </label>
               <textarea
                 value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 resize-none"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.terms")}
               </label>
               <textarea
                 value={form.terms}
                 onChange={(e) => setForm({ ...form, terms: e.target.value })}
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 resize-none"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
               />
             </div>
           </div>
 
           {formError && (
-            <div className="bg-red-50 text-red-700 text-sm p-3 rounded-lg border border-red-100 whitespace-pre-line">
+            <div className="bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm p-3 rounded-lg border border-red-100 whitespace-pre-line">
               {formError}
             </div>
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex items-center justify-end gap-2 bg-sky-50/30">
+        <div className="p-4 border-t border-border flex items-center justify-end gap-2 bg-muted/30">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 rounded-lg"
+            className="px-4 py-2 text-sm text-foreground hover:bg-muted rounded-lg"
           >
             {t("actions.cancel")}
           </button>
           <button
             onClick={onSave}
             disabled={saving}
-            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving && <Loader2 className="w-4 h-4 animate-spin" />}
             {editingQuote ? t("actions.save") : t("actions.create")}
@@ -984,13 +985,13 @@ function QuoteDetailModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-3xl w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-3xl w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-start justify-between gap-4">
+        <div className="p-5 border-b border-border flex items-start justify-between gap-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-xs text-sky-600 font-semibold">
+              <span className="font-mono text-xs text-cyan-300 font-semibold">
                 {quote.quoteNumber}
               </span>
               <span
@@ -1000,8 +1001,8 @@ function QuoteDetailModal({
                 {t(`status.${quote.status}`)}
               </span>
             </div>
-            <h2 className="text-lg font-bold text-sky-900">{quote.title}</h2>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <h2 className="text-lg font-bold text-foreground">{quote.title}</h2>
+            <p className="text-sm text-muted-foreground mt-0.5">
               {quote.customer.fullName}
               {quote.customer.companyName
                 ? ` — ${quote.customer.companyName}`
@@ -1010,7 +1011,7 @@ function QuoteDetailModal({
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -1038,9 +1039,9 @@ function QuoteDetailModal({
           </div>
 
           {/* Items */}
-          <div className="bg-sky-50/40 border border-sky-100 rounded-lg overflow-hidden">
+          <div className="bg-muted/40 border border-border rounded-lg overflow-hidden">
             <table className="w-full text-sm">
-              <thead className="bg-sky-100/50 text-xs uppercase text-slate-600">
+              <thead className="bg-sky-100/50 text-xs uppercase text-muted-foreground">
                 <tr>
                   <th className="px-3 py-2 ltr:text-left rtl:text-right">
                     {t("detail.item")}
@@ -1058,29 +1059,29 @@ function QuoteDetailModal({
                 {quote.items.map((item, idx) => (
                   <tr
                     key={idx}
-                    className="border-t border-sky-100 hover:bg-white/40"
+                    className="border-t border-border hover:bg-card/40"
                   >
                     <td className="px-3 py-2">
-                      <div className="font-medium text-sky-900">
+                      <div className="font-medium text-foreground">
                         {item.name}
                       </div>
                       {item.description && (
-                        <div className="text-xs text-slate-500">
+                        <div className="text-xs text-muted-foreground">
                           {item.description}
                         </div>
                       )}
                     </td>
-                    <td className="px-3 py-2 text-center text-slate-700">
+                    <td className="px-3 py-2 text-center text-foreground">
                       {Number(item.quantity)}
                     </td>
-                    <td className="px-3 py-2 ltr:text-right rtl:text-left text-slate-700">
+                    <td className="px-3 py-2 ltr:text-right rtl:text-left text-foreground">
                       {formatMoney(
                         Number(item.unitPrice),
                         quote.currency,
                         locale
                       )}
                     </td>
-                    <td className="px-3 py-2 ltr:text-right rtl:text-left font-medium text-sky-900">
+                    <td className="px-3 py-2 ltr:text-right rtl:text-left font-medium text-foreground">
                       {formatMoney(
                         Number(item.lineTotal),
                         quote.currency,
@@ -1094,15 +1095,15 @@ function QuoteDetailModal({
           </div>
 
           {/* Totals */}
-          <div className="bg-sky-50 border border-sky-100 rounded-lg p-3 space-y-1 text-sm">
-            <div className="flex justify-between text-slate-600">
+          <div className="bg-muted border border-border rounded-lg p-3 space-y-1 text-sm">
+            <div className="flex justify-between text-muted-foreground">
               <span>{t("form.subtotal")}</span>
               <span>
                 {formatMoney(Number(quote.subtotal), quote.currency, locale)}
               </span>
             </div>
             {Number(quote.discountAmount) > 0 && (
-              <div className="flex justify-between text-slate-600">
+              <div className="flex justify-between text-muted-foreground">
                 <span>{t("detail.discount")}</span>
                 <span>
                   −{" "}
@@ -1114,13 +1115,13 @@ function QuoteDetailModal({
                 </span>
               </div>
             )}
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-muted-foreground">
               <span>{t("form.taxTotal")}</span>
               <span>
                 {formatMoney(Number(quote.taxAmount), quote.currency, locale)}
               </span>
             </div>
-            <div className="flex justify-between font-bold text-sky-900 pt-1 border-t border-sky-200 text-base">
+            <div className="flex justify-between font-bold text-foreground pt-1 border-t border-border text-base">
               <span>{t("form.total")}</span>
               <span>
                 {formatMoney(Number(quote.total), quote.currency, locale)}
@@ -1130,10 +1131,10 @@ function QuoteDetailModal({
 
           {quote.notes && (
             <div>
-              <div className="text-xs font-semibold text-slate-500 uppercase mb-1">
+              <div className="text-xs font-semibold text-muted-foreground uppercase mb-1">
                 {t("form.notes")}
               </div>
-              <div className="text-sm text-slate-700 whitespace-pre-wrap bg-sky-50/30 border border-sky-100 rounded-lg p-3">
+              <div className="text-sm text-foreground whitespace-pre-wrap bg-muted/30 border border-border rounded-lg p-3">
                 {quote.notes}
               </div>
             </div>
@@ -1141,24 +1142,24 @@ function QuoteDetailModal({
 
           {quote.terms && (
             <div>
-              <div className="text-xs font-semibold text-slate-500 uppercase mb-1">
+              <div className="text-xs font-semibold text-muted-foreground uppercase mb-1">
                 {t("form.terms")}
               </div>
-              <div className="text-sm text-slate-700 whitespace-pre-wrap bg-sky-50/30 border border-sky-100 rounded-lg p-3">
+              <div className="text-sm text-foreground whitespace-pre-wrap bg-muted/30 border border-border rounded-lg p-3">
                 {quote.terms}
               </div>
             </div>
           )}
 
           {publicLink && (
-            <div className="bg-amber-50 border border-amber-100 rounded-lg p-3 flex items-center gap-2">
-              <Copy className="w-4 h-4 text-amber-600 flex-shrink-0" />
-              <code className="text-xs text-slate-700 flex-1 truncate">
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 flex items-center gap-2">
+              <Copy className="w-4 h-4 text-amber-300 flex-shrink-0" />
+              <code className="text-xs text-foreground flex-1 truncate">
                 {publicLink}
               </code>
               <button
                 onClick={onCopyLink}
-                className="text-xs text-amber-700 hover:text-amber-800 font-medium whitespace-nowrap"
+                className="text-xs text-amber-300 hover:text-amber-800 font-medium whitespace-nowrap"
               >
                 {t("actions.copyLink")}
               </button>
@@ -1166,18 +1167,18 @@ function QuoteDetailModal({
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex items-center justify-between gap-2 bg-sky-50/30 flex-wrap">
+        <div className="p-4 border-t border-border flex items-center justify-between gap-2 bg-muted/30 flex-wrap">
           <div className="flex items-center gap-2">
             <button
               onClick={onEdit}
-              className="px-3 py-1.5 text-sm text-sky-600 hover:bg-sky-50 rounded-lg flex items-center gap-1.5"
+              className="px-3 py-1.5 text-sm text-cyan-300 hover:bg-muted rounded-lg flex items-center gap-1.5"
             >
               <Pencil className="w-4 h-4" />
               {t("actions.edit")}
             </button>
             <button
               onClick={onDelete}
-              className="px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 rounded-lg flex items-center gap-1.5"
+              className="px-3 py-1.5 text-sm text-rose-300 hover:bg-rose-500/10 rounded-lg flex items-center gap-1.5"
             >
               <Trash2 className="w-4 h-4" />
               {t("actions.delete")}
@@ -1187,7 +1188,7 @@ function QuoteDetailModal({
             {canSend && (
               <button
                 onClick={onSend}
-                className="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium rounded-lg flex items-center gap-1.5"
+                className="px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg flex items-center gap-1.5"
               >
                 <Send className="w-4 h-4" />
                 {t("actions.send")}
@@ -1220,11 +1221,11 @@ function QuoteDetailModal({
 
 function MetaBox({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-sky-50/40 border border-sky-100 rounded-lg px-3 py-2">
-      <div className="text-xs text-slate-500 uppercase font-medium">
+    <div className="bg-muted/40 border border-border rounded-lg px-3 py-2">
+      <div className="text-xs text-muted-foreground uppercase font-medium">
         {label}
       </div>
-      <div className="text-sm text-sky-900 font-medium mt-0.5">{value}</div>
+      <div className="text-sm text-foreground font-medium mt-0.5">{value}</div>
     </div>
   );
 }

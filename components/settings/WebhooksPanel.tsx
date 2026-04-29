@@ -162,8 +162,8 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
 
   if (loading) {
     return (
-      <div className="bg-white border border-sky-100 rounded-xl p-6 flex items-center justify-center">
-        <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+      <div className="bg-card border border-border rounded-xl p-6 flex items-center justify-center">
+        <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
       </div>
     );
   }
@@ -177,20 +177,20 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
     <section className="space-y-3">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <h2 className="text-sm font-semibold text-sky-900 flex items-center gap-2">
-            <Webhook className="w-4 h-4 text-sky-500" />
+          <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
+            <Webhook className="w-4 h-4 text-cyan-300" />
             {locale === "ar"
               ? "استقبال الويب هوكس"
               : locale === "tr"
                 ? "Webhook dinleyicileri"
                 : "Webhook listeners"}
             {subs.length > 0 && (
-              <span className="px-2 py-0.5 text-[10px] bg-sky-100 text-sky-600 rounded-full font-semibold">
+              <span className="px-2 py-0.5 text-[10px] bg-sky-100 text-cyan-300 rounded-full font-semibold">
                 {subs.length}
               </span>
             )}
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5 max-w-xl">
+          <p className="text-xs text-muted-foreground mt-0.5 max-w-xl">
             {locale === "ar"
               ? "اجعل منصات التجارة الإلكترونية تُرسل إليك التحديثات فوراً بدلاً من الانتظار لدورة المزامنة التالية."
               : locale === "tr"
@@ -213,9 +213,9 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
 
       {/* Subscription list */}
       {subs.length === 0 ? (
-        <div className="bg-white border border-sky-100 border-dashed rounded-xl p-6 text-center">
+        <div className="bg-card border border-border border-dashed rounded-xl p-6 text-center">
           <Radio className="w-8 h-8 text-sky-300 mx-auto mb-2" />
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted-foreground">
             {locale === "ar"
               ? "لم تضف أي ويب هوك بعد."
               : locale === "tr"
@@ -241,8 +241,8 @@ export default function WebhooksPanel({ locale }: { locale: string }) {
 
       {/* Recent events */}
       {events.length > 0 && (
-        <details className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-          <summary className="px-4 py-2.5 text-xs font-semibold text-sky-900 cursor-pointer hover:bg-sky-50 flex items-center gap-2">
+        <details className="bg-card border border-border rounded-xl overflow-hidden">
+          <summary className="px-4 py-2.5 text-xs font-semibold text-foreground cursor-pointer hover:bg-muted flex items-center gap-2">
             <Clock className="w-3.5 h-3.5" />
             {locale === "ar"
               ? `آخر ${events.length} حدث`
@@ -346,28 +346,28 @@ function WebhookRow({
 
   return (
     <div
-      className={`bg-white border rounded-xl p-3 ${
-        sub.isActive ? "border-sky-100" : "border-slate-200 opacity-60"
+      className={`bg-card border rounded-xl p-3 ${
+        sub.isActive ? "border-border" : "border-border opacity-60"
       }`}
     >
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-semibold text-sky-900 capitalize">
+            <span className="text-xs font-semibold text-foreground capitalize">
               {sub.platform}
             </span>
             <span className="text-slate-300">·</span>
-            <code className="text-[11px] font-mono px-1.5 py-0.5 bg-sky-50 text-sky-800 rounded">
+            <code className="text-[11px] font-mono px-1.5 py-0.5 bg-muted text-foreground rounded">
               {sub.topic}
             </code>
             {!sub.isActive && (
-              <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">
+              <span className="text-[10px] px-1.5 py-0.5 bg-muted text-muted-foreground rounded">
                 {locale === "ar" ? "متوقف" : locale === "tr" ? "pasif" : "inactive"}
               </span>
             )}
             {hasFailures && (
               <span
-                className="text-[10px] px-1.5 py-0.5 bg-amber-50 text-amber-700 rounded flex items-center gap-1"
+                className="text-[10px] px-1.5 py-0.5 bg-amber-500/10 text-amber-300 border border-amber-500/30 rounded flex items-center gap-1"
                 title={`${sub.failedCount} failed`}
               >
                 <AlertTriangle className="w-2.5 h-2.5" />
@@ -379,7 +379,7 @@ function WebhookRow({
           {/* Public URL */}
           <div className="mt-2 flex items-center gap-1.5 min-w-0">
             <code
-              className="flex-1 min-w-0 text-[10px] font-mono px-2 py-1 bg-slate-50 text-slate-600 rounded border border-slate-200 truncate"
+              className="flex-1 min-w-0 text-[10px] font-mono px-2 py-1 bg-muted text-muted-foreground rounded border border-border truncate"
               dir="ltr"
               style={{ unicodeBidi: "embed" }}
             >
@@ -387,11 +387,11 @@ function WebhookRow({
             </code>
             <button
               onClick={copyUrl}
-              className="p-1.5 text-slate-500 hover:text-sky-500 hover:bg-sky-50 rounded"
+              className="p-1.5 text-muted-foreground hover:text-cyan-300 hover:bg-muted rounded"
               title={locale === "ar" ? "نسخ" : locale === "tr" ? "kopyala" : "copy"}
             >
               {copied ? (
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <Check className="w-3.5 h-3.5 text-emerald-300" />
               ) : (
                 <Copy className="w-3.5 h-3.5" />
               )}
@@ -399,7 +399,7 @@ function WebhookRow({
           </div>
 
           {/* Stats */}
-          <div className="mt-1.5 flex items-center gap-3 text-[10px] text-slate-500 flex-wrap">
+          <div className="mt-1.5 flex items-center gap-3 text-[10px] text-muted-foreground flex-wrap">
             <span>
               {locale === "ar"
                 ? `مستلم: ${sub.receivedCount}`
@@ -434,7 +434,7 @@ function WebhookRow({
                     ? "başlat"
                     : "resume"
             }
-            className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded"
+            className="p-1.5 text-muted-foreground hover:text-cyan-300 hover:bg-muted rounded"
           >
             {sub.isActive ? (
               <Power className="w-3.5 h-3.5" />
@@ -451,7 +451,7 @@ function WebhookRow({
                   ? "gizli anahtarı yenile"
                   : "rotate secret"
             }
-            className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded"
+            className="p-1.5 text-muted-foreground hover:text-cyan-300 hover:bg-muted rounded"
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
@@ -460,7 +460,7 @@ function WebhookRow({
             title={
               locale === "ar" ? "حذف" : locale === "tr" ? "sil" : "delete"
             }
-            className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded"
+            className="p-1.5 text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 rounded"
           >
             <Trash2 className="w-3.5 h-3.5" />
           </button>
@@ -488,32 +488,32 @@ function EventRow({
     { bg: string; text: string; icon: typeof Check; label: { en: string; ar: string; tr: string } }
   > = {
     done: {
-      bg: "bg-emerald-50",
-      text: "text-emerald-700",
+      bg: "bg-emerald-500/10",
+      text: "text-emerald-300",
       icon: CheckCircle2,
       label: { en: "done", ar: "تم", tr: "tamam" },
     },
     pending: {
-      bg: "bg-sky-50",
-      text: "text-sky-700",
+      bg: "bg-muted",
+      text: "text-cyan-300",
       icon: Clock,
       label: { en: "pending", ar: "قيد الانتظار", tr: "bekliyor" },
     },
     processing: {
-      bg: "bg-sky-50",
-      text: "text-sky-700",
+      bg: "bg-muted",
+      text: "text-cyan-300",
       icon: Loader2,
       label: { en: "processing", ar: "جارٍ", tr: "işleniyor" },
     },
     failed: {
-      bg: "bg-rose-50",
-      text: "text-rose-700",
+      bg: "bg-rose-500/10",
+      text: "text-rose-300",
       icon: AlertTriangle,
       label: { en: "failed", ar: "فشل", tr: "başarısız" },
     },
     skipped: {
-      bg: "bg-amber-50",
-      text: "text-amber-700",
+      bg: "bg-amber-500/10",
+      text: "text-amber-300",
       icon: AlertTriangle,
       label: { en: "skipped", ar: "تم تخطيه", tr: "atlandı" },
     },
@@ -573,7 +573,7 @@ function EventRow({
   const nextRetry = retryHint();
 
   return (
-    <div className="px-4 py-2 flex items-center gap-3 text-[11px] hover:bg-sky-50/40 flex-wrap">
+    <div className="px-4 py-2 flex items-center gap-3 text-[11px] hover:bg-muted/40 flex-wrap">
       <span
         className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded ${cfg.bg} ${cfg.text} font-medium`}
       >
@@ -581,15 +581,15 @@ function EventRow({
         {cfg.label[locale as "en" | "ar" | "tr"] || cfg.label.en}
       </span>
 
-      <span className="text-slate-700 font-medium capitalize">
+      <span className="text-foreground font-medium capitalize">
         {event.platform}
       </span>
-      <code className="text-[10px] font-mono text-slate-600">{event.topic}</code>
+      <code className="text-[10px] font-mono text-muted-foreground">{event.topic}</code>
 
       {/* Attempt counter — show only when retries have happened */}
       {event.attempts > 1 && (
         <span
-          className="text-[10px] text-slate-500 tabular-nums"
+          className="text-[10px] text-muted-foreground tabular-nums"
           title={locale === "ar" ? "المحاولات" : locale === "tr" ? "deneme" : "attempts"}
         >
           #{event.attempts}
@@ -597,7 +597,7 @@ function EventRow({
       )}
 
       {!event.signatureOk && (
-        <span className="text-[10px] px-1 py-0.5 bg-rose-50 text-rose-700 rounded">
+        <span className="text-[10px] px-1 py-0.5 bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded">
           {locale === "ar"
             ? "توقيع غير صالح"
             : locale === "tr"
@@ -608,7 +608,7 @@ function EventRow({
 
       {/* Next retry timestamp for failed events */}
       {nextRetry && event.status === "failed" && (
-        <span className="text-[10px] text-slate-500 inline-flex items-center gap-0.5">
+        <span className="text-[10px] text-muted-foreground inline-flex items-center gap-0.5">
           <Clock className="w-2.5 h-2.5" />
           {nextRetry}
         </span>
@@ -617,7 +617,7 @@ function EventRow({
       {/* Tooltip with error message on hover for failed/dead_letter */}
       {event.lastError && (event.status === "failed" || event.status === "dead_letter") && (
         <span
-          className="text-[10px] text-rose-600 max-w-[200px] truncate"
+          className="text-[10px] text-rose-300 max-w-[200px] truncate"
           title={event.lastError}
         >
           · {event.lastError}
@@ -625,7 +625,7 @@ function EventRow({
       )}
 
       <time
-        className="ltr:ml-auto rtl:mr-auto text-slate-400"
+        className="ltr:ml-auto rtl:mr-auto text-muted-foreground"
         dir="ltr"
         style={{ unicodeBidi: "embed" }}
       >
@@ -636,7 +636,7 @@ function EventRow({
         <button
           onClick={handleRetry}
           disabled={retrying}
-          className="p-1 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded disabled:opacity-50"
+          className="p-1 text-muted-foreground hover:text-cyan-300 hover:bg-muted rounded disabled:opacity-50"
           title={
             locale === "ar"
               ? "إعادة المحاولة الآن"
@@ -703,11 +703,11 @@ function AddWebhookDialog({
       onClick={onCancel}
     >
       <div
-        className="bg-white rounded-xl shadow-2xl max-w-md w-full p-5"
+        className="bg-card rounded-xl shadow-2xl max-w-md w-full p-5"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between mb-4">
-          <h3 className="text-base font-semibold text-sky-900">
+          <h3 className="text-base font-semibold text-foreground">
             {locale === "ar"
               ? "إضافة ويب هوك"
               : locale === "tr"
@@ -716,7 +716,7 @@ function AddWebhookDialog({
           </h3>
           <button
             onClick={onCancel}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-4 h-4" />
           </button>
@@ -724,7 +724,7 @@ function AddWebhookDialog({
 
         <div className="space-y-3">
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {locale === "ar"
                 ? "المنصة"
                 : locale === "tr"
@@ -737,7 +737,7 @@ function AddWebhookDialog({
                 setPlatform(e.target.value);
                 setTopic("");
               }}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white capitalize"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card capitalize"
             >
               {platforms.map((p) => (
                 <option key={p} value={p}>
@@ -748,7 +748,7 @@ function AddWebhookDialog({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {locale === "ar"
                 ? "الحدث"
                 : locale === "tr"
@@ -760,7 +760,7 @@ function AddWebhookDialog({
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder={presets[0] || "customers/create"}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg font-mono"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg font-mono"
               dir="ltr"
             />
             {presets.length > 0 && (
@@ -773,7 +773,7 @@ function AddWebhookDialog({
                     className={`text-[10px] px-2 py-0.5 rounded-full border ${
                       topic === p
                         ? "bg-sky-500 text-white border-sky-500"
-                        : "bg-white text-slate-600 border-slate-200 hover:border-sky-300"
+                        : "bg-card text-muted-foreground border-border hover:border-sky-300"
                     }`}
                   >
                     {p}
@@ -783,9 +783,9 @@ function AddWebhookDialog({
             )}
           </div>
 
-          <div className="bg-sky-50 border border-sky-100 rounded-lg p-2.5 flex items-start gap-2">
-            <Info className="w-3.5 h-3.5 text-sky-500 flex-shrink-0 mt-0.5" />
-            <p className="text-[11px] text-sky-900 leading-relaxed">
+          <div className="bg-muted border border-border rounded-lg p-2.5 flex items-start gap-2">
+            <Info className="w-3.5 h-3.5 text-cyan-300 flex-shrink-0 mt-0.5" />
+            <p className="text-[11px] text-foreground leading-relaxed">
               {locale === "ar"
                 ? "بعد الإنشاء، سنعرض لك السر الموقع ورابط الاستقبال. تلصقهما في لوحة تحكم المنصة."
                 : locale === "tr"
@@ -795,7 +795,7 @@ function AddWebhookDialog({
           </div>
 
           {err && (
-            <div className="bg-rose-50 border border-rose-100 rounded-lg p-2 text-[11px] text-rose-700">
+            <div className="bg-rose-500/10 border border-rose-100 rounded-lg p-2 text-[11px] text-rose-300">
               {err}
             </div>
           )}
@@ -804,7 +804,7 @@ function AddWebhookDialog({
         <div className="mt-5 flex items-center justify-end gap-2">
           <button
             onClick={onCancel}
-            className="px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50 rounded-lg"
+            className="px-3 py-1.5 text-sm text-foreground hover:bg-muted rounded-lg"
           >
             {locale === "ar" ? "إلغاء" : locale === "tr" ? "iptal" : "Cancel"}
           </button>
@@ -868,19 +868,19 @@ function SecretRevealDialog({
 
   return (
     <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full p-5">
+      <div className="bg-card rounded-xl shadow-2xl max-w-lg w-full p-5">
         <div className="flex items-start gap-2 mb-3">
-          <Key className="w-5 h-5 text-sky-500 mt-0.5" />
+          <Key className="w-5 h-5 text-cyan-300 mt-0.5" />
           <div className="flex-1 min-w-0">
-            <h3 className="text-base font-semibold text-sky-900">{title}</h3>
-            <p className="text-xs text-slate-600 mt-0.5 capitalize">
-              {platform} · <span className="font-mono text-slate-700">{topic}</span>
+            <h3 className="text-base font-semibold text-foreground">{title}</h3>
+            <p className="text-xs text-muted-foreground mt-0.5 capitalize">
+              {platform} · <span className="font-mono text-foreground">{topic}</span>
             </p>
           </div>
         </div>
 
-        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-2 mb-4">
-          <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 flex items-start gap-2 mb-4">
+          <AlertTriangle className="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5" />
           <p className="text-xs text-amber-900 leading-relaxed">
             {locale === "ar"
               ? "احفظ هذا السر الآن. لن يتم عرضه مرة أخرى. إن فقدته، استخدم زر إعادة التوليد."
@@ -892,7 +892,7 @@ function SecretRevealDialog({
 
         <div className="space-y-3">
           <div>
-            <label className="block text-[11px] font-medium text-slate-600 mb-1">
+            <label className="block text-[11px] font-medium text-muted-foreground mb-1">
               {locale === "ar"
                 ? "رابط الاستقبال"
                 : locale === "tr"
@@ -901,7 +901,7 @@ function SecretRevealDialog({
             </label>
             <div className="flex items-center gap-1.5">
               <code
-                className="flex-1 min-w-0 text-[11px] font-mono px-2.5 py-2 bg-slate-50 text-slate-800 rounded border border-slate-200 truncate"
+                className="flex-1 min-w-0 text-[11px] font-mono px-2.5 py-2 bg-muted text-foreground rounded border border-border truncate"
                 dir="ltr"
                 style={{ unicodeBidi: "embed" }}
               >
@@ -909,10 +909,10 @@ function SecretRevealDialog({
               </code>
               <button
                 onClick={() => copy(publicUrl, setCopiedUrl)}
-                className="p-2 text-slate-500 hover:text-sky-500 hover:bg-sky-50 rounded border border-slate-200"
+                className="p-2 text-muted-foreground hover:text-cyan-300 hover:bg-muted rounded border border-border"
               >
                 {copiedUrl ? (
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <Check className="w-3.5 h-3.5 text-emerald-300" />
                 ) : (
                   <Copy className="w-3.5 h-3.5" />
                 )}
@@ -921,7 +921,7 @@ function SecretRevealDialog({
           </div>
 
           <div>
-            <label className="block text-[11px] font-medium text-slate-600 mb-1">
+            <label className="block text-[11px] font-medium text-muted-foreground mb-1">
               {locale === "ar"
                 ? "سر التوقيع (مخفي في المستقبل)"
                 : locale === "tr"
@@ -930,7 +930,7 @@ function SecretRevealDialog({
             </label>
             <div className="flex items-center gap-1.5">
               <code
-                className="flex-1 min-w-0 text-[11px] font-mono px-2.5 py-2 bg-amber-50 text-amber-900 rounded border border-amber-200 break-all"
+                className="flex-1 min-w-0 text-[11px] font-mono px-2.5 py-2 bg-amber-500/10 text-amber-900 rounded border border-amber-500/30 break-all"
                 dir="ltr"
                 style={{ unicodeBidi: "embed" }}
               >
@@ -938,10 +938,10 @@ function SecretRevealDialog({
               </code>
               <button
                 onClick={() => copy(secret, setCopiedSecret)}
-                className="p-2 text-slate-500 hover:text-sky-500 hover:bg-sky-50 rounded border border-slate-200"
+                className="p-2 text-muted-foreground hover:text-cyan-300 hover:bg-muted rounded border border-border"
               >
                 {copiedSecret ? (
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <Check className="w-3.5 h-3.5 text-emerald-300" />
                 ) : (
                   <Copy className="w-3.5 h-3.5" />
                 )}
@@ -950,12 +950,12 @@ function SecretRevealDialog({
           </div>
         </div>
 
-        <label className="mt-4 flex items-start gap-2 text-xs text-slate-700 cursor-pointer">
+        <label className="mt-4 flex items-start gap-2 text-xs text-foreground cursor-pointer">
           <input
             type="checkbox"
             checked={confirmed}
             onChange={(e) => setConfirmed(e.target.checked)}
-            className="mt-0.5 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
+            className="mt-0.5 rounded border-sky-300 text-cyan-300 focus:ring-primary"
           />
           <span>
             {locale === "ar"

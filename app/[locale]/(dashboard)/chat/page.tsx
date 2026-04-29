@@ -204,41 +204,41 @@ export default function ChatPage() {
 
   return (
     <DashboardShell locale={locale}>
-      <div className="h-[calc(100vh-64px)] flex flex-col md:flex-row bg-sky-50/30">
+      <div className="h-[calc(100vh-64px)] flex flex-col md:flex-row bg-muted/30">
         {/* Sidebar */}
-        <aside className="w-full md:w-80 bg-white border-b md:border-b-0 ltr:md:border-r rtl:md:border-l border-sky-100 flex flex-col max-h-[40vh] md:max-h-none">
-          <div className="p-4 border-b border-sky-100 flex items-center justify-between">
+        <aside className="w-full md:w-80 bg-card border-b md:border-b-0 ltr:md:border-r rtl:md:border-l border-border flex flex-col max-h-[40vh] md:max-h-none">
+          <div className="p-4 border-b border-border flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-bold text-sky-900 flex items-center gap-1.5">
-                <MessageSquare className="w-4 h-4 text-sky-500" />
+              <h2 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                <MessageSquare className="w-4 h-4 text-cyan-300" />
                 {t("title")}
               </h2>
-              <p className="text-xs text-slate-500">{t("subtitle")}</p>
+              <p className="text-xs text-muted-foreground">{t("subtitle")}</p>
             </div>
             <button
               onClick={() => setShowTeam(!showTeam)}
               title={t("newChat")}
-              className="p-1.5 text-sky-500 hover:bg-sky-50 rounded-lg"
+              className="p-1.5 text-cyan-300 hover:bg-muted rounded-lg"
             >
               <Plus className="w-4 h-4" />
             </button>
           </div>
 
           {showTeam && (
-            <div className="p-3 border-b border-sky-100 bg-sky-50/40">
+            <div className="p-3 border-b border-border bg-muted/40">
               <div className="relative mb-2">
-                <Search className="w-3.5 h-3.5 text-slate-400 absolute top-1/2 -translate-y-1/2 ltr:left-2.5 rtl:right-2.5" />
+                <Search className="w-3.5 h-3.5 text-muted-foreground absolute top-1/2 -translate-y-1/2 ltr:left-2.5 rtl:right-2.5" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder={t("searchTeam")}
-                  className="w-full ltr:pl-8 rtl:pr-8 ltr:pr-2 rtl:pl-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none focus:ring-1 focus:ring-sky-400"
+                  className="w-full ltr:pl-8 rtl:pr-8 ltr:pr-2 rtl:pl-2 py-1.5 text-xs border border-border rounded bg-card focus:outline-none focus:ring-1 focus:ring-primary"
                 />
               </div>
               <div className="max-h-48 overflow-y-auto space-y-1">
                 {filteredTeam.length === 0 ? (
-                  <div className="text-xs text-slate-500 text-center py-2">
+                  <div className="text-xs text-muted-foreground text-center py-2">
                     {t("noTeamMembers")}
                   </div>
                 ) : (
@@ -246,14 +246,14 @@ export default function ChatPage() {
                     <button
                       key={idx}
                       onClick={() => startChat(u)}
-                      className="w-full flex items-center gap-2 px-2 py-1.5 hover:bg-white rounded text-sm text-left rtl:text-right"
+                      className="w-full flex items-center gap-2 px-2 py-1.5 hover:bg-card rounded text-sm text-left rtl:text-right"
                     >
                       <Avatar name={u.fullName} small />
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-sky-900 truncate text-xs">
+                        <div className="font-medium text-foreground truncate text-xs">
                           {u.fullName}
                         </div>
-                        <div className="text-[10px] text-slate-500 truncate">
+                        <div className="text-[10px] text-muted-foreground truncate">
                           {u.role}
                         </div>
                       </div>
@@ -267,15 +267,15 @@ export default function ChatPage() {
           <div className="flex-1 overflow-y-auto">
             {loadingThreads ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+                <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
               </div>
             ) : threads.length === 0 ? (
               <div className="text-center py-8 px-4">
                 <Sparkles className="w-8 h-8 mx-auto text-sky-300 mb-2" />
-                <p className="text-xs font-medium text-slate-500">
+                <p className="text-xs font-medium text-muted-foreground">
                   {t("noThreads")}
                 </p>
-                <p className="text-[10px] text-slate-400 mt-1">
+                <p className="text-[10px] text-muted-foreground mt-1">
                   {t("noThreadsHint")}
                 </p>
               </div>
@@ -289,24 +289,24 @@ export default function ChatPage() {
                       onClick={() => setSelectedPartnerId(th.partnerId)}
                       className={`w-full text-left rtl:text-right px-3 py-3 flex items-center gap-3 transition-colors ${
                         selected
-                          ? "bg-sky-50"
-                          : "hover:bg-sky-50/50"
+                          ? "bg-muted"
+                          : "hover:bg-muted/50"
                       }`}
                     >
                       <Avatar name={th.user.fullName} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-1">
-                          <span className="font-medium text-sky-900 truncate text-sm">
+                          <span className="font-medium text-foreground truncate text-sm">
                             {th.user.fullName}
                           </span>
-                          <span className="text-[10px] text-slate-400 flex-shrink-0">
+                          <span className="text-[10px] text-muted-foreground flex-shrink-0">
                             {formatTimeShort(th.lastMessageAt, locale)}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5 mt-0.5">
-                          <span className="text-xs text-slate-600 truncate flex-1">
+                          <span className="text-xs text-muted-foreground truncate flex-1">
                             {th.lastFromMe && (
-                              <span className="text-slate-400">
+                              <span className="text-muted-foreground">
                                 {t("you")}:{" "}
                               </span>
                             )}
@@ -330,7 +330,7 @@ export default function ChatPage() {
         {/* Conversation Panel */}
         <div className="flex-1 flex flex-col min-h-0">
           {error && !selectedPartnerId && (
-            <div className="p-4 bg-red-50 text-red-700 text-sm flex items-center gap-2">
+            <div className="p-4 bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm flex items-center gap-2">
               <AlertTriangle className="w-4 h-4" />
               {error}
             </div>
@@ -340,10 +340,10 @@ export default function ChatPage() {
             <div className="flex-1 flex items-center justify-center p-8">
               <div className="text-center">
                 <MessageSquare className="w-12 h-12 mx-auto text-sky-300 mb-3" />
-                <h3 className="text-lg font-bold text-sky-900">
+                <h3 className="text-lg font-bold text-foreground">
                   {t("selectChat")}
                 </h3>
-                <p className="text-sm text-slate-500 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   {t("selectChatHint")}
                 </p>
               </div>
@@ -352,13 +352,13 @@ export default function ChatPage() {
             <>
               {/* Conversation header */}
               {partner && (
-                <div className="px-5 py-3 border-b border-sky-100 bg-white flex items-center gap-3">
+                <div className="px-5 py-3 border-b border-border bg-card flex items-center gap-3">
                   <Avatar name={partner.fullName} />
                   <div className="flex-1 min-w-0">
-                    <div className="font-bold text-sky-900">
+                    <div className="font-bold text-foreground">
                       {partner.fullName}
                     </div>
-                    <div className="text-xs text-slate-500 truncate">
+                    <div className="text-xs text-muted-foreground truncate">
                       {partner.email} · {partner.role}
                     </div>
                   </div>
@@ -369,10 +369,10 @@ export default function ChatPage() {
               <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-3 bg-gradient-to-b from-sky-50/20 to-white">
                 {loadingConv ? (
                   <div className="flex items-center justify-center py-10">
-                    <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+                    <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
                   </div>
                 ) : messages.length === 0 ? (
-                  <div className="text-center py-10 text-slate-500">
+                  <div className="text-center py-10 text-muted-foreground">
                     <Sparkles className="w-8 h-8 mx-auto text-sky-300 mb-2" />
                     <p className="text-sm">{t("emptyConversation")}</p>
                     <p className="text-xs mt-1">{t("emptyConversationHint")}</p>
@@ -396,7 +396,7 @@ export default function ChatPage() {
               {/* Input */}
               <form
                 onSubmit={handleSend}
-                className="p-3 border-t border-sky-100 bg-white flex items-end gap-2"
+                className="p-3 border-t border-border bg-card flex items-end gap-2"
               >
                 <textarea
                   value={draft}
@@ -410,12 +410,12 @@ export default function ChatPage() {
                   placeholder={t("messagePlaceholder")}
                   rows={1}
                   disabled={sending}
-                  className="flex-1 px-3 py-2 text-sm border border-sky-200 rounded-lg resize-none min-h-[40px] max-h-[120px] focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:opacity-60"
+                  className="flex-1 px-3 py-2 text-sm border border-border rounded-lg resize-none min-h-[40px] max-h-[120px] focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
                 />
                 <button
                   type="submit"
                   disabled={!draft.trim() || sending}
-                  className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium disabled:opacity-50 flex-shrink-0"
+                  className="flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium disabled:opacity-50 flex-shrink-0"
                 >
                   {sending ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -451,7 +451,7 @@ function MessageBubble({
         className={`max-w-[75%] rounded-2xl px-4 py-2 shadow-sm ${
           fromMe
             ? "bg-sky-500 text-white rounded-br-sm"
-            : "bg-white border border-sky-100 text-slate-800 rounded-bl-sm"
+            : "bg-card border border-border text-foreground rounded-bl-sm"
         }`}
       >
         <div className="text-sm whitespace-pre-wrap break-words">
@@ -459,7 +459,7 @@ function MessageBubble({
         </div>
         <div
           className={`text-[10px] mt-1 ${
-            fromMe ? "text-sky-100" : "text-slate-400"
+            fromMe ? "text-sky-100" : "text-muted-foreground"
           }`}
         >
           {formatTimeShort(message.createdAt, locale)}

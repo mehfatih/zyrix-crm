@@ -108,7 +108,7 @@ export default function ContentWriterPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/ai`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -116,10 +116,11 @@ export default function ContentWriterPage() {
             <PenTool className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">AI AGENTS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("Content Writer", "كاتب المحتوى", "İçerik Yazarı")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Draft emails, WhatsApp messages, and social posts in seconds.",
                 "اكتب إيميلات، رسائل واتساب، ومنشورات سوشيال في ثواني.",
@@ -130,8 +131,8 @@ export default function ContentWriterPage() {
         </div>
 
         {/* Kind picker */}
-        <div className="rounded-xl border border-sky-100 bg-white p-4">
-          <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-2">
+        <div className="rounded-xl border border-border bg-card p-4">
+          <div className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-2">
             {tr("Content type", "نوع المحتوى", "İçerik türü")}
           </div>
           <div className="grid grid-cols-3 gap-2">
@@ -144,12 +145,12 @@ export default function ContentWriterPage() {
                   onClick={() => setKind(k.key)}
                   className={`p-3 rounded-lg border text-sm font-semibold transition-all flex items-center gap-2 ${
                     active
-                      ? "border-violet-500 bg-violet-50 text-violet-900 ring-2 ring-violet-200"
-                      : "border-sky-100 bg-white text-slate-700 hover:border-violet-300"
+                      ? "border-violet-500 bg-violet-500/10 text-violet-900 ring-2 ring-violet-500/30"
+                      : "border-border bg-card text-foreground hover:border-violet-300"
                   }`}
                 >
                   <Icon
-                    className={`w-4 h-4 ${active ? "text-violet-700" : "text-slate-500"}`}
+                    className={`w-4 h-4 ${active ? "text-violet-700" : "text-muted-foreground"}`}
                   />
                   {k.label}
                 </button>
@@ -161,13 +162,13 @@ export default function ContentWriterPage() {
         {/* Tone + language */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr("Tone", "النبرة", "Ton")}
             </label>
             <select
               value={tone}
               onChange={(e) => setTone(e.target.value)}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-card"
             >
               {TONES.map((t) => (
                 <option key={t.key} value={t.key}>
@@ -177,13 +178,13 @@ export default function ContentWriterPage() {
             </select>
           </div>
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr("Language", "اللغة", "Dil")}
             </label>
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value as "ar" | "en" | "tr")}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-card"
             >
               <option value="en">English</option>
               <option value="ar">العربية</option>
@@ -194,7 +195,7 @@ export default function ContentWriterPage() {
 
         {/* Prompt */}
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("What do you want to write?", "ماذا تريد أن تكتب؟", "Ne yazmak istiyorsunuz?")}
           </label>
           <textarea
@@ -206,12 +207,12 @@ export default function ContentWriterPage() {
               "مثلاً: إيميل متابعة لعميل بعد عرض تجريبي، اذكر التجربة المجانية 30 يوم، خليه أقل من 150 كلمة.",
               "Örn: Ürün demosu sonrası müşteriye takip e-postası, 30 günlük ücretsiz denememizden bahset, 150 kelimenin altında tut."
             )}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
           />
         </div>
 
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 text-sm text-rose-300">
             {error}
           </div>
         )}
@@ -246,7 +247,7 @@ export default function ContentWriterPage() {
                   className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold transition-colors ${
                     copied
                       ? "bg-emerald-600 text-white"
-                      : "bg-white border border-violet-200 text-violet-700 hover:bg-violet-50"
+                      : "bg-card border border-violet-200 text-violet-700 hover:bg-violet-500/10"
                   }`}
                 >
                   {copied ? (
@@ -264,7 +265,7 @@ export default function ContentWriterPage() {
                 <button
                   onClick={handleGenerate}
                   disabled={loading}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white border border-violet-200 text-violet-700 hover:bg-violet-50 rounded-md text-xs font-semibold disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-card border border-violet-200 text-violet-700 hover:bg-violet-500/10 rounded-md text-xs font-semibold disabled:opacity-50"
                   title={tr("Regenerate", "أعد التوليد", "Yeniden oluştur")}
                 >
                   {loading ? (
@@ -277,7 +278,7 @@ export default function ContentWriterPage() {
             </div>
             <div className="p-4">
               <pre
-                className="text-sm whitespace-pre-wrap break-words font-sans text-slate-800 leading-relaxed"
+                className="text-sm whitespace-pre-wrap break-words font-sans text-foreground leading-relaxed"
                 dir={language === "ar" ? "rtl" : "ltr"}
               >
                 {draft}

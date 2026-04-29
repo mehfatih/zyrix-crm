@@ -121,14 +121,15 @@ export default function TemplatesPage() {
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-indigo-300 text-xs font-bold uppercase tracking-widest mb-2">TEMPLATES</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr(
                   "Templates marketplace",
                   "متجر القوالب",
                   "Şablon pazarı"
                 )}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "One-click industry setups — pipelines, tags, emails, demo data.",
                   "إعدادات جاهزة حسب الصناعة بنقرة واحدة — مسارات، وسوم، رسائل، بيانات تجريبية.",
@@ -140,7 +141,7 @@ export default function TemplatesPage() {
 
           <Link
             href={`/${locale}/templates/applied`}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-700"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted rounded-lg text-xs font-semibold text-foreground"
           >
             <History className="w-3.5 h-3.5" />
             {tr("Applied history", "سجل التطبيق", "Uygulama geçmişi")}
@@ -150,7 +151,7 @@ export default function TemplatesPage() {
         {/* Filters */}
         <div className="space-y-3">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-semibold text-slate-500 uppercase">
+            <span className="text-xs font-semibold text-muted-foreground uppercase">
               {tr("Industry", "الصناعة", "Endüstri")}
             </span>
             {INDUSTRY_FILTERS.map((f) => (
@@ -160,7 +161,7 @@ export default function TemplatesPage() {
                 className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                   industry === f.key
                     ? "bg-sky-500 text-white"
-                    : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+                    : "bg-card border border-border text-foreground hover:bg-muted"
                 }`}
               >
                 {f.label[locale]}
@@ -168,7 +169,7 @@ export default function TemplatesPage() {
             ))}
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-semibold text-slate-500 uppercase">
+            <span className="text-xs font-semibold text-muted-foreground uppercase">
               {tr("Region", "المنطقة", "Bölge")}
             </span>
             {REGION_FILTERS.map((f) => (
@@ -178,7 +179,7 @@ export default function TemplatesPage() {
                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                   region === f.key
                     ? "bg-sky-500 text-white"
-                    : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+                    : "bg-card border border-border text-foreground hover:bg-muted"
                 }`}
               >
                 <span>{f.flag}</span>
@@ -190,8 +191,8 @@ export default function TemplatesPage() {
 
         {/* Not admin/owner notice */}
         {!canApply && (
-          <div className="rounded-lg bg-amber-50 border border-amber-200 p-3 flex items-start gap-2">
-            <AlertTriangle className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
+          <div className="rounded-lg bg-amber-500/10 border border-amber-500/30 p-3 flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5" />
             <p className="text-xs text-amber-900">
               {tr(
                 "You can browse templates, but only owners and admins can apply them.",
@@ -205,18 +206,18 @@ export default function TemplatesPage() {
         {/* Grid */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : templates.length === 0 ? (
-          <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
-            <p className="text-sm font-semibold text-sky-900">
+          <div className="rounded-xl border border-border bg-card p-10 text-center">
+            <p className="text-sm font-semibold text-foreground">
               {tr("No templates match", "لا توجد قوالب مطابقة", "Eşleşen şablon yok")}
             </p>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {tr(
                 "Try clearing the filters.",
                 "جرّب إزالة المرشحات.",
@@ -230,7 +231,7 @@ export default function TemplatesPage() {
               <button
                 key={tmpl.id}
                 onClick={() => setSelectedSlug(tmpl.slug)}
-                className="text-left rtl:text-right group relative rounded-2xl border border-sky-100 bg-white hover:border-sky-300 hover:shadow-md transition-all overflow-hidden"
+                className="text-left rtl:text-right group relative rounded-2xl border border-border bg-card hover:border-sky-300 hover:shadow-md transition-all overflow-hidden"
               >
                 {tmpl.isFeatured && (
                   <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3 z-10">
@@ -250,33 +251,33 @@ export default function TemplatesPage() {
                   <span>{tmpl.icon}</span>
                 </div>
                 <div className="p-4 space-y-2">
-                  <div className="flex items-center gap-2 text-[10px] text-slate-500 font-semibold uppercase">
+                  <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-semibold uppercase">
                     <span>{tmpl.industry}</span>
                     <span className="text-slate-300">·</span>
                     <span>{tmpl.region}</span>
                   </div>
-                  <h3 className="text-base font-bold text-sky-900">
+                  <h3 className="text-base font-bold text-foreground">
                     {nameFor(tmpl)}
                   </h3>
-                  <p className="text-xs text-slate-600 line-clamp-2 min-h-[2rem]">
+                  <p className="text-xs text-muted-foreground line-clamp-2 min-h-[2rem]">
                     {taglineFor(tmpl) || " "}
                   </p>
                   <div className="flex items-center justify-between pt-2 border-t border-sky-50">
-                    <div className="flex items-center gap-3 text-[10px] text-slate-500">
+                    <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
                       <span className="inline-flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         {tmpl.setupMinutes}{" "}
                         {tr("min", "د", "dk")}
                       </span>
                       {tmpl.hasSeedData && (
-                        <span className="inline-flex items-center gap-1 text-sky-600">
+                        <span className="inline-flex items-center gap-1 text-cyan-300">
                           <Users className="w-3 h-3" />
                           {tr("demo data", "بيانات تجريبية", "demo verisi")}
                         </span>
                       )}
                     </div>
                     <ArrowRight
-                      className={`w-3.5 h-3.5 text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity ${
+                      className={`w-3.5 h-3.5 text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity ${
                         isRtl ? "-scale-x-100" : ""
                       }`}
                     />
@@ -375,15 +376,15 @@ function TemplateDetailModal({
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
       <div
-        className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[85vh] overflow-hidden flex flex-col"
+        className="bg-card rounded-2xl shadow-xl max-w-2xl w-full max-h-[85vh] overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : err ? (
-          <div className="p-6 text-sm text-rose-700">{err}</div>
+          <div className="p-6 text-sm text-rose-300">{err}</div>
         ) : detail ? (
           <>
             {/* Banner */}
@@ -396,7 +397,7 @@ function TemplateDetailModal({
               <span>{detail.icon}</span>
               <button
                 onClick={onClose}
-                className="absolute top-3 right-3 rtl:right-auto rtl:left-3 w-8 h-8 rounded-lg bg-white/90 text-slate-500 hover:text-slate-900 hover:bg-white flex items-center justify-center shadow-sm"
+                className="absolute top-3 right-3 rtl:right-auto rtl:left-3 w-8 h-8 rounded-lg bg-card/90 text-muted-foreground hover:text-foreground hover:bg-card flex items-center justify-center shadow-sm"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -406,17 +407,17 @@ function TemplateDetailModal({
               {/* Success view */}
               {success ? (
                 <div className="text-center py-4">
-                  <div className="w-14 h-14 mx-auto rounded-full bg-emerald-50 flex items-center justify-center mb-3">
-                    <Check className="w-7 h-7 text-emerald-600" />
+                  <div className="w-14 h-14 mx-auto rounded-full bg-emerald-500/10 flex items-center justify-center mb-3">
+                    <Check className="w-7 h-7 text-emerald-300" />
                   </div>
-                  <h3 className="text-lg font-bold text-sky-900">
+                  <h3 className="text-lg font-bold text-foreground">
                     {tr(
                       "Template applied!",
                       "تم تطبيق القالب!",
                       "Şablon uygulandı!"
                     )}
                   </h3>
-                  <p className="text-sm text-slate-600 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     {tr(
                       "Here's what got added to your workspace:",
                       "هذا ما تم إضافته لمساحة العمل:",
@@ -429,12 +430,12 @@ function TemplateDetailModal({
                       .map(([key, count]) => (
                         <div
                           key={key}
-                          className="rounded-lg bg-sky-50 border border-sky-100 p-2 text-center"
+                          className="rounded-lg bg-muted border border-border p-2 text-center"
                         >
-                          <div className="text-xl font-bold text-sky-900 tabular-nums">
+                          <div className="text-xl font-bold text-foreground tabular-nums">
                             {count}
                           </div>
-                          <div className="text-[10px] text-slate-600 capitalize">
+                          <div className="text-[10px] text-muted-foreground capitalize">
                             {key}
                           </div>
                         </div>
@@ -445,7 +446,7 @@ function TemplateDetailModal({
                       onClose();
                       router.refresh();
                     }}
-                    className="mt-6 inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
+                    className="mt-6 inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold"
                   >
                     {tr("Done", "تم", "Tamam")}
                   </button>
@@ -454,7 +455,7 @@ function TemplateDetailModal({
                 <>
                   {/* Header */}
                   <div>
-                    <div className="flex items-center gap-2 text-[10px] text-slate-500 uppercase font-semibold">
+                    <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase font-semibold">
                       <span>{detail.industry}</span>
                       <span className="text-slate-300">·</span>
                       <span>{detail.region}</span>
@@ -464,17 +465,17 @@ function TemplateDetailModal({
                         {detail.setupMinutes} {tr("min setup", "د إعداد", "dk kurulum")}
                       </span>
                     </div>
-                    <h2 className="text-xl font-bold text-sky-900 mt-2">
+                    <h2 className="text-xl font-bold text-foreground mt-2">
                       {nameFor(detail)}
                     </h2>
-                    <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+                    <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
                       {descFor(detail)}
                     </p>
                   </div>
 
                   {/* What's included */}
                   <div>
-                    <h3 className="text-xs font-bold uppercase text-slate-500 mb-2">
+                    <h3 className="text-xs font-bold uppercase text-muted-foreground mb-2">
                       {tr(
                         "What will be added",
                         "ما الذي سيُضاف",
@@ -563,16 +564,16 @@ function TemplateDetailModal({
                   </div>
 
                   {err && (
-                    <div className="rounded-lg bg-rose-50 border border-rose-200 p-3 text-sm text-rose-700">
+                    <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-3 text-sm text-rose-300">
                       {err}
                     </div>
                   )}
 
                   {/* Actions */}
-                  <div className="flex items-center justify-end gap-2 pt-3 border-t border-sky-100">
+                  <div className="flex items-center justify-end gap-2 pt-3 border-t border-border">
                     <button
                       onClick={onClose}
-                      className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900"
+                      className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
                     >
                       {tr("Cancel", "إلغاء", "İptal")}
                     </button>
@@ -580,7 +581,7 @@ function TemplateDetailModal({
                       <button
                         onClick={handleApply}
                         disabled={applying}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold disabled:opacity-50"
                       >
                         {applying ? (
                           <Loader2 className="w-4 h-4 animate-spin" />
@@ -613,12 +614,12 @@ function BundleItem({
   preview?: string;
 }) {
   const bg: Record<string, string> = {
-    cyan: "bg-sky-50 text-sky-600",
-    indigo: "bg-indigo-50 text-indigo-700",
-    sky: "bg-sky-50 text-sky-700",
-    violet: "bg-violet-50 text-violet-700",
-    emerald: "bg-emerald-50 text-emerald-700",
-    amber: "bg-amber-50 text-amber-700",
+    cyan: "bg-muted text-cyan-300",
+    indigo: "bg-indigo-500/10 text-indigo-700",
+    sky: "bg-muted text-cyan-300",
+    violet: "bg-violet-500/10 text-violet-700",
+    emerald: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    amber: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
   };
   return (
     <div className="flex items-start gap-2">
@@ -628,9 +629,9 @@ function BundleItem({
         {icon}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium text-sky-900">{label}</div>
+        <div className="text-sm font-medium text-foreground">{label}</div>
         {preview && (
-          <div className="text-xs text-slate-500 truncate">{preview}</div>
+          <div className="text-xs text-muted-foreground truncate">{preview}</div>
         )}
       </div>
     </div>

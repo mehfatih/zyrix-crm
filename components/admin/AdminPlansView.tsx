@@ -117,14 +117,14 @@ export default function AdminPlansView({ locale }: { locale: string }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="animate-spin text-sky-500" size={24} />
+        <Loader2 className="animate-spin text-cyan-300" size={24} />
       </div>
     );
   }
 
   if (error || !plans) {
     return (
-      <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+      <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-4 text-sm text-red-800">
         {error ?? "Failed to load."}
       </div>
     );
@@ -145,8 +145,8 @@ export default function AdminPlansView({ locale }: { locale: string }) {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-        <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       {/* Plans grid */}
@@ -154,10 +154,10 @@ export default function AdminPlansView({ locale }: { locale: string }) {
         {plans.map((p) => (
           <div
             key={p.id}
-            className={`relative rounded-xl bg-white border p-5 ${
+            className={`relative rounded-xl bg-card border p-5 ${
               p.isFeatured
                 ? "border-sky-300 ring-2 ring-sky-100"
-                : "border-sky-100"
+                : "border-border"
             }`}
           >
             {p.isFeatured && (
@@ -174,12 +174,12 @@ export default function AdminPlansView({ locale }: { locale: string }) {
               >
                 <Package size={16} style={{ color: p.color }} />
               </div>
-              <h3 className="text-base font-bold text-slate-900 flex-1">
+              <h3 className="text-base font-bold text-foreground flex-1">
                 {localizedName(p)}
               </h3>
               <button
                 onClick={() => setEditing({ ...p })}
-                className="p-1.5 rounded hover:bg-sky-50 text-sky-500"
+                className="p-1.5 rounded hover:bg-muted text-cyan-300"
                 title="Edit"
               >
                 <Pencil size={14} />
@@ -187,11 +187,11 @@ export default function AdminPlansView({ locale }: { locale: string }) {
             </div>
 
             <div className="mb-4">
-              <div className="text-2xl font-bold text-slate-900">
+              <div className="text-2xl font-bold text-foreground">
                 ${fmt(p.priceMonthlyUsd)}
-                <span className="text-sm font-normal text-slate-500">/mo</span>
+                <span className="text-sm font-normal text-muted-foreground">/mo</span>
               </div>
-              <div className="text-xs text-slate-500 mt-0.5">
+              <div className="text-xs text-muted-foreground mt-0.5">
                 ${fmt(p.priceYearlyUsd)}/yr
               </div>
             </div>
@@ -205,44 +205,44 @@ export default function AdminPlansView({ locale }: { locale: string }) {
             </div>
 
             {/* Feature count */}
-            <div className="rounded-lg bg-sky-50 px-3 py-2 text-xs">
-              <span className="font-semibold text-sky-600">
+            <div className="rounded-lg bg-muted px-3 py-2 text-xs">
+              <span className="font-semibold text-cyan-300">
                 {p.features.length}
               </span>
-              <span className="text-slate-600"> / {ALL_FEATURE_SLUGS.length} features</span>
+              <span className="text-muted-foreground"> / {ALL_FEATURE_SLUGS.length} features</span>
             </div>
           </div>
         ))}
       </div>
 
       {/* Feature matrix */}
-      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
-        <div className="px-6 py-4 border-b border-sky-100">
-          <h2 className="text-base font-bold text-slate-900">
+      <div className="rounded-xl bg-card border border-border overflow-hidden">
+        <div className="px-6 py-4 border-b border-border">
+          <h2 className="text-base font-bold text-foreground">
             {t("features")}
           </h2>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-sky-50">
+            <thead className="bg-muted">
               <tr>
-                <th className="px-4 py-3 text-start text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                <th className="px-4 py-3 text-start text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                   Feature
                 </th>
                 {plans.map((p) => (
                   <th
                     key={p.id}
-                    className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wide"
+                    className="px-4 py-3 text-center text-xs font-semibold text-foreground uppercase tracking-wide"
                   >
                     {localizedName(p)}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-border">
               {ALL_FEATURE_SLUGS.map((slug) => (
-                <tr key={slug} className="hover:bg-sky-50/50">
-                  <td className="px-4 py-2 text-sm text-slate-700">
+                <tr key={slug} className="hover:bg-muted/50">
+                  <td className="px-4 py-2 text-sm text-foreground">
                     {safeTrans(tFeat, slug)}
                   </td>
                   {plans.map((p) => {
@@ -252,7 +252,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                         {has ? (
                           <Check
                             size={16}
-                            className="inline-block text-emerald-600"
+                            className="inline-block text-emerald-300"
                           />
                         ) : (
                           <X size={14} className="inline-block text-slate-300" />
@@ -269,16 +269,16 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
       {/* Feature-catalog defaults per plan (mirrors backend catalog) */}
       {featureCatalog.length > 0 && (
-        <div className="rounded-xl bg-white border border-sky-200 shadow-sm">
-          <div className="border-b border-slate-200 px-5 py-4">
-            <h2 className="text-lg font-semibold text-slate-900">
+        <div className="rounded-xl bg-card border border-border shadow-sm">
+          <div className="border-b border-border px-5 py-4">
+            <h2 className="text-lg font-semibold text-foreground">
               {locale === "ar"
                 ? "الميزات المُضمّنة حسب الخطة"
                 : locale === "tr"
                   ? "Plana göre dahil edilen özellikler"
                   : "Included features by plan"}
             </h2>
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-muted-foreground">
               {locale === "ar"
                 ? "الإعدادات الافتراضية للميزات المميزة. يمكن تجاوزها لكل شركة في تفاصيل الشركة → وصول الميزات."
                 : locale === "tr"
@@ -288,16 +288,16 @@ export default function AdminPlansView({ locale }: { locale: string }) {
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50 sticky top-0">
+              <thead className="bg-muted sticky top-0">
                 <tr>
-                  <th className="px-4 py-3 text-start text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                  <th className="px-4 py-3 text-start text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                     {locale === "ar"
                       ? "الميزة"
                       : locale === "tr"
                         ? "Özellik"
                         : "Feature"}
                   </th>
-                  <th className="px-4 py-3 text-start text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                  <th className="px-4 py-3 text-start text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                     {locale === "ar"
                       ? "الفئة"
                       : locale === "tr"
@@ -307,28 +307,28 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                   {PLAN_ORDER.map((p) => (
                     <th
                       key={p}
-                      className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wide"
+                      className="px-4 py-3 text-center text-xs font-semibold text-foreground uppercase tracking-wide"
                     >
                       {p}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-border">
                 {featureCatalog.map((f) => (
-                  <tr key={f.key} className="hover:bg-sky-50/50">
+                  <tr key={f.key} className="hover:bg-muted/50">
                     <td className="px-4 py-2 text-sm">
-                      <div className="font-medium text-slate-900">
+                      <div className="font-medium text-foreground">
                         {f.label[locale as "en" | "ar" | "tr"] ?? f.label.en}
                       </div>
                       <code
-                        className="text-[10px] font-mono text-slate-400"
+                        className="text-[10px] font-mono text-muted-foreground"
                         dir="ltr"
                       >
                         {f.key}
                       </code>
                     </td>
-                    <td className="px-4 py-2 text-xs text-slate-600 capitalize">
+                    <td className="px-4 py-2 text-xs text-muted-foreground capitalize">
                       {f.category}
                     </td>
                     {PLAN_ORDER.map((p) => (
@@ -336,7 +336,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                         {f.defaultByPlan?.[p] ? (
                           <Check
                             size={16}
-                            className="inline-block text-emerald-600"
+                            className="inline-block text-emerald-300"
                           />
                         ) : (
                           <X
@@ -357,8 +357,8 @@ export default function AdminPlansView({ locale }: { locale: string }) {
       {/* Edit Modal */}
       {editing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 overflow-y-auto">
-          <div className="w-full max-w-3xl rounded-xl bg-white shadow-xl my-8">
-            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
+          <div className="w-full max-w-3xl rounded-xl bg-card shadow-xl my-8">
+            <div className="flex items-center justify-between border-b border-border px-6 py-4">
               <div className="flex items-center gap-2">
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center"
@@ -366,14 +366,14 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                 >
                   <Package size={16} style={{ color: editing.color }} />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">
+                <h3 className="text-lg font-bold text-foreground">
                   Edit {localizedName(editing)}
                 </h3>
               </div>
               <button
                 onClick={() => setEditing(null)}
                 disabled={saving}
-                className="p-1 rounded hover:bg-slate-100"
+                className="p-1 rounded hover:bg-muted"
               >
                 <X size={18} />
               </button>
@@ -381,14 +381,14 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
             <div className="px-6 py-5 space-y-5 max-h-[70vh] overflow-y-auto">
               {saveError && (
-                <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
                   {saveError}
                 </div>
               )}
 
               {/* Prices */}
               <div>
-                <h4 className="text-sm font-semibold text-sky-900 mb-2">
+                <h4 className="text-sm font-semibold text-foreground mb-2">
                   Prices
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -441,7 +441,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
               {/* Limits */}
               <div>
-                <h4 className="text-sm font-semibold text-sky-900 mb-2">
+                <h4 className="text-sm font-semibold text-foreground mb-2">
                   Limits
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -495,7 +495,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                     onChange={(e) =>
                       setEditing({ ...editing, isActive: e.target.checked })
                     }
-                    className="rounded border-slate-300 text-sky-500 focus:ring-sky-400"
+                    className="rounded border-border text-cyan-300 focus:ring-primary"
                   />
                   Active
                 </label>
@@ -506,7 +506,7 @@ export default function AdminPlansView({ locale }: { locale: string }) {
                     onChange={(e) =>
                       setEditing({ ...editing, isFeatured: e.target.checked })
                     }
-                    className="rounded border-slate-300 text-sky-500 focus:ring-sky-400"
+                    className="rounded border-border text-cyan-300 focus:ring-primary"
                   />
                   Featured
                 </label>
@@ -514,33 +514,33 @@ export default function AdminPlansView({ locale }: { locale: string }) {
 
               {/* Features */}
               <div>
-                <h4 className="text-sm font-semibold text-sky-900 mb-2">
+                <h4 className="text-sm font-semibold text-foreground mb-2">
                   Features ({editing.features.length} / {ALL_FEATURE_SLUGS.length})
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5">
                   {ALL_FEATURE_SLUGS.map((slug) => (
                     <label
                       key={slug}
-                      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-xs hover:bg-sky-50 cursor-pointer"
+                      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-xs hover:bg-muted cursor-pointer"
                     >
                       <input
                         type="checkbox"
                         checked={editing.features.includes(slug)}
                         onChange={() => toggleFeature(slug)}
-                        className="rounded border-slate-300 text-sky-500 focus:ring-sky-400"
+                        className="rounded border-border text-cyan-300 focus:ring-primary"
                       />
-                      <span className="text-slate-700">{slug}</span>
+                      <span className="text-foreground">{slug}</span>
                     </label>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="flex justify-end gap-2 border-t border-slate-200 px-6 py-4">
+            <div className="flex justify-end gap-2 border-t border-border px-6 py-4">
               <button
                 onClick={() => setEditing(null)}
                 disabled={saving}
-                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
               >
                 Cancel
               </button>
@@ -575,7 +575,7 @@ function PriceField({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium text-slate-600">
+      <label className="mb-1 block text-xs font-medium text-muted-foreground">
         {label}
       </label>
       <input
@@ -583,7 +583,7 @@ function PriceField({
         step="0.01"
         value={typeof value === "string" ? value : value.toString()}
         onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
-        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+        className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />
     </div>
   );
@@ -600,14 +600,14 @@ function NumField({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium text-slate-600">
+      <label className="mb-1 block text-xs font-medium text-muted-foreground">
         {label}
       </label>
       <input
         type="number"
         value={value}
         onChange={(e) => onChange(parseInt(e.target.value, 10) || 0)}
-        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+        className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />
     </div>
   );
@@ -617,8 +617,8 @@ function LimitRow({ label, value }: { label: string; value: number }) {
   const isUnlimited = value >= 999999;
   return (
     <div className="flex items-center justify-between">
-      <span className="text-slate-600">{label}</span>
-      <span className="font-semibold text-slate-900">
+      <span className="text-muted-foreground">{label}</span>
+      <span className="font-semibold text-foreground">
         {isUnlimited ? "∞" : value.toLocaleString()}
       </span>
     </div>

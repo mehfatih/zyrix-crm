@@ -39,21 +39,21 @@ const TYPE_META: Record<
   { bg: string; text: string; ring: string; icon: typeof Info }
 > = {
   info: {
-    bg: "bg-sky-50",
-    text: "text-sky-700",
-    ring: "ring-sky-200",
+    bg: "bg-muted",
+    text: "text-cyan-300",
+    ring: "ring-cyan-500/30",
     icon: Info,
   },
   warn: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    ring: "ring-amber-200",
+    bg: "bg-amber-500/10",
+    text: "text-amber-300",
+    ring: "ring-amber-500/30",
     icon: AlertTriangle,
   },
   critical: {
-    bg: "bg-red-50",
-    text: "text-red-700",
-    ring: "ring-red-200",
+    bg: "bg-rose-500/10",
+    text: "text-rose-300",
+    ring: "ring-rose-500/30",
     icon: AlertOctagon,
   },
 };
@@ -132,8 +132,8 @@ export default function AdminAnnouncementsView({ locale }: Props) {
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-          <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
+          <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+          <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
         <button
           onClick={() => {
@@ -148,7 +148,7 @@ export default function AdminAnnouncementsView({ locale }: Props) {
       </div>
 
       {/* Filter */}
-      <div className="inline-flex rounded-lg border border-sky-200 bg-white p-1 shadow-sm">
+      <div className="inline-flex rounded-lg border border-border bg-card p-1 shadow-sm">
         {(
           [
             { k: "all", label: t("all") },
@@ -162,7 +162,7 @@ export default function AdminAnnouncementsView({ locale }: Props) {
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
               activeFilter === opt.k
                 ? "bg-sky-500 text-white"
-                : "text-slate-600 hover:text-sky-600"
+                : "text-muted-foreground hover:text-cyan-300"
             }`}
           >
             {opt.label}
@@ -173,20 +173,20 @@ export default function AdminAnnouncementsView({ locale }: Props) {
       {/* List */}
       {loading ? (
         <div className="flex items-center justify-center py-16">
-          <Loader2 className="animate-spin text-sky-500" size={28} />
+          <Loader2 className="animate-spin text-cyan-300" size={28} />
         </div>
       ) : error ? (
-        <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+        <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-4 text-sm text-red-800">
           {error}
         </div>
       ) : !data || data.items.length === 0 ? (
-        <div className="rounded-xl bg-white border border-sky-100 p-10 text-center">
+        <div className="rounded-xl bg-card border border-border p-10 text-center">
           <Megaphone
             size={32}
             className="mx-auto text-sky-300"
             strokeWidth={1.5}
           />
-          <p className="mt-3 text-sm text-slate-600">{t("empty")}</p>
+          <p className="mt-3 text-sm text-muted-foreground">{t("empty")}</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -196,8 +196,8 @@ export default function AdminAnnouncementsView({ locale }: Props) {
             return (
               <div
                 key={a.id}
-                className={`rounded-xl bg-white border p-5 ${
-                  a.isActive ? "border-sky-100" : "border-slate-200 opacity-75"
+                className={`rounded-xl bg-card border p-5 ${
+                  a.isActive ? "border-border" : "border-border opacity-75"
                 }`}
               >
                 <div className="flex items-start gap-4">
@@ -208,7 +208,7 @@ export default function AdminAnnouncementsView({ locale }: Props) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <h3 className="text-sm font-semibold text-slate-900">
+                      <h3 className="text-sm font-semibold text-foreground">
                         {localizedTitle(a)}
                       </h3>
                       <span
@@ -217,24 +217,24 @@ export default function AdminAnnouncementsView({ locale }: Props) {
                         {t(`type.${a.type}`)}
                       </span>
                       {a.isActive ? (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 px-2 py-0.5 text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 ring-1 ring-emerald-500/30 px-2 py-0.5 text-xs font-medium">
                           <Check size={12} />
                           {t("active")}
                         </span>
                       ) : (
-                        <span className="inline-flex items-center rounded-full bg-slate-100 text-slate-600 ring-1 ring-slate-200 px-2 py-0.5 text-xs font-medium">
+                        <span className="inline-flex items-center rounded-full bg-muted text-muted-foreground ring-1 ring-border px-2 py-0.5 text-xs font-medium">
                           {t("inactive")}
                         </span>
                       )}
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-muted-foreground">
                         {t(`target.${a.target}`)}
                         {a.targetValue ? `: ${a.targetValue}` : ""}
                       </span>
                     </div>
-                    <p className="text-sm text-slate-600 line-clamp-2">
+                    <p className="text-sm text-muted-foreground line-clamp-2">
                       {localizedContent(a)}
                     </p>
-                    <div className="mt-2 text-xs text-slate-500">
+                    <div className="mt-2 text-xs text-muted-foreground">
                       {new Date(a.startsAt).toLocaleDateString(locale)}
                       {a.endsAt
                         ? ` → ${new Date(a.endsAt).toLocaleDateString(locale)}`
@@ -244,7 +244,7 @@ export default function AdminAnnouncementsView({ locale }: Props) {
                   <div className="flex items-center gap-1 flex-shrink-0">
                     <button
                       onClick={() => handleToggleActive(a)}
-                      className="p-1.5 rounded hover:bg-slate-100 text-slate-500"
+                      className="p-1.5 rounded hover:bg-muted text-muted-foreground"
                       title={a.isActive ? t("disable") : t("enable")}
                     >
                       {a.isActive ? (
@@ -258,14 +258,14 @@ export default function AdminAnnouncementsView({ locale }: Props) {
                         setEditing(a);
                         setCreating(false);
                       }}
-                      className="p-1.5 rounded hover:bg-sky-50 text-sky-600"
+                      className="p-1.5 rounded hover:bg-muted text-cyan-300"
                       title={t("edit")}
                     >
                       <Pencil size={16} />
                     </button>
                     <button
                       onClick={() => handleDelete(a)}
-                      className="p-1.5 rounded hover:bg-red-50 text-red-600"
+                      className="p-1.5 rounded hover:bg-rose-500/10 text-rose-300 border border-rose-500/30"
                       title={t("delete")}
                     >
                       <Trash2 size={16} />
@@ -371,14 +371,14 @@ function AnnouncementModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-sky-100 max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="px-6 py-4 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-base font-semibold text-slate-900">
+      <div className="w-full max-w-2xl bg-card rounded-2xl shadow-2xl border border-border max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+          <h2 className="text-base font-semibold text-foreground">
             {initial ? t("editTitle") : t("createTitle")}
           </h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded hover:bg-slate-100 text-slate-500"
+            className="p-1.5 rounded hover:bg-muted text-muted-foreground"
           >
             <X size={18} />
           </button>
@@ -389,7 +389,7 @@ function AnnouncementModal({
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
             />
           </Field>
           <div className="grid grid-cols-2 gap-3">
@@ -398,14 +398,14 @@ function AnnouncementModal({
                 value={titleAr}
                 onChange={(e) => setTitleAr(e.target.value)}
                 dir="rtl"
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
               />
             </Field>
             <Field label={`${t("fieldTitle")} (TR)`}>
               <input
                 value={titleTr}
                 onChange={(e) => setTitleTr(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
               />
             </Field>
           </div>
@@ -416,7 +416,7 @@ function AnnouncementModal({
               value={content}
               onChange={(e) => setContent(e.target.value)}
               rows={3}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none resize-y"
+              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-y"
             />
           </Field>
           <div className="grid grid-cols-2 gap-3">
@@ -426,7 +426,7 @@ function AnnouncementModal({
                 onChange={(e) => setContentAr(e.target.value)}
                 rows={3}
                 dir="rtl"
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none resize-y"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-y"
               />
             </Field>
             <Field label={`${t("fieldContent")} (TR)`}>
@@ -434,7 +434,7 @@ function AnnouncementModal({
                 value={contentTr}
                 onChange={(e) => setContentTr(e.target.value)}
                 rows={3}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none resize-y"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-y"
               />
             </Field>
           </div>
@@ -445,7 +445,7 @@ function AnnouncementModal({
               <select
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm bg-card focus:border-primary focus:ring-1 focus:ring-primary outline-none"
               >
                 <option value="info">{t("type.info")}</option>
                 <option value="warn">{t("type.warn")}</option>
@@ -456,7 +456,7 @@ function AnnouncementModal({
               <select
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm bg-card focus:border-primary focus:ring-1 focus:ring-primary outline-none"
               >
                 <option value="all">{t("target.all")}</option>
                 <option value="plan">{t("target.plan")}</option>
@@ -480,7 +480,7 @@ function AnnouncementModal({
                     ? "starter / business / enterprise"
                     : "company-id"
                 }
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none font-mono"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none font-mono"
               />
             </Field>
           )}
@@ -492,7 +492,7 @@ function AnnouncementModal({
                 type="datetime-local"
                 value={startsAt}
                 onChange={(e) => setStartsAt(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
               />
             </Field>
             <Field label={t("fieldEndsAt")}>
@@ -500,27 +500,27 @@ function AnnouncementModal({
                 type="datetime-local"
                 value={endsAt}
                 onChange={(e) => setEndsAt(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
               />
             </Field>
           </div>
 
           {/* Active */}
-          <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={isActive}
               onChange={(e) => setIsActive(e.target.checked)}
-              className="rounded text-sky-500 focus:ring-sky-400"
+              className="rounded text-cyan-300 focus:ring-primary"
             />
             {t("fieldActive")}
           </label>
         </div>
-        <div className="px-6 py-4 border-t border-sky-100 flex items-center justify-end gap-2 bg-sky-50/50">
+        <div className="px-6 py-4 border-t border-border flex items-center justify-end gap-2 bg-muted/50">
           <button
             onClick={onClose}
             disabled={saving}
-            className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg"
+            className="px-4 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg"
           >
             {t("cancel")}
           </button>
@@ -549,9 +549,9 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-xs font-semibold text-slate-700 mb-1">
+      <label className="block text-xs font-semibold text-foreground mb-1">
         {label}
-        {required && <span className="text-red-500 ms-0.5">*</span>}
+        {required && <span className="text-rose-400 ms-0.5">*</span>}
       </label>
       {children}
     </div>

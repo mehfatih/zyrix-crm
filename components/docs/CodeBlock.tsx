@@ -23,7 +23,7 @@ export function useCopyButtons(scopeRef: React.RefObject<HTMLElement | null>) {
       btn.type = "button";
       btn.setAttribute("aria-label", "Copy code");
       btn.className =
-        "absolute top-2 end-2 inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-white/90 border border-sky-100 rounded-md text-slate-600 hover:text-sky-600 hover:border-sky-300 transition-colors";
+        "absolute top-2 end-2 inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-card/90 border border-border rounded-md text-muted-foreground hover:text-cyan-300 hover:border-sky-300 transition-colors";
       btn.innerHTML =
         '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy';
       btn.addEventListener("click", async () => {
@@ -61,7 +61,7 @@ export default function CodeBlock({ children }: { children: React.ReactNode }) {
     <div className="relative my-4">
       <pre
         ref={ref as unknown as React.RefObject<HTMLPreElement>}
-        className="bg-sky-50 border border-sky-100 rounded-xl p-4 overflow-x-auto text-sm"
+        className="bg-muted border border-border rounded-xl p-4 overflow-x-auto text-sm"
       >
         <code className="font-mono">{children}</code>
       </pre>
@@ -78,7 +78,7 @@ export default function CodeBlock({ children }: { children: React.ReactNode }) {
             /* clipboard blocked */
           }
         }}
-        className="absolute top-2 end-2 inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-white/90 border border-sky-100 rounded-md text-slate-600 hover:text-sky-600"
+        className="absolute top-2 end-2 inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-card/90 border border-border rounded-md text-muted-foreground hover:text-cyan-300"
       >
         {ok ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
         {ok ? "Copied" : "Copy"}

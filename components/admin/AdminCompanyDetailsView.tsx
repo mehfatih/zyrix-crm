@@ -42,18 +42,18 @@ import { AdminFeatureToggles } from "./AdminFeatureToggles";
 // ============================================================================
 
 const STATUS_COLORS: Record<string, string> = {
-  active: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  suspended: "bg-amber-50 text-amber-700 ring-amber-200",
-  trial: "bg-sky-50 text-sky-700 ring-sky-200",
-  deleted: "bg-slate-100 text-slate-600 ring-slate-200",
+  active: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 ring-emerald-500/30",
+  suspended: "bg-amber-500/10 text-amber-300 border border-amber-500/30 ring-amber-500/30",
+  trial: "bg-muted text-cyan-300 ring-cyan-500/30",
+  deleted: "bg-muted text-muted-foreground ring-border",
 };
 
 const ROLE_COLORS: Record<string, string> = {
-  super_admin: "bg-red-50 text-red-700 ring-red-200",
-  owner: "bg-sky-50 text-sky-600 ring-sky-200",
-  admin: "bg-sky-50 text-sky-700 ring-sky-200",
-  manager: "bg-indigo-50 text-indigo-700 ring-indigo-200",
-  member: "bg-slate-50 text-slate-700 ring-slate-200",
+  super_admin: "bg-rose-500/10 text-rose-300 border border-rose-500/30 ring-rose-500/30",
+  owner: "bg-muted text-cyan-300 ring-cyan-500/30",
+  admin: "bg-muted text-cyan-300 ring-cyan-500/30",
+  manager: "bg-indigo-500/10 text-indigo-700 ring-indigo-200",
+  member: "bg-muted text-foreground ring-border",
 };
 
 interface Props {
@@ -265,19 +265,19 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 className="size-8 animate-spin text-sky-500" />
+        <Loader2 className="size-8 animate-spin text-cyan-300" />
       </div>
     );
   }
 
   if (error || !company) {
     return (
-      <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-red-700">
+      <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-6 text-rose-300">
         <AlertCircle className="mb-2 size-6" />
         <p className="font-medium">{error || t("notFound")}</p>
         <Link
           href={`/${locale}/admin/companies`}
-          className="mt-3 inline-flex items-center gap-2 text-sm text-sky-600 hover:text-sky-900"
+          className="mt-3 inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-foreground"
         >
           <ChevronLeft className="size-4" />
           {t("backToList")}
@@ -296,20 +296,20 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
         <div>
           <Link
             href={`/${locale}/admin/companies`}
-            className="mb-2 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
+            className="mb-2 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
           >
             <ChevronLeft className="size-4" />
             {t("backToList")}
           </Link>
           <div className="flex items-center gap-3">
-            <div className="flex size-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-muted text-cyan-300">
               <Building2 className="size-6" />
             </div>
             <div>
-              <h1 className="text-2xl font-semibold text-sky-900">
+              <h1 className="text-2xl font-semibold text-foreground">
                 {company.name}
               </h1>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-muted-foreground">
                 {company.slug} · {company._count.users} {t("users")} ·{" "}
                 {company._count.customers} {t("customers")}
               </p>
@@ -327,7 +327,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
             <button
               onClick={() => setSuspendOpen(true)}
               disabled={actionBusy}
-              className="inline-flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm font-medium text-amber-700 hover:bg-amber-100 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-500/10 px-3 py-2 text-sm font-medium text-amber-300 hover:bg-amber-100 disabled:opacity-50"
             >
               <Pause className="size-4" />
               {tCompanies("suspend")}
@@ -336,7 +336,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
             <button
               onClick={handleResume}
               disabled={actionBusy}
-              className="inline-flex items-center gap-2 rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-100 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-lg border border-emerald-300 bg-emerald-500/10 px-3 py-2 text-sm font-medium text-emerald-300 hover:bg-emerald-100 disabled:opacity-50"
             >
               <Play className="size-4" />
               {tCompanies("resume")}
@@ -345,7 +345,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
           <button
             onClick={handleImpersonate}
             disabled={actionBusy}
-            className="inline-flex items-center gap-2 rounded-lg border border-sky-300 bg-sky-50 px-3 py-2 text-sm font-medium text-sky-600 hover:bg-sky-100 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg border border-sky-300 bg-muted px-3 py-2 text-sm font-medium text-cyan-300 hover:bg-sky-100 disabled:opacity-50"
           >
             <UserCog className="size-4" />
             {tCompanies("impersonate")}
@@ -357,8 +357,8 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
         <div
           className={`rounded-lg border px-4 py-3 text-sm ${
             banner.tone === "success"
-              ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-              : "border-red-200 bg-red-50 text-red-700"
+              ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
+              : "border-rose-500/30 bg-rose-500/10 text-rose-300 border border-rose-500/30"
           }`}
         >
           {banner.text}
@@ -366,15 +366,15 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
       )}
 
       {/* Info + Edit */}
-      <div className="rounded-xl border border-sky-100 bg-white p-6">
+      <div className="rounded-xl border border-border bg-card p-6">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-sky-900">
+          <h2 className="text-lg font-semibold text-foreground">
             {t("information")}
           </h2>
           {!editing && (
             <button
               onClick={() => setEditing(true)}
-              className="text-sm font-medium text-sky-600 hover:text-sky-900"
+              className="text-sm font-medium text-cyan-300 hover:text-foreground"
             >
               {tCompanies("edit")}
             </button>
@@ -406,7 +406,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
               onChange={(v) => setEditForm({ ...editForm, name: v })}
             />
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-600">
+              <label className="mb-1 block text-xs font-medium text-muted-foreground">
                 {t("plan")}
               </label>
               <select
@@ -414,7 +414,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                 onChange={(e) =>
                   setEditForm({ ...editForm, plan: e.target.value })
                 }
-                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+                className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               >
                 {plans.map((p) => (
                   <option key={p.id} value={p.slug}>
@@ -449,7 +449,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                 default reporting currency; feeds the /reports page
                 pill toggle (SAR (Yours) / USD). */}
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase text-slate-500 tracking-wide">
+              <label className="mb-1 block text-xs font-medium uppercase text-muted-foreground tracking-wide">
                 {t("baseCurrency") ?? "Base currency"}
               </label>
               <select
@@ -458,7 +458,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                   setEditForm({ ...editForm, baseCurrency: e.target.value })
                 }
                 dir="ltr"
-                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+                className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               >
                 <option value="">
                   {t("useCountryDefault") ?? "Use country default"}
@@ -471,7 +471,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                   )
                 )}
               </select>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-muted-foreground">
                 {t("baseCurrencyHint") ??
                   "Default reporting currency. Leave empty to use the country's currency."}
               </p>
@@ -482,9 +482,9 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                 minutes of inactivity. Also explicitly zero-out button
                 for TV-dashboard / kiosk merchants. */}
             <div className="col-span-full">
-              <label className="mb-1 flex items-center justify-between text-xs font-medium uppercase text-slate-500 tracking-wide">
+              <label className="mb-1 flex items-center justify-between text-xs font-medium uppercase text-muted-foreground tracking-wide">
                 <span>{t("idleTimeout") ?? "Idle auto-lock timeout"}</span>
-                <span className="font-mono tabular-nums text-sm text-sky-900 normal-case tracking-normal">
+                <span className="font-mono tabular-nums text-sm text-foreground normal-case tracking-normal">
                   {editForm.idleTimeoutMinutes === 0
                     ? t("disabled") ?? "Disabled"
                     : `${editForm.idleTimeoutMinutes} ${t("minutes") ?? "min"}`}
@@ -504,12 +504,12 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                 }
                 className="w-full accent-sky-500"
               />
-              <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400">
+              <div className="mt-1 flex items-center justify-between text-[10px] text-muted-foreground">
                 <span>0 ({t("disabled") ?? "Disabled"})</span>
                 <span>10 ({t("default") ?? "Default"})</span>
                 <span>60</span>
               </div>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-muted-foreground">
                 {t("idleTimeoutHint") ??
                   "Dashboard auto-locks after this many idle minutes. Set to 0 for TV dashboards or kiosks that should stay signed in."}
               </p>
@@ -527,7 +527,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
               <button
                 onClick={() => setEditing(false)}
                 disabled={saving}
-                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
               >
                 {t("cancel")}
               </button>
@@ -537,18 +537,18 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
       </div>
 
       {/* Users in this company */}
-      <div className="rounded-xl border border-sky-100 bg-white p-6">
-        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-sky-900">
-          <UsersIcon className="size-5 text-sky-500" />
+      <div className="rounded-xl border border-border bg-card p-6">
+        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+          <UsersIcon className="size-5 text-cyan-300" />
           {t("usersTitle")} ({company.users.length})
         </h2>
         {company.users.length === 0 ? (
-          <p className="text-sm text-slate-500">{t("noUsers")}</p>
+          <p className="text-sm text-muted-foreground">{t("noUsers")}</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-200 text-sm">
+            <table className="min-w-full divide-y divide-border text-sm">
               <thead>
-                <tr className="text-left text-xs font-medium uppercase text-slate-500">
+                <tr className="text-left text-xs font-medium uppercase text-muted-foreground">
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("userEmail")}</th>
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("userName")}</th>
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("userRole")}</th>
@@ -556,13 +556,13 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("userLastLogin")}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-border">
                 {company.users.map((u) => (
                   <tr key={u.id}>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-700">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-foreground">
                       {u.email}
                     </td>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-700">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-foreground">
                       {u.fullName}
                     </td>
                     <td className="py-2 ltr:pr-4 rtl:pl-4">
@@ -583,7 +583,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                         {u.status}
                       </span>
                     </td>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-500">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-muted-foreground">
                       {u.lastLoginAt
                         ? new Date(u.lastLoginAt).toLocaleDateString(locale)
                         : "—"}
@@ -597,21 +597,21 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
       </div>
 
       {/* Plan overrides */}
-      <div className="rounded-xl border border-sky-100 bg-white p-6">
-        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-sky-900">
-          <Shield className="size-5 text-sky-500" />
+      <div className="rounded-xl border border-border bg-card p-6">
+        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+          <Shield className="size-5 text-cyan-300" />
           {t("overridesTitle")} ({overrides.length})
         </h2>
 
-        <div className="mb-4 flex flex-wrap items-end gap-3 rounded-lg bg-sky-50/50 p-3">
+        <div className="mb-4 flex flex-wrap items-end gap-3 rounded-lg bg-muted/50 p-3">
           <div className="min-w-[200px] flex-1">
-            <label className="mb-1 block text-xs font-medium text-slate-600">
+            <label className="mb-1 block text-xs font-medium text-muted-foreground">
               {t("overrideFeature")}
             </label>
             <select
               value={overrideFeature}
               onChange={(e) => setOverrideFeature(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             >
               <option value="">{t("overrideSelectFeature")}</option>
               {ALL_FEATURES.map((f) => (
@@ -622,7 +622,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
             </select>
           </div>
           <div className="min-w-[200px] flex-1">
-            <label className="mb-1 block text-xs font-medium text-slate-600">
+            <label className="mb-1 block text-xs font-medium text-muted-foreground">
               {t("overrideReason")}
             </label>
             <input
@@ -630,7 +630,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
               value={overrideReason}
               onChange={(e) => setOverrideReason(e.target.value)}
               placeholder={t("overrideReasonPlaceholder")}
-              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
           </div>
           <button
@@ -648,23 +648,23 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
         </div>
 
         {overrides.length === 0 ? (
-          <p className="text-sm text-slate-500">{t("noOverrides")}</p>
+          <p className="text-sm text-muted-foreground">{t("noOverrides")}</p>
         ) : (
           <div className="space-y-2">
             {overrides.map((o) => (
               <div
                 key={o.id}
-                className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-4 py-2"
+                className="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-2"
               >
                 <div className="flex items-center gap-3">
                   <Check
-                    className={`size-4 ${o.enabled ? "text-emerald-600" : "text-slate-400"}`}
+                    className={`size-4 ${o.enabled ? "text-emerald-300" : "text-muted-foreground"}`}
                   />
-                  <span className="font-medium text-slate-800">
+                  <span className="font-medium text-foreground">
                     {o.featureSlug}
                   </span>
                   {o.reason && (
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-muted-foreground">
                       — {o.reason}
                     </span>
                   )}
@@ -672,7 +672,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                 <button
                   onClick={() => handleRemoveOverride(o.id)}
                   disabled={overrideBusy}
-                  className="text-slate-400 hover:text-red-600"
+                  className="text-muted-foreground hover:text-rose-300"
                   aria-label={t("overrideRemove")}
                 >
                   <X className="size-4" />
@@ -686,16 +686,16 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
       {/* Per-company feature toggles — platform owner controls which
           Zyrix features this merchant has access to. Independent of
           plan tier; useful for pilots + one-off disablement. */}
-      <div className="rounded-xl border border-sky-100 bg-white p-6">
-        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-sky-900">
-          <Zap className="size-5 text-sky-500" />
+      <div className="rounded-xl border border-border bg-card p-6">
+        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+          <Zap className="size-5 text-cyan-300" />
           {locale === "ar"
             ? "صلاحيات الميزات"
             : locale === "tr"
               ? "Özellik erişimleri"
               : "Feature access"}
         </h2>
-        <p className="mb-4 text-sm text-slate-600">
+        <p className="mb-4 text-sm text-muted-foreground">
           {locale === "ar"
             ? "تحكم في أي ميزة متاحة لهذا العميل. الميزات المعطَّلة تختفي من قائمة التنقل الخاصة به."
             : locale === "tr"
@@ -710,15 +710,15 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
 
       {/* Subscriptions (read-only for now) */}
       {company.subscriptions && company.subscriptions.length > 0 && (
-        <div className="rounded-xl border border-sky-100 bg-white p-6">
-          <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-sky-900">
-            <Package className="size-5 text-sky-500" />
+        <div className="rounded-xl border border-border bg-card p-6">
+          <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+            <Package className="size-5 text-cyan-300" />
             {t("subscriptionsTitle")} ({company.subscriptions.length})
           </h2>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-200 text-sm">
+            <table className="min-w-full divide-y divide-border text-sm">
               <thead>
-                <tr className="text-left text-xs font-medium uppercase text-slate-500">
+                <tr className="text-left text-xs font-medium uppercase text-muted-foreground">
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("subPlan")}</th>
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("subStatus")}</th>
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("subCycle")}</th>
@@ -726,22 +726,22 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
                   <th className="pb-2 ltr:pr-4 rtl:pl-4">{t("subStarted")}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-border">
                 {company.subscriptions.map((s) => (
                   <tr key={s.id}>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-700">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-foreground">
                       {s.planSlug}
                     </td>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-700">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-foreground">
                       {s.status}
                     </td>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-700">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-foreground">
                       {s.billingCycle}
                     </td>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-700">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-foreground">
                       {s.amount} {s.currency}
                     </td>
-                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-slate-500">
+                    <td className="py-2 ltr:pr-4 rtl:pl-4 text-muted-foreground">
                       {new Date(s.startedAt).toLocaleDateString(locale)}
                     </td>
                   </tr>
@@ -755,29 +755,29 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
       {/* Suspend modal */}
       {suspendOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-sky-900">
+          <div className="w-full max-w-md rounded-xl bg-card p-6 shadow-xl">
+            <h3 className="text-lg font-semibold text-foreground">
               {tCompanies("confirmSuspend")}
             </h3>
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="mt-1 text-sm text-muted-foreground">
               {tCompanies("confirmSuspendMessage")}
             </p>
             <div className="mt-4">
-              <label className="mb-1 block text-xs font-medium text-slate-600">
+              <label className="mb-1 block text-xs font-medium text-muted-foreground">
                 {tCompanies("suspendReason")}
               </label>
               <input
                 type="text"
                 value={suspendReason}
                 onChange={(e) => setSuspendReason(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+                className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div className="mt-5 flex justify-end gap-2">
               <button
                 onClick={() => setSuspendOpen(false)}
                 disabled={actionBusy}
-                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
               >
                 {t("cancel")}
               </button>
@@ -804,8 +804,8 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs font-medium uppercase text-slate-500">{label}</dt>
-      <dd className="mt-0.5 text-sm text-slate-800">{value}</dd>
+      <dt className="text-xs font-medium uppercase text-muted-foreground">{label}</dt>
+      <dd className="mt-0.5 text-sm text-foreground">{value}</dd>
     </div>
   );
 }
@@ -823,14 +823,14 @@ function FormField({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium text-slate-600">
+      <label className="mb-1 block text-xs font-medium text-muted-foreground">
         {label}
       </label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+        className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />
     </div>
   );

@@ -146,6 +146,7 @@ export default function TaxInvoicesPage() {
               <Receipt className="w-5 h-5" />
             </div>
             <div>
+              <p className="text-teal-300 text-xs font-bold uppercase tracking-widest mb-2">COMPLIANCE</p>
               <h1 className="text-2xl font-bold text-foreground">
                 {tr("Tax invoices", "الفواتير الضريبية", "Vergi faturaları")}
               </h1>

@@ -49,21 +49,21 @@ function VerifyEmailContent({ locale }: { locale: string }) {
     <div className="max-w-md mx-auto text-center">
       {status === "loading" && (
         <>
-          <Loader2 className="w-16 h-16 text-primary-600 mx-auto mb-4 animate-spin" />
-          <h2 className="text-xl font-bold text-ink mb-2">{t("verifying")}</h2>
-          <p className="text-sm text-ink-light">{t("pleaseWait")}</p>
+          <Loader2 className="w-16 h-16 text-primary mx-auto mb-4 animate-spin" />
+          <h2 className="text-xl font-bold text-foreground mb-2">{t("verifying")}</h2>
+          <p className="text-sm text-muted-foreground">{t("pleaseWait")}</p>
         </>
       )}
 
       {status === "success" && (
         <>
           <CheckCircle2 className="w-16 h-16 text-success mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-ink mb-2">{t("success")}</h2>
-          <p className="text-sm text-ink-light mb-6">{message}</p>
-          <p className="text-xs text-ink-muted mb-4">{t("redirectingToSignIn")}</p>
+          <h2 className="text-xl font-bold text-foreground mb-2">{t("success")}</h2>
+          <p className="text-sm text-muted-foreground mb-6">{message}</p>
+          <p className="text-xs text-muted-foreground mb-4">{t("redirectingToSignIn")}</p>
           <Link
             href={`/${locale}/signin`}
-            className="inline-block px-6 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700"
+            className="inline-block px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary"
           >
             {t("goToSignIn")}
           </Link>
@@ -72,19 +72,19 @@ function VerifyEmailContent({ locale }: { locale: string }) {
 
       {status === "error" && (
         <>
-          <XCircle className="w-16 h-16 text-danger mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-ink mb-2">{t("failed")}</h2>
-          <p className="text-sm text-ink-light mb-6">{message}</p>
+          <XCircle className="w-16 h-16 text-rose-300 mx-auto mb-4" />
+          <h2 className="text-xl font-bold text-foreground mb-2">{t("failed")}</h2>
+          <p className="text-sm text-muted-foreground mb-6">{message}</p>
           <div className="flex gap-3 justify-center">
             <Link
               href={`/${locale}/signin`}
-              className="px-6 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700"
+              className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary"
             >
               {t("signIn")}
             </Link>
             <Link
               href={`/${locale}/signup`}
-              className="px-6 py-2.5 border border-line text-ink text-sm font-medium rounded-lg hover:bg-bg-subtle inline-flex items-center gap-2"
+              className="px-6 py-2.5 border border-border text-foreground text-sm font-medium rounded-lg hover:bg-muted inline-flex items-center gap-2"
             >
               <Mail className="w-4 h-4" />
               {t("signUp")}
@@ -101,7 +101,7 @@ export function VerifyEmailClient({ locale }: VerifyEmailClientProps) {
     <Suspense
       fallback={
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
       }
     >

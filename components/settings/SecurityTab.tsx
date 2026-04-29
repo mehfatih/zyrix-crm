@@ -73,14 +73,14 @@ export function SecurityTab({ locale }: SecurityTabProps) {
   return (
     <div className="space-y-8 max-w-xl">
       <div>
-        <h2 className="text-lg font-bold text-ink mb-4 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-primary-600" />
+        <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+          <Shield className="w-5 h-5 text-primary" />
           {t("changePasswordHeading")}
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg border border-danger/20">
+            <div className="bg-rose-500/10 text-rose-300 text-sm p-3 rounded-lg border border-rose-500/30/20">
               {error}
             </div>
           )}
@@ -93,22 +93,22 @@ export function SecurityTab({ locale }: SecurityTabProps) {
           )}
 
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-ink">
+            <label className="block text-sm font-medium text-foreground">
               {t("currentPassword")}
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type={showPassword ? "text" : "password"}
                 required
                 value={form.currentPassword}
                 onChange={(e) => setForm({ ...form, currentPassword: e.target.value })}
-                className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-10 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((s) => !s)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-muted hover:text-ink"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -116,36 +116,36 @@ export function SecurityTab({ locale }: SecurityTabProps) {
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-ink">
+            <label className="block text-sm font-medium text-foreground">
               {t("newPassword")}
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type={showPassword ? "text" : "password"}
                 required
                 minLength={8}
                 value={form.newPassword}
                 onChange={(e) => setForm({ ...form, newPassword: e.target.value })}
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
-            <p className="text-xs text-ink-muted">{t("passwordHint")}</p>
+            <p className="text-xs text-muted-foreground">{t("passwordHint")}</p>
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-ink">
+            <label className="block text-sm font-medium text-foreground">
               {t("confirmNewPassword")}
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type={showPassword ? "text" : "password"}
                 required
                 minLength={8}
                 value={form.confirmPassword}
                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
           </div>
@@ -154,8 +154,8 @@ export function SecurityTab({ locale }: SecurityTabProps) {
             type="submit"
             disabled={isSubmitting}
             className={cn(
-              "px-6 py-2.5 text-sm font-medium rounded-lg bg-primary-600 text-white",
-              "hover:bg-primary-700 disabled:opacity-60",
+              "px-6 py-2.5 text-sm font-medium rounded-lg bg-primary text-white",
+              "hover:bg-primary disabled:opacity-60",
               "flex items-center gap-2 transition-all"
             )}
           >
@@ -165,16 +165,16 @@ export function SecurityTab({ locale }: SecurityTabProps) {
         </form>
       </div>
 
-      <div className="border-t border-line pt-6">
-        <h3 className="text-lg font-bold text-ink mb-2">{t("sessionsHeading")}</h3>
-        <p className="text-sm text-ink-light mb-4">{t("sessionsMessage")}</p>
+      <div className="border-t border-border pt-6">
+        <h3 className="text-lg font-bold text-foreground mb-2">{t("sessionsHeading")}</h3>
+        <p className="text-sm text-muted-foreground mb-4">{t("sessionsMessage")}</p>
         <button
           onClick={handleLogout}
           disabled={isLoggingOut}
           className={cn(
             "px-6 py-2.5 text-sm font-medium rounded-lg",
-            "bg-white border border-danger text-danger",
-            "hover:bg-danger hover:text-white disabled:opacity-60",
+            "bg-card border border-rose-500/30 text-rose-300",
+            "hover:bg-rose-500 hover:text-white disabled:opacity-60",
             "flex items-center gap-2 transition-all"
           )}
         >

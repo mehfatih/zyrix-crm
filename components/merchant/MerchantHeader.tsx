@@ -66,7 +66,7 @@ export function MerchantHeader({
 
   return (
     <header
-      className="sticky top-0 z-30 h-16 bg-white border-b border-sky-100 flex items-center gap-3 px-4"
+      className="sticky top-0 z-30 h-16 bg-card border-b border-border flex items-center gap-3 px-4"
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* Mobile hamburger handled inside MerchantShell */}
@@ -74,7 +74,7 @@ export function MerchantHeader({
         <button
           type="button"
           onClick={onOpenSidebar}
-          className="lg:hidden w-9 h-9 rounded-md flex items-center justify-center text-slate-500 hover:bg-sky-50"
+          className="lg:hidden w-9 h-9 rounded-md flex items-center justify-center text-muted-foreground hover:bg-muted"
           aria-label="Open menu"
         >
           <span className="block w-5 h-0.5 bg-current relative before:block before:absolute before:content-[''] before:w-5 before:h-0.5 before:bg-current before:-top-1.5 after:block after:absolute after:content-[''] after:w-5 after:h-0.5 after:bg-current after:top-1.5" />
@@ -94,12 +94,12 @@ export function MerchantHeader({
       <button
         type="button"
         onClick={openSearch}
-        className="hidden md:flex items-center gap-2 h-9 px-3 rounded-lg border border-sky-100 text-slate-400 hover:border-sky-200 hover:text-sky-600 transition-colors"
+        className="hidden md:flex items-center gap-2 h-9 px-3 rounded-lg border border-border text-muted-foreground hover:border-border hover:text-cyan-300 transition-colors"
         title={sidebarT("searchPlaceholder")}
       >
         <Search className="w-4 h-4" />
         <span className="text-sm">{sidebarT("searchPlaceholder")}</span>
-        <kbd className="text-[10px] font-semibold text-slate-500 bg-sky-50 border border-sky-100 rounded px-1.5 py-0.5">
+        <kbd className="text-[10px] font-semibold text-muted-foreground bg-muted border border-border rounded px-1.5 py-0.5">
           {isMac() ? "⌘K" : "Ctrl+K"}
         </kbd>
       </button>
@@ -113,7 +113,7 @@ export function MerchantHeader({
       >
         <Plus className="w-4 h-4" />
         <span className="hidden sm:inline">{t("create")}</span>
-        <kbd className="hidden md:inline-block text-[10px] font-semibold bg-white/20 border border-white/30 rounded px-1 py-0.5 ml-0.5">
+        <kbd className="hidden md:inline-block text-[10px] font-semibold bg-card/20 border border-white/30 rounded px-1 py-0.5 ml-0.5">
           C
         </kbd>
       </button>
@@ -126,7 +126,7 @@ export function MerchantHeader({
         <button
           type="button"
           onClick={() => setAvatarOpen((v) => !v)}
-          className="flex items-center gap-1.5 rounded-full hover:bg-sky-50 p-1 pr-2 rtl:pl-2 rtl:pr-1"
+          className="flex items-center gap-1.5 rounded-full hover:bg-muted p-1 pr-2 rtl:pl-2 rtl:pr-1"
         >
           {user.avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -140,28 +140,28 @@ export function MerchantHeader({
               {getInitials(user.fullName)}
             </div>
           )}
-          <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+          <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
         </button>
         {avatarOpen && (
           <div
             className={`absolute top-full mt-1 ${
               isRTL ? "left-0" : "right-0"
-            } w-56 bg-white border border-sky-100 rounded-xl shadow-lg overflow-hidden z-40`}
+            } w-56 bg-card border border-border rounded-xl shadow-lg overflow-hidden z-40`}
           >
-            <div className="px-3 py-2 text-xs text-slate-500 truncate border-b border-sky-100">
+            <div className="px-3 py-2 text-xs text-muted-foreground truncate border-b border-border">
               {user.email}
             </div>
             <Link
               href={`/${locale}/merchant/settings`}
               onClick={() => setAvatarOpen(false)}
-              className="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
+              className="block px-3 py-2 text-sm text-foreground hover:bg-muted"
             >
               {t("profile")}
             </Link>
             <Link
               href={`/${locale}/merchant/settings`}
               onClick={() => setAvatarOpen(false)}
-              className="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
+              className="block px-3 py-2 text-sm text-foreground hover:bg-muted"
             >
               {t("settings")}
             </Link>
@@ -171,7 +171,7 @@ export function MerchantHeader({
                 setAvatarOpen(false);
                 onLogout();
               }}
-              className="w-full text-left block px-3 py-2 text-sm text-rose-600 hover:bg-rose-50 border-t border-sky-100"
+              className="w-full text-left block px-3 py-2 text-sm text-rose-300 hover:bg-rose-500/10 border-t border-border"
             >
               {t("logout")}
             </button>

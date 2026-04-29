@@ -52,7 +52,7 @@ export default function ExecutionDetailPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/workflows/executions`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -60,14 +60,15 @@ export default function ExecutionDetailPage() {
             <WorkflowIcon className="w-5 h-5" />
           </div>
           {loading || !exec ? (
-            <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+            <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
           ) : (
             <div className="flex-1 min-w-0">
-              <h1 className="text-xl font-bold text-sky-900 truncate">
+              <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">AUTOMATIONS</p>
+              <h1 className="text-xl font-bold text-foreground truncate">
                 {exec.workflowName ??
                   tr("Execution", "تنفيذ", "Yürütme")}
               </h1>
-              <p className="text-xs text-slate-500 mt-0.5 font-mono">
+              <p className="text-xs text-muted-foreground mt-0.5 font-mono">
                 {exec.id}
               </p>
             </div>
@@ -75,16 +76,16 @@ export default function ExecutionDetailPage() {
         </div>
 
         {error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : exec ? (
           <>
             {/* Summary */}
-            <div className="rounded-xl border border-sky-100 bg-white p-4">
+            <div className="rounded-xl border border-border bg-card p-4">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                 <div>
-                  <div className="text-[10px] uppercase text-slate-500 font-semibold">
+                  <div className="text-[10px] uppercase text-muted-foreground font-semibold">
                     {tr("Status", "الحالة", "Durum")}
                   </div>
                   <StatusPill
@@ -95,19 +96,19 @@ export default function ExecutionDetailPage() {
                   />
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase text-slate-500 font-semibold">
+                  <div className="text-[10px] uppercase text-muted-foreground font-semibold">
                     {tr("Attempts", "محاولات", "Denemeler")}
                   </div>
-                  <div className="text-sm font-semibold text-sky-900 mt-1 tabular-nums">
+                  <div className="text-sm font-semibold text-foreground mt-1 tabular-nums">
                     {exec.attempts}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase text-slate-500 font-semibold">
+                  <div className="text-[10px] uppercase text-muted-foreground font-semibold">
                     {tr("Queued", "في الانتظار", "Sıraya alındı")}
                   </div>
                   <div
-                    className="text-[11px] text-slate-700 mt-1 tabular-nums"
+                    className="text-[11px] text-foreground mt-1 tabular-nums"
                     dir="ltr"
                   >
                     {new Date(exec.queuedAt).toLocaleString(
@@ -122,11 +123,11 @@ export default function ExecutionDetailPage() {
                 </div>
                 {exec.finishedAt && (
                   <div>
-                    <div className="text-[10px] uppercase text-slate-500 font-semibold">
+                    <div className="text-[10px] uppercase text-muted-foreground font-semibold">
                       {tr("Finished", "انتهى", "Bitti")}
                     </div>
                     <div
-                      className="text-[11px] text-slate-700 mt-1 tabular-nums"
+                      className="text-[11px] text-foreground mt-1 tabular-nums"
                       dir="ltr"
                     >
                       {new Date(exec.finishedAt).toLocaleString(
@@ -143,7 +144,7 @@ export default function ExecutionDetailPage() {
               </div>
 
               {exec.lastError && (
-                <div className="mt-3 rounded-lg bg-rose-50 border border-rose-200 p-3 text-xs text-rose-700 flex items-start gap-2">
+                <div className="mt-3 rounded-lg bg-rose-500/10 border border-rose-500/30 p-3 text-xs text-rose-300 flex items-start gap-2">
                   <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold mb-0.5">
@@ -155,7 +156,7 @@ export default function ExecutionDetailPage() {
               )}
 
               {exec.nextRetryAt && exec.status === "pending" && (
-                <div className="mt-3 rounded-lg bg-amber-50 border border-amber-200 p-3 text-xs text-amber-800 flex items-start gap-2">
+                <div className="mt-3 rounded-lg bg-amber-500/10 border border-amber-500/30 p-3 text-xs text-amber-800 flex items-start gap-2">
                   <Clock className="w-4 h-4 flex-shrink-0 mt-0.5" />
                   <span>
                     {tr(
@@ -180,7 +181,7 @@ export default function ExecutionDetailPage() {
 
             {/* Step timeline */}
             <div>
-              <h2 className="text-sm font-bold text-sky-900 mb-3 flex items-center gap-2">
+              <h2 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
                 <Play className="w-4 h-4" />
                 {tr("Action steps", "خطوات الإجراءات", "Eylem adımları")}
               </h2>
@@ -192,8 +193,8 @@ export default function ExecutionDetailPage() {
             </div>
 
             {/* Trigger payload */}
-            <details className="rounded-xl border border-sky-100 bg-white">
-              <summary className="cursor-pointer p-3 flex items-center gap-2 text-sm font-semibold text-sky-900 hover:bg-sky-50/40">
+            <details className="rounded-xl border border-border bg-card">
+              <summary className="cursor-pointer p-3 flex items-center gap-2 text-sm font-semibold text-foreground hover:bg-muted/40">
                 <Code2 className="w-4 h-4" />
                 {tr(
                   "Trigger payload",
@@ -201,9 +202,9 @@ export default function ExecutionDetailPage() {
                   "Tetikleyici yükü"
                 )}
               </summary>
-              <div className="border-t border-sky-100 p-3">
+              <div className="border-t border-border p-3">
                 <pre
-                  className="text-[11px] font-mono bg-slate-50 border border-slate-200 rounded p-2 overflow-x-auto text-slate-700"
+                  className="text-[11px] font-mono bg-muted border border-border rounded p-2 overflow-x-auto text-foreground"
                   dir="ltr"
                 >
                   {JSON.stringify(exec.triggerPayload, null, 2)}
@@ -232,7 +233,7 @@ function StepTimeline({
 }) {
   if (steps.length === 0) {
     return (
-      <div className="rounded-xl border border-sky-100 bg-white p-6 text-center text-xs text-slate-500">
+      <div className="rounded-xl border border-border bg-card p-6 text-center text-xs text-muted-foreground">
         {tr(
           "No steps recorded yet.",
           "لا خطوات مُسجَّلة بعد.",
@@ -252,22 +253,22 @@ function StepTimeline({
             key={`${step.actionId}-${i}`}
             className={`rounded-xl border overflow-hidden ${
               step.status === "success"
-                ? "border-emerald-100 bg-white"
+                ? "border-emerald-500/30 bg-card"
                 : step.status === "failed"
-                  ? "border-rose-200 bg-rose-50/30"
-                  : "border-slate-200 bg-slate-50/30"
+                  ? "border-rose-500/30 bg-rose-50/30"
+                  : "border-border bg-muted/30"
             }`}
           >
             <div className="flex items-center gap-3 p-3">
-              <span className="w-6 h-6 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold flex items-center justify-center flex-shrink-0">
+              <span className="w-6 h-6 rounded-full bg-muted text-muted-foreground text-[10px] font-bold flex items-center justify-center flex-shrink-0">
                 {i + 1}
               </span>
               <StepIcon status={step.status} />
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold text-sky-900">
+                <div className="text-sm font-semibold text-foreground">
                   {step.actionType}
                 </div>
-                <div className="text-[11px] text-slate-500 tabular-nums">
+                <div className="text-[11px] text-muted-foreground tabular-nums">
                   {duration}ms
                 </div>
               </div>
@@ -275,18 +276,18 @@ function StepTimeline({
             </div>
             {step.error && (
               <div className="px-3 pb-3">
-                <div className="rounded-lg bg-rose-50 border border-rose-200 p-2 text-xs text-rose-700">
+                <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-2 text-xs text-rose-300">
                   {step.error}
                 </div>
               </div>
             )}
             {step.output !== undefined && step.output !== null && (
               <details className="px-3 pb-3">
-                <summary className="cursor-pointer text-[11px] text-slate-500 hover:text-slate-700">
+                <summary className="cursor-pointer text-[11px] text-muted-foreground hover:text-foreground">
                   {tr("Output", "المخرجات", "Çıktı")}
                 </summary>
                 <pre
-                  className="mt-1 text-[10px] font-mono bg-slate-50 border border-slate-200 rounded p-2 overflow-x-auto text-slate-700"
+                  className="mt-1 text-[10px] font-mono bg-muted border border-border rounded p-2 overflow-x-auto text-foreground"
                   dir="ltr"
                 >
                   {JSON.stringify(step.output, null, 2)}
@@ -306,10 +307,10 @@ function StepIcon({
   status: WorkflowExecutionStep["status"];
 }) {
   if (status === "success")
-    return <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />;
+    return <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />;
   if (status === "failed")
-    return <XCircle className="w-4 h-4 text-rose-600 flex-shrink-0" />;
-  return <SkipForward className="w-4 h-4 text-slate-500 flex-shrink-0" />;
+    return <XCircle className="w-4 h-4 text-rose-300 flex-shrink-0" />;
+  return <SkipForward className="w-4 h-4 text-muted-foreground flex-shrink-0" />;
 }
 
 function StatusPill({
@@ -333,13 +334,13 @@ function StatusPill({
     skipped_conditions: tr("Skipped", "تم التخطي", "Atlandı"),
   };
   const tones: Record<string, string> = {
-    completed: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    success: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    failed: "bg-rose-50 text-rose-700 border-rose-200",
-    pending: "bg-amber-50 text-amber-700 border-amber-200",
-    running: "bg-sky-50 text-sky-600 border-sky-200",
-    skipped: "bg-slate-50 text-slate-600 border-slate-200",
-    skipped_conditions: "bg-slate-50 text-slate-600 border-slate-200",
+    completed: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    success: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    failed: "bg-rose-500/10 text-rose-300 border border-rose-500/30",
+    pending: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
+    running: "bg-muted text-cyan-300 border-border",
+    skipped: "bg-muted text-muted-foreground border-border",
+    skipped_conditions: "bg-muted text-muted-foreground border-border",
   };
   return (
     <span

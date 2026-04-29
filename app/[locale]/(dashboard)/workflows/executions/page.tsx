@@ -83,7 +83,7 @@ export default function ExecutionsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/workflows`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -91,10 +91,11 @@ export default function ExecutionsPage() {
             <History className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-sky-900">
+            <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">AUTOMATIONS</p>
+            <h1 className="text-xl font-bold text-foreground">
               {tr("Execution history", "سجل التنفيذ", "Yürütme geçmişi")}
             </h1>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               {total}{" "}
               {tr("total executions", "إجمالي تنفيذ", "toplam yürütme")}
             </p>
@@ -102,7 +103,7 @@ export default function ExecutionsPage() {
           <button
             onClick={() => load({ silent: true })}
             disabled={refreshing}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-700 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted rounded-lg text-xs font-semibold text-foreground disabled:opacity-50"
           >
             {refreshing ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -122,7 +123,7 @@ export default function ExecutionsPage() {
               className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                 status === s
                   ? "bg-sky-500 text-white"
-                  : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+                  : "bg-card border border-border text-foreground hover:bg-muted"
               }`}
             >
               {statusLabel(s)}
@@ -132,10 +133,10 @@ export default function ExecutionsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : (

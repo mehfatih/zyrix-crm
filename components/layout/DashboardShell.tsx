@@ -50,6 +50,8 @@ import GlobalSearchBar from "@/components/advanced/GlobalSearchBar";
 import { useAIStore } from "@/lib/stores/aiStore";
 import { AISidePanel } from "@/components/ai/AISidePanel";
 
+import { getAccentClasses } from "./page-accents";
+
 interface DashboardShellProps {
   locale: string;
   children: ReactNode;
@@ -258,6 +260,9 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
           {navItems.map((item) => {
             const isActive = pathname?.startsWith(item.href);
             const Icon = item.icon;
+            // Slug = last URL segment (after /<locale>/)
+            const slug = item.href.split("/").filter(Boolean).slice(-1)[0] ?? "";
+            const accent = getAccentClasses(slug);
             return (
               <Link
                 key={item.href}
@@ -265,11 +270,11 @@ export function DashboardShell({ locale, children }: DashboardShellProps) {
                 className={cn(
                   "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
                   isActive
-                    ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-medium"
+                    ? `${accent.bg} ${accent.text} border-l-2 ${accent.border} font-medium`
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
-                <Icon className="w-4 h-4 flex-shrink-0" />
+                <Icon className={cn("w-4 h-4 flex-shrink-0", isActive ? accent.icon : "")} />
                 <span className="flex-1">{item.label}</span>
                 {(item as any).unreadCount && (item as any).unreadCount > 0 ? (
                   <span className="px-1.5 min-w-[18px] h-[18px] text-[10px] font-bold bg-rose-500 text-white rounded-full flex items-center justify-center">

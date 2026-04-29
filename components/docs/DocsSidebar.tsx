@@ -66,13 +66,13 @@ export default function DocsSidebar({
         <button
           type="button"
           onClick={onSearchClick}
-          className="w-full flex items-center gap-2 px-3 py-2 text-sm bg-white border border-sky-100 rounded-lg hover:border-sky-300 transition-colors text-slate-500"
+          className="w-full flex items-center gap-2 px-3 py-2 text-sm bg-card border border-border rounded-lg hover:border-sky-300 transition-colors text-muted-foreground"
         >
-          <Search className="w-4 h-4 text-slate-400" />
+          <Search className="w-4 h-4 text-muted-foreground" />
           <span className="flex-1 text-start truncate">
             {copy.searchPlaceholder}
           </span>
-          <kbd className="text-[10px] font-semibold text-slate-500 bg-sky-50 border border-sky-100 rounded px-1.5 py-0.5">
+          <kbd className="text-[10px] font-semibold text-muted-foreground bg-muted border border-border rounded px-1.5 py-0.5">
             ⌘K
           </kbd>
         </button>
@@ -83,7 +83,7 @@ export default function DocsSidebar({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={copy.searchPlaceholder}
-        className="w-full px-3 py-1.5 text-sm bg-white border border-sky-100 rounded-lg focus:outline-none focus:border-sky-300 mb-3"
+        className="w-full px-3 py-1.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:border-sky-300 mb-3"
       />
 
       <nav className="space-y-1 text-sm">
@@ -98,7 +98,7 @@ export default function DocsSidebar({
                 onClick={() =>
                   setCollapsed((p) => ({ ...p, [catId]: !p[catId] }))
                 }
-                className="w-full flex items-center justify-between gap-2 px-2 py-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider hover:text-slate-700"
+                className="w-full flex items-center justify-between gap-2 px-2 py-1.5 text-xs font-bold text-muted-foreground uppercase tracking-wider hover:text-foreground"
               >
                 <span>
                   {getCategoryLabel(catId as never, locale)} ({list.length})
@@ -110,7 +110,7 @@ export default function DocsSidebar({
                 )}
               </button>
               {open && (
-                <ul className="mb-2 space-y-0.5 border-s border-sky-100 ms-2 ps-2">
+                <ul className="mb-2 space-y-0.5 border-s border-border ms-2 ps-2">
                   {list.map((a) => {
                     const href = `/${locale}/docs/${a.category}/${a.slug}`;
                     return (
@@ -119,8 +119,8 @@ export default function DocsSidebar({
                           href={href}
                           className={`block px-2 py-1.5 rounded-md transition-colors ${
                             isActive(href)
-                              ? "bg-sky-50 text-sky-600 font-semibold"
-                              : "text-slate-600 hover:bg-sky-50 hover:text-slate-900"
+                              ? "bg-muted text-cyan-300 font-semibold"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
                           }`}
                         >
                           {a.title}

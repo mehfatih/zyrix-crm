@@ -180,7 +180,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+        <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
       </div>
     );
   }
@@ -189,7 +189,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
     <>
       {/* Toolbar */}
       <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
-        <div className="flex items-center gap-2 text-xs text-slate-500">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <Settings className="w-3.5 h-3.5" />
           <span>
             {source === "user"
@@ -203,7 +203,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
                 : tr("Default layout", "التخطيط الافتراضي", "Varsayılan düzen")}
           </span>
           {justSaved && (
-            <span className="inline-flex items-center gap-1 text-emerald-700 font-semibold">
+            <span className="inline-flex items-center gap-1 text-emerald-300 font-semibold">
               <Check className="w-3 h-3" />
               {tr("Saved", "تم الحفظ", "Kaydedildi")}
             </span>
@@ -215,7 +215,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
             <>
               <button
                 onClick={() => setShowLibrary(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
               >
                 <Plus className="w-3.5 h-3.5" />
                 {tr("Add widget", "إضافة ويدجت", "Widget ekle")}
@@ -223,7 +223,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
               <button
                 onClick={handleReset}
                 disabled={saving}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-700 disabled:opacity-50"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted rounded-lg text-xs font-semibold text-foreground disabled:opacity-50"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 {tr("Reset", "إعادة تعيين", "Sıfırla")}
@@ -231,7 +231,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
               <button
                 onClick={handleCancel}
                 disabled={saving}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900"
+                className="px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground"
               >
                 {tr("Cancel", "إلغاء", "İptal")}
               </button>
@@ -251,7 +251,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
           ) : (
             <button
               onClick={() => setEditMode(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-700"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted rounded-lg text-xs font-semibold text-foreground"
             >
               <Pencil className="w-3.5 h-3.5" />
               {tr("Customize", "تخصيص", "Özelleştir")}
@@ -262,11 +262,11 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
 
       {/* Grid */}
       {widgets.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
-          <p className="text-sm font-semibold text-sky-900">
+        <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center">
+          <p className="text-sm font-semibold text-foreground">
             {tr("Empty dashboard", "لوحة فارغة", "Boş pano")}
           </p>
-          <p className="text-xs text-slate-500 mt-1 mb-4">
+          <p className="text-xs text-muted-foreground mt-1 mb-4">
             {tr(
               "Add widgets to see your most important data at a glance.",
               "أضف ويدجات لرؤية أهم بياناتك في لمحة.",
@@ -278,7 +278,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
               setEditMode(true);
               setShowLibrary(true);
             }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold"
           >
             <Plus className="w-4 h-4" />
             {tr("Add your first widget", "أضف أول ويدجت", "İlk widget'ı ekle")}
@@ -302,9 +302,9 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
               >
                 {/* Edit controls overlay */}
                 {editMode && (
-                  <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2 z-10 flex items-center gap-1 bg-white/90 backdrop-blur-sm rounded-lg border border-sky-200 p-0.5 shadow-sm">
+                  <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2 z-10 flex items-center gap-1 bg-card/90 backdrop-blur-sm rounded-lg border border-border p-0.5 shadow-sm">
                     <button
-                      className="w-6 h-6 rounded flex items-center justify-center text-slate-500 hover:text-sky-600 hover:bg-sky-50 cursor-grab active:cursor-grabbing"
+                      className="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-cyan-300 hover:bg-muted cursor-grab active:cursor-grabbing"
                       title={tr("Drag", "اسحب", "Sürükle")}
                     >
                       <GripVertical className="w-3.5 h-3.5" />
@@ -314,7 +314,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
                       onChange={(e) =>
                         changeWidth(widget.id, e.target.value as WidgetWidth)
                       }
-                      className="text-[10px] bg-transparent border-0 font-semibold text-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-400 rounded px-1 py-0.5"
+                      className="text-[10px] bg-transparent border-0 font-semibold text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary rounded px-1 py-0.5"
                       title={tr("Width", "العرض", "Genişlik")}
                     >
                       {(["full", "half", "third", "quarter"] as WidgetWidth[]).map(
@@ -327,7 +327,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
                     </select>
                     <button
                       onClick={() => removeWidget(widget.id)}
-                      className="w-6 h-6 rounded flex items-center justify-center text-slate-500 hover:text-rose-700 hover:bg-rose-50"
+                      className="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10"
                       title={tr("Remove", "إزالة", "Kaldır")}
                     >
                       <X className="w-3.5 h-3.5" />
@@ -350,15 +350,15 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
           dir={locale === "ar" ? "rtl" : "ltr"}
         >
           <div
-            className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col"
+            className="bg-card rounded-2xl shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-5 border-b border-sky-100 flex items-center justify-between">
+            <div className="p-5 border-b border-border flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-bold text-sky-900">
+                <h2 className="text-lg font-bold text-foreground">
                   {tr("Add a widget", "إضافة ويدجت", "Widget ekle")}
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-muted-foreground mt-0.5">
                   {tr(
                     "Pick from the library — you can resize and reorder later.",
                     "اختر من المكتبة — يمكنك تغيير الحجم والترتيب لاحقًا.",
@@ -368,7 +368,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
               </div>
               <button
                 onClick={() => setShowLibrary(false)}
-                className="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center"
+                className="w-8 h-8 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -381,7 +381,7 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
                   <button
                     key={meta.type}
                     onClick={() => addWidget(meta.type)}
-                    className="text-left rtl:text-right p-3 rounded-xl border border-sky-100 hover:border-sky-300 hover:bg-sky-50/50 transition-colors flex items-start gap-3"
+                    className="text-left rtl:text-right p-3 rounded-xl border border-border hover:border-sky-300 hover:bg-muted/50 transition-colors flex items-start gap-3"
                   >
                     <div
                       className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${ACCENT_BG[meta.accent] || ACCENT_BG.cyan}`}
@@ -389,10 +389,10 @@ export function DashboardGrid({ locale }: { locale: "en" | "ar" | "tr" }) {
                       <Icon className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-sky-900">
+                      <div className="text-sm font-semibold text-foreground">
                         {meta.label[locale]}
                       </div>
-                      <div className="text-xs text-slate-600 mt-0.5 line-clamp-2">
+                      <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
                         {meta.description[locale]}
                       </div>
                     </div>

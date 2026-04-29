@@ -21,7 +21,7 @@ export default function PortalCallbackPage() {
 function CallbackLoading() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 to-sky-50 flex items-center justify-center">
-      <Loader2 className="w-8 h-8 animate-spin text-sky-500" />
+      <Loader2 className="w-8 h-8 animate-spin text-cyan-300" />
     </div>
   );
 }
@@ -62,24 +62,24 @@ function CallbackInner() {
         </div>
 
         {error ? (
-          <div className="bg-white border border-red-200 rounded-2xl p-6 shadow-xl">
-            <AlertTriangle className="w-10 h-10 text-red-500 mx-auto mb-3" />
+          <div className="bg-card border border-rose-500/30 rounded-2xl p-6 shadow-xl">
+            <AlertTriangle className="w-10 h-10 text-rose-400 mx-auto mb-3" />
             <h2 className="text-lg font-bold text-red-900 mb-1">
               {t("errorTitle")}
             </h2>
-            <p className="text-sm text-slate-600 mb-4">{error}</p>
+            <p className="text-sm text-muted-foreground mb-4">{error}</p>
             <button
               onClick={() => router.push(`/${locale}/portal`)}
-              className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg"
+              className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg"
             >
               {t("backToLogin")}
             </button>
           </div>
         ) : (
-          <div className="bg-white border border-sky-100 rounded-2xl p-6 shadow-xl">
-            <Loader2 className="w-10 h-10 animate-spin text-sky-500 mx-auto mb-3" />
-            <h2 className="text-lg font-bold text-sky-900">{t("title")}</h2>
-            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+          <div className="bg-card border border-border rounded-2xl p-6 shadow-xl">
+            <Loader2 className="w-10 h-10 animate-spin text-cyan-300 mx-auto mb-3" />
+            <h2 className="text-lg font-bold text-foreground">{t("title")}</h2>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
         )}
       </div>

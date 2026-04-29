@@ -40,9 +40,9 @@ export default function MessagingPage() {
   return (
     <DashboardShell locale={locale}>
       <div className="grid h-[calc(100vh-12rem)] grid-cols-1 gap-4 p-4 sm:p-6 lg:grid-cols-[300px_1fr] lg:p-8">
-        <aside className="overflow-hidden rounded-xl border border-zyrix-border bg-white">
-          <div className="border-b border-zyrix-border p-3">
-            <h2 className="text-sm font-bold text-zyrix-textHeading">
+        <aside className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="border-b border-border p-3">
+            <h2 className="text-sm font-bold text-foreground">
               {t('conversations')}
             </h2>
           </div>
@@ -58,21 +58,21 @@ export default function MessagingPage() {
             ].map((c, i) => (
               <button
                 key={i}
-                className={`block w-full rounded-lg p-3 text-start hover:bg-zyrix-aiSurface ${
-                  i === 0 ? 'bg-zyrix-aiSurface' : ''
+                className={`block w-full rounded-lg p-3 text-start hover:bg-violet-500/10 ${
+                  i === 0 ? 'bg-violet-500/10' : ''
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-zyrix-textHeading">
+                  <span className="text-sm font-bold text-foreground">
                     {c.name}
                   </span>
                   {c.unread > 0 && (
-                    <span className="rounded-full bg-zyrix-primary px-1.5 py-0.5 text-[10px] font-bold text-white">
+                    <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-bold text-white">
                       {c.unread}
                     </span>
                   )}
                 </div>
-                <p className="mt-0.5 line-clamp-1 text-xs text-zyrix-textMuted">
+                <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
                   {c.preview}
                 </p>
               </button>
@@ -80,21 +80,21 @@ export default function MessagingPage() {
           </div>
         </aside>
 
-        <main className="flex flex-col overflow-hidden rounded-xl border border-zyrix-border bg-white">
-          <header className="flex items-center justify-between border-b border-zyrix-border p-4">
+        <main className="flex flex-col overflow-hidden rounded-xl border border-border bg-card">
+          <header className="flex items-center justify-between border-b border-border p-4">
             <div>
-              <h2 className="text-sm font-bold text-zyrix-textHeading">
+              <h2 className="text-sm font-bold text-foreground">
                 Khalid Al-Faisal
               </h2>
-              <p className="text-xs text-zyrix-textMuted">Al-Faisal Trading</p>
+              <p className="text-xs text-muted-foreground">Al-Faisal Trading</p>
             </div>
-            <div className="flex items-center gap-1 rounded-lg border border-zyrix-border p-0.5">
+            <div className="flex items-center gap-1 rounded-lg border border-border p-0.5">
               <button
                 onClick={() => setChannel('whatsapp')}
                 className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-semibold ${
                   channel === 'whatsapp'
-                    ? 'bg-zyrix-aiSurface text-zyrix-primary'
-                    : 'text-zyrix-textMuted'
+                    ? 'bg-violet-500/10 text-primary'
+                    : 'text-muted-foreground'
                 }`}
               >
                 <MessageSquare size={12} /> WhatsApp
@@ -103,8 +103,8 @@ export default function MessagingPage() {
                 onClick={() => setChannel('email')}
                 className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-semibold ${
                   channel === 'email'
-                    ? 'bg-zyrix-aiSurface text-zyrix-primary'
-                    : 'text-zyrix-textMuted'
+                    ? 'bg-violet-500/10 text-primary'
+                    : 'text-muted-foreground'
                 }`}
               >
                 <Mail size={12} /> Email
@@ -124,14 +124,14 @@ export default function MessagingPage() {
                   <div
                     className={`max-w-[70%] rounded-2xl px-4 py-2 ${
                       m.from === 'me'
-                        ? 'bg-zyrix-ai-gradient text-white'
-                        : 'bg-zyrix-cardBgAlt text-zyrix-textBody'
+                        ? 'bg-gradient-to-r from-primary to-violet-500 text-white'
+                        : 'bg-muted text-muted-foreground'
                     }`}
                   >
                     <p className="text-sm">{m.content}</p>
                     <p
                       className={`mt-0.5 text-[10px] ${
-                        m.from === 'me' ? 'text-white/70' : 'text-zyrix-textMuted'
+                        m.from === 'me' ? 'text-white/70' : 'text-muted-foreground'
                       }`}
                     >
                       {m.time}

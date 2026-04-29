@@ -77,7 +77,7 @@ export default function PortalDashboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-sky-50 to-sky-50 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-sky-500" />
+        <Loader2 className="w-8 h-8 animate-spin text-cyan-300" />
       </div>
     );
   }
@@ -85,9 +85,9 @@ export default function PortalDashboardPage() {
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-sky-50 to-sky-50 flex items-center justify-center p-4">
-        <div className="max-w-md bg-white border border-red-200 rounded-xl p-6 shadow-xl text-center">
-          <AlertTriangle className="w-10 h-10 text-red-500 mx-auto mb-3" />
-          <p className="text-sm text-slate-600">{error}</p>
+        <div className="max-w-md bg-card border border-rose-500/30 rounded-xl p-6 shadow-xl text-center">
+          <AlertTriangle className="w-10 h-10 text-rose-400 mx-auto mb-3" />
+          <p className="text-sm text-muted-foreground">{error}</p>
           <button
             onClick={() => router.push(`/${locale}/portal`)}
             className="mt-4 px-4 py-2 bg-sky-500 text-white rounded-lg text-sm font-medium"
@@ -104,22 +104,22 @@ export default function PortalDashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-sky-50/30 to-white">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur border-b border-sky-100 sticky top-0 z-10">
+      <header className="bg-card/80 backdrop-blur border-b border-border sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-400 to-sky-500 flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
-              <div className="text-sm font-bold text-sky-900">
+              <div className="text-sm font-bold text-foreground">
                 {data.customer.company.name}
               </div>
-              <div className="text-xs text-slate-500">{t("customerPortal")}</div>
+              <div className="text-xs text-muted-foreground">{t("customerPortal")}</div>
             </div>
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-slate-600 hover:text-sky-600 rounded-lg"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-muted-foreground hover:text-cyan-300 rounded-lg"
           >
             <LogOut className="w-4 h-4" />
             {t("logout")}
@@ -130,15 +130,15 @@ export default function PortalDashboardPage() {
       <div className="max-w-5xl mx-auto p-4 md:p-8 space-y-6">
         {/* Welcome */}
         <div>
-          <h1 className="text-2xl font-bold text-sky-900">
+          <h1 className="text-2xl font-bold text-foreground">
             {t("welcome", { name: data.customer.fullName })}
           </h1>
-          <p className="text-sm text-slate-600 mt-1">{t("welcomeSubtitle")}</p>
+          <p className="text-sm text-muted-foreground mt-1">{t("welcomeSubtitle")}</p>
         </div>
 
         {/* Profile card */}
-        <div className="bg-white border border-sky-100 rounded-xl p-5">
-          <h2 className="text-xs font-semibold text-slate-500 uppercase mb-3 flex items-center gap-1.5">
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h2 className="text-xs font-semibold text-muted-foreground uppercase mb-3 flex items-center gap-1.5">
             <User className="w-3.5 h-3.5" />
             {t("profile.title")}
           </h2>
@@ -234,9 +234,9 @@ export default function PortalDashboardPage() {
         </Section>
 
         {/* Footer */}
-        <div className="text-center text-xs text-slate-500 py-6">
+        <div className="text-center text-xs text-muted-foreground py-6">
           {t("footer.needHelp")}{" "}
-          <span className="text-sky-600 font-medium">
+          <span className="text-cyan-300 font-medium">
             {data.customer.company.name}
           </span>
         </div>
@@ -260,12 +260,12 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-      <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-        <Icon className="w-4 h-4 text-sky-500" />
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <div className="px-5 py-3 border-b border-border bg-muted/50 flex items-center gap-2">
+        <Icon className="w-4 h-4 text-cyan-300" />
         <div>
-          <h3 className="text-sm font-bold text-sky-900">{title}</h3>
-          <p className="text-xs text-slate-500">{subtitle}</p>
+          <h3 className="text-sm font-bold text-foreground">{title}</h3>
+          <p className="text-xs text-muted-foreground">{subtitle}</p>
         </div>
       </div>
       {children}
@@ -275,7 +275,7 @@ function Section({
 
 function EmptyRow({ label }: { label: string }) {
   return (
-    <div className="py-10 text-center text-sm text-slate-500">
+    <div className="py-10 text-center text-sm text-muted-foreground">
       <Sparkles className="w-8 h-8 mx-auto mb-2 text-sky-300" />
       {label}
     </div>
@@ -292,12 +292,12 @@ function InfoRow({
   value: string;
 }) {
   return (
-    <div className="bg-sky-50/40 border border-sky-100 rounded-lg px-3 py-2">
-      <div className="text-xs text-slate-500 flex items-center gap-1.5">
+    <div className="bg-muted/40 border border-border rounded-lg px-3 py-2">
+      <div className="text-xs text-muted-foreground flex items-center gap-1.5">
         <Icon className="w-3 h-3" />
         {label}
       </div>
-      <div className="text-sm text-sky-900 font-medium mt-0.5 truncate">
+      <div className="text-sm text-foreground font-medium mt-0.5 truncate">
         {value}
       </div>
     </div>
@@ -316,19 +316,19 @@ function StatTile({
   color: "cyan" | "sky" | "amber";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
-    sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
-    amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
+    cyan: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    sky: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    amber: { iconBg: "bg-amber-500/10", iconText: "text-amber-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4 flex items-center gap-3">
+    <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
       <div className={`${c.iconBg} ${c.iconText} p-3 rounded-lg`}>
         <Icon className="w-6 h-6" />
       </div>
       <div className="flex-1">
-        <div className="text-xs text-slate-500">{label}</div>
-        <div className="text-xl font-bold text-sky-900">{value}</div>
+        <div className="text-xs text-muted-foreground">{label}</div>
+        <div className="text-xl font-bold text-foreground">{value}</div>
       </div>
     </div>
   );
@@ -344,25 +344,25 @@ function QuoteRow({
   t: ReturnType<typeof useTranslations>;
 }) {
   const statusStyle: Record<string, string> = {
-    draft: "bg-slate-50 text-slate-600",
-    sent: "bg-sky-50 text-sky-700",
-    viewed: "bg-sky-50 text-sky-600",
-    accepted: "bg-emerald-50 text-emerald-700",
-    rejected: "bg-red-50 text-red-700",
-    expired: "bg-amber-50 text-amber-700",
+    draft: "bg-muted text-muted-foreground",
+    sent: "bg-muted text-cyan-300",
+    viewed: "bg-muted text-cyan-300",
+    accepted: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    rejected: "bg-rose-500/10 text-rose-300 border border-rose-500/30",
+    expired: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
   };
-  const style = statusStyle[quote.status] || "bg-slate-50 text-slate-600";
+  const style = statusStyle[quote.status] || "bg-muted text-muted-foreground";
 
   return (
     <a
       href={`/${locale}/q/${quote.publicToken}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-3 px-5 py-3 hover:bg-sky-50/30 transition-colors"
+      className="flex items-center gap-3 px-5 py-3 hover:bg-muted/30 transition-colors"
     >
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-mono text-xs text-sky-600 font-medium">
+          <span className="font-mono text-xs text-cyan-300 font-medium">
             {quote.quoteNumber}
           </span>
           <span
@@ -371,21 +371,21 @@ function QuoteRow({
             {t(`status.${quote.status}`, { fallback: quote.status })}
           </span>
         </div>
-        <div className="text-sm font-medium text-sky-900 mt-0.5 truncate">
+        <div className="text-sm font-medium text-foreground mt-0.5 truncate">
           {quote.title}
         </div>
         {quote.validUntil && (
-          <div className="text-xs text-slate-500 mt-0.5 flex items-center gap-1">
+          <div className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
             <Calendar className="w-3 h-3" />
             {t("quotes.validUntil")}: {formatDate(quote.validUntil, locale)}
           </div>
         )}
       </div>
       <div className="text-right rtl:text-left">
-        <div className="font-bold text-sky-900">
+        <div className="font-bold text-foreground">
           {formatMoney(Number(quote.total), quote.currency, locale)}
         </div>
-        <ExternalLink className="w-3.5 h-3.5 text-slate-400 inline-block ltr:ml-1 rtl:mr-1 mt-1" />
+        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground inline-block ltr:ml-1 rtl:mr-1 mt-1" />
       </div>
     </a>
   );
@@ -410,20 +410,20 @@ function ContractRow({
   };
   const StatusIcon = statusIcon[contract.status] || Clock;
   const statusStyle: Record<string, string> = {
-    draft: "bg-slate-50 text-slate-600",
-    pending_signature: "bg-amber-50 text-amber-700",
-    signed: "bg-sky-50 text-sky-700",
-    active: "bg-emerald-50 text-emerald-700",
-    expired: "bg-red-50 text-red-700",
-    terminated: "bg-slate-100 text-slate-600",
+    draft: "bg-muted text-muted-foreground",
+    pending_signature: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
+    signed: "bg-muted text-cyan-300",
+    active: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    expired: "bg-rose-500/10 text-rose-300 border border-rose-500/30",
+    terminated: "bg-muted text-muted-foreground",
   };
-  const style = statusStyle[contract.status] || "bg-slate-50 text-slate-600";
+  const style = statusStyle[contract.status] || "bg-muted text-muted-foreground";
 
   const content = (
     <>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-mono text-xs text-sky-600 font-medium">
+          <span className="font-mono text-xs text-cyan-300 font-medium">
             {contract.contractNumber}
           </span>
           <span
@@ -435,22 +435,22 @@ function ContractRow({
             })}
           </span>
         </div>
-        <div className="text-sm font-medium text-sky-900 mt-0.5 truncate">
+        <div className="text-sm font-medium text-foreground mt-0.5 truncate">
           {contract.title}
         </div>
         {contract.endDate && (
-          <div className="text-xs text-slate-500 mt-0.5 flex items-center gap-1">
+          <div className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
             <Calendar className="w-3 h-3" />
             {t("contracts.until")}: {formatDate(contract.endDate, locale)}
           </div>
         )}
       </div>
       <div className="text-right rtl:text-left">
-        <div className="font-bold text-sky-900">
+        <div className="font-bold text-foreground">
           {formatMoney(Number(contract.value), contract.currency, locale)}
         </div>
         {contract.fileUrl && (
-          <ExternalLink className="w-3.5 h-3.5 text-slate-400 inline-block ltr:ml-1 rtl:mr-1 mt-1" />
+          <ExternalLink className="w-3.5 h-3.5 text-muted-foreground inline-block ltr:ml-1 rtl:mr-1 mt-1" />
         )}
       </div>
     </>
@@ -462,7 +462,7 @@ function ContractRow({
         href={contract.fileUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-3 px-5 py-3 hover:bg-sky-50/30 transition-colors"
+        className="flex items-center gap-3 px-5 py-3 hover:bg-muted/30 transition-colors"
       >
         {content}
       </a>

@@ -75,12 +75,12 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-line-soft px-6 py-4 flex items-center justify-between rounded-t-2xl">
-          <h2 className="text-lg font-semibold text-ink">Create new deal</h2>
+      <div className="bg-card rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-card border-b border-border-soft px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 className="text-lg font-semibold text-foreground">Create new deal</h2>
           <button
             onClick={onClose}
-            className="p-1.5 text-ink-muted hover:text-ink hover:bg-bg-subtle rounded-lg"
+            className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg"
           >
             <X className="w-5 h-5" />
           </button>
@@ -88,20 +88,20 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {error && (
-            <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg">
+            <div className="bg-rose-500/10 text-rose-300 text-sm p-3 rounded-lg">
               {error}
             </div>
           )}
 
           {customers.length === 0 && !loadingCustomers && (
-            <div className="bg-amber-50 text-amber-800 text-sm p-3 rounded-lg">
+            <div className="bg-amber-500/10 text-amber-800 text-sm p-3 rounded-lg">
               You need to create a customer first before adding a deal.
             </div>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-ink mb-1.5">
-              Customer <span className="text-danger">*</span>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Customer <span className="text-rose-300">*</span>
             </label>
             <select
               name="customerId"
@@ -109,7 +109,7 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
               onChange={handleChange}
               required
               disabled={loadingCustomers || customers.length === 0}
-              className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:bg-bg-subtle"
+              className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:bg-muted"
             >
               <option value="">Select a customer...</option>
               {customers.map((c) => (
@@ -121,8 +121,8 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-ink mb-1.5">
-              Title <span className="text-danger">*</span>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Title <span className="text-rose-300">*</span>
             </label>
             <input
               type="text"
@@ -131,13 +131,13 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
               onChange={handleChange}
               required
               placeholder="e.g. Website redesign project"
-              className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-ink mb-1.5">Value</label>
+              <label className="block text-sm font-medium text-foreground mb-1.5">Value</label>
               <input
                 type="number"
                 name="value"
@@ -146,16 +146,16 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
                 min="0"
                 step="0.01"
                 placeholder="0.00"
-                className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-ink mb-1.5">Currency</label>
+              <label className="block text-sm font-medium text-foreground mb-1.5">Currency</label>
               <select
                 name="currency"
                 value={form.currency}
                 onChange={handleChange}
-                className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
@@ -170,12 +170,12 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-ink mb-1.5">Stage</label>
+              <label className="block text-sm font-medium text-foreground mb-1.5">Stage</label>
               <select
                 name="stage"
                 value={form.stage}
                 onChange={handleChange}
-                className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="lead">Lead</option>
                 <option value="qualified">Qualified</option>
@@ -186,7 +186,7 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-ink mb-1.5">
+              <label className="block text-sm font-medium text-foreground mb-1.5">
                 Probability (%)
               </label>
               <input
@@ -196,13 +196,13 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
                 onChange={handleChange}
                 min="0"
                 max="100"
-                className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-ink mb-1.5">
+            <label className="block text-sm font-medium text-foreground mb-1.5">
               Expected close date
             </label>
             <input
@@ -210,12 +210,12 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
               name="expectedCloseDate"
               value={form.expectedCloseDate}
               onChange={handleChange}
-              className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-ink mb-1.5">
+            <label className="block text-sm font-medium text-foreground mb-1.5">
               Description
             </label>
             <textarea
@@ -223,7 +223,7 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
               value={form.description}
               onChange={handleChange}
               rows={3}
-              className="w-full px-3 py-2 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+              className="w-full px-3 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
               placeholder="Deal details, notes, or context..."
             />
           </div>
@@ -232,7 +232,7 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-2.5 text-sm font-medium text-ink-light border border-line rounded-lg hover:bg-bg-subtle"
+              className="flex-1 py-2.5 text-sm font-medium text-muted-foreground border border-border rounded-lg hover:bg-muted"
             >
               Cancel
             </button>
@@ -241,7 +241,7 @@ export function CreateDealModal({ onClose, onSuccess }: CreateDealModalProps) {
               disabled={isSubmitting || customers.length === 0}
               className={cn(
                 "flex-1 py-2.5 text-sm font-medium rounded-lg",
-                "bg-primary-600 text-white hover:bg-primary-700",
+                "bg-primary text-white hover:bg-primary",
                 "disabled:opacity-60 disabled:cursor-not-allowed",
                 "flex items-center justify-center gap-2"
               )}

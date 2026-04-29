@@ -57,12 +57,12 @@ export function AIBulkActionBar({
           exit={{ y: 60, opacity: 0 }}
           className="fixed bottom-6 left-1/2 z-40 -translate-x-1/2"
         >
-          <div className="flex items-center gap-2 rounded-xl border border-zyrix-aiBorder bg-white p-2 shadow-zyrix-ai-glow">
+          <div className="flex items-center gap-2 rounded-xl border border-violet-500/30 bg-card p-2 shadow-zyrix-ai-glow">
             <div className="flex items-center gap-2 px-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-zyrix-ai-gradient">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-r from-primary to-violet-500">
                 <Sparkles size={13} className="text-white" />
               </div>
-              <span className="text-sm font-bold text-zyrix-textHeading">
+              <span className="text-sm font-bold text-foreground">
                 {selectedCount} {t('selected')}
               </span>
             </div>
@@ -98,7 +98,7 @@ export function AIBulkActionBar({
 
             <button
               onClick={onClear}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-zyrix-textMuted hover:bg-zyrix-cardBgAlt"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted"
               aria-label={t('clear')}
             >
               <X size={14} />
@@ -125,10 +125,10 @@ function ActionButton({
     <button
       onClick={onClick}
       disabled={loading}
-      className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold text-zyrix-primaryDark transition-colors hover:bg-zyrix-aiSurface disabled:opacity-50"
+      className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold text-primaryDark transition-colors hover:bg-violet-500/10 disabled:opacity-50"
     >
       {loading ? (
-        <span className="h-3 w-3 animate-spin rounded-full border-2 border-zyrix-primary border-t-transparent" />
+        <span className="h-3 w-3 animate-spin rounded-full border-2 border-primary border-t-transparent" />
       ) : (
         icon
       )}

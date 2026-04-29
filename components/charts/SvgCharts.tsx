@@ -280,11 +280,11 @@ export function PieChart({ rows, xKey, yKey, formatY = (v) => String(v) }: Props
               className="w-3 h-3 rounded-sm flex-shrink-0"
               style={{ background: s.color }}
             />
-            <span className="flex-1 text-slate-700 truncate">{s.label}</span>
-            <span className="font-mono text-slate-900 tabular-nums">
+            <span className="flex-1 text-foreground truncate">{s.label}</span>
+            <span className="font-mono text-foreground tabular-nums">
               {formatY(s.value)}
             </span>
-            <span className="text-slate-400 tabular-nums w-10 text-right">
+            <span className="text-muted-foreground tabular-nums w-10 text-right">
               {((s.value / total) * 100).toFixed(0)}%
             </span>
           </div>
@@ -296,7 +296,7 @@ export function PieChart({ rows, xKey, yKey, formatY = (v) => String(v) }: Props
 
 function EmptyState() {
   return (
-    <div className="flex items-center justify-center h-64 text-xs text-slate-400">
+    <div className="flex items-center justify-center h-64 text-xs text-muted-foreground">
       No data
     </div>
   );

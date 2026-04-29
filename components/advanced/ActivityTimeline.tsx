@@ -53,17 +53,17 @@ const ICON_MAP: Record<string, typeof Activity> = {
 };
 
 const COLOR_MAP: Record<string, { bg: string; text: string; ring: string }> = {
-  cyan: { bg: "bg-sky-50", text: "text-sky-500", ring: "ring-sky-200" },
+  cyan: { bg: "bg-muted", text: "text-cyan-300", ring: "ring-cyan-500/30" },
   blue: { bg: "bg-blue-50", text: "text-blue-600", ring: "ring-blue-200" },
-  indigo: { bg: "bg-indigo-50", text: "text-indigo-600", ring: "ring-indigo-200" },
-  violet: { bg: "bg-violet-50", text: "text-violet-600", ring: "ring-violet-200" },
-  slate: { bg: "bg-slate-50", text: "text-slate-600", ring: "ring-slate-200" },
-  emerald: { bg: "bg-emerald-50", text: "text-emerald-600", ring: "ring-emerald-200" },
-  teal: { bg: "bg-teal-50", text: "text-teal-600", ring: "ring-teal-200" },
-  sky: { bg: "bg-sky-50", text: "text-sky-600", ring: "ring-sky-200" },
-  amber: { bg: "bg-amber-50", text: "text-amber-600", ring: "ring-amber-200" },
-  rose: { bg: "bg-rose-50", text: "text-rose-600", ring: "ring-rose-200" },
-  pink: { bg: "bg-pink-50", text: "text-pink-600", ring: "ring-pink-200" },
+  indigo: { bg: "bg-indigo-500/10", text: "text-indigo-600", ring: "ring-indigo-200" },
+  violet: { bg: "bg-violet-500/10", text: "text-violet-600", ring: "ring-violet-500/30" },
+  slate: { bg: "bg-muted", text: "text-muted-foreground", ring: "ring-border" },
+  emerald: { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/30" },
+  teal: { bg: "bg-teal-500/10", text: "text-teal-600", ring: "ring-teal-200" },
+  sky: { bg: "bg-muted", text: "text-cyan-300", ring: "ring-cyan-500/30" },
+  amber: { bg: "bg-amber-500/10", text: "text-amber-300", ring: "ring-amber-500/30" },
+  rose: { bg: "bg-rose-500/10", text: "text-rose-300", ring: "ring-rose-500/30" },
+  pink: { bg: "bg-pink-500/10", text: "text-pink-600", ring: "ring-pink-200" },
   green: { bg: "bg-green-50", text: "text-green-600", ring: "ring-green-200" },
 };
 
@@ -106,19 +106,19 @@ export default function ActivityTimeline({
   if (loading) {
     return (
       <div className="flex items-center justify-center py-10">
-        <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+        <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
       </div>
     );
   }
 
   if (events.length === 0) {
     return (
-      <div className="bg-white border border-sky-100 rounded-xl p-10 text-center">
+      <div className="bg-card border border-border rounded-xl p-10 text-center">
         <Sparkles className="w-10 h-10 text-sky-300 mx-auto mb-2" />
-        <h3 className="text-base font-semibold text-sky-900 mb-1">
+        <h3 className="text-base font-semibold text-foreground mb-1">
           {t("empty.title")}
         </h3>
-        <p className="text-sm text-slate-500">{t("empty.subtitle")}</p>
+        <p className="text-sm text-muted-foreground">{t("empty.subtitle")}</p>
       </div>
     );
   }
@@ -133,7 +133,7 @@ export default function ActivityTimeline({
             className={`px-2.5 py-1 text-xs font-medium rounded-full ${
               filter === null
                 ? "bg-sky-500 text-white"
-                : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                : "bg-card text-muted-foreground border border-border hover:bg-muted"
             }`}
           >
             {t("filters.all")} ({events.length})
@@ -147,7 +147,7 @@ export default function ActivityTimeline({
                 className={`px-2.5 py-1 text-xs font-medium rounded-full ${
                   filter === type
                     ? "bg-sky-500 text-white"
-                    : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                    : "bg-card text-muted-foreground border border-border hover:bg-muted"
                 }`}
               >
                 {t(`types.${type}`, { fallback: type.replace(/_/g, " ") })} ({count})
@@ -158,7 +158,7 @@ export default function ActivityTimeline({
       )}
 
       {/* Timeline */}
-      <div className="bg-white border border-sky-100 rounded-xl p-6">
+      <div className="bg-card border border-border rounded-xl p-6">
         <div className="relative space-y-4">
           {/* Vertical line */}
           <div className="absolute ltr:left-5 rtl:right-5 top-0 bottom-0 w-px bg-slate-200" />
@@ -216,23 +216,23 @@ function TimelineEventItem({
 
   const card = (
     <div
-      className={`flex-1 min-w-0 bg-white border border-sky-50 rounded-lg p-3 shadow-sm ${
-        href ? "hover:border-sky-200 hover:bg-sky-50/40 transition-colors" : ""
+      className={`flex-1 min-w-0 bg-card border border-sky-50 rounded-lg p-3 shadow-sm ${
+        href ? "hover:border-border hover:bg-muted/40 transition-colors" : ""
       }`}
     >
       <div className="flex items-start justify-between gap-2 flex-wrap">
-        <h4 className="text-sm font-semibold text-sky-900">{event.title}</h4>
-        <time className="text-[10px] text-slate-500 flex-shrink-0">
+        <h4 className="text-sm font-semibold text-foreground">{event.title}</h4>
+        <time className="text-[10px] text-muted-foreground flex-shrink-0">
           {formatTimeAgo(event.timestamp, locale)}
         </time>
       </div>
       {event.description && (
-        <p className="text-xs text-slate-600 mt-1 line-clamp-3 whitespace-pre-wrap">
+        <p className="text-xs text-muted-foreground mt-1 line-clamp-3 whitespace-pre-wrap">
           {event.description}
         </p>
       )}
       {event.userName && (
-        <div className="mt-2 flex items-center gap-1 text-[10px] text-slate-500">
+        <div className="mt-2 flex items-center gap-1 text-[10px] text-muted-foreground">
           <User className="w-2.5 h-2.5" />
           {event.userName}
         </div>

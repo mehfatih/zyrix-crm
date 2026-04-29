@@ -75,14 +75,14 @@ export default async function DocsHubPage({
     <DocsShell locale={L} articles={sidebarArticles} searchRecords={records}>
       {/* Hero */}
       <section className="text-center mb-12 lg:mb-16">
-        <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-sky-600 bg-sky-50 border border-sky-200 rounded-full mb-4">
+        <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-cyan-300 bg-muted border border-border rounded-full mb-4">
           <BookOpen className="w-3.5 h-3.5" />
           {copy.title}
         </span>
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
           {copy.heroTitle}
         </h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
           {copy.heroSubtitle}
         </p>
         <div className="max-w-xl mx-auto">
@@ -106,8 +106,8 @@ export default async function DocsHubPage({
 
       {/* Popular + Getting Started rows */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-14">
-        <div className="bg-white border border-sky-100 rounded-2xl p-6">
-          <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+        <div className="bg-card border border-border rounded-2xl p-6">
+          <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-violet-500" />
             {copy.popular}
           </h2>
@@ -116,7 +116,7 @@ export default async function DocsHubPage({
               <li key={`${d.category}/${d.slug}`}>
                 <Link
                   href={`/${L}/docs/${d.category}/${d.slug}`}
-                  className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg hover:bg-sky-50 text-sm text-slate-700 hover:text-sky-600"
+                  className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg hover:bg-muted text-sm text-foreground hover:text-cyan-300"
                 >
                   <span className="truncate">{d.frontmatter.title}</span>
                   <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 rtl:rotate-180" />
@@ -125,8 +125,8 @@ export default async function DocsHubPage({
             ))}
           </ul>
         </div>
-        <div className="bg-white border border-sky-100 rounded-2xl p-6">
-          <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+        <div className="bg-card border border-border rounded-2xl p-6">
+          <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
             <PlayCircle className="w-5 h-5 text-emerald-500" />
             {copy.gettingStarted}
           </h2>
@@ -135,7 +135,7 @@ export default async function DocsHubPage({
               <li key={`${d.category}/${d.slug}`}>
                 <Link
                   href={`/${L}/docs/${d.category}/${d.slug}`}
-                  className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg hover:bg-emerald-50 text-sm text-slate-700 hover:text-emerald-700"
+                  className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg hover:bg-emerald-500/10 text-sm text-foreground hover:text-emerald-300"
                 >
                   <span className="truncate">{d.frontmatter.title}</span>
                   <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 rtl:rotate-180" />
@@ -148,15 +148,15 @@ export default async function DocsHubPage({
 
       {/* Video placeholder */}
       <section className="mb-14">
-        <div className="bg-gradient-to-br from-sky-50 via-sky-50 to-white border border-sky-100 rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <div className="w-14 h-14 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-sky-50 via-sky-50 to-white border border-border rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div className="w-14 h-14 rounded-xl bg-sky-100 text-cyan-300 flex items-center justify-center">
             <PlayCircle className="w-7 h-7" />
           </div>
           <div className="flex-1">
-            <h3 className="text-lg font-bold text-slate-900 mb-1">
+            <h3 className="text-lg font-bold text-foreground mb-1">
               {copy.videoTutorials}
             </h3>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted-foreground">
               {copy.videoSoon}.
             </p>
           </div>
@@ -165,14 +165,14 @@ export default async function DocsHubPage({
 
       {/* Contact CTA */}
       <section className="mb-6">
-        <div className="bg-gradient-to-br from-sky-50 via-sky-50 to-indigo-50 rounded-2xl p-8 border border-sky-100 text-center">
-          <MessageCircle className="w-8 h-8 text-sky-500 mx-auto mb-3" />
-          <h3 className="text-xl font-bold text-slate-900 mb-2">
+        <div className="bg-gradient-to-br from-sky-50 via-sky-50 to-indigo-50 rounded-2xl p-8 border border-border text-center">
+          <MessageCircle className="w-8 h-8 text-cyan-300 mx-auto mb-3" />
+          <h3 className="text-xl font-bold text-foreground mb-2">
             {copy.questions}
           </h3>
           <Link
             href={`/${L}/contact`}
-            className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors"
+            className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold rounded-lg shadow-sm transition-colors"
           >
             {copy.contactSupport}
             <ArrowRight className="w-4 h-4 rtl:rotate-180" />
@@ -186,7 +186,7 @@ export default async function DocsHubPage({
 function HeroSearchCue({ locale }: { locale: DocLocale }) {
   const copy = DOCS_COPY[locale];
   return (
-    <div className="flex items-center gap-2 px-4 py-3 bg-white border-2 border-sky-200 rounded-xl shadow-sm">
+    <div className="flex items-center gap-2 px-4 py-3 bg-card border-2 border-border rounded-xl shadow-sm">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -197,15 +197,15 @@ function HeroSearchCue({ locale }: { locale: DocLocale }) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-slate-400"
+        className="text-muted-foreground"
       >
         <circle cx="11" cy="11" r="8" />
         <path d="m21 21-4.3-4.3" />
       </svg>
-      <span className="flex-1 text-sm text-slate-500">
+      <span className="flex-1 text-sm text-muted-foreground">
         {copy.searchPlaceholder}
       </span>
-      <kbd className="text-[11px] font-semibold text-slate-500 bg-sky-50 border border-sky-100 rounded px-1.5 py-0.5">
+      <kbd className="text-[11px] font-semibold text-muted-foreground bg-muted border border-border rounded px-1.5 py-0.5">
         ⌘K
       </kbd>
     </div>

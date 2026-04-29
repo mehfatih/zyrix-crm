@@ -124,8 +124,8 @@ export function AIRecommendationsStrip({
                 <span
                   className={`rounded-full transition-all duration-200 ${
                     i === active
-                      ? "w-5 h-1.5 bg-white"
-                      : "w-1.5 h-1.5 bg-white/50 group-hover:bg-white/80"
+                      ? "w-5 h-1.5 bg-card"
+                      : "w-1.5 h-1.5 bg-card/50 group-hover:bg-card/80"
                   }`}
                 />
               </button>
@@ -137,7 +137,7 @@ export function AIRecommendationsStrip({
           type="button"
           onClick={handleRefresh}
           aria-label={t("refresh")}
-          className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors"
+          className="w-8 h-8 rounded-full bg-card/15 hover:bg-card/25 text-white flex items-center justify-center transition-colors"
         >
           <RefreshCw
             className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`}
@@ -199,12 +199,12 @@ export function AIRecommendationsStrip({
 function SkeletonSlide({ isRTL }: { isRTL: boolean }) {
   return (
     <div className="w-full h-full flex items-center gap-5 px-6" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="w-14 h-14 rounded-2xl bg-white/25 animate-pulse flex-shrink-0" />
+      <div className="w-14 h-14 rounded-2xl bg-card/25 animate-pulse flex-shrink-0" />
       <div className="flex-1 space-y-2.5">
-        <div className="h-4 rounded bg-white/30 animate-pulse w-2/3" />
-        <div className="h-3 rounded bg-white/20 animate-pulse w-1/2" />
+        <div className="h-4 rounded bg-card/30 animate-pulse w-2/3" />
+        <div className="h-3 rounded bg-card/20 animate-pulse w-1/2" />
       </div>
-      <div className="hidden sm:block h-9 w-28 rounded-full bg-white/30 animate-pulse" />
+      <div className="hidden sm:block h-9 w-28 rounded-full bg-card/30 animate-pulse" />
     </div>
   );
 }

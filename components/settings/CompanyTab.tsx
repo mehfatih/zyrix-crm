@@ -42,7 +42,7 @@ export function CompanyTab() {
 
   return (
     <div className="space-y-5 max-w-xl">
-      <h2 className="text-lg font-bold text-ink">{t("heading")}</h2>
+      <h2 className="text-lg font-bold text-foreground">{t("heading")}</h2>
 
       {!canEdit && (
         <div className="bg-warning-light text-warning-dark text-sm p-3 rounded-lg border border-warning/20">
@@ -52,7 +52,7 @@ export function CompanyTab() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {error && (
-          <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg border border-danger/20">
+          <div className="bg-rose-500/10 text-rose-300 text-sm p-3 rounded-lg border border-rose-500/30/20">
             {error}
           </div>
         )}
@@ -65,11 +65,11 @@ export function CompanyTab() {
         )}
 
         <div className="space-y-1.5">
-          <label htmlFor="name" className="block text-sm font-medium text-ink">
+          <label htmlFor="name" className="block text-sm font-medium text-foreground">
             {t("name")}
           </label>
           <div className="relative">
-            <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+            <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               id="name"
               type="text"
@@ -77,26 +77,26 @@ export function CompanyTab() {
               disabled={!canEdit}
               value={form.name}
               onChange={(e) => setForm({ name: e.target.value })}
-              className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:bg-bg-subtle disabled:cursor-not-allowed"
+              className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:bg-muted disabled:cursor-not-allowed"
             />
           </div>
         </div>
 
         <div className="space-y-1.5">
-          <label className="block text-sm font-medium text-ink">{t("slug")}</label>
+          <label className="block text-sm font-medium text-foreground">{t("slug")}</label>
           <input
             type="text"
             value={company?.slug || ""}
             disabled
-            className="w-full px-4 py-2.5 text-sm bg-bg-subtle border border-line rounded-lg text-ink-light cursor-not-allowed"
+            className="w-full px-4 py-2.5 text-sm bg-muted border border-border rounded-lg text-muted-foreground cursor-not-allowed"
           />
         </div>
 
         <div className="space-y-1.5">
-          <label className="block text-sm font-medium text-ink">{t("plan")}</label>
-          <div className="flex items-center gap-2 px-4 py-3 bg-primary-50 border border-primary-200 rounded-lg">
-            <Zap className="w-4 h-4 text-primary-600" />
-            <span className="text-sm font-semibold text-primary-700 capitalize">
+          <label className="block text-sm font-medium text-foreground">{t("plan")}</label>
+          <div className="flex items-center gap-2 px-4 py-3 bg-primary/15 border border-primary-200 rounded-lg">
+            <Zap className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary capitalize">
               {company?.plan || "free"}
             </span>
           </div>
@@ -107,8 +107,8 @@ export function CompanyTab() {
             type="submit"
             disabled={isSubmitting}
             className={cn(
-              "px-6 py-2.5 text-sm font-medium rounded-lg bg-primary-600 text-white",
-              "hover:bg-primary-700 disabled:opacity-60",
+              "px-6 py-2.5 text-sm font-medium rounded-lg bg-primary text-white",
+              "hover:bg-primary disabled:opacity-60",
               "flex items-center gap-2 transition-all"
             )}
           >

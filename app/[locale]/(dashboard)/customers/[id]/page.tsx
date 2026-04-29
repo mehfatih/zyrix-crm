@@ -29,10 +29,10 @@ import { cn, getInitials, formatDate } from "@/lib/utils";
 type Tab = "overview" | "timeline";
 
 const STATUS_COLORS: Record<string, string> = {
-  new: "bg-sky-100 text-sky-700",
-  qualified: "bg-sky-100 text-sky-600",
-  customer: "bg-emerald-100 text-emerald-700",
-  lost: "bg-slate-100 text-slate-600",
+  new: "bg-sky-100 text-cyan-300",
+  qualified: "bg-sky-100 text-cyan-300",
+  customer: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30",
+  lost: "bg-muted text-muted-foreground",
 };
 
 export default function CustomerDetailPage() {
@@ -62,7 +62,7 @@ export default function CustomerDetailPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="p-8 flex items-center justify-center">
-          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+          <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
         </div>
       </DashboardShell>
     );
@@ -72,10 +72,10 @@ export default function CustomerDetailPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="p-8 text-center">
-          <p className="text-sm text-slate-500">Customer not found.</p>
+          <p className="text-sm text-muted-foreground">Customer not found.</p>
           <Link
             href={`/${locale}/customers`}
-            className="inline-flex items-center gap-1.5 mt-3 text-sm text-sky-500 hover:underline"
+            className="inline-flex items-center gap-1.5 mt-3 text-sm text-cyan-300 hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to customers
@@ -92,7 +92,7 @@ export default function CustomerDetailPage() {
         <div className="flex items-start gap-4 flex-wrap">
           <Link
             href={`/${locale}/customers`}
-            className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg"
+            className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
@@ -100,23 +100,24 @@ export default function CustomerDetailPage() {
             {getInitials(customer.fullName)}
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl font-bold text-sky-900 truncate">
+            <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">CUSTOMERS</p>
+            <h1 className="text-2xl font-bold text-foreground truncate">
               {customer.fullName}
             </h1>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
               {customer.position && (
-                <span className="text-sm text-slate-600">{customer.position}</span>
+                <span className="text-sm text-muted-foreground">{customer.position}</span>
               )}
               {customer.companyName && (
                 <>
-                  <span className="text-slate-400">·</span>
-                  <span className="text-sm text-slate-600">{customer.companyName}</span>
+                  <span className="text-muted-foreground">·</span>
+                  <span className="text-sm text-muted-foreground">{customer.companyName}</span>
                 </>
               )}
               <span
                 className={cn(
                   "inline-flex px-2 py-0.5 text-[10px] font-medium rounded-full capitalize",
-                  STATUS_COLORS[customer.status] || "bg-gray-100 text-gray-700"
+                  STATUS_COLORS[customer.status] || "bg-muted text-foreground"
                 )}
               >
                 {customer.status}
@@ -126,7 +127,7 @@ export default function CustomerDetailPage() {
         </div>
 
         {/* Tabs */}
-        <div className="border-b border-sky-100 flex gap-1">
+        <div className="border-b border-border flex gap-1">
           <TabButton
             active={activeTab === "overview"}
             onClick={() => setActiveTab("overview")}
@@ -169,8 +170,8 @@ function TabButton({
       className={cn(
         "flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors",
         active
-          ? "border-sky-500 text-sky-600"
-          : "border-transparent text-slate-600 hover:text-sky-600"
+          ? "border-sky-500 text-cyan-300"
+          : "border-transparent text-muted-foreground hover:text-cyan-300"
       )}
     >
       <Icon className="w-4 h-4" />
@@ -214,7 +215,7 @@ function OverviewTab({ customer, locale }: { customer: Customer; locale: string 
 
       {customer.notes && (
         <InfoCard title="Notes">
-          <p className="text-sm text-slate-700 whitespace-pre-wrap">{customer.notes}</p>
+          <p className="text-sm text-foreground whitespace-pre-wrap">{customer.notes}</p>
         </InfoCard>
       )}
     </div>
@@ -223,8 +224,8 @@ function OverviewTab({ customer, locale }: { customer: Customer; locale: string 
 
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">
+    <div className="bg-card border border-border rounded-xl p-4">
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
         {title}
       </h3>
       <div className="space-y-2">{children}</div>
@@ -243,10 +244,10 @@ function InfoRow({
 }) {
   return (
     <div className="flex items-start gap-2 text-sm">
-      <Icon className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
-      <span className="text-slate-500 w-20 flex-shrink-0">{label}:</span>
-      <span className="text-slate-900 break-all">
-        {value || <span className="text-slate-400 italic">—</span>}
+      <Icon className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+      <span className="text-muted-foreground w-20 flex-shrink-0">{label}:</span>
+      <span className="text-foreground break-all">
+        {value || <span className="text-muted-foreground italic">—</span>}
       </span>
     </div>
   );

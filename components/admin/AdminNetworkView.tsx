@@ -131,8 +131,8 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
             <Network className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">Network rules</h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <h1 className="text-2xl font-bold text-foreground">Network rules</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">
               Platform-level geo blocks, rate limits, and reserved DDoS
               heuristics.
             </p>
@@ -140,7 +140,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
         </div>
         <button
           onClick={() => setShowNew(true)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
         >
           <Plus className="w-3.5 h-3.5" />
           New rule
@@ -148,32 +148,32 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
       </div>
 
       {success && (
-        <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-center gap-2 text-sm text-emerald-900">
+        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-center gap-2 text-sm text-emerald-900">
           <CheckCircle2 className="w-4 h-4" />
           <span>{success}</span>
         </div>
       )}
       {error && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
           <AlertTriangle className="w-4 h-4 mt-0.5" />
           <span>{error}</span>
         </div>
       )}
 
       {showNew && (
-        <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-3">
+        <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-sky-900">New rule</h2>
+            <h2 className="text-sm font-bold text-foreground">New rule</h2>
             <button
               onClick={() => setShowNew(false)}
-              className="text-slate-500 hover:text-slate-800"
+              className="text-muted-foreground hover:text-foreground"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+              <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
                 Type
               </label>
               <select
@@ -188,7 +188,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
                     );
                   else setNewConfig('{\n  "windowMs": 1000,\n  "spike": 200\n}');
                 }}
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 {(Object.keys(TYPE_META) as NetworkRuleType[]).map((t) => (
                   <option key={t} value={t}>
@@ -198,19 +198,19 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
               </select>
             </div>
             <div>
-              <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+              <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
                 Label
               </label>
               <input
                 value={newLabel}
                 onChange={(e) => setNewLabel(e.target.value)}
                 placeholder="e.g. Block Tor exit nodes"
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               Config (JSON)
             </label>
             <textarea
@@ -218,16 +218,16 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
               onChange={(e) => setNewConfig(e.target.value)}
               rows={6}
               dir="ltr"
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-xs font-mono bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 border border-border rounded-lg text-xs font-mono bg-card focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-muted-foreground mt-1">
               {TYPE_META[newType].hint}
             </p>
           </div>
           <div className="flex items-center justify-end">
             <button
               onClick={handleCreate}
-              className="inline-flex items-center gap-1.5 px-3 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold"
             >
               Save rule
             </button>
@@ -237,12 +237,12 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
 
       {loading ? (
         <div className="flex items-center justify-center py-10">
-          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+          <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
         </div>
       ) : rules.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
+        <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center">
           <Network className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-          <p className="text-sm text-slate-500">No rules yet.</p>
+          <p className="text-sm text-muted-foreground">No rules yet.</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -252,33 +252,33 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
               <div
                 key={r.id}
                 className={`rounded-xl border p-4 flex items-start gap-3 ${
-                  r.active ? "border-sky-100 bg-white" : "border-slate-200 bg-slate-50 opacity-80"
+                  r.active ? "border-border bg-card" : "border-border bg-muted opacity-80"
                 }`}
               >
                 <div
                   className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
                     r.active
                       ? "bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white"
-                      : "bg-slate-200 text-slate-500"
+                      : "bg-slate-200 text-muted-foreground"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-sm font-bold text-sky-900">{r.label}</h3>
-                    <code className="text-[10px] font-mono text-slate-500">
+                    <h3 className="text-sm font-bold text-foreground">{r.label}</h3>
+                    <code className="text-[10px] font-mono text-muted-foreground">
                       {r.type}
                     </code>
                     {!r.active && (
-                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-200 text-slate-700">
+                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-200 text-foreground">
                         Paused
                       </span>
                     )}
                   </div>
                   <pre
                     dir="ltr"
-                    className="mt-1 bg-sky-50/60 border border-sky-100 rounded p-2 text-[10px] font-mono overflow-x-auto max-h-40"
+                    className="mt-1 bg-muted/60 border border-border rounded p-2 text-[10px] font-mono overflow-x-auto max-h-40"
                   >
                     {JSON.stringify(r.config, null, 2)}
                   </pre>
@@ -286,7 +286,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
                 <div className="flex items-center gap-1 flex-shrink-0">
                   <button
                     onClick={() => handleToggle(r)}
-                    className="w-7 h-7 rounded text-slate-500 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+                    className="w-7 h-7 rounded text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
                     title={r.active ? "Pause" : "Activate"}
                   >
                     {r.active ? (
@@ -297,7 +297,7 @@ export default function AdminNetworkView({ locale }: { locale: string }) {
                   </button>
                   <button
                     onClick={() => handleDelete(r)}
-                    className="w-7 h-7 rounded text-slate-400 hover:text-rose-700 hover:bg-rose-50 flex items-center justify-center"
+                    className="w-7 h-7 rounded text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 flex items-center justify-center"
                     title="Delete"
                   >
                     <Trash2 className="w-3.5 h-3.5" />

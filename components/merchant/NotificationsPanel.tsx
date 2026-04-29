@@ -150,7 +150,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
         onClick={() => setOpen((v) => !v)}
         title={t("title")}
         aria-label={t("title")}
-        className="relative w-10 h-10 rounded-lg flex items-center justify-center text-slate-500 hover:text-sky-600 hover:bg-sky-50 transition-colors"
+        className="relative w-10 h-10 rounded-lg flex items-center justify-center text-muted-foreground hover:text-cyan-300 hover:bg-muted transition-colors"
       >
         <Bell className="w-5 h-5" />
         {unreadCount > 0 && (
@@ -167,14 +167,14 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
         <div
           className={`absolute top-full mt-2 ${
             isRTL ? "left-0" : "right-0"
-          } w-[400px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl overflow-hidden z-50`}
+          } w-[400px] max-w-[calc(100vw-2rem)] bg-card rounded-2xl overflow-hidden z-50`}
           style={{
             boxShadow: "0 10px 40px rgba(8,145,178,0.12)",
             border: "1px solid rgba(224,242,254,0.8)",
           }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-sky-100">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-border">
             <div className="text-[14px] font-bold text-[#0C4A6E]">
               {t("title")}
             </div>
@@ -185,7 +185,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
               className={`inline-flex items-center gap-1 text-xs font-semibold ${
                 unreadCount === 0
                   ? "text-slate-300 cursor-not-allowed"
-                  : "text-sky-600 hover:text-sky-800"
+                  : "text-cyan-300 hover:text-foreground"
               }`}
             >
               <CheckCheck className="w-3.5 h-3.5" />
@@ -194,7 +194,7 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
           </div>
 
           {/* Tabs */}
-          <div className="flex items-center px-2 border-b border-sky-100">
+          <div className="flex items-center px-2 border-b border-border">
             {(["all", "unread", "mentions"] as FilterTab[]).map((f) => {
               const active = tab === f;
               const label =
@@ -210,8 +210,8 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
                   onClick={() => setTab(f)}
                   className={`relative px-3 py-2.5 text-sm font-medium transition-colors ${
                     active
-                      ? "text-sky-600"
-                      : "text-slate-500 hover:text-slate-700"
+                      ? "text-cyan-300"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {label}
@@ -230,26 +230,26 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
           <div className="max-h-[440px] overflow-y-auto">
             {showEmptyCaughtUp && (
               <div className="px-6 py-10 text-center">
-                <div className="mx-auto w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+                <div className="mx-auto w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center justify-center mb-3">
                   <CheckCheck className="w-7 h-7" />
                 </div>
                 <div className="text-sm font-bold text-[#0C4A6E]">
                   {t("emptyCaughtUp")}
                 </div>
-                <div className="text-xs text-slate-500 mt-1">
+                <div className="text-xs text-muted-foreground mt-1">
                   {t("emptyCaughtUpSubtitle")}
                 </div>
               </div>
             )}
             {showEmptyNone && (
               <div className="px-6 py-10 text-center">
-                <div className="mx-auto w-14 h-14 rounded-full bg-sky-50 text-sky-500 flex items-center justify-center mb-3">
+                <div className="mx-auto w-14 h-14 rounded-full bg-muted text-cyan-300 flex items-center justify-center mb-3">
                   <Inbox className="w-7 h-7" />
                 </div>
                 <div className="text-sm font-bold text-[#0C4A6E]">
                   {t("emptyNone")}
                 </div>
-                <div className="text-xs text-slate-500 mt-1">
+                <div className="text-xs text-muted-foreground mt-1">
                   {t("emptyNoneSubtitle")}
                 </div>
               </div>
@@ -267,11 +267,11 @@ export function NotificationsPanel({ locale, isRTL }: NotificationsPanelProps) {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-sky-100 px-4 py-2.5 text-center">
+          <div className="border-t border-border px-4 py-2.5 text-center">
             <Link
               href={`/${locale}/merchant/notifications`}
               onClick={() => setOpen(false)}
-              className="inline-block text-xs font-semibold text-sky-600 hover:text-sky-800"
+              className="inline-block text-xs font-semibold text-cyan-300 hover:text-foreground"
             >
               {t("viewAll")}
             </Link>

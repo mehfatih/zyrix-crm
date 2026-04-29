@@ -130,10 +130,11 @@ export default function EcommerceReportsPage() {
               <BarChart3 className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">REPORTS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("E-commerce analytics", "تحليلات التجارة الإلكترونية", "E-ticaret analitiği")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Performance across all your connected stores",
                   "الأداء عبر جميع متاجرك المتصلة",
@@ -148,7 +149,7 @@ export default function EcommerceReportsPage() {
             <button
               onClick={() => handleExport("csv")}
               disabled={!data || exporting !== null}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-foreground bg-card border border-border hover:bg-muted rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {exporting === "csv" ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -160,7 +161,7 @@ export default function EcommerceReportsPage() {
             <button
               onClick={() => handleExport("pdf")}
               disabled={!data || exporting !== null}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-foreground bg-card border border-border hover:bg-muted rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {exporting === "pdf" ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -171,7 +172,7 @@ export default function EcommerceReportsPage() {
             </button>
 
             {/* Window toggle */}
-            <div className="inline-flex items-center bg-white border border-sky-200 rounded-lg p-0.5">
+            <div className="inline-flex items-center bg-card border border-border rounded-lg p-0.5">
               {WINDOW_PRESETS.map((p) => (
                 <button
                   key={p.days}
@@ -179,7 +180,7 @@ export default function EcommerceReportsPage() {
                   className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                     windowDays === p.days
                       ? "bg-sky-500 text-white"
-                      : "text-slate-600 hover:bg-sky-50"
+                      : "text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   {p.label[locale as "en" | "ar" | "tr"] || p.label.en}
@@ -191,7 +192,7 @@ export default function EcommerceReportsPage() {
 
         {loading && !data ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
           <ErrorBanner message={error} onRetry={() => load(windowDays)} tr={tr} />
@@ -307,43 +308,43 @@ function Kpi({
   color: "emerald" | "sky" | "cyan" | "teal";
 }) {
   const bgs: Record<string, string> = {
-    emerald: "bg-emerald-50 text-emerald-600",
-    sky: "bg-sky-50 text-sky-600",
-    cyan: "bg-sky-50 text-sky-500",
-    teal: "bg-teal-50 text-teal-600",
+    emerald: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    sky: "bg-muted text-cyan-300",
+    cyan: "bg-muted text-cyan-300",
+    teal: "bg-teal-500/10 text-teal-600",
   };
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4">
+    <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-center gap-2 mb-2">
         <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${bgs[color]}`}>
           <Icon className="w-4 h-4" />
         </div>
-        <span className="text-xs font-medium text-slate-600">{label}</span>
+        <span className="text-xs font-medium text-muted-foreground">{label}</span>
       </div>
-      <div className="text-2xl font-bold text-sky-900 tabular-nums" dir="ltr" style={{ unicodeBidi: "embed" }}>
+      <div className="text-2xl font-bold text-foreground tabular-nums" dir="ltr" style={{ unicodeBidi: "embed" }}>
         {value}
       </div>
       {typeof growth === "number" && (
         <div className="mt-1 flex items-center gap-1 text-[11px]">
           {growth > 0 ? (
             <>
-              <ArrowUp className="w-3 h-3 text-emerald-600" />
-              <span className="font-semibold text-emerald-700">+{growth.toFixed(1)}%</span>
+              <ArrowUp className="w-3 h-3 text-emerald-300" />
+              <span className="font-semibold text-emerald-300">+{growth.toFixed(1)}%</span>
             </>
           ) : growth < 0 ? (
             <>
-              <ArrowDown className="w-3 h-3 text-rose-600" />
-              <span className="font-semibold text-rose-700">{growth.toFixed(1)}%</span>
+              <ArrowDown className="w-3 h-3 text-rose-300" />
+              <span className="font-semibold text-rose-300">{growth.toFixed(1)}%</span>
             </>
           ) : (
             <>
-              <Minus className="w-3 h-3 text-slate-400" />
-              <span className="text-slate-500">0%</span>
+              <Minus className="w-3 h-3 text-muted-foreground" />
+              <span className="text-muted-foreground">0%</span>
             </>
           )}
         </div>
       )}
-      {hint && <p className="text-[11px] text-slate-500 mt-1">{hint}</p>}
+      {hint && <p className="text-[11px] text-muted-foreground mt-1">{hint}</p>}
     </div>
   );
 }
@@ -410,12 +411,12 @@ function RevenueTrend({
   };
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4">
+    <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-center justify-between gap-2 mb-3">
-        <h3 className="text-sm font-semibold text-sky-900">
+        <h3 className="text-sm font-semibold text-foreground">
           {tr("Revenue trend", "اتجاه الإيرادات", "Gelir trendi")}
         </h3>
-        <span className="text-[11px] text-slate-500">
+        <span className="text-[11px] text-muted-foreground">
           {tr("daily, won deals only", "يومياً، الصفقات المكتملة فقط", "günlük, yalnızca kazanılan")}
         </span>
       </div>
@@ -473,7 +474,7 @@ function RevenueTrend({
           </linearGradient>
         </defs>
       </svg>
-      <div className="flex items-center justify-between mt-1 text-[10px] text-slate-500 px-1">
+      <div className="flex items-center justify-between mt-1 text-[10px] text-muted-foreground px-1">
         <span dir="ltr" style={{ unicodeBidi: "embed" }}>{localeShort(first)}</span>
         <span dir="ltr" style={{ unicodeBidi: "embed" }}>{localeShort(last)}</span>
       </div>
@@ -500,9 +501,9 @@ function PlatformBreakdown({
 }) {
   if (rows.length === 0) return null;
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-      <header className="px-4 py-2.5 border-b border-sky-50 bg-sky-50/40">
-        <h3 className="text-sm font-semibold text-sky-900">
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <header className="px-4 py-2.5 border-b border-sky-50 bg-muted/40">
+        <h3 className="text-sm font-semibold text-foreground">
           {tr("Platform breakdown", "تفصيل حسب المنصة", "Platform dağılımı")}
         </h3>
       </header>
@@ -521,16 +522,16 @@ function PlatformBreakdown({
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-semibold text-sky-900 capitalize">
+                    <span className="text-sm font-semibold text-foreground capitalize">
                       {p.platform}
                     </span>
                     {p.storesConnected > 0 && (
-                      <span className="text-[10px] text-slate-500">
+                      <span className="text-[10px] text-muted-foreground">
                         · {p.storesConnected} {tr("stores", "متجر", "mağaza")}
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-3 text-[11px] text-slate-600 mt-0.5">
+                  <div className="flex items-center gap-3 text-[11px] text-muted-foreground mt-0.5">
                     <span>
                       <Users className="w-2.5 h-2.5 inline mr-0.5" />
                       {fmtNum(p.customers)}
@@ -540,7 +541,7 @@ function PlatformBreakdown({
                       {fmtNum(p.orders)}
                     </span>
                     {p.avgOrderValue > 0 && (
-                      <span className="text-slate-500">
+                      <span className="text-muted-foreground">
                         {tr("AOV", "متوسط", "Ort.")}: {fmtMoney(p.avgOrderValue)}
                       </span>
                     )}
@@ -548,19 +549,19 @@ function PlatformBreakdown({
                 </div>
                 <div className="text-right min-w-[90px]">
                   <div
-                    className="text-sm font-bold text-sky-900 tabular-nums"
+                    className="text-sm font-bold text-foreground tabular-nums"
                     dir="ltr"
                     style={{ unicodeBidi: "embed" }}
                   >
                     {fmtMoney(p.wonRevenue)}
                   </div>
-                  <div className="text-[10px] text-slate-500">
+                  <div className="text-[10px] text-muted-foreground">
                     {fmtNum(p.wonOrders)} {tr("won", "مكتمل", "kazanılan")}
                   </div>
                 </div>
               </div>
               {/* progress bar */}
-              <div className="mt-2 h-1.5 bg-sky-50 rounded-full overflow-hidden">
+              <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all"
                   style={{
@@ -592,18 +593,18 @@ function TopCustomers({
 }) {
   if (rows.length === 0) {
     return (
-      <div className="bg-white border border-sky-100 rounded-xl p-6 text-center">
+      <div className="bg-card border border-border rounded-xl p-6 text-center">
         <Crown className="w-8 h-8 text-sky-200 mx-auto mb-2" />
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-muted-foreground">
           {tr("No customer data yet", "لا توجد بيانات عملاء بعد", "Henüz müşteri verisi yok")}
         </p>
       </div>
     );
   }
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-      <header className="px-4 py-2.5 border-b border-sky-50 bg-sky-50/40">
-        <h3 className="text-sm font-semibold text-sky-900 flex items-center gap-1.5">
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <header className="px-4 py-2.5 border-b border-sky-50 bg-muted/40">
+        <h3 className="text-sm font-semibold text-foreground flex items-center gap-1.5">
           <Crown className="w-4 h-4 text-amber-500" />
           {tr("Top customers by lifetime value", "أعلى العملاء بالقيمة الإجمالية", "Yaşam boyu değere göre en iyi müşteriler")}
         </h3>
@@ -615,13 +616,13 @@ function TopCustomers({
             <Link
               key={c.id}
               href={`/${locale}/customers/${c.id}`}
-              className="flex items-center gap-3 px-4 py-2.5 hover:bg-sky-50/40 transition-colors"
+              className="flex items-center gap-3 px-4 py-2.5 hover:bg-muted/40 transition-colors"
             >
-              <span className="text-xs font-bold text-slate-400 w-5 text-center">
+              <span className="text-xs font-bold text-muted-foreground w-5 text-center">
                 {i + 1}
               </span>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-slate-900 truncate">
+                <p className="text-sm font-medium text-foreground truncate">
                   {c.fullName}
                 </p>
                 <div className="flex items-center gap-1.5 mt-0.5">
@@ -634,14 +635,14 @@ function TopCustomers({
                     </span>
                   )}
                   {c.email && (
-                    <span className="text-[10px] text-slate-500 truncate" dir="ltr">
+                    <span className="text-[10px] text-muted-foreground truncate" dir="ltr">
                       {c.email}
                     </span>
                   )}
                 </div>
               </div>
               <div
-                className="text-sm font-bold text-emerald-700 tabular-nums"
+                className="text-sm font-bold text-emerald-300 tabular-nums"
                 dir="ltr"
                 style={{ unicodeBidi: "embed" }}
               >
@@ -671,15 +672,15 @@ function StoresStatus({
   isRtl: boolean;
 }) {
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-      <header className="px-4 py-2.5 border-b border-sky-50 bg-sky-50/40 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-sky-900 flex items-center gap-1.5">
-          <Store className="w-4 h-4 text-sky-500" />
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <header className="px-4 py-2.5 border-b border-sky-50 bg-muted/40 flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-foreground flex items-center gap-1.5">
+          <Store className="w-4 h-4 text-cyan-300" />
           {tr("Store health", "حالة المتاجر", "Mağaza durumu")}
         </h3>
         <Link
           href={`/${locale}/settings/integrations`}
-          className="text-[11px] text-sky-600 hover:text-sky-900 font-medium inline-flex items-center gap-0.5"
+          className="text-[11px] text-cyan-300 hover:text-foreground font-medium inline-flex items-center gap-0.5"
         >
           {tr("Manage", "إدارة", "Yönet")}
           <RefreshCw className="w-2.5 h-2.5" />
@@ -687,7 +688,7 @@ function StoresStatus({
       </header>
       <div className="divide-y divide-sky-50">
         {rows.length === 0 ? (
-          <div className="p-6 text-center text-sm text-slate-500">
+          <div className="p-6 text-center text-sm text-muted-foreground">
             {tr("No stores connected", "لا توجد متاجر متصلة", "Bağlı mağaza yok")}
           </div>
         ) : (
@@ -704,13 +705,13 @@ function StoresStatus({
               </div>
               <div className="flex-1 min-w-0">
                 <p
-                  className="text-xs font-semibold text-sky-900 truncate"
+                  className="text-xs font-semibold text-foreground truncate"
                   dir="ltr"
                   style={{ unicodeBidi: "embed" }}
                 >
                   {s.shopDomain}
                 </p>
-                <div className="flex items-center gap-2 text-[10px] text-slate-500 mt-0.5">
+                <div className="flex items-center gap-2 text-[10px] text-muted-foreground mt-0.5">
                   <span>
                     {fmtNum(s.totalCustomersImported)} {tr("cust.", "عميل", "müş.")}
                   </span>
@@ -745,7 +746,7 @@ function StatusDot({
   return (
     <div className="flex items-center gap-1.5">
       <span className={`w-2 h-2 rounded-full ${cfg.bg}`} />
-      <span className="text-[10px] text-slate-600">{cfg.label}</span>
+      <span className="text-[10px] text-muted-foreground">{cfg.label}</span>
     </div>
   );
 }
@@ -760,18 +761,18 @@ function EmptyState({
   tr: (en: string, ar: string, trk: string) => string;
 }) {
   return (
-    <div className="bg-gradient-to-br from-sky-50 to-sky-50 border border-sky-100 border-dashed rounded-xl p-12 text-center">
-      <div className="w-14 h-14 mx-auto rounded-xl bg-white border border-sky-200 flex items-center justify-center mb-4">
-        <Store className="w-6 h-6 text-sky-500" />
+    <div className="bg-gradient-to-br from-sky-50 to-sky-50 border border-border border-dashed rounded-xl p-12 text-center">
+      <div className="w-14 h-14 mx-auto rounded-xl bg-card border border-border flex items-center justify-center mb-4">
+        <Store className="w-6 h-6 text-cyan-300" />
       </div>
-      <h2 className="text-lg font-bold text-sky-900 mb-1">
+      <h2 className="text-lg font-bold text-foreground mb-1">
         {tr(
           "Connect a store to see analytics",
           "اربط متجراً لعرض التحليلات",
           "Analitiği görmek için bir mağaza bağlayın"
         )}
       </h2>
-      <p className="text-sm text-slate-600 mb-5 max-w-md mx-auto">
+      <p className="text-sm text-muted-foreground mb-5 max-w-md mx-auto">
         {tr(
           "Import customers and orders from Shopify, Salla, WooCommerce, and 37+ more platforms.",
           "استورد العملاء والطلبات من Shopify و Salla و WooCommerce وأكثر من 37 منصة أخرى.",
@@ -780,7 +781,7 @@ function EmptyState({
       </p>
       <Link
         href={`/${locale}/settings/integrations`}
-        className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg shadow transition-colors"
+        className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold rounded-lg shadow transition-colors"
       >
         {tr("Connect a store", "ربط متجر", "Mağaza bağla")}
       </Link>
@@ -798,17 +799,17 @@ function ErrorBanner({
   tr: (en: string, ar: string, trk: string) => string;
 }) {
   return (
-    <div className="bg-rose-50 border border-rose-200 rounded-xl p-4 flex items-start gap-3">
-      <AlertTriangle className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" />
+    <div className="bg-rose-500/10 border border-rose-500/30 rounded-xl p-4 flex items-start gap-3">
+      <AlertTriangle className="w-5 h-5 text-rose-300 flex-shrink-0 mt-0.5" />
       <div className="flex-1">
         <p className="text-sm font-semibold text-rose-900">
           {tr("Could not load analytics", "تعذر تحميل التحليلات", "Analitik yüklenemedi")}
         </p>
-        <p className="text-xs text-rose-700 mt-0.5">{message}</p>
+        <p className="text-xs text-rose-300 mt-0.5">{message}</p>
       </div>
       <button
         onClick={onRetry}
-        className="px-3 py-1.5 bg-white text-xs font-semibold text-rose-700 border border-rose-200 rounded-lg hover:bg-rose-100"
+        className="px-3 py-1.5 bg-card text-xs font-semibold text-rose-300 border border-rose-500/30 rounded-lg hover:bg-rose-100"
       >
         {tr("Retry", "إعادة المحاولة", "Tekrar dene")}
       </button>

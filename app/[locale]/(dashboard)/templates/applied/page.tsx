@@ -99,7 +99,7 @@ export default function TemplateApplicationsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/templates`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft
               className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
@@ -109,14 +109,15 @@ export default function TemplateApplicationsPage() {
             <History className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-indigo-300 text-xs font-bold uppercase tracking-widest mb-2">TEMPLATES</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr(
                 "Applied templates",
                 "القوالب المُطبَّقة",
                 "Uygulanan şablonlar"
               )}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Everything your team has applied, with the option to revert.",
                 "كل ما طبّقه فريقك، مع إمكانية التراجع.",
@@ -128,26 +129,26 @@ export default function TemplateApplicationsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700 flex items-start gap-2">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300 flex items-start gap-2">
             <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         ) : apps.length === 0 ? (
-          <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
-            <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <History className="w-6 h-6 text-sky-500" />
+          <div className="rounded-xl border border-border bg-card p-10 text-center">
+            <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-3">
+              <History className="w-6 h-6 text-cyan-300" />
             </div>
-            <p className="text-sm font-semibold text-sky-900">
+            <p className="text-sm font-semibold text-foreground">
               {tr(
                 "No templates applied yet",
                 "لم يتم تطبيق أي قوالب بعد",
                 "Henüz şablon uygulanmadı"
               )}
             </p>
-            <p className="text-xs text-slate-500 mt-1 mb-4">
+            <p className="text-xs text-muted-foreground mt-1 mb-4">
               {tr(
                 "Browse the marketplace to find a setup that fits.",
                 "تصفح المتجر لتجد إعدادًا مناسبًا.",
@@ -156,22 +157,22 @@ export default function TemplateApplicationsPage() {
             </p>
             <Link
               href={`/${locale}/templates`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold"
             >
               {tr("Browse templates", "تصفح القوالب", "Şablonlara göz at")}
             </Link>
           </div>
         ) : (
-          <div className="rounded-xl border border-sky-100 bg-white overflow-hidden divide-y divide-sky-50">
+          <div className="rounded-xl border border-border bg-card overflow-hidden divide-y divide-sky-50">
             {apps.map((app) => {
               const count = countCreated(app.createdRecords);
               const statusIcon =
                 app.status === "completed" ? (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-300" />
                 ) : app.status === "reverted" ? (
-                  <RefreshCw className="w-4 h-4 text-slate-500" />
+                  <RefreshCw className="w-4 h-4 text-muted-foreground" />
                 ) : (
-                  <XCircle className="w-4 h-4 text-rose-600" />
+                  <XCircle className="w-4 h-4 text-rose-300" />
                 );
               const statusLabel =
                 app.status === "completed"
@@ -182,20 +183,20 @@ export default function TemplateApplicationsPage() {
               return (
                 <div
                   key={app.id}
-                  className="p-4 flex items-center gap-4 hover:bg-sky-50/40"
+                  className="p-4 flex items-center gap-4 hover:bg-muted/40"
                 >
                   <div className="text-3xl flex-shrink-0">{app.icon}</div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-sm font-semibold text-sky-900 truncate">
+                      <h3 className="text-sm font-semibold text-foreground truncate">
                         {nameFor(app)}
                       </h3>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase text-slate-600 bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase text-muted-foreground bg-muted border border-border rounded px-1.5 py-0.5">
                         {statusIcon}
                         {statusLabel}
                       </span>
                     </div>
-                    <div className="text-xs text-slate-500 mt-1 flex items-center gap-2 flex-wrap">
+                    <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2 flex-wrap">
                       <span>{app.industry}</span>
                       <span className="text-slate-300">·</span>
                       <time dir="ltr" className="tabular-nums">
@@ -223,7 +224,7 @@ export default function TemplateApplicationsPage() {
                     <button
                       onClick={() => handleRevert(app.id)}
                       disabled={reverting === app.id}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-rose-200 hover:bg-rose-50 text-rose-700 rounded-lg text-xs font-semibold disabled:opacity-50"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-rose-500/30 hover:bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-lg text-xs font-semibold disabled:opacity-50"
                     >
                       {reverting === app.id ? (
                         <Loader2 className="w-3.5 h-3.5 animate-spin" />

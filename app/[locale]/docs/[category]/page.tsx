@@ -75,12 +75,12 @@ export default async function CategoryPage({
 
   return (
     <DocsShell locale={L} articles={sidebarArticles} searchRecords={records}>
-      <nav className="text-xs text-slate-500 mb-4 flex items-center gap-1 flex-wrap">
-        <Link href={`/${L}/docs`} className="hover:text-sky-600">
+      <nav className="text-xs text-muted-foreground mb-4 flex items-center gap-1 flex-wrap">
+        <Link href={`/${L}/docs`} className="hover:text-cyan-300">
           {copy.title}
         </Link>
         <span>›</span>
-        <span className="text-slate-700 font-medium">
+        <span className="text-foreground font-medium">
           {getCategoryLabel(category as CategoryId, L)}
         </span>
       </nav>
@@ -94,11 +94,11 @@ export default async function CategoryPage({
           </div>
         )}
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
             {getCategoryLabel(category as CategoryId, L)}
           </h1>
           {catDef && (
-            <p className="text-slate-600">{catDef.desc[L]}</p>
+            <p className="text-muted-foreground">{catDef.desc[L]}</p>
           )}
         </div>
       </div>
@@ -108,20 +108,20 @@ export default async function CategoryPage({
           <li key={d.slug}>
             <Link
               href={`/${L}/docs/${d.category}/${d.slug}`}
-              className={`block bg-white border ${accent.border} rounded-xl p-5 hover:shadow-md ${accent.hoverBorder} transition-all`}
+              className={`block bg-card border ${accent.border} rounded-xl p-5 hover:shadow-md ${accent.hoverBorder} transition-all`}
             >
               <div className="flex items-start justify-between gap-3 mb-2">
-                <h3 className="text-base font-bold text-slate-900">
+                <h3 className="text-base font-bold text-foreground">
                   {d.frontmatter.title}
                 </h3>
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-muted-foreground">
                   {d.frontmatter.readTime}
                 </span>
               </div>
-              <p className="text-sm text-slate-600 line-clamp-2">
+              <p className="text-sm text-muted-foreground line-clamp-2">
                 {firstParagraph(d.body)}
               </p>
-              <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-sky-600">
+              <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-cyan-300">
                 {locale === "ar" ? <ArrowLeft className="w-3.5 h-3.5" /> : null}
                 {copy.next}
                 {locale !== "ar" ? <ArrowRight className="w-3.5 h-3.5" /> : null}

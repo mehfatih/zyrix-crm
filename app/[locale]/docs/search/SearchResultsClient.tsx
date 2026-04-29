@@ -70,13 +70,13 @@ export default function SearchResultsClient({ locale, records }: Props) {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900 mb-4">
+      <h1 className="text-3xl font-bold text-foreground mb-4">
         {copy.searchTitle}
       </h1>
 
       <div className="max-w-2xl mb-8">
-        <div className="flex items-center gap-2 px-4 py-3 bg-white border-2 border-sky-200 rounded-xl">
-          <Search className="w-5 h-5 text-slate-400" />
+        <div className="flex items-center gap-2 px-4 py-3 bg-card border-2 border-border rounded-xl">
+          <Search className="w-5 h-5 text-muted-foreground" />
           <input
             type="text"
             value={query}
@@ -89,10 +89,10 @@ export default function SearchResultsClient({ locale, records }: Props) {
 
       {query.trim() ? (
         results.length === 0 ? (
-          <p className="text-slate-500">{copy.noResults}</p>
+          <p className="text-muted-foreground">{copy.noResults}</p>
         ) : (
           <>
-            <p className="text-sm text-slate-500 mb-4">
+            <p className="text-sm text-muted-foreground mb-4">
               {results.length} {copy.searchResults.toLowerCase()}
             </p>
             <ul className="space-y-3">
@@ -101,16 +101,16 @@ export default function SearchResultsClient({ locale, records }: Props) {
                 return (
                   <li
                     key={r.id}
-                    className="bg-white border border-sky-100 rounded-xl p-5 hover:border-sky-300 transition-colors"
+                    className="bg-card border border-border rounded-xl p-5 hover:border-sky-300 transition-colors"
                   >
                     <Link href={href} className="block">
-                      <div className="text-xs uppercase tracking-wider font-semibold text-sky-600 mb-1">
+                      <div className="text-xs uppercase tracking-wider font-semibold text-cyan-300 mb-1">
                         {getCategoryLabel(r.category as CategoryId, locale)}
                       </div>
-                      <div className="text-base font-bold text-slate-900 mb-1">
+                      <div className="text-base font-bold text-foreground mb-1">
                         {r.title}
                       </div>
-                      <p className="text-sm text-slate-600 line-clamp-2">
+                      <p className="text-sm text-muted-foreground line-clamp-2">
                         {r.excerpt}
                       </p>
                     </Link>
@@ -121,7 +121,7 @@ export default function SearchResultsClient({ locale, records }: Props) {
           </>
         )
       ) : (
-        <p className="text-slate-500">{copy.searchHint}</p>
+        <p className="text-muted-foreground">{copy.searchHint}</p>
       )}
     </div>
   );

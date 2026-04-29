@@ -25,10 +25,10 @@ export function AITrustBadge({
 
   const tone =
     confidence >= 80
-      ? { bg: 'bg-emerald-50', text: 'text-emerald-700', dot: 'bg-emerald-500' }
+      ? { bg: 'bg-emerald-50', text: 'text-emerald-300', dot: 'bg-emerald-500' }
       : confidence >= 60
-      ? { bg: 'bg-sky-50', text: 'text-sky-700', dot: 'bg-sky-500' }
-      : { bg: 'bg-amber-50', text: 'text-amber-700', dot: 'bg-amber-500' };
+      ? { bg: 'bg-sky-50', text: 'text-cyan-300', dot: 'bg-sky-500' }
+      : { bg: 'bg-amber-50', text: 'text-amber-300', dot: 'bg-amber-500' };
 
   const padding = size === 'sm' ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs';
 
@@ -37,7 +37,7 @@ export function AITrustBadge({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`inline-flex items-center gap-1.5 rounded-full font-semibold ${padding} ${tone.bg} ${tone.text} hover:shadow-zyrix-card transition-shadow`}
+        className={`inline-flex items-center gap-1.5 rounded-full font-semibold ${padding} ${tone.bg} ${tone.text} hover:shadow-md transition-shadow`}
       >
         <Sparkles size={size === 'sm' ? 11 : 13} />
         <span>
@@ -55,31 +55,31 @@ export function AITrustBadge({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.15 }}
-              className="absolute z-50 mt-2 w-80 rounded-xl border border-zyrix-aiBorder bg-white p-4 shadow-zyrix-ai-glow"
+              className="absolute z-50 mt-2 w-80 rounded-xl border border-violet-500/30 bg-card p-4 shadow-zyrix-ai-glow"
             >
-              <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-zyrix-primaryDark">
+              <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-primaryDark">
                 <Info size={12} />
                 <span>{t('whyTitle')}</span>
               </div>
 
               {reason && (
-                <p className="mb-3 text-sm leading-relaxed text-zyrix-textBody">
+                <p className="mb-3 text-sm leading-relaxed text-muted-foreground">
                   {reason}
                 </p>
               )}
 
               {signals && signals.length > 0 && (
                 <div className="mb-3">
-                  <div className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+                  <div className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                     {t('signals')}
                   </div>
                   <ul className="space-y-1">
                     {signals.map((s, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 text-xs text-zyrix-textBody"
+                        className="flex items-start gap-2 text-xs text-muted-foreground"
                       >
-                        <span className="mt-1.5 h-1 w-1 rounded-full bg-zyrix-primary" />
+                        <span className="mt-1.5 h-1 w-1 rounded-full bg-primary" />
                         <span>{s}</span>
                       </li>
                     ))}
@@ -88,7 +88,7 @@ export function AITrustBadge({
               )}
 
               {recommendedAction && (
-                <div className="rounded-lg bg-zyrix-aiSurface p-2.5 text-xs font-medium text-zyrix-primaryDark">
+                <div className="rounded-lg bg-violet-500/10 p-2.5 text-xs font-medium text-primaryDark">
                   → {recommendedAction}
                 </div>
               )}

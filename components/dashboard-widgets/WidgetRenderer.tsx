@@ -59,7 +59,7 @@ export function WidgetRenderer({
       return <UnreadMessagesWidget locale={locale} />;
     default:
       return (
-        <div className="h-full rounded-xl border border-slate-200 bg-slate-50 p-4 flex items-center justify-center text-xs text-slate-500">
+        <div className="h-full rounded-xl border border-border bg-muted p-4 flex items-center justify-center text-xs text-muted-foreground">
           Unknown widget: {widget.type}
         </div>
       );

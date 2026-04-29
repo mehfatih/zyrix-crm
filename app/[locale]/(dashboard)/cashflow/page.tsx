@@ -77,14 +77,15 @@ export default function CashflowPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-              <TrendingUp className="w-6 h-6 text-sky-500" />
+            <p className="text-emerald-300 text-xs font-bold uppercase tracking-widest mb-2">CASH FLOW</p>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <TrendingUp className="w-6 h-6 text-cyan-300" />
               {t("title")}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
           {/* Horizon selector */}
-          <div className="bg-white border border-sky-200 rounded-lg p-1 flex gap-1">
+          <div className="bg-card border border-border rounded-lg p-1 flex gap-1">
             {([30, 60, 90] as Horizon[]).map((h) => (
               <button
                 key={h}
@@ -92,7 +93,7 @@ export default function CashflowPage() {
                 className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${
                   horizon === h
                     ? "bg-sky-500 text-white"
-                    : "text-slate-600 hover:bg-sky-50"
+                    : "text-muted-foreground hover:bg-muted"
                 }`}
               >
                 {h}d
@@ -103,10 +104,10 @@ export default function CashflowPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
+          <div className="p-6 text-center text-rose-300 bg-rose-500/10 rounded-xl">
             <AlertTriangle className="w-5 h-5 inline ltr:mr-2 rtl:ml-2" />
             {error}
           </div>
@@ -156,16 +157,16 @@ export default function CashflowPage() {
 
             {/* Historical context banner */}
             {historical && (
-              <div className="bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-200 rounded-xl p-5">
+              <div className="bg-gradient-to-r from-sky-50 to-sky-50 border border-border rounded-xl p-5">
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="bg-white rounded-lg p-2 shadow-sm">
-                    <Award className="w-5 h-5 text-sky-500" />
+                  <div className="bg-card rounded-lg p-2 shadow-sm">
+                    <Award className="w-5 h-5 text-cyan-300" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-sky-900">
+                    <h3 className="text-sm font-semibold text-foreground">
                       {t("historical.title")}
                     </h3>
-                    <p className="text-xs text-slate-600">
+                    <p className="text-xs text-muted-foreground">
                       {t("historical.subtitle")}
                     </p>
                   </div>
@@ -202,14 +203,14 @@ export default function CashflowPage() {
             )}
 
             {/* Chart */}
-            <div className="bg-white border border-sky-100 rounded-xl p-5">
-              <h3 className="text-sm font-semibold text-sky-900 mb-4 flex items-center gap-2">
+            <div className="bg-card border border-border rounded-xl p-5">
+              <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4" />
                 {t("chart.title", { horizon: String(horizon) })}
               </h3>
               {forecast.buckets.length === 0 ||
               forecast.buckets.every((b) => b.weightedValue === 0) ? (
-                <div className="py-16 text-center text-slate-500">
+                <div className="py-16 text-center text-muted-foreground">
                   <Sparkles className="w-10 h-10 mx-auto mb-2 text-sky-300" />
                   <p className="text-sm">{t("chart.empty")}</p>
                   <p className="text-xs mt-1">{t("chart.emptyHint")}</p>
@@ -226,14 +227,14 @@ export default function CashflowPage() {
             {/* Two-column: by stage + top deals */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* By stage */}
-              <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-                <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50">
-                  <h3 className="text-sm font-semibold text-sky-900">
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <div className="px-5 py-3 border-b border-border bg-muted/50">
+                  <h3 className="text-sm font-semibold text-foreground">
                     {t("byStage.title")}
                   </h3>
                 </div>
                 {forecast.byStage.length === 0 ? (
-                  <div className="py-10 text-center text-slate-500 text-sm">
+                  <div className="py-10 text-center text-muted-foreground text-sm">
                     {t("byStage.empty")}
                   </div>
                 ) : (
@@ -251,14 +252,14 @@ export default function CashflowPage() {
                               <div
                                 className={`w-2.5 h-2.5 rounded-full ${color}`}
                               />
-                              <span className="text-sm font-medium text-sky-900 capitalize">
+                              <span className="text-sm font-medium text-foreground capitalize">
                                 {s.stage.replace(/_/g, " ")}
                               </span>
-                              <span className="text-xs text-slate-500">
+                              <span className="text-xs text-muted-foreground">
                                 ({s.count})
                               </span>
                             </div>
-                            <span className="text-sm font-semibold text-sky-900">
+                            <span className="text-sm font-semibold text-foreground">
                               {formatMoney(
                                 s.weightedValue,
                                 forecast.currency,
@@ -266,7 +267,7 @@ export default function CashflowPage() {
                               )}
                             </span>
                           </div>
-                          <div className="h-2 bg-sky-50 rounded-full overflow-hidden">
+                          <div className="h-2 bg-muted rounded-full overflow-hidden">
                             <div
                               className={`h-full ${color} transition-all`}
                               style={{ width: `${pct}%` }}
@@ -280,15 +281,15 @@ export default function CashflowPage() {
               </div>
 
               {/* Top deals */}
-              <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-                <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-                  <ArrowUpRight className="w-4 h-4 text-emerald-600" />
-                  <h3 className="text-sm font-semibold text-sky-900">
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <div className="px-5 py-3 border-b border-border bg-muted/50 flex items-center gap-2">
+                  <ArrowUpRight className="w-4 h-4 text-emerald-300" />
+                  <h3 className="text-sm font-semibold text-foreground">
                     {t("topDeals.title")}
                   </h3>
                 </div>
                 {forecast.topDeals.length === 0 ? (
-                  <div className="py-10 text-center text-slate-500 text-sm">
+                  <div className="py-10 text-center text-muted-foreground text-sm">
                     {t("topDeals.empty")}
                   </div>
                 ) : (
@@ -296,33 +297,33 @@ export default function CashflowPage() {
                     {forecast.topDeals.map((d, idx) => (
                       <div
                         key={idx}
-                        className="px-5 py-3 flex items-start gap-3 hover:bg-sky-50/30"
+                        className="px-5 py-3 flex items-start gap-3 hover:bg-muted/30"
                       >
-                        <div className="w-7 h-7 rounded-full bg-sky-50 text-sky-600 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        <div className="w-7 h-7 rounded-full bg-muted text-cyan-300 font-bold text-xs flex items-center justify-center flex-shrink-0">
                           {idx + 1}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-medium text-sky-900 text-sm truncate">
+                          <div className="font-medium text-foreground text-sm truncate">
                             {d.title}
                           </div>
-                          <div className="text-xs text-slate-500 truncate">
+                          <div className="text-xs text-muted-foreground truncate">
                             {d.customer.fullName}
                             {d.customer.companyName
                               ? ` — ${d.customer.companyName}`
                               : ""}
                           </div>
                           <div className="flex items-center gap-2 mt-1 text-xs">
-                            <span className="text-slate-500 capitalize">
+                            <span className="text-muted-foreground capitalize">
                               {d.stage.replace(/_/g, " ")}
                             </span>
-                            <span className="text-slate-400">·</span>
-                            <span className="text-slate-500">
+                            <span className="text-muted-foreground">·</span>
+                            <span className="text-muted-foreground">
                               {d.probability}%
                             </span>
                             {d.expectedCloseDate && (
                               <>
-                                <span className="text-slate-400">·</span>
-                                <span className="text-slate-500 flex items-center gap-0.5">
+                                <span className="text-muted-foreground">·</span>
+                                <span className="text-muted-foreground flex items-center gap-0.5">
                                   <Calendar className="w-3 h-3" />
                                   {formatDate(d.expectedCloseDate, locale)}
                                 </span>
@@ -331,10 +332,10 @@ export default function CashflowPage() {
                           </div>
                         </div>
                         <div className="text-right flex-shrink-0">
-                          <div className="font-bold text-emerald-700 text-sm">
+                          <div className="font-bold text-emerald-300 text-sm">
                             {formatMoney(d.weightedValue, d.currency, locale)}
                           </div>
-                          <div className="text-xs text-slate-500">
+                          <div className="text-xs text-muted-foreground">
                             {t("topDeals.of")}{" "}
                             {formatMoney(d.value, d.currency, locale)}
                           </div>
@@ -494,22 +495,22 @@ function KpiCard({
   color: "cyan" | "sky" | "emerald" | "amber";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
-    sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
-    emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
-    amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
+    cyan: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    sky: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    emerald: { iconBg: "bg-emerald-500/10", iconText: "text-emerald-300" },
+    amber: { iconBg: "bg-amber-500/10", iconText: "text-amber-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4">
+    <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-center gap-3 mb-2">
         <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
           <Icon className="w-5 h-5" />
         </div>
-        <div className="text-xs text-slate-500">{label}</div>
+        <div className="text-xs text-muted-foreground">{label}</div>
       </div>
-      <div className="text-xl font-bold text-sky-900 truncate">{value}</div>
-      <div className="text-xs text-slate-500 mt-0.5">{hint}</div>
+      <div className="text-xl font-bold text-foreground truncate">{value}</div>
+      <div className="text-xs text-muted-foreground mt-0.5">{hint}</div>
     </div>
   );
 }
@@ -524,11 +525,11 @@ function HistBox({
   positive?: boolean;
 }) {
   return (
-    <div className="bg-white rounded-lg border border-sky-100 px-3 py-2">
-      <div className="text-xs text-slate-500">{label}</div>
+    <div className="bg-card rounded-lg border border-border px-3 py-2">
+      <div className="text-xs text-muted-foreground">{label}</div>
       <div
         className={`text-sm font-bold mt-0.5 ${
-          positive ? "text-emerald-700" : "text-sky-900"
+          positive ? "text-emerald-300" : "text-foreground"
         }`}
       >
         {value}

@@ -147,14 +147,14 @@ export default function AdminBillingView({ locale }: Props) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="animate-spin text-sky-500" size={28} />
+        <Loader2 className="animate-spin text-cyan-300" size={28} />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+      <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-4 text-sm text-red-800">
         {error}
       </div>
     );
@@ -173,10 +173,10 @@ export default function AdminBillingView({ locale }: Props) {
       {/* Header + currency toggle */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-          <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
+          <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+          <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
-        <div className="inline-flex rounded-lg border border-sky-200 bg-white p-1 shadow-sm">
+        <div className="inline-flex rounded-lg border border-border bg-card p-1 shadow-sm">
           {(["USD", "TRY", "SAR"] as Currency[]).map((c) => (
             <button
               key={c}
@@ -184,7 +184,7 @@ export default function AdminBillingView({ locale }: Props) {
               className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                 currency === c
                   ? "bg-sky-500 text-white"
-                  : "text-slate-600 hover:text-sky-600"
+                  : "text-muted-foreground hover:text-cyan-300"
               }`}
             >
               {c}
@@ -228,16 +228,16 @@ export default function AdminBillingView({ locale }: Props) {
       </div>
 
       {/* Revenue by plan */}
-      <div className="rounded-xl bg-white border border-sky-100 p-6">
+      <div className="rounded-xl bg-card border border-border p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-sm font-semibold text-slate-900">
+          <h2 className="text-sm font-semibold text-foreground">
             {t("revenueByPlan")}
           </h2>
-          <span className="text-xs text-slate-500">{t("monthlyEstimate")}</span>
+          <span className="text-xs text-muted-foreground">{t("monthlyEstimate")}</span>
         </div>
 
         {metrics.byPlan.length === 0 ? (
-          <div className="text-sm text-slate-500 py-8 text-center">
+          <div className="text-sm text-muted-foreground py-8 text-center">
             {t("noData")}
           </div>
         ) : (
@@ -259,19 +259,19 @@ export default function AdminBillingView({ locale }: Props) {
                         className="inline-block w-3 h-3 rounded-sm"
                         style={{ backgroundColor: p.color }}
                       />
-                      <span className="text-sm font-medium text-slate-800">
+                      <span className="text-sm font-medium text-foreground">
                         {displayName}
                       </span>
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-muted-foreground">
                         ({p.count} {t("companies")})
                       </span>
                     </div>
-                    <span className="text-sm font-semibold text-slate-900">
+                    <span className="text-sm font-semibold text-foreground">
                       {sym}
                       {formatMoney(p.mrr)}
                     </span>
                   </div>
-                  <div className="w-full h-2.5 rounded-full bg-sky-50 overflow-hidden">
+                  <div className="w-full h-2.5 rounded-full bg-muted overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all"
                       style={{
@@ -288,24 +288,24 @@ export default function AdminBillingView({ locale }: Props) {
       </div>
 
       {/* Active subscriptions table */}
-      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
+      <div className="rounded-xl bg-card border border-border overflow-hidden">
         <div className="px-6 py-4 border-b border-sky-50 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-900">
+          <h2 className="text-sm font-semibold text-foreground">
             {t("activeSubscriptionsTitle")}
           </h2>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-muted-foreground">
             {activeSubs.length} {t("companies")}
           </span>
         </div>
 
         {activeSubs.length === 0 ? (
-          <div className="text-sm text-slate-500 py-10 text-center">
+          <div className="text-sm text-muted-foreground py-10 text-center">
             {t("noActiveSubs")}
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-sky-50 text-xs uppercase text-slate-600">
+              <thead className="bg-muted text-xs uppercase text-muted-foreground">
                 <tr>
                   <th className="px-4 py-3 text-start font-semibold">
                     {t("company")}
@@ -338,30 +338,30 @@ export default function AdminBillingView({ locale }: Props) {
                   const price =
                     typeof v === "string" ? parseFloat(v) : ((v as number) ?? 0);
                   return (
-                    <tr key={c.id} className="hover:bg-sky-50/50">
+                    <tr key={c.id} className="hover:bg-muted/50">
                       <td className="px-4 py-3">
-                        <div className="font-medium text-slate-900">
+                        <div className="font-medium text-foreground">
                           {c.name}
                         </div>
-                        <div className="text-xs text-slate-500">{c.slug}</div>
+                        <div className="text-xs text-muted-foreground">{c.slug}</div>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-sky-50 px-2 py-0.5 text-xs font-semibold text-sky-600 ring-1 ring-sky-200 capitalize">
+                        <span className="inline-flex items-center rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-cyan-300 ring-1 ring-cyan-500/30 capitalize">
                           {c.plan}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-slate-700">
+                      <td className="px-4 py-3 text-foreground">
                         {c.country || "—"}
                       </td>
-                      <td className="px-4 py-3 font-semibold text-slate-900">
+                      <td className="px-4 py-3 font-semibold text-foreground">
                         {sym}
                         {formatMoney(price)}
-                        <span className="text-xs text-slate-500 font-normal">
+                        <span className="text-xs text-muted-foreground font-normal">
                           {" "}
                           /mo
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-slate-600 text-xs">
+                      <td className="px-4 py-3 text-muted-foreground text-xs">
                         {c.billingEmail || "—"}
                       </td>
                     </tr>
@@ -374,16 +374,16 @@ export default function AdminBillingView({ locale }: Props) {
       </div>
 
       {/* Failed payments placeholder */}
-      <div className="rounded-xl bg-white border border-sky-100 p-6">
+      <div className="rounded-xl bg-card border border-border p-6">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle size={18} className="text-amber-500" />
-          <h2 className="text-sm font-semibold text-slate-900">
+          <h2 className="text-sm font-semibold text-foreground">
             {t("failedPayments")}
           </h2>
         </div>
-        <div className="rounded-lg bg-sky-50 border border-dashed border-sky-200 p-6 text-center">
-          <p className="text-sm text-slate-600">{t("paymentsComingSoon")}</p>
-          <p className="text-xs text-slate-500 mt-1">
+        <div className="rounded-lg bg-muted border border-dashed border-border p-6 text-center">
+          <p className="text-sm text-muted-foreground">{t("paymentsComingSoon")}</p>
+          <p className="text-xs text-muted-foreground mt-1">
             {t("paymentsComingSoonDetail")}
           </p>
         </div>
@@ -404,13 +404,13 @@ type ColorKey = "emerald" | "cyan" | "sky" | "amber";
 const COLOR_MAP: Record<ColorKey, { bg: string; text: string; ring: string }> =
   {
     emerald: {
-      bg: "bg-emerald-50",
-      text: "text-emerald-700",
+      bg: "bg-emerald-500/10",
+      text: "text-emerald-300",
       ring: "ring-emerald-100",
     },
-    cyan: { bg: "bg-sky-50", text: "text-sky-600", ring: "ring-sky-100" },
-    sky: { bg: "bg-sky-50", text: "text-sky-700", ring: "ring-sky-100" },
-    amber: { bg: "bg-amber-50", text: "text-amber-700", ring: "ring-amber-100" },
+    cyan: { bg: "bg-muted", text: "text-cyan-300", ring: "ring-sky-100" },
+    sky: { bg: "bg-muted", text: "text-cyan-300", ring: "ring-sky-100" },
+    amber: { bg: "bg-amber-500/10", text: "text-amber-300", ring: "ring-amber-100" },
   };
 
 function MoneyCard({
@@ -430,18 +430,18 @@ function MoneyCard({
 }) {
   const c = COLOR_MAP[color];
   return (
-    <div className="rounded-xl bg-white border border-sky-100 p-5">
+    <div className="rounded-xl bg-card border border-border p-5">
       <div className="flex items-start justify-between">
         <div>
-          <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
+          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             {label}
           </div>
-          <div className="text-3xl font-bold text-slate-900 mt-2">
-            <span className="text-lg text-slate-500 me-0.5">{currency}</span>
+          <div className="text-3xl font-bold text-foreground mt-2">
+            <span className="text-lg text-muted-foreground me-0.5">{currency}</span>
             {formatMoney(value)}
           </div>
           {sublabel && (
-            <div className="text-xs text-slate-500 mt-1">{sublabel}</div>
+            <div className="text-xs text-muted-foreground mt-1">{sublabel}</div>
           )}
         </div>
         <div className={`rounded-lg p-2.5 ${c.bg} ring-1 ${c.ring}`}>
@@ -467,17 +467,17 @@ function CountCard({
 }) {
   const c = COLOR_MAP[color];
   return (
-    <div className="rounded-xl bg-white border border-sky-100 p-5">
+    <div className="rounded-xl bg-card border border-border p-5">
       <div className="flex items-start justify-between">
         <div>
-          <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
+          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             {label}
           </div>
-          <div className="text-3xl font-bold text-slate-900 mt-2">
+          <div className="text-3xl font-bold text-foreground mt-2">
             {value.toLocaleString()}
           </div>
           {sublabel && (
-            <div className="text-xs text-slate-500 mt-1">{sublabel}</div>
+            <div className="text-xs text-muted-foreground mt-1">{sublabel}</div>
           )}
         </div>
         <div className={`rounded-lg p-2.5 ${c.bg} ring-1 ${c.ring}`}>

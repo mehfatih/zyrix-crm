@@ -39,10 +39,10 @@ export default function DocsArticleNav({ headings, locale }: DocsArticleNavProps
 
   return (
     <aside className="hidden xl:block w-56 flex-shrink-0 sticky top-20 h-fit text-sm">
-      <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+      <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
         {copy.onThisPage}
       </div>
-      <ul className="space-y-1 border-s-2 border-sky-100">
+      <ul className="space-y-1 border-s-2 border-border">
         {headings.map((h) => (
           <li key={h.id}>
             <a
@@ -51,8 +51,8 @@ export default function DocsArticleNav({ headings, locale }: DocsArticleNavProps
                 h.level === 3 ? "ps-6" : "ps-3"
               } pe-2 py-1 -ms-[2px] border-s-2 ${
                 activeId === h.id
-                  ? "border-sky-400 text-sky-600 font-semibold"
-                  : "border-transparent text-slate-500 hover:text-slate-800"
+                  ? "border-sky-400 text-cyan-300 font-semibold"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
               }`}
             >
               {h.text}

@@ -53,49 +53,49 @@ export default function PortalLoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-sky-400 to-sky-500 rounded-2xl shadow-lg mb-3">
             <Sparkles className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-sky-900">
+          <h1 className="text-2xl font-bold text-foreground">
             {t("brandTitle")}
           </h1>
-          <p className="text-sm text-slate-600 mt-1">{t("brandSubtitle")}</p>
+          <p className="text-sm text-muted-foreground mt-1">{t("brandSubtitle")}</p>
         </div>
 
-        <div className="bg-white border border-sky-100 rounded-2xl shadow-xl p-8">
+        <div className="bg-card border border-border rounded-2xl shadow-xl p-8">
           {sent ? (
             <div className="text-center py-8">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-50 rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-500/10 rounded-full mb-4">
                 <CheckCircle2 className="w-8 h-8 text-emerald-500" />
               </div>
-              <h2 className="text-lg font-bold text-sky-900 mb-2">
+              <h2 className="text-lg font-bold text-foreground mb-2">
                 {t("sent.title")}
               </h2>
-              <p className="text-sm text-slate-600 mb-1">
+              <p className="text-sm text-muted-foreground mb-1">
                 {t("sent.sentTo")}{" "}
-                <span className="font-medium text-sky-600">{email}</span>
+                <span className="font-medium text-cyan-300">{email}</span>
               </p>
-              <p className="text-xs text-slate-500 mt-4">{t("sent.hint")}</p>
+              <p className="text-xs text-muted-foreground mt-4">{t("sent.hint")}</p>
               <button
                 onClick={() => {
                   setSent(false);
                   setEmail("");
                 }}
-                className="text-xs text-sky-600 hover:text-sky-900 mt-4"
+                className="text-xs text-cyan-300 hover:text-foreground mt-4"
               >
                 {t("sent.tryAgain")}
               </button>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-4">
-              <h2 className="text-lg font-bold text-sky-900 mb-1">
+              <h2 className="text-lg font-bold text-foreground mb-1">
                 {t("title")}
               </h2>
-              <p className="text-sm text-slate-600 mb-4">{t("subtitle")}</p>
+              <p className="text-sm text-muted-foreground mb-4">{t("subtitle")}</p>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-foreground mb-1">
                   {t("emailLabel")}
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-400 absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
+                  <Mail className="w-4 h-4 text-muted-foreground absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
                   <input
                     type="email"
                     required
@@ -103,13 +103,13 @@ export default function PortalLoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("emailPlaceholder")}
                     disabled={loading}
-                    className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2.5 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:opacity-60"
+                    className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2.5 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
                   />
                 </div>
               </div>
 
               {error && (
-                <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100 flex items-start gap-2">
+                <div className="bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm p-2 rounded-lg border border-red-100 flex items-start gap-2">
                   <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                   {error}
                 </div>
@@ -118,7 +118,7 @@ export default function PortalLoginPage() {
               <button
                 type="submit"
                 disabled={loading || !email.trim()}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium shadow-sm disabled:opacity-50"
               >
                 {loading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -128,7 +128,7 @@ export default function PortalLoginPage() {
                 {t("submit")}
               </button>
 
-              <p className="text-xs text-slate-500 text-center pt-2">
+              <p className="text-xs text-muted-foreground text-center pt-2">
                 {t("footerHint")}
               </p>
             </form>

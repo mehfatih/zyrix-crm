@@ -42,19 +42,19 @@ export default function WasThisHelpful({
 
   if (choice) {
     return (
-      <div className="mt-8 py-6 border-t border-sky-100 text-sm text-slate-600">
+      <div className="mt-8 py-6 border-t border-border text-sm text-muted-foreground">
         {copy.thanks}
       </div>
     );
   }
 
   return (
-    <div className="mt-8 py-6 border-t border-sky-100 flex items-center gap-3 flex-wrap">
-      <span className="text-sm font-medium text-slate-700">{copy.wasHelpful}</span>
+    <div className="mt-8 py-6 border-t border-border flex items-center gap-3 flex-wrap">
+      <span className="text-sm font-medium text-foreground">{copy.wasHelpful}</span>
       <button
         type="button"
         onClick={() => vote(true)}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-emerald-200 bg-emerald-50 text-emerald-700 rounded-lg hover:bg-emerald-100 transition-colors"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 rounded-lg hover:bg-emerald-100 transition-colors"
       >
         <ThumbsUp className="w-4 h-4" />
         {copy.yes}
@@ -62,7 +62,7 @@ export default function WasThisHelpful({
       <button
         type="button"
         onClick={() => vote(false)}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-rose-200 bg-rose-50 text-rose-700 rounded-lg hover:bg-rose-100 transition-colors"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-rose-500/30 bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-lg hover:bg-rose-100 transition-colors"
       >
         <ThumbsDown className="w-4 h-4" />
         {copy.no}

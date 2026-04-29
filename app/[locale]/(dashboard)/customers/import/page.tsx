@@ -130,21 +130,22 @@ export default function CsvImportPage() {
           <div className="flex items-center gap-3">
             <Link
               href={`/${locale}/customers`}
-              className="text-slate-400 hover:text-slate-700"
+              className="text-muted-foreground hover:text-foreground"
             >
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-                <Upload className="w-6 h-6 text-sky-500" />
+              <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">CUSTOMERS</p>
+              <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                <Upload className="w-6 h-6 text-cyan-300" />
                 {t("title")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">{t("subtitle")}</p>
+              <p className="text-sm text-muted-foreground mt-0.5">{t("subtitle")}</p>
             </div>
           </div>
           <button
             onClick={downloadSample}
-            className="flex items-center gap-1.5 px-3 py-2 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-lg text-sm font-medium"
+            className="flex items-center gap-1.5 px-3 py-2 bg-card border border-border hover:bg-muted text-foreground rounded-lg text-sm font-medium"
           >
             <Download className="w-4 h-4" />
             {t("downloadSample")}
@@ -162,8 +163,8 @@ export default function CsvImportPage() {
 
         {/* STEP 1: UPLOAD */}
         {step === "upload" && (
-          <div className="bg-white border border-sky-100 rounded-xl p-6 space-y-4">
-            <div className="border-2 border-dashed border-sky-200 rounded-xl p-8 text-center">
+          <div className="bg-card border border-border rounded-xl p-6 space-y-4">
+            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center">
               <input
                 ref={fileInputRef}
                 type="file"
@@ -172,36 +173,36 @@ export default function CsvImportPage() {
                 className="hidden"
               />
               <Upload className="w-10 h-10 text-sky-300 mx-auto mb-3" />
-              <h3 className="text-base font-semibold text-sky-900 mb-1">
+              <h3 className="text-base font-semibold text-foreground mb-1">
                 {fileName || t("upload.title")}
               </h3>
-              <p className="text-xs text-slate-500 mb-4">
+              <p className="text-xs text-muted-foreground mb-4">
                 {fileName ? `${(csvText.length / 1024).toFixed(1)} KB` : t("upload.hint")}
               </p>
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg"
+                className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold rounded-lg"
               >
                 {fileName ? t("upload.changeFile") : t("upload.selectFile")}
               </button>
             </div>
 
-            <div className="bg-sky-50/40 border border-sky-100 rounded-lg p-4">
-              <h4 className="text-xs font-semibold text-slate-600 uppercase mb-2">
+            <div className="bg-muted/40 border border-border rounded-lg p-4">
+              <h4 className="text-xs font-semibold text-muted-foreground uppercase mb-2">
                 {t("upload.columnsTitle")}
               </h4>
-              <p className="text-xs text-slate-600 mb-2">{t("upload.columnsHint")}</p>
+              <p className="text-xs text-muted-foreground mb-2">{t("upload.columnsHint")}</p>
               <div className="flex flex-wrap gap-1.5">
                 {["fullName", "email", "phone", "company", "country", "city", "status", "notes"].map((c) => (
                   <span
                     key={c}
-                    className="px-2 py-0.5 text-[10px] font-mono bg-white border border-sky-200 text-sky-600 rounded"
+                    className="px-2 py-0.5 text-[10px] font-mono bg-card border border-border text-cyan-300 rounded"
                   >
                     {c}
                   </span>
                 ))}
               </div>
-              <p className="text-[10px] text-slate-500 mt-2">
+              <p className="text-[10px] text-muted-foreground mt-2">
                 {t("upload.aliasesHint")}
               </p>
             </div>
@@ -221,36 +222,36 @@ export default function CsvImportPage() {
 
         {/* STEP 2: PREVIEW */}
         {step === "preview" && preview && (
-          <div className="bg-white border border-sky-100 rounded-xl p-6 space-y-4">
+          <div className="bg-card border border-border rounded-xl p-6 space-y-4">
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div>
-                <h3 className="text-base font-semibold text-sky-900">
+                <h3 className="text-base font-semibold text-foreground">
                   {t("preview.title")}
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-muted-foreground mt-0.5">
                   {t("preview.totalRows", { count: preview.totalRows || 0 })} · {fileName}
                 </p>
               </div>
-              <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+              <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
                 <input
                   type="checkbox"
                   checked={skipDuplicates}
                   onChange={(e) => setSkipDuplicates(e.target.checked)}
-                  className="rounded border-sky-300 text-sky-500 focus:ring-sky-400"
+                  className="rounded border-sky-300 text-cyan-300 focus:ring-primary"
                 />
                 {t("preview.skipDuplicates")}
               </label>
             </div>
 
             {preview.headers.length > 0 && (
-              <div className="border border-sky-100 rounded-lg overflow-hidden overflow-x-auto">
+              <div className="border border-border rounded-lg overflow-hidden overflow-x-auto">
                 <table className="w-full text-xs">
-                  <thead className="bg-sky-50/50 border-b border-sky-100">
+                  <thead className="bg-muted/50 border-b border-border">
                     <tr>
                       {preview.headers.map((h, i) => (
                         <th
                           key={i}
-                          className="px-3 py-2 text-left rtl:text-right font-semibold text-slate-700 whitespace-nowrap"
+                          className="px-3 py-2 text-left rtl:text-right font-semibold text-foreground whitespace-nowrap"
                         >
                           {h}
                         </th>
@@ -259,10 +260,10 @@ export default function CsvImportPage() {
                   </thead>
                   <tbody className="divide-y divide-sky-50">
                     {preview.rows.map((row, i) => (
-                      <tr key={i} className="hover:bg-sky-50/30">
+                      <tr key={i} className="hover:bg-muted/30">
                         {row.map((cell, j) => (
-                          <td key={j} className="px-3 py-2 text-slate-700 whitespace-nowrap max-w-[200px] truncate">
-                            {cell || <span className="text-slate-400 italic">—</span>}
+                          <td key={j} className="px-3 py-2 text-foreground whitespace-nowrap max-w-[200px] truncate">
+                            {cell || <span className="text-muted-foreground italic">—</span>}
                           </td>
                         ))}
                       </tr>
@@ -270,7 +271,7 @@ export default function CsvImportPage() {
                   </tbody>
                 </table>
                 {(preview.totalRows || 0) > 10 && (
-                  <div className="px-3 py-2 bg-sky-50/30 text-xs text-slate-500 text-center border-t border-sky-100">
+                  <div className="px-3 py-2 bg-muted/30 text-xs text-muted-foreground text-center border-t border-border">
                     {t("preview.showingFirst", { shown: 10, total: preview.totalRows || 0 })}
                   </div>
                 )}
@@ -280,7 +281,7 @@ export default function CsvImportPage() {
             <div className="flex items-center justify-between gap-2">
               <button
                 onClick={() => setStep("upload")}
-                className="flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-lg"
+                className="flex items-center gap-1.5 px-4 py-2 bg-card border border-border hover:bg-muted text-foreground text-sm font-medium rounded-lg"
               >
                 <ArrowLeft className="w-4 h-4" />
                 {t("back")}
@@ -303,28 +304,28 @@ export default function CsvImportPage() {
 
         {/* STEP 3: RESULT */}
         {step === "result" && result && (
-          <div className="bg-white border border-sky-100 rounded-xl p-6 space-y-4">
+          <div className="bg-card border border-border rounded-xl p-6 space-y-4">
             <div className="text-center py-6">
               {result.imported > 0 ? (
                 <>
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-50 rounded-full mb-3">
-                    <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-500/10 rounded-full mb-3">
+                    <CheckCircle2 className="w-8 h-8 text-emerald-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-sky-900 mb-1">
+                  <h3 className="text-xl font-bold text-foreground mb-1">
                     {t("result.success")}
                   </h3>
                 </>
               ) : (
                 <>
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-50 rounded-full mb-3">
-                    <AlertCircle className="w-8 h-8 text-amber-600" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-500/10 rounded-full mb-3">
+                    <AlertCircle className="w-8 h-8 text-amber-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-sky-900 mb-1">
+                  <h3 className="text-xl font-bold text-foreground mb-1">
                     {t("result.noneImported")}
                   </h3>
                 </>
               )}
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-muted-foreground">
                 {t("result.summary", {
                   imported: result.imported,
                   skipped: result.skipped,
@@ -341,8 +342,8 @@ export default function CsvImportPage() {
 
             {/* Errors table */}
             {result.errors.length > 0 && (
-              <div className="border border-red-100 bg-red-50/40 rounded-lg p-4">
-                <h4 className="text-xs font-semibold text-red-700 uppercase mb-2 flex items-center gap-1.5">
+              <div className="border border-red-100 bg-rose-500/10 rounded-lg p-4">
+                <h4 className="text-xs font-semibold text-rose-300 uppercase mb-2 flex items-center gap-1.5">
                   <AlertTriangle className="w-3.5 h-3.5" />
                   {t("result.errorsTitle", { count: result.errors.length })}
                 </h4>
@@ -353,7 +354,7 @@ export default function CsvImportPage() {
                     </div>
                   ))}
                   {result.errors.length > 20 && (
-                    <div className="text-[10px] text-red-600 italic">
+                    <div className="text-[10px] text-rose-300 italic">
                       + {result.errors.length - 20} more
                     </div>
                   )}
@@ -363,8 +364,8 @@ export default function CsvImportPage() {
 
             {/* Duplicates */}
             {result.duplicates.length > 0 && (
-              <div className="border border-amber-100 bg-amber-50/40 rounded-lg p-4">
-                <h4 className="text-xs font-semibold text-amber-700 uppercase mb-2">
+              <div className="border border-amber-500/30 bg-amber-50/40 rounded-lg p-4">
+                <h4 className="text-xs font-semibold text-amber-300 uppercase mb-2">
                   {t("result.duplicatesTitle", { count: result.duplicates.length })}
                 </h4>
                 <p className="text-xs text-amber-800">
@@ -373,16 +374,16 @@ export default function CsvImportPage() {
               </div>
             )}
 
-            <div className="flex items-center justify-between gap-2 pt-4 border-t border-sky-100">
+            <div className="flex items-center justify-between gap-2 pt-4 border-t border-border">
               <button
                 onClick={reset}
-                className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-lg"
+                className="px-4 py-2 bg-card border border-border hover:bg-muted text-foreground text-sm font-medium rounded-lg"
               >
                 {t("result.importAnother")}
               </button>
               <button
                 onClick={() => router.push(`/${locale}/customers`)}
-                className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg"
+                className="flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold rounded-lg"
               >
                 <Users className="w-4 h-4" />
                 {t("result.viewCustomers")}
@@ -417,12 +418,12 @@ function StepBubble({
             ? "bg-emerald-500 text-white"
             : active
               ? "bg-sky-500 text-white"
-              : "bg-slate-200 text-slate-500"
+              : "bg-slate-200 text-muted-foreground"
         }`}
       >
         {done ? <CheckCircle2 className="w-4 h-4" /> : n}
       </div>
-      <span className={`text-xs font-medium ${active ? "text-sky-900" : "text-slate-500"} hidden md:inline`}>
+      <span className={`text-xs font-medium ${active ? "text-foreground" : "text-muted-foreground"} hidden md:inline`}>
         {label}
       </span>
     </div>
@@ -441,9 +442,9 @@ function StatTile({
   value: number;
 }) {
   const colors: Record<string, string> = {
-    emerald: "bg-emerald-50 text-emerald-700",
-    amber: "bg-amber-50 text-amber-700",
-    sky: "bg-sky-50 text-sky-700",
+    emerald: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    amber: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
+    sky: "bg-muted text-cyan-300",
   };
   return (
     <div className={`rounded-lg p-4 text-center ${colors[color]}`}>

@@ -178,7 +178,7 @@ export function QuickAddModal({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`w-full max-w-[640px] bg-white rounded-[20px] overflow-hidden flex flex-col transition-all duration-200 ${
+        className={`w-full max-w-[640px] bg-card rounded-[20px] overflow-hidden flex flex-col transition-all duration-200 ${
           animateIn ? "scale-100 opacity-100" : "scale-[0.96] opacity-0"
         }`}
         style={{
@@ -188,14 +188,14 @@ export function QuickAddModal({
       >
         {/* Header */}
         <div className="flex items-center gap-3 px-6 pt-5 pb-3">
-          <Sparkles className="w-5 h-5 text-sky-500" />
+          <Sparkles className="w-5 h-5 text-cyan-300" />
           <h2 className="text-[20px] font-bold text-[#0C4A6E] flex-1">
             {t("title")}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-sky-50 transition-colors"
+            className="w-8 h-8 rounded-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             aria-label={t("close")}
           >
             <X className="w-5 h-5" />
@@ -204,8 +204,8 @@ export function QuickAddModal({
 
         {/* Search */}
         <div className="px-6 pb-4">
-          <div className="flex items-center gap-2 h-11 px-3 rounded-xl border border-sky-100 bg-[#F0F9FF] focus-within:border-sky-300 focus-within:bg-white transition-colors">
-            <Search className="w-4 h-4 text-slate-400" />
+          <div className="flex items-center gap-2 h-11 px-3 rounded-xl border border-border bg-[#F0F9FF] focus-within:border-sky-300 focus-within:bg-card transition-colors">
+            <Search className="w-4 h-4 text-muted-foreground" />
             <input
               ref={inputRef}
               type="text"
@@ -215,7 +215,7 @@ export function QuickAddModal({
                 setActiveIndex(0);
               }}
               placeholder={t("searchPlaceholder")}
-              className="flex-1 bg-transparent outline-none text-sm text-[#0C4A6E] placeholder:text-slate-400"
+              className="flex-1 bg-transparent outline-none text-sm text-[#0C4A6E] placeholder:text-muted-foreground"
             />
           </div>
         </div>
@@ -226,7 +226,7 @@ export function QuickAddModal({
           style={{ maxHeight: "calc(80vh - 200px)" }}
         >
           {filtered.length === 0 ? (
-            <div className="py-10 text-center text-sm text-slate-400">
+            <div className="py-10 text-center text-sm text-muted-foreground">
               {t("noMatches")}
             </div>
           ) : (
@@ -251,14 +251,14 @@ export function QuickAddModal({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-sky-100 flex items-center gap-3 bg-white">
-          <p className="flex-1 text-[12px] text-slate-500">
+        <div className="px-6 py-4 border-t border-border flex items-center gap-3 bg-card">
+          <p className="flex-1 text-[12px] text-muted-foreground">
             {t("proTip")}
           </p>
           <button
             type="button"
             onClick={onClose}
-            className="h-9 px-4 rounded-lg text-sm font-semibold text-sky-600 bg-[#F0F9FF] hover:bg-sky-50 transition-colors"
+            className="h-9 px-4 rounded-lg text-sm font-semibold text-cyan-300 bg-[#F0F9FF] hover:bg-muted transition-colors"
           >
             {t("cancel")}
           </button>

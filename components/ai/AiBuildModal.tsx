@@ -108,17 +108,17 @@ export function AiBuildModal({
       className="fixed inset-0 z-50 flex items-start justify-center overflow-auto bg-slate-900/30 backdrop-blur-sm p-6"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="w-full max-w-2xl mt-10 rounded-2xl bg-white border border-sky-200 shadow-xl overflow-hidden">
+      <div className="w-full max-w-2xl mt-10 rounded-2xl bg-card border border-border shadow-xl overflow-hidden">
         {/* Header */}
-        <div className="flex items-center gap-3 p-4 border-b border-sky-100 bg-gradient-to-br from-sky-50 via-sky-50 to-blue-50">
+        <div className="flex items-center gap-3 p-4 border-b border-border bg-gradient-to-br from-sky-50 via-sky-50 to-blue-50">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow">
             <Sparkles className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-sm font-bold text-sky-900">
+            <h2 className="text-sm font-bold text-foreground">
               {tr("Build with AI", "بناء بالذكاء الاصطناعي", "AI ile oluştur")}
             </h2>
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-muted-foreground">
               {tr(
                 "Describe what you want; we'll draft it.",
                 "صف ما تريد وسنقوم بصياغته.",
@@ -128,14 +128,14 @@ export function AiBuildModal({
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg text-slate-500 hover:bg-white/70 flex items-center justify-center"
+            className="w-8 h-8 rounded-lg text-muted-foreground hover:bg-card/70 flex items-center justify-center"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Mode tabs */}
-        <div className="flex border-b border-sky-100">
+        <div className="flex border-b border-border">
           <ModeTab
             label={tr("Architect", "مهندس", "Mimar")}
             icon={Building2}
@@ -178,7 +178,7 @@ export function AiBuildModal({
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold border ${
                     artifactType === t
                       ? "bg-sky-500 text-white border-sky-500"
-                      : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
+                      : "bg-card border-border text-foreground hover:bg-muted"
                   }`}
                 >
                   {t === "workflow"
@@ -195,10 +195,10 @@ export function AiBuildModal({
             onChange={(e) => setInput(e.target.value)}
             placeholder={placeholders[mode]}
             rows={3}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
           />
           {error && (
-            <div className="rounded-lg border border-rose-200 bg-rose-50 p-2 flex items-start gap-2 text-xs text-rose-700">
+            <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-2 flex items-start gap-2 text-xs text-rose-300">
               <AlertTriangle className="w-3.5 h-3.5 mt-0.5" />
               <span>{error}</span>
             </div>
@@ -219,20 +219,20 @@ export function AiBuildModal({
           </div>
 
           {result && (
-            <div className="rounded-xl border border-sky-100 bg-sky-50/40 p-3 space-y-2 max-h-[50vh] overflow-auto">
+            <div className="rounded-xl border border-border bg-muted/40 p-3 space-y-2 max-h-[50vh] overflow-auto">
               {mode === "report" && (result as AiReportOutput).narrative && (
-                <p className="text-sm text-sky-900 font-semibold">
+                <p className="text-sm text-foreground font-semibold">
                   {(result as AiReportOutput).narrative}
                 </p>
               )}
               {mode === "architect" && (result as AiArchitectOutput).rationale && (
-                <p className="text-sm text-sky-900 font-semibold">
+                <p className="text-sm text-foreground font-semibold">
                   {(result as AiArchitectOutput).rationale}
                 </p>
               )}
               <pre
                 dir="ltr"
-                className="bg-white p-2 rounded border border-sky-200 text-[11px] font-mono overflow-x-auto"
+                className="bg-card p-2 rounded border border-border text-[11px] font-mono overflow-x-auto"
               >
                 {JSON.stringify(result, null, 2)}
               </pre>
@@ -260,8 +260,8 @@ function ModeTab({
       onClick={onClick}
       className={`flex-1 inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold border-b-2 transition-colors ${
         active
-          ? "border-sky-500 text-sky-600 bg-sky-50/40"
-          : "border-transparent text-slate-500 hover:text-slate-800"
+          ? "border-sky-500 text-cyan-300 bg-muted/40"
+          : "border-transparent text-muted-foreground hover:text-foreground"
       }`}
     >
       <Icon className="w-4 h-4" />

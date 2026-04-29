@@ -149,7 +149,7 @@ export default function IpAllowlistPage() {
         <div className="flex items-start gap-3">
           <Link
             href={`/${locale}/settings/security`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -157,10 +157,11 @@ export default function IpAllowlistPage() {
             <Network className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("IP allowlist", "قائمة IP المسموحة", "IP izin listesi")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Restrict sign-ins to specific networks (CIDR blocks).",
                 "قيّد تسجيل الدخول إلى شبكات محددة (نطاقات CIDR).",
@@ -171,17 +172,17 @@ export default function IpAllowlistPage() {
         </div>
 
         {currentIp && (
-          <div className="rounded-lg border border-sky-200 bg-white p-3 flex items-center gap-2 text-xs text-slate-700">
-            <Globe className="w-3.5 h-3.5 text-sky-500" />
+          <div className="rounded-lg border border-border bg-card p-3 flex items-center gap-2 text-xs text-foreground">
+            <Globe className="w-3.5 h-3.5 text-cyan-300" />
             <span>
               {tr("Your current IP:", "عنوان IP الحالي:", "Mevcut IP'niz:")}{" "}
-              <code className="font-mono font-semibold text-sky-900" dir="ltr">
+              <code className="font-mono font-semibold text-foreground" dir="ltr">
                 {currentIp}
               </code>
             </span>
             <button
               onClick={addSelfShortcut}
-              className="ms-auto rtl:me-auto rtl:ms-0 inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-bold uppercase bg-sky-50 border border-sky-200 text-sky-600 hover:bg-sky-100"
+              className="ms-auto rtl:me-auto rtl:ms-0 inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-bold uppercase bg-muted border border-border text-cyan-300 hover:bg-sky-100"
             >
               <Plus className="w-3 h-3" />
               {tr("Add my IP", "أضف IP الخاص بي", "IP'imi ekle")}
@@ -190,19 +191,19 @@ export default function IpAllowlistPage() {
         )}
 
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-start gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4 mt-0.5" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
             <AlertTriangle className="w-4 h-4 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
         {!loading && entries.length > 0 && currentIp && !containsCurrent && (
-          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 flex items-start gap-2 text-sm text-amber-900">
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 flex items-start gap-2 text-sm text-amber-900">
             <AlertTriangle className="w-4 h-4 mt-0.5" />
             <span>
               {tr(
@@ -215,13 +216,13 @@ export default function IpAllowlistPage() {
         )}
 
         {/* Add form */}
-        <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-3">
-          <h2 className="text-sm font-bold text-sky-900">
+        <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-3">
+          <h2 className="text-sm font-bold text-foreground">
             {tr("Add a new range", "إضافة نطاق جديد", "Yeni aralık ekle")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+              <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
                 {tr("CIDR or IP", "CIDR أو IP", "CIDR veya IP")}
               </label>
               <input
@@ -229,11 +230,11 @@ export default function IpAllowlistPage() {
                 onChange={(e) => setNewCidr(e.target.value)}
                 placeholder="203.0.113.0/24"
                 dir="ltr"
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary bg-card"
               />
             </div>
             <div>
-              <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+              <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
                 {tr("Label", "وسم", "Etiket")}
               </label>
               <input
@@ -241,7 +242,7 @@ export default function IpAllowlistPage() {
                 onChange={(e) => setNewLabel(e.target.value)}
                 placeholder={tr("Office VPN", "VPN المكتب", "Ofis VPN")}
                 maxLength={120}
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
               />
             </div>
           </div>
@@ -264,12 +265,12 @@ export default function IpAllowlistPage() {
         {/* Existing entries */}
         {loading ? (
           <div className="flex items-center justify-center py-10">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : entries.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
+          <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center">
             <Network className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               {tr(
                 "No rules yet — everyone can sign in from any network.",
                 "لا قواعد بعد — يمكن للجميع تسجيل الدخول من أي شبكة.",
@@ -288,27 +289,27 @@ export default function IpAllowlistPage() {
               return (
                 <div
                   key={e.id}
-                  className="rounded-xl border border-sky-100 bg-white p-3 flex items-center gap-3"
+                  className="rounded-xl border border-border bg-card p-3 flex items-center gap-3"
                 >
                   <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center flex-shrink-0">
                     <Network className="w-4 h-4" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <code className="text-sm font-mono font-semibold text-sky-900" dir="ltr">
+                      <code className="text-sm font-mono font-semibold text-foreground" dir="ltr">
                         {e.cidr}
                       </code>
                       {isSelf && (
-                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 border border-emerald-500/30">
                           {tr("You", "أنت", "Sen")}
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-slate-500 mt-0.5">{e.label}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{e.label}</p>
                   </div>
                   <button
                     onClick={() => handleRemove(e)}
-                    className="w-7 h-7 rounded text-slate-400 hover:text-rose-700 hover:bg-rose-50 flex items-center justify-center"
+                    className="w-7 h-7 rounded text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 flex items-center justify-center"
                     title={tr("Remove", "حذف", "Kaldır")}
                   >
                     <Trash2 className="w-3.5 h-3.5" />

@@ -61,8 +61,8 @@ export default function ArticleAnalytics() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div className="lg:col-span-3 flex items-center justify-between">
-        <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-sky-500" />
+        <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+          <BarChart3 className="w-5 h-5 text-cyan-300" />
           Docs analytics
         </h2>
         <div className="flex gap-2 text-xs">
@@ -73,8 +73,8 @@ export default function ArticleAnalytics() {
               onClick={() => setDays(d)}
               className={`px-2.5 py-1 rounded-md border ${
                 days === d
-                  ? "bg-sky-50 border-sky-300 text-sky-600 font-semibold"
-                  : "bg-white border-sky-100 text-slate-500"
+                  ? "bg-muted border-sky-300 text-cyan-300 font-semibold"
+                  : "bg-card border-border text-muted-foreground"
               }`}
             >
               {d}d
@@ -84,7 +84,7 @@ export default function ArticleAnalytics() {
       </div>
 
       {loading || !data ? (
-        <div className="lg:col-span-3 flex items-center justify-center py-12 text-slate-500">
+        <div className="lg:col-span-3 flex items-center justify-center py-12 text-muted-foreground">
           <Loader2 className="w-5 h-5 animate-spin me-2" />
           Loading…
         </div>
@@ -138,13 +138,13 @@ function Panel({
   empty: string;
 }) {
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-5">
-      <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-        <Icon className="w-4 h-4 text-sky-500" />
+    <div className="bg-card border border-border rounded-xl p-5">
+      <h3 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
+        <Icon className="w-4 h-4 text-cyan-300" />
         {title}
       </h3>
       {rows.length === 0 ? (
-        <p className="text-xs text-slate-400 py-4">{empty}</p>
+        <p className="text-xs text-muted-foreground py-4">{empty}</p>
       ) : (
         <ul className="space-y-2">
           {rows.map((r, i) => (
@@ -153,12 +153,12 @@ function Panel({
               className="flex items-center justify-between gap-3 text-sm"
             >
               <div className="min-w-0">
-                <div className="font-medium text-slate-800 truncate">
+                <div className="font-medium text-foreground truncate">
                   {r.primary}
                 </div>
-                <div className="text-[11px] text-slate-400">{r.secondary}</div>
+                <div className="text-[11px] text-muted-foreground">{r.secondary}</div>
               </div>
-              <span className="text-sm font-bold text-sky-600 tabular-nums">
+              <span className="text-sm font-bold text-cyan-300 tabular-nums">
                 {r.value}
               </span>
             </li>

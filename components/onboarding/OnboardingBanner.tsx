@@ -109,7 +109,7 @@ export function OnboardingBanner({ locale }: { locale: string }) {
   return (
     <div
       dir={isAr ? "rtl" : "ltr"}
-      className="rounded-xl border border-sky-200 bg-gradient-to-br from-sky-50 via-sky-50 to-blue-50 p-4 shadow-sm"
+      className="rounded-xl border border-border bg-gradient-to-br from-sky-50 via-sky-50 to-blue-50 p-4 shadow-sm"
     >
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
@@ -117,18 +117,18 @@ export function OnboardingBanner({ locale }: { locale: string }) {
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-sky-900">
+            <h3 className="text-sm font-bold text-foreground">
               {tr(
                 "Finish setting up your workspace",
                 "أكمل إعداد مساحة العمل",
                 "Çalışma alanınızı kurmayı tamamlayın"
               )}
             </h3>
-            <span className="text-xs font-semibold text-sky-600 tabular-nums">
+            <span className="text-xs font-semibold text-cyan-300 tabular-nums">
               {percent}%
             </span>
           </div>
-          <div className="mt-2 w-full h-1.5 rounded-full bg-white/70 overflow-hidden">
+          <div className="mt-2 w-full h-1.5 rounded-full bg-card/70 overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-sky-400 to-sky-500 transition-all"
               style={{ width: `${percent}%` }}
@@ -141,14 +141,14 @@ export function OnboardingBanner({ locale }: { locale: string }) {
                 <li
                   key={step}
                   className={`flex items-center gap-2 text-xs ${
-                    done ? "text-emerald-700" : "text-slate-600"
+                    done ? "text-emerald-300" : "text-muted-foreground"
                   }`}
                 >
                   <span
                     className={`w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center ${
                       done
                         ? "bg-emerald-500 text-white"
-                        : "bg-white border border-slate-300"
+                        : "bg-card border border-border"
                     }`}
                   >
                     {done && <Check className="w-2.5 h-2.5" />}
@@ -163,7 +163,7 @@ export function OnboardingBanner({ locale }: { locale: string }) {
           <div className="mt-3 flex items-center gap-2">
             <Link
               href={`/${locale}/onboarding`}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold"
             >
               {tr("Resume setup", "استئناف الإعداد", "Kuruluma devam et")}
               <ArrowRight
@@ -172,7 +172,7 @@ export function OnboardingBanner({ locale }: { locale: string }) {
             </Link>
             <button
               onClick={handleDismiss}
-              className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-slate-700"
+              className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
               title={tr(
                 "Hide for today",
                 "إخفاء اليوم",

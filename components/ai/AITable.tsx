@@ -62,32 +62,32 @@ export function AITable<T extends AITableRow>({
 
   if (isLoading) {
     return (
-      <div className="rounded-xl border border-zyrix-border bg-white p-12 text-center">
-        <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-zyrix-aiBorder border-t-zyrix-primary" />
-        <p className="mt-4 text-sm text-zyrix-textMuted">{t('loading')}</p>
+      <div className="rounded-xl border border-border bg-card p-12 text-center">
+        <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-violet-500/30 border-t-primary" />
+        <p className="mt-4 text-sm text-muted-foreground">{t('loading')}</p>
       </div>
     );
   }
 
   if (data.length === 0) {
     return (
-      <div className="rounded-xl border border-zyrix-border bg-white p-12 text-center">
-        <Sparkles size={28} className="mx-auto text-zyrix-primary" />
-        <h3 className="mt-3 text-sm font-bold text-zyrix-textHeading">
+      <div className="rounded-xl border border-border bg-card p-12 text-center">
+        <Sparkles size={28} className="mx-auto text-primary" />
+        <h3 className="mt-3 text-sm font-bold text-foreground">
           {t('emptyTitle')}
         </h3>
-        <p className="mt-1 text-xs text-zyrix-textMuted">{t('emptyHint')}</p>
+        <p className="mt-1 text-xs text-muted-foreground">{t('emptyHint')}</p>
       </div>
     );
   }
 
   return (
     <>
-      <div className="overflow-hidden rounded-xl border border-zyrix-border bg-white">
+      <div className="overflow-hidden rounded-xl border border-border bg-card">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-zyrix-border bg-zyrix-cardBgAlt">
+              <tr className="border-b border-border bg-muted">
                 <th className="w-10 px-3 py-3">
                   <input
                     type="checkbox"
@@ -96,11 +96,11 @@ export function AITable<T extends AITableRow>({
                       if (el) el.indeterminate = someSelected;
                     }}
                     onChange={toggleAll}
-                    className="h-4 w-4 rounded border-zyrix-border text-zyrix-primary focus:ring-zyrix-primary"
+                    className="h-4 w-4 rounded border-border text-primary focus:ring-primary"
                   />
                 </th>
                 <th className="w-16 px-3 py-3 text-start">
-                  <span className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+                  <span className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                     <Sparkles size={11} />
                     {t('aiScore')}
                   </span>
@@ -108,7 +108,7 @@ export function AITable<T extends AITableRow>({
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted"
+                    className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-muted-foreground"
                     style={{ width: col.width }}
                   >
                     <span className="inline-flex items-center gap-1">
@@ -117,10 +117,10 @@ export function AITable<T extends AITableRow>({
                     </span>
                   </th>
                 ))}
-                <th className="w-24 px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+                <th className="w-24 px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                   {t('risk')}
                 </th>
-                <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+                <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                   {t('nextAction')}
                 </th>
               </tr>
@@ -129,8 +129,8 @@ export function AITable<T extends AITableRow>({
               {data.map((row) => (
                 <tr
                   key={row.id}
-                  className={`border-b border-zyrix-border transition-colors hover:bg-zyrix-aiSurface/50 ${
-                    selected.has(row.id) ? 'bg-zyrix-aiSurface' : 'bg-white'
+                  className={`border-b border-border transition-colors hover:bg-muted/50 ${
+                    selected.has(row.id) ? 'bg-violet-500/10' : 'bg-card'
                   }`}
                 >
                   <td
@@ -141,7 +141,7 @@ export function AITable<T extends AITableRow>({
                       type="checkbox"
                       checked={selected.has(row.id)}
                       onChange={() => toggleOne(row.id)}
-                      className="h-4 w-4 rounded border-zyrix-border text-zyrix-primary focus:ring-zyrix-primary"
+                      className="h-4 w-4 rounded border-border text-primary focus:ring-primary"
                     />
                   </td>
                   <td
@@ -153,7 +153,7 @@ export function AITable<T extends AITableRow>({
                   {columns.map((col) => (
                     <td
                       key={col.key}
-                      className="cursor-pointer px-3 py-3 text-sm text-zyrix-textBody"
+                      className="cursor-pointer px-3 py-3 text-sm text-muted-foreground"
                       onClick={() => onRowClick?.(row)}
                     >
                       {col.render(row)}
@@ -170,7 +170,7 @@ export function AITable<T extends AITableRow>({
                     onClick={() => onRowClick?.(row)}
                   >
                     <div className="flex items-center gap-2">
-                      <span className="line-clamp-1 text-xs text-zyrix-textBody">
+                      <span className="line-clamp-1 text-xs text-muted-foreground">
                         {row.nextAction}
                       </span>
                       <AITrustBadge
@@ -200,10 +200,10 @@ export function AITable<T extends AITableRow>({
 function AIScoreBadge({ score }: { score: number }) {
   const tone =
     score >= 80
-      ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+      ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30'
       : score >= 50
-        ? 'bg-sky-50 text-sky-700 border-sky-200'
-        : 'bg-red-50 text-red-700 border-red-200';
+        ? 'bg-muted text-cyan-300 border-border'
+        : 'bg-rose-500/10 text-rose-300 border border-rose-500/30';
   return (
     <span
       className={`inline-flex h-7 w-10 items-center justify-center rounded-md border text-xs font-bold ${tone}`}
@@ -215,11 +215,11 @@ function AIScoreBadge({ score }: { score: number }) {
 
 function RiskBadge({ level }: { level: 'low' | 'medium' | 'high' }) {
   const map = {
-    low: { bg: 'bg-emerald-50', text: 'text-emerald-700', label: 'Low' },
-    medium: { bg: 'bg-amber-50', text: 'text-amber-700', label: 'Med' },
+    low: { bg: 'bg-emerald-50', text: 'text-emerald-300', label: 'Low' },
+    medium: { bg: 'bg-amber-50', text: 'text-amber-300', label: 'Med' },
     high: {
       bg: 'bg-red-50',
-      text: 'text-red-700',
+      text: 'text-rose-300',
       label: 'High',
       icon: <AlertTriangle size={10} />,
     },
