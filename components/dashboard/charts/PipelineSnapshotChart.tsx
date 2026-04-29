@@ -10,6 +10,11 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+import {
+  CHART_TOOLTIP_STYLE,
+  CHART_TOOLTIP_LABEL_STYLE,
+  CHART_TOOLTIP_ITEM_STYLE,
+} from "@/lib/chart-styles";
 
 // ────────────────────────────────────────────────────────────────────
 // Sprint 14p — Pipeline Snapshot chart
@@ -108,13 +113,9 @@ export default function PipelineSnapshotChart({ data = MOCK_STAGES }: Props) {
             />
             <Tooltip
               cursor={{ fill: "hsl(var(--muted))", opacity: 0.4 }}
-              contentStyle={{
-                backgroundColor: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--foreground))",
-                fontSize: "12px",
-              }}
+              contentStyle={CHART_TOOLTIP_STYLE}
+              labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+              itemStyle={CHART_TOOLTIP_ITEM_STYLE}
               formatter={((v: number) =>
                 metric === "value" ? `$${v.toLocaleString()}` : String(v)) as never}
             />

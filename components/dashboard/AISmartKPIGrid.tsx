@@ -13,6 +13,11 @@ import {
 } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, Tooltip } from 'recharts';
 import { AITrustBadge } from '@/components/ai/AITrustBadge';
+import {
+  CHART_TOOLTIP_STYLE,
+  CHART_TOOLTIP_LABEL_STYLE,
+  CHART_TOOLTIP_ITEM_STYLE,
+} from '@/lib/chart-styles';
 import { cn } from '@/lib/utils';
 
 // ────────────────────────────────────────────────────────────────────
@@ -203,14 +208,9 @@ function KPICard({ kpi }: { kpi: SmartKPI }) {
           <LineChart data={sparkData} margin={{ top: 2, right: 2, bottom: 2, left: 2 }}>
             <Tooltip
               cursor={false}
-              contentStyle={{
-                backgroundColor: 'hsl(var(--card))',
-                border: '1px solid hsl(var(--border))',
-                borderRadius: '6px',
-                fontSize: '11px',
-                padding: '4px 8px',
-                color: 'hsl(var(--foreground))',
-              }}
+              contentStyle={CHART_TOOLTIP_STYLE}
+              labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+              itemStyle={CHART_TOOLTIP_ITEM_STYLE}
               formatter={(((v: number) => [v, '']) as never)}
               labelFormatter={() => ''}
             />

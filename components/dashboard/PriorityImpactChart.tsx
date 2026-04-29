@@ -1,6 +1,11 @@
 "use client";
 
 import { BarChart, Bar, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import {
+  CHART_TOOLTIP_STYLE,
+  CHART_TOOLTIP_LABEL_STYLE,
+  CHART_TOOLTIP_ITEM_STYLE,
+} from "@/lib/chart-styles";
 
 // ────────────────────────────────────────────────────────────────────
 // Sprint 14q — small inline bar chart that sits beside the
@@ -51,14 +56,9 @@ export function PriorityImpactChart({ actions, className }: Props) {
         <BarChart data={data} margin={{ top: 4, right: 4, bottom: 4, left: 4 }}>
           <Tooltip
             cursor={{ fill: "transparent" }}
-            contentStyle={{
-              backgroundColor: "hsl(var(--card))",
-              border: "1px solid hsl(var(--border))",
-              borderRadius: "8px",
-              fontSize: "12px",
-              padding: "6px 10px",
-              color: "hsl(var(--foreground))",
-            }}
+            contentStyle={CHART_TOOLTIP_STYLE}
+            labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+            itemStyle={CHART_TOOLTIP_ITEM_STYLE}
             formatter={(((v: number, _n: string, p: { payload: { title: string } }) => [
               `${v}% impact`,
               p.payload.title,

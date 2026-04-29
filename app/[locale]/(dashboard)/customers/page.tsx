@@ -8,6 +8,8 @@ import { Plus, Search, Filter } from 'lucide-react';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { AITable, type AITableColumn } from '@/components/ai/AITable';
 import { CreateCustomerModal } from '@/components/customers/CreateCustomerModal';
+import { TopCustomersHero } from '@/components/customers/TopCustomersHero';
+import { StatusPill, SEGMENT_TONE } from '@/components/ui/StatusPill';
 import { customersAI, type AICustomer } from '@/lib/ai/customersAI';
 import { usePageContextSync } from '@/hooks/usePageContextSync';
 
@@ -62,9 +64,9 @@ function CustomersPageInner() {
       key: 'segment',
       header: t('segment'),
       render: (c) => (
-        <span className="rounded-md bg-violet-500/10 px-2 py-0.5 text-xs font-medium capitalize text-primaryDark">
-          {c.segment}
-        </span>
+        <StatusPill tone={SEGMENT_TONE[c.segment] ?? 'neutral'} size="sm">
+          <span className="capitalize">{c.segment}</span>
+        </StatusPill>
       ),
     },
     {
@@ -138,6 +140,15 @@ function CustomersPageInner() {
             {t('filters')}
           </button>
         </div>
+
+        <TopCustomersHero
+          customers={(data?.customers ?? []).map((c) => ({
+            id: c.id,
+            name: c.name,
+            company: c.company,
+            ltv: c.ltv,
+          }))}
+        />
 
         <AITable
           data={data?.customers ?? []}

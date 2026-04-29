@@ -10,6 +10,11 @@ import {
   Cell,
 } from "recharts";
 import { Trophy } from "lucide-react";
+import {
+  CHART_TOOLTIP_STYLE,
+  CHART_TOOLTIP_LABEL_STYLE,
+  CHART_TOOLTIP_ITEM_STYLE,
+} from "@/lib/chart-styles";
 
 // ────────────────────────────────────────────────────────────────────
 // Sprint 14p — Team Leaderboard chart
@@ -93,13 +98,9 @@ export default function TeamLeaderboardChart({ data = MOCK, className }: Props) 
               />
               <Tooltip
                 cursor={{ fill: "hsl(var(--muted))", opacity: 0.4 }}
-                contentStyle={{
-                  backgroundColor: "hsl(var(--card))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "8px",
-                  color: "hsl(var(--foreground))",
-                  fontSize: "12px",
-                }}
+                contentStyle={CHART_TOOLTIP_STYLE}
+                labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                itemStyle={CHART_TOOLTIP_ITEM_STYLE}
                 formatter={((v: number) => `$${v.toLocaleString()}`) as never}
               />
               <Bar
