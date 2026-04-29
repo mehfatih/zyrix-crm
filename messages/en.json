@@ -883,6 +883,14 @@
     "customPrice": "Custom",
     "contactForQuote": "Contact us for a quote",
     "includes": "Includes",
+    "whatsIncluded": "What's included",
+    "seeAllFeatures": "See all features",
+    "quotas": {
+      "users": "Users",
+      "contacts": "Contacts",
+      "storage": "Storage",
+      "whatsapp": "WhatsApp"
+    },
     "everythingInStarter": "Everything in Starter, plus:",
     "everythingInBusiness": "Everything in Business, plus:",
     "loadError": "Failed to load plans. Please refresh.",

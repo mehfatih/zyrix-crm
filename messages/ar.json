@@ -883,6 +883,14 @@
     "customPrice": "مخصص",
     "contactForQuote": "تواصل معنا للحصول على عرض",
     "includes": "يشمل",
+    "whatsIncluded": "ما يتضمنه",
+    "seeAllFeatures": "عرض جميع الميزات",
+    "quotas": {
+      "users": "المستخدمون",
+      "contacts": "جهات الاتصال",
+      "storage": "التخزين",
+      "whatsapp": "واتساب"
+    },
     "everythingInStarter": "كل ما في المبتدئ، بالإضافة إلى:",
     "everythingInBusiness": "كل ما في الأعمال، بالإضافة إلى:",
     "loadError": "فشل تحميل الباقات. يرجى التحديث.",

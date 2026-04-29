@@ -883,6 +883,14 @@
     "customPrice": "Özel",
     "contactForQuote": "Teklif için bize ulaşın",
     "includes": "İçerir",
+    "whatsIncluded": "Neler dahil",
+    "seeAllFeatures": "Tüm özellikleri gör",
+    "quotas": {
+      "users": "Kullanıcılar",
+      "contacts": "Kişiler",
+      "storage": "Depolama",
+      "whatsapp": "WhatsApp"
+    },
     "everythingInStarter": "Başlangıç plandaki her şey, artı:",
     "everythingInBusiness": "İşletme plandaki her şey, artı:",
     "loadError": "Planlar yüklenemedi. Lütfen yenileyin.",
