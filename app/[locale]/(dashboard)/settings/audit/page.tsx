@@ -36,6 +36,8 @@ import {
 } from "@/lib/api/advanced";
 import { listCompanyUsers, type TeamMember } from "@/lib/api/roles";
 import { extractErrorMessage } from "@/lib/errors";
+import { UpgradeCard } from "@/components/upgrade/UpgradeCard";
+import { getFeatureDef } from "@/lib/features/feature-catalog";
 
 // ============================================================================
 // SETTINGS → AUDIT LOG
@@ -122,6 +124,8 @@ export default function AuditLogPage() {
   const [page, setPage] = useState<AuditLogPage | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // Sprint 14ac — detect FEATURE_DISABLED so we render <UpgradeCard /> inline.
+  const [featureGated, setFeatureGated] = useState(false);
   const [actions, setActions] = useState<string[]>([]);
   const [users, setUsers] = useState<TeamMember[]>([]);
   const [filterOpen, setFilterOpen] = useState(false);
@@ -151,6 +155,7 @@ export default function AuditLogPage() {
   const load = async () => {
     setLoading(true);
     setError(null);
+    setFeatureGated(false);
     try {
       const [data, acts, team] = await Promise.all([
         listAuditLogs(currentQuery),
@@ -161,7 +166,13 @@ export default function AuditLogPage() {
       if (actions.length === 0) setActions(acts as string[]);
       if (users.length === 0) setUsers(team as TeamMember[]);
     } catch (e) {
-      setError(extractErrorMessage(e));
+      const code = (e as { response?: { data?: { error?: { code?: string } } } })
+        ?.response?.data?.error?.code;
+      if (code === "FEATURE_DISABLED") {
+        setFeatureGated(true);
+      } else {
+        setError(extractErrorMessage(e));
+      }
     } finally {
       setLoading(false);
     }
@@ -245,13 +256,17 @@ export default function AuditLogPage() {
           <div className="flex items-center gap-2 flex-wrap">
             <button
               onClick={() => handleExport("csv")}
-              disabled={exporting !== null}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-card border-border text-foreground hover:bg-muted disabled:opacity-50"
-              title={tr(
-                "Download current filtered results as CSV",
-                "تنزيل النتائج المصفاة كـ CSV",
-                "Filtrelenmiş sonuçları CSV olarak indir"
-              )}
+              disabled={exporting !== null || featureGated}
+              title={
+                featureGated
+                  ? tr("Upgrade to enable", "قم بالترقية للتفعيل", "Etkinleştirmek için yükseltin")
+                  : tr(
+                      "Download current filtered results as CSV",
+                      "تنزيل النتائج المصفاة كـ CSV",
+                      "Filtrelenmiş sonuçları CSV olarak indir"
+                    )
+              }
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-card border-border text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {exporting === "csv" ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -262,13 +277,17 @@ export default function AuditLogPage() {
             </button>
             <button
               onClick={() => handleExport("json")}
-              disabled={exporting !== null}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-card border-border text-foreground hover:bg-muted disabled:opacity-50"
-              title={tr(
-                "Download current filtered results as JSON",
-                "تنزيل النتائج المصفاة كـ JSON",
-                "Filtrelenmiş sonuçları JSON olarak indir"
-              )}
+              disabled={exporting !== null || featureGated}
+              title={
+                featureGated
+                  ? tr("Upgrade to enable", "قم بالترقية للتفعيل", "Etkinleştirmek için yükseltin")
+                  : tr(
+                      "Download current filtered results as JSON",
+                      "تنزيل النتائج المصفاة كـ JSON",
+                      "Filtrelenmiş sonuçları JSON olarak indir"
+                    )
+              }
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-card border-border text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {exporting === "json" ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -279,7 +298,13 @@ export default function AuditLogPage() {
             </button>
             <button
               onClick={() => setFilterOpen((o) => !o)}
-              className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
+              disabled={featureGated}
+              title={
+                featureGated
+                  ? tr("Upgrade to enable", "قم بالترقية للتفعيل", "Etkinleştirmek için yükseltin")
+                  : undefined
+              }
+              className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold border transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
                 filterOpen || hasFilters
                   ? "bg-muted border-sky-300 text-cyan-300"
                   : "bg-card border-border text-foreground hover:bg-muted"
@@ -294,8 +319,40 @@ export default function AuditLogPage() {
           </div>
         </div>
 
-        {/* Filter bar */}
-        {filterOpen && (
+        {/* Sprint 14ac — feature-gated upgrade card + skeleton preview */}
+        {featureGated && (
+          <>
+            <UpgradeCard
+              feature={getFeatureDef("audit_advanced")}
+              locale={locale}
+              variant="inline"
+              targetPlan="business"
+            />
+            <div className="rounded-xl border border-border bg-card p-5">
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
+                {tr("Preview", "معاينة", "Önizleme")}
+              </p>
+              <div className="space-y-2">
+                {[1, 2, 3, 4].map((n) => (
+                  <div
+                    key={n}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-card/30 border border-border/30"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-muted/50 animate-pulse flex-shrink-0" />
+                    <div className="flex-1 space-y-1.5">
+                      <div className="h-3 bg-muted/50 rounded animate-pulse w-1/3" />
+                      <div className="h-2 bg-muted/30 rounded animate-pulse w-1/2" />
+                    </div>
+                    <div className="h-2 bg-muted/30 rounded animate-pulse w-16" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Filter bar — sprint 14ac: hide when feature is gated */}
+        {filterOpen && !featureGated && (
           <div className="rounded-xl border border-border bg-card p-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label className="block text-xs font-medium text-foreground mb-1">
@@ -401,8 +458,8 @@ export default function AuditLogPage() {
           </div>
         )}
 
-        {/* Timeline */}
-        {loading && !page ? (
+        {/* Timeline — sprint 14ac: hide entirely when feature is gated */}
+        {featureGated ? null : loading && !page ? (
           <div className="flex items-center justify-center py-16">
             <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>

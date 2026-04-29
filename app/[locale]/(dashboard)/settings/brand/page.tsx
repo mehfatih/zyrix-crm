@@ -32,6 +32,7 @@ import {
   type BrandSettings,
   type CustomDomainSetupResult,
 } from "@/lib/api/advanced";
+import { buildCheckoutUrl } from "@/lib/billing/checkout-url";
 
 // ============================================================================
 // WHITE-LABEL BRAND SETTINGS PAGE
@@ -288,7 +289,7 @@ export default function BrandingSettingsPage() {
 
         {/* Notifications */}
         {success && (
-          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-300">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{success}</span>
           </div>
@@ -299,6 +300,9 @@ export default function BrandingSettingsPage() {
             <span>{error}</span>
           </div>
         )}
+
+        {/* Sprint 14ac — IDENTITY section */}
+        <SectionHeader label={tr("Identity", "الهوية", "Kimlik")} />
 
         {/* Section 1 — Display name + colors (all tiers) */}
         <SectionCard
@@ -381,12 +385,16 @@ export default function BrandingSettingsPage() {
           </div>
         </SectionCard>
 
+        {/* Sprint 14ac — ASSETS section */}
+        <SectionHeader label={tr("Assets", "الأصول", "Varlıklar")} />
+
         {/* Section 2 — Logo + favicon (Pro+) */}
         <SectionCard
           icon={<ImageIcon className="w-4 h-4" />}
           title={tr("Logo & favicon", "الشعار والأيقونة", "Logo ve favicon")}
           subtitle={tr("Available on Pro plans and higher.", "متوفر في باقات Pro وما فوق.", "Pro ve üzeri planlarda mevcuttur.")}
           locked={!canLogo(plan)}
+          unlockHref={buildCheckoutUrl(locale, "business", "monthly")}
           tr={tr}
         >
           <FormField
@@ -442,6 +450,9 @@ export default function BrandingSettingsPage() {
           </FormField>
         </SectionCard>
 
+        {/* Sprint 14ac — COMMUNICATION section */}
+        <SectionHeader label={tr("Communication", "التواصل", "İletişim")} />
+
         {/* Section 3 — Custom email sender (Pro+) */}
         <SectionCard
           icon={<Mail className="w-4 h-4" />}
@@ -456,6 +467,7 @@ export default function BrandingSettingsPage() {
             "İşlemsel e-postalar Zyrix'ten değil, sizin adresinizden gider."
           )}
           locked={!canCustomEmail(plan)}
+          unlockHref={buildCheckoutUrl(locale, "business", "monthly")}
           tr={tr}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -482,7 +494,7 @@ export default function BrandingSettingsPage() {
             </FormField>
           </div>
           {canCustomEmail(plan) && (
-            <div className="mt-2 rounded-lg bg-amber-500/10 border border-amber-500/30 p-2.5 text-[11px] text-amber-800">
+            <div className="mt-2 rounded-lg bg-amber-500/10 border border-amber-500/30 p-2.5 text-[11px] text-amber-300">
               {tr(
                 "Add SPF + DKIM records on your domain so emails don't get flagged as spam. We'll provide the exact DNS records when you save.",
                 "أضف سجلات SPF + DKIM على دومينك حتى لا تُصنّف الرسائل كسبام. سنعطيك السجلات المطلوبة عند الحفظ.",
@@ -492,8 +504,8 @@ export default function BrandingSettingsPage() {
           )}
         </SectionCard>
 
-        {/* Save + reset */}
-        <div className="flex items-center justify-end gap-2 sticky bottom-0 bg-gradient-to-t from-white via-white to-transparent pt-4 pb-2 z-10">
+        {/* Save + reset — sprint 14ac: dark gradient backdrop with backdrop-blur */}
+        <div className="flex items-center justify-end gap-2 sticky bottom-0 -mx-6 px-6 py-4 bg-gradient-to-t from-background via-background to-background/80 backdrop-blur border-t border-border z-10">
           <button
             onClick={handleReset}
             disabled={!settings}
@@ -516,6 +528,11 @@ export default function BrandingSettingsPage() {
           </button>
         </div>
 
+        {/* Sprint 14ac — INFRASTRUCTURE section */}
+        <SectionHeader
+          label={tr("Infrastructure", "البنية التحتية", "Altyapı")}
+        />
+
         {/* Section 4 — Custom domain (Enterprise) */}
         <SectionCard
           icon={<Globe className="w-4 h-4" />}
@@ -526,6 +543,7 @@ export default function BrandingSettingsPage() {
             "Enterprise planlarında mevcuttur."
           )}
           locked={!canCustomDomain(plan)}
+          unlockHref={buildCheckoutUrl(locale, "enterprise", "monthly")}
           tr={tr}
         >
           {canCustomDomain(plan) ? (
@@ -585,12 +603,29 @@ export default function BrandingSettingsPage() {
 // SUB-COMPONENTS
 // ============================================================================
 
+// Sprint 14ac — small uppercase label flanked by thin divider lines, matches
+// the new sidebar section headers from Sprint 14ab.
+function SectionHeader({ label }: { label: string }) {
+  return (
+    <div className="px-1 pt-2 pb-1">
+      <div className="flex items-center gap-2">
+        <div className="h-px flex-1 bg-border/40" />
+        <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
+          {label}
+        </span>
+        <div className="h-px flex-1 bg-border/40" />
+      </div>
+    </div>
+  );
+}
+
 function SectionCard({
   icon,
   title,
   subtitle,
   children,
   locked,
+  unlockHref,
   tr,
 }: {
   icon: React.ReactNode;
@@ -598,34 +633,60 @@ function SectionCard({
   subtitle: string;
   children: React.ReactNode;
   locked?: boolean;
+  /** Sprint 14ac — when present, render an "Unlock this section" link in the card footer. */
+  unlockHref?: string;
   tr?: (en: string, ar: string, trk: string) => string;
 }) {
   return (
-    <div
-      className={`rounded-xl border bg-card overflow-hidden relative ${
-        locked ? "border-border" : "border-border"
-      }`}
-    >
-      <div className="p-4 border-b border-sky-50">
+    <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="p-4 border-b border-border">
         <div className="flex items-start gap-2">
           <div className="flex-1">
             <h2 className="text-base font-bold text-foreground flex items-center gap-2">
               {icon}
               {title}
               {locked && (
-                <span className="inline-flex items-center gap-0.5 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-500/30">
+                <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-card border border-border text-muted-foreground tracking-wider">
                   <Lock className="w-2.5 h-2.5" />
-                  {tr ? tr("Upgrade", "ترقية", "Yükselt") : "Upgrade"}
+                  {tr ? tr("Locked", "مقفل", "Kilitli") : "Locked"}
                 </span>
               )}
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
+            {locked && (
+              <p className="text-xs text-muted-foreground/70 mt-1">
+                {tr
+                  ? tr(
+                      "Locked on Pro plans and higher",
+                      "مقفل في الخطط الاحترافية فأعلى",
+                      "Pro planlarında ve üstünde kilitli"
+                    )
+                  : "Locked on Pro plans and higher"}
+              </p>
+            )}
           </div>
         </div>
       </div>
       <div className={`p-4 space-y-3 ${locked ? "opacity-60" : ""}`}>
         {children}
       </div>
+      {locked && unlockHref && (
+        <div className="px-4 pb-4">
+          <a
+            href={unlockHref}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300 hover:underline"
+          >
+            <Lock className="w-3 h-3" />
+            {tr
+              ? tr(
+                  "Unlock this section",
+                  "فتح هذا القسم",
+                  "Bu bölümün kilidini aç"
+                )
+              : "Unlock this section"}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

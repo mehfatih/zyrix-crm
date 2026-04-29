@@ -34,6 +34,8 @@ import {
   type PermissionModule,
 } from "@/lib/api/roles";
 import { extractErrorMessage } from "@/lib/errors";
+import { UpgradeCard } from "@/components/upgrade/UpgradeCard";
+import { getFeatureDef } from "@/lib/features/feature-catalog";
 
 type Locale = "en" | "ar" | "tr";
 
@@ -86,6 +88,8 @@ export default function RolesPage() {
   const [catalog, setCatalog] = useState<PermissionEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // Sprint 14ac — detect FEATURE_DISABLED so we render <UpgradeCard /> inline.
+  const [featureGated, setFeatureGated] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [editing, setEditing] = useState<Role | null>(null);
   const [creatingNew, setCreatingNew] = useState(false);
@@ -93,6 +97,7 @@ export default function RolesPage() {
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
+    setFeatureGated(false);
     try {
       const [roleList, cat] = await Promise.all([
         listRoles(),
@@ -101,7 +106,13 @@ export default function RolesPage() {
       setRoles(roleList);
       setCatalog(cat.catalog);
     } catch (e) {
-      setError(extractErrorMessage(e));
+      const code = (e as { response?: { data?: { error?: { code?: string } } } })
+        ?.response?.data?.error?.code;
+      if (code === "FEATURE_DISABLED") {
+        setFeatureGated(true);
+      } else {
+        setError(extractErrorMessage(e));
+      }
     } finally {
       setLoading(false);
     }
@@ -175,7 +186,7 @@ export default function RolesPage() {
               </p>
             </div>
           </div>
-          {canEdit && !creatingNew && !editing && (
+          {canEdit && !creatingNew && !editing && !featureGated && (
             <button
               onClick={() => setCreatingNew(true)}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
@@ -184,11 +195,34 @@ export default function RolesPage() {
               {tr("New role", "دور جديد", "Yeni rol")}
             </button>
           )}
+          {featureGated && (
+            <span
+              title={tr(
+                "Upgrade to enable",
+                "قم بالترقية للتفعيل",
+                "Etkinleştirmek için yükseltin"
+              )}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg text-xs font-semibold opacity-50 cursor-not-allowed"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              {tr("New role", "دور جديد", "Yeni rol")}
+            </span>
+          )}
         </div>
+
+        {/* Sprint 14ac — feature-gated upgrade card */}
+        {featureGated && (
+          <UpgradeCard
+            feature={getFeatureDef("rbac")}
+            locale={locale}
+            variant="inline"
+            targetPlan="business"
+          />
+        )}
 
         {/* Banners */}
         {success && (
-          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-300">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{success}</span>
           </div>
@@ -199,8 +233,8 @@ export default function RolesPage() {
             <span>{error}</span>
           </div>
         )}
-        {!canEdit && !loading && (
-          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 flex items-start gap-2 text-sm text-amber-900">
+        {!canEdit && !loading && !featureGated && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 flex items-start gap-2 text-sm text-amber-300">
             <Lock className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>
               {tr(
@@ -678,7 +712,7 @@ function RoleForm({
                         allSelected
                           ? "bg-sky-500 text-white border-sky-500"
                           : someSelected
-                          ? "bg-amber-500/10 text-amber-800 border-amber-500/30 hover:bg-amber-100"
+                          ? "bg-amber-500/15 text-amber-300 border-amber-500/30 hover:bg-amber-500/25"
                           : "bg-card text-muted-foreground border-border hover:bg-muted"
                       }`}
                     >

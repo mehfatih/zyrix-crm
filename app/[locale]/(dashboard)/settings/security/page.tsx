@@ -8,6 +8,7 @@ import {
   ShieldOff,
   Loader2,
   Check,
+  ChevronRight,
   Copy,
   Download,
   RefreshCw,
@@ -233,22 +234,24 @@ export default function SecuritySettingsPage() {
               </div>
             </div>
 
-            {/* Helpful link to audit log */}
+            {/* Helpful link to audit log — sprint 14ac: amber-tinted dark gradient */}
             <a
               href={`/${locale}/settings/audit`}
-              className="block rounded-xl border border-border bg-gradient-to-r from-sky-50 to-sky-50 p-4 hover:border-sky-300 transition-colors"
+              className="block rounded-xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-orange-500/8 p-5 hover:border-amber-500/40 transition-colors"
             >
-              <div className="flex items-center gap-3">
-                <Key className="w-5 h-5 text-cyan-300 flex-shrink-0" />
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+                  <Key className="w-5 h-5 text-amber-300" />
+                </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-foreground">
+                  <h3 className="text-base font-semibold text-foreground">
                     {t(
                       "Review recent activity",
                       "راجع النشاط الأخير",
                       "Son etkinliği inceleyin"
                     )}
                   </h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">
+                  <p className="text-sm text-muted-foreground mt-0.5">
                     {t(
                       "See a full timeline of security events and changes on your account.",
                       "اطّلع على سجل زمني كامل للأحداث الأمنية والتغييرات على حسابك.",
@@ -256,6 +259,11 @@ export default function SecuritySettingsPage() {
                     )}
                   </p>
                 </div>
+                <ChevronRight
+                  className={`w-4 h-4 text-amber-300 flex-shrink-0 ${
+                    isRtl ? "-scale-x-100" : ""
+                  }`}
+                />
               </div>
             </a>
           </>

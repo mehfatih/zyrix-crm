@@ -9,11 +9,17 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Bot,
+  ClipboardList,
   FileText,
+  Globe,
   Headphones,
+  Image as ImageIcon,
+  Mail,
   MessageCircle,
+  Palette,
   Receipt,
   Send,
+  ShieldCheck,
   Sparkles,
   Zap,
 } from "lucide-react";
@@ -373,6 +379,231 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     accentColor: "amber",
     upgradeTier: "business",
     targetPlan: "business",
+  },
+
+  rbac: {
+    id: "rbac",
+    name: {
+      en: "Roles & Permissions",
+      ar: "الأدوار والصلاحيات",
+      tr: "Roller ve İzinler",
+    },
+    shortPitch: {
+      en: "Define exactly who on your team can see and do what across your Zyrix workspace.",
+      ar: "حدد بدقة من في فريقك يمكنه رؤية وفعل ماذا عبر مساحة عمل Zyrix.",
+      tr: "Ekibinizdeki kimin Zyrix çalışma alanınızda neyi görebileceğini ve yapabileceğini tam olarak tanımlayın.",
+    },
+    bullets: [
+      {
+        en: "Built-in roles: Owner, Admin, Manager, Sales, Read-only",
+        ar: "أدوار مدمجة: مالك، مشرف، مدير، مبيعات، قراءة فقط",
+        tr: "Hazır roller: Sahip, Yönetici, Müdür, Satış, Salt okunur",
+      },
+      {
+        en: "Custom roles with granular permissions per resource",
+        ar: "أدوار مخصصة بصلاحيات دقيقة لكل مورد",
+        tr: "Kaynak başına ayrıntılı izinlerle özel roller",
+      },
+      {
+        en: "Per-customer and per-deal access scoping",
+        ar: "تحديد نطاق الوصول لكل عميل وكل صفقة",
+        tr: "Müşteri ve anlaşma bazında erişim kapsamı",
+      },
+      {
+        en: "Role-based dashboard and report access",
+        ar: "وصول للوحات والتقارير حسب الدور",
+        tr: "Role dayalı panel ve rapor erişimi",
+      },
+      {
+        en: "Audit trail of permission changes",
+        ar: "سجل تتبع لتغييرات الصلاحيات",
+        tr: "İzin değişiklikleri için denetim izi",
+      },
+    ],
+    icon: ShieldCheck,
+    accentColor: "indigo",
+    upgradeTier: "business",
+    targetPlan: "business",
+  },
+
+  audit_advanced: {
+    id: "audit_advanced",
+    name: {
+      en: "Audit Log",
+      ar: "سجل المراجعة",
+      tr: "Denetim Günlüğü",
+    },
+    shortPitch: {
+      en: "Full timeline of every security event and change in your account — who did what, when, and from where.",
+      ar: "جدول زمني كامل لكل حدث أمني وتغيير في حسابك — من فعل ماذا، ومتى، ومن أين.",
+      tr: "Hesabınızdaki her güvenlik olayının ve değişikliğin tam zaman çizelgesi — kim ne yaptı, ne zaman ve nereden.",
+    },
+    bullets: [
+      {
+        en: "Login attempts (success, failure, IP, location)",
+        ar: "محاولات تسجيل الدخول (نجاح، فشل، IP، الموقع)",
+        tr: "Giriş denemeleri (başarı, başarısızlık, IP, konum)",
+      },
+      {
+        en: "Permission and role changes",
+        ar: "تغييرات الصلاحيات والأدوار",
+        tr: "İzin ve rol değişiklikleri",
+      },
+      {
+        en: "Data exports and bulk operations",
+        ar: "تصدير البيانات والعمليات المجمعة",
+        tr: "Veri dışa aktarma ve toplu işlemler",
+      },
+      {
+        en: "API key and webhook activity",
+        ar: "نشاط مفاتيح API وWebhook",
+        tr: "API anahtarı ve webhook etkinliği",
+      },
+      {
+        en: "Export to CSV / JSON for compliance",
+        ar: "تصدير إلى CSV / JSON للامتثال",
+        tr: "Uyumluluk için CSV / JSON dışa aktarımı",
+      },
+    ],
+    icon: ClipboardList,
+    accentColor: "cyan",
+    upgradeTier: "business",
+    targetPlan: "business",
+  },
+
+  custom_branding: {
+    id: "custom_branding",
+    name: {
+      en: "Custom Branding",
+      ar: "العلامة التجارية المخصصة",
+      tr: "Özel Marka",
+    },
+    shortPitch: {
+      en: "Replace the Zyrix logo and favicon with your own. Make the platform feel like your product.",
+      ar: "استبدل شعار Zyrix والأيقونة بشعارك الخاص. اجعل المنصة تبدو كمنتجك.",
+      tr: "Zyrix logosunu ve favicon'u kendi logonuzla değiştirin. Platform sizin ürününüz gibi hissetsin.",
+    },
+    bullets: [
+      {
+        en: "Upload your own logo (light + dark variants)",
+        ar: "ارفع شعارك الخاص (نسختين فاتحة + داكنة)",
+        tr: "Kendi logonuzu yükleyin (açık + koyu varyantlar)",
+      },
+      {
+        en: "Custom favicon for browser tabs",
+        ar: "أيقونة مخصصة لعلامات تبويب المتصفح",
+        tr: "Tarayıcı sekmeleri için özel favicon",
+      },
+      {
+        en: "Branded login screens for your team",
+        ar: "شاشات تسجيل دخول بعلامتك التجارية لفريقك",
+        tr: "Ekibiniz için markalı giriş ekranları",
+      },
+      {
+        en: "Email templates carry your logo automatically",
+        ar: "قوالب البريد الإلكتروني تحمل شعارك تلقائيًا",
+        tr: "E-posta şablonları otomatik olarak logonuzu taşır",
+      },
+      {
+        en: "PDF exports (quotes, invoices) use your branding",
+        ar: "تصدير PDF (عروض، فواتير) باستخدام علامتك",
+        tr: "PDF dışa aktarımları (teklif, fatura) markanızı kullanır",
+      },
+    ],
+    icon: Palette,
+    accentColor: "violet",
+    upgradeTier: "business",
+    targetPlan: "business",
+  },
+
+  custom_email_sender: {
+    id: "custom_email_sender",
+    name: {
+      en: "Custom Email Sender",
+      ar: "مرسل البريد المخصص",
+      tr: "Özel E-posta Gönderici",
+    },
+    shortPitch: {
+      en: "Send emails from your own domain (you@your-company.com) with full SPF + DKIM authentication so messages land in the inbox, not spam.",
+      ar: "أرسل البريد من دومينك الخاص (you@your-company.com) مع مصادقة SPF + DKIM كاملة ليصل البريد إلى البريد الوارد لا السبام.",
+      tr: "Tam SPF + DKIM doğrulamasıyla kendi alan adınızdan e-posta gönderin (you@your-company.com) — mesajlar gelen kutusuna düşer, spam'e değil.",
+    },
+    bullets: [
+      {
+        en: "Send from you@your-company.com instead of @zyrix",
+        ar: "أرسل من you@your-company.com بدلًا من @zyrix",
+        tr: "@zyrix yerine you@your-company.com'dan gönderin",
+      },
+      {
+        en: "Full SPF + DKIM authentication setup",
+        ar: "إعداد مصادقة SPF + DKIM كاملة",
+        tr: "Tam SPF + DKIM doğrulama kurulumu",
+      },
+      {
+        en: "Higher deliverability — fewer spam folder hits",
+        ar: "قابلية تسليم أعلى — وصول أقل لمجلد السبام",
+        tr: "Daha yüksek teslim oranı — daha az spam klasörü",
+      },
+      {
+        en: "Reply-to address points to your inbox",
+        ar: "عنوان الرد على البريد يشير إلى صندوق بريدك",
+        tr: "Yanıt adresi gelen kutunuza yönlendirir",
+      },
+      {
+        en: "Per-team-member sender configuration",
+        ar: "تكوين المرسل لكل عضو في الفريق",
+        tr: "Ekip üyesi başına gönderici yapılandırması",
+      },
+    ],
+    icon: Mail,
+    accentColor: "rose",
+    upgradeTier: "business",
+    targetPlan: "business",
+  },
+
+  custom_domain: {
+    id: "custom_domain",
+    name: {
+      en: "Custom Domain",
+      ar: "الدومين المخصص",
+      tr: "Özel Alan Adı",
+    },
+    shortPitch: {
+      en: "Run your Zyrix workspace on your own domain (crm.your-company.com) for a fully white-labeled experience.",
+      ar: "شغّل مساحة عمل Zyrix على دومينك الخاص (crm.your-company.com) لتجربة بعلامة بيضاء كاملة.",
+      tr: "Zyrix çalışma alanınızı kendi alan adınızda (crm.your-company.com) çalıştırın — tam beyaz etiketli deneyim.",
+    },
+    bullets: [
+      {
+        en: "Vanity domain (crm.your-company.com)",
+        ar: "دومين مخصص (crm.your-company.com)",
+        tr: "Özel alan adı (crm.your-company.com)",
+      },
+      {
+        en: "Auto-managed SSL certificate (Let's Encrypt)",
+        ar: "شهادة SSL مُدارة تلقائيًا (Let's Encrypt)",
+        tr: "Otomatik yönetilen SSL sertifikası (Let's Encrypt)",
+      },
+      {
+        en: "DNS verification with TXT challenge",
+        ar: "تحقق DNS عبر تحدي TXT",
+        tr: "TXT sorgusu ile DNS doğrulaması",
+      },
+      {
+        en: "Customer portal on your subdomain",
+        ar: "بوابة العملاء على نطاقك الفرعي",
+        tr: "Alt alan adınızda müşteri portalı",
+      },
+      {
+        en: "No 'powered by Zyrix' references for end users",
+        ar: "لا إشارات 'powered by Zyrix' للمستخدمين النهائيين",
+        tr: "Son kullanıcılara 'Zyrix tarafından' atıfları yok",
+      },
+    ],
+    icon: Globe,
+    accentColor: "fuchsia",
+    upgradeTier: "enterprise",
+    targetPlan: "enterprise",
   },
 };
 
