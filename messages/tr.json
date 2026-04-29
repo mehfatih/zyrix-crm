@@ -895,6 +895,41 @@
     "everythingInBusiness": "İşletme plandaki her şey, artı:",
     "loadError": "Planlar yüklenemedi. Lütfen yenileyin.",
     "loading": "Planlar yükleniyor…",
+    "trust": {
+      "businesses": {
+        "value": "50+",
+        "label": "MENA ve Türkiye'de işletmeler"
+      },
+      "countries": {
+        "value": "7",
+        "label": "Hizmet verilen ülke"
+      },
+      "messages": {
+        "value": "100K+",
+        "label": "İşlenen WhatsApp mesajı"
+      },
+      "uptime": {
+        "value": "%99.9",
+        "label": "Çalışma süresi SLA'sı"
+      }
+    },
+    "integrations": {
+      "title": "Halihazırda kullandığınız araçlarla uyumlu çalışır"
+    },
+    "testimonials": {
+      "eyebrow": "KURUCULAR NE DİYOR",
+      "title": "Kurucular tarafından, kurucular için",
+      "founderBadge": "KURUCU"
+    },
+    "finalCta": {
+      "title": "Zyrix ile büyümeye hazır mısınız?",
+      "subtitle": "60 saniyede ücretsiz başlayın. Kredi kartı gerekmez. İstediğiniz zaman iptal edin.",
+      "startFree": "Ücretsiz başla",
+      "talkToSales": "Satışla konuş",
+      "guarantee1": "30 gün para iade garantisi",
+      "guarantee2": "Başlamak için kredi kartı gerekmez",
+      "guarantee3": "İstediğin zaman iptal et"
+    },
     "comparison": {
       "eyebrow": "PLANLARI KARŞILAŞTIR",
       "title": "Tüm özellikler, yan yana",

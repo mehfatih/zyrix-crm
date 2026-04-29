@@ -895,6 +895,41 @@
     "everythingInBusiness": "Everything in Business, plus:",
     "loadError": "Failed to load plans. Please refresh.",
     "loading": "Loading plans…",
+    "trust": {
+      "businesses": {
+        "value": "50+",
+        "label": "Businesses across MENA & Türkiye"
+      },
+      "countries": {
+        "value": "7",
+        "label": "Countries served"
+      },
+      "messages": {
+        "value": "100K+",
+        "label": "WhatsApp messages handled"
+      },
+      "uptime": {
+        "value": "99.9%",
+        "label": "Uptime SLA"
+      }
+    },
+    "integrations": {
+      "title": "Plays well with the tools you already use"
+    },
+    "testimonials": {
+      "eyebrow": "WHAT BUILDERS SAY",
+      "title": "Built by builders, for builders",
+      "founderBadge": "FOUNDER"
+    },
+    "finalCta": {
+      "title": "Ready to grow with Zyrix?",
+      "subtitle": "Start free in 60 seconds. No credit card required. Cancel anytime.",
+      "startFree": "Start free",
+      "talkToSales": "Talk to sales",
+      "guarantee1": "30-day money-back guarantee",
+      "guarantee2": "No credit card to start",
+      "guarantee3": "Cancel anytime"
+    },
     "comparison": {
       "eyebrow": "COMPARE PLANS",
       "title": "Every feature, side by side",
