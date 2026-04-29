@@ -1887,7 +1887,20 @@
     },
     "empty": {
       "title": "All caught up!",
-      "subtitle": "Every customer has been contacted recently. Great work."
+      "subtitle": "Every customer has been contacted recently. Great work.",
+      "contactedLast7d": "{count} customers contacted in the last 7 days",
+      "avgResponseHours": "Average response time: {hours} hrs"
+    },
+    "trend": {
+      "title": "30-Day Trend",
+      "subtitle": "Daily count of customers entering each follow-up status.",
+      "chartType": {
+        "line": "Line",
+        "area": "Area",
+        "bar": "Bar"
+      },
+      "empty": "No follow-up activity in the last 30 days.",
+      "insetTitle": "Value at Risk"
     },
     "groups": {
       "critical": "Critical — needs immediate attention",

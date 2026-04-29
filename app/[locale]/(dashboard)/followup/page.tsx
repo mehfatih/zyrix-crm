@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
@@ -8,8 +8,6 @@ import {
   Loader2,
   AlertTriangle,
   Clock,
-  CheckCircle2,
-  Sparkles,
   Settings2,
   Phone,
   Mail,
@@ -20,7 +18,6 @@ import {
   DollarSign,
   UserCheck,
   Calendar,
-  Users,
 } from "lucide-react";
 import {
   fetchFollowupSettings,
@@ -33,6 +30,10 @@ import {
   type StaleResponse,
 } from "@/lib/api/followup";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import { FollowupKPIRow } from "@/components/followup/FollowupKPIRow";
+import { FollowupAllCaughtUp } from "@/components/followup/FollowupAllCaughtUp";
+import { FollowupTrendChart } from "@/components/followup/FollowupTrendChart";
+import { generate30DayTrend } from "@/lib/followup/mock-trend";
 
 // ============================================================================
 // SMART FOLLOW-UP PAGE
@@ -51,6 +52,9 @@ export default function FollowupPage() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [taskLoadingId, setTaskLoadingId] = useState<string | null>(null);
   const [bulkLoading, setBulkLoading] = useState(false);
+
+  // Sprint 14x — mock 30-day trend (deterministic). Backend wiring is a future sprint.
+  const trendData = useMemo(() => generate30DayTrend(1), []);
 
   const load = async () => {
     setLoading(true);
@@ -166,45 +170,24 @@ export default function FollowupPage() {
           </div>
         ) : !stale ? null : (
           <>
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <StatCard
-                icon={Users}
-                label={t("stats.totalStale")}
-                value={stale.stats.totalStale}
-                color="cyan"
-              />
-              <StatCard
-                icon={AlertTriangle}
-                label={t("stats.critical")}
-                value={stale.stats.criticalCount}
-                color="red"
-              />
-              <StatCard
-                icon={Clock}
-                label={t("stats.warning")}
-                value={stale.stats.warningCount}
-                color="amber"
-              />
-              <StatCard
-                icon={DollarSign}
-                label={t("stats.valueAtRisk")}
-                value={formatMoneyShort(stale.stats.openDealValue)}
-                color="emerald"
-              />
-            </div>
+            {/* Stats — sprint 14x: 4 distinct hues */}
+            <FollowupKPIRow
+              totalStale={stale.stats.totalStale}
+              critical={stale.stats.criticalCount}
+              warning={stale.stats.warningCount}
+              valueAtRisk={stale.stats.openDealValue}
+              formatMoney={formatMoneyShort}
+            />
 
-            {/* Empty state */}
+            {/* Sprint 14x — 30-day trend pivot chart */}
+            <FollowupTrendChart data={trendData} formatMoney={formatMoneyShort} />
+
+            {/* Empty state — sprint 14x: emerald-tinted gradient */}
             {stale.stats.totalStale === 0 && (
-              <div className="bg-gradient-to-r from-emerald-50 to-sky-50 border border-emerald-500/30 rounded-xl p-8 text-center">
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-emerald-900">
-                  {t("empty.title")}
-                </h3>
-                <p className="text-sm text-emerald-300 mt-1">
-                  {t("empty.subtitle")}
-                </p>
-              </div>
+              <FollowupAllCaughtUp
+                contactedLast7d={12}
+                avgResponseHours={2.3}
+              />
             )}
 
             {/* Critical */}
@@ -562,37 +545,6 @@ function SettingsModal({
 // ============================================================================
 // Helpers
 // ============================================================================
-function StatCard({
-  icon: Icon,
-  label,
-  value,
-  color,
-}: {
-  icon: typeof Bell;
-  label: string;
-  value: string | number;
-  color: "cyan" | "red" | "amber" | "emerald";
-}) {
-  const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-muted", iconText: "text-cyan-300" },
-    red: { iconBg: "bg-rose-500/10", iconText: "text-rose-300" },
-    amber: { iconBg: "bg-amber-500/10", iconText: "text-amber-300" },
-    emerald: { iconBg: "bg-emerald-500/10", iconText: "text-emerald-300" },
-  };
-  const c = colors[color];
-  return (
-    <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
-      <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
-        <Icon className="w-5 h-5" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="text-xs text-muted-foreground truncate">{label}</div>
-        <div className="text-lg font-bold text-foreground truncate">{value}</div>
-      </div>
-    </div>
-  );
-}
-
 function formatMoneyShort(n: number): string {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
