@@ -21,7 +21,6 @@ import {
   Lock,
   Eye,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import { useAuth } from "@/lib/auth/context";
 import {
   getBrandSettings,
@@ -247,16 +246,16 @@ export default function BrandingSettingsPage() {
 
   if (loading) {
     return (
-      <DashboardShell locale={locale}>
+      <>
         <div className="flex items-center justify-center py-16">
           <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
         </div>
-      </DashboardShell>
+      </>
     );
   }
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div
         className="p-6 max-w-3xl mx-auto space-y-5"
         dir={isRtl ? "rtl" : "ltr"}
@@ -578,7 +577,7 @@ export default function BrandingSettingsPage() {
           ) : null}
         </SectionCard>
       </div>
-    </DashboardShell>
+    </>
   );
 }
 

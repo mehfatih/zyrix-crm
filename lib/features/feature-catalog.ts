@@ -30,6 +30,11 @@ export type AccentColor =
 
 export type UpgradeTier = "pro" | "business" | "enterprise";
 
+// Sprint 14z — planId the upgrade flow lands on for this feature.
+// Mirrors the canonical PlanId type but kept as a string here to avoid
+// a runtime cycle between the feature catalog and the billing module.
+export type FeatureTargetPlan = "starter" | "business" | "scale";
+
 export interface FeatureDef {
   id: string;
   name: { en: string; ar: string; tr: string };
@@ -38,6 +43,7 @@ export interface FeatureDef {
   icon: LucideIcon;
   accentColor: AccentColor;
   upgradeTier: UpgradeTier;
+  targetPlan: FeatureTargetPlan;
 }
 
 export const FEATURE_CATALOG: Record<string, FeatureDef> = {
@@ -79,6 +85,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: Zap,
     accentColor: "cyan",
     upgradeTier: "pro",
+    targetPlan: "business",
   },
 
   ai_agents: {
@@ -119,6 +126,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: Bot,
     accentColor: "violet",
     upgradeTier: "business",
+    targetPlan: "scale",
   },
 
   ai_cfo: {
@@ -159,6 +167,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: Sparkles,
     accentColor: "fuchsia",
     upgradeTier: "business",
+    targetPlan: "business",
   },
 
   team_chat: {
@@ -199,6 +208,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: MessageCircle,
     accentColor: "sky",
     upgradeTier: "pro",
+    targetPlan: "starter",
   },
 
   email_marketing: {
@@ -239,6 +249,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: Send,
     accentColor: "rose",
     upgradeTier: "pro",
+    targetPlan: "starter",
   },
 
   whatsapp_crm: {
@@ -279,6 +290,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: MessageCircle,
     accentColor: "emerald",
     upgradeTier: "pro",
+    targetPlan: "business",
   },
 
   customer_portal: {
@@ -319,6 +331,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: Headphones,
     accentColor: "indigo",
     upgradeTier: "business",
+    targetPlan: "business",
   },
 
   tax_engine: {
@@ -359,6 +372,7 @@ export const FEATURE_CATALOG: Record<string, FeatureDef> = {
     icon: Receipt,
     accentColor: "amber",
     upgradeTier: "business",
+    targetPlan: "business",
   },
 };
 
@@ -400,6 +414,7 @@ export const GENERIC_FEATURE: FeatureDef = {
   icon: FileText,
   accentColor: "cyan",
   upgradeTier: "pro",
+  targetPlan: "starter",
 };
 
 export function getFeatureDef(id: string | null | undefined): FeatureDef {

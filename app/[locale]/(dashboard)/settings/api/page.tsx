@@ -20,7 +20,6 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import { useAuth } from "@/lib/auth/context";
 import {
   listApiKeys,
@@ -101,7 +100,7 @@ export default function ApiKeysPage() {
   const revoked = keys.filter((k) => k.revokedAt);
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div
         className="p-6 max-w-4xl mx-auto space-y-5"
         dir={isRtl ? "rtl" : "ltr"}
@@ -322,7 +321,7 @@ export default function ApiKeysPage() {
           onClose={() => setNewlyCreated(null)}
         />
       )}
-    </DashboardShell>
+    </>
   );
 }
 

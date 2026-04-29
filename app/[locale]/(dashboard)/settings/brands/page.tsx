@@ -20,7 +20,6 @@ import {
   CheckCircle2,
   Archive,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import {
   listBrands,
   getBrandStats,
@@ -146,7 +145,7 @@ export default function BrandsPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div
         className="p-6 max-w-4xl mx-auto space-y-5"
         dir={isRtl ? "rtl" : "ltr"}
@@ -268,7 +267,7 @@ export default function BrandsPage() {
           </>
         )}
       </div>
-    </DashboardShell>
+    </>
   );
 }
 

@@ -21,7 +21,6 @@ import {
   Check,
   Search,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import { useAuth } from "@/lib/auth/context";
 import {
   listRoles,
@@ -143,7 +142,7 @@ export default function RolesPage() {
   const customRoles = roles.filter((r) => !r.isSystem);
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div
         className="p-6 max-w-4xl mx-auto space-y-5"
         dir={isRtl ? "rtl" : "ltr"}
@@ -321,7 +320,7 @@ export default function RolesPage() {
           </>
         )}
       </div>
-    </DashboardShell>
+    </>
   );
 }
 

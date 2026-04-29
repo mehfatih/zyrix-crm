@@ -6,18 +6,16 @@ import {
   CreditCard,
   Loader2,
   Check,
-  X,
   AlertTriangle,
   Calendar,
   Zap,
   Crown,
   Sparkles,
-  RefreshCw,
   Receipt,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
+import Link from "next/link";
 import { useAuth } from "@/lib/auth/context";
 import {
   listBillingPlans,
@@ -25,12 +23,21 @@ import {
   listInvoices,
   cancelSubscription,
   resumeSubscription,
-  createCheckoutSession,
   type BillingPlan,
   type CurrentBilling,
   type Invoice,
   type InvoicePage,
 } from "@/lib/api/advanced";
+import { useDisplayCurrency } from "@/hooks/useDisplayCurrency";
+import {
+  PLAN_PRICES_USD,
+  isPlanId,
+  type BillingPeriod,
+  type PlanId,
+} from "@/lib/billing/currency";
+import { buildCheckoutUrl } from "@/lib/billing/checkout-url";
+import { CurrencySwitcher } from "@/components/billing/CurrencySwitcher";
+import { PlanPriceTag } from "@/components/billing/PlanPriceTag";
 
 // ============================================================================
 // SETTINGS → BILLING
@@ -66,17 +73,13 @@ export default function BillingPage() {
   const [invoiceOffset, setInvoiceOffset] = useState(0);
   const [cycle, setCycle] = useState<"monthly" | "yearly">("monthly");
   const [error, setError] = useState<string | null>(null);
-  const [actingPlan, setActingPlan] = useState<string | null>(null);
   const [cancelLoading, setCancelLoading] = useState(false);
 
-  // Resolve currency: use company.baseCurrency if set, else fall back to USD.
-  // Plan pricing only exists for USD/TRY/SAR — for everything else we show
-  // USD pricing (it's a universal fallback that every region understands).
-  const resolvedCurrency: "USD" | "TRY" | "SAR" | "AED" = (() => {
-    const c = billing?.company.baseCurrency?.toUpperCase();
-    if (c === "TRY" || c === "SAR" || c === "AED") return c;
-    return "USD";
-  })();
+  // Sprint 14z — global currency engine. USD is canonical price source,
+  // displayed in the user's local currency via FX rates. Falls back to
+  // backend prices only for plan slugs not in PLAN_PRICES_USD (e.g.
+  // enterprise / custom plans).
+  const { currency: displayCurrency } = useDisplayCurrency();
 
   // Name + description picker by locale
   const nameForPlan = (plan: BillingPlan): string =>
@@ -89,24 +92,14 @@ export default function BillingPage() {
         : plan.description) ||
     "";
 
-  // Price picker by currency + cycle. Schema stores USD/TRY/SAR directly;
-  // AED shares USD pricing for now (the backend's payment.service maps
-  // AED → USD columns).
-  const priceForPlan = (plan: BillingPlan, cyc: "monthly" | "yearly"): number => {
-    const c = resolvedCurrency;
-    const key =
-      c === "TRY"
-        ? cyc === "monthly"
-          ? plan.priceMonthlyTry
-          : plan.priceYearlyTry
-        : c === "SAR"
-          ? cyc === "monthly"
-            ? plan.priceMonthlySar
-            : plan.priceYearlySar
-          : cyc === "monthly"
-            ? plan.priceMonthlyUsd
-            : plan.priceYearlyUsd;
-    return parseFloat(key) || 0;
+  // Look up USD price for a plan slug. Returns null when slug isn't in
+  // PLAN_PRICES_USD — caller falls back to backend pricing.
+  const usdPriceFor = (
+    plan: BillingPlan,
+    cyc: BillingPeriod,
+  ): number | null => {
+    if (!isPlanId(plan.slug)) return null;
+    return PLAN_PRICES_USD[plan.slug as PlanId][cyc];
   };
 
   const load = async () => {
@@ -132,27 +125,6 @@ export default function BillingPage() {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invoiceOffset]);
-
-  const handleUpgrade = async (plan: BillingPlan) => {
-    if (!user || !billing) return;
-    setActingPlan(plan.slug);
-    try {
-      const appOrigin = window.location.origin;
-      const session = await createCheckoutSession({
-        companyId: billing.company.id,
-        planSlug: plan.slug,
-        billingCycle: cycle,
-        currency: resolvedCurrency,
-        buyerCountry: undefined,
-        successUrl: `${appOrigin}/${locale}/checkout/success`,
-        cancelUrl: `${appOrigin}/${locale}/checkout/cancel`,
-      });
-      window.location.href = session.redirectUrl;
-    } catch (e: any) {
-      alert(e?.response?.data?.error?.message || e?.message || "Checkout failed");
-      setActingPlan(null);
-    }
-  };
 
   const handleCancel = async () => {
     if (!billing?.subscription) return;
@@ -192,11 +164,11 @@ export default function BillingPage() {
 
   if (loading) {
     return (
-      <DashboardShell locale={locale}>
+      <>
         <div className="flex items-center justify-center py-24">
           <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
         </div>
-      </DashboardShell>
+      </>
     );
   }
 
@@ -205,7 +177,7 @@ export default function BillingPage() {
   const scheduledToCancel = sub?.cancelAt && !sub.cancelledAt;
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 max-w-5xl mx-auto space-y-6" dir={isRtl ? "rtl" : "ltr"}>
         {/* Header */}
         <div className="flex items-center gap-3">
@@ -399,6 +371,9 @@ export default function BillingPage() {
             </div>
           </div>
 
+          {/* Sprint 14z — currency switcher (display only; backend may charge in its own currency) */}
+          <CurrencySwitcher />
+
           {plans.length === 0 ? (
             <div className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground text-center">
               {tr(
@@ -411,7 +386,9 @@ export default function BillingPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {plans.map((plan) => {
                 const isCurrent = plan.slug === currentPlanSlug;
-                const price = priceForPlan(plan, cycle);
+                const usdPrice = usdPriceFor(plan, cycle);
+                const isFree = plan.slug === "free";
+                const knownPlan = isPlanId(plan.slug);
                 return (
                   <div
                     key={plan.id}
@@ -449,21 +426,16 @@ export default function BillingPage() {
                       {descriptionForPlan(plan) || " "}
                     </p>
                     <div className="mt-3">
-                      <span
-                        className="text-2xl font-bold text-foreground tabular-nums"
-                        dir="ltr"
-                      >
-                        {price === 0
-                          ? tr("Free", "مجاني", "Ücretsiz")
-                          : `${price} ${resolvedCurrency}`}
-                      </span>
-                      {price > 0 && (
-                        <span className="text-xs text-muted-foreground">
-                          {" "}
-                          /{" "}
-                          {cycle === "yearly"
-                            ? tr("year", "سنة", "yıl")
-                            : tr("month", "شهر", "ay")}
+                      {usdPrice !== null ? (
+                        <PlanPriceTag
+                          usdAmount={usdPrice}
+                          currency={displayCurrency}
+                          period={cycle}
+                          size="lg"
+                        />
+                      ) : (
+                        <span className="text-2xl font-bold text-foreground">
+                          {tr("Custom", "حسب الطلب", "Özel")}
                         </span>
                       )}
                     </div>
@@ -475,26 +447,36 @@ export default function BillingPage() {
                         </li>
                       ))}
                     </ul>
-                    <button
-                      onClick={() => handleUpgrade(plan)}
-                      disabled={
-                        isCurrent || !canManage || actingPlan !== null
-                      }
-                      className={`w-full mt-4 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors ${
-                        isCurrent
-                          ? "bg-muted text-muted-foreground cursor-not-allowed"
-                          : "bg-primary hover:bg-primary/90 text-primary-foreground disabled:opacity-50"
-                      }`}
-                    >
-                      {actingPlan === plan.slug && (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      )}
-                      {isCurrent
-                        ? tr("Current plan", "الخطة الحالية", "Mevcut plan")
-                        : price === 0
-                          ? tr("Downgrade", "التخفيض", "Düşür")
-                          : tr("Upgrade", "ترقية", "Yükselt")}
-                    </button>
+                    {isCurrent || isFree || !knownPlan || !canManage ? (
+                      <button
+                        disabled
+                        className={`w-full mt-4 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 ${
+                          isCurrent
+                            ? "bg-muted text-muted-foreground cursor-not-allowed"
+                            : "bg-muted text-muted-foreground cursor-not-allowed opacity-60"
+                        }`}
+                      >
+                        {isCurrent
+                          ? tr("Current plan", "الخطة الحالية", "Mevcut plan")
+                          : isFree
+                            ? tr("Free", "مجاني", "Ücretsiz")
+                            : !knownPlan
+                              ? tr("Contact us", "تواصل معنا", "Bize ulaşın")
+                              : tr("Upgrade", "ترقية", "Yükselt")}
+                      </button>
+                    ) : (
+                      <Link
+                        href={buildCheckoutUrl(
+                          locale,
+                          plan.slug as PlanId,
+                          cycle,
+                          displayCurrency,
+                        )}
+                        className="w-full mt-4 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors bg-primary hover:bg-primary/90 text-primary-foreground"
+                      >
+                        {tr("Upgrade", "ترقية", "Yükselt")}
+                      </Link>
+                    )}
                   </div>
                 );
               })}
@@ -585,7 +567,7 @@ export default function BillingPage() {
           )}
         </div>
       </div>
-    </DashboardShell>
+    </>
   );
 }
 

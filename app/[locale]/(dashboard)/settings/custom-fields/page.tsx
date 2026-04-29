@@ -30,7 +30,6 @@ import {
   type CustomField,
   type CreateFieldDto,
 } from "@/lib/api/advanced";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 
 // ============================================================================
 // CUSTOM FIELDS SETTINGS
@@ -91,7 +90,7 @@ export default function CustomFieldsPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 space-y-6 max-w-5xl mx-auto">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
@@ -231,7 +230,7 @@ export default function CustomFieldsPage() {
           t={t}
         />
       )}
-    </DashboardShell>
+    </>
   );
 }
 

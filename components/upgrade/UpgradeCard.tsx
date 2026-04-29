@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Check, Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { AccentColor, FeatureDef } from "@/lib/features/feature-catalog";
+import { buildCheckoutUrl } from "@/lib/billing/checkout-url";
+import type { PlanId } from "@/lib/billing/currency";
 
 // ────────────────────────────────────────────────────────────────────
 // Sprint 14y — UpgradeCard
@@ -138,6 +140,12 @@ interface Props {
   feature: FeatureDef;
   locale: "en" | "ar" | "tr";
   variant?: "inline" | "centered";
+  /**
+   * Sprint 14z — which plan the user lands on at /checkout. Defaults
+   * to the feature's targetPlan from the catalog (or "starter" if the
+   * feature def has no preference).
+   */
+  targetPlan?: PlanId;
   onUpgrade?: () => void;
   onBack?: () => void;
 }
@@ -146,6 +154,7 @@ export function UpgradeCard({
   feature,
   locale,
   variant = "inline",
+  targetPlan,
   onUpgrade,
   onBack,
 }: Props) {
@@ -154,10 +163,11 @@ export function UpgradeCard({
   const c = ACCENT_CLASSES[feature.accentColor];
   const Icon = feature.icon;
 
-  const handleUpgrade = () => {
-    if (onUpgrade) onUpgrade();
-    else router.push(`/${locale}/settings/billing`);
-  };
+  // Resolve target plan: explicit prop > feature catalog > "starter".
+  const plan: PlanId =
+    targetPlan ?? (feature.targetPlan as PlanId | undefined) ?? "starter";
+  const upgradeHref = buildCheckoutUrl(locale, plan, "monthly");
+
   const handleBack = () => {
     if (onBack) onBack();
     else router.push(`/${locale}/dashboard`);
@@ -204,13 +214,23 @@ export function UpgradeCard({
       </div>
 
       <div className="flex flex-wrap items-center gap-3 mt-6">
-        <button
-          onClick={handleUpgrade}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border font-semibold text-sm ${c.buttonBg} ${c.buttonHover} ${c.titleText} focus-visible:outline-none focus-visible:ring-2 ${c.buttonRing}`}
-        >
-          <Sparkles className="w-4 h-4" />
-          {t("unlockButton")}
-        </button>
+        {onUpgrade ? (
+          <button
+            onClick={onUpgrade}
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border font-semibold text-sm ${c.buttonBg} ${c.buttonHover} ${c.titleText} focus-visible:outline-none focus-visible:ring-2 ${c.buttonRing}`}
+          >
+            <Sparkles className="w-4 h-4" />
+            {t("unlockButton")}
+          </button>
+        ) : (
+          <Link
+            href={upgradeHref}
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border font-semibold text-sm ${c.buttonBg} ${c.buttonHover} ${c.titleText} focus-visible:outline-none focus-visible:ring-2 ${c.buttonRing}`}
+          >
+            <Sparkles className="w-4 h-4" />
+            {t("unlockButton")}
+          </Link>
+        )}
         <button
           onClick={handleBack}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-card text-foreground hover:bg-muted font-semibold text-sm"

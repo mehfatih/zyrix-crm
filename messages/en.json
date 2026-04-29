@@ -429,6 +429,7 @@
   "Settings": {
     "title": "Settings",
     "subtitle": "Manage your profile, company, and security preferences.",
+    "backToDashboard": "Dashboard",
     "tabs": {
       "profile": "Profile",
       "company": "Company",
@@ -4292,5 +4293,22 @@
     "backButton": "Back to dashboard",
     "alreadyPro": "Already on a higher plan?",
     "contactSupport": "Contact support"
+  },
+  "billing": {
+    "free": "Free",
+    "perMonth": "/ month",
+    "perYear": "/ year",
+    "upgrade": "Upgrade",
+    "currentPlan": "Current plan",
+    "currencySwitcher": {
+      "title": "Showing prices in:",
+      "auto": "(auto)",
+      "useAutoDetected": "Use my country's currency"
+    },
+    "period": {
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "yearlyBadge": "Save 20%"
+    }
   }
 }

@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cloud, FolderOpen, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { DashboardShell } from '@/components/layout/DashboardShell';
 import {
   googleDriveService,
   type DriveSyncStatus,
@@ -55,7 +54,7 @@ export default function IntegrationsPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 space-y-6">
         <header>
           <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
@@ -101,7 +100,7 @@ export default function IntegrationsPage() {
           )}
         </AnimatePresence>
       </div>
-    </DashboardShell>
+    </>
   );
 }
 

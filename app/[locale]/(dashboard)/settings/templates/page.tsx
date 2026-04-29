@@ -25,7 +25,6 @@ import {
   type EmailTemplate,
   type CreateTemplateDto,
 } from "@/lib/api/advanced";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 
 // ============================================================================
 // EMAIL TEMPLATES LIBRARY
@@ -110,7 +109,7 @@ export default function TemplatesPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
@@ -235,7 +234,7 @@ export default function TemplatesPage() {
           t={t}
         />
       )}
-    </DashboardShell>
+    </>
   );
 }
 

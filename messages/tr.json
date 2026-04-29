@@ -428,6 +428,7 @@
   },
   "Settings": {
     "title": "Ayarlar",
+    "backToDashboard": "Panel",
     "subtitle": "Profilinizi, şirketinizi ve güvenlik tercihlerinizi yönetin.",
     "tabs": {
       "profile": "Profil",
@@ -4292,5 +4293,22 @@
     "backButton": "Panele dön",
     "alreadyPro": "Daha üst bir planda mısınız?",
     "contactSupport": "Destek ile iletişime geç"
+  },
+  "billing": {
+    "free": "Ücretsiz",
+    "perMonth": "/ ay",
+    "perYear": "/ yıl",
+    "upgrade": "Yükselt",
+    "currentPlan": "Mevcut plan",
+    "currencySwitcher": {
+      "title": "Fiyatlar gösterimde:",
+      "auto": "(oto)",
+      "useAutoDetected": "Ülke para birimimi kullan"
+    },
+    "period": {
+      "monthly": "Aylık",
+      "yearly": "Yıllık",
+      "yearlyBadge": "%20 tasarruf"
+    }
   }
 }

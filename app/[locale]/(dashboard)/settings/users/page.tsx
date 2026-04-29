@@ -13,7 +13,6 @@ import {
   Shield,
   ChevronDown,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import { useAuth } from "@/lib/auth/context";
 import {
   listCompanyUsers,
@@ -127,7 +126,7 @@ export default function TeamUsersPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div
         className="p-6 max-w-4xl mx-auto space-y-5"
         dir={isRtl ? "rtl" : "ltr"}
@@ -222,7 +221,7 @@ export default function TeamUsersPage() {
           </div>
         )}
       </div>
-    </DashboardShell>
+    </>
   );
 }
 

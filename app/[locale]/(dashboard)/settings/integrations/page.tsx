@@ -36,7 +36,6 @@ import {
   type PlatformRegion,
   type ConnectEcommerceDto,
 } from "@/lib/api/advanced";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import WebhooksPanel from "@/components/settings/WebhooksPanel";
 import OAuthInstallPanel from "@/components/settings/OAuthInstallPanel";
 
@@ -127,7 +126,7 @@ export default function EcommerceIntegrationsPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 max-w-7xl mx-auto space-y-6">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
@@ -269,7 +268,7 @@ export default function EcommerceIntegrationsPage() {
           t={t}
         />
       )}
-    </DashboardShell>
+    </>
   );
 }
 
