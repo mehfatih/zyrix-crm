@@ -2,7 +2,19 @@
 
 import { Fragment, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Check, ChevronDown, Mail, Minus } from "lucide-react";
+import {
+  Check,
+  ChevronDown,
+  Globe2,
+  Mail,
+  MessageCircle,
+  Minus,
+  Quote,
+  ShieldCheck,
+  Sparkles,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { useDisplayCurrency } from "@/hooks/useDisplayCurrency";
 import { CurrencySwitcher } from "@/components/billing/CurrencySwitcher";
 import { PlanCatalogCard } from "@/components/billing/PlanCatalogCard";
@@ -13,14 +25,17 @@ import {
   type PlanFeature,
   type PlanFeatureCategory,
 } from "@/lib/billing/plan-catalog";
+import { INTEGRATION_LOGOS } from "@/lib/marketing/integration-logos";
+import { TESTIMONIALS, type Testimonial } from "@/lib/marketing/testimonials";
 import { cn } from "@/lib/utils";
 
 // ============================================================================
-// PUBLIC PRICING VIEW — sprint 14ag
+// PUBLIC PRICING VIEW — sprint 14ah
 // ----------------------------------------------------------------------------
-// Plan content reads from PLAN_CATALOG (lib/billing/plan-catalog.ts) — single
-// source of truth (Sprint 14af). This sprint adds the comparison table and
-// polishes the FAQ section.
+// 14af: plan catalog SSOT. 14ag: comparison table + FAQ. 14ah (THIS): trust
+// strip + integration logos + testimonials + final CTA.
+// Section order: Hero → Trust → Currency → Toggle → Plans → Logos →
+//                Comparison → Testimonials → FAQ → Final CTA.
 // ============================================================================
 
 type Billing = "monthly" | "yearly";
@@ -309,13 +324,242 @@ export default function PricingView({ locale }: { locale: string }) {
     </section>
   );
 
+  // ──────────────────────────────────────────────────────────────────
+  // Sprint 14ah — trust strip (just below the hero)
+  // ──────────────────────────────────────────────────────────────────
+  const trustSection = (
+    <section id="trust" className="px-4 -mt-2 mb-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="rounded-xl border border-border bg-card/40 backdrop-blur p-4 md:p-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
+            <TrustStat
+              icon={Users}
+              value={t("trust.businesses.value")}
+              label={t("trust.businesses.label")}
+            />
+            <TrustStat
+              icon={Globe2}
+              value={t("trust.countries.value")}
+              label={t("trust.countries.label")}
+            />
+            <TrustStat
+              icon={MessageCircle}
+              value={t("trust.messages.value")}
+              label={t("trust.messages.label")}
+            />
+            <TrustStat
+              icon={ShieldCheck}
+              value={t("trust.uptime.value")}
+              label={t("trust.uptime.label")}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
+  // ──────────────────────────────────────────────────────────────────
+  // Sprint 14ah — integration logos strip ("Plays well with…")
+  // ──────────────────────────────────────────────────────────────────
+  const logosSection = (
+    <section className="px-4 py-12">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-6">
+          <p className="text-muted-foreground text-sm font-medium">
+            {t("integrations.title")}
+          </p>
+        </div>
+        <div className="rounded-xl border border-border bg-card/40 p-6">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-6 items-center">
+            {INTEGRATION_LOGOS.map((logo) => {
+              const SvgComp = logo.svg;
+              return (
+                <div
+                  key={logo.name}
+                  title={logo.name}
+                  className="flex items-center justify-center text-muted-foreground/70 hover:text-muted-foreground transition-colors"
+                >
+                  {SvgComp ? (
+                    <SvgComp className="h-7 md:h-8 w-auto" />
+                  ) : (
+                    <span className="text-base md:text-lg font-semibold">
+                      {logo.name}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
+  // ──────────────────────────────────────────────────────────────────
+  // Sprint 14ah — testimonials (founder + 2 invitation placeholders)
+  // ──────────────────────────────────────────────────────────────────
+  const testimonialsSection = (
+    <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+      <div className="text-center mb-10">
+        <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">
+          {t("testimonials.eyebrow")}
+        </p>
+        <h2 className="text-foreground text-3xl md:text-4xl font-bold">
+          {t("testimonials.title")}
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {TESTIMONIALS.map((entry) => (
+          <TestimonialCard
+            key={entry.id}
+            testimonial={entry}
+            locale={userLocale}
+            founderBadgeLabel={t("testimonials.founderBadge")}
+          />
+        ))}
+      </div>
+    </section>
+  );
+
+  // ──────────────────────────────────────────────────────────────────
+  // Sprint 14ah — final CTA strip (page closer)
+  // ──────────────────────────────────────────────────────────────────
+  const finalCtaSection = (
+    <section id="cta" className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+      <div className="rounded-2xl border border-violet-500/30 bg-gradient-to-br from-violet-500/12 via-fuchsia-500/8 to-cyan-500/10 p-10 md:p-14 text-center relative overflow-hidden">
+        {/* Decorative glows */}
+        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-violet-500/15 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
+
+        <div className="relative">
+          <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-4">
+            {t("finalCta.title")}
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-2xl mx-auto">
+            {t("finalCta.subtitle")}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={`/${locale}/signup?plan=free`}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-violet-500 hover:bg-violet-600 text-white rounded-lg font-semibold text-base shadow-lg shadow-violet-500/20"
+            >
+              <Sparkles className="w-4 h-4" />
+              {t("finalCta.startFree")}
+            </a>
+            <a
+              href={`/${locale}/contact`}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-card border border-border hover:bg-muted text-foreground rounded-lg font-semibold text-base"
+            >
+              {t("finalCta.talkToSales")}
+            </a>
+          </div>
+          <div className="flex items-center justify-center gap-x-5 gap-y-2 mt-8 text-xs text-muted-foreground flex-wrap">
+            <span className="inline-flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-emerald-400" />
+              {t("finalCta.guarantee1")}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-emerald-400" />
+              {t("finalCta.guarantee2")}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-emerald-400" />
+              {t("finalCta.guarantee3")}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
   return (
     <div>
       {heroSection}
+      {trustSection}
       {controlsSection}
       {plansSection}
+      {logosSection}
       {comparisonSection}
+      {testimonialsSection}
       {faqSection}
+      {finalCtaSection}
+    </div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────────
+// TrustStat — sprint 14ah
+// ──────────────────────────────────────────────────────────────────
+function TrustStat({
+  icon: Icon,
+  value,
+  label,
+}: {
+  icon: LucideIcon;
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <Icon className="w-4 h-4 text-violet-300 mb-1" />
+      <span className="text-foreground text-2xl md:text-3xl font-bold tabular-nums">
+        {value}
+      </span>
+      <span className="text-muted-foreground text-xs">{label}</span>
+    </div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────────
+// TestimonialCard — sprint 14ah
+// ──────────────────────────────────────────────────────────────────
+function TestimonialCard({
+  testimonial,
+  locale,
+  founderBadgeLabel,
+}: {
+  testimonial: Testimonial;
+  locale: Locale;
+  founderBadgeLabel: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-xl border p-6 flex flex-col",
+        testimonial.isFounder
+          ? "border-violet-500/30 bg-gradient-to-br from-violet-500/10 via-violet-500/5 to-fuchsia-500/8"
+          : "border-border bg-card",
+      )}
+    >
+      <Quote className="w-6 h-6 text-violet-300/60 mb-3" />
+      <p className="text-foreground text-sm leading-relaxed flex-1">
+        {testimonial.quote[locale]}
+      </p>
+      <div className="flex items-center gap-3 mt-5 pt-5 border-t border-border/40">
+        <div
+          className={cn(
+            "w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0",
+            testimonial.isFounder
+              ? "bg-violet-500/20 text-violet-200 border border-violet-500/40"
+              : "bg-card border border-border text-muted-foreground",
+          )}
+        >
+          {testimonial.initials}
+        </div>
+        <div className="min-w-0">
+          <div className="text-foreground text-sm font-semibold truncate flex items-center gap-1.5">
+            {testimonial.name}
+            {testimonial.isFounder && (
+              <span className="text-[9px] font-bold uppercase tracking-wider text-violet-300">
+                {founderBadgeLabel}
+              </span>
+            )}
+          </div>
+          <div className="text-muted-foreground text-xs truncate">
+            {testimonial.role[locale]}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
