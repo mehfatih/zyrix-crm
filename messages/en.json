@@ -4311,5 +4311,40 @@
       "yearly": "Yearly",
       "yearlyBadge": "Save 20%"
     }
+  },
+  "Sidebar": {
+    "groups": {
+      "dailyOps": "Daily ops",
+      "crmCore": "CRM core",
+      "salesDocs": "Sales docs",
+      "finance": "Finance",
+      "growth": "Growth",
+      "intelligence": "Intelligence",
+      "aiAutomation": "AI & automation"
+    },
+    "comingSoon": "Coming soon",
+    "dashboard": "Dashboard",
+    "tasks": "Tasks",
+    "followup": "Follow-up",
+    "teamChat": "Team Chat",
+    "customers": "Customers",
+    "deals": "Deals",
+    "pipeline": "Pipeline",
+    "campaigns": "Campaigns",
+    "quotes": "Quotes",
+    "contracts": "Contracts",
+    "whatsapp": "WhatsApp",
+    "cashFlow": "Cash Flow",
+    "tax": "Tax",
+    "taxInvoices": "Tax Invoices",
+    "commission": "Commission",
+    "loyalty": "Loyalty",
+    "analytics": "Analytics",
+    "reports": "Reports",
+    "sessionKpis": "Session KPIs",
+    "aiCfo": "AI CFO",
+    "aiAgents": "AI Agents",
+    "automations": "Automations",
+    "templates": "Templates"
   }
 }

@@ -4311,5 +4311,40 @@
       "yearly": "Yıllık",
       "yearlyBadge": "%20 tasarruf"
     }
+  },
+  "Sidebar": {
+    "groups": {
+      "dailyOps": "Günlük operasyonlar",
+      "crmCore": "CRM çekirdeği",
+      "salesDocs": "Satış belgeleri",
+      "finance": "Finans",
+      "growth": "Büyüme",
+      "intelligence": "İş zekası",
+      "aiAutomation": "AI ve otomasyon"
+    },
+    "comingSoon": "Yakında",
+    "dashboard": "Panel",
+    "tasks": "Görevler",
+    "followup": "Takip",
+    "teamChat": "Ekip Sohbeti",
+    "customers": "Müşteriler",
+    "deals": "Anlaşmalar",
+    "pipeline": "Pipeline",
+    "campaigns": "Kampanyalar",
+    "quotes": "Teklifler",
+    "contracts": "Sözleşmeler",
+    "whatsapp": "WhatsApp",
+    "cashFlow": "Nakit Akışı",
+    "tax": "Vergi",
+    "taxInvoices": "Vergi Faturaları",
+    "commission": "Komisyon",
+    "loyalty": "Sadakat",
+    "analytics": "Analitik",
+    "reports": "Raporlar",
+    "sessionKpis": "Oturum KPI'ları",
+    "aiCfo": "AI CFO",
+    "aiAgents": "AI Ajanları",
+    "automations": "Otomasyonlar",
+    "templates": "Şablonlar"
   }
 }
