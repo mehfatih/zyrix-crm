@@ -4283,5 +4283,14 @@
       "label": "أضف قسمًا",
       "empty": "تمت إضافة جميع الأقسام."
     }
+  },
+  "upgrade": {
+    "eyebrow": "ميزة مميزة",
+    "unlockTitle": "افتح {feature}",
+    "whatYouGet": "ما الذي ستحصل عليه",
+    "unlockButton": "ترقية للفتح",
+    "backButton": "العودة للوحة التحكم",
+    "alreadyPro": "لديك خطة أعلى بالفعل؟",
+    "contactSupport": "تواصل مع الدعم"
   }
 }

@@ -15,7 +15,6 @@ import {
   Bell,
   Zap,
   ChevronDown,
-  ChevronUp,
   Bot,
 } from "lucide-react";
 import {
@@ -120,8 +119,10 @@ export default function AICFOPage() {
             </h1>
             <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-sky-50 to-sky-50 border border-border rounded-full text-xs font-medium text-cyan-300">
-            <Bot className="w-3.5 h-3.5" />
+          <div
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-violet-500/12 border border-violet-500/30 text-violet-200 text-xs font-semibold hover:bg-violet-500/18 hover:border-violet-500/45 shadow-[0_0_12px_rgba(168,85,247,0.15)]"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-violet-300" />
             {t("poweredBy")}
           </div>
         </div>
@@ -240,28 +241,34 @@ function SnapshotCard({
   setOpen: (b: boolean) => void;
   locale: string;
 }) {
-  const ChevIcon = open ? ChevronUp : ChevronDown;
+  // Sprint 14y — single chevron + rotate (used to be icon swap which
+  // double-flipped when combined with the new rotate animation).
+  const ChevIcon = ChevronDown;
 
   return (
-    <div className="bg-gradient-to-br from-white to-sky-50/30 border border-border rounded-xl overflow-hidden">
+    <div className="rounded-xl border border-violet-500/20 bg-gradient-to-r from-violet-500/8 via-violet-500/4 to-fuchsia-500/8 overflow-hidden hover:border-violet-500/35 transition-all duration-200">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full px-5 py-3 flex items-center justify-between hover:bg-card transition-colors"
+        className="w-full px-5 py-4 flex items-center justify-between hover:bg-violet-500/5 transition-colors cursor-pointer"
       >
         <div className="flex items-center gap-3">
-          <div className="bg-muted text-cyan-300 p-2 rounded-lg">
+          <div className="w-10 h-10 rounded-lg bg-violet-500/15 border border-violet-500/30 text-violet-300 flex items-center justify-center">
             <TrendingUp className="w-4 h-4" />
           </div>
           <div className="text-left rtl:text-right">
-            <div className="text-sm font-semibold text-foreground">
+            <div className="text-base font-semibold text-foreground">
               {t("snapshot.title")}
             </div>
-            <div className="text-xs text-muted-foreground">
+            <div className="text-xs text-muted-foreground mt-0.5">
               {t("snapshot.subtitle")}
             </div>
           </div>
         </div>
-        <ChevIcon className="w-5 h-5 text-muted-foreground" />
+        <ChevIcon
+          className={`w-5 h-5 text-violet-300 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
+        />
       </button>
 
       {open && (

@@ -24,6 +24,8 @@ import {
   Clock,
 } from "lucide-react";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import { UpgradeCard } from "@/components/upgrade/UpgradeCard";
+import { getFeatureDef } from "@/lib/features/feature-catalog";
 import {
   listWorkflows,
   updateWorkflow,
@@ -47,6 +49,9 @@ export default function WorkflowsListPage() {
   const [workflows, setWorkflows] = useState<Workflow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // Sprint 14y — detect feature-gated state so we can render the
+  // upgrade card inline instead of a hostile rose error box.
+  const [featureGated, setFeatureGated] = useState(false);
   const [toggling, setToggling] = useState<string | null>(null);
   const [testing, setTesting] = useState<string | null>(null);
   const [testResult, setTestResult] = useState<{ id: string; ok: boolean; msg: string } | null>(null);
@@ -54,11 +59,17 @@ export default function WorkflowsListPage() {
   const load = async () => {
     setLoading(true);
     setError(null);
+    setFeatureGated(false);
     try {
       const data = await listWorkflows();
       setWorkflows(data);
     } catch (e: any) {
-      setError(e?.response?.data?.error?.message || e?.message || "Failed");
+      const code = e?.response?.data?.error?.code;
+      if (code === "FEATURE_DISABLED") {
+        setFeatureGated(true);
+      } else {
+        setError(e?.response?.data?.error?.message || e?.message || "Failed");
+      }
     } finally {
       setLoading(false);
     }
@@ -152,20 +163,41 @@ export default function WorkflowsListPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link
-              href={`/${locale}/workflows/executions`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted rounded-lg text-xs font-semibold text-foreground"
-            >
-              <History className="w-3.5 h-3.5" />
-              {tr("History", "السجل", "Geçmiş")}
-            </Link>
-            <Link
-              href={`/${locale}/workflows/new`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              {tr("New workflow", "workflow جديد", "Yeni iş akışı")}
-            </Link>
+            {featureGated ? (
+              <>
+                <span
+                  title={tr("Upgrade to enable", "قم بالترقية للتفعيل", "Etkinleştirmek için yükseltin")}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-lg text-xs font-semibold text-muted-foreground opacity-50 cursor-not-allowed"
+                >
+                  <History className="w-3.5 h-3.5" />
+                  {tr("History", "السجل", "Geçmiş")}
+                </span>
+                <span
+                  title={tr("Upgrade to enable", "قم بالترقية للتفعيل", "Etkinleştirmek için yükseltin")}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg text-xs font-semibold opacity-50 cursor-not-allowed"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  {tr("New workflow", "workflow جديد", "Yeni iş akışı")}
+                </span>
+              </>
+            ) : (
+              <>
+                <Link
+                  href={`/${locale}/workflows/executions`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted rounded-lg text-xs font-semibold text-foreground"
+                >
+                  <History className="w-3.5 h-3.5" />
+                  {tr("History", "السجل", "Geçmiş")}
+                </Link>
+                <Link
+                  href={`/${locale}/workflows/new`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  {tr("New workflow", "workflow جديد", "Yeni iş akışı")}
+                </Link>
+              </>
+            )}
           </div>
         </div>
 
@@ -174,6 +206,12 @@ export default function WorkflowsListPage() {
           <div className="flex items-center justify-center py-16">
             <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
+        ) : featureGated ? (
+          <UpgradeCard
+            feature={getFeatureDef("ai_workflows")}
+            locale={locale}
+            variant="inline"
+          />
         ) : error ? (
           <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}

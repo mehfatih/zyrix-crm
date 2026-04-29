@@ -4283,5 +4283,14 @@
       "label": "Bölüm ekle",
       "empty": "Tüm bölümler eklenmiş."
     }
+  },
+  "upgrade": {
+    "eyebrow": "PREMIUM ÖZELLİK",
+    "unlockTitle": "{feature} özelliğini aç",
+    "whatYouGet": "Neler dahil",
+    "unlockButton": "Yükselt ve aç",
+    "backButton": "Panele dön",
+    "alreadyPro": "Daha üst bir planda mısınız?",
+    "contactSupport": "Destek ile iletişime geç"
   }
 }
