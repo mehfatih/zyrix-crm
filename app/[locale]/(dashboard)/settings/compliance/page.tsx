@@ -17,7 +17,6 @@ import {
   FileText,
   X,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import {
   listComplianceTokens,
   issueComplianceToken,
@@ -199,7 +198,7 @@ export default function CompliancePage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 max-w-4xl mx-auto space-y-5" dir={isRtl ? "rtl" : "ltr"}>
         <div className="flex items-start gap-3">
           <Link
@@ -524,6 +523,6 @@ export default function CompliancePage() {
           </p>
         </section>
       </div>
-    </DashboardShell>
+    </>
   );
 }

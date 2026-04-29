@@ -16,7 +16,6 @@ import {
   Key,
   Smartphone,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import {
   get2FAStatus,
   begin2FAEnroll,
@@ -102,7 +101,7 @@ export default function SecuritySettingsPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 max-w-3xl mx-auto space-y-5" dir={isRtl ? "rtl" : "ltr"}>
         {/* Header */}
         <div className="flex items-center gap-3">
@@ -305,7 +304,7 @@ export default function SecuritySettingsPage() {
           onClose={() => setModal({ kind: "none" })}
         />
       )}
-    </DashboardShell>
+    </>
   );
 }
 

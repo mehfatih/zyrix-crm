@@ -428,6 +428,7 @@
   },
   "Settings": {
     "title": "الإعدادات",
+    "backToDashboard": "لوحة التحكم",
     "subtitle": "إدارة الملف الشخصي والشركة وتفضيلات الأمان.",
     "tabs": {
       "profile": "الملف الشخصي",
@@ -4292,5 +4293,22 @@
     "backButton": "العودة للوحة التحكم",
     "alreadyPro": "لديك خطة أعلى بالفعل؟",
     "contactSupport": "تواصل مع الدعم"
+  },
+  "billing": {
+    "free": "مجاني",
+    "perMonth": "/ شهر",
+    "perYear": "/ سنة",
+    "upgrade": "ترقية",
+    "currentPlan": "الخطة الحالية",
+    "currencySwitcher": {
+      "title": "عرض الأسعار بـ:",
+      "auto": "(تلقائي)",
+      "useAutoDetected": "استخدم عملة بلدي"
+    },
+    "period": {
+      "monthly": "شهري",
+      "yearly": "سنوي",
+      "yearlyBadge": "وفّر 20%"
+    }
   }
 }

@@ -26,7 +26,6 @@ import {
   FileJson,
   FileSpreadsheet,
 } from "lucide-react";
-import { DashboardShell } from "@/components/layout/DashboardShell";
 import {
   listAuditLogs,
   listAuditActions,
@@ -221,7 +220,7 @@ export default function AuditLogPage() {
   };
 
   return (
-    <DashboardShell locale={locale}>
+    <>
       <div className="p-6 max-w-5xl mx-auto space-y-5" dir={isRtl ? "rtl" : "ltr"}>
         {/* Header */}
         <div className="flex items-center justify-between gap-3 flex-wrap">
@@ -485,7 +484,7 @@ export default function AuditLogPage() {
           </>
         )}
       </div>
-    </DashboardShell>
+    </>
   );
 }
 
