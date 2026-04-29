@@ -1,183 +1,32 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Check, Loader2, Star } from "lucide-react";
-import { fetchPublicPlans, type AdminPlan } from "@/lib/api/admin";
 import { useDisplayCurrency } from "@/hooks/useDisplayCurrency";
 import { CurrencySwitcher } from "@/components/billing/CurrencySwitcher";
-import { PlanPriceTag } from "@/components/billing/PlanPriceTag";
-import {
-  PLAN_PRICES_USD,
-  isContactSalesPlan,
-  isPlanId,
-  type PlanId,
-} from "@/lib/billing/currency";
-import { buildCheckoutUrl } from "@/lib/billing/checkout-url";
+import { PlanCatalogCard } from "@/components/billing/PlanCatalogCard";
+import { PLAN_CATALOG_LIST } from "@/lib/billing/plan-catalog";
 
 // ============================================================================
-// PUBLIC PRICING VIEW — sprint 14aa
+// PUBLIC PRICING VIEW — sprint 14af
 // ----------------------------------------------------------------------------
-// Wired to the Sprint 14z currency engine. USD is the canonical price source
-// (PLAN_PRICES_USD). The visitor's display currency is resolved by
-// useDisplayCurrency (locale → localStorage override). The CurrencySwitcher
-// at the top lets visitors override their detected currency.
+// Plan content reads from PLAN_CATALOG (lib/billing/plan-catalog.ts) — single
+// source of truth. Both this view and /settings/billing render from the same
+// catalog so they never drift.
 // ============================================================================
 
 type Billing = "monthly" | "yearly";
 
-// Static metadata fallback used when the public plans API is unreachable.
-// Prices are NEVER stored here — the single source is PLAN_PRICES_USD.
-// Slugs MUST match PlanId so PLAN_PRICES_USD lookups resolve.
-const STATIC_PLANS: Pick<
-  AdminPlan,
-  | "id"
-  | "slug"
-  | "name"
-  | "nameAr"
-  | "nameTr"
-  | "description"
-  | "descriptionAr"
-  | "descriptionTr"
-  | "maxUsers"
-  | "maxCustomers"
-  | "maxDeals"
-  | "maxStorageGb"
-  | "maxWhatsappMsg"
-  | "maxAiTokens"
-  | "features"
-  | "isActive"
-  | "isFeatured"
-  | "sortOrder"
-  | "color"
->[] = [
-  {
-    id: "static-free",
-    slug: "free",
-    name: "Free",
-    nameAr: "مجاني",
-    nameTr: "Ücretsiz",
-    description: "For small teams getting started",
-    descriptionAr: "للفرق الصغيرة التي تبدأ",
-    descriptionTr: "Yeni başlayan küçük ekipler için",
-    maxUsers: 3,
-    maxCustomers: 100,
-    maxDeals: 50,
-    maxStorageGb: 1,
-    maxWhatsappMsg: 100,
-    maxAiTokens: 10000,
-    features: ["3 users", "100 contacts", "1 GB storage", "100 WhatsApp msgs/mo"],
-    isActive: true,
-    isFeatured: false,
-    sortOrder: 1,
-    color: "#22d3ee",
-  },
-  {
-    id: "static-starter",
-    slug: "starter",
-    name: "Starter",
-    nameAr: "المبتدئ",
-    nameTr: "Başlangıç",
-    description: "For growing teams that need more",
-    descriptionAr: "للفرق النامية التي تحتاج إلى المزيد",
-    descriptionTr: "Daha fazlasına ihtiyaç duyan büyüyen ekipler için",
-    maxUsers: 10,
-    maxCustomers: 1000,
-    maxDeals: 500,
-    maxStorageGb: 10,
-    maxWhatsappMsg: 2000,
-    maxAiTokens: 100000,
-    features: ["10 users", "1,000 contacts", "10 GB storage", "2,000 WhatsApp msgs/mo"],
-    isActive: true,
-    isFeatured: false,
-    sortOrder: 2,
-    color: "#10b981",
-  },
-  {
-    id: "static-business",
-    slug: "business",
-    name: "Business",
-    nameAr: "الأعمال",
-    nameTr: "İşletme",
-    description: "For growing businesses with full needs",
-    descriptionAr: "للأعمال النامية ذات الاحتياجات الكاملة",
-    descriptionTr: "Tam ihtiyaçları olan büyüyen işletmeler için",
-    maxUsers: 50,
-    maxCustomers: 10000,
-    maxDeals: 5000,
-    maxStorageGb: 100,
-    maxWhatsappMsg: 20000,
-    maxAiTokens: 1000000,
-    features: ["50 users", "10,000 contacts", "100 GB storage", "20,000 WhatsApp msgs/mo"],
-    isActive: true,
-    isFeatured: true,
-    sortOrder: 3,
-    color: "#8b5cf6",
-  },
-  {
-    id: "static-enterprise",
-    slug: "enterprise",
-    name: "Enterprise",
-    nameAr: "المؤسسات",
-    nameTr: "Kurumsal",
-    description: "Custom plan for large organizations",
-    descriptionAr: "خطة مخصصة للمؤسسات الكبيرة",
-    descriptionTr: "Büyük kuruluşlar için özel plan",
-    maxUsers: 999999,
-    maxCustomers: 999999,
-    maxDeals: 999999,
-    maxStorageGb: 9999,
-    maxWhatsappMsg: 999999,
-    maxAiTokens: 999999999,
-    features: ["Unlimited users", "Unlimited contacts", "Unlimited storage", "Unlimited messages"],
-    isActive: true,
-    isFeatured: false,
-    sortOrder: 4,
-    color: "#f59e0b",
-  },
-];
-
-// Loose-typed view of a plan after it leaves either fetchPublicPlans() or
-// STATIC_PLANS — only fields we actually consume.
-type PlanRecord = (typeof STATIC_PLANS)[number];
-
 export default function PricingView({ locale }: { locale: string }) {
   const t = useTranslations("Pricing");
-  const tFeat = useTranslations("Pricing.features");
-  const tLimits = useTranslations("Pricing.limits");
   const tFaq = useTranslations("Pricing.faq");
 
-  const [plans, setPlans] = useState<PlanRecord[] | null>(null);
-  const [loading, setLoading] = useState(true);
-
   const [billing, setBilling] = useState<Billing>("monthly");
-
-  // Sprint 14aa — currency engine.
   const { currency } = useDisplayCurrency();
 
-  useEffect(() => {
-    fetchPublicPlans()
-      .then((res) => setPlans(res as PlanRecord[]))
-      .catch((err) => {
-        console.warn("Pricing API unavailable, using static fallback:", err);
-        setPlans(STATIC_PLANS);
-      })
-      .finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  function localizedName(p: PlanRecord) {
-    if (locale === "ar") return p.nameAr || p.name;
-    if (locale === "tr") return p.nameTr || p.name;
-    return p.name;
-  }
-
-  function localizedDesc(p: PlanRecord) {
-    if (locale === "ar") return p.descriptionAr || p.description || "";
-    if (locale === "tr") return p.descriptionTr || p.description || "";
-    return p.description || "";
-  }
+  const userLocale = (
+    locale === "ar" || locale === "tr" ? locale : "en"
+  ) as "en" | "ar" | "tr";
 
   const heroSection = (
     <section className="pt-12 pb-6 px-4 text-center">
@@ -228,30 +77,19 @@ export default function PricingView({ locale }: { locale: string }) {
 
   const plansSection = (
     <section className="px-4 pb-12">
-      <div className="max-w-6xl mx-auto">
-        {loading && (
-          <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-primary" size={28} />
-          </div>
-        )}
-        {plans && !loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {plans.map((p) => (
-              <PlanCard
-                key={p.id}
-                plan={p}
-                billing={billing}
-                currency={currency}
-                name={localizedName(p)}
-                description={localizedDesc(p)}
-                locale={locale}
-                tFeat={tFeat}
-                tLimits={tLimits}
-                t={t}
-              />
-            ))}
-          </div>
-        )}
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          {PLAN_CATALOG_LIST.map((entry) => (
+            <PlanCatalogCard
+              key={entry.id}
+              entry={entry}
+              locale={userLocale}
+              billing={billing}
+              currency={currency}
+              variant="marketing"
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -292,197 +130,4 @@ export default function PricingView({ locale }: { locale: string }) {
       {faqSection}
     </div>
   );
-}
-
-// ─────────────────────────────────────────────────────────────────────────
-// Plan Card
-// ─────────────────────────────────────────────────────────────────────────
-function PlanCard({
-  plan,
-  billing,
-  currency,
-  name,
-  description,
-  locale,
-  tFeat,
-  tLimits,
-  t,
-}: {
-  plan: PlanRecord;
-  billing: Billing;
-  currency: ReturnType<typeof useDisplayCurrency>["currency"];
-  name: string;
-  description: string;
-  locale: string;
-  tFeat: ReturnType<typeof useTranslations>;
-  tLimits: ReturnType<typeof useTranslations>;
-  t: ReturnType<typeof useTranslations>;
-}) {
-  const knownPlan = isPlanId(plan.slug);
-  const isContactSales = knownPlan && isContactSalesPlan(plan.slug as PlanId);
-  const isFree = plan.slug === "free";
-  const featured = plan.isFeatured;
-
-  // Sprint 14aa — single source of truth for the URL.
-  const ctaHref = knownPlan
-    ? buildCheckoutUrl(locale, plan.slug as PlanId, billing, currency)
-    : `/${locale}/contact?plan=${plan.slug}`;
-
-  // Sprint 14aa — single source of truth for the price.
-  const usdAmount =
-    knownPlan && !isContactSales
-      ? PLAN_PRICES_USD[plan.slug as PlanId][billing]
-      : null;
-
-  const visibleFeatures = useMemo(() => {
-    return plan.features.slice(0, 8);
-  }, [plan.features]);
-
-  return (
-    <div
-      className={`relative rounded-2xl bg-card p-6 flex flex-col ${
-        featured
-          ? "border-2 border-sky-400 shadow-xl shadow-sky-900/10"
-          : "border border-border"
-      }`}
-    >
-      {featured && (
-        <div className="absolute -top-3 ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-sky-500 text-white px-3 py-1 text-xs font-semibold">
-          <Star size={12} />
-          {t("mostPopular")}
-        </div>
-      )}
-
-      {/* Name + desc */}
-      <div className="mb-5">
-        <div className="flex items-center gap-2">
-          <div
-            className="w-2 h-8 rounded-full"
-            style={{ backgroundColor: plan.color }}
-          />
-          <h3 className="text-xl font-bold text-foreground">{name}</h3>
-        </div>
-        <p className="mt-2 text-sm text-muted-foreground min-h-[2.5rem]">
-          {description}
-        </p>
-      </div>
-
-      {/* Price — sprint 14aa: contact-sales gets a custom block, paid plans get PlanPriceTag */}
-      <div className="mb-5">
-        {isContactSales ? (
-          <div>
-            <div className="text-3xl font-bold text-foreground">
-              {t("customPrice")}
-            </div>
-            <div className="text-xs text-muted-foreground mt-1">
-              {t("contactForQuote")}
-            </div>
-          </div>
-        ) : (
-          <div>
-            <PlanPriceTag
-              usdAmount={usdAmount ?? 0}
-              currency={currency}
-              period={billing}
-              size="lg"
-            />
-            <div className="text-xs text-muted-foreground mt-1">
-              {t("perCompany")}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* CTA */}
-      <Link
-        href={ctaHref}
-        className={`block text-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors mb-6 ${
-          featured
-            ? "bg-sky-500 hover:bg-sky-600 text-white"
-            : isFree
-              ? "bg-card border border-border text-foreground hover:bg-muted"
-              : "bg-sky-500/10 hover:bg-sky-500/20 text-primary border border-sky-500/30"
-        }`}
-      >
-        {isContactSales ? t("contactSales") : t("getStarted")}
-      </Link>
-
-      {/* Limits summary */}
-      <div className="space-y-2 text-sm mb-5 pb-5 border-b border-border">
-        <LimitRow
-          label={tLimits("users")}
-          value={plan.maxUsers >= 999999 ? tLimits("unlimited") : plan.maxUsers.toLocaleString()}
-        />
-        <LimitRow
-          label={tLimits("customers")}
-          value={
-            plan.maxCustomers >= 999999
-              ? tLimits("unlimited")
-              : plan.maxCustomers.toLocaleString()
-          }
-        />
-        <LimitRow
-          label={tLimits("storage")}
-          value={
-            plan.maxStorageGb >= 9999
-              ? tLimits("unlimited")
-              : plan.maxStorageGb.toLocaleString()
-          }
-        />
-        {plan.maxWhatsappMsg > 0 && (
-          <LimitRow
-            label={tLimits("whatsapp")}
-            value={
-              plan.maxWhatsappMsg >= 999999
-                ? tLimits("unlimited")
-                : plan.maxWhatsappMsg.toLocaleString()
-            }
-          />
-        )}
-      </div>
-
-      {/* Features list */}
-      <div className="flex-1">
-        <div className="text-xs font-semibold text-foreground uppercase tracking-wide mb-3">
-          {t("includes")}
-        </div>
-        <ul className="space-y-2">
-          {visibleFeatures.map((slug) => (
-            <li key={slug} className="flex items-start gap-2 text-sm">
-              <Check
-                size={14}
-                className="text-primary mt-0.5 flex-shrink-0"
-              />
-              <span className="text-foreground">{safeTrans(tFeat, slug)}</span>
-            </li>
-          ))}
-          {plan.features.length > visibleFeatures.length && (
-            <li className="text-xs text-muted-foreground italic ltr:pl-6 rtl:pr-6">
-              + {plan.features.length - visibleFeatures.length} more
-            </li>
-          )}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-function LimitRow({ label, value }: { label: string; value: string | number }) {
-  return (
-    <div className="flex items-center justify-between">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="font-semibold text-foreground">{value}</span>
-    </div>
-  );
-}
-
-function safeTrans(
-  t: ReturnType<typeof useTranslations>,
-  key: string,
-): string {
-  try {
-    return t(key);
-  } catch {
-    return key;
-  }
 }

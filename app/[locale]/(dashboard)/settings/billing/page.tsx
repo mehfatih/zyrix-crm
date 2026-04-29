@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import {
   CreditCard,
   Loader2,
-  Check,
   AlertTriangle,
   Calendar,
   Zap,
@@ -15,29 +14,20 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import Link from "next/link";
 import { useAuth } from "@/lib/auth/context";
 import {
-  listBillingPlans,
   getCurrentBilling,
   listInvoices,
   cancelSubscription,
   resumeSubscription,
-  type BillingPlan,
   type CurrentBilling,
   type Invoice,
   type InvoicePage,
 } from "@/lib/api/advanced";
 import { useDisplayCurrency } from "@/hooks/useDisplayCurrency";
-import {
-  PLAN_PRICES_USD,
-  isPlanId,
-  type BillingPeriod,
-  type PlanId,
-} from "@/lib/billing/currency";
-import { buildCheckoutUrl } from "@/lib/billing/checkout-url";
 import { CurrencySwitcher } from "@/components/billing/CurrencySwitcher";
-import { PlanPriceTag } from "@/components/billing/PlanPriceTag";
+import { PlanCatalogCard } from "@/components/billing/PlanCatalogCard";
+import { PLAN_CATALOG_LIST } from "@/lib/billing/plan-catalog";
 
 // ============================================================================
 // SETTINGS → BILLING
@@ -67,7 +57,6 @@ export default function BillingPage() {
   const canManage = user?.role === "owner" || user?.role === "admin";
 
   const [billing, setBilling] = useState<CurrentBilling | null>(null);
-  const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [invoicePage, setInvoicePage] = useState<InvoicePage | null>(null);
   const [loading, setLoading] = useState(true);
   const [invoiceOffset, setInvoiceOffset] = useState(0);
@@ -76,41 +65,19 @@ export default function BillingPage() {
   const [cancelLoading, setCancelLoading] = useState(false);
 
   // Sprint 14z — global currency engine. USD is canonical price source,
-  // displayed in the user's local currency via FX rates. Falls back to
-  // backend prices only for plan slugs not in PLAN_PRICES_USD (e.g.
-  // enterprise / custom plans).
+  // displayed in the user's local currency via FX rates.
   const { currency: displayCurrency } = useDisplayCurrency();
-
-  // Name + description picker by locale
-  const nameForPlan = (plan: BillingPlan): string =>
-    locale === "ar" ? plan.nameAr : locale === "tr" ? plan.nameTr : plan.name;
-  const descriptionForPlan = (plan: BillingPlan): string =>
-    (locale === "ar"
-      ? plan.descriptionAr
-      : locale === "tr"
-        ? plan.descriptionTr
-        : plan.description) ||
-    "";
-
-  // Look up USD price for a plan slug. Returns null when slug isn't in
-  // PLAN_PRICES_USD — caller falls back to backend pricing.
-  const usdPriceFor = (
-    plan: BillingPlan,
-    cyc: BillingPeriod,
-  ): number | null => {
-    if (!isPlanId(plan.slug)) return null;
-    return PLAN_PRICES_USD[plan.slug as PlanId][cyc];
-  };
 
   const load = async () => {
     try {
-      const [b, p, i] = await Promise.all([
+      // Sprint 14af — plans no longer fetched from the backend; the visible
+      // grid reads from PLAN_CATALOG_LIST. We still pull the active
+      // subscription + invoice history here.
+      const [b, i] = await Promise.all([
         getCurrentBilling(),
-        listBillingPlans(),
         listInvoices(10, invoiceOffset),
       ]);
       setBilling(b);
-      setPlans(p);
       setInvoicePage(i);
     } catch (e: any) {
       setError(
@@ -265,7 +232,7 @@ export default function BillingPage() {
               className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-white"
               style={{
                 background: sub?.plan
-                  ? `linear-gradient(135deg, ${plans.find((p) => p.slug === sub.plan.slug)?.color || "#0EA5E9"}, #0284C7)`
+                  ? "linear-gradient(135deg, #0EA5E9, #0284C7)"
                   : "linear-gradient(135deg, #64748B, #475569)",
               }}
             >
@@ -374,114 +341,21 @@ export default function BillingPage() {
           {/* Sprint 14z — currency switcher (display only; backend may charge in its own currency) */}
           <CurrencySwitcher />
 
-          {plans.length === 0 ? (
-            <div className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground text-center">
-              {tr(
-                "Plans aren't configured yet. Contact support to upgrade.",
-                "لم يتم تكوين الخطط بعد. اتصل بالدعم للترقية.",
-                "Planlar henüz yapılandırılmadı. Yükseltmek için destekle iletişime geçin."
-              )}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {plans.map((plan) => {
-                const isCurrent = plan.slug === currentPlanSlug;
-                const usdPrice = usdPriceFor(plan, cycle);
-                const isFree = plan.slug === "free";
-                const knownPlan = isPlanId(plan.slug);
-                return (
-                  <div
-                    key={plan.id}
-                    className={`rounded-2xl border p-5 relative transition-all ${
-                      isCurrent
-                        ? "border-sky-400 ring-2 ring-sky-100 bg-muted/50"
-                        : plan.isFeatured
-                          ? "border-sky-300 bg-card hover:border-sky-400"
-                          : "border-border bg-card hover:border-sky-300"
-                    }`}
-                  >
-                    {plan.isFeatured && !isCurrent && (
-                      <span className="absolute -top-2 right-4 text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-gradient-to-r from-sky-400 to-sky-600 text-white shadow">
-                        {tr("Recommended", "موصى به", "Önerilen")}
-                      </span>
-                    )}
-                    <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center text-white mb-3"
-                      style={{
-                        background: `linear-gradient(135deg, ${plan.color}, #0284C7)`,
-                      }}
-                    >
-                      {plan.slug === "free" ? (
-                        <Zap className="w-4 h-4" />
-                      ) : plan.slug === "enterprise" ? (
-                        <Crown className="w-4 h-4" />
-                      ) : (
-                        <Sparkles className="w-4 h-4" />
-                      )}
-                    </div>
-                    <h4 className="text-base font-bold text-foreground capitalize">
-                      {nameForPlan(plan)}
-                    </h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {descriptionForPlan(plan) || " "}
-                    </p>
-                    <div className="mt-3">
-                      {usdPrice !== null ? (
-                        <PlanPriceTag
-                          usdAmount={usdPrice}
-                          currency={displayCurrency}
-                          period={cycle}
-                          size="lg"
-                        />
-                      ) : (
-                        <span className="text-2xl font-bold text-foreground">
-                          {tr("Custom", "حسب الطلب", "Özel")}
-                        </span>
-                      )}
-                    </div>
-                    <ul className="mt-4 space-y-1.5 text-xs text-foreground">
-                      {(plan.features || []).slice(0, 6).map((f, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <Check className="w-3.5 h-3.5 text-emerald-300 mt-0.5 flex-shrink-0" />
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    {isCurrent || isFree || !knownPlan || !canManage ? (
-                      <button
-                        disabled
-                        className={`w-full mt-4 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 ${
-                          isCurrent
-                            ? "bg-muted text-muted-foreground cursor-not-allowed"
-                            : "bg-muted text-muted-foreground cursor-not-allowed opacity-60"
-                        }`}
-                      >
-                        {isCurrent
-                          ? tr("Current plan", "الخطة الحالية", "Mevcut plan")
-                          : isFree
-                            ? tr("Free", "مجاني", "Ücretsiz")
-                            : !knownPlan
-                              ? tr("Contact us", "تواصل معنا", "Bize ulaşın")
-                              : tr("Upgrade", "ترقية", "Yükselt")}
-                      </button>
-                    ) : (
-                      <Link
-                        href={buildCheckoutUrl(
-                          locale,
-                          plan.slug as PlanId,
-                          cycle,
-                          displayCurrency,
-                        )}
-                        className="w-full mt-4 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors bg-primary hover:bg-primary/90 text-primary-foreground"
-                      >
-                        {tr("Upgrade", "ترقية", "Yükselt")}
-                      </Link>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          {/* Sprint 14af — read from PLAN_CATALOG_LIST, render shared PlanCatalogCard */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            {PLAN_CATALOG_LIST.map((entry) => (
+              <PlanCatalogCard
+                key={entry.id}
+                entry={entry}
+                locale={locale}
+                billing={cycle}
+                currency={displayCurrency}
+                variant="billing"
+                isCurrent={entry.id === currentPlanSlug}
+                canManage={canManage}
+              />
+            ))}
+          </div>
 
           {!canManage && (
             <p className="text-xs text-muted-foreground">
