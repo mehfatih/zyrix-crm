@@ -66,21 +66,21 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
         disabled={isPending}
         className={cn(
           "flex items-center gap-1.5 px-3 py-2 rounded-lg",
-          "bg-white border border-line hover:bg-bg-subtle",
-          "text-sm font-semibold text-ink transition-colors disabled:opacity-60 w-full"
+          "bg-card border border-border hover:bg-muted",
+          "text-sm font-semibold text-foreground transition-colors disabled:opacity-60 w-full"
         )}
       >
         <span>{LOCALE_CODES[currentLocale]}</span>
         <ChevronDown
           className={cn(
-            "w-3.5 h-3.5 text-ink-light transition-transform ms-auto",
+            "w-3.5 h-3.5 text-muted-foreground transition-transform ms-auto",
             isOpen && "rotate-180"
           )}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute end-0 mt-2 w-28 bg-white border border-line rounded-lg shadow-lg overflow-hidden z-50">
+        <div className="absolute end-0 mt-2 w-28 bg-card border border-border rounded-lg shadow-lg overflow-hidden z-50">
           {locales.map((locale) => (
             <button
               key={locale}
@@ -88,8 +88,8 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
               className={cn(
                 "w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold transition-colors",
                 locale === currentLocale
-                  ? "bg-primary-50 text-primary-700"
-                  : "text-ink hover:bg-bg-subtle"
+                  ? "bg-cyan-500/15 text-cyan-300"
+                  : "text-foreground hover:bg-muted"
               )}
             >
               <span>{LOCALE_CODES[locale]}</span>

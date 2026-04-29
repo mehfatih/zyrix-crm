@@ -102,7 +102,7 @@ export default function DashboardPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="p-6 flex items-center justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-sky-500" />
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
       </DashboardShell>
     );
@@ -112,7 +112,7 @@ export default function DashboardPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="p-6">
-          <div className="p-6 bg-red-50 text-red-700 rounded-xl text-center">
+          <div className="p-6 bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-xl text-center">
             <AlertTriangle className="w-6 h-6 mx-auto mb-2" />
             {error || "Failed to load dashboard"}
           </div>
@@ -146,12 +146,12 @@ export default function DashboardPage() {
         <AgentsWidget />
 
         {/* Header with scope badge */}
-        <div className="flex items-center justify-between gap-4 flex-wrap pt-4 border-t border-zyrix-border">
+        <div className="flex items-center justify-between gap-4 flex-wrap pt-4 border-t border-border">
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">{t("title")}</h1>
+            <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
             <div className="flex items-center gap-2 mt-1">
               <ScopeBadge scope={scope} t={t} />
-              <span className="text-sm text-slate-500">
+              <span className="text-sm text-muted-foreground">
                 {t(`scopeHint.${scope}`)}
               </span>
             </div>
@@ -160,10 +160,10 @@ export default function DashboardPage() {
 
         {/* Onboarding banner — shows until wizard is completed */}
         {onboarding && !onboarding.completed && !bannerDismissed && (
-          <div className="relative rounded-2xl bg-gradient-to-r from-sky-400 via-sky-500 to-sky-500 text-white p-5 shadow-md overflow-hidden">
-            <div className="absolute right-0 top-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative rounded-2xl bg-gradient-to-r from-primary/20 via-violet-500/20 to-cyan-500/20 border border-primary/30 text-foreground p-5 shadow-md overflow-hidden">
+            <div className="absolute right-0 top-0 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
             <div className="relative flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 backdrop-blur flex items-center justify-center flex-shrink-0 text-primary">
                 <Rocket className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
@@ -174,7 +174,7 @@ export default function DashboardPage() {
                       ? "Hesap kurulumunuzu tamamlayın"
                       : "Finish setting up your account"}
                 </h3>
-                <p className="text-sm text-white/90 mt-1 leading-relaxed">
+                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
                   {locale === "ar"
                     ? "يستغرق الأمر دقيقتين فقط — قم بإعداد عملتك الأساسية، اربط متجرك، وادعُ فريقك."
                     : locale === "tr"
@@ -184,7 +184,7 @@ export default function DashboardPage() {
                 <div className="mt-4 flex items-center gap-3 flex-wrap">
                   <Link
                     href={`/${locale}/onboarding`}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white text-sky-600 rounded-lg text-sm font-bold hover:bg-sky-50 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors"
                   >
                     {locale === "ar"
                       ? "ابدأ الإعداد"
@@ -195,7 +195,7 @@ export default function DashboardPage() {
                       className={`w-4 h-4 ${locale === "ar" ? "-scale-x-100" : ""}`}
                     />
                   </Link>
-                  <div className="flex items-center gap-3 text-xs text-white/80">
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
                     <span>
                       {onboarding.signals.storesConnected > 0
                         ? locale === "ar"
@@ -230,7 +230,7 @@ export default function DashboardPage() {
                 aria-label={
                   locale === "ar" ? "إغلاق" : locale === "tr" ? "kapat" : "dismiss"
                 }
-                className="flex-shrink-0 w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                className="flex-shrink-0 w-7 h-7 rounded-lg bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors text-muted-foreground hover:text-foreground"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -320,19 +320,19 @@ function MemberView({
         {stats.upcomingTasks.length === 0 ? (
           <EmptyPanel label={t("empty.noTasks")} />
         ) : (
-          <div className="divide-y divide-sky-50">
+          <div className="divide-y divide-border">
             {stats.upcomingTasks.map((ta: any, i: number) => (
               <Link
                 key={i}
                 href={`/${locale}/tasks`}
-                className="flex items-center gap-3 p-3 hover:bg-sky-50/30"
+                className="flex items-center gap-3 p-3 hover:bg-muted"
               >
                 <PriorityDot priority={ta.priority} />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-sky-900 truncate">
+                  <div className="text-sm font-medium text-foreground truncate">
                     {ta.title}
                   </div>
-                  <div className="text-xs text-slate-500 truncate">
+                  <div className="text-xs text-muted-foreground truncate">
                     {ta.customer?.fullName || "—"}
                     {ta.dueDate && (
                       <>
@@ -342,7 +342,7 @@ function MemberView({
                     )}
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-400" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground" />
               </Link>
             ))}
           </div>
@@ -353,22 +353,22 @@ function MemberView({
         {stats.myOpenDeals.length === 0 ? (
           <EmptyPanel label={t("empty.noDeals")} />
         ) : (
-          <div className="divide-y divide-sky-50">
+          <div className="divide-y divide-border">
             {stats.myOpenDeals.map((d: any, i: number) => (
               <Link
                 key={i}
                 href={`/${locale}/pipeline`}
-                className="flex items-center gap-3 p-3 hover:bg-sky-50/30"
+                className="flex items-center gap-3 p-3 hover:bg-muted"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-sky-900 truncate">
+                  <div className="text-sm font-medium text-foreground truncate">
                     {d.title}
                   </div>
-                  <div className="text-xs text-slate-500 truncate">
+                  <div className="text-xs text-muted-foreground truncate">
                     {d.customer.fullName} · {d.stage}
                   </div>
                 </div>
-                <div className="text-sm font-bold text-sky-900">
+                <div className="text-sm font-bold text-foreground">
                   {formatMoneyCurrency(Number(d.value), d.currency)}
                 </div>
               </Link>
@@ -395,7 +395,7 @@ function ManagerView({
       {stats.teamLeaderboard.length === 0 ? (
         <EmptyPanel label={t("empty.noTeamSales")} />
       ) : (
-        <div className="divide-y divide-sky-50">
+        <div className="divide-y divide-border">
           {stats.teamLeaderboard.map((entry, i) => (
             <LeaderboardRow key={i} rank={i + 1} entry={entry} />
           ))}
@@ -443,7 +443,7 @@ function CompanyView({
           {stats.teamLeaderboard.length === 0 ? (
             <EmptyPanel label={t("empty.noTeamSales")} />
           ) : (
-            <div className="divide-y divide-sky-50">
+            <div className="divide-y divide-border">
               {stats.teamLeaderboard
                 .slice(0, 10)
                 .map((e: TeamLeaderboardEntry, i: number) => (
@@ -457,27 +457,27 @@ function CompanyView({
           {stats.topCustomers.length === 0 ? (
             <EmptyPanel label={t("empty.noCustomers")} />
           ) : (
-            <div className="divide-y divide-sky-50">
+            <div className="divide-y divide-border">
               {stats.topCustomers.map((c: any, i: number) => (
                 <Link
                   key={i}
                   href={`/${locale}/customers/${c.id}`}
-                  className="flex items-center gap-3 p-3 hover:bg-sky-50/30"
+                  className="flex items-center gap-3 p-3 hover:bg-muted"
                 >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center text-xs font-bold">
+                  <div className="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center text-xs font-bold">
                     {i + 1}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-sky-900 truncate">
+                    <div className="text-sm font-medium text-foreground truncate">
                       {c.fullName}
                     </div>
                     {c.companyName && (
-                      <div className="text-xs text-slate-500 truncate">
+                      <div className="text-xs text-muted-foreground truncate">
                         {c.companyName}
                       </div>
                     )}
                   </div>
-                  <div className="text-sm font-bold text-emerald-700">
+                  <div className="text-sm font-bold text-emerald-300">
                     {formatMoney(c.lifetimeValue)}
                   </div>
                 </Link>
@@ -531,15 +531,15 @@ function QuickLinks({
           <Link
             key={i}
             href={l.href}
-            className="bg-white border border-sky-100 hover:border-sky-300 rounded-xl p-4 flex items-center gap-3 group transition-colors"
+            className="bg-card border border-border hover:border-cyan-500/40 rounded-xl p-4 flex items-center gap-3 group transition-colors"
           >
-            <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-500 group-hover:bg-sky-100 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center justify-center">
               <Icon className="w-5 h-5" />
             </div>
-            <div className="flex-1 text-sm font-medium text-slate-700 group-hover:text-sky-900">
+            <div className="flex-1 text-sm font-medium text-foreground">
               {l.label}
             </div>
-            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-sky-500" />
+            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-cyan-300" />
           </Link>
         );
       })}
@@ -559,23 +559,26 @@ function ScopeBadge({
 }) {
   const meta: Record<
     string,
-    { bg: string; text: string; label: string; Icon: typeof Users }
+    { bg: string; text: string; border: string; label: string; Icon: typeof Users }
   > = {
     personal: {
-      bg: "bg-sky-50",
-      text: "text-sky-700",
+      bg: "bg-cyan-500/15",
+      text: "text-cyan-300",
+      border: "border-cyan-500/30",
       label: t("scope.personal"),
       Icon: Users,
     },
     team: {
-      bg: "bg-sky-50",
-      text: "text-sky-600",
+      bg: "bg-violet-500/15",
+      text: "text-violet-300",
+      border: "border-violet-500/30",
       label: t("scope.team"),
       Icon: Crown,
     },
     company: {
-      bg: "bg-emerald-50",
-      text: "text-emerald-700",
+      bg: "bg-emerald-500/15",
+      text: "text-emerald-300",
+      border: "border-emerald-500/30",
       label: t("scope.company"),
       Icon: Award,
     },
@@ -584,7 +587,7 @@ function ScopeBadge({
   const Icon = m.Icon;
   return (
     <span
-      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium ${m.bg} ${m.text}`}
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium border ${m.bg} ${m.text} ${m.border}`}
     >
       <Icon className="w-3 h-3" />
       {m.label}
@@ -605,23 +608,23 @@ function KpiCard({
   hint: string;
   color: "cyan" | "sky" | "emerald" | "amber";
 }) {
-  const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
-    sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
-    emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
-    amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
+  const colors: Record<string, { iconBg: string; iconText: string; eyebrow: string }> = {
+    cyan: { iconBg: "bg-cyan-500/15 border border-cyan-500/30", iconText: "text-cyan-300", eyebrow: "text-cyan-300" },
+    sky: { iconBg: "bg-cyan-500/15 border border-cyan-500/30", iconText: "text-cyan-300", eyebrow: "text-cyan-300" },
+    emerald: { iconBg: "bg-emerald-500/15 border border-emerald-500/30", iconText: "text-emerald-300", eyebrow: "text-emerald-300" },
+    amber: { iconBg: "bg-amber-500/15 border border-amber-500/30", iconText: "text-amber-300", eyebrow: "text-amber-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4">
+    <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-center gap-3 mb-2">
         <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
           <Icon className="w-5 h-5" />
         </div>
-        <div className="text-xs text-slate-500 truncate">{label}</div>
+        <div className={`text-xs font-bold uppercase tracking-wider truncate ${c.eyebrow}`}>{label}</div>
       </div>
-      <div className="text-2xl font-bold text-sky-900">{value}</div>
-      <div className="text-xs text-slate-500 mt-0.5 truncate">{hint}</div>
+      <div className="text-2xl font-bold text-foreground">{value}</div>
+      <div className="text-xs text-muted-foreground mt-0.5 truncate">{hint}</div>
     </div>
   );
 }
@@ -636,11 +639,11 @@ function MiniKpi({
   icon: typeof Users;
 }) {
   return (
-    <div className="bg-gradient-to-br from-white to-sky-50/30 border border-sky-100 rounded-xl p-4 flex items-center gap-3">
-      <Icon className="w-6 h-6 text-sky-400" />
+    <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
+      <Icon className="w-6 h-6 text-cyan-300" />
       <div className="flex-1">
-        <div className="text-xs text-slate-500">{label}</div>
-        <div className="text-xl font-bold text-sky-900">{value}</div>
+        <div className="text-xs text-muted-foreground">{label}</div>
+        <div className="text-xl font-bold text-foreground">{value}</div>
       </div>
     </div>
   );
@@ -656,10 +659,10 @@ function Panel({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-      <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-        <Icon className="w-4 h-4 text-sky-500" />
-        <h3 className="text-sm font-semibold text-sky-900">{title}</h3>
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <div className="px-5 py-3 border-b border-border bg-muted flex items-center gap-2">
+        <Icon className="w-4 h-4 text-cyan-300" />
+        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
       </div>
       {children}
     </div>
@@ -668,8 +671,8 @@ function Panel({
 
 function EmptyPanel({ label }: { label: string }) {
   return (
-    <div className="py-10 text-center text-sm text-slate-500">
-      <Sparkles className="w-8 h-8 mx-auto mb-2 text-sky-300" />
+    <div className="py-10 text-center text-sm text-muted-foreground">
+      <Sparkles className="w-8 h-8 mx-auto mb-2 text-cyan-300/60" />
       {label}
     </div>
   );
@@ -691,21 +694,21 @@ function LeaderboardRow({
           ? "from-amber-600 to-amber-700"
           : "from-sky-300 to-sky-400";
   return (
-    <div className="flex items-center gap-3 p-3 hover:bg-sky-50/30">
+    <div className="flex items-center gap-3 p-3 hover:bg-muted">
       <div
         className={`w-8 h-8 rounded-full bg-gradient-to-br ${rankColor} text-white flex items-center justify-center text-xs font-bold flex-shrink-0`}
       >
         {rank}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium text-sky-900 truncate">
+        <div className="text-sm font-medium text-foreground truncate">
           {entry.user.fullName}
         </div>
-        <div className="text-xs text-slate-500">
+        <div className="text-xs text-muted-foreground">
           {entry.dealsWon} deals · {entry.user.role}
         </div>
       </div>
-      <div className="text-sm font-bold text-emerald-700">
+      <div className="text-sm font-bold text-emerald-300">
         {formatMoney(entry.revenue)}
       </div>
     </div>
@@ -715,10 +718,10 @@ function LeaderboardRow({
 function PriorityDot({ priority }: { priority: string }) {
   const color =
     priority === "urgent" || priority === "high"
-      ? "bg-red-500"
+      ? "bg-rose-400"
       : priority === "medium"
-        ? "bg-amber-500"
-        : "bg-slate-300";
+        ? "bg-amber-400"
+        : "bg-muted-foreground";
   return <div className={`w-2 h-2 rounded-full ${color}`} />;
 }
 

@@ -54,26 +54,26 @@ const TXN_META: Record<
   { bg: string; text: string; ring: string; Icon: typeof Award }
 > = {
   earn: {
-    bg: "bg-emerald-50",
-    text: "text-emerald-700",
-    ring: "ring-emerald-200",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-300",
+    ring: "ring-emerald-500/30",
     Icon: PlusCircle,
   },
   redeem: {
-    bg: "bg-sky-50",
-    text: "text-sky-700",
-    ring: "ring-sky-200",
+    bg: "bg-muted",
+    text: "text-cyan-300",
+    ring: "ring-cyan-500/30",
     Icon: Gift,
   },
   adjust: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    ring: "ring-amber-200",
+    bg: "bg-amber-500/10",
+    text: "text-amber-300",
+    ring: "ring-amber-500/30",
     Icon: RefreshCw,
   },
   expire: {
-    bg: "bg-slate-50",
-    text: "text-slate-600",
+    bg: "bg-muted",
+    text: "text-muted-foreground",
     ring: "ring-slate-200",
     Icon: Calendar,
   },
@@ -143,15 +143,15 @@ export default function LoyaltyPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-              <Award className="w-6 h-6 text-sky-500" />
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <Award className="w-6 h-6 text-cyan-300" />
               {t("title")}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
           <button
             onClick={() => setTxnModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium transition-colors shadow-sm"
           >
             <Plus className="w-4 h-4" />
             {t("newTransaction")}
@@ -160,19 +160,19 @@ export default function LoyaltyPage() {
 
         {/* Program inactive banner */}
         {program && !program.isActive && (
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">
-            <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 text-amber-300 flex-shrink-0" />
             <div className="flex-1">
               <div className="text-sm font-semibold text-amber-900">
                 {t("banner.inactiveTitle")}
               </div>
-              <div className="text-xs text-amber-700">
+              <div className="text-xs text-amber-300">
                 {t("banner.inactiveSubtitle")}
               </div>
             </div>
             <button
               onClick={() => setTab("program")}
-              className="text-sm text-amber-700 hover:text-amber-800 font-medium whitespace-nowrap"
+              className="text-sm text-amber-300 hover:text-amber-800 font-medium whitespace-nowrap"
             >
               {t("banner.configure")} →
             </button>
@@ -180,7 +180,7 @@ export default function LoyaltyPage() {
         )}
 
         {/* Tabs */}
-        <div className="border-b border-sky-100 flex gap-1 overflow-x-auto">
+        <div className="border-b border-border flex gap-1 overflow-x-auto">
           {(
             [
               { id: "overview", label: t("tabs.overview"), Icon: TrendingUp },
@@ -201,8 +201,8 @@ export default function LoyaltyPage() {
                 onClick={() => setTab(tb.id)}
                 className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
                   active
-                    ? "border-sky-500 text-sky-600"
-                    : "border-transparent text-slate-600 hover:text-sky-600"
+                    ? "border-cyan-500 text-cyan-300"
+                    : "border-transparent text-muted-foreground hover:text-cyan-300"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -214,10 +214,10 @@ export default function LoyaltyPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
+          <div className="p-6 text-center text-rose-300 bg-rose-500/10 rounded-xl">
             <AlertTriangle className="w-5 h-5 inline ltr:mr-2 rtl:ml-2" />
             {error}
           </div>
@@ -314,8 +314,8 @@ function OverviewTab({
       </div>
 
       {program && program.id && (
-        <div className="bg-white border border-sky-100 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-sky-900 mb-3 flex items-center gap-2">
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Settings2 className="w-4 h-4" />
             {t("overview.programConfig")}
           </h3>
@@ -344,44 +344,44 @@ function OverviewTab({
         </div>
       )}
 
-      <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-        <div className="px-5 py-4 border-b border-sky-100 flex items-center gap-2">
-          <Trophy className="w-4 h-4 text-amber-600" />
-          <h3 className="text-sm font-semibold text-sky-900">
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
+        <div className="px-5 py-4 border-b border-border flex items-center gap-2">
+          <Trophy className="w-4 h-4 text-amber-300" />
+          <h3 className="text-sm font-semibold text-foreground">
             {t("overview.topMembers")}
           </h3>
         </div>
         {topMembers.length === 0 ? (
-          <div className="py-10 text-center text-slate-500 text-sm">
-            <Sparkles className="w-8 h-8 mx-auto mb-2 text-sky-300" />
+          <div className="py-10 text-center text-muted-foreground text-sm">
+            <Sparkles className="w-8 h-8 mx-auto mb-2 text-cyan-300/60" />
             {t("overview.noMembers")}
           </div>
         ) : (
-          <div className="divide-y divide-sky-50">
+          <div className="divide-y divide-border">
             {topMembers.slice(0, 10).map((m, idx) => (
               <div
                 key={idx}
-                className="px-5 py-3 flex items-center gap-3 hover:bg-sky-50/30"
+                className="px-5 py-3 flex items-center gap-3 hover:bg-muted"
               >
-                <div className="w-8 h-8 rounded-full bg-sky-50 text-sky-600 font-bold text-sm flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-muted text-cyan-300 font-bold text-sm flex items-center justify-center">
                   {idx + 1}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-sky-900 truncate">
+                  <div className="font-medium text-foreground truncate">
                     {m.customer.fullName}
                   </div>
                   {m.customer.companyName && (
-                    <div className="text-xs text-slate-500 truncate">
+                    <div className="text-xs text-muted-foreground truncate">
                       {m.customer.companyName}
                     </div>
                   )}
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-sky-900 flex items-center gap-1 justify-end">
+                  <div className="font-bold text-foreground flex items-center gap-1 justify-end">
                     <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
                     {formatNumber(m.balance)}
                   </div>
-                  <div className="text-xs text-slate-500">{t("pts")}</div>
+                  <div className="text-xs text-muted-foreground">{t("pts")}</div>
                 </div>
               </div>
             ))}
@@ -407,16 +407,16 @@ function MembersTab({
   const tiers = program?.tiers ?? [];
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
       {topMembers.length === 0 ? (
-        <div className="py-16 text-center text-slate-500">
-          <Users className="w-10 h-10 mx-auto mb-3 text-sky-300" />
+        <div className="py-16 text-center text-muted-foreground">
+          <Users className="w-10 h-10 mx-auto mb-3 text-cyan-300/60" />
           <p className="text-sm">{t("overview.noMembers")}</p>
         </div>
       ) : (
         <table className="w-full text-sm">
-          <thead className="bg-sky-50 border-b border-sky-100">
-            <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+          <thead className="bg-muted border-b border-border">
+            <tr className="text-left rtl:text-right text-xs uppercase text-muted-foreground">
               <th className="px-4 py-3 font-semibold">#</th>
               <th className="px-4 py-3 font-semibold">{t("table.member")}</th>
               <th className="px-4 py-3 font-semibold">{t("table.tier")}</th>
@@ -431,32 +431,32 @@ function MembersTab({
               return (
                 <tr
                   key={idx}
-                  className="border-b border-sky-50 hover:bg-sky-50/40"
+                  className="border-b border-border hover:bg-muted/40"
                 >
-                  <td className="px-4 py-3 text-slate-600 font-mono text-xs">
+                  <td className="px-4 py-3 text-muted-foreground font-mono text-xs">
                     {idx + 1}
                   </td>
                   <td className="px-4 py-3">
-                    <div className="font-medium text-sky-900">
+                    <div className="font-medium text-foreground">
                       {m.customer.fullName}
                     </div>
                     {m.customer.companyName && (
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-muted-foreground">
                         {m.customer.companyName}
                       </div>
                     )}
                   </td>
                   <td className="px-4 py-3">
                     {tier ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 text-amber-700 ring-1 ring-amber-200 rounded text-xs font-medium">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-500/10 text-amber-300 border border-amber-500/30 ring-1 ring-amber-500/30 rounded text-xs font-medium">
                         <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
                         {tier.name}
                       </span>
                     ) : (
-                      <span className="text-xs text-slate-400">—</span>
+                      <span className="text-xs text-muted-foreground">—</span>
                     )}
                   </td>
-                  <td className="px-4 py-3 ltr:text-right rtl:text-left font-bold text-sky-900">
+                  <td className="px-4 py-3 ltr:text-right rtl:text-left font-bold text-foreground">
                     {formatNumber(m.balance)}
                   </td>
                 </tr>
@@ -485,19 +485,19 @@ function TransactionsTab({
 }) {
   if (txns.length === 0) {
     return (
-      <div className="bg-white border border-sky-100 rounded-xl py-16 text-center text-slate-500">
-        <Gift className="w-10 h-10 mx-auto mb-3 text-sky-300" />
+      <div className="bg-card border border-border rounded-xl py-16 text-center text-muted-foreground">
+        <Gift className="w-10 h-10 mx-auto mb-3 text-cyan-300/60" />
         <p className="text-sm">{t("transactions.empty")}</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="bg-sky-50 border-b border-sky-100">
-            <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+          <thead className="bg-muted border-b border-border">
+            <tr className="text-left rtl:text-right text-xs uppercase text-muted-foreground">
               <th className="px-4 py-3 font-semibold">{t("table.date")}</th>
               <th className="px-4 py-3 font-semibold">{t("table.member")}</th>
               <th className="px-4 py-3 font-semibold">{t("table.type")}</th>
@@ -516,13 +516,13 @@ function TransactionsTab({
               return (
                 <tr
                   key={idx}
-                  className="border-b border-sky-50 hover:bg-sky-50/40"
+                  className="border-b border-border hover:bg-muted/40"
                 >
-                  <td className="px-4 py-3 text-slate-600 text-xs">
+                  <td className="px-4 py-3 text-muted-foreground text-xs">
                     {formatDateTime(tx.createdAt, locale)}
                   </td>
                   <td className="px-4 py-3">
-                    <div className="font-medium text-sky-900">
+                    <div className="font-medium text-foreground">
                       {tx.customer.fullName}
                     </div>
                   </td>
@@ -534,13 +534,13 @@ function TransactionsTab({
                       {t(`txnType.${tx.type}`)}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-slate-700 text-sm max-w-xs truncate">
+                  <td className="px-4 py-3 text-foreground text-sm max-w-xs truncate">
                     {tx.reason || "—"}
                   </td>
                   <td className="px-4 py-3 ltr:text-right rtl:text-left">
                     <span
                       className={`font-bold ${
-                        positive ? "text-emerald-700" : "text-red-700"
+                        positive ? "text-emerald-300" : "text-rose-300"
                       }`}
                     >
                       {positive ? "+" : ""}
@@ -550,7 +550,7 @@ function TransactionsTab({
                   <td className="px-4 py-3">
                     <button
                       onClick={() => onDelete(tx.id)}
-                      className="text-slate-400 hover:text-red-600"
+                      className="text-muted-foreground hover:text-rose-300"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -639,25 +639,25 @@ function ProgramTab({
   };
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-5 space-y-5">
+    <div className="bg-card border border-border rounded-xl p-5 space-y-5">
       <div>
-        <h3 className="text-sm font-semibold text-sky-900 mb-3">
+        <h3 className="text-sm font-semibold text-foreground mb-3">
           {t("program.basics")}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("program.name")}
             </label>
             <input
               type="text"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("program.currency")}
             </label>
             <select
@@ -665,7 +665,7 @@ function ProgramTab({
               onChange={(e) =>
                 setForm({ ...form, currency: e.target.value })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="TRY">TRY</option>
               <option value="USD">USD</option>
@@ -684,21 +684,21 @@ function ProgramTab({
             onChange={(e) =>
               setForm({ ...form, isActive: e.target.checked })
             }
-            className="w-4 h-4 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
+            className="w-4 h-4 rounded border-border text-cyan-300 focus:ring-primary"
           />
-          <span className="text-sm text-slate-700">
+          <span className="text-sm text-foreground">
             {t("program.isActive")}
           </span>
         </label>
       </div>
 
       <div>
-        <h3 className="text-sm font-semibold text-sky-900 mb-3">
+        <h3 className="text-sm font-semibold text-foreground mb-3">
           {t("program.earnRedeem")}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("program.pointsPerUnit")}
             </label>
             <input
@@ -708,14 +708,14 @@ function ProgramTab({
               onChange={(e) =>
                 setForm({ ...form, pointsPerUnit: e.target.value })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {t("program.pointsPerUnitHint")}
             </p>
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("program.redeemValue")}
             </label>
             <input
@@ -725,14 +725,14 @@ function ProgramTab({
               onChange={(e) =>
                 setForm({ ...form, redeemValue: e.target.value })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {t("program.redeemValueHint")}
             </p>
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("program.minRedeem")}
             </label>
             <input
@@ -741,7 +741,7 @@ function ProgramTab({
               onChange={(e) =>
                 setForm({ ...form, minRedeem: Number(e.target.value) })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
@@ -749,19 +749,19 @@ function ProgramTab({
 
       <div>
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-semibold text-sky-900">
+          <h3 className="text-sm font-semibold text-foreground">
             {t("program.tiers")}
           </h3>
           <button
             onClick={addTier}
-            className="text-xs text-sky-600 hover:text-sky-800 font-medium flex items-center gap-1"
+            className="text-xs text-cyan-300 hover:text-foreground font-medium flex items-center gap-1"
           >
             <Plus className="w-3 h-3" />
             {t("program.addTier")}
           </button>
         </div>
         {form.tiers.length === 0 ? (
-          <div className="text-xs text-slate-500 bg-sky-50/30 border border-sky-100 rounded-lg p-4 text-center">
+          <div className="text-xs text-muted-foreground bg-muted/40 border border-border rounded-lg p-4 text-center">
             {t("program.noTiers")}
           </div>
         ) : (
@@ -769,7 +769,7 @@ function ProgramTab({
             {form.tiers.map((tier, idx) => (
               <div
                 key={idx}
-                className="bg-sky-50/30 border border-sky-100 rounded-lg p-3 grid grid-cols-12 gap-2 items-center"
+                className="bg-muted/40 border border-border rounded-lg p-3 grid grid-cols-12 gap-2 items-center"
               >
                 <input
                   type="text"
@@ -778,7 +778,7 @@ function ProgramTab({
                     updateTier(idx, { name: e.target.value })
                   }
                   placeholder={t("program.tierName")}
-                  className="col-span-4 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="col-span-4 px-2 py-1.5 text-sm border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <div className="col-span-3 flex items-center gap-1">
                   <input
@@ -789,9 +789,9 @@ function ProgramTab({
                         threshold: Number(e.target.value),
                       })
                     }
-                    className="flex-1 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    className="flex-1 px-2 py-1.5 text-sm border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                   />
-                  <span className="text-xs text-slate-500 whitespace-nowrap">
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
                     {t("pts")}
                   </span>
                 </div>
@@ -805,15 +805,15 @@ function ProgramTab({
                         multiplier: Number(e.target.value),
                       })
                     }
-                    className="flex-1 px-2 py-1.5 text-sm border border-sky-200 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    className="flex-1 px-2 py-1.5 text-sm border border-border rounded bg-card focus:outline-none focus:ring-2 focus:ring-primary"
                   />
-                  <span className="text-xs text-slate-500 whitespace-nowrap">
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
                     × {t("program.multiplier")}
                   </span>
                 </div>
                 <button
                   onClick={() => removeTier(idx)}
-                  className="col-span-1 flex items-center justify-center text-slate-400 hover:text-red-600"
+                  className="col-span-1 flex items-center justify-center text-muted-foreground hover:text-rose-300"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -824,21 +824,21 @@ function ProgramTab({
       </div>
 
       {err && (
-        <div className="bg-red-50 text-red-700 text-sm p-3 rounded-lg border border-red-100 whitespace-pre-line">
+        <div className="bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm p-3 rounded-lg border border-red-100 whitespace-pre-line">
           {err}
         </div>
       )}
       {savedMessage && (
-        <div className="bg-emerald-50 text-emerald-700 text-sm p-3 rounded-lg border border-emerald-100">
+        <div className="bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 text-sm p-3 rounded-lg border border-emerald-500/30">
           ✓ {savedMessage}
         </div>
       )}
 
-      <div className="flex justify-end border-t border-sky-100 pt-4">
+      <div className="flex justify-end border-t border-border pt-4">
         <button
           onClick={save}
           disabled={saving}
-          className="px-5 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+          className="px-5 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
         >
           {saving ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -914,16 +914,16 @@ function TransactionModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-md w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-md w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-sky-900">
+        <div className="p-5 border-b border-border flex items-center justify-between">
+          <h2 className="text-lg font-bold text-foreground">
             {t("transactions.newTitle")}
           </h2>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -931,7 +931,7 @@ function TransactionModal({
 
         <div className="p-5 space-y-3">
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.customer")} *
             </label>
             <select
@@ -939,7 +939,7 @@ function TransactionModal({
               onChange={(e) =>
                 setForm({ ...form, customerId: e.target.value })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="">{t("form.selectCustomer")}</option>
               {customers.map((c, idx) => (
@@ -952,7 +952,7 @@ function TransactionModal({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.type")} *
             </label>
             <div className="grid grid-cols-4 gap-2">
@@ -968,7 +968,7 @@ function TransactionModal({
                       className={`px-2 py-2 rounded-lg text-xs font-medium border flex flex-col items-center gap-1 transition-colors ${
                         active
                           ? `${meta.bg} ${meta.text} border-current`
-                          : "bg-white text-slate-600 border-sky-200 hover:border-sky-400"
+                          : "bg-card text-muted-foreground border-border hover:border-cyan-500/40"
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -981,22 +981,22 @@ function TransactionModal({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.points")} *
             </label>
             <input
               type="number"
               value={form.points}
               onChange={(e) => setForm({ ...form, points: e.target.value })}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {t("form.pointsHint")}
             </p>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.reason")}
             </label>
             <input
@@ -1004,28 +1004,28 @@ function TransactionModal({
               value={form.reason}
               onChange={(e) => setForm({ ...form, reason: e.target.value })}
               placeholder={t("form.reasonPlaceholder")}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
           {err && (
-            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100 whitespace-pre-line">
+            <div className="bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm p-2 rounded-lg border border-red-100 whitespace-pre-line">
               {err}
             </div>
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex justify-end gap-2 bg-sky-50/30">
+        <div className="p-4 border-t border-border flex justify-end gap-2 bg-muted/40">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 rounded-lg"
+            className="px-4 py-2 text-sm text-foreground hover:bg-muted rounded-lg"
           >
             {t("actions.cancel")}
           </button>
           <button
             onClick={submit}
             disabled={saving}
-            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving && <Loader2 className="w-4 h-4 animate-spin" />}
             {t("actions.create")}
@@ -1051,20 +1051,20 @@ function StatCard({
   color: "cyan" | "sky" | "emerald" | "amber";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
-    sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
-    emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
-    amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
+    cyan: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    sky: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    emerald: { iconBg: "bg-emerald-500/10", iconText: "text-emerald-300" },
+    amber: { iconBg: "bg-amber-500/10", iconText: "text-amber-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4 flex items-center gap-3">
+    <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
       <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
         <Icon className="w-5 h-5" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-xs text-slate-500 truncate">{label}</div>
-        <div className="text-lg font-bold text-sky-900 truncate">{value}</div>
+        <div className="text-xs text-muted-foreground truncate">{label}</div>
+        <div className="text-lg font-bold text-foreground truncate">{value}</div>
       </div>
     </div>
   );
@@ -1072,9 +1072,9 @@ function StatCard({
 
 function ConfigBox({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-sky-50/40 border border-sky-100 rounded-lg px-3 py-2">
-      <div className="text-xs text-slate-500">{label}</div>
-      <div className="text-sm text-sky-900 font-semibold mt-0.5">{value}</div>
+    <div className="bg-muted/40 border border-border rounded-lg px-3 py-2">
+      <div className="text-xs text-muted-foreground">{label}</div>
+      <div className="text-sm text-foreground font-semibold mt-0.5">{value}</div>
     </div>
   );
 }

@@ -26,8 +26,8 @@ export function MerchantShell({ locale, children }: MerchantShellProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="w-8 h-8 border-2 border-sky-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -58,7 +58,7 @@ export function MerchantShell({ locale, children }: MerchantShellProps) {
 
   return (
     <div
-      className="min-h-screen bg-[#F0F9FF] flex"
+      className="min-h-screen bg-background flex"
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* Desktop / tablet sidebar — always mounted */}
@@ -70,11 +70,11 @@ export function MerchantShell({ locale, children }: MerchantShellProps) {
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50 flex">
           <div
-            className="flex-1 bg-slate-900/40 backdrop-blur-sm"
+            className="flex-1 bg-background/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
           <div
-            className={`h-full bg-white ${
+            className={`h-full bg-card ${
               isRTL ? "order-first" : ""
             }`}
             style={{ width: 280 }}

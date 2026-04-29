@@ -211,7 +211,7 @@ export default async function LocaleLayout({
       </head>
 
       <body
-        className={`${isArabic ? "font-cairo" : "font-inter"} bg-bg-base text-ink antialiased`}
+        className={`${isArabic ? "font-cairo" : "font-inter"} bg-background text-foreground antialiased`}
         suppressHydrationWarning
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
