@@ -279,8 +279,7 @@ export function PlanCatalogCard({
         {/* See all features (marketing only) */}
         {variant === "marketing" && (
           <a
-            // TODO sprint 14ag — wire to comparison table anchor
-            href="#feature-comparison"
+            href="#comparison"
             className={`inline-flex items-center gap-1 text-xs font-semibold mt-4 ${a.checkText} hover:underline`}
           >
             {t("seeAllFeatures")} →

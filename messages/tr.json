@@ -895,6 +895,23 @@
     "everythingInBusiness": "İşletme plandaki her şey, artı:",
     "loadError": "Planlar yüklenemedi. Lütfen yenileyin.",
     "loading": "Planlar yükleniyor…",
+    "comparison": {
+      "eyebrow": "PLANLARI KARŞILAŞTIR",
+      "title": "Tüm özellikler, yan yana",
+      "subtitle": "Tüm 4 planın tüm özellikleri, kategoriye göre düzenlenmiş. Vurgulamak için bir satırın üzerine gelin.",
+      "featureColumn": "Özellik",
+      "bottomCtaText": "Hâlâ sorularınız mı var? Aşağıdaki SSS'lere bakın veya ekibimizle konuşun.",
+      "viewFaq": "SSS'yi gör",
+      "contactSales": "Satış ile iletişim",
+      "categories": {
+        "core": "Temel",
+        "sales": "Satış",
+        "comms": "İletişim",
+        "ai": "AI ve Otomasyon",
+        "admin": "Yönetim ve Güvenlik",
+        "enterprise": "Kurumsal"
+      }
+    },
     "features": {
       "contacts": "Kişiler",
       "deals": "Anlaşmalar",
@@ -937,7 +954,12 @@
       "unlimited": "Sınırsız"
     },
     "faq": {
+      "eyebrow": "SSS",
       "title": "Sıkça sorulan sorular",
+      "subtitle": "Aradığınızı bulamıyor musunuz? Satış ekibimiz yardımcı olmaktan mutluluk duyar.",
+      "stillQuestionsTitle": "Hâlâ sorularınız mı var?",
+      "stillQuestionsSubtitle": "Satış ekibimiz iş günlerinde genellikle 4 saat içinde yanıt verir.",
+      "contactSalesButton": "Satış ile iletişim",
       "q1": {
         "q": "2026'da WhatsApp Business için en iyi CRM hangisi?",
         "a": "Zyrix, WhatsApp öncelikli ticaret için özel olarak tasarlanmıştır. WhatsApp'ı sonradan eklenen bir özellik gibi gören geleneksel CRM'lerin aksine, Zyrix'teki her özellik — satış hattı, otomasyon, AI ajanları, raporlama — WhatsApp Business API etrafında tasarlanmıştır. Meta Cloud API ile doğrudan entegre oluyoruz, şablon mesajlarını, yayın listelerini ve 24 saatlik konuşma pencerelerini destekliyoruz."

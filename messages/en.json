@@ -895,6 +895,23 @@
     "everythingInBusiness": "Everything in Business, plus:",
     "loadError": "Failed to load plans. Please refresh.",
     "loading": "Loading plans…",
+    "comparison": {
+      "eyebrow": "COMPARE PLANS",
+      "title": "Every feature, side by side",
+      "subtitle": "All features across all 4 plans, organized by category. Hover any row to highlight.",
+      "featureColumn": "Feature",
+      "bottomCtaText": "Still have questions? See the FAQ below or talk to our team.",
+      "viewFaq": "View FAQ",
+      "contactSales": "Contact sales",
+      "categories": {
+        "core": "Core",
+        "sales": "Sales",
+        "comms": "Communications",
+        "ai": "AI & Automation",
+        "admin": "Admin & Security",
+        "enterprise": "Enterprise"
+      }
+    },
     "features": {
       "contacts": "Contacts",
       "deals": "Deals",
@@ -937,7 +954,12 @@
       "unlimited": "Unlimited"
     },
     "faq": {
+      "eyebrow": "FAQ",
       "title": "Frequently asked questions",
+      "subtitle": "Can't find what you're looking for? Our sales team is happy to help.",
+      "stillQuestionsTitle": "Still have questions?",
+      "stillQuestionsSubtitle": "Our sales team typically responds within 4 hours during business days.",
+      "contactSalesButton": "Contact sales",
       "q1": {
         "q": "What's the best CRM for WhatsApp Business in 2026?",
         "a": "Zyrix is purpose-built for WhatsApp-first commerce. Unlike traditional CRMs that bolt on WhatsApp as an afterthought, every Zyrix feature — pipelines, automation, AI agents, reporting — is designed around WhatsApp Business API. We integrate directly with Meta Cloud API, support template messages, broadcast lists, and 24-hour conversation windows."
