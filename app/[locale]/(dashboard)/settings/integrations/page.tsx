@@ -188,7 +188,7 @@ export default function EcommerceIntegrationsPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t("searchPlatforms")}
-                className="ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-border rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2 text-sm bg-card border border-border text-foreground placeholder:text-muted-foreground/60 rounded-lg w-64 focus:outline-none focus:border-cyan-500/40 focus:ring-1 focus:ring-cyan-500/30 transition-colors"
               />
             </div>
           </div>
@@ -242,16 +242,25 @@ export default function EcommerceIntegrationsPage() {
           )}
         </section>
 
-        <div className="bg-gradient-to-br from-sky-50 to-sky-50 border border-border rounded-xl p-5">
-          <h3 className="text-base font-semibold text-foreground mb-2 flex items-center gap-2">
-            <Info className="w-4 h-4" />
-            {t("howItWorks.title")}
-          </h3>
-          <ol className="space-y-1.5 text-sm text-foreground">
-            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-sky-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">1</span><span>{t("howItWorks.step1")}</span></li>
-            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-sky-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">2</span><span>{t("howItWorks.step2")}</span></li>
-            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-sky-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">3</span><span>{t("howItWorks.step3")}</span></li>
-            <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-sky-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">4</span><span>{t("howItWorks.step4")}</span></li>
+        {/* Sprint 14ae — cyan dark gradient instead of bg-sky-50 near-white */}
+        <div className="rounded-xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-sky-500/8 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Info className="w-4 h-4 text-cyan-300" />
+            <h3 className="text-foreground text-base font-semibold">
+              {t("howItWorks.title")}
+            </h3>
+          </div>
+          <ol className="space-y-3">
+            {[1, 2, 3, 4].map((n) => (
+              <li key={n} className="flex items-start gap-3">
+                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-cyan-500/15 border border-cyan-500/40 text-xs font-bold text-cyan-300">
+                  {n}
+                </span>
+                <span className="text-sm text-foreground/90 leading-relaxed">
+                  {t(`howItWorks.step${n}`)}
+                </span>
+              </li>
+            ))}
           </ol>
         </div>
       </div>

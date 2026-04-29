@@ -152,24 +152,26 @@ export default function ApiKeysPage() {
             </div>
             <ExternalLink className="w-4 h-4 text-muted-foreground flex-shrink-0" />
           </Link>
+          {/* Sprint 14ae — Zapier card: dark amber gradient (was light amber-50/orange-50) */}
           <a
             href="https://zapier.com/apps/search?q=zyrix"
             target="_blank"
             rel="noopener"
-            className="flex items-center gap-3 p-3 rounded-xl border border-amber-500/30 bg-gradient-to-br from-amber-50 to-orange-50 hover:border-amber-300 transition-colors"
+            className="group flex items-center gap-3 p-4 rounded-xl border border-amber-500/25 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-orange-500/8 hover:border-amber-500/45 transition-colors"
           >
-            <div className="w-10 h-10 rounded-lg bg-card text-orange-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+            <div className="w-11 h-11 rounded-lg bg-amber-500/15 border border-amber-500/40 text-amber-300 flex items-center justify-center flex-shrink-0">
               <Zap className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-amber-900">
+              <div className="text-base font-semibold text-foreground flex items-center gap-2">
                 {tr(
                   "Connect with Zapier",
                   "اربط مع Zapier",
                   "Zapier ile bağlan"
                 )}
+                <ExternalLink className="w-3.5 h-3.5 text-amber-300 opacity-60 group-hover:opacity-100 transition-opacity" />
               </div>
-              <div className="text-xs text-amber-300">
+              <div className="text-sm text-amber-200/80 mt-0.5">
                 {tr(
                   "5,000+ apps — Gmail, Sheets, Slack, and more",
                   "5,000+ تطبيق — Gmail، Sheets، Slack، وأكثر",
@@ -177,7 +179,6 @@ export default function ApiKeysPage() {
                 )}
               </div>
             </div>
-            <ExternalLink className="w-4 h-4 text-amber-300 flex-shrink-0" />
           </a>
         </div>
 
