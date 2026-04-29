@@ -137,7 +137,7 @@ function ImpersonationBannerInner({ locale }: Props) {
         </div>
         <button
           onClick={endSession}
-          className="flex-shrink-0 inline-flex items-center gap-1.5 bg-white text-red-700 hover:bg-red-50 font-bold text-xs px-3 py-1.5 rounded-md shadow-sm"
+          className="flex-shrink-0 inline-flex items-center gap-1.5 bg-card text-rose-300 hover:bg-rose-500/10 font-bold text-xs px-3 py-1.5 rounded-md shadow-sm"
         >
           <X size={14} />
           {t("endSession")}

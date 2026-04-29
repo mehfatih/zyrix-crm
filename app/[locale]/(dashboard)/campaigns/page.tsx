@@ -58,40 +58,40 @@ const CHANNEL_META: Record<
   Channel,
   { bg: string; text: string; Icon: typeof Mail }
 > = {
-  email: { bg: "bg-sky-50", text: "text-sky-600", Icon: Mail },
+  email: { bg: "bg-muted", text: "text-cyan-300", Icon: Mail },
   whatsapp: {
-    bg: "bg-emerald-50",
-    text: "text-emerald-700",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-300",
     Icon: MessageCircle,
   },
-  sms: { bg: "bg-sky-50", text: "text-sky-700", Icon: Phone },
+  sms: { bg: "bg-muted", text: "text-cyan-300", Icon: Phone },
 };
 
 const STATUS_META: Record<
   CampaignStatus,
   { bg: string; text: string; ring: string }
 > = {
-  draft: { bg: "bg-slate-50", text: "text-slate-700", ring: "ring-slate-200" },
+  draft: { bg: "bg-muted", text: "text-foreground", ring: "ring-border" },
   scheduled: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    ring: "ring-amber-200",
+    bg: "bg-amber-500/10",
+    text: "text-amber-300",
+    ring: "ring-amber-500/30",
   },
   sending: {
-    bg: "bg-sky-50",
-    text: "text-sky-700",
-    ring: "ring-sky-200",
+    bg: "bg-muted",
+    text: "text-cyan-300",
+    ring: "ring-cyan-500/30",
   },
   sent: {
-    bg: "bg-emerald-50",
-    text: "text-emerald-700",
-    ring: "ring-emerald-200",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-300",
+    ring: "ring-emerald-500/30",
   },
-  failed: { bg: "bg-red-50", text: "text-red-700", ring: "ring-red-200" },
+  failed: { bg: "bg-rose-500/10", text: "text-rose-300", ring: "ring-rose-500/30" },
   cancelled: {
-    bg: "bg-slate-100",
-    text: "text-slate-600",
-    ring: "ring-slate-200",
+    bg: "bg-muted",
+    text: "text-muted-foreground",
+    ring: "ring-border",
   },
 };
 
@@ -143,15 +143,16 @@ export default function CampaignsPage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-              <Mail className="w-6 h-6 text-sky-500" />
+            <p className="text-pink-300 text-xs font-bold uppercase tracking-widest mb-2">MARKETING</p>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <Mail className="w-6 h-6 text-cyan-300" />
               {t("title")}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
           <button
             onClick={() => setWizardOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium shadow-sm"
           >
             <Plus className="w-4 h-4" />
             {t("newCampaign")}
@@ -188,25 +189,25 @@ export default function CampaignsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
+          <div className="p-6 text-center text-rose-300 bg-rose-500/10 rounded-xl">
             <AlertTriangle className="w-5 h-5 inline ltr:mr-2 rtl:ml-2" />
             {error}
           </div>
         ) : campaigns.length === 0 ? (
-          <div className="bg-white border border-sky-100 rounded-xl py-16 text-center text-slate-500">
+          <div className="bg-card border border-border rounded-xl py-16 text-center text-muted-foreground">
             <Sparkles className="w-10 h-10 mx-auto mb-3 text-sky-300" />
             <p className="text-sm font-medium">{t("empty.title")}</p>
             <p className="text-xs mt-1">{t("empty.subtitle")}</p>
           </div>
         ) : (
-          <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+          <div className="bg-card border border-border rounded-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-sky-50 border-b border-sky-100">
-                  <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+                <thead className="bg-muted border-b border-border">
+                  <tr className="text-left rtl:text-right text-xs uppercase text-muted-foreground">
                     <th className="px-4 py-3 font-semibold">
                       {t("table.name")}
                     </th>
@@ -236,14 +237,14 @@ export default function CampaignsPage() {
                       <tr
                         key={idx}
                         onClick={() => openDetail(c)}
-                        className="border-b border-sky-50 hover:bg-sky-50/40 cursor-pointer"
+                        className="border-b border-sky-50 hover:bg-muted/40 cursor-pointer"
                       >
                         <td className="px-4 py-3">
-                          <div className="font-medium text-sky-900">
+                          <div className="font-medium text-foreground">
                             {c.name}
                           </div>
                           {c.subject && (
-                            <div className="text-xs text-slate-500 truncate max-w-sm">
+                            <div className="text-xs text-muted-foreground truncate max-w-sm">
                               {c.subject}
                             </div>
                           )}
@@ -263,13 +264,13 @@ export default function CampaignsPage() {
                             {t(`status.${c.status}`)}
                           </span>
                         </td>
-                        <td className="px-4 py-3 ltr:text-right rtl:text-left text-slate-700">
+                        <td className="px-4 py-3 ltr:text-right rtl:text-left text-foreground">
                           {c.recipientCount}
                         </td>
-                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-medium text-sky-900">
+                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-medium text-foreground">
                           {c.sentCount}
                         </td>
-                        <td className="px-4 py-3 text-slate-600 text-xs">
+                        <td className="px-4 py-3 text-muted-foreground text-xs">
                           {formatDate(c.createdAt, locale)}
                         </td>
                       </tr>
@@ -427,12 +428,12 @@ function WizardModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-2xl w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-2xl w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-center justify-between">
+        <div className="p-5 border-b border-border flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-sky-900">
+            <h2 className="text-lg font-bold text-foreground">
               {t("wizard.title")}
             </h2>
             <div className="flex items-center gap-2 mt-1">
@@ -446,7 +447,7 @@ function WizardModal({
                 />
               ))}
             </div>
-            <div className="text-xs text-slate-500 mt-1">
+            <div className="text-xs text-muted-foreground mt-1">
               {t("wizard.step", { step: String(step), total: "4" })}:{" "}
               {step === 1 && t("wizard.steps.channel")}
               {step === 2 && t("wizard.steps.audience")}
@@ -456,7 +457,7 @@ function WizardModal({
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -466,7 +467,7 @@ function WizardModal({
           {step === 1 && (
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-foreground mb-1">
                   {t("wizard.fields.name")} *
                 </label>
                 <input
@@ -474,11 +475,11 @@ function WizardModal({
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder={t("wizard.fields.namePlaceholder")}
-                  className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-2">
+                <label className="block text-xs font-medium text-foreground mb-2">
                   {t("wizard.fields.channel")}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -492,14 +493,14 @@ function WizardModal({
                         onClick={() => setForm({ ...form, channel: ch })}
                         className={`px-3 py-4 rounded-lg border flex flex-col items-center gap-1 text-sm font-medium transition-colors ${
                           active
-                            ? "border-sky-400 bg-sky-50 text-sky-600"
-                            : "border-sky-200 bg-white text-slate-600 hover:bg-sky-50"
+                            ? "border-sky-400 bg-muted text-cyan-300"
+                            : "border-border bg-card text-muted-foreground hover:bg-muted"
                         }`}
                       >
                         <Icon className="w-6 h-6" />
                         {t(`channel.${ch}`)}
                         {ch !== "email" && (
-                          <span className="text-[10px] text-amber-600">
+                          <span className="text-[10px] text-amber-300">
                             {t("wizard.beta")}
                           </span>
                         )}
@@ -514,7 +515,7 @@ function WizardModal({
           {step === 2 && (
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-2">
+                <label className="block text-xs font-medium text-foreground mb-2">
                   {t("wizard.fields.targetType")}
                 </label>
                 <div className="space-y-2">
@@ -535,8 +536,8 @@ function WizardModal({
                         }
                         className={`w-full text-left rtl:text-right px-4 py-3 rounded-lg border text-sm transition-colors ${
                           active
-                            ? "border-sky-400 bg-sky-50 text-sky-600"
-                            : "border-sky-200 bg-white text-slate-600 hover:bg-sky-50"
+                            ? "border-sky-400 bg-muted text-cyan-300"
+                            : "border-border bg-card text-muted-foreground hover:bg-muted"
                         }`}
                       >
                         {opt.label}
@@ -547,7 +548,7 @@ function WizardModal({
               </div>
               {form.targetType === "status" && (
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-foreground mb-1">
                     {t("wizard.fields.statusValue")}
                   </label>
                   <select
@@ -555,7 +556,7 @@ function WizardModal({
                     onChange={(e) =>
                       setForm({ ...form, targetValue: e.target.value })
                     }
-                    className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                    className="w-full px-3 py-2 text-sm border border-border rounded-lg"
                   >
                     <option value="">—</option>
                     <option value="new">new</option>
@@ -566,7 +567,7 @@ function WizardModal({
               )}
               {form.targetType === "tag" && (
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-foreground mb-1">
                     {t("wizard.fields.tagValue")}
                   </label>
                   <input
@@ -576,7 +577,7 @@ function WizardModal({
                       setForm({ ...form, targetValue: e.target.value })
                     }
                     placeholder={t("wizard.fields.tagPlaceholder")}
-                    className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                    className="w-full px-3 py-2 text-sm border border-border rounded-lg"
                   />
                 </div>
               )}
@@ -586,8 +587,8 @@ function WizardModal({
           {step === 3 && (
             <div className="space-y-3">
               {form.channel === "email" && templates.length > 0 && (
-                <div className="bg-sky-50/50 border border-sky-100 rounded-lg p-3">
-                  <label className="flex items-center gap-1.5 text-xs font-medium text-sky-900 mb-1.5">
+                <div className="bg-muted/50 border border-border rounded-lg p-3">
+                  <label className="flex items-center gap-1.5 text-xs font-medium text-foreground mb-1.5">
                     <BookOpen className="w-3.5 h-3.5" />
                     Use a saved template
                   </label>
@@ -595,7 +596,7 @@ function WizardModal({
                     <select
                       value={selectedTemplateId}
                       onChange={(e) => applyTemplate(e.target.value)}
-                      className="flex-1 px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white"
+                      className="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-card"
                     >
                       <option value="">— Start from scratch —</option>
                       {templates.map((tpl) => (
@@ -620,13 +621,13 @@ function WizardModal({
                             bodyHtml: "",
                           }));
                         }}
-                        className="px-2 py-2 text-xs text-slate-600 hover:bg-white rounded-lg"
+                        className="px-2 py-2 text-xs text-muted-foreground hover:bg-card rounded-lg"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
                     )}
                   </div>
-                  <p className="text-[10px] text-slate-500 mt-1.5">
+                  <p className="text-[10px] text-muted-foreground mt-1.5">
                     Picking a template fills in any empty fields below. You can still edit them.
                   </p>
                 </div>
@@ -634,7 +635,7 @@ function WizardModal({
               {form.channel === "email" && (
                 <>
                   <div>
-                    <label className="block text-xs font-medium text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-foreground mb-1">
                       {t("wizard.fields.subject")} *
                     </label>
                     <input
@@ -643,12 +644,12 @@ function WizardModal({
                       onChange={(e) =>
                         setForm({ ...form, subject: e.target.value })
                       }
-                      className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                      className="w-full px-3 py-2 text-sm border border-border rounded-lg"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-foreground mb-1">
                         {t("wizard.fields.fromName")}
                       </label>
                       <input
@@ -657,11 +658,11 @@ function WizardModal({
                         onChange={(e) =>
                           setForm({ ...form, fromName: e.target.value })
                         }
-                        className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                        className="w-full px-3 py-2 text-sm border border-border rounded-lg"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-foreground mb-1">
                         {t("wizard.fields.replyTo")}
                       </label>
                       <input
@@ -670,14 +671,14 @@ function WizardModal({
                         onChange={(e) =>
                           setForm({ ...form, replyTo: e.target.value })
                         }
-                        className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                        className="w-full px-3 py-2 text-sm border border-border rounded-lg"
                       />
                     </div>
                   </div>
                 </>
               )}
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-foreground mb-1">
                   {t("wizard.fields.body")} *
                 </label>
                 <textarea
@@ -687,7 +688,7 @@ function WizardModal({
                   }
                   rows={8}
                   placeholder={t("wizard.fields.bodyPlaceholder")}
-                  className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
             </div>
@@ -718,7 +719,7 @@ function WizardModal({
                 />
               )}
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-foreground mb-1">
                   {t("wizard.fields.scheduledAt")}
                 </label>
                 <input
@@ -727,9 +728,9 @@ function WizardModal({
                   onChange={(e) =>
                     setForm({ ...form, scheduledAt: e.target.value })
                   }
-                  className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg"
                 />
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {t("wizard.scheduleHint")}
                 </p>
               </div>
@@ -737,16 +738,16 @@ function WizardModal({
           )}
 
           {err && (
-            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100">
+            <div className="bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm p-2 rounded-lg border border-red-100">
               {err}
             </div>
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex items-center justify-between gap-2 bg-sky-50/30">
+        <div className="p-4 border-t border-border flex items-center justify-between gap-2 bg-muted/30">
           <button
             onClick={step === 1 ? onClose : back}
-            className="flex items-center gap-1.5 px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 rounded-lg"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg"
           >
             <ChevronLeft className="w-4 h-4" />
             {step === 1 ? t("wizard.actions.cancel") : t("wizard.actions.back")}
@@ -755,7 +756,7 @@ function WizardModal({
             <button
               onClick={next}
               disabled={!canProceed()}
-              className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg disabled:opacity-50"
+              className="flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg disabled:opacity-50"
             >
               {t("wizard.actions.next")}
               <ChevronRight className="w-4 h-4" />
@@ -765,7 +766,7 @@ function WizardModal({
               <button
                 onClick={() => submit(false)}
                 disabled={saving}
-                className="px-4 py-2 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 text-sm font-medium rounded-lg disabled:opacity-50"
+                className="px-4 py-2 bg-card border border-border hover:bg-muted text-foreground text-sm font-medium rounded-lg disabled:opacity-50"
               >
                 {saving ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -795,11 +796,11 @@ function WizardModal({
 
 function ReviewRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-start gap-3 bg-sky-50/30 border border-sky-100 rounded-lg px-3 py-2">
-      <div className="text-xs font-medium text-slate-600 min-w-[100px]">
+    <div className="flex items-start gap-3 bg-muted/30 border border-border rounded-lg px-3 py-2">
+      <div className="text-xs font-medium text-muted-foreground min-w-[100px]">
         {label}
       </div>
-      <div className="text-sm text-sky-900 font-medium flex-1">{value}</div>
+      <div className="text-sm text-foreground font-medium flex-1">{value}</div>
     </div>
   );
 }
@@ -863,10 +864,10 @@ function DetailModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-3xl w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-3xl w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-start justify-between gap-4">
+        <div className="p-5 border-b border-border flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span
@@ -881,14 +882,14 @@ function DetailModal({
                 {t(`status.${campaign.status}`)}
               </span>
             </div>
-            <h2 className="text-lg font-bold text-sky-900">{campaign.name}</h2>
+            <h2 className="text-lg font-bold text-foreground">{campaign.name}</h2>
             {campaign.subject && (
-              <p className="text-sm text-slate-600 mt-0.5">{campaign.subject}</p>
+              <p className="text-sm text-muted-foreground mt-0.5">{campaign.subject}</p>
             )}
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -916,34 +917,34 @@ function DetailModal({
 
           {campaign.bodyText && (
             <div>
-              <div className="text-xs font-semibold text-slate-500 uppercase mb-1">
+              <div className="text-xs font-semibold text-muted-foreground uppercase mb-1">
                 {t("detail.body")}
               </div>
-              <div className="bg-sky-50/30 border border-sky-100 rounded-lg p-3 text-sm text-slate-700 whitespace-pre-wrap max-h-40 overflow-y-auto">
+              <div className="bg-muted/30 border border-border rounded-lg p-3 text-sm text-foreground whitespace-pre-wrap max-h-40 overflow-y-auto">
                 {campaign.bodyText}
               </div>
             </div>
           )}
 
           <div>
-            <div className="text-xs font-semibold text-slate-500 uppercase mb-2">
+            <div className="text-xs font-semibold text-muted-foreground uppercase mb-2">
               {t("detail.recipientsList")} ({campaign.recipients.length})
             </div>
             {campaign.recipients.length === 0 ? (
-              <div className="text-xs text-slate-500 text-center py-6">
+              <div className="text-xs text-muted-foreground text-center py-6">
                 {t("detail.noRecipients")}
               </div>
             ) : (
-              <div className="max-h-60 overflow-y-auto border border-sky-100 rounded-lg">
+              <div className="max-h-60 overflow-y-auto border border-border rounded-lg">
                 <table className="w-full text-sm">
                   <tbody className="divide-y divide-sky-50">
                     {campaign.recipients.slice(0, 50).map((r, idx) => (
-                      <tr key={idx} className="hover:bg-sky-50/30">
+                      <tr key={idx} className="hover:bg-muted/30">
                         <td className="px-3 py-2">
-                          <div className="font-medium text-sky-900 text-sm">
+                          <div className="font-medium text-foreground text-sm">
                             {r.customer.fullName}
                           </div>
-                          <div className="text-xs text-slate-500 truncate">
+                          <div className="text-xs text-muted-foreground truncate">
                             {r.email || r.phone || "—"}
                           </div>
                         </td>
@@ -955,7 +956,7 @@ function DetailModal({
                   </tbody>
                 </table>
                 {campaign.recipients.length > 50 && (
-                  <div className="text-xs text-slate-500 text-center py-2 border-t border-sky-100">
+                  <div className="text-xs text-muted-foreground text-center py-2 border-t border-border">
                     + {campaign.recipients.length - 50}{" "}
                     {t("detail.moreRecipients")}
                   </div>
@@ -965,10 +966,10 @@ function DetailModal({
           </div>
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex items-center justify-between gap-2 bg-sky-50/30 flex-wrap">
+        <div className="p-4 border-t border-border flex items-center justify-between gap-2 bg-muted/30 flex-wrap">
           <button
             onClick={handleDelete}
-            className="px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 rounded-lg flex items-center gap-1.5"
+            className="px-3 py-1.5 text-sm text-rose-300 hover:bg-rose-500/10 rounded-lg flex items-center gap-1.5"
           >
             <Trash2 className="w-4 h-4" />
             {t("actions.delete")}
@@ -1001,13 +1002,13 @@ function RecipientStatusBadge({
   t: ReturnType<typeof useTranslations>;
 }) {
   const styles: Record<RecipientStatus, string> = {
-    queued: "bg-slate-50 text-slate-600 ring-slate-200",
-    sent: "bg-sky-50 text-sky-700 ring-sky-200",
-    delivered: "bg-sky-50 text-sky-600 ring-sky-200",
-    opened: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-    clicked: "bg-indigo-50 text-indigo-700 ring-indigo-200",
-    bounced: "bg-amber-50 text-amber-700 ring-amber-200",
-    failed: "bg-red-50 text-red-700 ring-red-200",
+    queued: "bg-muted text-muted-foreground ring-border",
+    sent: "bg-muted text-cyan-300 ring-cyan-500/30",
+    delivered: "bg-muted text-cyan-300 ring-cyan-500/30",
+    opened: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 ring-emerald-500/30",
+    clicked: "bg-indigo-500/10 text-indigo-700 ring-indigo-200",
+    bounced: "bg-amber-500/10 text-amber-300 border border-amber-500/30 ring-amber-500/30",
+    failed: "bg-rose-500/10 text-rose-300 border border-rose-500/30 ring-rose-500/30",
   };
   return (
     <span
@@ -1020,9 +1021,9 @@ function RecipientStatusBadge({
 
 function MiniStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-sky-50/40 border border-sky-100 rounded-lg px-2 py-2">
-      <div className="text-xs text-slate-500">{label}</div>
-      <div className="text-lg font-bold text-sky-900">{value}</div>
+    <div className="bg-muted/40 border border-border rounded-lg px-2 py-2">
+      <div className="text-xs text-muted-foreground">{label}</div>
+      <div className="text-lg font-bold text-foreground">{value}</div>
     </div>
   );
 }
@@ -1039,20 +1040,20 @@ function StatCard({
   color: "cyan" | "sky" | "emerald" | "amber";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
-    sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
-    emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
-    amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
+    cyan: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    sky: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    emerald: { iconBg: "bg-emerald-500/10", iconText: "text-emerald-300" },
+    amber: { iconBg: "bg-amber-500/10", iconText: "text-amber-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4 flex items-center gap-3">
+    <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
       <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
         <Icon className="w-5 h-5" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-xs text-slate-500 truncate">{label}</div>
-        <div className="text-lg font-bold text-sky-900 truncate">{value}</div>
+        <div className="text-xs text-muted-foreground truncate">{label}</div>
+        <div className="text-lg font-bold text-foreground truncate">{value}</div>
       </div>
     </div>
   );

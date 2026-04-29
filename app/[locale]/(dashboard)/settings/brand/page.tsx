@@ -249,7 +249,7 @@ export default function BrandingSettingsPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="flex items-center justify-center py-16">
-          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+          <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
         </div>
       </DashboardShell>
     );
@@ -265,7 +265,7 @@ export default function BrandingSettingsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/settings`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -273,10 +273,11 @@ export default function BrandingSettingsPage() {
             <Palette className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("Branding", "التخصيص", "Marka")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Make Zyrix look like your own product.",
                 "اجعل Zyrix يبدو كمنتجك الخاص.",
@@ -288,13 +289,13 @@ export default function BrandingSettingsPage() {
 
         {/* Notifications */}
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-start gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
             <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
@@ -323,7 +324,7 @@ export default function BrandingSettingsPage() {
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="Acme CRM"
               maxLength={100}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </FormField>
 
@@ -338,11 +339,11 @@ export default function BrandingSettingsPage() {
 
           {/* Live preview */}
           <div className="mt-3">
-            <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <div className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr("Preview", "معاينة", "Önizleme")}
             </div>
             <div
-              className="rounded-xl border border-sky-100 p-4 flex items-center gap-3"
+              className="rounded-xl border border-border p-4 flex items-center gap-3"
               style={{
                 background: `linear-gradient(135deg, ${primaryColor}15, ${accentColor}10)`,
               }}
@@ -362,7 +363,7 @@ export default function BrandingSettingsPage() {
                 >
                   {displayName || "Your brand"}
                 </div>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-muted-foreground">
                   {tr(
                     "Example dashboard title",
                     "عنوان اللوحة كمثال",
@@ -403,12 +404,12 @@ export default function BrandingSettingsPage() {
               disabled={!canLogo(plan)}
               placeholder="https://cdn.yourcompany.com/logo.png"
               dir="ltr"
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-muted disabled:cursor-not-allowed"
             />
           </FormField>
           {logoUrl && canLogo(plan) && (
-            <div className="mt-2 flex items-center gap-2 p-2 rounded border border-sky-100 bg-sky-50/30">
-              <span className="text-[10px] font-bold uppercase text-slate-500">
+            <div className="mt-2 flex items-center gap-2 p-2 rounded border border-border bg-muted/30">
+              <span className="text-[10px] font-bold uppercase text-muted-foreground">
                 {tr("Preview", "معاينة", "Önizleme")}:
               </span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -437,7 +438,7 @@ export default function BrandingSettingsPage() {
               disabled={!canLogo(plan)}
               placeholder="https://cdn.yourcompany.com/favicon.png"
               dir="ltr"
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-muted disabled:cursor-not-allowed"
             />
           </FormField>
         </SectionCard>
@@ -466,7 +467,7 @@ export default function BrandingSettingsPage() {
                 disabled={!canCustomEmail(plan)}
                 placeholder="Acme Support"
                 maxLength={100}
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-muted"
               />
             </FormField>
             <FormField label={tr("From email", "بريد المرسل", "Gönderen e-posta")}>
@@ -477,12 +478,12 @@ export default function BrandingSettingsPage() {
                 placeholder="support@acme.com"
                 type="email"
                 dir="ltr"
-                className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-muted"
               />
             </FormField>
           </div>
           {canCustomEmail(plan) && (
-            <div className="mt-2 rounded-lg bg-amber-50 border border-amber-200 p-2.5 text-[11px] text-amber-800">
+            <div className="mt-2 rounded-lg bg-amber-500/10 border border-amber-500/30 p-2.5 text-[11px] text-amber-800">
               {tr(
                 "Add SPF + DKIM records on your domain so emails don't get flagged as spam. We'll provide the exact DNS records when you save.",
                 "أضف سجلات SPF + DKIM على دومينك حتى لا تُصنّف الرسائل كسبام. سنعطيك السجلات المطلوبة عند الحفظ.",
@@ -497,7 +498,7 @@ export default function BrandingSettingsPage() {
           <button
             onClick={handleReset}
             disabled={!settings}
-            className="inline-flex items-center gap-1 px-3 py-2 bg-white border border-rose-200 hover:bg-rose-50 text-rose-700 rounded-lg text-xs font-semibold disabled:opacity-40"
+            className="inline-flex items-center gap-1 px-3 py-2 bg-card border border-rose-500/30 hover:bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-lg text-xs font-semibold disabled:opacity-40"
           >
             <Trash2 className="w-3.5 h-3.5" />
             {tr("Reset to default", "إعادة التعيين", "Varsayılana sıfırla")}
@@ -505,7 +506,7 @@ export default function BrandingSettingsPage() {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="inline-flex items-center gap-1.5 px-5 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow"
+            className="inline-flex items-center gap-1.5 px-5 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold disabled:opacity-50 shadow"
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -549,7 +550,7 @@ export default function BrandingSettingsPage() {
                       onChange={(e) => setDomainInput(e.target.value)}
                       placeholder="crm.yourcompany.com"
                       dir="ltr"
-                      className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+                      className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </FormField>
                   <button
@@ -602,24 +603,24 @@ function SectionCard({
 }) {
   return (
     <div
-      className={`rounded-xl border bg-white overflow-hidden relative ${
-        locked ? "border-slate-200" : "border-sky-100"
+      className={`rounded-xl border bg-card overflow-hidden relative ${
+        locked ? "border-border" : "border-border"
       }`}
     >
       <div className="p-4 border-b border-sky-50">
         <div className="flex items-start gap-2">
           <div className="flex-1">
-            <h2 className="text-base font-bold text-sky-900 flex items-center gap-2">
+            <h2 className="text-base font-bold text-foreground flex items-center gap-2">
               {icon}
               {title}
               {locked && (
-                <span className="inline-flex items-center gap-0.5 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200">
+                <span className="inline-flex items-center gap-0.5 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-500/30">
                   <Lock className="w-2.5 h-2.5" />
                   {tr ? tr("Upgrade", "ترقية", "Yükselt") : "Upgrade"}
                 </span>
               )}
             </h2>
-            <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
           </div>
         </div>
       </div>
@@ -641,11 +642,11 @@ function FormField({
 }) {
   return (
     <div>
-      <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+      <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
         {label}
       </label>
       {children}
-      {hint && <p className="text-[11px] text-slate-500 mt-1">{hint}</p>}
+      {hint && <p className="text-[11px] text-muted-foreground mt-1">{hint}</p>}
     </div>
   );
 }
@@ -658,7 +659,7 @@ function ColorInput({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-sky-200 focus-within:ring-2 focus-within:ring-sky-400 overflow-hidden">
+    <div className="flex items-center gap-2 rounded-lg border border-border focus-within:ring-2 focus-within:ring-sky-400 overflow-hidden">
       <input
         type="color"
         value={value}
@@ -706,9 +707,9 @@ function DomainVerifyPanel({
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2 p-3 rounded-lg bg-sky-50 border border-sky-100">
-        <Globe className="w-4 h-4 text-sky-600" />
-        <code className="text-sm font-mono text-sky-900 flex-1" dir="ltr">
+      <div className="flex items-center gap-2 p-3 rounded-lg bg-muted border border-border">
+        <Globe className="w-4 h-4 text-cyan-300" />
+        <code className="text-sm font-mono text-foreground flex-1" dir="ltr">
           {setup.customDomain}
         </code>
         {verified ? (
@@ -723,7 +724,7 @@ function DomainVerifyPanel({
         )}
       </div>
 
-      <div className="text-xs text-slate-600">
+      <div className="text-xs text-muted-foreground">
         {tr(
           "Add these two DNS records on your domain, then click Verify.",
           "أضف هذين السجلين على دومينك، ثم اضغط تحقق.",
@@ -749,7 +750,7 @@ function DomainVerifyPanel({
       />
 
       {verifyResult && !verifyResult.verified && (
-        <div className="rounded-lg bg-rose-50 border border-rose-200 p-2.5 text-xs text-rose-700 flex items-start gap-1.5">
+        <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-2.5 text-xs text-rose-300 flex items-start gap-1.5">
           <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
           <span>{verifyResult.reason ?? tr("Verification failed", "فشل التحقق", "Doğrulama başarısız")}</span>
         </div>
@@ -772,7 +773,7 @@ function DomainVerifyPanel({
         )}
         <button
           onClick={onRemove}
-          className="inline-flex items-center gap-1 px-3 py-2 bg-white border border-rose-200 hover:bg-rose-50 text-rose-700 rounded-lg text-xs font-semibold"
+          className="inline-flex items-center gap-1 px-3 py-2 bg-card border border-rose-500/30 hover:bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-lg text-xs font-semibold"
         >
           <Trash2 className="w-3.5 h-3.5" />
           {tr("Remove", "إزالة", "Kaldır")}
@@ -798,38 +799,38 @@ function DnsRecordRow({
   onCopy: (key: string, value: string) => void;
 }) {
   return (
-    <div className="rounded-lg border border-sky-100 p-3 space-y-1.5">
+    <div className="rounded-lg border border-border p-3 space-y-1.5">
       <div className="flex items-center gap-2">
         <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800">
           {type}
         </span>
-        <code className="text-xs font-mono text-slate-700 truncate flex-1" dir="ltr">
+        <code className="text-xs font-mono text-foreground truncate flex-1" dir="ltr">
           {name}
         </code>
         <button
           onClick={() => onCopy(`${copyKey}-name`, name)}
-          className="w-6 h-6 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+          className="w-6 h-6 rounded text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
         >
           {copiedKey === `${copyKey}-name` ? (
-            <Check className="w-3 h-3 text-emerald-600" />
+            <Check className="w-3 h-3 text-emerald-300" />
           ) : (
             <Copy className="w-3 h-3" />
           )}
         </button>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-[10px] font-bold uppercase text-slate-500 w-12 flex-shrink-0">
+        <span className="text-[10px] font-bold uppercase text-muted-foreground w-12 flex-shrink-0">
           Value
         </span>
-        <code className="text-xs font-mono text-slate-700 truncate flex-1" dir="ltr">
+        <code className="text-xs font-mono text-foreground truncate flex-1" dir="ltr">
           {value}
         </code>
         <button
           onClick={() => onCopy(`${copyKey}-value`, value)}
-          className="w-6 h-6 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+          className="w-6 h-6 rounded text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
         >
           {copiedKey === `${copyKey}-value` ? (
-            <Check className="w-3 h-3 text-emerald-600" />
+            <Check className="w-3 h-3 text-emerald-300" />
           ) : (
             <Copy className="w-3 h-3" />
           )}

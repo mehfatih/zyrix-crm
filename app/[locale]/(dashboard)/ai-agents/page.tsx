@@ -87,31 +87,32 @@ export default function AIAgentsPage() {
     <DashboardShell locale={locale}>
       <div className="p-6 space-y-5">
         <header>
-          <h1 className="text-2xl font-bold text-zyrix-textHeading">{t('title')}</h1>
-          <p className="mt-0.5 text-sm text-zyrix-textMuted">
+          <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">AI AGENTS</p>
+          <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+          <p className="mt-0.5 text-sm text-muted-foreground">
             {t('subtitle', { count: outputs.length })}
           </p>
         </header>
 
-        <div className="flex gap-1 border-b border-zyrix-border">
+        <div className="flex gap-1 border-b border-border">
           {(['pending', 'settings', 'logs'] as TabKey[]).map((key) => (
             <button
               key={key}
               onClick={() => setTab(key)}
               className={`relative px-4 py-2.5 text-sm font-semibold transition-colors ${
                 tab === key
-                  ? 'text-zyrix-primary'
-                  : 'text-zyrix-textMuted hover:text-zyrix-textBody'
+                  ? 'text-primary'
+                  : 'text-muted-foreground hover:text-muted-foreground'
               }`}
             >
               {t(`tabs.${key}`)}
               {key === 'pending' && outputs.length > 0 && (
-                <span className="ms-2 rounded-md bg-zyrix-primary px-1.5 py-0.5 text-[10px] font-bold text-white">
+                <span className="ms-2 rounded-md bg-primary px-1.5 py-0.5 text-[10px] font-bold text-white">
                   {outputs.length}
                 </span>
               )}
               {tab === key && (
-                <span className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-zyrix-primary" />
+                <span className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-primary" />
               )}
             </button>
           ))}
@@ -194,15 +195,15 @@ function FilterChip({
       onClick={onClick}
       className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
         active
-          ? 'bg-zyrix-primary text-white'
-          : 'border border-zyrix-border bg-white text-zyrix-textBody hover:bg-zyrix-cardBgAlt'
+          ? 'bg-primary text-white'
+          : 'border border-border bg-card text-muted-foreground hover:bg-muted'
       }`}
     >
       <span>{label}</span>
       {count > 0 && (
         <span
           className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold ${
-            active ? 'bg-white/20' : 'bg-zyrix-aiSurface text-zyrix-primary'
+            active ? 'bg-card/20' : 'bg-violet-500/10 text-primary'
           }`}
         >
           {count}
@@ -222,7 +223,7 @@ function AgentSettingsCard({
   onLevelChange: (level: AgentPermissionLevel) => void;
 }) {
   return (
-    <article className="rounded-xl border border-zyrix-border bg-white p-5">
+    <article className="rounded-xl border border-border bg-card p-5">
       <div className="flex items-center gap-3">
         <div
           className="flex h-12 w-12 items-center justify-center rounded-xl text-xl"
@@ -231,17 +232,17 @@ function AgentSettingsCard({
           ●
         </div>
         <div>
-          <div className="text-sm font-bold text-zyrix-textHeading">{definition.name}</div>
-          <div className="text-[11px] text-zyrix-textMuted">L{currentLevel}</div>
+          <div className="text-sm font-bold text-foreground">{definition.name}</div>
+          <div className="text-[11px] text-muted-foreground">L{currentLevel}</div>
         </div>
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-zyrix-textBody">
+      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
         {definition.description}
       </p>
 
       <div className="mt-4">
-        <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+        <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
           Permission Level
         </div>
         <div className="space-y-1.5">
@@ -251,8 +252,8 @@ function AgentSettingsCard({
               onClick={() => onLevelChange(level)}
               className={`block w-full rounded-lg border px-3 py-2 text-start text-xs transition-colors ${
                 currentLevel === level
-                  ? 'border-zyrix-primary bg-zyrix-aiSurface font-bold text-zyrix-primary'
-                  : 'border-transparent bg-zyrix-cardBgAlt text-zyrix-textBody hover:border-zyrix-border'
+                  ? 'border-primary bg-violet-500/10 font-bold text-primary'
+                  : 'border-transparent bg-muted text-muted-foreground hover:border-border'
               }`}
             >
               <span className="font-bold">L{level}</span>
@@ -268,42 +269,42 @@ function AgentSettingsCard({
 function ActivityLogsTable({ logs }: { logs: AgentOutput[] }) {
   if (logs.length === 0) {
     return (
-      <div className="rounded-xl border border-zyrix-border bg-white p-12 text-center">
-        <p className="text-sm text-zyrix-textMuted">No activity yet</p>
+      <div className="rounded-xl border border-border bg-card p-12 text-center">
+        <p className="text-sm text-muted-foreground">No activity yet</p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-zyrix-border bg-white">
+    <div className="overflow-hidden rounded-xl border border-border bg-card">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-zyrix-border bg-zyrix-cardBgAlt">
-            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+          <tr className="border-b border-border bg-muted">
+            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
               Time
             </th>
-            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
               Agent
             </th>
-            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
               Insight
             </th>
-            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-zyrix-textMuted">
+            <th className="px-3 py-3 text-start text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
               Status
             </th>
           </tr>
         </thead>
         <tbody>
           {logs.map((log) => (
-            <tr key={log.id} className="border-b border-zyrix-border last:border-0">
-              <td className="px-3 py-3 text-xs text-zyrix-textMuted">
+            <tr key={log.id} className="border-b border-border last:border-0">
+              <td className="px-3 py-3 text-xs text-muted-foreground">
                 {new Date(log.createdAt).toLocaleString()}
               </td>
-              <td className="px-3 py-3 text-xs text-zyrix-textBody">
+              <td className="px-3 py-3 text-xs text-muted-foreground">
                 {agentDefinitions.find((d) => d.role === log.agentRole)?.name ??
                   log.agentRole}
               </td>
-              <td className="px-3 py-3 text-xs text-zyrix-textBody">{log.insight}</td>
+              <td className="px-3 py-3 text-xs text-muted-foreground">{log.insight}</td>
               <td className="px-3 py-3">
                 <StatusBadge status={log.status} />
               </td>
@@ -317,10 +318,10 @@ function ActivityLogsTable({ logs }: { logs: AgentOutput[] }) {
 
 function StatusBadge({ status }: { status: AgentOutput['status'] }) {
   const tones: Record<AgentOutput['status'], string> = {
-    pending: 'bg-amber-50 text-amber-700',
-    approved: 'bg-emerald-50 text-emerald-700',
-    edited: 'bg-sky-50 text-sky-700',
-    dismissed: 'bg-slate-50 text-slate-600',
+    pending: 'bg-amber-500/10 text-amber-300 border border-amber-500/30',
+    approved: 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30',
+    edited: 'bg-muted text-cyan-300',
+    dismissed: 'bg-muted text-muted-foreground',
     executed: 'bg-emerald-100 text-emerald-800',
   };
   return (
@@ -334,10 +335,10 @@ function StatusBadge({ status }: { status: AgentOutput['status'] }) {
 
 function EmptyState() {
   return (
-    <div className="rounded-xl border border-zyrix-border bg-white p-12 text-center">
-      <Sparkles size={28} className="mx-auto text-zyrix-primary" />
-      <h3 className="mt-3 text-sm font-bold text-zyrix-textHeading">All caught up</h3>
-      <p className="mt-1 text-xs text-zyrix-textMuted">
+    <div className="rounded-xl border border-border bg-card p-12 text-center">
+      <Sparkles size={28} className="mx-auto text-primary" />
+      <h3 className="mt-3 text-sm font-bold text-foreground">All caught up</h3>
+      <p className="mt-1 text-xs text-muted-foreground">
         No pending agent outputs. Agents will surface new insights as conditions change.
       </p>
     </div>

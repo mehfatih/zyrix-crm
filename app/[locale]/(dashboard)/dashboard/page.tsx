@@ -148,6 +148,7 @@ export default function DashboardPage() {
         {/* Header with scope badge */}
         <div className="flex items-center justify-between gap-4 flex-wrap pt-4 border-t border-border">
           <div>
+            <p className="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">EXECUTIVE SUMMARY</p>
             <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
             <div className="flex items-center gap-2 mt-1">
               <ScopeBadge scope={scope} t={t} />

@@ -51,7 +51,7 @@ export default function MerchantHome({ locale }: { locale: string }) {
       <h1 className="text-3xl md:text-4xl font-extrabold text-[#0C4A6E] tracking-tight mb-2">
         {t("items.home")}
       </h1>
-      <p className="text-slate-500 text-sm md:text-base mb-8 max-w-2xl">
+      <p className="text-muted-foreground text-sm md:text-base mb-8 max-w-2xl">
         {t("searchPlaceholder")}
       </p>
 
@@ -62,7 +62,7 @@ export default function MerchantHome({ locale }: { locale: string }) {
             <Link
               key={c.href}
               href={c.href}
-              className="group relative bg-white border border-sky-100 rounded-2xl p-5 hover:border-sky-200 hover:shadow-md transition-all"
+              className="group relative bg-card border border-border rounded-2xl p-5 hover:border-border hover:shadow-md transition-all"
             >
               <div
                 className={`w-11 h-11 rounded-xl bg-gradient-to-br ${c.color} text-white flex items-center justify-center mb-3 shadow-sm`}
@@ -72,7 +72,7 @@ export default function MerchantHome({ locale }: { locale: string }) {
               <div className="text-sm font-semibold text-[#0C4A6E] flex items-center gap-1.5">
                 {c.label}
                 <ArrowRight
-                  className={`w-3.5 h-3.5 text-slate-400 group-hover:text-sky-500 transition-colors ${
+                  className={`w-3.5 h-3.5 text-muted-foreground group-hover:text-cyan-300 transition-colors ${
                     isRTL ? "rotate-180" : ""
                   }`}
                 />

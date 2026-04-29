@@ -183,26 +183,26 @@ export default function SalesAssistantPage() {
         <aside
           className={`${
             sidebarOpen ? "translate-x-0" : isRtl ? "translate-x-full" : "-translate-x-full"
-          } md:translate-x-0 fixed md:static top-0 bottom-0 ${isRtl ? "right-0" : "left-0"} z-40 w-72 bg-white border-e border-sky-100 flex-shrink-0 flex flex-col transition-transform md:transition-none`}
+          } md:translate-x-0 fixed md:static top-0 bottom-0 ${isRtl ? "right-0" : "left-0"} z-40 w-72 bg-card border-e border-border flex-shrink-0 flex flex-col transition-transform md:transition-none`}
         >
-          <div className="p-3 border-b border-sky-100 flex items-center gap-2">
+          <div className="p-3 border-b border-border flex items-center gap-2">
             <Link
               href={`/${locale}/ai`}
-              className="w-8 h-8 rounded-lg text-slate-500 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+              className="w-8 h-8 rounded-lg text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
             >
               <ArrowLeft
                 className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
               />
             </Link>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-bold text-sky-900 truncate flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-sky-500" />
+              <div className="text-sm font-bold text-foreground truncate flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
                 {tr("Sales Assistant", "مساعد المبيعات", "Satış Asistanı")}
               </div>
             </div>
             <button
               onClick={() => setSidebarOpen(false)}
-              className="md:hidden w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 flex items-center justify-center"
+              className="md:hidden w-8 h-8 rounded-lg text-muted-foreground hover:bg-muted flex items-center justify-center"
             >
               <X className="w-4 h-4" />
             </button>
@@ -210,7 +210,7 @@ export default function SalesAssistantPage() {
 
           <button
             onClick={startNewThread}
-            className="mx-3 mt-3 mb-2 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
+            className="mx-3 mt-3 mb-2 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold"
           >
             <Plus className="w-4 h-4" />
             {tr("New chat", "محادثة جديدة", "Yeni sohbet")}
@@ -219,10 +219,10 @@ export default function SalesAssistantPage() {
           <div className="flex-1 overflow-y-auto px-2 pb-3">
             {loadingThreads ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
+                <Loader2 className="w-4 h-4 animate-spin text-cyan-300" />
               </div>
             ) : threads.length === 0 ? (
-              <p className="text-center text-xs text-slate-500 py-8 px-4">
+              <p className="text-center text-xs text-muted-foreground py-8 px-4">
                 {tr(
                   "No conversations yet — start your first chat.",
                   "لا محادثات بعد — ابدأ أول محادثة.",
@@ -236,8 +236,8 @@ export default function SalesAssistantPage() {
                     key={t.id}
                     className={`group relative rounded-lg ${
                       activeThread?.id === t.id
-                        ? "bg-sky-50 text-sky-900"
-                        : "text-slate-700 hover:bg-sky-50/50"
+                        ? "bg-muted text-foreground"
+                        : "text-foreground hover:bg-muted/50"
                     }`}
                   >
                     <button
@@ -247,7 +247,7 @@ export default function SalesAssistantPage() {
                       <div className="font-medium truncate pr-6 rtl:pr-0 rtl:pl-6">
                         {t.title || tr("(untitled)", "(بدون عنوان)", "(başlıksız)")}
                       </div>
-                      <div className="text-[10px] text-slate-500 mt-0.5 tabular-nums">
+                      <div className="text-[10px] text-muted-foreground mt-0.5 tabular-nums">
                         {new Date(t.updatedAt).toLocaleDateString(
                           locale === "ar"
                             ? "ar-SA"
@@ -260,7 +260,7 @@ export default function SalesAssistantPage() {
                     </button>
                     <button
                       onClick={() => handleArchive(t.id)}
-                      className="absolute top-1/2 -translate-y-1/2 end-1 opacity-0 group-hover:opacity-100 w-6 h-6 rounded text-slate-400 hover:text-rose-700 hover:bg-rose-50 flex items-center justify-center transition-opacity"
+                      className="absolute top-1/2 -translate-y-1/2 end-1 opacity-0 group-hover:opacity-100 w-6 h-6 rounded text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 flex items-center justify-center transition-opacity"
                       title={tr("Archive", "أرشفة", "Arşivle")}
                     >
                       <Trash2 className="w-3 h-3" />
@@ -283,14 +283,14 @@ export default function SalesAssistantPage() {
         {/* Main chat area */}
         <main className="flex-1 flex flex-col overflow-hidden">
           {/* Mobile header */}
-          <div className="md:hidden p-3 border-b border-sky-100 flex items-center gap-2">
+          <div className="md:hidden p-3 border-b border-border flex items-center gap-2">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="w-8 h-8 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center justify-center"
+              className="w-8 h-8 rounded-lg text-muted-foreground hover:bg-muted flex items-center justify-center"
             >
               <Menu className="w-4 h-4" />
             </button>
-            <div className="flex-1 min-w-0 text-sm font-bold text-sky-900 truncate">
+            <div className="flex-1 min-w-0 text-sm font-bold text-foreground truncate">
               {activeThread?.title || tr("New chat", "محادثة جديدة", "Yeni sohbet")}
             </div>
           </div>
@@ -299,10 +299,10 @@ export default function SalesAssistantPage() {
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6">
             {loadingThread ? (
               <div className="flex items-center justify-center py-16">
-                <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+                <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
               </div>
             ) : error ? (
-              <div className="max-w-2xl mx-auto rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+              <div className="max-w-2xl mx-auto rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
                 {error}
               </div>
             ) : !activeThread || activeThread.messages.length === 0 ? (
@@ -323,9 +323,9 @@ export default function SalesAssistantPage() {
           </div>
 
           {/* Input */}
-          <div className="p-3 md:p-4 border-t border-sky-100 bg-white">
+          <div className="p-3 md:p-4 border-t border-border bg-card">
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-end gap-2 rounded-xl border border-sky-200 focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-sky-200 bg-white overflow-hidden">
+              <div className="flex items-end gap-2 rounded-xl border border-border focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-cyan-500/30 bg-card overflow-hidden">
                 <textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -361,7 +361,7 @@ export default function SalesAssistantPage() {
                   )}
                 </button>
               </div>
-              <p className="text-[10px] text-slate-400 text-center mt-2">
+              <p className="text-[10px] text-muted-foreground text-center mt-2">
                 {tr(
                   "AI can make mistakes — always verify important details.",
                   "الذكاء الاصطناعي ممكن يغلط — دائمًا تحقق من التفاصيل المهمة.",
@@ -427,14 +427,14 @@ function EmptyState({
         <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center shadow-lg mx-auto">
           <Sparkles className="w-8 h-8" />
         </div>
-        <h2 className="text-xl font-bold text-sky-900 mt-4">
+        <h2 className="text-xl font-bold text-foreground mt-4">
           {tr(
             "Sales Assistant",
             "مساعد المبيعات",
             "Satış Asistanı"
           )}
         </h2>
-        <p className="text-sm text-slate-600 mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           {tr(
             "Ask anything about your pipeline, customers, or tasks.",
             "اسأل أي حاجة عن المسار، العملاء، أو المهام.",
@@ -448,9 +448,9 @@ function EmptyState({
           <button
             key={i}
             onClick={() => onPick(s)}
-            className="text-left rtl:text-right p-3 rounded-xl border border-sky-100 bg-white hover:border-sky-300 hover:bg-sky-50/40 text-sm text-slate-700 transition-colors flex items-start gap-2"
+            className="text-left rtl:text-right p-3 rounded-xl border border-border bg-card hover:border-sky-300 hover:bg-muted/40 text-sm text-foreground transition-colors flex items-start gap-2"
           >
-            <Zap className="w-4 h-4 text-sky-500 flex-shrink-0 mt-0.5" />
+            <Zap className="w-4 h-4 text-cyan-300 flex-shrink-0 mt-0.5" />
             <span>{s}</span>
           </button>
         ))}
@@ -471,11 +471,11 @@ function MessageBubble({
   // Tool calls — rendered as muted pills mid-conversation
   if (message.role === "assistant" && message.toolCall) {
     return (
-      <div className="flex items-center gap-2 text-xs text-slate-500 pl-11 rtl:pl-0 rtl:pr-11">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground pl-11 rtl:pl-0 rtl:pr-11">
         <Code2 className="w-3.5 h-3.5" />
         <span>
           {tr("Calling", "يستدعي", "Çağırıyor")}{" "}
-          <code className="font-mono text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded">
+          <code className="font-mono text-cyan-300 bg-muted px-1.5 py-0.5 rounded">
             {message.toolCall.name ?? "tool"}
           </code>
         </span>
@@ -486,7 +486,7 @@ function MessageBubble({
     const result = message.toolCall?.result;
     const summary = summarizeToolResult(result);
     return (
-      <div className="flex items-center gap-2 text-xs text-slate-500 pl-11 rtl:pl-0 rtl:pr-11">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground pl-11 rtl:pl-0 rtl:pr-11">
         <ChevronRight className="w-3.5 h-3.5" />
         <span className="line-clamp-1">{summary}</span>
       </div>
@@ -500,7 +500,7 @@ function MessageBubble({
       <div
         className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
           isUser
-            ? "bg-slate-200 text-slate-600"
+            ? "bg-slate-200 text-muted-foreground"
             : "bg-gradient-to-br from-sky-400 to-sky-600 text-white"
         }`}
       >
@@ -511,7 +511,7 @@ function MessageBubble({
           className={`rounded-xl px-3.5 py-2.5 text-sm ${
             isUser
               ? "bg-sky-500 text-white"
-              : "bg-white border border-sky-100 text-slate-800"
+              : "bg-card border border-border text-foreground"
           }`}
         >
           <div className="whitespace-pre-wrap break-words">
@@ -533,7 +533,7 @@ function ThinkingBubble({
       <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-sky-400 to-sky-600 text-white">
         <Bot className="w-4 h-4" />
       </div>
-      <div className="rounded-xl px-3.5 py-2.5 bg-white border border-sky-100 text-sm text-slate-500 inline-flex items-center gap-1.5">
+      <div className="rounded-xl px-3.5 py-2.5 bg-card border border-border text-sm text-muted-foreground inline-flex items-center gap-1.5">
         <Loader2 className="w-3.5 h-3.5 animate-spin" />
         {tr("Thinking…", "يفكر…", "Düşünüyor…")}
       </div>

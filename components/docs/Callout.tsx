@@ -8,25 +8,25 @@ const STYLES: Record<
   { bg: string; border: string; title: string; Icon: typeof Info }
 > = {
   info: {
-    bg: "bg-sky-50",
+    bg: "bg-muted",
     border: "border-sky-300",
-    title: "text-sky-900",
+    title: "text-foreground",
     Icon: Info,
   },
   warning: {
-    bg: "bg-amber-50",
+    bg: "bg-amber-500/10",
     border: "border-amber-300",
     title: "text-amber-900",
     Icon: AlertTriangle,
   },
   success: {
-    bg: "bg-emerald-50",
+    bg: "bg-emerald-500/10",
     border: "border-emerald-300",
     title: "text-emerald-900",
     Icon: CheckCircle2,
   },
   tip: {
-    bg: "bg-violet-50",
+    bg: "bg-violet-500/10",
     border: "border-violet-300",
     title: "text-violet-900",
     Icon: Lightbulb,
@@ -49,7 +49,7 @@ export default function Callout({ kind = "info", title, children }: CalloutProps
         {title ? (
           <div className={`text-sm font-semibold mb-1 ${s.title}`}>{title}</div>
         ) : null}
-        <div className="text-sm text-slate-700 prose-sm">{children}</div>
+        <div className="text-sm text-foreground prose-sm">{children}</div>
       </div>
     </div>
   );

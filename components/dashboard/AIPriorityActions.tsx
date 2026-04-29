@@ -23,10 +23,10 @@ const ICON_MAP = {
 };
 
 const TONE_MAP = {
-  risk: { border: 'border-red-200', bg: 'bg-red-50', text: 'text-red-700' },
-  opportunity: { border: 'border-emerald-200', bg: 'bg-emerald-50', text: 'text-emerald-700' },
-  followup: { border: 'border-sky-200', bg: 'bg-sky-50', text: 'text-sky-700' },
-  revenue: { border: 'border-amber-200', bg: 'bg-amber-50', text: 'text-amber-700' },
+  risk: { border: 'border-rose-500/30', bg: 'bg-red-50', text: 'text-rose-300' },
+  opportunity: { border: 'border-emerald-500/30', bg: 'bg-emerald-50', text: 'text-emerald-300' },
+  followup: { border: 'border-border', bg: 'bg-sky-50', text: 'text-cyan-300' },
+  revenue: { border: 'border-amber-500/30', bg: 'bg-amber-50', text: 'text-amber-300' },
   retention: { border: 'border-purple-200', bg: 'bg-purple-50', text: 'text-purple-700' },
 };
 
@@ -47,10 +47,10 @@ export function AIPriorityActions({ workspaceId }: Props) {
     <section id="priority-actions" className="space-y-4">
       <header className="flex items-end justify-between">
         <div>
-          <h2 className="text-lg font-bold text-zyrix-textHeading">
+          <h2 className="text-lg font-bold text-foreground">
             {t('priorityActions')}
           </h2>
-          <p className="mt-0.5 text-sm text-zyrix-textMuted">
+          <p className="mt-0.5 text-sm text-muted-foreground">
             {t('priorityActionsSubtitle')}
           </p>
         </div>
@@ -59,7 +59,7 @@ export function AIPriorityActions({ workspaceId }: Props) {
       {isLoading ? (
         <div className="grid gap-3 lg:grid-cols-2">
           {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="h-40 animate-pulse rounded-xl bg-white" />
+            <div key={i} className="h-40 animate-pulse rounded-xl bg-card" />
           ))}
         </div>
       ) : (
@@ -87,7 +87,7 @@ function PriorityCard({ action, index }: { action: AIPriorityAction; index: numb
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
-      className="rounded-xl border border-zyrix-border bg-white p-4 transition-shadow hover:shadow-zyrix-card-hover"
+      className="rounded-xl border border-border bg-card p-4 transition-shadow hover:shadow-md-hover"
     >
       <div className="flex items-start gap-3">
         <div
@@ -98,7 +98,7 @@ function PriorityCard({ action, index }: { action: AIPriorityAction; index: numb
 
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="text-sm font-bold text-zyrix-textHeading">{action.title}</h3>
+            <h3 className="text-sm font-bold text-foreground">{action.title}</h3>
             <span
               className={`shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${tone.bg} ${tone.text}`}
             >
@@ -106,7 +106,7 @@ function PriorityCard({ action, index }: { action: AIPriorityAction; index: numb
             </span>
           </div>
 
-          <p className="mt-1 text-xs leading-relaxed text-zyrix-textBody">
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
             {action.description}
           </p>
 
@@ -120,7 +120,7 @@ function PriorityCard({ action, index }: { action: AIPriorityAction; index: numb
             />
             <button
               onClick={handleClick}
-              className="rounded-lg bg-zyrix-aiSurface px-3 py-1.5 text-xs font-bold text-zyrix-primaryDark hover:bg-zyrix-borderSky"
+              className="rounded-lg bg-violet-500/10 px-3 py-1.5 text-xs font-bold text-primaryDark hover:bg-zyrix-borderSky"
             >
               {action.cta.label} →
             </button>

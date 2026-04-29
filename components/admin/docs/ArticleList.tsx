@@ -142,7 +142,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20 text-slate-500">
+      <div className="flex items-center justify-center py-20 text-muted-foreground">
         <Loader2 className="w-6 h-6 animate-spin me-2" />
         Loading…
       </div>
@@ -153,18 +153,18 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
     <div className="space-y-4">
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="relative flex-1">
-          <Search className="w-4 h-4 absolute start-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <Search className="w-4 h-4 absolute start-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search articles by title, slug, category…"
-            className="w-full ps-9 pe-3 py-2 text-sm border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-sky-300"
+            className="w-full ps-9 pe-3 py-2 text-sm border border-border rounded-lg bg-card focus:outline-none focus:border-sky-300"
           />
         </div>
         <select
           value={filterLocale}
           onChange={(e) => setFilterLocale(e.target.value)}
-          className="px-3 py-2 text-sm border border-sky-100 rounded-lg bg-white"
+          className="px-3 py-2 text-sm border border-border rounded-lg bg-card"
         >
           {LOCALES.map((l) => (
             <option key={l} value={l}>
@@ -177,7 +177,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
           onChange={(e) =>
             setFilterStatus(e.target.value as "all" | DocStatus)
           }
-          className="px-3 py-2 text-sm border border-sky-100 rounded-lg bg-white"
+          className="px-3 py-2 text-sm border border-border rounded-lg bg-card"
         >
           <option value="all">All</option>
           <option value="published">Published</option>
@@ -185,9 +185,9 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
         </select>
       </div>
 
-      <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-sky-50 text-slate-600">
+          <thead className="bg-muted text-muted-foreground">
             <tr>
               <Th>Article</Th>
               <Th>Category</Th>
@@ -209,26 +209,26 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
               return (
                 <tr
                   key={key}
-                  className="hover:bg-sky-50/50 align-top"
+                  className="hover:bg-muted/50 align-top"
                   onMouseEnter={() => loadStats(row)}
                 >
                   <Td>
-                    <div className="font-semibold text-slate-900 flex items-center gap-2">
-                      <BookOpen className="w-3.5 h-3.5 text-sky-500" />
+                    <div className="font-semibold text-foreground flex items-center gap-2">
+                      <BookOpen className="w-3.5 h-3.5 text-cyan-300" />
                       {row.title}
                       {row.recentlyUpdated && (
-                        <span className="ms-1 inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span className="ms-1 inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 border border-emerald-500/30">
                           <Sparkles className="w-2.5 h-2.5" />
                           New
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-slate-500 mt-0.5">
+                    <div className="text-xs text-muted-foreground mt-0.5">
                       {row.locale} · {row.slug}
                     </div>
                   </Td>
                   <Td>
-                    <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-sky-100 text-sky-700">
+                    <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-sky-100 text-cyan-300">
                       {row.category}
                     </span>
                   </Td>
@@ -244,7 +244,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                       {(row.plans || []).map((p) => (
                         <span
                           key={p}
-                          className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-sky-50 text-sky-600 border border-sky-100 capitalize"
+                          className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-muted text-cyan-300 border border-border capitalize"
                         >
                           {p}
                         </span>
@@ -252,7 +252,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                     </div>
                   </Td>
                   <Td>
-                    <div className="text-xs text-slate-600">
+                    <div className="text-xs text-muted-foreground">
                       {row.updatedAt || "—"}
                     </div>
                     <button
@@ -262,8 +262,8 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                       }
                       className={`mt-1 inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-medium rounded-md border transition-colors ${
                         row.recentlyUpdated
-                          ? "bg-emerald-50 border-emerald-200 text-emerald-700"
-                          : "bg-white border-slate-200 text-slate-500 hover:border-sky-300"
+                          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
+                          : "bg-card border-border text-muted-foreground hover:border-sky-300"
                       }`}
                     >
                       {row.recentlyUpdated ? (
@@ -276,24 +276,24 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                   </Td>
                   <Td>
                     {stats ? (
-                      <div className="text-xs space-y-0.5 text-slate-700">
+                      <div className="text-xs space-y-0.5 text-foreground">
                         <div className="flex items-center gap-1">
-                          <Eye className="w-3 h-3 text-slate-400" />
+                          <Eye className="w-3 h-3 text-muted-foreground" />
                           {stats.views}
                         </div>
                         <div className="flex items-center gap-2 text-[11px]">
-                          <span className="inline-flex items-center gap-0.5 text-emerald-700">
+                          <span className="inline-flex items-center gap-0.5 text-emerald-300">
                             <ThumbsUp className="w-3 h-3" />
                             {stats.helpful}
                           </span>
-                          <span className="inline-flex items-center gap-0.5 text-rose-700">
+                          <span className="inline-flex items-center gap-0.5 text-rose-300">
                             <ThumbsDown className="w-3 h-3" />
                             {stats.unhelpful}
                           </span>
                         </div>
                       </div>
                     ) : (
-                      <div className="text-xs text-slate-400">hover to load</div>
+                      <div className="text-xs text-muted-foreground">hover to load</div>
                     )}
                   </Td>
                   <Td>
@@ -301,13 +301,13 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
                       <Link
                         href={href}
                         target="_blank"
-                        className="text-xs text-sky-600 hover:underline"
+                        className="text-xs text-cyan-300 hover:underline"
                       >
                         View
                       </Link>
                       <Link
                         href={`/en/admin/docs/${row.locale}/${row.category}/${row.slug}/edit`}
-                        className="inline-flex items-center gap-1 text-xs text-slate-600 hover:text-sky-600"
+                        className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-cyan-300"
                       >
                         <Pencil className="w-3 h-3" />
                         Edit
@@ -319,7 +319,7 @@ export default function ArticleList({ locale: _locale }: { locale: string }) {
             })}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={7} className="text-center text-sm text-slate-400 py-10">
+                <td colSpan={7} className="text-center text-sm text-muted-foreground py-10">
                   No articles match your filters.
                 </td>
               </tr>
@@ -347,8 +347,8 @@ function StatusToggle({
       disabled={saving}
       className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full ${
         status === "published"
-          ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-          : "bg-amber-50 text-amber-700 border border-amber-200"
+          ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 border border-emerald-500/30"
+          : "bg-amber-500/10 text-amber-300 border border-amber-500/30 border border-amber-500/30"
       }`}
     >
       {saving ? <Loader2 className="w-3 h-3 animate-spin" /> : null}

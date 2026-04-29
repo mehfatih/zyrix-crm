@@ -45,12 +45,13 @@ export default function ReportsPage() {
       <div className="space-y-5 p-4 sm:p-6 lg:p-8">
         <header className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-zyrix-textHeading">
+            <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">REPORTS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {t('title')}
             </h1>
-            <p className="mt-0.5 text-sm text-zyrix-textMuted">{t('subtitle')}</p>
+            <p className="mt-0.5 text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
-          <button className="inline-flex items-center gap-1.5 rounded-lg bg-zyrix-ai-gradient px-4 py-2 text-sm font-bold text-white shadow-zyrix-card hover:shadow-zyrix-card-hover">
+          <button className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-violet-500 px-4 py-2 text-sm font-bold text-white shadow-md hover:shadow-md-hover">
             <Download size={14} />
             {t('export')}
           </button>
@@ -63,8 +64,8 @@ export default function ReportsPage() {
               onClick={() => setType(rt)}
               className={`rounded-lg px-4 py-2 text-sm font-semibold capitalize transition-colors ${
                 type === rt
-                  ? 'bg-zyrix-primary text-white'
-                  : 'border border-zyrix-border bg-white text-zyrix-textBody hover:bg-zyrix-cardBgAlt'
+                  ? 'bg-primary text-white'
+                  : 'border border-border bg-card text-muted-foreground hover:bg-muted'
               }`}
             >
               {t(`types.${rt}`)}
@@ -73,15 +74,15 @@ export default function ReportsPage() {
         </div>
 
         {isLoading || !data ? (
-          <div className="h-96 animate-pulse rounded-2xl bg-white" />
+          <div className="h-96 animate-pulse rounded-2xl bg-card" />
         ) : (
           <>
-            <section className="rounded-2xl border border-zyrix-aiBorder bg-gradient-to-br from-zyrix-aiSurface via-white to-zyrix-aiSurface p-6 shadow-zyrix-ai-glow lg:p-8">
-              <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-zyrix-primary">
+            <section className="rounded-2xl border border-violet-500/30 bg-gradient-to-br from-zyrix-aiSurface via-white to-zyrix-aiSurface p-6 shadow-zyrix-ai-glow lg:p-8">
+              <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-primary">
                 <Sparkles size={13} />
                 <span>{t('aiNarrative')}</span>
               </div>
-              <p className="max-w-4xl text-base leading-relaxed text-zyrix-textHeading lg:text-lg">
+              <p className="max-w-4xl text-base leading-relaxed text-foreground lg:text-lg">
                 {data.narrative}
               </p>
               <div className="mt-4">
@@ -90,19 +91,19 @@ export default function ReportsPage() {
             </section>
 
             <section>
-              <h2 className="mb-3 text-sm font-bold text-zyrix-textHeading">
+              <h2 className="mb-3 text-sm font-bold text-foreground">
                 {t('keyInsights')}
               </h2>
               <div className="grid gap-3 lg:grid-cols-3">
                 {data.insights.map((insight, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border border-zyrix-border bg-white p-4"
+                    className="rounded-xl border border-border bg-card p-4"
                   >
-                    <h3 className="text-sm font-bold text-zyrix-textHeading">
+                    <h3 className="text-sm font-bold text-foreground">
                       {insight.title}
                     </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-zyrix-textBody">
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                       {insight.description}
                     </p>
                   </div>
@@ -111,7 +112,7 @@ export default function ReportsPage() {
             </section>
 
             <section>
-              <h2 className="mb-3 text-sm font-bold text-zyrix-textHeading">
+              <h2 className="mb-3 text-sm font-bold text-foreground">
                 {t('visualAnalysis')}
               </h2>
               <div className="grid gap-4 lg:grid-cols-2">
@@ -129,8 +130,8 @@ export default function ReportsPage() {
 
 function ChartCard({ chart }: { chart: AIReportChart }) {
   return (
-    <article className="rounded-xl border border-zyrix-border bg-white p-5">
-      <h3 className="text-sm font-bold text-zyrix-textHeading">{chart.title}</h3>
+    <article className="rounded-xl border border-border bg-card p-5">
+      <h3 className="text-sm font-bold text-foreground">{chart.title}</h3>
       <div className="mt-4 h-56">
         <ResponsiveContainer width="100%" height="100%">
           {chart.kind === 'bar' ? (
@@ -171,12 +172,12 @@ function ChartCard({ chart }: { chart: AIReportChart }) {
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-4 rounded-lg border-l-[3px] border-zyrix-primary bg-zyrix-aiSurface p-3">
-        <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-zyrix-primary">
+      <div className="mt-4 rounded-lg border-l-[3px] border-primary bg-violet-500/10 p-3">
+        <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary">
           <Sparkles size={11} />
           <span>AI Interpretation</span>
         </div>
-        <p className="text-xs leading-relaxed text-zyrix-textBody">
+        <p className="text-xs leading-relaxed text-muted-foreground">
           {chart.aiInterpretation}
         </p>
         <div className="mt-2">

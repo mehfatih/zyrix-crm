@@ -126,11 +126,11 @@ export default function SearchOverlay({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
+        className="w-full max-w-2xl bg-card rounded-2xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-sky-100">
-          <Search className="w-5 h-5 text-slate-400" />
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
+          <Search className="w-5 h-5 text-muted-foreground" />
           <input
             ref={inputRef}
             type="text"
@@ -142,7 +142,7 @@ export default function SearchOverlay({
           <button
             type="button"
             onClick={onClose}
-            className="p-1 rounded hover:bg-slate-100 text-slate-500"
+            className="p-1 rounded hover:bg-muted text-muted-foreground"
             aria-label="Close"
           >
             <X className="w-4 h-4" />
@@ -150,11 +150,11 @@ export default function SearchOverlay({
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
           {!query.trim() ? (
-            <p className="px-4 py-8 text-sm text-slate-400 text-center">
+            <p className="px-4 py-8 text-sm text-muted-foreground text-center">
               {copy.searchHint}
             </p>
           ) : results.length === 0 ? (
-            <p className="px-4 py-8 text-sm text-slate-400 text-center">
+            <p className="px-4 py-8 text-sm text-muted-foreground text-center">
               {copy.noResults}
             </p>
           ) : (
@@ -168,19 +168,19 @@ export default function SearchOverlay({
                       onClick={onClose}
                       className={`flex items-start gap-3 px-4 py-3 border-b border-sky-50 ${
                         i === activeIndex
-                          ? "bg-sky-50"
-                          : "hover:bg-sky-50"
+                          ? "bg-muted"
+                          : "hover:bg-muted"
                       }`}
                     >
-                      <FileText className="w-4 h-4 text-sky-500 flex-shrink-0 mt-1" />
+                      <FileText className="w-4 h-4 text-cyan-300 flex-shrink-0 mt-1" />
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-slate-900 truncate">
+                        <div className="text-sm font-semibold text-foreground truncate">
                           {highlight(r.title, query)}
                         </div>
-                        <div className="text-xs text-slate-500 truncate">
+                        <div className="text-xs text-muted-foreground truncate">
                           {getCategoryLabel(r.category as CategoryId, locale)} · {r.path}
                         </div>
-                        <div className="text-xs text-slate-600 mt-1 line-clamp-2">
+                        <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
                           {highlight(r.excerpt, query)}
                         </div>
                       </div>
@@ -191,11 +191,11 @@ export default function SearchOverlay({
             </ul>
           )}
         </div>
-        <div className="px-4 py-2 border-t border-sky-100 text-[11px] text-slate-400 flex items-center justify-between">
+        <div className="px-4 py-2 border-t border-border text-[11px] text-muted-foreground flex items-center justify-between">
           <span>
-            <kbd className="px-1 py-0.5 bg-sky-50 border border-sky-100 rounded">↑↓</kbd> navigate ·{" "}
-            <kbd className="px-1 py-0.5 bg-sky-50 border border-sky-100 rounded">↵</kbd> open ·{" "}
-            <kbd className="px-1 py-0.5 bg-sky-50 border border-sky-100 rounded">esc</kbd> close
+            <kbd className="px-1 py-0.5 bg-muted border border-border rounded">↑↓</kbd> navigate ·{" "}
+            <kbd className="px-1 py-0.5 bg-muted border border-border rounded">↵</kbd> open ·{" "}
+            <kbd className="px-1 py-0.5 bg-muted border border-border rounded">esc</kbd> close
           </span>
           <span>{results.length} {copy.searchResults}</span>
         </div>
@@ -210,7 +210,7 @@ function highlight(text: string, query: string) {
   const parts = text.split(new RegExp(`(${escapeReg(q)})`, "ig"));
   return parts.map((p, i) =>
     p.toLowerCase() === q.toLowerCase() ? (
-      <mark key={i} className="bg-yellow-200 text-slate-900 rounded px-0.5">
+      <mark key={i} className="bg-yellow-200 text-foreground rounded px-0.5">
         {p}
       </mark>
     ) : (

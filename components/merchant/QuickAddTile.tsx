@@ -49,7 +49,7 @@ export const QuickAddTile = forwardRef<HTMLButtonElement, QuickAddTileProps>(
           {label}
         </span>
         <span
-          className="absolute bottom-1.5 text-[10px] font-semibold text-slate-400 tracking-wider"
+          className="absolute bottom-1.5 text-[10px] font-semibold text-muted-foreground tracking-wider"
         >
           {shortcut}
         </span>

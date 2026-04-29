@@ -63,19 +63,19 @@ export default async function FaqPage({
       searchRecords={records}
       rightRail={<DocsArticleNav headings={headings} locale={L} />}
     >
-      <nav className="text-xs text-slate-500 mb-4 flex items-center gap-1 flex-wrap">
-        <Link href={`/${L}/docs`} className="hover:text-sky-600">
+      <nav className="text-xs text-muted-foreground mb-4 flex items-center gap-1 flex-wrap">
+        <Link href={`/${L}/docs`} className="hover:text-cyan-300">
           {copy.title}
         </Link>
         <span>›</span>
-        <span className="text-slate-700 font-medium">{copy.faq}</span>
+        <span className="text-foreground font-medium">{copy.faq}</span>
       </nav>
       <article>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
           {doc.frontmatter.title}
         </h1>
         <div
-          className="prose prose-slate max-w-none prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline"
+          className="prose prose-slate max-w-none prose-a:text-cyan-300 prose-a:no-underline hover:prose-a:underline"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </article>

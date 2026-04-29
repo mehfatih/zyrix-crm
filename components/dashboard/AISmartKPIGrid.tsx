@@ -85,15 +85,15 @@ function KPICard({ kpi }: { kpi: SmartKPI }) {
     kpi.trend === 'up' ? TrendingUp : kpi.trend === 'down' ? TrendingDown : Activity;
   const trendColor =
     kpi.trend === 'up'
-      ? 'text-emerald-600 bg-emerald-50'
+      ? 'text-emerald-300 bg-emerald-50'
       : kpi.trend === 'down'
-        ? 'text-red-600 bg-red-50'
-        : 'text-zyrix-textMuted bg-zyrix-cardBgAlt';
+        ? 'text-rose-300 bg-red-50'
+        : 'text-muted-foreground bg-muted';
 
   return (
-    <article className="rounded-xl border border-zyrix-border bg-white p-4 transition-shadow hover:shadow-zyrix-card">
+    <article className="rounded-xl border border-border bg-card p-4 transition-shadow hover:shadow-md">
       <div className="flex items-center justify-between">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zyrix-aiSurface text-zyrix-primary">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10 text-primary">
           <Icon size={16} />
         </div>
         <div
@@ -108,11 +108,11 @@ function KPICard({ kpi }: { kpi: SmartKPI }) {
       </div>
 
       <div className="mt-3">
-        <div className="text-xs font-medium text-zyrix-textMuted">{kpi.label}</div>
-        <div className="mt-0.5 text-2xl font-bold text-zyrix-textHeading">{kpi.value}</div>
+        <div className="text-xs font-medium text-muted-foreground">{kpi.label}</div>
+        <div className="mt-0.5 text-2xl font-bold text-foreground">{kpi.value}</div>
       </div>
 
-      <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-zyrix-textBody">
+      <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
         {kpi.context}
       </p>
 

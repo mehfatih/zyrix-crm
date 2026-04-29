@@ -151,10 +151,10 @@ export function ProfileTab() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
-      <h2 className="text-lg font-bold text-ink">{t("heading")}</h2>
+      <h2 className="text-lg font-bold text-foreground">{t("heading")}</h2>
 
       {error && (
-        <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg border border-danger/20 whitespace-pre-line">
+        <div className="bg-rose-500/10 text-rose-300 text-sm p-3 rounded-lg border border-rose-500/30/20 whitespace-pre-line">
           {error}
         </div>
       )}
@@ -167,8 +167,8 @@ export function ProfileTab() {
       )}
 
       {/* Avatar */}
-      <section className="rounded-xl border border-line bg-white p-4">
-        <h3 className="text-sm font-bold text-ink mb-3">
+      <section className="rounded-xl border border-border bg-card p-4">
+        <h3 className="text-sm font-bold text-foreground mb-3">
           {t("avatar") || "Profile picture"}
         </h3>
         <div className="flex items-center gap-4">
@@ -196,7 +196,7 @@ export function ProfileTab() {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-line hover:bg-bg-subtle text-ink rounded-lg text-xs font-semibold"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted text-foreground rounded-lg text-xs font-semibold"
               >
                 <Upload className="w-3.5 h-3.5" />
                 {form.avatarUrl
@@ -207,75 +207,75 @@ export function ProfileTab() {
                 <button
                   type="button"
                   onClick={clearAvatar}
-                  className="inline-flex items-center gap-1 px-2 py-1.5 text-slate-500 hover:text-rose-700 text-xs font-semibold"
+                  className="inline-flex items-center gap-1 px-2 py-1.5 text-muted-foreground hover:text-rose-300 text-xs font-semibold"
                 >
                   <XIcon className="w-3.5 h-3.5" />
                   {t("avatarRemove") || "Remove"}
                 </button>
               )}
             </div>
-            <p className="text-xs text-ink-muted mt-1.5">
+            <p className="text-xs text-muted-foreground mt-1.5">
               {t("avatarHint") ||
                 "PNG / JPG / WebP, up to 1 MB. Replaces the Zyrix logo in the sidebar."}
             </p>
             {avatarError && (
-              <p className="text-xs text-rose-600 mt-1">{avatarError}</p>
+              <p className="text-xs text-rose-300 mt-1">{avatarError}</p>
             )}
           </div>
         </div>
       </section>
 
       {/* Identity */}
-      <section className="rounded-xl border border-line bg-white p-4 space-y-4">
-        <h3 className="text-sm font-bold text-ink">{t("identity") || "Identity"}</h3>
+      <section className="rounded-xl border border-border bg-card p-4 space-y-4">
+        <h3 className="text-sm font-bold text-foreground">{t("identity") || "Identity"}</h3>
 
         <div className="space-y-1.5">
-          <label className="block text-sm font-medium text-ink">
+          <label className="block text-sm font-medium text-foreground">
             {t("email")}
           </label>
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="email"
               value={user?.email || ""}
               disabled
-              className="w-full pl-10 pr-4 py-2.5 text-sm bg-bg-subtle border border-line rounded-lg text-ink-light cursor-not-allowed"
+              className="w-full pl-10 pr-4 py-2.5 text-sm bg-muted border border-border rounded-lg text-muted-foreground cursor-not-allowed"
             />
           </div>
-          <p className="text-xs text-ink-muted">{t("emailNote")}</p>
+          <p className="text-xs text-muted-foreground">{t("emailNote")}</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <label htmlFor="fullName" className="block text-sm font-medium text-ink">
+            <label htmlFor="fullName" className="block text-sm font-medium text-foreground">
               {t("fullName")}
             </label>
             <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="fullName"
                 type="text"
                 required
                 value={form.fullName}
                 onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="phone" className="block text-sm font-medium text-ink">
+            <label htmlFor="phone" className="block text-sm font-medium text-foreground">
               {t("phone")}
             </label>
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="phone"
                 type="tel"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 placeholder={t("phonePlaceholder")}
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
           </div>
@@ -283,17 +283,17 @@ export function ProfileTab() {
       </section>
 
       {/* Contact & billing */}
-      <section className="rounded-xl border border-line bg-white p-4 space-y-4">
-        <h3 className="text-sm font-bold text-ink">
+      <section className="rounded-xl border border-border bg-card p-4 space-y-4">
+        <h3 className="text-sm font-bold text-foreground">
           {t("contactInfo") || "Contact & billing"}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <label htmlFor="website" className="block text-sm font-medium text-ink">
+            <label htmlFor="website" className="block text-sm font-medium text-foreground">
               {t("website") || "Website"}
             </label>
             <div className="relative">
-              <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+              <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="website"
                 type="url"
@@ -301,16 +301,16 @@ export function ProfileTab() {
                 onChange={(e) => setForm({ ...form, website: e.target.value })}
                 placeholder="https://zyrix.co"
                 dir="ltr"
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
           </div>
           <div className="space-y-1.5">
-            <label htmlFor="billingEmail" className="block text-sm font-medium text-ink">
+            <label htmlFor="billingEmail" className="block text-sm font-medium text-foreground">
               {t("billingEmail") || "Billing email"}
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="billingEmail"
                 type="email"
@@ -320,7 +320,7 @@ export function ProfileTab() {
                 }
                 placeholder="billing@example.com"
                 dir="ltr"
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
           </div>
@@ -328,23 +328,23 @@ export function ProfileTab() {
       </section>
 
       {/* Region & language */}
-      <section className="rounded-xl border border-line bg-white p-4 space-y-4">
-        <h3 className="text-sm font-bold text-ink">
+      <section className="rounded-xl border border-border bg-card p-4 space-y-4">
+        <h3 className="text-sm font-bold text-foreground">
           {t("locale") || "Region & language"}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <label htmlFor="timezone" className="block text-sm font-medium text-ink">
+            <label htmlFor="timezone" className="block text-sm font-medium text-foreground">
               {t("timezone") || "Timezone"}
             </label>
             <div className="relative">
-              <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted pointer-events-none" />
+              <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
               <select
                 id="timezone"
                 value={form.timezone}
                 onChange={(e) => setForm({ ...form, timezone: e.target.value })}
                 dir="ltr"
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 appearance-none"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 appearance-none"
               >
                 {COMMON_TIMEZONES.map((tz) => (
                   <option key={tz} value={tz}>
@@ -356,7 +356,7 @@ export function ProfileTab() {
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-ink">
+            <label className="block text-sm font-medium text-foreground">
               <Languages className="inline w-3.5 h-3.5 me-1 align-text-bottom" />
               {t("preferredLocale") || "Preferred language"}
             </label>
@@ -369,15 +369,15 @@ export function ProfileTab() {
                   className={cn(
                     "px-2 py-2 text-xs font-semibold rounded-lg border transition-colors",
                     form.preferredLocale === loc
-                      ? "bg-primary-600 text-white border-primary-600"
-                      : "bg-white border-line text-ink hover:bg-bg-subtle"
+                      ? "bg-primary text-white border-primary-600"
+                      : "bg-card border-border text-foreground hover:bg-muted"
                   )}
                 >
                   {loc === "en" ? "English" : loc === "ar" ? "العربية" : "Türkçe"}
                 </button>
               ))}
             </div>
-            <p className="text-xs text-ink-muted">
+            <p className="text-xs text-muted-foreground">
               {t("preferredLocaleHint") ||
                 "Used for emails + notifications. Web UI uses the selector in the header."}
             </p>
@@ -386,8 +386,8 @@ export function ProfileTab() {
       </section>
 
       {/* Notification preferences */}
-      <section className="rounded-xl border border-line bg-white p-4 space-y-3">
-        <h3 className="text-sm font-bold text-ink">
+      <section className="rounded-xl border border-border bg-card p-4 space-y-3">
+        <h3 className="text-sm font-bold text-foreground">
           {t("notifications") || "Notifications"}
         </h3>
         <div className="space-y-1.5">
@@ -398,7 +398,7 @@ export function ProfileTab() {
                 key={key}
                 className="flex items-center justify-between gap-3 py-1.5 cursor-pointer"
               >
-                <span className="text-sm text-ink flex-1">
+                <span className="text-sm text-foreground flex-1">
                   {t(`notif.${key}`) || labelFromKey(key)}
                 </span>
                 <button
@@ -408,12 +408,12 @@ export function ProfileTab() {
                   onClick={() => toggleNotification(key)}
                   className={cn(
                     "relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0",
-                    enabled ? "bg-primary-600" : "bg-slate-300"
+                    enabled ? "bg-primary" : "bg-slate-300"
                   )}
                 >
                   <span
                     className={cn(
-                      "inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform shadow",
+                      "inline-block h-3.5 w-3.5 transform rounded-full bg-card transition-transform shadow",
                       enabled ? "translate-x-5" : "translate-x-0.5"
                     )}
                   />
@@ -428,8 +428,8 @@ export function ProfileTab() {
         type="submit"
         disabled={isSubmitting}
         className={cn(
-          "px-6 py-2.5 text-sm font-medium rounded-lg bg-primary-600 text-white",
-          "hover:bg-primary-700 disabled:opacity-60",
+          "px-6 py-2.5 text-sm font-medium rounded-lg bg-primary text-white",
+          "hover:bg-primary disabled:opacity-60",
           "flex items-center gap-2 transition-all"
         )}
       >

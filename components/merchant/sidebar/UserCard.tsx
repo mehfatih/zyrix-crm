@@ -103,19 +103,19 @@ export function UserCard({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/60 transition-colors text-left"
+        className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-muted/60 transition-colors text-left"
       >
         {avatar}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 text-[14px] font-bold text-[#0C4A6E] leading-tight truncate">
             {fullName}
             <ChevronDown
-              className={`w-3.5 h-3.5 text-slate-400 transition-transform ${
+              className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${
                 open ? "rotate-180" : ""
               }`}
             />
           </div>
-          <div className="mt-0.5 text-[12px] text-slate-500 leading-tight flex items-center gap-1.5">
+          <div className="mt-0.5 text-[12px] text-muted-foreground leading-tight flex items-center gap-1.5">
             <span className="truncate">{companyName}</span>
             <span className="text-slate-300">·</span>
             <span
@@ -129,36 +129,36 @@ export function UserCard({
       </button>
 
       {open && (
-        <div className="absolute z-20 ltr:left-0 rtl:right-0 top-full mt-1 w-full bg-white border border-sky-100 rounded-xl shadow-lg overflow-hidden">
+        <div className="absolute z-20 ltr:left-0 rtl:right-0 top-full mt-1 w-full bg-card border border-border rounded-xl shadow-lg overflow-hidden">
           <Link
             href={`/${locale}/merchant/settings`}
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
+            className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted"
           >
-            <UserCircle className="w-4 h-4 text-slate-500" />
+            <UserCircle className="w-4 h-4 text-muted-foreground" />
             {t.profile}
           </Link>
           <Link
             href={`/${locale}/merchant/settings`}
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-sky-50"
+            className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted"
           >
-            <Settings className="w-4 h-4 text-slate-500" />
+            <Settings className="w-4 h-4 text-muted-foreground" />
             {t.settings}
           </Link>
-          <div className="border-t border-sky-100" />
+          <div className="border-t border-border" />
           <button
             type="button"
             onClick={() => {
               setOpen(false);
               onLogout();
             }}
-            className="w-full flex items-center gap-2 px-3 py-2 text-sm text-rose-600 hover:bg-rose-50 text-left"
+            className="w-full flex items-center gap-2 px-3 py-2 text-sm text-rose-300 hover:bg-rose-500/10 text-left"
           >
             <LogOut className="w-4 h-4" />
             {t.logout}
           </button>
-          <div className="px-3 py-1.5 text-[11px] text-slate-400 truncate border-t border-sky-100">
+          <div className="px-3 py-1.5 text-[11px] text-muted-foreground truncate border-t border-border">
             {email}
           </div>
         </div>

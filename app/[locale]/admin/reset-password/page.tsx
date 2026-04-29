@@ -11,7 +11,7 @@ export default async function AdminResetPasswordPage({
   setRequestLocale(locale);
 
   return (
-    <Suspense fallback={<div className="min-h-screen bg-sky-50" />}>
+    <Suspense fallback={<div className="min-h-screen bg-muted" />}>
       <AdminResetPasswordForm locale={locale} />
     </Suspense>
   );

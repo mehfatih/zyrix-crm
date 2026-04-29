@@ -110,10 +110,11 @@ export default function SecuritySettingsPage() {
             <Shield className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {t("Security", "الأمان", "Güvenlik")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {t(
                 "Protect your account with two-factor authentication.",
                 "احمِ حسابك بالتحقق الثنائي.",
@@ -125,22 +126,22 @@ export default function SecuritySettingsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : (
           <>
             {/* 2FA card */}
-            <div className="rounded-2xl border border-sky-100 bg-white shadow-sm overflow-hidden">
+            <div className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden">
               <div className="p-5 flex items-start gap-4">
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
                     status?.enabled
-                      ? "bg-emerald-50 text-emerald-700"
-                      : "bg-amber-50 text-amber-700"
+                      ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
+                      : "bg-amber-500/10 text-amber-300 border border-amber-500/30"
                   }`}
                 >
                   {status?.enabled ? (
@@ -151,7 +152,7 @@ export default function SecuritySettingsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h2 className="text-base font-bold text-sky-900">
+                    <h2 className="text-base font-bold text-foreground">
                       {t(
                         "Two-factor authentication (2FA)",
                         "المصادقة الثنائية (2FA)",
@@ -170,7 +171,7 @@ export default function SecuritySettingsPage() {
                         : t("Not enabled", "غير مُفعّل", "Devre dışı")}
                     </span>
                   </div>
-                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                     {status?.enabled
                       ? t(
                           `You have ${status.backupCodesRemaining} backup code${status.backupCodesRemaining === 1 ? "" : "s"} remaining.`,
@@ -188,7 +189,7 @@ export default function SecuritySettingsPage() {
                     {!status?.enabled ? (
                       <button
                         onClick={startEnroll}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold"
                       >
                         <Smartphone className="w-4 h-4" />
                         {t("Enable 2FA", "تفعيل 2FA", "2FA'yı etkinleştir")}
@@ -197,7 +198,7 @@ export default function SecuritySettingsPage() {
                       <>
                         <button
                           onClick={() => setModal({ kind: "regenerate" })}
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-lg text-sm font-semibold"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-card border border-border hover:bg-muted text-foreground rounded-lg text-sm font-semibold"
                         >
                           <RefreshCw className="w-4 h-4" />
                           {t(
@@ -208,7 +209,7 @@ export default function SecuritySettingsPage() {
                         </button>
                         <button
                           onClick={() => setModal({ kind: "disable" })}
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-rose-200 hover:bg-rose-50 text-rose-700 rounded-lg text-sm font-semibold"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-card border border-rose-500/30 hover:bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-lg text-sm font-semibold"
                         >
                           <ShieldOff className="w-4 h-4" />
                           {t("Disable 2FA", "تعطيل 2FA", "2FA'yı devre dışı bırak")}
@@ -218,8 +219,8 @@ export default function SecuritySettingsPage() {
                   </div>
 
                   {status?.enabled && status.backupCodesRemaining <= 3 && (
-                    <div className="mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200 flex items-start gap-2">
-                      <AlertTriangle className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
+                    <div className="mt-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-start gap-2">
+                      <AlertTriangle className="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-amber-900">
                         {t(
                           "You're running low on backup codes. Regenerate a new set before you run out.",
@@ -236,19 +237,19 @@ export default function SecuritySettingsPage() {
             {/* Helpful link to audit log */}
             <a
               href={`/${locale}/settings/audit`}
-              className="block rounded-xl border border-sky-100 bg-gradient-to-r from-sky-50 to-sky-50 p-4 hover:border-sky-300 transition-colors"
+              className="block rounded-xl border border-border bg-gradient-to-r from-sky-50 to-sky-50 p-4 hover:border-sky-300 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <Key className="w-5 h-5 text-sky-500 flex-shrink-0" />
+                <Key className="w-5 h-5 text-cyan-300 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-sky-900">
+                  <h3 className="text-sm font-semibold text-foreground">
                     {t(
                       "Review recent activity",
                       "راجع النشاط الأخير",
                       "Son etkinliği inceleyin"
                     )}
                   </h3>
-                  <p className="text-xs text-slate-600 mt-0.5">
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     {t(
                       "See a full timeline of security events and changes on your account.",
                       "اطّلع على سجل زمني كامل للأحداث الأمنية والتغييرات على حسابك.",
@@ -328,12 +329,12 @@ function Modal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 relative"
+        className="bg-card rounded-2xl shadow-xl max-w-md w-full p-6 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 rtl:right-auto rtl:left-3 w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center"
+          className="absolute top-3 right-3 rtl:right-auto rtl:left-3 w-7 h-7 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center"
         >
           <X className="w-4 h-4" />
         </button>
@@ -376,19 +377,19 @@ function EnrollModal({
 
   return (
     <Modal onClose={onClose} locale={locale}>
-      <h2 className="text-lg font-bold text-sky-900">
+      <h2 className="text-lg font-bold text-foreground">
         {tr("Enable 2FA", "تفعيل 2FA", "2FA'yı etkinleştir")}
       </h2>
 
       {stage === "loading" && (
         <div className="flex items-center justify-center py-8">
-          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+          <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
         </div>
       )}
 
       {stage === "ready" && data && (
         <div className="mt-4 space-y-4">
-          <p className="text-sm text-slate-700">
+          <p className="text-sm text-foreground">
             {tr(
               "1. Scan this QR code with your authenticator app (Google Authenticator, Authy, 1Password, etc).",
               "١. امسح رمز QR هذا باستخدام تطبيق المصادقة الخاص بك (Google Authenticator أو Authy أو 1Password...).",
@@ -399,12 +400,12 @@ function EnrollModal({
             <img
               src={data.qrDataUrl}
               alt="2FA QR code"
-              className="w-48 h-48 rounded-lg border border-sky-200 p-2 bg-white"
+              className="w-48 h-48 rounded-lg border border-border p-2 bg-card"
             />
           </div>
 
-          <details className="rounded-lg border border-sky-200 bg-sky-50 p-3">
-            <summary className="text-xs font-semibold text-sky-800 cursor-pointer">
+          <details className="rounded-lg border border-border bg-muted p-3">
+            <summary className="text-xs font-semibold text-foreground cursor-pointer">
               {tr(
                 "Can't scan? Enter the secret manually",
                 "لا يمكنك المسح؟ أدخل السر يدويًا",
@@ -413,7 +414,7 @@ function EnrollModal({
             </summary>
             <div className="mt-2 flex items-center gap-2">
               <code
-                className="flex-1 text-xs font-mono bg-white px-2 py-1.5 rounded border border-sky-200 break-all"
+                className="flex-1 text-xs font-mono bg-card px-2 py-1.5 rounded border border-border break-all"
                 dir="ltr"
               >
                 {data.secret}
@@ -424,10 +425,10 @@ function EnrollModal({
                   setSecretCopied(true);
                   setTimeout(() => setSecretCopied(false), 2000);
                 }}
-                className="p-1.5 text-slate-500 hover:text-sky-500 hover:bg-sky-100 rounded"
+                className="p-1.5 text-muted-foreground hover:text-cyan-300 hover:bg-sky-100 rounded"
               >
                 {secretCopied ? (
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <Check className="w-3.5 h-3.5 text-emerald-300" />
                 ) : (
                   <Copy className="w-3.5 h-3.5" />
                 )}
@@ -436,7 +437,7 @@ function EnrollModal({
           </details>
 
           <div>
-            <p className="text-sm text-slate-700 mb-2">
+            <p className="text-sm text-foreground mb-2">
               {tr(
                 "2. Enter the 6-digit code your app shows:",
                 "٢. أدخل الرمز المكون من 6 أرقام الذي يعرضه تطبيقك:",
@@ -451,16 +452,16 @@ function EnrollModal({
               onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
               placeholder="000000"
               maxLength={6}
-              className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-4 py-3 text-center text-xl font-mono tracking-widest border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
-          {err && <p className="text-sm text-rose-700">{err}</p>}
+          {err && <p className="text-sm text-rose-300">{err}</p>}
 
           <button
             onClick={submit}
             disabled={code.length !== 6 || submitting}
-            className="w-full py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg font-semibold text-sm disabled:opacity-50 inline-flex items-center justify-center gap-2"
+            className="w-full py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold text-sm disabled:opacity-50 inline-flex items-center justify-center gap-2"
           >
             {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
             {tr("Confirm and enable", "تأكيد وتفعيل", "Onayla ve etkinleştir")}
@@ -503,8 +504,8 @@ function DisableModal({
       <h2 className="text-lg font-bold text-rose-900">
         {tr("Disable 2FA?", "تعطيل 2FA؟", "2FA'yı devre dışı bırakılsın mı?")}
       </h2>
-      <div className="mt-3 p-3 rounded-lg bg-rose-50 border border-rose-200 flex items-start gap-2">
-        <AlertTriangle className="w-4 h-4 text-rose-700 flex-shrink-0 mt-0.5" />
+      <div className="mt-3 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-start gap-2">
+        <AlertTriangle className="w-4 h-4 text-rose-300 flex-shrink-0 mt-0.5" />
         <p className="text-xs text-rose-900">
           {tr(
             "This will make your account less secure. Confirm with your password.",
@@ -514,7 +515,7 @@ function DisableModal({
         </p>
       </div>
       <div className="mt-4">
-        <label className="block text-xs font-medium text-slate-700 mb-1">
+        <label className="block text-xs font-medium text-foreground mb-1">
           {tr("Your password", "كلمة المرور", "Parolanız")}
         </label>
         <input
@@ -522,14 +523,14 @@ function DisableModal({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoFocus
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+          className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
-      {err && <p className="text-sm text-rose-700 mt-2">{err}</p>}
+      {err && <p className="text-sm text-rose-300 mt-2">{err}</p>}
       <div className="mt-5 flex items-center gap-2 justify-end">
         <button
           onClick={onClose}
-          className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900"
+          className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           {tr("Cancel", "إلغاء", "İptal")}
         </button>
@@ -574,32 +575,32 @@ function RegenerateModal({
 
   return (
     <Modal onClose={onClose} locale={locale}>
-      <h2 className="text-lg font-bold text-sky-900">
+      <h2 className="text-lg font-bold text-foreground">
         {tr(
           "Regenerate backup codes?",
           "إعادة إنشاء رموز الاسترداد؟",
           "Yedek kodları yeniden oluşturulsun mu?"
         )}
       </h2>
-      <p className="text-sm text-slate-700 mt-3 leading-relaxed">
+      <p className="text-sm text-foreground mt-3 leading-relaxed">
         {tr(
           "Your existing backup codes will stop working. You'll get 10 fresh codes — shown once, so save them immediately.",
           "ستتوقف رموز الاسترداد الحالية عن العمل. ستحصل على 10 رموز جديدة — تُعرض مرة واحدة فقط، لذا احفظها فورًا.",
           "Mevcut yedek kodlarınız çalışmayı durduracak. 10 yeni kod alacaksınız — yalnızca bir kez gösterilir, hemen kaydedin."
         )}
       </p>
-      {err && <p className="text-sm text-rose-700 mt-2">{err}</p>}
+      {err && <p className="text-sm text-rose-300 mt-2">{err}</p>}
       <div className="mt-5 flex items-center gap-2 justify-end">
         <button
           onClick={onClose}
-          className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900"
+          className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           {tr("Cancel", "إلغاء", "İptal")}
         </button>
         <button
           onClick={submit}
           disabled={submitting}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold disabled:opacity-50"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold disabled:opacity-50"
         >
           {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
           {tr("Generate new codes", "إنشاء رموز جديدة", "Yeni kodlar oluştur")}
@@ -652,7 +653,7 @@ function BackupCodesModal({
   return (
     <Modal onClose={acknowledged ? onClose : () => {}} locale={locale}>
       <div className="flex items-center gap-2 mb-1">
-        <ShieldCheck className="w-5 h-5 text-emerald-600" />
+        <ShieldCheck className="w-5 h-5 text-emerald-300" />
         <h2 className="text-lg font-bold text-emerald-900">
           {context === "enroll"
             ? tr("2FA enabled!", "تم تفعيل 2FA!", "2FA etkinleştirildi!")
@@ -660,8 +661,8 @@ function BackupCodesModal({
         </h2>
       </div>
 
-      <div className="mt-3 p-3 rounded-lg bg-amber-50 border border-amber-200 flex items-start gap-2">
-        <AlertTriangle className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
+      <div className="mt-3 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-start gap-2">
+        <AlertTriangle className="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5" />
         <p className="text-xs text-amber-900 leading-relaxed">
           {tr(
             "Save these codes NOW. They will not be shown again. Each can be used once if you lose access to your authenticator.",
@@ -675,7 +676,7 @@ function BackupCodesModal({
         {codes.map((code) => (
           <code
             key={code}
-            className="text-center text-sm font-mono py-2 bg-slate-50 border border-slate-200 rounded"
+            className="text-center text-sm font-mono py-2 bg-muted border border-border rounded"
             dir="ltr"
           >
             {code}
@@ -686,10 +687,10 @@ function BackupCodesModal({
       <div className="mt-4 flex items-center gap-2">
         <button
           onClick={copyAll}
-          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg text-sm font-semibold text-slate-700"
+          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-card border border-border hover:bg-muted rounded-lg text-sm font-semibold text-foreground"
         >
           {copied ? (
-            <Check className="w-4 h-4 text-emerald-600" />
+            <Check className="w-4 h-4 text-emerald-300" />
           ) : (
             <Copy className="w-4 h-4" />
           )}
@@ -699,7 +700,7 @@ function BackupCodesModal({
         </button>
         <button
           onClick={download}
-          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg text-sm font-semibold text-slate-700"
+          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-card border border-border hover:bg-muted rounded-lg text-sm font-semibold text-foreground"
         >
           <Download className="w-4 h-4" />
           {tr("Download", "تنزيل", "İndir")}
@@ -711,9 +712,9 @@ function BackupCodesModal({
           type="checkbox"
           checked={acknowledged}
           onChange={(e) => setAcknowledged(e.target.checked)}
-          className="mt-0.5 w-4 h-4 text-sky-500 rounded"
+          className="mt-0.5 w-4 h-4 text-cyan-300 rounded"
         />
-        <span className="text-sm text-slate-700">
+        <span className="text-sm text-foreground">
           {tr(
             "I've saved these codes in a safe place.",
             "لقد حفظت هذه الرموز في مكان آمن.",

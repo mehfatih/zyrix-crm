@@ -57,27 +57,27 @@ const STATUS_META: Record<
   { bg: string; text: string; ring: string; Icon: typeof Clock }
 > = {
   pending: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    ring: "ring-amber-200",
+    bg: "bg-amber-500/10",
+    text: "text-amber-300",
+    ring: "ring-amber-500/30",
     Icon: Clock,
   },
   approved: {
-    bg: "bg-sky-50",
-    text: "text-sky-700",
-    ring: "ring-sky-200",
+    bg: "bg-muted",
+    text: "text-cyan-300",
+    ring: "ring-cyan-500/30",
     Icon: CheckCircle2,
   },
   paid: {
-    bg: "bg-emerald-50",
-    text: "text-emerald-700",
-    ring: "ring-emerald-200",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-300",
+    ring: "ring-emerald-500/30",
     Icon: DollarSign,
   },
   cancelled: {
-    bg: "bg-red-50",
-    text: "text-red-700",
-    ring: "ring-red-200",
+    bg: "bg-rose-500/10",
+    text: "text-rose-300",
+    ring: "ring-rose-500/30",
     Icon: XCircle,
   },
 };
@@ -185,17 +185,18 @@ export default function CommissionPage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-              <DollarSign className="w-6 h-6 text-sky-500" />
+            <p className="text-lime-300 text-xs font-bold uppercase tracking-widest mb-2">COMMISSIONS</p>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <DollarSign className="w-6 h-6 text-cyan-300" />
               {t("title")}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={handleRecompute}
               disabled={recomputing}
-              className="flex items-center gap-2 px-3 py-2 bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-lg text-sm font-medium disabled:opacity-60"
+              className="flex items-center gap-2 px-3 py-2 bg-card border border-border hover:bg-muted text-foreground rounded-lg text-sm font-medium disabled:opacity-60"
             >
               {recomputing ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -210,7 +211,7 @@ export default function CommissionPage() {
                 setEditingRule(null);
                 setRuleModalOpen(true);
               }}
-              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium shadow-sm"
             >
               <Plus className="w-4 h-4" />
               {t("newRule")}
@@ -219,7 +220,7 @@ export default function CommissionPage() {
         </div>
 
         {/* Tabs */}
-        <div className="border-b border-sky-100 flex gap-1 overflow-x-auto">
+        <div className="border-b border-border flex gap-1 overflow-x-auto">
           {(
             [
               { id: "rules", label: t("tabs.rules"), Icon: Settings2 },
@@ -235,8 +236,8 @@ export default function CommissionPage() {
                 onClick={() => setTab(tb.id)}
                 className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
                   active
-                    ? "border-sky-500 text-sky-600"
-                    : "border-transparent text-slate-600 hover:text-sky-600"
+                    ? "border-sky-500 text-cyan-300"
+                    : "border-transparent text-muted-foreground hover:text-cyan-300"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -248,10 +249,10 @@ export default function CommissionPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
+          <div className="p-6 text-center text-rose-300 bg-rose-500/10 rounded-xl">
             <AlertTriangle className="w-5 h-5 inline ltr:mr-2 rtl:ml-2" />
             {error}
           </div>
@@ -319,7 +320,7 @@ function RulesList({
 }) {
   if (rules.length === 0) {
     return (
-      <div className="bg-white border border-sky-100 rounded-xl py-16 text-center text-slate-500">
+      <div className="bg-card border border-border rounded-xl py-16 text-center text-muted-foreground">
         <Sparkles className="w-10 h-10 mx-auto mb-3 text-sky-300" />
         <p className="text-sm font-medium">{t("rules.empty")}</p>
         <p className="text-xs mt-1">{t("rules.emptyHint")}</p>
@@ -328,10 +329,10 @@ function RulesList({
   }
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
       <table className="w-full text-sm">
-        <thead className="bg-sky-50 border-b border-sky-100">
-          <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+        <thead className="bg-muted border-b border-border">
+          <tr className="text-left rtl:text-right text-xs uppercase text-muted-foreground">
             <th className="px-4 py-3 font-semibold">{t("rules.col.name")}</th>
             <th className="px-4 py-3 font-semibold">{t("rules.col.type")}</th>
             <th className="px-4 py-3 font-semibold">
@@ -350,17 +351,17 @@ function RulesList({
           {rules.map((r, idx) => (
             <tr
               key={idx}
-              className="border-b border-sky-50 hover:bg-sky-50/40"
+              className="border-b border-sky-50 hover:bg-muted/40"
             >
               <td className="px-4 py-3">
                 <div className="flex items-center gap-2">
                   {!r.isActive && (
-                    <Power className="w-3.5 h-3.5 text-slate-400" />
+                    <Power className="w-3.5 h-3.5 text-muted-foreground" />
                   )}
                   <div>
-                    <div className="font-medium text-sky-900">{r.name}</div>
+                    <div className="font-medium text-foreground">{r.name}</div>
                     {r.description && (
-                      <div className="text-xs text-slate-500 truncate max-w-sm">
+                      <div className="text-xs text-muted-foreground truncate max-w-sm">
                         {r.description}
                       </div>
                     )}
@@ -368,14 +369,14 @@ function RulesList({
                 </div>
               </td>
               <td className="px-4 py-3">
-                <span className="inline-flex items-center px-2 py-0.5 bg-sky-50 text-sky-700 ring-1 ring-sky-200 rounded text-xs font-medium">
+                <span className="inline-flex items-center px-2 py-0.5 bg-muted text-cyan-300 ring-1 ring-cyan-500/30 rounded text-xs font-medium">
                   {TYPE_LABEL[r.type]}
                 </span>
               </td>
-              <td className="px-4 py-3 text-slate-700 font-mono text-xs">
+              <td className="px-4 py-3 text-foreground font-mono text-xs">
                 {formatFormula(r)}
               </td>
-              <td className="px-4 py-3 text-slate-700 text-xs">
+              <td className="px-4 py-3 text-foreground text-xs">
                 {r.appliesTo === "all" && t("rules.appliesAll")}
                 {r.appliesTo === "deal_stage" &&
                   t("rules.appliesStage", {
@@ -386,20 +387,20 @@ function RulesList({
                     value: r.appliesToValue ?? "0",
                   })}
               </td>
-              <td className="px-4 py-3 text-slate-600 text-sm">
+              <td className="px-4 py-3 text-muted-foreground text-sm">
                 {r._count?.entries ?? 0}
               </td>
               <td className="px-4 py-3">
                 <div className="flex items-center gap-1 ltr:justify-end rtl:justify-start">
                   <button
                     onClick={() => onEdit(r)}
-                    className="p-1 text-slate-400 hover:text-sky-600"
+                    className="p-1 text-muted-foreground hover:text-cyan-300"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => onDelete(r.id)}
-                    className="p-1 text-slate-400 hover:text-red-600"
+                    className="p-1 text-muted-foreground hover:text-rose-300"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -445,8 +446,8 @@ function EntriesList({
 }) {
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2 bg-white border border-sky-100 rounded-xl p-3">
-        <span className="text-xs text-slate-600">{t("entries.filter")}:</span>
+      <div className="flex items-center gap-2 bg-card border border-border rounded-xl p-3">
+        <span className="text-xs text-muted-foreground">{t("entries.filter")}:</span>
         {(
           [
             { id: "", label: t("entries.all") },
@@ -462,7 +463,7 @@ function EntriesList({
             className={`px-3 py-1 rounded text-xs font-medium ${
               statusFilter === f.id
                 ? "bg-sky-500 text-white"
-                : "bg-sky-50 text-slate-700 hover:bg-sky-100"
+                : "bg-muted text-foreground hover:bg-sky-100"
             }`}
           >
             {f.label}
@@ -471,16 +472,16 @@ function EntriesList({
       </div>
 
       {entries.length === 0 ? (
-        <div className="bg-white border border-sky-100 rounded-xl py-16 text-center text-slate-500">
+        <div className="bg-card border border-border rounded-xl py-16 text-center text-muted-foreground">
           <Sparkles className="w-10 h-10 mx-auto mb-3 text-sky-300" />
           <p className="text-sm">{t("entries.empty")}</p>
         </div>
       ) : (
-        <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-sky-50 border-b border-sky-100">
-                <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+              <thead className="bg-muted border-b border-border">
+                <tr className="text-left rtl:text-right text-xs uppercase text-muted-foreground">
                   <th className="px-4 py-3 font-semibold">
                     {t("entries.col.date")}
                   </th>
@@ -509,23 +510,23 @@ function EntriesList({
                   return (
                     <tr
                       key={idx}
-                      className="border-b border-sky-50 hover:bg-sky-50/40"
+                      className="border-b border-sky-50 hover:bg-muted/40"
                     >
-                      <td className="px-4 py-3 text-xs text-slate-600">
+                      <td className="px-4 py-3 text-xs text-muted-foreground">
                         {formatDate(e.createdAt, locale)}
                       </td>
                       <td className="px-4 py-3">
-                        <div className="font-medium text-sky-900">
+                        <div className="font-medium text-foreground">
                           {e.user.fullName}
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-slate-700 text-sm max-w-xs truncate">
+                      <td className="px-4 py-3 text-foreground text-sm max-w-xs truncate">
                         {e.deal.title}
                       </td>
-                      <td className="px-4 py-3 text-slate-700 text-xs">
+                      <td className="px-4 py-3 text-foreground text-xs">
                         {e.rule.name}
                       </td>
-                      <td className="px-4 py-3 ltr:text-right rtl:text-left font-bold text-sky-900">
+                      <td className="px-4 py-3 ltr:text-right rtl:text-left font-bold text-foreground">
                         {formatMoney(Number(e.amount), e.currency, locale)}
                       </td>
                       <td className="px-4 py-3">
@@ -542,7 +543,7 @@ function EntriesList({
                             <button
                               onClick={() => onStatus(e.id, "approved")}
                               title={t("actions.approve")}
-                              className="p-1 text-slate-400 hover:text-sky-600"
+                              className="p-1 text-muted-foreground hover:text-cyan-300"
                             >
                               <CheckCircle2 className="w-4 h-4" />
                             </button>
@@ -552,14 +553,14 @@ function EntriesList({
                             <button
                               onClick={() => onStatus(e.id, "paid")}
                               title={t("actions.markPaid")}
-                              className="p-1 text-slate-400 hover:text-emerald-600"
+                              className="p-1 text-muted-foreground hover:text-emerald-300"
                             >
                               <DollarSign className="w-4 h-4" />
                             </button>
                           )}
                           <button
                             onClick={() => onDelete(e.id)}
-                            className="p-1 text-slate-400 hover:text-red-600"
+                            className="p-1 text-muted-foreground hover:text-rose-300"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -613,15 +614,15 @@ function StatsView({
         />
       </div>
 
-      <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-          <Award className="w-4 h-4 text-amber-600" />
-          <h3 className="text-sm font-semibold text-sky-900">
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border bg-muted/50 flex items-center gap-2">
+          <Award className="w-4 h-4 text-amber-300" />
+          <h3 className="text-sm font-semibold text-foreground">
             {t("stats.topUsers")}
           </h3>
         </div>
         {stats.topUsers.length === 0 ? (
-          <div className="py-10 text-center text-slate-500 text-sm">
+          <div className="py-10 text-center text-muted-foreground text-sm">
             {t("stats.noUsers")}
           </div>
         ) : (
@@ -629,20 +630,20 @@ function StatsView({
             {stats.topUsers.map((u, idx) => (
               <div
                 key={idx}
-                className="px-5 py-3 flex items-center gap-3 hover:bg-sky-50/30"
+                className="px-5 py-3 flex items-center gap-3 hover:bg-muted/30"
               >
-                <div className="w-8 h-8 rounded-full bg-sky-50 text-sky-600 font-bold text-sm flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-muted text-cyan-300 font-bold text-sm flex items-center justify-center">
                   {idx + 1}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-sky-900 truncate">
+                  <div className="font-medium text-foreground truncate">
                     {u.user.fullName}
                   </div>
-                  <div className="text-xs text-slate-500 truncate">
+                  <div className="text-xs text-muted-foreground truncate">
                     {u.count} {t("stats.entries")}
                   </div>
                 </div>
-                <div className="font-bold text-emerald-700">
+                <div className="font-bold text-emerald-300">
                   {formatMoneyShort(u.amount)}
                 </div>
               </div>
@@ -668,23 +669,23 @@ function StatCard({
   color: "amber" | "sky" | "emerald";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
-    sky: { iconBg: "bg-sky-50", iconText: "text-sky-600" },
-    emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
+    amber: { iconBg: "bg-amber-500/10", iconText: "text-amber-300" },
+    sky: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    emerald: { iconBg: "bg-emerald-500/10", iconText: "text-emerald-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4">
+    <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-center gap-3 mb-2">
         <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
           <Icon className="w-5 h-5" />
         </div>
-        <div className="text-xs text-slate-500">{label}</div>
+        <div className="text-xs text-muted-foreground">{label}</div>
       </div>
-      <div className="text-2xl font-bold text-sky-900">
+      <div className="text-2xl font-bold text-foreground">
         {formatMoneyShort(amount)}
       </div>
-      <div className="text-xs text-slate-500 mt-0.5">
+      <div className="text-xs text-muted-foreground mt-0.5">
         {count} {count === 1 ? "entry" : "entries"}
       </div>
     </div>
@@ -792,16 +793,16 @@ function RuleModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-lg w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-lg w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-sky-900">
+        <div className="p-5 border-b border-border flex items-center justify-between">
+          <h2 className="text-lg font-bold text-foreground">
             {editing ? t("modal.editTitle") : t("modal.createTitle")}
           </h2>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -809,7 +810,7 @@ function RuleModal({
 
         <div className="p-5 space-y-3">
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("modal.name")} *
             </label>
             <input
@@ -817,12 +818,12 @@ function RuleModal({
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder={t("modal.namePlaceholder")}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("modal.description")}
             </label>
             <input
@@ -831,12 +832,12 @@ function RuleModal({
               onChange={(e) =>
                 setForm({ ...form, description: e.target.value })
               }
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-2">
+            <label className="block text-xs font-medium text-foreground mb-2">
               {t("modal.type")} *
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -848,8 +849,8 @@ function RuleModal({
                     onClick={() => setForm({ ...form, type: ty })}
                     className={`px-3 py-2 rounded-lg text-xs font-medium border transition-colors ${
                       active
-                        ? "bg-sky-50 text-sky-600 border-sky-300"
-                        : "bg-white text-slate-600 border-sky-200 hover:border-sky-400"
+                        ? "bg-muted text-cyan-300 border-sky-300"
+                        : "bg-card text-muted-foreground border-border hover:border-sky-400"
                     }`}
                   >
                     {t(`modal.types.${ty}`)}
@@ -861,7 +862,7 @@ function RuleModal({
 
           {form.type === "percent" && (
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("modal.rate")} (%)
               </label>
               <input
@@ -869,14 +870,14 @@ function RuleModal({
                 step="0.01"
                 value={form.rate}
                 onChange={(e) => setForm({ ...form, rate: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           )}
 
           {form.type === "flat" && (
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("modal.amount")}
               </label>
               <input
@@ -886,7 +887,7 @@ function RuleModal({
                 onChange={(e) =>
                   setForm({ ...form, amount: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           )}
@@ -894,12 +895,12 @@ function RuleModal({
           {form.type === "tiered" && (
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-medium text-slate-700">
+                <label className="text-xs font-medium text-foreground">
                   {t("modal.tiers")}
                 </label>
                 <button
                   onClick={addTier}
-                  className="text-xs text-sky-600 hover:text-sky-800 font-medium flex items-center gap-1"
+                  className="text-xs text-cyan-300 hover:text-foreground font-medium flex items-center gap-1"
                 >
                   <Plus className="w-3 h-3" />
                   {t("modal.addTier")}
@@ -909,7 +910,7 @@ function RuleModal({
                 {form.tiers.map((tier, idx) => (
                   <div
                     key={idx}
-                    className="bg-sky-50/30 border border-sky-100 rounded-lg p-2 grid grid-cols-12 gap-2 items-center"
+                    className="bg-muted/30 border border-border rounded-lg p-2 grid grid-cols-12 gap-2 items-center"
                   >
                     <input
                       type="number"
@@ -918,7 +919,7 @@ function RuleModal({
                         updateTier(idx, { from: Number(e.target.value) })
                       }
                       placeholder={t("modal.from")}
-                      className="col-span-4 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none"
+                      className="col-span-4 px-2 py-1.5 text-xs border border-border rounded bg-card focus:outline-none"
                     />
                     <input
                       type="number"
@@ -931,7 +932,7 @@ function RuleModal({
                         })
                       }
                       placeholder={t("modal.to")}
-                      className="col-span-4 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none"
+                      className="col-span-4 px-2 py-1.5 text-xs border border-border rounded bg-card focus:outline-none"
                     />
                     <div className="col-span-3 flex items-center gap-1">
                       <input
@@ -941,13 +942,13 @@ function RuleModal({
                         onChange={(e) =>
                           updateTier(idx, { rate: Number(e.target.value) })
                         }
-                        className="flex-1 px-2 py-1.5 text-xs border border-sky-200 rounded bg-white focus:outline-none"
+                        className="flex-1 px-2 py-1.5 text-xs border border-border rounded bg-card focus:outline-none"
                       />
-                      <span className="text-xs text-slate-500">%</span>
+                      <span className="text-xs text-muted-foreground">%</span>
                     </div>
                     <button
                       onClick={() => removeTier(idx)}
-                      className="col-span-1 flex items-center justify-center text-slate-400 hover:text-red-600"
+                      className="col-span-1 flex items-center justify-center text-muted-foreground hover:text-rose-300"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -959,7 +960,7 @@ function RuleModal({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("modal.appliesTo")}
               </label>
               <select
@@ -970,7 +971,7 @@ function RuleModal({
                     appliesTo: e.target.value as AppliesTo,
                   })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="all">{t("modal.applies.all")}</option>
                 <option value="deal_stage">
@@ -983,7 +984,7 @@ function RuleModal({
             </div>
             {form.appliesTo !== "all" && (
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-foreground mb-1">
                   {form.appliesTo === "deal_stage"
                     ? t("modal.stageValue")
                     : t("modal.minValue")}
@@ -997,7 +998,7 @@ function RuleModal({
                   placeholder={
                     form.appliesTo === "deal_stage" ? "won" : "50000"
                   }
-                  className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
             )}
@@ -1011,32 +1012,32 @@ function RuleModal({
                 onChange={(e) =>
                   setForm({ ...form, isActive: e.target.checked })
                 }
-                className="w-4 h-4 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
+                className="w-4 h-4 rounded border-sky-300 text-cyan-300 focus:ring-primary"
               />
-              <span className="text-sm text-slate-700">
+              <span className="text-sm text-foreground">
                 {t("modal.isActive")}
               </span>
             </label>
           </div>
 
           {err && (
-            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100">
+            <div className="bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm p-2 rounded-lg border border-red-100">
               {err}
             </div>
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex justify-end gap-2 bg-sky-50/30">
+        <div className="p-4 border-t border-border flex justify-end gap-2 bg-muted/30">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 rounded-lg"
+            className="px-4 py-2 text-sm text-foreground hover:bg-muted rounded-lg"
           >
             {t("actions.cancel")}
           </button>
           <button
             onClick={save}
             disabled={saving}
-            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin" />

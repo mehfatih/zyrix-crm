@@ -119,10 +119,11 @@ export default function SessionKpisPage() {
               <Activity className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">SESSION KPIS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Session activity", "نشاط الجلسات", "Oturum etkinliği")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {canSeeAll
                   ? tr(
                       "Per-employee logout breakdown for your team.",
@@ -139,7 +140,7 @@ export default function SessionKpisPage() {
           </div>
 
           {/* Range preset pills */}
-          <div className="inline-flex rounded-lg border border-sky-200 bg-white p-0.5">
+          <div className="inline-flex rounded-lg border border-border bg-card p-0.5">
             {(Object.keys(PRESETS) as RangePreset[]).map((k) => (
               <button
                 key={k}
@@ -147,7 +148,7 @@ export default function SessionKpisPage() {
                 className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
                   preset === k
                     ? "bg-sky-500 text-white"
-                    : "text-slate-700 hover:bg-sky-50"
+                    : "text-foreground hover:bg-muted"
                 }`}
               >
                 {PRESETS[k][locale]}
@@ -157,7 +158,7 @@ export default function SessionKpisPage() {
         </div>
 
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
             <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
@@ -165,7 +166,7 @@ export default function SessionKpisPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : !data ? null : (
           <>
@@ -242,10 +243,10 @@ export default function SessionKpisPage() {
             </div>
 
             {/* Per-user table */}
-            <div className="rounded-xl border border-sky-100 bg-white overflow-hidden">
-              <div className="px-4 py-3 border-b border-sky-100 bg-sky-50/50 flex items-center gap-2">
-                <Users className="w-4 h-4 text-sky-600" />
-                <h2 className="text-sm font-bold text-sky-900">
+            <div className="rounded-xl border border-border bg-card overflow-hidden">
+              <div className="px-4 py-3 border-b border-border bg-muted/50 flex items-center gap-2">
+                <Users className="w-4 h-4 text-cyan-300" />
+                <h2 className="text-sm font-bold text-foreground">
                   {tr(
                     `Per ${canSeeAll ? "employee" : "person"}`,
                     canSeeAll ? "لكل موظف" : "لكل شخص",
@@ -256,7 +257,7 @@ export default function SessionKpisPage() {
               {data.perUser.length === 0 ? (
                 <div className="p-10 text-center">
                   <Calendar className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-muted-foreground">
                     {tr(
                       "No activity in this range yet.",
                       "لا نشاط في هذه الفترة بعد.",
@@ -286,12 +287,12 @@ export default function SessionKpisPage() {
                             : "?"}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="text-sm font-semibold text-slate-900 truncate">
+                          <div className="text-sm font-semibold text-foreground truncate">
                             {row.userName ??
                               tr("Unnamed user", "مستخدم بلا اسم", "İsimsiz kullanıcı")}
                           </div>
                           <div
-                            className="text-[11px] text-slate-500 truncate font-mono"
+                            className="text-[11px] text-muted-foreground truncate font-mono"
                             dir="ltr"
                           >
                             {row.userEmail ?? "—"}
@@ -302,29 +303,29 @@ export default function SessionKpisPage() {
                         <div className="flex items-center gap-2 flex-shrink-0">
                           <div className="flex items-center gap-1 text-[11px]">
                             <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                            <span className="font-mono tabular-nums text-slate-700">
+                            <span className="font-mono tabular-nums text-foreground">
                               {row.manualLogouts}
                             </span>
-                            <span className="text-slate-400">
+                            <span className="text-muted-foreground">
                               {tr("manual", "يدوي", "manuel")}
                             </span>
                           </div>
                           <div className="flex items-center gap-1 text-[11px]">
                             <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-500" />
-                            <span className="font-mono tabular-nums text-slate-700">
+                            <span className="font-mono tabular-nums text-foreground">
                               {row.autoLogouts}
                             </span>
-                            <span className="text-slate-400">
+                            <span className="text-muted-foreground">
                               {tr("auto", "تلقائي", "otomatik")}
                             </span>
                           </div>
                           {row.sessionExpired > 0 && (
                             <div className="flex items-center gap-1 text-[11px]">
                               <span className="inline-block w-1.5 h-1.5 rounded-full bg-slate-400" />
-                              <span className="font-mono tabular-nums text-slate-500">
+                              <span className="font-mono tabular-nums text-muted-foreground">
                                 {row.sessionExpired}
                               </span>
-                              <span className="text-slate-400">
+                              <span className="text-muted-foreground">
                                 {tr("expired", "انتهت", "süresi doldu")}
                               </span>
                             </div>
@@ -334,20 +335,20 @@ export default function SessionKpisPage() {
                         {/* Total + ratio pill */}
                         <div className="flex items-center gap-2 flex-shrink-0">
                           <div className="text-right">
-                            <div className="text-base font-bold text-sky-900 font-mono tabular-nums">
+                            <div className="text-base font-bold text-foreground font-mono tabular-nums">
                               {row.totalCloses}
                             </div>
-                            <div className="text-[9px] font-semibold uppercase text-slate-400 tracking-wide">
+                            <div className="text-[9px] font-semibold uppercase text-muted-foreground tracking-wide">
                               {tr("total", "الإجمالي", "toplam")}
                             </div>
                           </div>
                           <span
                             className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${
                               autoRatio > 0.4
-                                ? "bg-rose-50 text-rose-700 border-rose-200"
+                                ? "bg-rose-500/10 text-rose-300 border border-rose-500/30"
                                 : autoRatio > 0.2
-                                  ? "bg-amber-50 text-amber-700 border-amber-200"
-                                  : "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                  ? "bg-amber-500/10 text-amber-300 border border-amber-500/30"
+                                  : "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
                             }`}
                           >
                             {Math.round(autoRatio * 100)}%
@@ -361,19 +362,19 @@ export default function SessionKpisPage() {
             </div>
 
             {/* Logins card */}
-            <div className="rounded-xl border border-sky-100 bg-white p-4 flex items-center gap-3">
+            <div className="rounded-xl border border-border bg-card p-4 flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center flex-shrink-0">
                 <LogOut className="w-5 h-5 rotate-180" />
               </div>
               <div className="flex-1">
-                <div className="text-xs font-semibold uppercase text-slate-500 tracking-wide">
+                <div className="text-xs font-semibold uppercase text-muted-foreground tracking-wide">
                   {tr("Logins", "تسجيلات الدخول", "Giriş yapmalar")}
                 </div>
-                <div className="text-2xl font-bold text-sky-900 font-mono tabular-nums">
+                <div className="text-2xl font-bold text-foreground font-mono tabular-nums">
                   {data.totals.logins}
                 </div>
               </div>
-              <div className="text-xs text-slate-500 max-w-xs text-end">
+              <div className="text-xs text-muted-foreground max-w-xs text-end">
                 {tr(
                   "Total sign-ins in the selected range — includes password + 2FA + Google auth methods.",
                   "إجمالي تسجيلات الدخول في الفترة المحددة — تشمل كلمة المرور والـ 2FA وGoogle.",
@@ -406,7 +407,7 @@ function StatCard({
   hint: string;
 }) {
   return (
-    <div className="rounded-xl border border-sky-100 bg-white p-3">
+    <div className="rounded-xl border border-border bg-card p-3">
       <div className="flex items-start gap-2">
         <div
           className={`w-8 h-8 rounded-lg bg-gradient-to-br ${tone} text-white flex items-center justify-center flex-shrink-0`}
@@ -414,13 +415,13 @@ function StatCard({
           <Icon className="w-4 h-4" />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wide">
+          <div className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide">
             {label}
           </div>
-          <div className="text-2xl font-bold text-sky-900 font-mono tabular-nums leading-tight">
+          <div className="text-2xl font-bold text-foreground font-mono tabular-nums leading-tight">
             {value}
           </div>
-          <div className="text-[10px] text-slate-500 mt-0.5">{hint}</div>
+          <div className="text-[10px] text-muted-foreground mt-0.5">{hint}</div>
         </div>
       </div>
     </div>

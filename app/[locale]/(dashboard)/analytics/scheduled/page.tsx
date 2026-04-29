@@ -123,7 +123,7 @@ function ScheduledPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/analytics`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -131,10 +131,11 @@ function ScheduledPage() {
             <Mail className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">ANALYTICS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("Scheduled reports", "التقارير المجدولة", "Zamanlanmış raporlar")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Automated email digests delivered on your schedule.",
                 "ملخصات بريد إلكتروني آلية تُسلَّم حسب جدولك.",
@@ -145,7 +146,7 @@ function ScheduledPage() {
           {!creatingNew && !editing && (
             <button
               onClick={() => setCreatingNew(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("New report", "تقرير جديد", "Yeni rapor")}
@@ -154,7 +155,7 @@ function ScheduledPage() {
         </div>
 
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         )}
@@ -190,12 +191,12 @@ function ScheduledPage() {
         {/* List */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : reports.length === 0 && !creatingNew ? (
-          <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
+          <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center">
             <Mail className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               {tr(
                 "No scheduled reports yet — create your first one.",
                 "لا تقارير مجدولة بعد — أنشئ أول واحد.",
@@ -274,33 +275,33 @@ function ReportRow({
   };
 
   return (
-    <div className="rounded-xl border border-sky-100 bg-white p-4">
+    <div className="rounded-xl border border-border bg-card p-4">
       <div className="flex items-start gap-3">
         <div
           className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
             report.isEnabled
               ? "bg-gradient-to-br from-emerald-500 to-teal-600 text-white"
-              : "bg-slate-100 text-slate-400"
+              : "bg-muted text-muted-foreground"
           }`}
         >
           <Mail className="w-5 h-5" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-sky-900">{report.name}</h3>
+            <h3 className="text-sm font-bold text-foreground">{report.name}</h3>
             {!report.isEnabled && (
-              <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+              <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-muted text-muted-foreground border border-border">
                 {tr("Paused", "متوقف", "Duraklatıldı")}
               </span>
             )}
             {report.lastError && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/30 border border-rose-500/30">
                 <AlertTriangle className="w-2.5 h-2.5" />
                 {tr("Error", "خطأ", "Hata")}
               </span>
             )}
           </div>
-          <div className="mt-1 flex items-center gap-3 text-[11px] text-slate-500 flex-wrap">
+          <div className="mt-1 flex items-center gap-3 text-[11px] text-muted-foreground flex-wrap">
             <span className="inline-flex items-center gap-1">
               <Clock className="w-3 h-3" />
               {cadenceLabel()}
@@ -325,19 +326,19 @@ function ReportRow({
             {metricLabels.map((lbl, i) => (
               <span
                 key={i}
-                className="inline-block px-2 py-0.5 rounded-full bg-sky-50 border border-sky-100 text-[10px] text-slate-700"
+                className="inline-block px-2 py-0.5 rounded-full bg-muted border border-border text-[10px] text-foreground"
               >
                 {lbl}
               </span>
             ))}
             {extra > 0 && (
-              <span className="text-[10px] text-slate-500">
+              <span className="text-[10px] text-muted-foreground">
                 +{extra} {tr("more", "المزيد", "daha")}
               </span>
             )}
           </div>
           {report.lastError && (
-            <div className="mt-2 text-[11px] text-rose-700 bg-rose-50 rounded px-2 py-1 border border-rose-100">
+            <div className="mt-2 text-[11px] text-rose-300 bg-rose-500/10 rounded px-2 py-1 border border-rose-100">
               {report.lastError}
             </div>
           )}
@@ -347,21 +348,21 @@ function ReportRow({
             onClick={onToggle}
             className={`text-[10px] font-bold uppercase px-2 py-1 rounded border ${
               report.isEnabled
-                ? "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100"
-                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+                ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-100"
+                : "bg-card text-muted-foreground border-border hover:bg-muted"
             }`}
           >
             {report.isEnabled ? tr("On", "قيد التشغيل", "Açık") : tr("Off", "متوقف", "Kapalı")}
           </button>
           <button
             onClick={onEdit}
-            className="w-7 h-7 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+            className="w-7 h-7 rounded text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
           >
             <Pencil className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={onDelete}
-            className="w-7 h-7 rounded text-slate-400 hover:text-rose-700 hover:bg-rose-50 flex items-center justify-center"
+            className="w-7 h-7 rounded text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 flex items-center justify-center"
           >
             <Trash2 className="w-3.5 h-3.5" />
           </button>
@@ -475,30 +476,30 @@ function ScheduledReportForm({
   };
 
   return (
-    <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-4">
+    <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-sky-900">
+        <h2 className="text-sm font-bold text-foreground">
           {editing
             ? tr("Edit report", "تعديل التقرير", "Raporu düzenle")
             : tr("New scheduled report", "تقرير مجدول جديد", "Yeni zamanlanmış rapor")}
         </h2>
         <button
           onClick={onCancel}
-          className="w-7 h-7 rounded text-slate-500 hover:bg-slate-100 flex items-center justify-center"
+          className="w-7 h-7 rounded text-muted-foreground hover:bg-muted flex items-center justify-center"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {err && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-2 text-xs text-rose-700">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-2 text-xs text-rose-300">
           {err}
         </div>
       )}
 
       {/* Name */}
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Name", "الاسم", "Ad")}
         </label>
         <input
@@ -510,13 +511,13 @@ function ScheduledReportForm({
             "Haftalık Satış Özeti"
           )}
           maxLength={120}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+          className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
         />
       </div>
 
       {/* Cadence */}
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Cadence", "التكرار", "Sıklık")}
         </label>
         <div className="grid grid-cols-3 gap-2">
@@ -527,7 +528,7 @@ function ScheduledReportForm({
               className={`px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
                 cadence === c
                   ? "bg-sky-500 text-white border-sky-500"
-                  : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
+                  : "bg-card border-border text-foreground hover:bg-muted"
               }`}
             >
               {c === "daily"
@@ -544,13 +545,13 @@ function ScheduledReportForm({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {cadence === "weekly" && (
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr("Day", "اليوم", "Gün")}
             </label>
             <select
               value={dayOfWeek}
               onChange={(e) => setDayOfWeek(Number(e.target.value))}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
             >
               {dayNames.map((d, i) => (
                 <option key={i} value={i}>
@@ -562,13 +563,13 @@ function ScheduledReportForm({
         )}
         {cadence === "monthly" && (
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr("Day of month", "يوم الشهر", "Ayın günü")}
             </label>
             <select
               value={dayOfMonth}
               onChange={(e) => setDayOfMonth(Number(e.target.value))}
-              className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+              className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
             >
               {Array.from({ length: 28 }, (_, i) => i + 1).map((d) => (
                 <option key={d} value={d}>
@@ -579,13 +580,13 @@ function ScheduledReportForm({
           </div>
         )}
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Hour (UTC)", "الساعة (UTC)", "Saat (UTC)")}
           </label>
           <select
             value={hour}
             onChange={(e) => setHour(Number(e.target.value))}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
           >
             {Array.from({ length: 24 }, (_, i) => i).map((h) => (
               <option key={h} value={h}>
@@ -598,14 +599,14 @@ function ScheduledReportForm({
 
       {/* Metrics */}
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Include metrics", "المقاييس المضمنة", "Dahil edilen metrikler")}
         </label>
-        <div className="rounded-lg border border-sky-200 bg-white p-2 space-y-1 max-h-48 overflow-y-auto">
+        <div className="rounded-lg border border-border bg-card p-2 space-y-1 max-h-48 overflow-y-auto">
           {catalog.map((m) => (
             <label
               key={m.key}
-              className="flex items-start gap-2 p-2 rounded hover:bg-sky-50 cursor-pointer"
+              className="flex items-start gap-2 p-2 rounded hover:bg-muted cursor-pointer"
             >
               <input
                 type="checkbox"
@@ -614,10 +615,10 @@ function ScheduledReportForm({
                 className="mt-0.5 accent-sky-500"
               />
               <div className="flex-1">
-                <div className="text-sm font-semibold text-sky-900">
+                <div className="text-sm font-semibold text-foreground">
                   {m.label[locale]}
                 </div>
-                <div className="text-[11px] text-slate-500">
+                <div className="text-[11px] text-muted-foreground">
                   {m.description[locale]}
                 </div>
               </div>
@@ -628,7 +629,7 @@ function ScheduledReportForm({
 
       {/* Recipients */}
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Recipients", "المستلمون", "Alıcılar")}
         </label>
         <div className="flex items-center gap-2">
@@ -644,7 +645,7 @@ function ScheduledReportForm({
             }}
             placeholder="team@example.com"
             dir="ltr"
-            className="flex-1 px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+            className="flex-1 px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
           />
           <button
             onClick={addRecipient}
@@ -659,7 +660,7 @@ function ScheduledReportForm({
             {recipients.map((r) => (
               <span
                 key={r}
-                className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white border border-sky-200 text-xs text-slate-700"
+                className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-card border border-border text-xs text-foreground"
                 dir="ltr"
               >
                 {r}
@@ -667,7 +668,7 @@ function ScheduledReportForm({
                   onClick={() =>
                     setRecipients(recipients.filter((x) => x !== r))
                   }
-                  className="text-slate-400 hover:text-rose-600"
+                  className="text-muted-foreground hover:text-rose-300"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -680,7 +681,7 @@ function ScheduledReportForm({
       <div className="flex items-center justify-end gap-2">
         <button
           onClick={onCancel}
-          className="px-3 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900"
+          className="px-3 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           {tr("Cancel", "إلغاء", "İptal")}
         </button>

@@ -153,7 +153,7 @@ export default function RolesPage() {
           <div className="flex items-center gap-3">
             <Link
               href={`/${locale}/settings`}
-              className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+              className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
             >
               <ArrowLeft
                 className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
@@ -163,10 +163,11 @@ export default function RolesPage() {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Roles & permissions", "الأدوار والصلاحيات", "Roller ve izinler")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Define who can see and do what across your Zyrix workspace.",
                   "حدد من يمكنه رؤية وفعل ماذا في مساحة عمل Zyrix.",
@@ -178,7 +179,7 @@ export default function RolesPage() {
           {canEdit && !creatingNew && !editing && (
             <button
               onClick={() => setCreatingNew(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("New role", "دور جديد", "Yeni rol")}
@@ -188,19 +189,19 @@ export default function RolesPage() {
 
         {/* Banners */}
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-start gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700 whitespace-pre-line">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300 whitespace-pre-line">
             <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
         {!canEdit && !loading && (
-          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 flex items-start gap-2 text-sm text-amber-900">
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 flex items-start gap-2 text-sm text-amber-900">
             <Lock className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>
               {tr(
@@ -242,17 +243,17 @@ export default function RolesPage() {
         {/* Loading */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : (
           <>
             {/* System roles */}
             <section className="space-y-2">
-              <h2 className="text-xs font-bold uppercase tracking-wide text-slate-500">
+              <h2 className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
                 {tr("Built-in roles", "الأدوار الافتراضية", "Yerleşik roller")}
               </h2>
               {systemRoles.length === 0 ? (
-                <div className="rounded-lg border border-dashed border-sky-200 bg-white p-4 text-xs text-slate-500">
+                <div className="rounded-lg border border-dashed border-border bg-card p-4 text-xs text-muted-foreground">
                   {tr(
                     "Built-in roles will appear here after the server seeds them.",
                     "ستظهر الأدوار الافتراضية هنا بعد أن يُنشئها الخادم.",
@@ -278,13 +279,13 @@ export default function RolesPage() {
 
             {/* Custom roles */}
             <section className="space-y-2">
-              <h2 className="text-xs font-bold uppercase tracking-wide text-slate-500">
+              <h2 className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
                 {tr("Custom roles", "الأدوار المخصصة", "Özel roller")}
               </h2>
               {customRoles.length === 0 ? (
-                <div className="rounded-xl border border-dashed border-sky-200 bg-white p-8 text-center">
+                <div className="rounded-xl border border-dashed border-border bg-card p-8 text-center">
                   <Shield className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-muted-foreground">
                     {tr(
                       "No custom roles yet.",
                       "لا توجد أدوار مخصصة بعد.",
@@ -292,7 +293,7 @@ export default function RolesPage() {
                     )}
                   </p>
                   {canEdit && (
-                    <p className="text-xs text-slate-400 mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {tr(
                         "Create one to give your team precise permissions.",
                         "أنشئ دورًا لإعطاء فريقك صلاحيات دقيقة.",
@@ -352,8 +353,8 @@ function RoleRow({
     <div
       className={`rounded-xl border p-4 flex items-start gap-3 ${
         role.isSystem
-          ? "border-sky-100 bg-sky-50/40"
-          : "border-sky-100 bg-white"
+          ? "border-border bg-muted/40"
+          : "border-border bg-card"
       }`}
     >
       <div
@@ -371,19 +372,19 @@ function RoleRow({
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <h3 className="text-sm font-bold text-sky-900">{displayName}</h3>
+          <h3 className="text-sm font-bold text-foreground">{displayName}</h3>
           {role.isSystem && (
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-200">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-100 text-foreground border border-border">
               {tr("Built-in", "افتراضي", "Yerleşik")}
             </span>
           )}
-          <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+          <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-muted text-muted-foreground border border-border">
             {role.permissions.length}{" "}
             {tr("permissions", "صلاحية", "izin")}
           </span>
         </div>
         {role.description && (
-          <p className="text-xs text-slate-600 mt-1">{role.description}</p>
+          <p className="text-xs text-muted-foreground mt-1">{role.description}</p>
         )}
       </div>
       <div className="flex items-center gap-1 flex-shrink-0">
@@ -391,14 +392,14 @@ function RoleRow({
           <>
             <button
               onClick={onEdit}
-              className="w-7 h-7 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+              className="w-7 h-7 rounded text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
               title={tr("Edit", "تعديل", "Düzenle")}
             >
               <Pencil className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={onDelete}
-              className="w-7 h-7 rounded text-slate-400 hover:text-rose-700 hover:bg-rose-50 flex items-center justify-center"
+              className="w-7 h-7 rounded text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 flex items-center justify-center"
               title={tr("Delete", "حذف", "Sil")}
             >
               <Trash2 className="w-3.5 h-3.5" />
@@ -407,7 +408,7 @@ function RoleRow({
         ) : (
           <button
             onClick={onEdit}
-            className="px-2 py-1 text-[10px] font-bold uppercase text-sky-600 hover:bg-sky-50 rounded"
+            className="px-2 py-1 text-[10px] font-bold uppercase text-cyan-300 hover:bg-muted rounded"
           >
             {tr("View", "عرض", "Görüntüle")}
           </button>
@@ -551,9 +552,9 @@ function RoleForm({
   const selectedCount = selected.size;
 
   return (
-    <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-4">
+    <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-sky-900">
+        <h2 className="text-sm font-bold text-foreground">
           {readOnly
             ? tr("Built-in role", "دور افتراضي", "Yerleşik rol")
             : editing
@@ -562,21 +563,21 @@ function RoleForm({
         </h2>
         <button
           onClick={onCancel}
-          className="w-7 h-7 rounded text-slate-500 hover:bg-slate-100 flex items-center justify-center"
+          className="w-7 h-7 rounded text-muted-foreground hover:bg-muted flex items-center justify-center"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {err && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-2 text-xs text-rose-700 whitespace-pre-line">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-2 text-xs text-rose-300 whitespace-pre-line">
           {err}
         </div>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Name", "الاسم", "Ad")}
           </label>
           <input
@@ -589,11 +590,11 @@ function RoleForm({
               "Satış görüntüleyici"
             )}
             maxLength={100}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white disabled:bg-slate-50 read-only:bg-slate-50 read-only:text-slate-600"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card disabled:bg-muted read-only:bg-muted read-only:text-muted-foreground"
           />
         </div>
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Description (optional)", "الوصف (اختياري)", "Açıklama (isteğe bağlı)")}
           </label>
           <input
@@ -606,24 +607,24 @@ function RoleForm({
               "Geliri görebilir ancak faturayı düzenleyemez"
             )}
             maxLength={500}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white read-only:bg-slate-50 read-only:text-slate-600"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card read-only:bg-muted read-only:text-muted-foreground"
           />
         </div>
       </div>
 
       {/* Permission picker */}
-      <div className="rounded-lg border border-sky-100 bg-white p-3 space-y-3">
+      <div className="rounded-lg border border-border bg-card p-3 space-y-3">
         <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs font-semibold text-sky-900">
-            <ShieldCheck className="w-4 h-4 text-sky-500" />
+          <div className="flex items-center gap-2 text-xs font-semibold text-foreground">
+            <ShieldCheck className="w-4 h-4 text-cyan-300" />
             {tr("Permissions", "الصلاحيات", "İzinler")}
-            <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-sky-50 text-sky-600 text-[10px] font-bold">
+            <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-muted text-cyan-300 text-[10px] font-bold">
               {selectedCount}/{catalog.length}
             </span>
           </div>
           <div className="relative flex-1 max-w-xs">
             <Search
-              className={`absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 ${
+              className={`absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground ${
                 locale === "ar" ? "right-2" : "left-2"
               }`}
             />
@@ -631,7 +632,7 @@ function RoleForm({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={tr("Search…", "بحث…", "Ara…")}
-              className={`w-full py-1.5 border border-sky-200 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white ${
+              className={`w-full py-1.5 border border-border rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-primary bg-card ${
                 locale === "ar" ? "pr-7 pl-2" : "pl-7 pr-2"
               }`}
             />
@@ -647,13 +648,13 @@ function RoleForm({
             return (
               <div
                 key={module}
-                className="rounded-lg border border-sky-100 bg-sky-50/30"
+                className="rounded-lg border border-border bg-muted/30"
               >
                 <div className="flex items-center gap-2 p-2">
                   <button
                     type="button"
                     onClick={() => toggleCollapsed(module)}
-                    className="w-5 h-5 rounded flex items-center justify-center text-slate-500 hover:text-sky-600 hover:bg-white"
+                    className="w-5 h-5 rounded flex items-center justify-center text-muted-foreground hover:text-cyan-300 hover:bg-card"
                   >
                     {isCollapsed ? (
                       <ChevronRight
@@ -663,10 +664,10 @@ function RoleForm({
                       <ChevronDown className="w-3.5 h-3.5" />
                     )}
                   </button>
-                  <span className="flex-1 text-xs font-bold text-sky-900">
+                  <span className="flex-1 text-xs font-bold text-foreground">
                     {MODULE_LABELS[module][locale]}
                   </span>
-                  <span className="text-[10px] font-semibold text-slate-500">
+                  <span className="text-[10px] font-semibold text-muted-foreground">
                     {entries.filter((e) => selected.has(e.key)).length}/
                     {entries.length}
                   </span>
@@ -678,8 +679,8 @@ function RoleForm({
                         allSelected
                           ? "bg-sky-500 text-white border-sky-500"
                           : someSelected
-                          ? "bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100"
-                          : "bg-white text-slate-600 border-sky-200 hover:bg-sky-50"
+                          ? "bg-amber-500/10 text-amber-800 border-amber-500/30 hover:bg-amber-100"
+                          : "bg-card text-muted-foreground border-border hover:bg-muted"
                       }`}
                     >
                       {allSelected
@@ -689,7 +690,7 @@ function RoleForm({
                   )}
                 </div>
                 {!isCollapsed && (
-                  <div className="divide-y divide-sky-100 border-t border-sky-100">
+                  <div className="divide-y divide-sky-100 border-t border-border">
                     {entries.map((entry) => {
                       const isChecked = selected.has(entry.key);
                       return (
@@ -702,29 +703,29 @@ function RoleForm({
                             readOnly
                               ? "cursor-default"
                               : isChecked
-                              ? "bg-sky-50/60 hover:bg-sky-50"
-                              : "hover:bg-sky-50"
+                              ? "bg-muted/60 hover:bg-muted"
+                              : "hover:bg-muted"
                           }`}
                         >
                           <span
                             className={`w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center mt-0.5 ${
                               isChecked
                                 ? "bg-sky-500 border-sky-500 text-white"
-                                : "bg-white border-slate-300"
+                                : "bg-card border-border"
                             }`}
                           >
                             {isChecked && <Check className="w-3 h-3" />}
                           </span>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                              <span className="text-xs font-semibold text-sky-900">
+                              <span className="text-xs font-semibold text-foreground">
                                 {entry.label[locale]}
                               </span>
-                              <code className="text-[10px] text-slate-400 font-mono">
+                              <code className="text-[10px] text-muted-foreground font-mono">
                                 {entry.key}
                               </code>
                             </div>
-                            <p className="text-[11px] text-slate-500 mt-0.5">
+                            <p className="text-[11px] text-muted-foreground mt-0.5">
                               {entry.description[locale]}
                             </p>
                           </div>
@@ -743,7 +744,7 @@ function RoleForm({
       <div className="flex items-center justify-end gap-2">
         <button
           onClick={onCancel}
-          className="px-3 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900"
+          className="px-3 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           {readOnly
             ? tr("Close", "إغلاق", "Kapat")

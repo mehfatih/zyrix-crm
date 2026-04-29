@@ -120,7 +120,7 @@ export default function ScimPage() {
         <div className="flex items-start gap-3">
           <Link
             href={`/${locale}/settings`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -128,14 +128,15 @@ export default function ScimPage() {
             <Network className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr(
                 "SCIM provisioning",
                 "توفير SCIM",
                 "SCIM sağlama"
               )}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Sync users from your identity provider (Okta, Azure AD, Google Workspace, JumpCloud).",
                 "مزامنة المستخدمين من مزود الهوية (Okta, Azure AD, Google Workspace, JumpCloud).",
@@ -146,22 +147,22 @@ export default function ScimPage() {
         </div>
 
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-center gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-center gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
             <AlertTriangle className="w-4 h-4 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
 
         {justIssued && (
-          <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 space-y-2">
+          <div className="rounded-xl border border-amber-300 bg-amber-500/10 p-4 space-y-2">
             <div className="flex items-center gap-2">
-              <Key className="w-4 h-4 text-amber-700" />
+              <Key className="w-4 h-4 text-amber-300" />
               <h3 className="text-sm font-bold text-amber-900">
                 {tr(
                   "Copy this SCIM token now",
@@ -171,7 +172,7 @@ export default function ScimPage() {
               </h3>
               <button
                 onClick={() => setJustIssued(null)}
-                className="ms-auto rtl:me-auto rtl:ms-0 text-amber-700 hover:text-amber-900"
+                className="ms-auto rtl:me-auto rtl:ms-0 text-amber-300 hover:text-amber-900"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -179,7 +180,7 @@ export default function ScimPage() {
             <div className="flex items-center gap-2">
               <code
                 dir="ltr"
-                className="flex-1 min-w-0 bg-white px-3 py-2 rounded-lg text-xs font-mono break-all border border-amber-200"
+                className="flex-1 min-w-0 bg-card px-3 py-2 rounded-lg text-xs font-mono break-all border border-amber-500/30"
               >
                 {justIssued.plaintext}
               </code>
@@ -195,9 +196,9 @@ export default function ScimPage() {
         )}
 
         {/* Tokens */}
-        <section className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
+        <section className="rounded-xl border border-border bg-card p-4 space-y-3">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <h2 className="text-sm font-bold text-sky-900 inline-flex items-center gap-2">
+            <h2 className="text-sm font-bold text-foreground inline-flex items-center gap-2">
               <Key className="w-4 h-4" />
               {tr("SCIM tokens", "رموز SCIM", "SCIM jetonları")}
             </h2>
@@ -211,11 +212,11 @@ export default function ScimPage() {
                   "Etiket (örn. Okta prod)"
                 )}
                 maxLength={120}
-                className="px-3 py-1.5 border border-sky-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="px-3 py-1.5 border border-border rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <button
                 onClick={handleIssue}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold"
               >
                 <Plus className="w-3 h-3" />
                 {tr("Issue", "إصدار", "Yayınla")}
@@ -224,10 +225,10 @@ export default function ScimPage() {
           </div>
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+              <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
             </div>
           ) : tokens.length === 0 ? (
-            <p className="text-xs text-slate-500 py-2">
+            <p className="text-xs text-muted-foreground py-2">
               {tr(
                 "No tokens yet — issue one to configure your IdP.",
                 "لا رموز بعد — أصدر واحدًا لإعداد مزود الهوية.",
@@ -239,27 +240,27 @@ export default function ScimPage() {
               {tokens.map((t) => (
                 <div
                   key={t.id}
-                  className="flex items-center gap-3 p-2 rounded-lg border border-sky-100 bg-sky-50/30"
+                  className="flex items-center gap-3 p-2 rounded-lg border border-border bg-muted/30"
                 >
-                  <Key className="w-3.5 h-3.5 text-sky-500" />
+                  <Key className="w-3.5 h-3.5 text-cyan-300" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs font-semibold text-sky-900">
+                      <span className="text-xs font-semibold text-foreground">
                         {t.label}
                       </span>
                       <code
                         dir="ltr"
-                        className="text-[10px] font-mono text-slate-500"
+                        className="text-[10px] font-mono text-muted-foreground"
                       >
                         {t.prefix}…
                       </code>
                       {t.revokedAt && (
-                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-rose-50 text-rose-700 border border-rose-200">
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-rose-500/10 text-rose-300 border border-rose-500/30 border border-rose-500/30">
                           {tr("Revoked", "ملغى", "İptal edildi")}
                         </span>
                       )}
                     </div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">
+                    <div className="text-[10px] text-muted-foreground mt-0.5">
                       {t.lastUsedAt
                         ? tr(
                             `Last used ${new Date(t.lastUsedAt).toLocaleDateString()}`,
@@ -272,7 +273,7 @@ export default function ScimPage() {
                   {!t.revokedAt && (
                     <button
                       onClick={() => handleRevoke(t)}
-                      className="px-2 py-1 text-[10px] font-bold uppercase text-rose-700 hover:bg-rose-50 rounded"
+                      className="px-2 py-1 text-[10px] font-bold uppercase text-rose-300 hover:bg-rose-500/10 rounded"
                     >
                       {tr("Revoke", "إلغاء", "İptal")}
                     </button>
@@ -284,8 +285,8 @@ export default function ScimPage() {
         </section>
 
         {/* Setup instructions */}
-        <section className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
-          <h2 className="text-sm font-bold text-sky-900">
+        <section className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <h2 className="text-sm font-bold text-foreground">
             {tr("Setup", "الإعداد", "Kurulum")}
           </h2>
           <div className="flex flex-wrap gap-1 text-xs font-semibold">
@@ -303,22 +304,22 @@ export default function ScimPage() {
                 className={`px-3 py-1.5 rounded-lg border transition-colors ${
                   activeProvider === key
                     ? "bg-sky-500 text-white border-sky-500"
-                    : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
+                    : "bg-card border-border text-foreground hover:bg-muted"
                 }`}
               >
                 {label}
               </button>
             ))}
           </div>
-          <div className="rounded-lg bg-sky-50 border border-sky-100 p-3 space-y-2 text-xs text-slate-700">
+          <div className="rounded-lg bg-muted border border-border p-3 space-y-2 text-xs text-foreground">
             <div>
-              <div className="font-bold text-sky-900 text-[10px] uppercase tracking-wide">
+              <div className="font-bold text-foreground text-[10px] uppercase tracking-wide">
                 {tr("SCIM base URL", "رابط SCIM", "SCIM temel URL")}
               </div>
               <div className="flex items-center gap-2 mt-1">
                 <code
                   dir="ltr"
-                  className="flex-1 min-w-0 bg-white px-2 py-1.5 rounded border border-sky-200 font-mono break-all"
+                  className="flex-1 min-w-0 bg-card px-2 py-1.5 rounded border border-border font-mono break-all"
                 >
                   {SCIM_BASE}
                 </code>
@@ -331,7 +332,7 @@ export default function ScimPage() {
               </div>
             </div>
             <div>
-              <div className="font-bold text-sky-900 text-[10px] uppercase tracking-wide">
+              <div className="font-bold text-foreground text-[10px] uppercase tracking-wide">
                 {tr("Authentication", "المصادقة", "Kimlik doğrulama")}
               </div>
               <p className="mt-1">
@@ -373,7 +374,7 @@ function ProviderHints({
                 "General → Provisioning → Configure API integration:",
                 "General → Provisioning → Configure API integration:")}
             <br />
-            <code className="block mt-1 bg-white px-2 py-1 rounded text-[11px] font-mono">
+            <code className="block mt-1 bg-card px-2 py-1 rounded text-[11px] font-mono">
               Base URL: <span dir="ltr">{base}</span>
               {"\n"}Auth header: <span dir="ltr">Authorization: Bearer scim_…</span>
             </code>
@@ -390,7 +391,7 @@ function ProviderHints({
                 "Provisioning → Automatic:",
                 "Provisioning → Automatic:")}
             <br />
-            <code className="block mt-1 bg-white px-2 py-1 rounded text-[11px] font-mono">
+            <code className="block mt-1 bg-card px-2 py-1 rounded text-[11px] font-mono">
               Tenant URL: <span dir="ltr">{base}</span>
               {"\n"}Secret Token: <span dir="ltr">scim_…</span>
             </code>
@@ -403,7 +404,7 @@ function ProviderHints({
         <ol className="list-decimal ms-5 rtl:me-5 rtl:ms-0 space-y-1">
           <li>{tr("Admin Console → Apps → Web and mobile apps → Add custom SAML/SCIM app.", "Admin Console → Apps → Web and mobile apps → Add custom SAML/SCIM app.", "Admin Console → Apps → Web and mobile apps → Add custom SAML/SCIM app.")}</li>
           <li>
-            <code className="block mt-1 bg-white px-2 py-1 rounded text-[11px] font-mono">
+            <code className="block mt-1 bg-card px-2 py-1 rounded text-[11px] font-mono">
               Endpoint URL: <span dir="ltr">{base}</span>
               {"\n"}Bearer token: <span dir="ltr">scim_…</span>
             </code>
@@ -416,7 +417,7 @@ function ProviderHints({
         <ol className="list-decimal ms-5 rtl:me-5 rtl:ms-0 space-y-1">
           <li>{tr("SSO applications → Custom SCIM Application.", "SSO applications → Custom SCIM Application.", "SSO applications → Custom SCIM Application.")}</li>
           <li>
-            <code className="block mt-1 bg-white px-2 py-1 rounded text-[11px] font-mono">
+            <code className="block mt-1 bg-card px-2 py-1 rounded text-[11px] font-mono">
               Base URL: <span dir="ltr">{base}</span>
               {"\n"}Token: <span dir="ltr">scim_…</span>
               {"\n"}SCIM version: 2.0

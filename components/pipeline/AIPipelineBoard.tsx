@@ -130,15 +130,15 @@ function StageColumn({
   return (
     <div className="flex w-72 flex-col">
       <div
-        className={`rounded-t-xl border border-b-0 border-zyrix-border border-t-4 bg-card p-3 ${tone}`}
+        className={`rounded-t-xl border border-b-0 border-border border-t-4 bg-card p-3 ${tone}`}
       >
         <div className="flex items-center justify-between">
-          <span className="text-sm font-bold text-zyrix-textHeading">{label}</span>
-          <span className="rounded-md bg-zyrix-cardBgAlt px-1.5 py-0.5 text-[11px] font-bold text-zyrix-textMuted">
+          <span className="text-sm font-bold text-foreground">{label}</span>
+          <span className="rounded-md bg-muted px-1.5 py-0.5 text-[11px] font-bold text-muted-foreground">
             {deals.length}
           </span>
         </div>
-        <div className="mt-1 text-base font-bold text-zyrix-primary">
+        <div className="mt-1 text-base font-bold text-primary">
           ${(health.totalValue / 1000).toFixed(0)}k
         </div>
         {health.isBottleneck && (
@@ -158,8 +158,8 @@ function StageColumn({
 
       <div
         ref={setNodeRef}
-        className={`flex-1 space-y-2 rounded-b-xl border border-zyrix-border bg-zyrix-cardBgAlt p-2 transition-colors ${
-          isOver ? 'bg-zyrix-aiSurface' : ''
+        className={`flex-1 space-y-2 rounded-b-xl border border-border bg-muted p-2 transition-colors ${
+          isOver ? 'bg-violet-500/10' : ''
         }`}
         style={{ minHeight: 400 }}
       >
@@ -172,7 +172,7 @@ function StageColumn({
           />
         ))}
         {deals.length === 0 && (
-          <div className="flex h-32 items-center justify-center rounded-lg border-2 border-dashed border-zyrix-border text-xs text-zyrix-textMuted">
+          <div className="flex h-32 items-center justify-center rounded-lg border-2 border-dashed border-border text-xs text-muted-foreground">
             {t('dragDealsHere')}
           </div>
         )}
@@ -213,22 +213,22 @@ function DealCard({
       {...attributes}
       {...listeners}
       onClick={onClick}
-      className={`cursor-grab rounded-lg border border-zyrix-border border-l-[3px] bg-card p-3 hover:shadow-zyrix-card active:cursor-grabbing ${borderColor}`}
+      className={`cursor-grab rounded-lg border border-border border-l-[3px] bg-card p-3 hover:shadow-md active:cursor-grabbing ${borderColor}`}
     >
       <div className="flex items-start justify-between gap-2">
-        <h4 className="line-clamp-1 text-sm font-bold text-zyrix-textHeading">
+        <h4 className="line-clamp-1 text-sm font-bold text-foreground">
           {deal.name}
         </h4>
-        <span className="shrink-0 rounded-md bg-zyrix-aiSurface px-1.5 py-0.5 text-[11px] font-bold text-zyrix-primary">
+        <span className="shrink-0 rounded-md bg-violet-500/10 px-1.5 py-0.5 text-[11px] font-bold text-primary">
           {deal.aiScore}
         </span>
       </div>
-      <p className="mt-0.5 text-xs text-zyrix-textMuted">{deal.customerName}</p>
+      <p className="mt-0.5 text-xs text-muted-foreground">{deal.customerName}</p>
       <div className="mt-2 flex items-center justify-between">
-        <span className="text-sm font-bold text-zyrix-textBody">
+        <span className="text-sm font-bold text-muted-foreground">
           ${deal.value.toLocaleString()}
         </span>
-        <span className="text-[11px] text-zyrix-textMuted">
+        <span className="text-[11px] text-muted-foreground">
           {deal.daysInStage}d
         </span>
       </div>

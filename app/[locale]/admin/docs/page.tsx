@@ -15,8 +15,8 @@ export default async function AdminDocsPage({
     <AdminShell locale={locale}>
       <div className="space-y-6">
         <header>
-          <h1 className="text-2xl font-bold text-slate-900">Documentation</h1>
-          <p className="text-sm text-slate-500">
+          <h1 className="text-2xl font-bold text-foreground">Documentation</h1>
+          <p className="text-sm text-muted-foreground">
             Manage knowledge-hub articles, track views and ratings, and mark
             content as recently updated.
           </p>

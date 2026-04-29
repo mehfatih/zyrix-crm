@@ -40,21 +40,21 @@ export function AIExecutiveSummary({ workspaceId, userName }: Props) {
     <motion.section
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative overflow-hidden rounded-2xl border border-zyrix-aiBorder bg-gradient-to-br from-zyrix-aiSurface via-white to-zyrix-aiSurface p-6 shadow-zyrix-ai-glow lg:p-8"
+      className="relative overflow-hidden rounded-2xl border border-violet-500/30 bg-gradient-to-br from-zyrix-aiSurface via-white to-zyrix-aiSurface p-6 shadow-zyrix-ai-glow lg:p-8"
     >
-      <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-zyrix-primary/5 blur-3xl" />
+      <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
 
       <div className="relative">
-        <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-zyrix-primary">
+        <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-primary">
           <Sparkles size={13} />
           <span>{t('executiveSummary')}</span>
         </div>
 
-        <h1 className="text-2xl font-bold text-zyrix-textHeading lg:text-3xl">
+        <h1 className="text-2xl font-bold text-foreground lg:text-3xl">
           {data.greeting}
         </h1>
 
-        <p className="mt-2 max-w-3xl text-base leading-relaxed text-zyrix-textBody lg:text-lg">
+        <p className="mt-2 max-w-3xl text-base leading-relaxed text-muted-foreground lg:text-lg">
           {data.oneLineNarrative}
         </p>
 
@@ -76,7 +76,7 @@ export function AIExecutiveSummary({ workspaceId, userName }: Props) {
             value={data.opportunities.toString()}
             tone="success"
           />
-          <div className="rounded-xl border border-zyrix-aiBorder bg-white p-3">
+          <div className="rounded-xl border border-violet-500/30 bg-card p-3">
             <AITrustBadge confidence={data.confidence} />
           </div>
         </div>
@@ -88,8 +88,8 @@ export function AIExecutiveSummary({ workspaceId, userName }: Props) {
               onClick={() => handleAction(c.action)}
               className={`rounded-lg px-4 py-2 text-sm font-bold transition-shadow ${
                 i === 0
-                  ? 'bg-zyrix-ai-gradient text-white shadow-zyrix-card hover:shadow-zyrix-card-hover'
-                  : 'border border-zyrix-aiBorder bg-white text-zyrix-primaryDark hover:bg-zyrix-aiSurface'
+                  ? 'bg-gradient-to-r from-primary to-violet-500 text-white shadow-md hover:shadow-md-hover'
+                  : 'border border-violet-500/30 bg-card text-primaryDark hover:bg-violet-500/10'
               }`}
             >
               {c.label}
@@ -113,32 +113,32 @@ function Stat({
   tone?: 'default' | 'success' | 'warning';
 }) {
   const colors = {
-    default: 'text-zyrix-primary',
-    success: 'text-emerald-600',
-    warning: 'text-amber-600',
+    default: 'text-primary',
+    success: 'text-emerald-300',
+    warning: 'text-amber-300',
   };
   return (
-    <div className="rounded-xl border border-zyrix-aiBorder bg-white p-3">
+    <div className="rounded-xl border border-violet-500/30 bg-card p-3">
       <div
         className={`mb-1 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider ${colors[tone]}`}
       >
         {icon}
         <span>{label}</span>
       </div>
-      <div className="text-xl font-bold text-zyrix-textHeading">{value}</div>
+      <div className="text-xl font-bold text-foreground">{value}</div>
     </div>
   );
 }
 
 function SummarySkeleton() {
   return (
-    <div className="rounded-2xl border border-zyrix-border bg-white p-8">
-      <div className="h-6 w-32 animate-pulse rounded bg-zyrix-cardBgAlt" />
-      <div className="mt-4 h-8 w-64 animate-pulse rounded bg-zyrix-cardBgAlt" />
-      <div className="mt-3 h-5 w-full animate-pulse rounded bg-zyrix-cardBgAlt" />
+    <div className="rounded-2xl border border-border bg-card p-8">
+      <div className="h-6 w-32 animate-pulse rounded bg-muted" />
+      <div className="mt-4 h-8 w-64 animate-pulse rounded bg-muted" />
+      <div className="mt-3 h-5 w-full animate-pulse rounded bg-muted" />
       <div className="mt-5 grid grid-cols-4 gap-3">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-20 animate-pulse rounded-xl bg-zyrix-cardBgAlt" />
+          <div key={i} className="h-20 animate-pulse rounded-xl bg-muted" />
         ))}
       </div>
     </div>

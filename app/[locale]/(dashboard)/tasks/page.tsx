@@ -52,27 +52,27 @@ const PRIORITY_STYLES: Record<
   { bg: string; text: string; ring: string; label: string }
 > = {
   urgent: {
-    bg: "bg-red-50",
-    text: "text-red-700",
-    ring: "ring-red-200",
+    bg: "bg-rose-500/10",
+    text: "text-rose-300",
+    ring: "ring-rose-500/30",
     label: "Urgent",
   },
   high: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    ring: "ring-amber-200",
+    bg: "bg-amber-500/10",
+    text: "text-amber-300",
+    ring: "ring-amber-500/30",
     label: "High",
   },
   medium: {
-    bg: "bg-sky-50",
-    text: "text-sky-700",
-    ring: "ring-sky-200",
+    bg: "bg-muted",
+    text: "text-cyan-300",
+    ring: "ring-cyan-500/30",
     label: "Medium",
   },
   low: {
-    bg: "bg-slate-50",
-    text: "text-slate-600",
-    ring: "ring-slate-200",
+    bg: "bg-muted",
+    text: "text-muted-foreground",
+    ring: "ring-border",
     label: "Low",
   },
 };
@@ -83,27 +83,27 @@ const STATUS_META: Record<
 > = {
   todo: {
     icon: Circle,
-    bg: "bg-slate-50",
-    border: "border-slate-200",
-    heading: "text-slate-700",
+    bg: "bg-muted",
+    border: "border-border",
+    heading: "text-foreground",
   },
   in_progress: {
     icon: CircleDashed,
-    bg: "bg-sky-50",
-    border: "border-sky-200",
-    heading: "text-sky-700",
+    bg: "bg-muted",
+    border: "border-border",
+    heading: "text-cyan-300",
   },
   done: {
     icon: CheckCircle2,
-    bg: "bg-emerald-50",
-    border: "border-emerald-200",
-    heading: "text-emerald-700",
+    bg: "bg-emerald-500/10",
+    border: "border-emerald-500/30",
+    heading: "text-emerald-300",
   },
   cancelled: {
     icon: XCircle,
-    bg: "bg-slate-100",
-    border: "border-slate-200",
-    heading: "text-slate-500",
+    bg: "bg-muted",
+    border: "border-border",
+    heading: "text-muted-foreground",
   },
 };
 
@@ -208,15 +208,16 @@ export default function TasksPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-ink">{t("title")}</h1>
-            <p className="text-sm text-ink-light mt-1">{t("subtitle")}</p>
+            <p className="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">TASKS</p>
+            <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
           <button
             onClick={() => {
               setEditingTask(null);
               setModalOpen(true);
             }}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-lg hover:bg-primary-700 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary shadow-sm"
           >
             <Plus className="w-4 h-4" />
             {t("create")}
@@ -256,12 +257,12 @@ export default function TasksPage() {
         {/* Filters bar */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative flex-1 min-w-[200px] max-w-md">
-            <Search className="absolute ltr:left-3 rtl:right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            <Search className="absolute ltr:left-3 rtl:right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full rounded-lg border border-line bg-white ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+              className="w-full rounded-lg border border-border bg-card ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
             />
           </div>
 
@@ -273,7 +274,7 @@ export default function TasksPage() {
                 priority: (e.target.value || undefined) as TaskPriority | undefined,
               })
             }
-            className="rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+            className="rounded-lg border border-border bg-card px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
           >
             <option value="">{t("filters.allPriorities")}</option>
             <option value="urgent">{t("priority.urgent")}</option>
@@ -292,8 +293,8 @@ export default function TasksPage() {
             }
             className={`rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
               filters.assignedToId === "me"
-                ? "bg-primary-600 text-white border-primary-600"
-                : "bg-white border-line text-ink-light hover:border-primary-300 hover:text-primary-700"
+                ? "bg-primary text-white border-primary-600"
+                : "bg-card border-border text-muted-foreground hover:border-primary-300 hover:text-primary"
             }`}
           >
             {t("filters.myTasks")}
@@ -310,20 +311,20 @@ export default function TasksPage() {
             className={`rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
               filters.overdueOnly
                 ? "bg-red-600 text-white border-red-600"
-                : "bg-white border-line text-ink-light hover:border-red-300 hover:text-red-700"
+                : "bg-card border-border text-muted-foreground hover:border-red-300 hover:text-rose-300"
             }`}
           >
             {t("filters.overdue")}
           </button>
 
           {/* View toggle */}
-          <div className="ms-auto inline-flex rounded-lg border border-line bg-white p-0.5 shadow-sm">
+          <div className="ms-auto inline-flex rounded-lg border border-border bg-card p-0.5 shadow-sm">
             <button
               onClick={() => setView("kanban")}
               className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold ${
                 view === "kanban"
-                  ? "bg-primary-600 text-white"
-                  : "text-ink-light hover:text-primary-700"
+                  ? "bg-primary text-white"
+                  : "text-muted-foreground hover:text-primary"
               }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
@@ -333,8 +334,8 @@ export default function TasksPage() {
               onClick={() => setView("list")}
               className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold ${
                 view === "list"
-                  ? "bg-primary-600 text-white"
-                  : "text-ink-light hover:text-primary-700"
+                  ? "bg-primary text-white"
+                  : "text-muted-foreground hover:text-primary"
               }`}
             >
               <List className="w-3.5 h-3.5" />
@@ -346,7 +347,7 @@ export default function TasksPage() {
         {/* Content */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-primary-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-primary" />
           </div>
         ) : tasks.length === 0 ? (
           <EmptyState onCreate={() => setModalOpen(true)} />
@@ -368,8 +369,8 @@ export default function TasksPage() {
             ))}
           </div>
         ) : (
-          <div className="rounded-xl bg-white border border-line-soft overflow-hidden">
-            <div className="divide-y divide-slate-100">
+          <div className="rounded-xl bg-card border border-border-soft overflow-hidden">
+            <div className="divide-y divide-border">
               {tasks.map((task) => (
                 <TaskRow
                   key={task.id}
@@ -433,32 +434,32 @@ function StatCard({
   const colors: Record<typeof color, { bg: string; text: string; ring: string }> =
     {
       primary: {
-        bg: "bg-primary-50",
-        text: "text-primary-700",
+        bg: "bg-primary/15",
+        text: "text-primary",
         ring: "ring-primary-100",
       },
-      sky: { bg: "bg-sky-50", text: "text-sky-700", ring: "ring-sky-100" },
-      danger: { bg: "bg-red-50", text: "text-red-700", ring: "ring-red-100" },
+      sky: { bg: "bg-muted", text: "text-cyan-300", ring: "ring-sky-100" },
+      danger: { bg: "bg-rose-500/10", text: "text-rose-300", ring: "ring-red-100" },
       amber: {
-        bg: "bg-amber-50",
-        text: "text-amber-700",
+        bg: "bg-amber-500/10",
+        text: "text-amber-300",
         ring: "ring-amber-100",
       },
       slate: {
-        bg: "bg-slate-50",
-        text: "text-slate-600",
+        bg: "bg-muted",
+        text: "text-muted-foreground",
         ring: "ring-slate-100",
       },
     };
   const c = colors[color];
   return (
-    <div className="rounded-xl bg-white border border-line-soft p-4">
+    <div className="rounded-xl bg-card border border-border-soft p-4">
       <div className="flex items-start justify-between">
         <div>
-          <div className="text-xs font-semibold text-ink-light uppercase tracking-wide">
+          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             {label}
           </div>
-          <div className="text-2xl md:text-3xl font-bold text-ink mt-1">
+          <div className="text-2xl md:text-3xl font-bold text-foreground mt-1">
             {value.toLocaleString()}
           </div>
         </div>
@@ -493,20 +494,20 @@ function KanbanColumn({
     <div
       className={`rounded-xl border ${meta.border} ${meta.bg} flex flex-col min-h-[200px]`}
     >
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200/60">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-border/60">
         <div className="flex items-center gap-2">
           <Icon className={`w-4 h-4 ${meta.heading}`} />
           <h3 className={`text-sm font-bold ${meta.heading}`}>
             {t(`status.${status}`)}
           </h3>
         </div>
-        <span className="inline-flex items-center justify-center min-w-[24px] h-6 rounded-full bg-white border border-slate-200 text-xs font-bold text-slate-600 px-2">
+        <span className="inline-flex items-center justify-center min-w-[24px] h-6 rounded-full bg-card border border-border text-xs font-bold text-muted-foreground px-2">
           {items.length}
         </span>
       </div>
       <div className="p-3 space-y-2 flex-1">
         {items.length === 0 ? (
-          <div className="text-xs text-slate-400 text-center py-6">
+          <div className="text-xs text-muted-foreground text-center py-6">
             {t("emptyColumn")}
           </div>
         ) : (
@@ -558,20 +559,20 @@ function TaskCard({
           : null;
 
   return (
-    <div className="group rounded-lg bg-white border border-slate-200 p-3 hover:shadow-md hover:border-primary-200 transition-all">
+    <div className="group rounded-lg bg-card border border-border p-3 hover:shadow-md hover:border-primary-200 transition-all">
       <div className="flex items-start gap-2">
         <button
           onClick={() => nextStatus && onToggle(task, nextStatus)}
           disabled={!nextStatus}
-          className="mt-0.5 text-slate-400 hover:text-primary-600 disabled:opacity-50 flex-shrink-0"
+          className="mt-0.5 text-muted-foreground hover:text-primary disabled:opacity-50 flex-shrink-0"
           title={nextStatus ? t(`advance.${nextStatus}`) : ""}
         >
           {task.status === "done" ? (
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-300" />
           ) : task.status === "cancelled" ? (
             <XCircle className="w-4 h-4" />
           ) : task.status === "in_progress" ? (
-            <CircleDashed className="w-4 h-4 text-sky-600" />
+            <CircleDashed className="w-4 h-4 text-cyan-300" />
           ) : (
             <Circle className="w-4 h-4" />
           )}
@@ -579,12 +580,12 @@ function TaskCard({
 
         <div className="flex-1 min-w-0">
           <h4
-            className={`text-sm font-semibold ${task.status === "done" ? "text-slate-400 line-through" : "text-ink"} break-words`}
+            className={`text-sm font-semibold ${task.status === "done" ? "text-muted-foreground line-through" : "text-foreground"} break-words`}
           >
             {task.title}
           </h4>
           {task.description && (
-            <p className="text-xs text-ink-light mt-1 line-clamp-2">
+            <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
               {task.description}
             </p>
           )}
@@ -600,8 +601,8 @@ function TaskCard({
               <span
                 className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium ${
                   overdue
-                    ? "bg-red-50 text-red-700 ring-1 ring-red-200"
-                    : "bg-slate-50 text-slate-600 ring-1 ring-slate-200"
+                    ? "bg-rose-500/10 text-rose-300 border border-rose-500/30 ring-1 ring-rose-500/30"
+                    : "bg-muted text-muted-foreground ring-1 ring-border"
                 }`}
               >
                 <CalendarClock className="w-3 h-3" />
@@ -610,7 +611,7 @@ function TaskCard({
             )}
 
             {task.customer && (
-              <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium bg-sky-50 text-sky-700 ring-1 ring-sky-200">
+              <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium bg-muted text-cyan-300 ring-1 ring-cyan-500/30">
                 <User className="w-3 h-3" />
                 <span className="truncate max-w-[100px]">
                   {task.customer.fullName}
@@ -619,7 +620,7 @@ function TaskCard({
             )}
 
             {task.deal && (
-              <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium bg-violet-50 text-violet-700 ring-1 ring-violet-200">
+              <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium bg-violet-500/10 text-violet-700 ring-1 ring-violet-500/30">
                 <Building2 className="w-3 h-3" />
                 <span className="truncate max-w-[100px]">
                   {task.deal.title}
@@ -628,8 +629,8 @@ function TaskCard({
             )}
           </div>
 
-          <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-100">
-            <div className="text-[10px] text-slate-400">
+          <div className="flex items-center justify-between mt-2 pt-2 border-t border-border">
+            <div className="text-[10px] text-muted-foreground">
               {task.assignedTo
                 ? isMine
                   ? t("assignedToMe")
@@ -639,14 +640,14 @@ function TaskCard({
             <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
               <button
                 onClick={onEdit}
-                className="p-1 rounded hover:bg-slate-100 text-slate-500 hover:text-primary-600"
+                className="p-1 rounded hover:bg-muted text-muted-foreground hover:text-primary"
                 title="Edit"
               >
                 <Pencil className="w-3 h-3" />
               </button>
               <button
                 onClick={onDelete}
-                className="p-1 rounded hover:bg-red-50 text-slate-500 hover:text-red-600"
+                className="p-1 rounded hover:bg-rose-500/10 text-muted-foreground hover:text-rose-300"
                 title="Delete"
               >
                 <Trash2 className="w-3 h-3" />
@@ -681,15 +682,15 @@ function TaskRow({
     new Date(task.dueDate) < new Date();
 
   return (
-    <div className="group flex items-center gap-3 px-4 py-3 hover:bg-sky-50/40 transition-colors">
+    <div className="group flex items-center gap-3 px-4 py-3 hover:bg-muted/40 transition-colors">
       <button
         onClick={() =>
           onToggle(task, task.status === "done" ? "todo" : "done")
         }
-        className="text-slate-400 hover:text-emerald-600 flex-shrink-0"
+        className="text-muted-foreground hover:text-emerald-300 flex-shrink-0"
       >
         {task.status === "done" ? (
-          <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+          <CheckCircle2 className="w-5 h-5 text-emerald-300" />
         ) : (
           <Circle className="w-5 h-5" />
         )}
@@ -697,11 +698,11 @@ function TaskRow({
 
       <div className="flex-1 min-w-0">
         <div
-          className={`text-sm font-semibold ${task.status === "done" ? "text-slate-400 line-through" : "text-ink"}`}
+          className={`text-sm font-semibold ${task.status === "done" ? "text-muted-foreground line-through" : "text-foreground"}`}
         >
           {task.title}
         </div>
-        <div className="flex items-center gap-2 text-xs text-ink-light mt-0.5">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground mt-0.5">
           {task.assignedTo && (
             <span className="inline-flex items-center gap-1">
               <User className="w-3 h-3" />
@@ -727,7 +728,7 @@ function TaskRow({
 
       {task.dueDate && (
         <span
-          className={`hidden md:inline-flex items-center gap-1 text-xs font-medium ${overdue ? "text-red-700" : "text-slate-600"}`}
+          className={`hidden md:inline-flex items-center gap-1 text-xs font-medium ${overdue ? "text-rose-300" : "text-muted-foreground"}`}
         >
           <CalendarClock className="w-3.5 h-3.5" />
           {formatShortDate(task.dueDate)}
@@ -737,13 +738,13 @@ function TaskRow({
       <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
         <button
           onClick={onEdit}
-          className="p-1.5 rounded hover:bg-slate-100 text-slate-500 hover:text-primary-600"
+          className="p-1.5 rounded hover:bg-muted text-muted-foreground hover:text-primary"
         >
           <Pencil className="w-3.5 h-3.5" />
         </button>
         <button
           onClick={onDelete}
-          className="p-1.5 rounded hover:bg-red-50 text-slate-500 hover:text-red-600"
+          className="p-1.5 rounded hover:bg-rose-500/10 text-muted-foreground hover:text-rose-300"
         >
           <Trash2 className="w-3.5 h-3.5" />
         </button>
@@ -755,17 +756,17 @@ function TaskRow({
 function EmptyState({ onCreate }: { onCreate: () => void }) {
   const t = useTranslations("Tasks");
   return (
-    <div className="rounded-2xl bg-white border border-dashed border-line p-12 text-center">
-      <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary-50 text-primary-600 mb-4">
+    <div className="rounded-2xl bg-card border border-dashed border-border p-12 text-center">
+      <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/15 text-primary mb-4">
         <CheckSquare className="w-7 h-7" />
       </div>
-      <h3 className="text-lg font-bold text-ink mb-2">{t("emptyTitle")}</h3>
-      <p className="text-sm text-ink-light max-w-md mx-auto mb-5">
+      <h3 className="text-lg font-bold text-foreground mb-2">{t("emptyTitle")}</h3>
+      <p className="text-sm text-muted-foreground max-w-md mx-auto mb-5">
         {t("emptyBody")}
       </p>
       <button
         onClick={onCreate}
-        className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-lg hover:bg-primary-700"
+        className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary"
       >
         <Plus className="w-4 h-4" />
         {t("emptyCta")}
@@ -856,14 +857,14 @@ function TaskModal({
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-start justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg my-8">
-        <div className="px-6 py-4 border-b border-line-soft flex items-center justify-between">
-          <h2 className="text-lg font-bold text-ink">
+      <div className="bg-card rounded-2xl shadow-xl w-full max-w-lg my-8">
+        <div className="px-6 py-4 border-b border-border-soft flex items-center justify-between">
+          <h2 className="text-lg font-bold text-foreground">
             {initial ? t("editTitle") : t("createTitle")}
           </h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded hover:bg-slate-100 text-slate-500"
+            className="p-1.5 rounded hover:bg-muted text-muted-foreground"
           >
             <X className="w-4 h-4" />
           </button>
@@ -871,7 +872,7 @@ function TaskModal({
 
         <div className="p-6 space-y-4">
           {error && (
-            <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+            <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-3 text-sm text-red-800">
               {error}
             </div>
           )}
@@ -967,17 +968,17 @@ function TaskModal({
           </Field>
         </div>
 
-        <div className="px-6 py-4 border-t border-line-soft flex items-center justify-end gap-3">
+        <div className="px-6 py-4 border-t border-border-soft flex items-center justify-end gap-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg text-sm font-semibold text-ink-light hover:bg-slate-100"
+            className="px-4 py-2 rounded-lg text-sm font-semibold text-muted-foreground hover:bg-muted"
           >
             {t("cancel")}
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700 disabled:opacity-50 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary disabled:opacity-50 shadow-sm"
           >
             {saving && <Loader2 className="w-4 h-4 animate-spin" />}
             {initial ? t("save") : t("create")}
@@ -989,17 +990,17 @@ function TaskModal({
         .zx-task-input {
           width: 100%;
           border-radius: 0.5rem;
-          border: 1px solid rgb(186 230 253);
-          background: white;
+          border: 1px solid hsl(var(--border));
+          background: hsl(var(--background));
           padding: 0.5rem 0.75rem;
           font-size: 0.875rem;
-          color: rgb(22 78 99);
+          color: hsl(var(--foreground));
           outline: none;
           transition: border-color 120ms, box-shadow 120ms;
         }
         .zx-task-input:focus {
-          border-color: rgb(8 145 178);
-          box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+          border-color: hsl(var(--primary));
+          box-shadow: 0 0 0 3px hsl(var(--primary) / 0.25);
         }
       `}</style>
     </div>
@@ -1017,9 +1018,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-xs font-bold uppercase tracking-wider text-ink-mid mb-1.5">
+      <span className="block text-xs font-bold uppercase tracking-wider text-foreground-mid mb-1.5">
         {label}
-        {required && <span className="text-red-500 ms-0.5">*</span>}
+        {required && <span className="text-rose-400 ms-0.5">*</span>}
       </span>
       {children}
     </label>
@@ -1040,15 +1041,15 @@ function ConfirmDelete({
   const t = useTranslations("Tasks");
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm">
+      <div className="bg-card rounded-2xl shadow-xl w-full max-w-sm">
         <div className="p-6">
-          <h2 className="text-lg font-bold text-ink">{title}</h2>
-          <p className="mt-2 text-sm text-ink-light">{message}</p>
+          <h2 className="text-lg font-bold text-foreground">{title}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">{message}</p>
         </div>
-        <div className="px-6 py-4 border-t border-line-soft flex items-center justify-end gap-3">
+        <div className="px-6 py-4 border-t border-border-soft flex items-center justify-end gap-3">
           <button
             onClick={onCancel}
-            className="px-4 py-2 rounded-lg text-sm font-semibold text-ink-light hover:bg-slate-100"
+            className="px-4 py-2 rounded-lg text-sm font-semibold text-muted-foreground hover:bg-muted"
           >
             {t("cancel")}
           </button>

@@ -204,7 +204,7 @@ export default function CompliancePage() {
         <div className="flex items-start gap-3">
           <Link
             href={`/${locale}/settings`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -212,10 +212,11 @@ export default function CompliancePage() {
             <Scale className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("Compliance", "الامتثال", "Uyumluluk")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "GDPR / CCPA data access & deletion, audit reports, and API tokens for external auditors.",
                 "وصول وحذف البيانات وفق GDPR/CCPA، تقارير التدقيق، ورموز API للمدققين الخارجيين.",
@@ -226,13 +227,13 @@ export default function CompliancePage() {
         </div>
 
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-center gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-center gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
             <AlertTriangle className="w-4 h-4 mt-0.5" />
             <span>{error}</span>
           </div>
@@ -240,9 +241,9 @@ export default function CompliancePage() {
 
         {/* One-time token display */}
         {justIssued && (
-          <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 space-y-2">
+          <div className="rounded-xl border border-amber-300 bg-amber-500/10 p-4 space-y-2">
             <div className="flex items-center gap-2">
-              <Key className="w-4 h-4 text-amber-700" />
+              <Key className="w-4 h-4 text-amber-300" />
               <h3 className="text-sm font-bold text-amber-900">
                 {tr(
                   "Copy this token now — it won't be shown again",
@@ -252,7 +253,7 @@ export default function CompliancePage() {
               </h3>
               <button
                 onClick={() => setJustIssued(null)}
-                className="ms-auto rtl:me-auto rtl:ms-0 text-amber-700 hover:text-amber-900"
+                className="ms-auto rtl:me-auto rtl:ms-0 text-amber-300 hover:text-amber-900"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -260,7 +261,7 @@ export default function CompliancePage() {
             <div className="flex items-center gap-2">
               <code
                 dir="ltr"
-                className="flex-1 min-w-0 bg-white px-3 py-2 rounded-lg text-xs font-mono break-all border border-amber-200"
+                className="flex-1 min-w-0 bg-card px-3 py-2 rounded-lg text-xs font-mono break-all border border-amber-500/30"
               >
                 {justIssued.plaintext}
               </code>
@@ -276,8 +277,8 @@ export default function CompliancePage() {
         )}
 
         {/* Data export/deletion */}
-        <section className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
-          <h2 className="text-sm font-bold text-sky-900 inline-flex items-center gap-2">
+        <section className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <h2 className="text-sm font-bold text-foreground inline-flex items-center gap-2">
             <FileText className="w-4 h-4" />
             {tr(
               "Per-user data access & deletion",
@@ -289,7 +290,7 @@ export default function CompliancePage() {
             <select
               value={selectedUserId}
               onChange={(e) => setSelectedUserId(e.target.value)}
-              className="px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="px-3 py-2 border border-border rounded-lg text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="">
                 {tr(
@@ -329,7 +330,7 @@ export default function CompliancePage() {
               {tr("Anonymize", "إخفاء الهوية", "Anonimleştir")}
             </button>
           </div>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-[11px] text-muted-foreground">
             {tr(
               "Export returns a JSON file with the user's profile plus every joined record (deals, activities, audits…). Anonymize redacts PII and disables the account; this action cannot be undone.",
               "التصدير يُعيد ملف JSON يحتوي على الملف الشخصي للمستخدم وجميع السجلات المرتبطة. إخفاء الهوية يخفي البيانات ويعطل الحساب — لا يمكن التراجع.",
@@ -339,8 +340,8 @@ export default function CompliancePage() {
         </section>
 
         {/* Audit report */}
-        <section className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
-          <h2 className="text-sm font-bold text-sky-900">
+        <section className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <h2 className="text-sm font-bold text-foreground">
             {tr(
               "Audit report",
               "تقرير التدقيق",
@@ -352,13 +353,13 @@ export default function CompliancePage() {
               type="date"
               value={reportFrom}
               onChange={(e) => setReportFrom(e.target.value)}
-              className="px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="px-3 py-2 border border-border rounded-lg text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <input
               type="date"
               value={reportTo}
               onChange={(e) => setReportTo(e.target.value)}
-              className="px-3 py-2 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="px-3 py-2 border border-border rounded-lg text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <button
               onClick={handleReport}
@@ -372,18 +373,18 @@ export default function CompliancePage() {
             </button>
           </div>
           {report && (
-            <div className="rounded-lg bg-sky-50 border border-sky-100 p-3 text-xs space-y-3">
+            <div className="rounded-lg bg-muted border border-border p-3 text-xs space-y-3">
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-sky-900">
+                <span className="font-semibold text-foreground">
                   {tr("Total events", "إجمالي الأحداث", "Toplam olay")}
                 </span>
-                <span className="font-mono tabular-nums text-sky-900 text-lg">
+                <span className="font-mono tabular-nums text-foreground text-lg">
                   {report.totalEvents}
                 </span>
               </div>
               {report.topActions.length > 0 && (
                 <div>
-                  <h3 className="text-[10px] font-bold uppercase text-slate-600 mb-1">
+                  <h3 className="text-[10px] font-bold uppercase text-muted-foreground mb-1">
                     {tr("Top actions", "أعلى الإجراءات", "Başlıca eylemler")}
                   </h3>
                   <ul className="space-y-0.5">
@@ -401,7 +402,7 @@ export default function CompliancePage() {
               )}
               {report.topUsers.length > 0 && (
                 <div>
-                  <h3 className="text-[10px] font-bold uppercase text-slate-600 mb-1">
+                  <h3 className="text-[10px] font-bold uppercase text-muted-foreground mb-1">
                     {tr("Top users", "أعلى المستخدمين", "En aktif kullanıcılar")}
                   </h3>
                   <ul className="space-y-0.5">
@@ -424,9 +425,9 @@ export default function CompliancePage() {
         </section>
 
         {/* Tokens */}
-        <section className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
+        <section className="rounded-xl border border-border bg-card p-4 space-y-3">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <h2 className="text-sm font-bold text-sky-900 inline-flex items-center gap-2">
+            <h2 className="text-sm font-bold text-foreground inline-flex items-center gap-2">
               <Key className="w-4 h-4" />
               {tr(
                 "External auditor tokens",
@@ -444,11 +445,11 @@ export default function CompliancePage() {
                   "Etiket (örn. KPMG 2026)"
                 )}
                 maxLength={120}
-                className="px-3 py-1.5 border border-sky-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="px-3 py-1.5 border border-border rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <button
                 onClick={handleIssue}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold"
               >
                 <Plus className="w-3 h-3" />
                 {tr("Issue", "إصدار", "Yayınla")}
@@ -457,10 +458,10 @@ export default function CompliancePage() {
           </div>
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+              <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
             </div>
           ) : tokens.length === 0 ? (
-            <p className="text-xs text-slate-500 py-2">
+            <p className="text-xs text-muted-foreground py-2">
               {tr(
                 "No tokens yet.",
                 "لا رموز بعد.",
@@ -472,27 +473,27 @@ export default function CompliancePage() {
               {tokens.map((t) => (
                 <div
                   key={t.id}
-                  className="flex items-center gap-3 p-2 rounded-lg border border-sky-100 bg-sky-50/30"
+                  className="flex items-center gap-3 p-2 rounded-lg border border-border bg-muted/30"
                 >
-                  <Key className="w-3.5 h-3.5 text-sky-500 flex-shrink-0" />
+                  <Key className="w-3.5 h-3.5 text-cyan-300 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs font-semibold text-sky-900">
+                      <span className="text-xs font-semibold text-foreground">
                         {t.label}
                       </span>
                       <code
                         dir="ltr"
-                        className="text-[10px] font-mono text-slate-500"
+                        className="text-[10px] font-mono text-muted-foreground"
                       >
                         {t.prefix}…
                       </code>
                       {t.revokedAt && (
-                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-rose-50 text-rose-700 border border-rose-200">
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-rose-500/10 text-rose-300 border border-rose-500/30 border border-rose-500/30">
                           {tr("Revoked", "ملغى", "İptal edildi")}
                         </span>
                       )}
                     </div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">
+                    <div className="text-[10px] text-muted-foreground mt-0.5">
                       {t.lastUsedAt
                         ? tr(
                             `Last used ${new Date(t.lastUsedAt).toLocaleDateString()}`,
@@ -505,7 +506,7 @@ export default function CompliancePage() {
                   {!t.revokedAt && (
                     <button
                       onClick={() => handleRevoke(t)}
-                      className="px-2 py-1 text-[10px] font-bold uppercase text-rose-700 hover:bg-rose-50 rounded"
+                      className="px-2 py-1 text-[10px] font-bold uppercase text-rose-300 hover:bg-rose-500/10 rounded"
                     >
                       {tr("Revoke", "إلغاء", "İptal")}
                     </button>
@@ -514,7 +515,7 @@ export default function CompliancePage() {
               ))}
             </div>
           )}
-          <p className="text-[11px] text-slate-500">
+          <p className="text-[11px] text-muted-foreground">
             {tr(
               "Tokens are shown once at issue time and bcrypt-hashed on storage. Cannot be used to manage other tokens. Compliance API is rate-limited to 10 requests / 15 min / IP.",
               "تُعرض الرموز مرة واحدة فقط ومخزّنة كـ bcrypt. لا يمكن استخدامها لإدارة رموز أخرى. الـ API محدود بـ 10 طلبات / 15 دقيقة / IP.",

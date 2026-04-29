@@ -45,7 +45,7 @@ export function AIAgentCard({ output, onApprove, onEdit, onDismiss }: Props) {
     <motion.article
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-xl border border-zyrix-aiBorder bg-white p-5 shadow-zyrix-card"
+      className="rounded-xl border border-violet-500/30 bg-card p-5 shadow-md"
     >
       <header className="mb-3 flex items-center gap-3">
         <div
@@ -55,18 +55,18 @@ export function AIAgentCard({ output, onApprove, onEdit, onDismiss }: Props) {
           <Icon size={18} />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-bold text-zyrix-textHeading">{def?.name}</div>
-          <div className="text-[11px] text-zyrix-textMuted">{formatTimeAgo(output.createdAt)}</div>
+          <div className="text-sm font-bold text-foreground">{def?.name}</div>
+          <div className="text-[11px] text-muted-foreground">{formatTimeAgo(output.createdAt)}</div>
         </div>
-        <span className="rounded-md bg-zyrix-aiSurface px-1.5 py-0.5 text-[10px] font-bold text-zyrix-primary">
+        <span className="rounded-md bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-bold text-primary">
           L{output.permissionLevel}
         </span>
       </header>
 
-      <h3 className="text-base font-bold leading-snug text-zyrix-textHeading">
+      <h3 className="text-base font-bold leading-snug text-foreground">
         {output.insight}
       </h3>
-      <p className="mt-1.5 text-xs leading-relaxed text-zyrix-textBody">{output.reason}</p>
+      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{output.reason}</p>
 
       <div className="mt-3">
         <AITrustBadge
@@ -78,11 +78,11 @@ export function AIAgentCard({ output, onApprove, onEdit, onDismiss }: Props) {
       </div>
 
       {output.draftPayload && (
-        <div className="mt-3 rounded-lg border-l-[3px] border-zyrix-primary bg-zyrix-aiSurface p-3">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-zyrix-primary">
+        <div className="mt-3 rounded-lg border-l-[3px] border-primary bg-violet-500/10 p-3">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-primary">
             {t('draft')}
           </div>
-          <p className="mt-1 text-xs italic leading-relaxed text-zyrix-textBody">
+          <p className="mt-1 text-xs italic leading-relaxed text-muted-foreground">
             {output.draftPayload.content}
           </p>
         </div>
@@ -91,21 +91,21 @@ export function AIAgentCard({ output, onApprove, onEdit, onDismiss }: Props) {
       <div className="mt-4 flex items-center gap-2">
         <button
           onClick={() => onApprove(output.id)}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-zyrix-ai-gradient px-3 py-2 text-xs font-bold text-white shadow-zyrix-card hover:shadow-zyrix-card-hover"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-violet-500 px-3 py-2 text-xs font-bold text-white shadow-md hover:shadow-md-hover"
         >
           <Check size={13} />
           {t('approve')}
         </button>
         <button
           onClick={() => onEdit(output.id)}
-          className="flex items-center justify-center gap-1.5 rounded-lg bg-zyrix-cardBgAlt px-3 py-2 text-xs font-semibold text-zyrix-primaryDark hover:bg-zyrix-aiSurface"
+          className="flex items-center justify-center gap-1.5 rounded-lg bg-muted px-3 py-2 text-xs font-semibold text-primaryDark hover:bg-violet-500/10"
         >
           <Edit2 size={13} />
           {t('edit')}
         </button>
         <button
           onClick={() => onDismiss(output.id)}
-          className="flex items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-zyrix-textMuted hover:bg-zyrix-cardBgAlt"
+          className="flex items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-muted"
         >
           <X size={13} />
           {t('dismiss')}

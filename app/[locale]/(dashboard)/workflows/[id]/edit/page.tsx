@@ -29,10 +29,10 @@ export default function EditWorkflowPage() {
       <div className="p-6 max-w-3xl mx-auto">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : workflow ? (

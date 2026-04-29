@@ -120,7 +120,7 @@ export default function ArticleEditor({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20 text-slate-500">
+      <div className="flex items-center justify-center py-20 text-muted-foreground">
         <Loader2 className="w-6 h-6 animate-spin me-2" />
         Loading…
       </div>
@@ -129,11 +129,11 @@ export default function ArticleEditor({
 
   if (!row) {
     return (
-      <div className="bg-white border border-sky-100 rounded-xl p-8 text-center">
-        <p className="text-slate-500 mb-3">Article not found.</p>
+      <div className="bg-card border border-border rounded-xl p-8 text-center">
+        <p className="text-muted-foreground mb-3">Article not found.</p>
         <Link
           href={`/${adminLocale}/admin/docs`}
-          className="inline-flex items-center gap-1 text-sm text-sky-600 hover:underline"
+          className="inline-flex items-center gap-1 text-sm text-cyan-300 hover:underline"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to docs
@@ -148,13 +148,13 @@ export default function ArticleEditor({
         <div>
           <Link
             href={`/${adminLocale}/admin/docs`}
-            className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-sky-600 mb-2"
+            className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-cyan-300 mb-2"
           >
             <ArrowLeft className="w-3 h-3" />
             All articles
           </Link>
-          <h1 className="text-2xl font-bold text-slate-900">{row.title}</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-2xl font-bold text-foreground">{row.title}</h1>
+          <p className="text-xs text-muted-foreground mt-1">
             {row.locale} · {row.category} · {row.slug}
           </p>
         </div>
@@ -162,7 +162,7 @@ export default function ArticleEditor({
           <Link
             href={`/${row.locale}/docs/${row.category}/${row.slug}`}
             target="_blank"
-            className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-sky-200 text-slate-600 hover:border-sky-300"
+            className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-card border border-border text-muted-foreground hover:border-sky-300"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             View public
@@ -203,21 +203,21 @@ export default function ArticleEditor({
       </div>
 
       {/* Editor form */}
-      <div className="bg-white border border-sky-100 rounded-xl p-6 space-y-4">
+      <div className="bg-card border border-border rounded-xl p-6 space-y-4">
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
             Title
           </label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-sky-300"
+            className="w-full px-3 py-2 border border-border rounded-lg bg-card focus:outline-none focus:border-sky-300"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
               Status
             </label>
             <select
@@ -225,7 +225,7 @@ export default function ArticleEditor({
               onChange={(e) =>
                 setStatus(e.target.value as "published" | "draft")
               }
-              className="w-full px-3 py-2 border border-sky-100 rounded-lg bg-white"
+              className="w-full px-3 py-2 border border-border rounded-lg bg-card"
             >
               <option value="published">Published</option>
               <option value="draft">Draft</option>
@@ -233,7 +233,7 @@ export default function ArticleEditor({
           </div>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
               Recently updated badge
             </label>
             <button
@@ -241,8 +241,8 @@ export default function ArticleEditor({
               onClick={() => setRecentlyUpdated((v) => !v)}
               className={`inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border ${
                 recentlyUpdated
-                  ? "bg-emerald-50 border-emerald-300 text-emerald-700"
-                  : "bg-white border-sky-200 text-slate-600"
+                  ? "bg-emerald-500/10 border-emerald-300 text-emerald-300"
+                  : "bg-card border-border text-muted-foreground"
               }`}
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
@@ -252,7 +252,7 @@ export default function ArticleEditor({
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
             Plans
           </label>
           <div className="flex flex-wrap gap-2">
@@ -269,8 +269,8 @@ export default function ArticleEditor({
                   }
                   className={`px-3 py-1 text-xs font-semibold rounded-full border capitalize ${
                     on
-                      ? "bg-sky-50 border-sky-300 text-sky-600"
-                      : "bg-white border-sky-200 text-slate-500"
+                      ? "bg-muted border-sky-300 text-cyan-300"
+                      : "bg-card border-border text-muted-foreground"
                   }`}
                 >
                   {p}
@@ -281,7 +281,7 @@ export default function ArticleEditor({
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
             Internal notes
           </label>
           <textarea
@@ -289,12 +289,12 @@ export default function ArticleEditor({
             onChange={(e) => setNotes(e.target.value)}
             rows={4}
             placeholder="Notes for other editors — not shown publicly."
-            className="w-full px-3 py-2 border border-sky-100 rounded-lg bg-white focus:outline-none focus:border-sky-300 text-sm"
+            className="w-full px-3 py-2 border border-border rounded-lg bg-card focus:outline-none focus:border-sky-300 text-sm"
           />
         </div>
 
-        <p className="text-xs text-slate-400">
-          Markdown body lives in <code className="bg-sky-50 px-1.5 py-0.5 rounded">content/docs/{row.locale}/{row.path}.md</code> and is edited in your repo for now. An in-browser editor is planned for a future sprint.
+        <p className="text-xs text-muted-foreground">
+          Markdown body lives in <code className="bg-muted px-1.5 py-0.5 rounded">content/docs/{row.locale}/{row.path}.md</code> and is edited in your repo for now. An in-browser editor is planned for a future sprint.
         </p>
       </div>
     </div>
@@ -313,9 +313,9 @@ function StatCard({
   tone?: "cyan" | "emerald" | "rose";
 }) {
   const toneClasses = {
-    cyan: "bg-sky-50 text-sky-600 border-sky-200",
-    emerald: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    rose: "bg-rose-50 text-rose-700 border-rose-200",
+    cyan: "bg-muted text-cyan-300 border-border",
+    emerald: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    rose: "bg-rose-500/10 text-rose-300 border border-rose-500/30",
   }[tone];
   return (
     <div className={`border rounded-xl p-4 ${toneClasses}`}>

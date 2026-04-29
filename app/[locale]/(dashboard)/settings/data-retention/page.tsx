@@ -151,7 +151,7 @@ export default function DataRetentionPage() {
         <div className="flex items-start gap-3">
           <Link
             href={`/${locale}/settings`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
           </Link>
@@ -159,10 +159,11 @@ export default function DataRetentionPage() {
             <Database className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("Data retention", "الاحتفاظ بالبيانات", "Veri saklama")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Pick how long we keep each kind of record before permanently deleting it.",
                 "اختر مدة الاحتفاظ بكل نوع من السجلات قبل حذفه نهائيًا.",
@@ -173,13 +174,13 @@ export default function DataRetentionPage() {
         </div>
 
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-center gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-center gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
             <AlertTriangle className="w-4 h-4 mt-0.5" />
             <span>{error}</span>
           </div>
@@ -187,7 +188,7 @@ export default function DataRetentionPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-10">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : (
           <div className="space-y-3">
@@ -263,31 +264,31 @@ function PolicyRow({
   };
 
   return (
-    <div className="rounded-xl border border-sky-100 bg-white p-4 space-y-3">
+    <div className="rounded-xl border border-border bg-card p-4 space-y-3">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center flex-shrink-0">
           <Database className="w-4 h-4" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-sky-900">
+            <h3 className="text-sm font-bold text-foreground">
               {labels[locale]}
             </h3>
             {legalHold && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200">
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-800 border border-amber-500/30">
                 <Lock className="w-2.5 h-2.5" />
                 {tr("Legal hold", "حجز قانوني", "Yasal saklama")}
               </span>
             )}
           </div>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             {labels.description[locale]}
           </p>
         </div>
       </div>
 
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Retention period", "فترة الاحتفاظ", "Saklama süresi")}
         </label>
         <div className="flex flex-wrap gap-1.5">
@@ -299,7 +300,7 @@ function PolicyRow({
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
                 days === p.days
                   ? "bg-sky-500 text-white border-sky-500"
-                  : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
+                  : "bg-card border-border text-foreground hover:bg-muted"
               } ${legalHold ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               {p[locale]}
@@ -307,7 +308,7 @@ function PolicyRow({
           ))}
         </div>
         {days === 0 ? (
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-[11px] text-muted-foreground mt-1">
             {tr(
               "Records will never be automatically deleted.",
               "لن يتم حذف السجلات تلقائيًا أبدًا.",
@@ -315,7 +316,7 @@ function PolicyRow({
             )}
           </p>
         ) : (
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-[11px] text-muted-foreground mt-1">
             {tr(
               `Records older than ${days} days will be permanently deleted daily at 03:17 UTC.`,
               `السجلات الأقدم من ${days} يومًا ستُحذف يوميًا الساعة 3:17 UTC.`,
@@ -333,8 +334,8 @@ function PolicyRow({
             onChange={(e) => setLegalHold(e.target.checked)}
             className="accent-amber-600"
           />
-          <span className="text-xs font-semibold text-slate-700 inline-flex items-center gap-1">
-            <Shield className="w-3.5 h-3.5 text-amber-600" />
+          <span className="text-xs font-semibold text-foreground inline-flex items-center gap-1">
+            <Shield className="w-3.5 h-3.5 text-amber-300" />
             {tr(
               "Legal hold (pause deletion)",
               "حجز قانوني (إيقاف الحذف)",
@@ -344,7 +345,7 @@ function PolicyRow({
         </label>
         {legalHold && (
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr("Reason (required)", "السبب (مطلوب)", "Sebep (gerekli)")}
             </label>
             <input
@@ -356,7 +357,7 @@ function PolicyRow({
                 "örn. Dava #2026-04"
               )}
               maxLength={500}
-              className="w-full px-3 py-2 border border-amber-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 bg-amber-50/30"
+              className="w-full px-3 py-2 border border-amber-500/30 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 bg-amber-500/10"
             />
           </div>
         )}

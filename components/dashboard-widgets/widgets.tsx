@@ -70,29 +70,29 @@ function WidgetShell({
 }) {
   const isRtl = locale === "ar";
   const accentBg: Record<string, string> = {
-    cyan: "bg-sky-50 text-sky-600",
-    emerald: "bg-emerald-50 text-emerald-700",
-    sky: "bg-sky-50 text-sky-700",
-    indigo: "bg-indigo-50 text-indigo-700",
-    amber: "bg-amber-50 text-amber-700",
-    rose: "bg-rose-50 text-rose-700",
-    violet: "bg-violet-50 text-violet-700",
+    cyan: "bg-muted text-cyan-300",
+    emerald: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    sky: "bg-muted text-cyan-300",
+    indigo: "bg-indigo-500/10 text-indigo-700",
+    amber: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
+    rose: "bg-rose-500/10 text-rose-300 border border-rose-500/30",
+    violet: "bg-violet-500/10 text-violet-700",
   };
   return (
-    <div className="h-full rounded-xl border border-sky-100 bg-white p-4 flex flex-col min-h-[120px]">
+    <div className="h-full rounded-xl border border-border bg-card p-4 flex flex-col min-h-[120px]">
       <div className="flex items-center gap-2 mb-3">
         <div
           className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${accentBg[accent] || accentBg.cyan}`}
         >
           {icon}
         </div>
-        <h3 className="text-sm font-semibold text-sky-900 flex-1 truncate">
+        <h3 className="text-sm font-semibold text-foreground flex-1 truncate">
           {title}
         </h3>
         {link && (
           <Link
             href={link}
-            className="text-xs text-sky-500 hover:text-sky-800 inline-flex items-center gap-0.5"
+            className="text-xs text-cyan-300 hover:text-foreground inline-flex items-center gap-0.5"
           >
             {linkLabel}
             <ArrowRight
@@ -104,10 +104,10 @@ function WidgetShell({
       <div className="flex-1 min-h-0">
         {loading ? (
           <div className="h-full flex items-center justify-center">
-            <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
+            <Loader2 className="w-4 h-4 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <p className="text-xs text-rose-700">{error}</p>
+          <p className="text-xs text-rose-300">{error}</p>
         ) : (
           children
         )}
@@ -222,22 +222,22 @@ function KpiTile({
   accent: string;
 }) {
   const ring: Record<string, string> = {
-    cyan: "bg-sky-50",
-    indigo: "bg-indigo-50",
-    emerald: "bg-emerald-50",
-    sky: "bg-sky-50",
-    rose: "bg-rose-50",
+    cyan: "bg-muted",
+    indigo: "bg-indigo-500/10",
+    emerald: "bg-emerald-500/10",
+    sky: "bg-muted",
+    rose: "bg-rose-500/10",
   };
   return (
     <div className={`rounded-lg p-3 ${ring[accent] || ring.cyan}`}>
-      <div className="text-[11px] font-medium text-slate-600 truncate">
+      <div className="text-[11px] font-medium text-muted-foreground truncate">
         {label}
       </div>
-      <div className="text-xl font-bold text-sky-900 tabular-nums mt-1">
+      <div className="text-xl font-bold text-foreground tabular-nums mt-1">
         {value}
       </div>
       {hint && (
-        <div className="text-[10px] text-slate-500 mt-0.5 truncate">
+        <div className="text-[10px] text-muted-foreground mt-0.5 truncate">
           {hint}
         </div>
       )}
@@ -269,19 +269,19 @@ export function RevenueTrendWidget({
       {data && (
         <div className="space-y-3">
           <div>
-            <div className="text-xs text-slate-600">
+            <div className="text-xs text-muted-foreground">
               {t(locale, "Won (last 30 days)", "المكسوب (آخر 30 يوم)", "Kazanılan (son 30 gün)")}
             </div>
-            <div className="text-2xl font-bold text-emerald-700 tabular-nums mt-1">
+            <div className="text-2xl font-bold text-emerald-300 tabular-nums mt-1">
               {fmtMoney(won, "USD", locale)}
             </div>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="flex items-center gap-1 text-emerald-700">
+            <div className="flex items-center gap-1 text-emerald-300">
               <ArrowUp className="w-3 h-3" />
               {data.deals.wonLast30d} {t(locale, "won", "فوز", "kazanılan")}
             </div>
-            <div className="flex items-center gap-1 text-rose-700">
+            <div className="flex items-center gap-1 text-rose-300">
               <ArrowDown className="w-3 h-3" />
               {data.deals.lostLast30d} {t(locale, "lost", "فقد", "kaybedilen")}
             </div>
@@ -332,16 +332,16 @@ export function PipelineSnapshotWidget({
             .sort((a, b) => b[1].count - a[1].count)
             .map(([stage, s]) => (
               <div key={stage} className="flex items-center gap-2">
-                <div className="w-20 text-xs text-slate-700 truncate">
+                <div className="w-20 text-xs text-foreground truncate">
                   {stageLabel[stage]?.[locale] ?? stage}
                 </div>
-                <div className="flex-1 h-4 bg-slate-50 rounded">
+                <div className="flex-1 h-4 bg-muted rounded">
                   <div
                     className="h-full bg-gradient-to-r from-sky-400 to-sky-500 rounded"
                     style={{ width: `${(s.count / max) * 100}%` }}
                   />
                 </div>
-                <div className="w-8 text-right text-xs tabular-nums text-sky-900 font-semibold">
+                <div className="w-8 text-right text-xs tabular-nums text-foreground font-semibold">
                   {s.count}
                 </div>
               </div>
@@ -349,7 +349,7 @@ export function PipelineSnapshotWidget({
         </div>
       )}
       {data && stages.length === 0 && (
-        <p className="text-xs text-slate-500 py-4 text-center">
+        <p className="text-xs text-muted-foreground py-4 text-center">
           {t(locale, "No deals yet", "لا صفقات بعد", "Henüz anlaşma yok")}
         </p>
       )}
@@ -380,7 +380,7 @@ export function RecentDealsWidget({
       error={err}
     >
       {deals.length === 0 ? (
-        <p className="text-xs text-slate-500 py-4 text-center">
+        <p className="text-xs text-muted-foreground py-4 text-center">
           {t(locale, "No open deals", "لا صفقات مفتوحة", "Açık anlaşma yok")}
         </p>
       ) : (
@@ -389,17 +389,17 @@ export function RecentDealsWidget({
             <li key={d.id} className="flex items-center gap-2 min-w-0">
               <Link
                 href={`/${locale}/deals/${d.id}`}
-                className="flex-1 min-w-0 text-xs hover:text-sky-600"
+                className="flex-1 min-w-0 text-xs hover:text-cyan-300"
               >
-                <div className="font-medium text-sky-900 truncate">
+                <div className="font-medium text-foreground truncate">
                   {d.title}
                 </div>
-                <div className="text-slate-500 truncate">
+                <div className="text-muted-foreground truncate">
                   {d.customer.fullName}
                 </div>
               </Link>
               <div
-                className="text-xs font-mono tabular-nums text-slate-700"
+                className="text-xs font-mono tabular-nums text-foreground"
                 dir="ltr"
               >
                 {fmtMoney(Number(d.value), d.currency, locale)}
@@ -440,7 +440,7 @@ export function UpcomingTasksWidget({
       error={err}
     >
       {tasks.length === 0 ? (
-        <p className="text-xs text-slate-500 py-4 text-center">
+        <p className="text-xs text-muted-foreground py-4 text-center">
           {t(
             locale,
             "Nothing coming up",
@@ -460,11 +460,11 @@ export function UpcomingTasksWidget({
             return (
               <li key={task.id} className="flex items-center gap-2 text-xs">
                 <span className={`w-1.5 h-1.5 rounded-full ${prColor} flex-shrink-0`} />
-                <span className="flex-1 truncate text-slate-700">
+                <span className="flex-1 truncate text-foreground">
                   {task.title}
                 </span>
                 {task.dueDate && (
-                  <time className="text-[10px] text-slate-500 tabular-nums" dir="ltr">
+                  <time className="text-[10px] text-muted-foreground tabular-nums" dir="ltr">
                     {new Date(task.dueDate).toLocaleDateString(
                       locale === "ar" ? "ar-SA" : locale === "tr" ? "tr-TR" : "en-US",
                       { month: "short", day: "numeric" }
@@ -537,16 +537,16 @@ export function CohortSnapshotWidget({
       {data && latest && (
         <div className="space-y-2">
           <div>
-            <div className="text-xs text-slate-600">
+            <div className="text-xs text-muted-foreground">
               {t(locale, "Latest cohort size", "حجم أحدث مجموعة", "En son kohort boyutu")}
             </div>
-            <div className="text-2xl font-bold text-sky-900 tabular-nums">
+            <div className="text-2xl font-bold text-foreground tabular-nums">
               {latest.cohortSize}
             </div>
           </div>
           {m1 && (
             <div>
-              <div className="text-xs text-slate-600">
+              <div className="text-xs text-muted-foreground">
                 {t(
                   locale,
                   "1-month retention",
@@ -554,7 +554,7 @@ export function CohortSnapshotWidget({
                   "1 ay tutma"
                 )}
               </div>
-              <div className="text-lg font-semibold text-emerald-700 tabular-nums">
+              <div className="text-lg font-semibold text-emerald-300 tabular-nums">
                 {m1.retentionPct}%
               </div>
             </div>
@@ -608,19 +608,19 @@ export function FunnelSnapshotWidget({
       {data && (
         <div className="space-y-2">
           <div>
-            <div className="text-xs text-slate-600">
+            <div className="text-xs text-muted-foreground">
               {t(locale, "Win rate (90d)", "معدل الفوز (90ي)", "Kazanma oranı (90g)")}
             </div>
-            <div className="text-2xl font-bold text-sky-900 tabular-nums">
+            <div className="text-2xl font-bold text-foreground tabular-nums">
               {data.overallConversionRate}%
             </div>
           </div>
           {biggestDrop && (
             <div>
-              <div className="text-xs text-slate-600">
+              <div className="text-xs text-muted-foreground">
                 {t(locale, "Biggest drop-off", "أكبر تسرب", "En büyük düşüş")}
               </div>
-              <div className="text-xs font-semibold text-rose-700 capitalize">
+              <div className="text-xs font-semibold text-rose-300 capitalize">
                 {biggestDrop.stage} → {biggestDrop.conversionToNext}%
               </div>
             </div>
@@ -663,10 +663,10 @@ export function CustomerCountWidget({
     >
       {stats && (
         <div>
-          <div className="text-3xl font-bold text-sky-900 tabular-nums">
+          <div className="text-3xl font-bold text-foreground tabular-nums">
             {stats.total}
           </div>
-          <div className="text-xs text-emerald-700 mt-1">
+          <div className="text-xs text-emerald-300 mt-1">
             +{stats.recent30Days} {t(locale, "new / 30d", "جديد / 30ي", "yeni / 30g")}
           </div>
         </div>
@@ -695,10 +695,10 @@ export function DealCountWidget({
     >
       {data && (
         <div>
-          <div className="text-3xl font-bold text-sky-900 tabular-nums">
+          <div className="text-3xl font-bold text-foreground tabular-nums">
             {data.deals.open}
           </div>
-          <div className="text-xs text-slate-600 mt-1">
+          <div className="text-xs text-muted-foreground mt-1">
             {fmtMoney(data.deals.pipelineValue, "USD", locale)}
           </div>
         </div>
@@ -727,10 +727,10 @@ export function WonThisMonthWidget({
     >
       {data && (
         <div>
-          <div className="text-2xl font-bold text-emerald-700 tabular-nums">
+          <div className="text-2xl font-bold text-emerald-300 tabular-nums">
             {fmtMoney(data.deals.wonValueLast30d, "USD", locale)}
           </div>
-          <div className="text-xs text-slate-600 mt-1">
+          <div className="text-xs text-muted-foreground mt-1">
             {data.deals.wonLast30d}{" "}
             {t(locale, "deals", "صفقة", "anlaşma")}
           </div>
@@ -763,30 +763,30 @@ export function TopCustomersWidget({
       error={err}
     >
       {list.length === 0 ? (
-        <p className="text-xs text-slate-500 py-4 text-center">
+        <p className="text-xs text-muted-foreground py-4 text-center">
           {t(locale, "No data yet", "لا بيانات بعد", "Veri yok")}
         </p>
       ) : (
         <ul className="space-y-1.5">
           {list.map((c, i) => (
             <li key={c.id} className="flex items-center gap-2 min-w-0">
-              <span className="w-5 h-5 rounded bg-amber-50 text-amber-700 text-[10px] font-bold flex items-center justify-center flex-shrink-0">
+              <span className="w-5 h-5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30 text-[10px] font-bold flex items-center justify-center flex-shrink-0">
                 {i + 1}
               </span>
               <Link
                 href={`/${locale}/customers/${c.id}`}
-                className="flex-1 min-w-0 text-xs hover:text-sky-600"
+                className="flex-1 min-w-0 text-xs hover:text-cyan-300"
               >
-                <div className="font-medium text-sky-900 truncate">
+                <div className="font-medium text-foreground truncate">
                   {c.fullName}
                 </div>
                 {c.companyName && (
-                  <div className="text-slate-500 truncate text-[10px]">
+                  <div className="text-muted-foreground truncate text-[10px]">
                     {c.companyName}
                   </div>
                 )}
               </Link>
-              <div className="text-xs font-mono tabular-nums text-emerald-700" dir="ltr">
+              <div className="text-xs font-mono tabular-nums text-emerald-300" dir="ltr">
                 {fmtMoney(c.lifetimeValue, "USD", locale)}
               </div>
             </li>
@@ -833,16 +833,16 @@ export function TasksDueTodayWidget({
     >
       {data && (
         <div>
-          <div className="text-3xl font-bold text-sky-900 tabular-nums">
+          <div className="text-3xl font-bold text-foreground tabular-nums">
             {dueToday}
           </div>
           {overdue > 0 && (
-            <div className="text-xs text-rose-700 mt-1">
+            <div className="text-xs text-rose-300 mt-1">
               {overdue} {t(locale, "overdue", "متأخر", "gecikmiş")}
             </div>
           )}
           {overdue === 0 && dueToday === 0 && (
-            <div className="text-xs text-slate-500 mt-1">
+            <div className="text-xs text-muted-foreground mt-1">
               {t(locale, "All clear", "كل شيء تمام", "Her şey temiz")}
             </div>
           )}
@@ -890,10 +890,10 @@ export function UnreadMessagesWidget({
       error={err}
     >
       <div>
-        <div className="text-3xl font-bold text-sky-900 tabular-nums">
+        <div className="text-3xl font-bold text-foreground tabular-nums">
           {count ?? 0}
         </div>
-        <div className="text-xs text-slate-600 mt-1 flex items-center gap-1">
+        <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
           {count === 0 ? (
             <>
               <Minus className="w-3 h-3" />{" "}

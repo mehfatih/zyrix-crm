@@ -118,17 +118,17 @@ export default function CommentThread({ entityType, entityId, locale }: Props) {
     <div className="space-y-4" dir={isRtl ? "rtl" : "ltr"}>
       {/* Header */}
       <div className="flex items-center gap-2">
-        <MessageSquare className="w-4 h-4 text-sky-600" />
-        <h2 className="text-sm font-bold text-sky-900">
+        <MessageSquare className="w-4 h-4 text-cyan-300" />
+        <h2 className="text-sm font-bold text-foreground">
           {tr("Comments", "التعليقات", "Yorumlar")}
-          <span className="text-xs font-normal text-slate-500 ms-1">
+          <span className="text-xs font-normal text-muted-foreground ms-1">
             ({topLevel.length})
           </span>
         </h2>
       </div>
 
       {error && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 text-sm text-rose-300">
           {error}
         </div>
       )}
@@ -150,12 +150,12 @@ export default function CommentThread({ entityType, entityId, locale }: Props) {
       {/* Thread */}
       {loading ? (
         <div className="flex items-center justify-center py-6">
-          <Loader2 className="w-5 h-5 animate-spin text-sky-500" />
+          <Loader2 className="w-5 h-5 animate-spin text-cyan-300" />
         </div>
       ) : topLevel.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-sky-200 bg-white p-6 text-center">
+        <div className="rounded-xl border border-dashed border-border bg-card p-6 text-center">
           <MessageSquare className="w-6 h-6 text-slate-300 mx-auto mb-1" />
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted-foreground">
             {tr(
               "No comments yet — be the first.",
               "لا تعليقات بعد — كن الأول.",
@@ -243,19 +243,19 @@ function CommentCard({
       <div
         className={`rounded-xl border p-3 ${
           isDeleted
-            ? "border-slate-200 bg-slate-50 opacity-70"
-            : "border-sky-100 bg-white"
+            ? "border-border bg-muted opacity-70"
+            : "border-border bg-card"
         }`}
       >
         <div className="flex items-start gap-3">
           <Avatar name={comment.author.fullName} />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-sm font-semibold text-sky-900">
+              <span className="text-sm font-semibold text-foreground">
                 {comment.author.fullName}
               </span>
               <span
-                className="text-[10px] text-slate-400 tabular-nums"
+                className="text-[10px] text-muted-foreground tabular-nums"
                 dir="ltr"
                 title={new Date(comment.createdAt).toLocaleString()}
               >
@@ -278,7 +278,7 @@ function CommentCard({
                 />
               </div>
             ) : (
-              <div className="mt-1 text-sm text-slate-800 whitespace-pre-wrap break-words">
+              <div className="mt-1 text-sm text-foreground whitespace-pre-wrap break-words">
                 {renderCommentBody(comment.body, isDeleted, tr)}
               </div>
             )}
@@ -288,7 +288,7 @@ function CommentCard({
                 {!isReply && (
                   <button
                     onClick={onStartReply}
-                    className="inline-flex items-center gap-1 text-slate-500 hover:text-sky-600 font-semibold"
+                    className="inline-flex items-center gap-1 text-muted-foreground hover:text-cyan-300 font-semibold"
                   >
                     <CornerDownRight className="w-3 h-3" />
                     {tr("Reply", "رد", "Yanıtla")}
@@ -297,7 +297,7 @@ function CommentCard({
                 {canEdit && (
                   <button
                     onClick={() => onStartEdit(comment)}
-                    className="inline-flex items-center gap-1 text-slate-500 hover:text-sky-600 font-semibold"
+                    className="inline-flex items-center gap-1 text-muted-foreground hover:text-cyan-300 font-semibold"
                   >
                     <Edit2 className="w-3 h-3" />
                     {tr("Edit", "تعديل", "Düzenle")}
@@ -306,7 +306,7 @@ function CommentCard({
                 {canDelete && (
                   <button
                     onClick={() => onDelete(comment.id)}
-                    className="inline-flex items-center gap-1 text-slate-500 hover:text-rose-700 font-semibold"
+                    className="inline-flex items-center gap-1 text-muted-foreground hover:text-rose-300 font-semibold"
                   >
                     <Trash2 className="w-3 h-3" />
                     {tr("Delete", "حذف", "Sil")}
@@ -483,7 +483,7 @@ function CommentForm({
 
   return (
     <div className="relative">
-      <div className="rounded-xl border border-sky-200 focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-sky-200 bg-white overflow-hidden">
+      <div className="rounded-xl border border-border focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-cyan-500/30 bg-card overflow-hidden">
         <textarea
           ref={textareaRef}
           value={body}
@@ -502,7 +502,7 @@ function CommentForm({
           className="w-full px-3 py-2 text-sm resize-none focus:outline-none bg-transparent"
         />
         <div className="flex items-center justify-between gap-2 px-2 pb-2 border-t border-sky-50 pt-2">
-          <div className="text-[10px] text-slate-400 flex items-center gap-1">
+          <div className="text-[10px] text-muted-foreground flex items-center gap-1">
             <AtSign className="w-3 h-3" />
             {tr("to mention", "للذكر", "bahsetmek için")}
           </div>
@@ -510,7 +510,7 @@ function CommentForm({
             {onCancel && (
               <button
                 onClick={onCancel}
-                className="px-2 py-1 text-xs text-slate-500 hover:text-slate-900 font-semibold"
+                className="px-2 py-1 text-xs text-muted-foreground hover:text-foreground font-semibold"
               >
                 {tr("Cancel", "إلغاء", "İptal")}
               </button>
@@ -533,19 +533,19 @@ function CommentForm({
 
       {/* Mention picker */}
       {pickerOpen && candidates.length > 0 && (
-        <div className="absolute top-full start-0 mt-1 w-64 max-h-48 overflow-y-auto rounded-xl border border-sky-100 bg-white shadow-lg z-20">
+        <div className="absolute top-full start-0 mt-1 w-64 max-h-48 overflow-y-auto rounded-xl border border-border bg-card shadow-lg z-20">
           {candidates.map((u) => (
             <button
               key={u.id}
               onClick={() => selectMention(u)}
-              className="w-full text-left rtl:text-right flex items-center gap-2 px-3 py-2 hover:bg-sky-50 border-b border-sky-50 last:border-b-0"
+              className="w-full text-left rtl:text-right flex items-center gap-2 px-3 py-2 hover:bg-muted border-b border-sky-50 last:border-b-0"
             >
               <Avatar name={u.fullName} small />
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-semibold text-sky-900 truncate">
+                <div className="text-xs font-semibold text-foreground truncate">
                   {u.fullName}
                 </div>
-                <div className="text-[10px] text-slate-500 truncate">
+                <div className="text-[10px] text-muted-foreground truncate">
                   {u.email}
                 </div>
               </div>
@@ -590,7 +590,7 @@ function renderCommentBody(
 ): React.ReactNode {
   if (deleted) {
     return (
-      <span className="italic text-slate-400">
+      <span className="italic text-muted-foreground">
         {tr("[deleted]", "[محذوف]", "[silindi]")}
       </span>
     );
@@ -607,7 +607,7 @@ function renderCommentBody(
     parts.push(
       <span
         key={`m-${key++}`}
-        className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 text-xs font-semibold mx-0.5"
+        className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-sky-100 text-foreground text-xs font-semibold mx-0.5"
       >
         <AtSign className="w-2.5 h-2.5" />
         {match[2]}

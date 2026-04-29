@@ -74,7 +74,7 @@ const TXN_META: Record<
   expire: {
     bg: "bg-muted",
     text: "text-muted-foreground",
-    ring: "ring-slate-200",
+    ring: "ring-border",
     Icon: Calendar,
   },
 };
@@ -143,6 +143,7 @@ export default function LoyaltyPage() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
+            <p className="text-rose-300 text-xs font-bold uppercase tracking-widest mb-2">LOYALTY PROGRAM</p>
             <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
               <Award className="w-6 h-6 text-cyan-300" />
               {t("title")}

@@ -68,12 +68,12 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl bg-white border border-sky-200 shadow-xl shadow-sky-900/10 p-8">
+        <div className="rounded-2xl bg-card border border-border shadow-xl shadow-sky-900/10 p-8">
           <div className="mb-6 text-center">
-            <h1 className="text-2xl font-bold text-slate-900">
+            <h1 className="text-2xl font-bold text-foreground">
               {t("loginTitle")}
             </h1>
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="mt-2 text-sm text-muted-foreground">
               {t("loginSubtitle")}
             </p>
           </div>
@@ -83,14 +83,14 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-slate-700 mb-1.5"
+                className="block text-sm font-medium text-foreground mb-1.5"
               >
                 {t("email")}
               </label>
               <div className="relative">
                 <Mail
                   size={16}
-                  className="absolute top-1/2 -translate-y-1/2 text-slate-400 ltr:left-3 rtl:right-3"
+                  className="absolute top-1/2 -translate-y-1/2 text-muted-foreground ltr:left-3 rtl:right-3"
                 />
                 <input
                   id="email"
@@ -99,7 +99,7 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
+                  className="w-full rounded-lg border border-border bg-card text-foreground py-2.5 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="admin@zyrix.co"
                 />
               </div>
@@ -109,14 +109,14 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-slate-700 mb-1.5"
+                className="block text-sm font-medium text-foreground mb-1.5"
               >
                 {t("password")}
               </label>
               <div className="relative">
                 <Lock
                   size={16}
-                  className="absolute top-1/2 -translate-y-1/2 text-slate-400 ltr:left-3 rtl:right-3"
+                  className="absolute top-1/2 -translate-y-1/2 text-muted-foreground ltr:left-3 rtl:right-3"
                 />
                 <input
                   id="password"
@@ -125,13 +125,13 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2.5 ltr:pl-9 ltr:pr-10 rtl:pr-9 rtl:pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
+                  className="w-full rounded-lg border border-border bg-card text-foreground py-2.5 ltr:pl-9 ltr:pr-10 rtl:pr-9 rtl:pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="••••••••"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 ltr:right-3 rtl:left-3"
+                  className="absolute top-1/2 -translate-y-1/2 text-muted-foreground hover:text-muted-foreground ltr:right-3 rtl:left-3"
                   tabIndex={-1}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -140,7 +140,7 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
               <div className="mt-1.5 text-end ltr:text-right rtl:text-left">
                 <Link
                   href={`/${locale}/admin/forgot-password`}
-                  className="text-xs font-medium text-sky-600 hover:text-sky-900"
+                  className="text-xs font-medium text-cyan-300 hover:text-foreground"
                 >
                   {t("forgot.linkFromLogin")}
                 </Link>
@@ -148,19 +148,19 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
             </div>
 
             {/* Remember me */}
-            <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer select-none">
+            <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-sky-500 focus:ring-sky-400"
+                className="h-4 w-4 rounded border-border text-cyan-300 focus:ring-primary"
               />
               {t("rememberMe")}
             </label>
 
             {/* Error */}
             {error && (
-              <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+              <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-3 text-sm text-red-800">
                 {error}
               </div>
             )}
@@ -169,14 +169,14 @@ export default function AdminLoginForm({ locale }: { locale: string }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2.5 px-4 text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2.5 px-4 text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? t("signingIn") : t("signIn")}
             </button>
           </form>
         </div>
 
-        <p className="mt-6 text-center text-xs text-slate-500">
+        <p className="mt-6 text-center text-xs text-muted-foreground">
           Zyrix CRM · {t("brand")}
         </p>
       </div>

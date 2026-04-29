@@ -129,15 +129,15 @@ export function SmartSidebar({
   return (
     <aside
       dir={isRTL ? "rtl" : "ltr"}
-      className={`${width} h-screen sticky top-0 bg-white ${
-        isRTL ? "border-l border-sky-100" : "border-r border-sky-100"
+      className={`${width} h-screen sticky top-0 bg-card ${
+        isRTL ? "border-l border-border" : "border-r border-border"
       } flex flex-col transition-[width] duration-200`}
     >
       {/* Brand row */}
       <div
         className={`flex items-center ${
           collapsed ? "justify-center" : "ltr:pl-4 rtl:pr-4 ltr:pr-2 rtl:pl-2"
-        } h-[60px] border-b border-sky-100 gap-2`}
+        } h-[60px] border-b border-border gap-2`}
       >
         <Link
           href={homeHref}
@@ -166,7 +166,7 @@ export function SmartSidebar({
             onClick={toggleCollapsed}
             title={t("collapse")}
             aria-label={t("collapse")}
-            className="w-7 h-7 rounded-md text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+            className="w-7 h-7 rounded-md text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
           >
             {isRTL ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           </button>
@@ -180,7 +180,7 @@ export function SmartSidebar({
           onClick={toggleCollapsed}
           title={t("expand")}
           aria-label={t("expand")}
-          className="mx-auto mt-2 w-8 h-8 rounded-md text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+          className="mx-auto mt-2 w-8 h-8 rounded-md text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
         >
           {isRTL ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
         </button>
@@ -250,7 +250,7 @@ export function SmartSidebar({
             title={t("newButton")}
             className={`w-full inline-flex items-center ${
               collapsed ? "justify-center h-10" : "gap-2 h-10 px-3"
-            } rounded-xl border border-dashed border-sky-300 text-sky-600 hover:bg-sky-50 hover:border-sky-300 transition-colors`}
+            } rounded-xl border border-dashed border-sky-300 text-cyan-300 hover:bg-muted hover:border-sky-300 transition-colors`}
           >
             <Plus className="w-4 h-4" />
             {!collapsed && (
@@ -258,7 +258,7 @@ export function SmartSidebar({
                 <span className="text-[13px] font-semibold flex-1 text-left rtl:text-right">
                   {t("newButton")}
                 </span>
-                <kbd className="text-[10px] font-semibold text-slate-500 bg-sky-50 border border-sky-100 rounded px-1.5 py-0.5">
+                <kbd className="text-[10px] font-semibold text-muted-foreground bg-muted border border-border rounded px-1.5 py-0.5">
                   C
                 </kbd>
               </>
@@ -305,15 +305,15 @@ export function SmartSidebar({
       </nav>
 
       {/* Footer — language + version */}
-      <div className="border-t border-sky-100 px-3 py-3 space-y-2.5">
+      <div className="border-t border-border px-3 py-3 space-y-2.5">
         <LanguagePills current={locale} collapsed={collapsed} />
         {!collapsed && (
-          <div className="flex items-center justify-between text-[11px] text-slate-400">
+          <div className="flex items-center justify-between text-[11px] text-muted-foreground">
             <span>{t("version")}</span>
             <button
               type="button"
               onClick={onLogout}
-              className="hover:text-rose-600 transition-colors"
+              className="hover:text-rose-300 transition-colors"
             >
               {t("logout")}
             </button>

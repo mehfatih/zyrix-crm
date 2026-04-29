@@ -85,8 +85,8 @@ export default function ConnectedStoresWidget({ locale }: Props) {
 
   if (loading) {
     return (
-      <div className="bg-white border border-sky-100 rounded-xl p-5 flex items-center justify-center">
-        <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
+      <div className="bg-card border border-border rounded-xl p-5 flex items-center justify-center">
+        <Loader2 className="w-4 h-4 animate-spin text-cyan-300" />
       </div>
     );
   }
@@ -96,21 +96,21 @@ export default function ConnectedStoresWidget({ locale }: Props) {
     return (
       <Link
         href={`/${locale}/settings/integrations`}
-        className="group block bg-gradient-to-br from-sky-50 to-sky-50 border border-sky-100 border-dashed rounded-xl p-5 hover:border-sky-300 hover:shadow-sm transition-all"
+        className="group block bg-gradient-to-br from-sky-50 to-sky-50 border border-border border-dashed rounded-xl p-5 hover:border-sky-300 hover:shadow-sm transition-all"
       >
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-lg bg-white border border-sky-200 flex items-center justify-center flex-shrink-0">
-            <Store className="w-5 h-5 text-sky-500" />
+          <div className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center flex-shrink-0">
+            <Store className="w-5 h-5 text-cyan-300" />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-sky-900">
+            <h3 className="text-sm font-semibold text-foreground">
               {tr(
                 "Connect your e-commerce store",
                 "اربط متجرك الإلكتروني",
                 "E-ticaret mağazanı bağla"
               )}
             </h3>
-            <p className="text-xs text-slate-600 mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               {tr(
                 "Import customers and orders from 40+ platforms — Shopify, Salla, WooCommerce, and more.",
                 "استورد العملاء والطلبات من أكثر من 40 منصة — Shopify و Salla و WooCommerce وأكثر.",
@@ -118,7 +118,7 @@ export default function ConnectedStoresWidget({ locale }: Props) {
               )}
             </p>
           </div>
-          <div className="flex items-center gap-1 text-xs font-medium text-sky-600 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex items-center gap-1 text-xs font-medium text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity">
             <Plus className="w-3.5 h-3.5" />
             {tr("Connect", "ربط", "bağla")}
           </div>
@@ -128,20 +128,20 @@ export default function ConnectedStoresWidget({ locale }: Props) {
   }
 
   return (
-    <section className="bg-white border border-sky-100 rounded-xl overflow-hidden">
-      <header className="px-4 py-2.5 flex items-center justify-between gap-2 border-b border-sky-50 bg-sky-50/40">
+    <section className="bg-card border border-border rounded-xl overflow-hidden">
+      <header className="px-4 py-2.5 flex items-center justify-between gap-2 border-b border-sky-50 bg-muted/40">
         <div className="flex items-center gap-2">
-          <Store className="w-4 h-4 text-sky-500" />
-          <h2 className="text-sm font-semibold text-sky-900">
+          <Store className="w-4 h-4 text-cyan-300" />
+          <h2 className="text-sm font-semibold text-foreground">
             {tr("Your stores", "متاجرك", "Mağazaların")}
           </h2>
-          <span className="px-1.5 py-0.5 text-[10px] bg-sky-100 text-sky-600 rounded-full font-semibold">
+          <span className="px-1.5 py-0.5 text-[10px] bg-sky-100 text-cyan-300 rounded-full font-semibold">
             {stores.length}
           </span>
         </div>
         <Link
           href={`/${locale}/settings/integrations`}
-          className="inline-flex items-center gap-1 text-xs text-sky-600 hover:text-sky-900 font-medium"
+          className="inline-flex items-center gap-1 text-xs text-cyan-300 hover:text-foreground font-medium"
         >
           {tr("Manage", "إدارة", "Yönet")}
           <ArrowRight
@@ -150,7 +150,7 @@ export default function ConnectedStoresWidget({ locale }: Props) {
         </Link>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-sky-50">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-muted">
         {stores.slice(0, 6).map((store) => (
           <StoreMiniCard
             key={store.id}
@@ -165,10 +165,10 @@ export default function ConnectedStoresWidget({ locale }: Props) {
       </div>
 
       {stores.length > 6 && (
-        <div className="px-4 py-2 text-center border-t border-sky-50 bg-sky-50/40">
+        <div className="px-4 py-2 text-center border-t border-sky-50 bg-muted/40">
           <Link
             href={`/${locale}/settings/integrations`}
-            className="text-xs text-sky-600 hover:text-sky-900 font-medium"
+            className="text-xs text-cyan-300 hover:text-foreground font-medium"
           >
             {tr(
               `+${stores.length - 6} more stores →`,
@@ -201,7 +201,7 @@ function StoreMiniCard({
   const statusBadge = getStatusBadge(store.syncStatus, tr);
 
   return (
-    <div className="bg-white p-3 flex items-start gap-2.5 hover:bg-sky-50/20 transition-colors">
+    <div className="bg-card p-3 flex items-start gap-2.5 hover:bg-muted/20 transition-colors">
       <div
         className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0 capitalize"
         style={{ backgroundColor: color }}
@@ -210,19 +210,19 @@ function StoreMiniCard({
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-xs font-semibold text-sky-900 capitalize">
+          <span className="text-xs font-semibold text-foreground capitalize">
             {store.platform}
           </span>
           {statusBadge}
         </div>
         <p
-          className="text-[11px] text-slate-600 truncate mt-0.5"
+          className="text-[11px] text-muted-foreground truncate mt-0.5"
           dir="ltr"
           style={{ unicodeBidi: "embed" }}
         >
           {store.shopDomain}
         </p>
-        <div className="mt-1 flex items-center gap-2.5 text-[10px] text-slate-500">
+        <div className="mt-1 flex items-center gap-2.5 text-[10px] text-muted-foreground">
           {store.totalCustomersImported > 0 && (
             <span className="inline-flex items-center gap-0.5">
               <Users className="w-2.5 h-2.5" />
@@ -246,7 +246,7 @@ function StoreMiniCard({
       <button
         onClick={onSync}
         disabled={syncing}
-        className="p-1.5 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+        className="p-1.5 text-muted-foreground hover:text-cyan-300 hover:bg-muted rounded disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
         title={tr("Sync now", "مزامنة الآن", "Şimdi senkronize et")}
       >
         {syncing ? (
@@ -265,7 +265,7 @@ function getStatusBadge(
 ) {
   if (status === "success") {
     return (
-      <span className="inline-flex items-center gap-0.5 text-[9px] px-1 py-0.5 bg-emerald-50 text-emerald-700 rounded">
+      <span className="inline-flex items-center gap-0.5 text-[9px] px-1 py-0.5 bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 rounded">
         <CheckCircle2 className="w-2.5 h-2.5" />
         {tr("ok", "جاهز", "tamam")}
       </span>
@@ -273,7 +273,7 @@ function getStatusBadge(
   }
   if (status === "syncing") {
     return (
-      <span className="inline-flex items-center gap-0.5 text-[9px] px-1 py-0.5 bg-sky-50 text-sky-700 rounded">
+      <span className="inline-flex items-center gap-0.5 text-[9px] px-1 py-0.5 bg-muted text-cyan-300 rounded">
         <Loader2 className="w-2.5 h-2.5 animate-spin" />
         {tr("syncing", "جارٍ", "senkron")}
       </span>
@@ -281,7 +281,7 @@ function getStatusBadge(
   }
   if (status === "error") {
     return (
-      <span className="inline-flex items-center gap-0.5 text-[9px] px-1 py-0.5 bg-rose-50 text-rose-700 rounded">
+      <span className="inline-flex items-center gap-0.5 text-[9px] px-1 py-0.5 bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded">
         <AlertTriangle className="w-2.5 h-2.5" />
         {tr("error", "خطأ", "hata")}
       </span>

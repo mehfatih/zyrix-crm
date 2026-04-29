@@ -62,11 +62,11 @@ function ResetPasswordContent({ locale }: { locale: string }) {
   if (!token) {
     return (
       <div className="text-center">
-        <h2 className="text-xl font-bold text-ink mb-2">{t("invalidLink")}</h2>
-        <p className="text-sm text-ink-light mb-6">{t("invalidLinkMessage")}</p>
+        <h2 className="text-xl font-bold text-foreground mb-2">{t("invalidLink")}</h2>
+        <p className="text-sm text-muted-foreground mb-6">{t("invalidLinkMessage")}</p>
         <Link
           href={`/${locale}/forgot-password`}
-          className="inline-block px-6 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700"
+          className="inline-block px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary"
         >
           {t("requestNewLink")}
         </Link>
@@ -80,9 +80,9 @@ function ResetPasswordContent({ locale }: { locale: string }) {
         <div className="w-16 h-16 bg-success-light rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-8 h-8 text-success" />
         </div>
-        <h2 className="text-xl font-bold text-ink mb-2">{t("success")}</h2>
-        <p className="text-sm text-ink-light mb-6">{t("successMessage")}</p>
-        <p className="text-xs text-ink-muted">{t("redirecting")}</p>
+        <h2 className="text-xl font-bold text-foreground mb-2">{t("success")}</h2>
+        <p className="text-sm text-muted-foreground mb-6">{t("successMessage")}</p>
+        <p className="text-xs text-muted-foreground">{t("redirecting")}</p>
       </div>
     );
   }
@@ -90,17 +90,17 @@ function ResetPasswordContent({ locale }: { locale: string }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
-        <div className="bg-danger-light text-danger-dark text-sm p-3 rounded-lg border border-danger/20">
+        <div className="bg-rose-500/10 text-rose-300 text-sm p-3 rounded-lg border border-rose-500/30/20">
           {error}
         </div>
       )}
 
       <div className="space-y-1.5">
-        <label htmlFor="password" className="block text-sm font-medium text-ink">
+        <label htmlFor="password" className="block text-sm font-medium text-foreground">
           {t("newPassword")}
         </label>
         <div className="relative">
-          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             id="password"
             type={showPassword ? "text" : "password"}
@@ -109,26 +109,26 @@ function ResetPasswordContent({ locale }: { locale: string }) {
             required
             minLength={8}
             autoComplete="new-password"
-            className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full pl-10 pr-10 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder="........"
           />
           <button
             type="button"
             onClick={() => setShowPassword((s) => !s)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-muted hover:text-ink"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
           >
             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
         </div>
-        <p className="text-xs text-ink-muted">{t("passwordHint")}</p>
+        <p className="text-xs text-muted-foreground">{t("passwordHint")}</p>
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="confirmPassword" className="block text-sm font-medium text-ink">
+        <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground">
           {t("confirmPassword")}
         </label>
         <div className="relative">
-          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             id="confirmPassword"
             type={showPassword ? "text" : "password"}
@@ -137,7 +137,7 @@ function ResetPasswordContent({ locale }: { locale: string }) {
             required
             minLength={8}
             autoComplete="new-password"
-            className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder="........"
           />
         </div>
@@ -148,8 +148,8 @@ function ResetPasswordContent({ locale }: { locale: string }) {
         disabled={isLoading}
         className={cn(
           "w-full py-3 px-4 text-sm font-medium rounded-lg mt-6",
-          "bg-primary-600 text-white",
-          "hover:bg-primary-700 active:bg-primary-800",
+          "bg-primary text-white",
+          "hover:bg-primary active:bg-primary",
           "disabled:opacity-60 disabled:cursor-not-allowed",
           "transition-all shadow-sm hover:shadow-md",
           "flex items-center justify-center gap-2"
@@ -167,7 +167,7 @@ export function ResetPasswordClient({ locale }: ResetPasswordClientProps) {
     <Suspense
       fallback={
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
       }
     >

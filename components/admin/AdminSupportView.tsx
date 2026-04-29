@@ -27,29 +27,29 @@ import {
 
 const STATUS_META: Record<string, { bg: string; text: string; ring: string }> =
   {
-    open: { bg: "bg-sky-50", text: "text-sky-700", ring: "ring-sky-200" },
+    open: { bg: "bg-muted", text: "text-cyan-300", ring: "ring-cyan-500/30" },
     in_progress: {
-      bg: "bg-amber-50",
-      text: "text-amber-700",
-      ring: "ring-amber-200",
+      bg: "bg-amber-500/10",
+      text: "text-amber-300",
+      ring: "ring-amber-500/30",
     },
     resolved: {
-      bg: "bg-emerald-50",
-      text: "text-emerald-700",
-      ring: "ring-emerald-200",
+      bg: "bg-emerald-500/10",
+      text: "text-emerald-300",
+      ring: "ring-emerald-500/30",
     },
     closed: {
-      bg: "bg-slate-100",
-      text: "text-slate-600",
-      ring: "ring-slate-200",
+      bg: "bg-muted",
+      text: "text-muted-foreground",
+      ring: "ring-border",
     },
   };
 
 const PRIORITY_META: Record<string, { bg: string; text: string }> = {
-  low: { bg: "bg-slate-100", text: "text-slate-600" },
-  medium: { bg: "bg-sky-50", text: "text-sky-700" },
-  high: { bg: "bg-amber-50", text: "text-amber-700" },
-  urgent: { bg: "bg-red-50", text: "text-red-700" },
+  low: { bg: "bg-muted", text: "text-muted-foreground" },
+  medium: { bg: "bg-muted", text: "text-cyan-300" },
+  high: { bg: "bg-amber-500/10", text: "text-amber-300" },
+  urgent: { bg: "bg-rose-500/10", text: "text-rose-300" },
 };
 
 interface Props {
@@ -123,8 +123,8 @@ export default function AdminSupportView({ locale }: Props) {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-        <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       {/* Stats */}
@@ -165,14 +165,14 @@ export default function AdminSupportView({ locale }: Props) {
 
       {/* Filters */}
       <div className="flex items-center gap-3 flex-wrap">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500">
+        <div className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
           <Filter size={14} />
           {t("filters")}
         </div>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+          className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
         >
           <option value="">{t("allStatuses")}</option>
           <option value="open">{t("statusOpen")}</option>
@@ -183,7 +183,7 @@ export default function AdminSupportView({ locale }: Props) {
         <select
           value={priorityFilter}
           onChange={(e) => setPriorityFilter(e.target.value)}
-          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm focus:border-sky-400 focus:ring-1 focus:ring-sky-400 outline-none"
+          className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
         >
           <option value="">{t("allPriorities")}</option>
           <option value="urgent">{t("priority.urgent")}</option>
@@ -196,26 +196,26 @@ export default function AdminSupportView({ locale }: Props) {
       {/* List */}
       {loading ? (
         <div className="flex items-center justify-center py-16">
-          <Loader2 className="animate-spin text-sky-500" size={28} />
+          <Loader2 className="animate-spin text-cyan-300" size={28} />
         </div>
       ) : error ? (
-        <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+        <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-4 text-sm text-red-800">
           {error}
         </div>
       ) : !data || data.items.length === 0 ? (
-        <div className="rounded-xl bg-white border border-sky-100 p-10 text-center">
+        <div className="rounded-xl bg-card border border-border p-10 text-center">
           <LifeBuoy
             size={32}
             className="mx-auto text-sky-300"
             strokeWidth={1.5}
           />
-          <p className="mt-3 text-sm text-slate-600">{t("empty")}</p>
+          <p className="mt-3 text-sm text-muted-foreground">{t("empty")}</p>
         </div>
       ) : (
-        <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
+        <div className="rounded-xl bg-card border border-border overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-sky-50 text-xs uppercase text-slate-600">
+              <thead className="bg-muted text-xs uppercase text-muted-foreground">
                 <tr>
                   <th className="px-4 py-3 text-start font-semibold">
                     {t("subject")}
@@ -242,20 +242,20 @@ export default function AdminSupportView({ locale }: Props) {
                   const statusM = STATUS_META[tk.status] ?? STATUS_META.open;
                   const priM = PRIORITY_META[tk.priority] ?? PRIORITY_META.medium;
                   return (
-                    <tr key={tk.id} className="hover:bg-sky-50/50">
+                    <tr key={tk.id} className="hover:bg-muted/50">
                       <td className="px-4 py-3 max-w-xs">
-                        <div className="font-medium text-slate-900 truncate">
+                        <div className="font-medium text-foreground truncate">
                           {tk.subject}
                         </div>
-                        <div className="text-xs text-slate-500 truncate">
+                        <div className="text-xs text-muted-foreground truncate">
                           {tk.createdBy.email}
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <div className="font-medium text-slate-800">
+                        <div className="font-medium text-foreground">
                           {tk.company.name}
                         </div>
-                        <div className="text-xs text-slate-500 capitalize">
+                        <div className="text-xs text-muted-foreground capitalize">
                           {tk.company.plan}
                         </div>
                       </td>
@@ -284,7 +284,7 @@ export default function AdminSupportView({ locale }: Props) {
                           <option value="closed">{t("statusClosed")}</option>
                         </select>
                       </td>
-                      <td className="px-4 py-3 text-xs text-slate-600">
+                      <td className="px-4 py-3 text-xs text-muted-foreground">
                         {new Date(tk.createdAt).toLocaleDateString(locale, {
                           year: "numeric",
                           month: "short",
@@ -295,7 +295,7 @@ export default function AdminSupportView({ locale }: Props) {
                         {tk.status !== "closed" && (
                           <button
                             onClick={() => handleClose(tk)}
-                            className="text-xs font-semibold text-slate-600 hover:text-red-700"
+                            className="text-xs font-semibold text-muted-foreground hover:text-rose-300"
                           >
                             {t("close")}
                           </button>
@@ -317,15 +317,15 @@ export default function AdminSupportView({ locale }: Props) {
 type StatColor = "red" | "sky" | "amber" | "emerald" | "slate";
 const STAT_COLOR: Record<StatColor, { bg: string; text: string; ring: string }> =
   {
-    red: { bg: "bg-red-50", text: "text-red-700", ring: "ring-red-100" },
-    sky: { bg: "bg-sky-50", text: "text-sky-700", ring: "ring-sky-100" },
-    amber: { bg: "bg-amber-50", text: "text-amber-700", ring: "ring-amber-100" },
+    red: { bg: "bg-rose-500/10", text: "text-rose-300", ring: "ring-red-100" },
+    sky: { bg: "bg-muted", text: "text-cyan-300", ring: "ring-sky-100" },
+    amber: { bg: "bg-amber-500/10", text: "text-amber-300", ring: "ring-amber-100" },
     emerald: {
-      bg: "bg-emerald-50",
-      text: "text-emerald-700",
+      bg: "bg-emerald-500/10",
+      text: "text-emerald-300",
       ring: "ring-emerald-100",
     },
-    slate: { bg: "bg-slate-50", text: "text-slate-700", ring: "ring-slate-100" },
+    slate: { bg: "bg-muted", text: "text-foreground", ring: "ring-slate-100" },
   };
 
 function StatCard({
@@ -341,14 +341,14 @@ function StatCard({
 }) {
   const c = STAT_COLOR[color];
   return (
-    <div className="rounded-xl bg-white border border-sky-100 p-4">
+    <div className="rounded-xl bg-card border border-border p-4">
       <div className="flex items-center gap-3">
         <div className={`rounded-lg p-2 ${c.bg} ring-1 ${c.ring}`}>
           <Icon size={16} className={c.text} />
         </div>
         <div>
-          <div className="text-xs text-slate-500">{label}</div>
-          <div className="text-xl font-bold text-slate-900">
+          <div className="text-xs text-muted-foreground">{label}</div>
+          <div className="text-xl font-bold text-foreground">
             {value.toLocaleString()}
           </div>
         </div>

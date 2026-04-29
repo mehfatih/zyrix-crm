@@ -50,30 +50,30 @@ const STATUS_META: Record<
   ContractStatus,
   { bg: string; text: string; ring: string }
 > = {
-  draft: { bg: "bg-slate-50", text: "text-slate-700", ring: "ring-slate-200" },
+  draft: { bg: "bg-muted", text: "text-foreground", ring: "ring-border" },
   pending_signature: {
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    ring: "ring-amber-200",
+    bg: "bg-amber-500/10",
+    text: "text-amber-300",
+    ring: "ring-amber-500/30",
   },
   signed: {
-    bg: "bg-sky-50",
-    text: "text-sky-700",
-    ring: "ring-sky-200",
+    bg: "bg-muted",
+    text: "text-cyan-300",
+    ring: "ring-cyan-500/30",
   },
   active: {
-    bg: "bg-emerald-50",
-    text: "text-emerald-700",
-    ring: "ring-emerald-200",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-300",
+    ring: "ring-emerald-500/30",
   },
   expired: {
-    bg: "bg-red-50",
-    text: "text-red-700",
-    ring: "ring-red-200",
+    bg: "bg-rose-500/10",
+    text: "text-rose-300",
+    ring: "ring-rose-500/30",
   },
   terminated: {
-    bg: "bg-slate-100",
-    text: "text-slate-600",
+    bg: "bg-muted",
+    text: "text-muted-foreground",
     ring: "ring-slate-300",
   },
 };
@@ -279,17 +279,18 @@ export default function ContractsPage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-sky-900 flex items-center gap-2">
-              <FileSignature className="w-6 h-6 text-sky-500" />
+            <p className="text-indigo-300 text-xs font-bold uppercase tracking-widest mb-2">AGREEMENTS</p>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <FileSignature className="w-6 h-6 text-cyan-300" />
               {t("title")}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
           </div>
           <div className="flex items-center gap-2">
             <ExportButton entityType="contracts" />
             <button
               onClick={openCreate}
-              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium shadow-sm"
             >
               <Plus className="w-4 h-4" />
               {t("newContract")}
@@ -326,15 +327,15 @@ export default function ContractsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white border border-sky-100 rounded-xl p-4 flex items-center gap-3 flex-wrap">
+        <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3 flex-wrap">
           <div className="relative flex-1 min-w-[220px]">
-            <Search className="w-4 h-4 text-slate-400 absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
+            <Search className="w-4 h-4 text-muted-foreground absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full ltr:pl-9 rtl:pr-9 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <select
@@ -342,7 +343,7 @@ export default function ContractsPage() {
             onChange={(e) =>
               setStatusFilter(e.target.value as ContractStatus | "")
             }
-            className="px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+            className="px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">{t("filters.allStatuses")}</option>
             <option value="draft">{t("status.draft")}</option>
@@ -359,34 +360,34 @@ export default function ContractsPage() {
               type="checkbox"
               checked={expiringOnly}
               onChange={(e) => setExpiringOnly(e.target.checked)}
-              className="w-4 h-4 rounded border-sky-300 text-sky-500 focus:ring-sky-400"
+              className="w-4 h-4 rounded border-sky-300 text-cyan-300 focus:ring-primary"
             />
-            <span className="text-slate-700">{t("filters.expiringOnly")}</span>
+            <span className="text-foreground">{t("filters.expiringOnly")}</span>
           </label>
         </div>
 
         {/* Table */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="p-6 text-center text-red-700 bg-red-50 rounded-xl">
+          <div className="p-6 text-center text-rose-300 bg-rose-500/10 rounded-xl">
             <AlertTriangle className="w-5 h-5 inline ltr:mr-2 rtl:ml-2" />
             {error}
           </div>
         ) : contracts.length === 0 ? (
-          <div className="bg-white border border-sky-100 rounded-xl py-16 text-center text-slate-500">
+          <div className="bg-card border border-border rounded-xl py-16 text-center text-muted-foreground">
             <Sparkles className="w-10 h-10 mx-auto mb-3 text-sky-300" />
             <p className="text-sm font-medium">{t("empty.title")}</p>
             <p className="text-xs mt-1">{t("empty.subtitle")}</p>
           </div>
         ) : (
-          <div className="bg-white border border-sky-100 rounded-xl overflow-hidden">
+          <div className="bg-card border border-border rounded-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-sky-50 border-b border-sky-100">
-                  <tr className="text-left rtl:text-right text-xs uppercase text-slate-600">
+                <thead className="bg-muted border-b border-border">
+                  <tr className="text-left rtl:text-right text-xs uppercase text-muted-foreground">
                     <th className="px-4 py-3 font-semibold">
                       {t("table.number")}
                     </th>
@@ -421,22 +422,22 @@ export default function ContractsPage() {
                       <tr
                         key={idx}
                         onClick={() => setViewing(c)}
-                        className="border-b border-sky-50 hover:bg-sky-50/40 cursor-pointer"
+                        className="border-b border-sky-50 hover:bg-muted/40 cursor-pointer"
                       >
-                        <td className="px-4 py-3 font-mono text-xs text-sky-600 font-medium">
+                        <td className="px-4 py-3 font-mono text-xs text-cyan-300 font-medium">
                           {c.contractNumber}
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-medium text-sky-900">
+                          <div className="font-medium text-foreground">
                             {c.customer.fullName}
                           </div>
                           {c.customer.companyName && (
-                            <div className="text-xs text-slate-500">
+                            <div className="text-xs text-muted-foreground">
                               {c.customer.companyName}
                             </div>
                           )}
                         </td>
-                        <td className="px-4 py-3 text-slate-700 max-w-xs truncate">
+                        <td className="px-4 py-3 text-foreground max-w-xs truncate">
                           {c.title}
                         </td>
                         <td className="px-4 py-3">
@@ -449,7 +450,7 @@ export default function ContractsPage() {
                         <td className="px-4 py-3">
                           {c.endDate ? (
                             <div className="flex items-center gap-1.5">
-                              <span className="text-slate-700 text-xs">
+                              <span className="text-foreground text-xs">
                                 {formatDate(c.endDate, locale)}
                               </span>
                               {isExpiring && (
@@ -460,10 +461,10 @@ export default function ContractsPage() {
                               )}
                             </div>
                           ) : (
-                            <span className="text-xs text-slate-400">—</span>
+                            <span className="text-xs text-muted-foreground">—</span>
                           )}
                         </td>
-                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-sky-900">
+                        <td className="px-4 py-3 ltr:text-right rtl:text-left font-semibold text-foreground">
                           {formatMoney(Number(c.value), c.currency, locale)}
                         </td>
                         <td className="px-4 py-3">
@@ -472,7 +473,7 @@ export default function ContractsPage() {
                               e.stopPropagation();
                               setViewing(c);
                             }}
-                            className="text-slate-400 hover:text-sky-500"
+                            className="text-muted-foreground hover:text-cyan-300"
                           >
                             <ExternalLink className="w-4 h-4" />
                           </button>
@@ -550,16 +551,16 @@ function ContractFormModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-2xl w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-2xl w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-sky-900">
+        <div className="p-5 border-b border-border flex items-center justify-between">
+          <h2 className="text-lg font-bold text-foreground">
             {editing ? t("form.editTitle") : t("form.createTitle")}
           </h2>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -568,7 +569,7 @@ function ContractFormModal({
         <div className="p-5 space-y-3 max-h-[70vh] overflow-y-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.customer")} *
               </label>
               <select
@@ -576,7 +577,7 @@ function ContractFormModal({
                 onChange={(e) =>
                   setForm({ ...form, customerId: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg"
               >
                 <option value="">{t("form.selectCustomer")}</option>
                 {customers.map((c, i) => (
@@ -588,7 +589,7 @@ function ContractFormModal({
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.status")}
               </label>
               <select
@@ -599,7 +600,7 @@ function ContractFormModal({
                     status: e.target.value as ContractStatus,
                   })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg"
               >
                 <option value="draft">{t("status.draft")}</option>
                 <option value="pending_signature">
@@ -614,7 +615,7 @@ function ContractFormModal({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.titleLabel")} *
             </label>
             <input
@@ -622,12 +623,12 @@ function ContractFormModal({
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               placeholder={t("form.titlePlaceholder")}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.description")}
             </label>
             <textarea
@@ -636,13 +637,13 @@ function ContractFormModal({
                 setForm({ ...form, description: e.target.value })
               }
               rows={2}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg resize-none"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg resize-none"
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.startDate")}
               </label>
               <input
@@ -651,22 +652,22 @@ function ContractFormModal({
                 onChange={(e) =>
                   setForm({ ...form, startDate: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.endDate")}
               </label>
               <input
                 type="date"
                 value={form.endDate}
                 onChange={(e) => setForm({ ...form, endDate: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.renewalDate")}
               </label>
               <input
@@ -675,14 +676,14 @@ function ContractFormModal({
                 onChange={(e) =>
                   setForm({ ...form, renewalDate: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.value")}
               </label>
               <input
@@ -690,11 +691,11 @@ function ContractFormModal({
                 step="0.01"
                 value={form.value}
                 onChange={(e) => setForm({ ...form, value: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {t("form.currency")}
               </label>
               <select
@@ -702,7 +703,7 @@ function ContractFormModal({
                 onChange={(e) =>
                   setForm({ ...form, currency: e.target.value })
                 }
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg"
               >
                 <option value="TRY">TRY</option>
                 <option value="USD">USD</option>
@@ -715,7 +716,7 @@ function ContractFormModal({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.fileUrl")}
             </label>
             <input
@@ -723,43 +724,43 @@ function ContractFormModal({
               value={form.fileUrl}
               onChange={(e) => setForm({ ...form, fileUrl: e.target.value })}
               placeholder="https://drive.google.com/file/..."
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg"
             />
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {t("form.fileUrlHint")}
             </p>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">
+            <label className="block text-xs font-medium text-foreground mb-1">
               {t("form.notes")}
             </label>
             <textarea
               value={form.notes}
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               rows={2}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg resize-none"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg resize-none"
             />
           </div>
 
           {formErr && (
-            <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg border border-red-100 whitespace-pre-line">
+            <div className="bg-rose-500/10 text-rose-300 border border-rose-500/30 text-sm p-2 rounded-lg border border-red-100 whitespace-pre-line">
               {formErr}
             </div>
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex justify-end gap-2 bg-sky-50/30">
+        <div className="p-4 border-t border-border flex justify-end gap-2 bg-muted/30">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 rounded-lg"
+            className="px-4 py-2 text-sm text-foreground hover:bg-muted rounded-lg"
           >
             {t("actions.cancel")}
           </button>
           <button
             onClick={onSave}
             disabled={saving}
-            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg flex items-center gap-2 disabled:opacity-60"
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -804,13 +805,13 @@ function ContractDetailModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl max-w-2xl w-full my-8"
+        className="bg-card rounded-xl shadow-xl max-w-2xl w-full my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 border-b border-sky-100 flex items-start justify-between gap-4">
+        <div className="p-5 border-b border-border flex items-start justify-between gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-xs text-sky-600 font-semibold">
+              <span className="font-mono text-xs text-cyan-300 font-semibold">
                 {contract.contractNumber}
               </span>
               <span
@@ -819,10 +820,10 @@ function ContractDetailModal({
                 {t(`status.${contract.status}`)}
               </span>
             </div>
-            <h2 className="text-lg font-bold text-sky-900">
+            <h2 className="text-lg font-bold text-foreground">
               {contract.title}
             </h2>
-            <p className="text-sm text-slate-600 mt-0.5 flex items-center gap-1">
+            <p className="text-sm text-muted-foreground mt-0.5 flex items-center gap-1">
               <Building2 className="w-3.5 h-3.5" />
               {contract.customer.fullName}
               {contract.customer.companyName
@@ -832,7 +833,7 @@ function ContractDetailModal({
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="text-muted-foreground hover:text-foreground"
           >
             <X className="w-5 h-5" />
           </button>
@@ -840,7 +841,7 @@ function ContractDetailModal({
 
         <div className="p-5 space-y-4 max-h-[60vh] overflow-y-auto">
           {contract.description && (
-            <p className="text-sm text-slate-700">{contract.description}</p>
+            <p className="text-sm text-foreground">{contract.description}</p>
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
@@ -871,12 +872,12 @@ function ContractDetailModal({
             />
           </div>
 
-          <div className="bg-sky-50 border border-sky-100 rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-muted border border-border rounded-lg p-4 flex items-center justify-between">
             <div>
-              <div className="text-xs text-slate-500 uppercase font-medium">
+              <div className="text-xs text-muted-foreground uppercase font-medium">
                 {t("detail.value")}
               </div>
-              <div className="text-2xl font-bold text-sky-900 mt-1">
+              <div className="text-2xl font-bold text-foreground mt-1">
                 {formatMoney(
                   Number(contract.value),
                   contract.currency,
@@ -892,7 +893,7 @@ function ContractDetailModal({
               href={contract.fileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 bg-sky-50/50 border border-sky-200 rounded-lg text-sm text-sky-600 hover:bg-sky-100"
+              className="flex items-center gap-2 px-3 py-2 bg-muted/50 border border-border rounded-lg text-sm text-cyan-300 hover:bg-sky-100"
             >
               <FileText className="w-4 h-4" />
               <span className="flex-1 truncate">
@@ -904,10 +905,10 @@ function ContractDetailModal({
 
           {contract.notes && (
             <div>
-              <div className="text-xs font-semibold text-slate-500 uppercase mb-1">
+              <div className="text-xs font-semibold text-muted-foreground uppercase mb-1">
                 {t("detail.notes")}
               </div>
-              <div className="text-sm text-slate-700 whitespace-pre-wrap bg-sky-50/30 border border-sky-100 rounded-lg p-3">
+              <div className="text-sm text-foreground whitespace-pre-wrap bg-muted/30 border border-border rounded-lg p-3">
                 {contract.notes}
               </div>
             </div>
@@ -915,28 +916,28 @@ function ContractDetailModal({
 
           {contract.terms && (
             <div>
-              <div className="text-xs font-semibold text-slate-500 uppercase mb-1">
+              <div className="text-xs font-semibold text-muted-foreground uppercase mb-1">
                 {t("detail.terms")}
               </div>
-              <div className="text-sm text-slate-700 whitespace-pre-wrap bg-sky-50/30 border border-sky-100 rounded-lg p-3 max-h-40 overflow-y-auto">
+              <div className="text-sm text-foreground whitespace-pre-wrap bg-muted/30 border border-border rounded-lg p-3 max-h-40 overflow-y-auto">
                 {contract.terms}
               </div>
             </div>
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 flex items-center justify-between gap-2 bg-sky-50/30 flex-wrap">
+        <div className="p-4 border-t border-border flex items-center justify-between gap-2 bg-muted/30 flex-wrap">
           <div className="flex items-center gap-2">
             <button
               onClick={onEdit}
-              className="px-3 py-1.5 text-sm text-sky-600 hover:bg-sky-50 rounded-lg flex items-center gap-1.5"
+              className="px-3 py-1.5 text-sm text-cyan-300 hover:bg-muted rounded-lg flex items-center gap-1.5"
             >
               <Pencil className="w-4 h-4" />
               {t("actions.edit")}
             </button>
             <button
               onClick={onDelete}
-              className="px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 rounded-lg flex items-center gap-1.5"
+              className="px-3 py-1.5 text-sm text-rose-300 hover:bg-rose-500/10 rounded-lg flex items-center gap-1.5"
             >
               <Trash2 className="w-4 h-4" />
               {t("actions.delete")}
@@ -947,7 +948,7 @@ function ContractDetailModal({
             disabled={reminderLoading || contract.reminderSent}
             className={`px-3 py-1.5 text-sm font-medium rounded-lg flex items-center gap-1.5 ${
               contract.reminderSent
-                ? "bg-emerald-50 text-emerald-700"
+                ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
                 : "bg-amber-500 hover:bg-amber-600 text-white"
             } disabled:opacity-60`}
           >
@@ -976,11 +977,11 @@ function MetaBox({
   value: string;
 }) {
   return (
-    <div className="bg-sky-50/40 border border-sky-100 rounded-lg px-3 py-2">
-      <div className="text-xs text-slate-500 uppercase font-medium">
+    <div className="bg-muted/40 border border-border rounded-lg px-3 py-2">
+      <div className="text-xs text-muted-foreground uppercase font-medium">
         {label}
       </div>
-      <div className="text-sm text-sky-900 font-medium mt-0.5 flex items-center gap-1.5">
+      <div className="text-sm text-foreground font-medium mt-0.5 flex items-center gap-1.5">
         <Icon className="w-3.5 h-3.5" />
         {value}
       </div>
@@ -1000,20 +1001,20 @@ function StatCard({
   color: "cyan" | "emerald" | "amber" | "red";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string }> = {
-    cyan: { iconBg: "bg-sky-50", iconText: "text-sky-500" },
-    emerald: { iconBg: "bg-emerald-50", iconText: "text-emerald-600" },
-    amber: { iconBg: "bg-amber-50", iconText: "text-amber-600" },
-    red: { iconBg: "bg-red-50", iconText: "text-red-600" },
+    cyan: { iconBg: "bg-muted", iconText: "text-cyan-300" },
+    emerald: { iconBg: "bg-emerald-500/10", iconText: "text-emerald-300" },
+    amber: { iconBg: "bg-amber-500/10", iconText: "text-amber-300" },
+    red: { iconBg: "bg-rose-500/10", iconText: "text-rose-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4 flex items-center gap-3">
+    <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
       <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
         <Icon className="w-5 h-5" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-xs text-slate-500 truncate">{label}</div>
-        <div className="text-lg font-bold text-sky-900 truncate">{value}</div>
+        <div className="text-xs text-muted-foreground truncate">{label}</div>
+        <div className="text-lg font-bold text-foreground truncate">{value}</div>
       </div>
     </div>
   );

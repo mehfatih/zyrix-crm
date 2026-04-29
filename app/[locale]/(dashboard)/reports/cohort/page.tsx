@@ -104,10 +104,11 @@ export default function CohortReportPage() {
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">REPORTS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Cohort retention", "الاحتفاظ بالعملاء", "Müşteri tutma")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "What % of each monthly cohort is still active N months later.",
                   "نسبة العملاء من كل مجموعة شهرية اللي لسه نشطين بعد N شهور.",
@@ -118,7 +119,7 @@ export default function CohortReportPage() {
           </div>
 
           {/* Window toggle */}
-          <div className="inline-flex items-center bg-white border border-sky-200 rounded-lg p-0.5">
+          <div className="inline-flex items-center bg-card border border-border rounded-lg p-0.5">
             {WINDOW_PRESETS.map((p) => (
               <button
                 key={p.months}
@@ -126,7 +127,7 @@ export default function CohortReportPage() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                   monthsBack === p.months
                     ? "bg-sky-500 text-white"
-                    : "text-slate-600 hover:bg-sky-50"
+                    : "text-muted-foreground hover:bg-muted"
                 }`}
               >
                 {p.label[locale]}
@@ -136,9 +137,9 @@ export default function CohortReportPage() {
         </div>
 
         {/* Info banner */}
-        <div className="rounded-lg bg-sky-50 border border-sky-200 p-3 flex items-start gap-2">
-          <Info className="w-4 h-4 text-sky-600 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-sky-900 leading-relaxed">
+        <div className="rounded-lg bg-muted border border-border p-3 flex items-start gap-2">
+          <Info className="w-4 h-4 text-cyan-300 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-foreground leading-relaxed">
             {tr(
               "A customer counts as 'active' in a month if they had a deal created/updated, an activity completed, or their record was touched. Month 0 is always 100% by definition.",
               "يُحتسب العميل 'نشطًا' في شهر معين إذا تم إنشاء/تحديث صفقة، أو إكمال نشاط، أو تم تحديث بياناته. الشهر 0 دائمًا 100% بالتعريف.",
@@ -150,26 +151,26 @@ export default function CohortReportPage() {
         {/* Content */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 flex items-start gap-2">
-            <AlertTriangle className="w-4 h-4 text-rose-700 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-rose-700">{error}</p>
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 text-rose-300 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-rose-300">{error}</p>
           </div>
         ) : !report || report.cohorts.length === 0 ? (
-          <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
-            <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <Users className="w-6 h-6 text-sky-500" />
+          <div className="rounded-xl border border-border bg-card p-10 text-center">
+            <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-3">
+              <Users className="w-6 h-6 text-cyan-300" />
             </div>
-            <p className="text-sm font-semibold text-sky-900">
+            <p className="text-sm font-semibold text-foreground">
               {tr(
                 "Not enough data yet",
                 "لا توجد بيانات كافية بعد",
                 "Henüz yeterli veri yok"
               )}
             </p>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {tr(
                 "Cohort charts need at least one month of customer history.",
                 "مخططات المجموعات تحتاج شهرًا واحدًا على الأقل من تاريخ العملاء.",
@@ -180,7 +181,7 @@ export default function CohortReportPage() {
         ) : (
           <>
             {/* Heatmap table */}
-            <div className="rounded-xl border border-sky-100 bg-white overflow-x-auto">
+            <div className="rounded-xl border border-border bg-card overflow-x-auto">
               <table
                 className="w-full text-xs border-separate"
                 style={{ borderSpacing: "2px" }}
@@ -188,19 +189,19 @@ export default function CohortReportPage() {
                 <thead>
                   <tr>
                     <th
-                      className="text-left rtl:text-right px-3 py-2 text-[10px] font-bold uppercase text-slate-500 whitespace-nowrap sticky left-0 rtl:left-auto rtl:right-0 bg-white z-10"
+                      className="text-left rtl:text-right px-3 py-2 text-[10px] font-bold uppercase text-muted-foreground whitespace-nowrap sticky left-0 rtl:left-auto rtl:right-0 bg-card z-10"
                       rowSpan={2}
                     >
                       {tr("Cohort", "المجموعة", "Kohort")}
                     </th>
                     <th
-                      className="text-center px-3 py-2 text-[10px] font-bold uppercase text-slate-500 whitespace-nowrap"
+                      className="text-center px-3 py-2 text-[10px] font-bold uppercase text-muted-foreground whitespace-nowrap"
                       rowSpan={2}
                     >
                       {tr("Size", "الحجم", "Boyut")}
                     </th>
                     <th
-                      className="text-center px-3 py-2 text-[10px] font-bold uppercase text-slate-500"
+                      className="text-center px-3 py-2 text-[10px] font-bold uppercase text-muted-foreground"
                       colSpan={maxOffset + 1}
                     >
                       {tr(
@@ -214,7 +215,7 @@ export default function CohortReportPage() {
                     {Array.from({ length: maxOffset + 1 }).map((_, i) => (
                       <th
                         key={i}
-                        className="text-center px-1 py-1 text-[10px] font-semibold text-slate-500 tabular-nums"
+                        className="text-center px-1 py-1 text-[10px] font-semibold text-muted-foreground tabular-nums"
                         style={{ minWidth: "48px" }}
                       >
                         {i === 0 ? "M0" : `M${i}`}
@@ -228,10 +229,10 @@ export default function CohortReportPage() {
                     .reverse()
                     .map((cohort) => (
                       <tr key={cohort.cohortMonth}>
-                        <td className="px-3 py-2 text-xs font-semibold text-sky-900 whitespace-nowrap sticky left-0 rtl:left-auto rtl:right-0 bg-white">
+                        <td className="px-3 py-2 text-xs font-semibold text-foreground whitespace-nowrap sticky left-0 rtl:left-auto rtl:right-0 bg-card">
                           {formatMonth(cohort.cohortMonth, locale)}
                         </td>
-                        <td className="text-center px-2 py-2 text-xs tabular-nums text-slate-700">
+                        <td className="text-center px-2 py-2 text-xs tabular-nums text-foreground">
                           {cohort.cohortSize}
                         </td>
                         {Array.from({ length: maxOffset + 1 }).map(
@@ -246,7 +247,7 @@ export default function CohortReportPage() {
                                   className="text-center px-1 py-2"
                                 >
                                   <div
-                                    className="inline-block rounded w-full h-7 bg-slate-50"
+                                    className="inline-block rounded w-full h-7 bg-muted"
                                     title="Future"
                                   />
                                 </td>
@@ -279,7 +280,7 @@ export default function CohortReportPage() {
             </div>
 
             {/* Legend */}
-            <div className="flex items-center gap-3 text-xs text-slate-600 flex-wrap">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
               <span>{tr("Retention", "الاحتفاظ", "Tutma")}:</span>
               <div className="inline-flex items-center gap-1">
                 {[0, 20, 40, 60, 80, 100].map((pct) => {

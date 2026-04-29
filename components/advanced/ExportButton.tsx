@@ -58,9 +58,9 @@ export default function ExportButton({
     : "px-3 py-2 text-sm";
 
   const FORMATS: { id: ExportFormat; Icon: typeof FileText; color: string; label: string }[] = [
-    { id: "csv", Icon: FileText, color: "text-sky-600", label: t("csv") },
-    { id: "xlsx", Icon: FileSpreadsheet, color: "text-emerald-600", label: t("xlsx") },
-    { id: "pdf", Icon: FileType, color: "text-rose-600", label: t("pdf") },
+    { id: "csv", Icon: FileText, color: "text-cyan-300", label: t("csv") },
+    { id: "xlsx", Icon: FileSpreadsheet, color: "text-emerald-300", label: t("xlsx") },
+    { id: "pdf", Icon: FileType, color: "text-rose-300", label: t("pdf") },
   ];
 
   return (
@@ -68,7 +68,7 @@ export default function ExportButton({
       <button
         onClick={() => setOpen(!open)}
         disabled={loading !== null}
-        className={`inline-flex items-center gap-1.5 ${sizeClasses} bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 rounded-lg font-medium transition-colors disabled:opacity-60`}
+        className={`inline-flex items-center gap-1.5 ${sizeClasses} bg-card border border-border hover:bg-muted text-foreground rounded-lg font-medium transition-colors disabled:opacity-60`}
       >
         {loading ? (
           <Loader2 className="w-4 h-4 animate-spin" />
@@ -79,14 +79,14 @@ export default function ExportButton({
       </button>
 
       {open && (
-        <div className="absolute top-full mt-1 ltr:right-0 rtl:left-0 bg-white border border-slate-200 rounded-lg shadow-lg py-1 min-w-[140px] z-20">
+        <div className="absolute top-full mt-1 ltr:right-0 rtl:left-0 bg-card border border-border rounded-lg shadow-lg py-1 min-w-[140px] z-20">
           {FORMATS.map((f) => {
             const Icon = f.Icon;
             return (
               <button
                 key={f.id}
                 onClick={() => handleExport(f.id)}
-                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-sky-50 text-left rtl:text-right transition-colors"
+                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted text-left rtl:text-right transition-colors"
               >
                 <Icon className={`w-4 h-4 ${f.color}`} />
                 <span className="font-medium">{f.label}</span>

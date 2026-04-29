@@ -215,8 +215,8 @@ export function AdminFeatureToggles({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12 rounded-xl border border-sky-100 bg-white">
-        <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+      <div className="flex items-center justify-center py-12 rounded-xl border border-border bg-card">
+        <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
       </div>
     );
   }
@@ -224,13 +224,13 @@ export function AdminFeatureToggles({
   return (
     <div className="space-y-4">
       {success && (
-        <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-start gap-2 text-sm text-emerald-900">
+        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
           <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
           <span>{success}</span>
         </div>
       )}
       {error && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
           <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
           <span>{error}</span>
         </div>
@@ -242,14 +242,14 @@ export function AdminFeatureToggles({
           const meta = CATEGORY_META[cat];
           const Icon = meta?.icon ?? Zap;
           return (
-            <div key={cat} className="rounded-xl border border-sky-100 bg-white overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-sky-50/50 border-b border-sky-100">
+            <div key={cat} className="rounded-xl border border-border bg-card overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-2.5 bg-muted/50 border-b border-border">
                 <div
                   className={`w-6 h-6 rounded-md bg-gradient-to-br ${meta?.tone} text-white flex items-center justify-center`}
                 >
                   <Icon className="w-3 h-3" />
                 </div>
-                <h3 className="text-sm font-bold text-sky-900">
+                <h3 className="text-sm font-bold text-foreground">
                   {meta?.label[locale] ?? cat}
                 </h3>
               </div>
@@ -271,15 +271,15 @@ export function AdminFeatureToggles({
                         <FeatureIcon className="w-4 h-4" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-slate-900">
+                        <div className="text-sm font-semibold text-foreground">
                           {f.label[locale]}
                         </div>
-                        <p className="text-xs text-slate-500 mt-0.5">
+                        <p className="text-xs text-muted-foreground mt-0.5">
                           {f.description[locale]}
                         </p>
                         <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
                           <code
-                            className="text-[10px] text-slate-400 font-mono"
+                            className="text-[10px] text-muted-foreground font-mono"
                             dir="ltr"
                           >
                             {f.key}
@@ -289,7 +289,7 @@ export function AdminFeatureToggles({
                               {includedPlans.map((p) => (
                                 <span
                                   key={p}
-                                  className="inline-flex items-center rounded-full bg-sky-50 text-sky-600 border border-sky-200 px-2 py-0.5 text-[10px] font-medium"
+                                  className="inline-flex items-center rounded-full bg-muted text-cyan-300 border border-border px-2 py-0.5 text-[10px] font-medium"
                                 >
                                   {PLAN_LABELS[p][locale]}
                                 </span>
@@ -297,7 +297,7 @@ export function AdminFeatureToggles({
                             </div>
                           )}
                           {includedPlans.length === 4 && (
-                            <span className="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 text-[10px] font-medium">
+                            <span className="inline-flex items-center rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-medium">
                               {tr("All plans", "كل الخطط", "Tüm planlar")}
                             </span>
                           )}
@@ -312,7 +312,7 @@ export function AdminFeatureToggles({
                         }`}
                       >
                         <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow ${
+                          className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform shadow ${
                             enabled ? "translate-x-6" : "translate-x-1"
                           }`}
                         />
@@ -328,10 +328,10 @@ export function AdminFeatureToggles({
 
       {/* Floating save bar — appears only when there are unsaved changes */}
       {hasChanges && (
-        <div className="sticky bottom-4 rounded-xl border border-sky-300 bg-sky-50 p-3 flex items-center justify-between gap-3 shadow-lg">
+        <div className="sticky bottom-4 rounded-xl border border-sky-300 bg-muted p-3 flex items-center justify-between gap-3 shadow-lg">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
-            <span className="text-xs font-semibold text-sky-900">
+            <span className="text-xs font-semibold text-foreground">
               {tr(
                 "Unsaved feature changes",
                 "تغييرات غير محفوظة",
@@ -345,7 +345,7 @@ export function AdminFeatureToggles({
                 setFlags(originalFlags);
                 setSuccess(null);
               }}
-              className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-white rounded"
+              className="px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-card rounded"
             >
               {tr("Discard", "تجاهل", "Vazgeç")}
             </button>

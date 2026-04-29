@@ -101,10 +101,11 @@ export default function AnalyticsHubPage() {
               <BarChart3 className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">ANALYTICS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Analytics", "التحليلات", "Analitik")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Drill into a specific metric or schedule an email digest.",
                   "تعمق في مقياس محدد أو جدول ملخصًا بالبريد.",
@@ -115,7 +116,7 @@ export default function AnalyticsHubPage() {
           </div>
           <Link
             href={`/${locale}/analytics/scheduled`}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
           >
             <Mail className="w-3.5 h-3.5" />
             {tr(
@@ -128,10 +129,10 @@ export default function AnalyticsHubPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : (
@@ -147,7 +148,7 @@ export default function AnalyticsHubPage() {
                     >
                       <Icon className="w-3.5 h-3.5" />
                     </div>
-                    <h2 className="text-sm font-bold text-sky-900">
+                    <h2 className="text-sm font-bold text-foreground">
                       {meta?.[locale] ?? cat}
                     </h2>
                   </div>
@@ -156,21 +157,21 @@ export default function AnalyticsHubPage() {
                       <Link
                         key={m.key}
                         href={`/${locale}/analytics/builder?m=${m.key}`}
-                        className="group rounded-xl border border-sky-100 bg-white hover:border-sky-300 hover:shadow-sm transition-all p-4 flex items-start gap-3"
+                        className="group rounded-xl border border-border bg-card hover:border-sky-300 hover:shadow-sm transition-all p-4 flex items-start gap-3"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0">
+                        <div className="w-9 h-9 rounded-lg bg-muted text-cyan-300 flex items-center justify-center flex-shrink-0">
                           {chartIcon(m.chart)}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="text-sm font-semibold text-sky-900">
+                          <div className="text-sm font-semibold text-foreground">
                             {m.label[locale]}
                           </div>
-                          <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
                             {m.description[locale]}
                           </p>
                         </div>
                         <ArrowRight
-                          className={`w-4 h-4 text-slate-300 group-hover:text-sky-500 transition-colors flex-shrink-0 mt-1 ${
+                          className={`w-4 h-4 text-slate-300 group-hover:text-cyan-300 transition-colors flex-shrink-0 mt-1 ${
                             isRtl ? "-scale-x-100" : ""
                           }`}
                         />

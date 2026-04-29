@@ -51,21 +51,21 @@ const PAGE_SIZE = 50;
 
 // Map action prefix → icon + color. Unknown actions fall back to History.
 function iconForAction(action: string): { Icon: any; color: string } {
-  if (action === "user.login") return { Icon: LogIn, color: "text-emerald-600 bg-emerald-50" };
+  if (action === "user.login") return { Icon: LogIn, color: "text-emerald-300 bg-emerald-500/10" };
   if (action === "user.login_failed" || action === "user.2fa_challenge_failed")
-    return { Icon: AlertCircle, color: "text-rose-700 bg-rose-50" };
-  if (action === "user.logout") return { Icon: LogOut, color: "text-slate-600 bg-slate-100" };
-  if (action.startsWith("2fa.")) return { Icon: Shield, color: "text-sky-600 bg-sky-50" };
+    return { Icon: AlertCircle, color: "text-rose-300 bg-rose-500/10" };
+  if (action === "user.logout") return { Icon: LogOut, color: "text-muted-foreground bg-muted" };
+  if (action.startsWith("2fa.")) return { Icon: Shield, color: "text-cyan-300 bg-muted" };
   if (action.includes(".create") || action.includes(".add"))
-    return { Icon: Plus, color: "text-emerald-600 bg-emerald-50" };
+    return { Icon: Plus, color: "text-emerald-300 bg-emerald-500/10" };
   if (action.includes(".delete") || action.includes(".remove"))
-    return { Icon: Trash2, color: "text-rose-700 bg-rose-50" };
+    return { Icon: Trash2, color: "text-rose-300 bg-rose-500/10" };
   if (action.includes(".update") || action.includes(".edit"))
-    return { Icon: Edit, color: "text-amber-700 bg-amber-50" };
-  if (action.includes(".invite")) return { Icon: UserPlus, color: "text-sky-600 bg-sky-50" };
+    return { Icon: Edit, color: "text-amber-300 bg-amber-500/10" };
+  if (action.includes(".invite")) return { Icon: UserPlus, color: "text-cyan-300 bg-muted" };
   if (action.includes("password") || action.includes("token") || action.includes("key"))
-    return { Icon: KeyRound, color: "text-violet-700 bg-violet-50" };
-  return { Icon: History, color: "text-slate-600 bg-slate-100" };
+    return { Icon: KeyRound, color: "text-violet-700 bg-violet-500/10" };
+  return { Icon: History, color: "text-muted-foreground bg-muted" };
 }
 
 function humanizeAction(action: string, locale: "en" | "ar" | "tr"): string {
@@ -230,10 +230,11 @@ export default function AuditLogPage() {
               <History className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Audit log", "سجل التدقيق", "Denetim kaydı")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Timeline of security events and changes.",
                   "سجل زمني للأحداث الأمنية والتغييرات.",
@@ -246,7 +247,7 @@ export default function AuditLogPage() {
             <button
               onClick={() => handleExport("csv")}
               disabled={exporting !== null}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-white border-sky-200 text-slate-700 hover:bg-sky-50 disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-card border-border text-foreground hover:bg-muted disabled:opacity-50"
               title={tr(
                 "Download current filtered results as CSV",
                 "تنزيل النتائج المصفاة كـ CSV",
@@ -263,7 +264,7 @@ export default function AuditLogPage() {
             <button
               onClick={() => handleExport("json")}
               disabled={exporting !== null}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-white border-sky-200 text-slate-700 hover:bg-sky-50 disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border bg-card border-border text-foreground hover:bg-muted disabled:opacity-50"
               title={tr(
                 "Download current filtered results as JSON",
                 "تنزيل النتائج المصفاة كـ JSON",
@@ -281,8 +282,8 @@ export default function AuditLogPage() {
               onClick={() => setFilterOpen((o) => !o)}
               className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
                 filterOpen || hasFilters
-                  ? "bg-sky-50 border-sky-300 text-sky-600"
-                  : "bg-white border-sky-200 text-slate-700 hover:bg-sky-50"
+                  ? "bg-muted border-sky-300 text-cyan-300"
+                  : "bg-card border-border text-foreground hover:bg-muted"
               }`}
             >
               <Filter className="w-4 h-4" />
@@ -296,9 +297,9 @@ export default function AuditLogPage() {
 
         {/* Filter bar */}
         {filterOpen && (
-          <div className="rounded-xl border border-sky-200 bg-white p-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="rounded-xl border border-border bg-card p-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {tr("Action", "الإجراء", "Eylem")}
               </label>
               <select
@@ -307,7 +308,7 @@ export default function AuditLogPage() {
                   setActionFilter(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">{tr("All actions", "كل الإجراءات", "Tüm eylemler")}</option>
                 {actions.map((a) => (
@@ -318,7 +319,7 @@ export default function AuditLogPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {tr("User", "المستخدم", "Kullanıcı")}
               </label>
               <select
@@ -327,7 +328,7 @@ export default function AuditLogPage() {
                   setUserFilter(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">
                   {tr("All users", "كل المستخدمين", "Tüm kullanıcılar")}
@@ -340,7 +341,7 @@ export default function AuditLogPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {tr("Entity type", "نوع الكيان", "Varlık türü")}
               </label>
               <select
@@ -349,7 +350,7 @@ export default function AuditLogPage() {
                   setEntityTypeFilter(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">
                   {tr("All types", "كل الأنواع", "Tüm türler")}
@@ -362,7 +363,7 @@ export default function AuditLogPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {tr("Since", "من", "Başlangıç")}
               </label>
               <input
@@ -372,11 +373,11 @@ export default function AuditLogPage() {
                   setSince(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-foreground mb-1">
                 {tr("Until", "إلى", "Bitiş")}
               </label>
               <input
@@ -386,13 +387,13 @@ export default function AuditLogPage() {
                   setUntil(e.target.value);
                   setOffset(0);
                 }}
-                className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             {hasFilters && (
               <button
                 onClick={clearFilters}
-                className="col-span-full inline-flex items-center justify-center gap-1 text-xs text-slate-600 hover:text-sky-600"
+                className="col-span-full inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-cyan-300"
               >
                 <X className="w-3 h-3" />
                 {tr("Clear filters", "إزالة المرشحات", "Filtreleri temizle")}
@@ -404,25 +405,25 @@ export default function AuditLogPage() {
         {/* Timeline */}
         {loading && !page ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : !page || page.items.length === 0 ? (
-          <div className="rounded-xl border border-sky-100 bg-white p-10 text-center">
-            <div className="mx-auto w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mb-3">
-              <History className="w-6 h-6 text-sky-500" />
+          <div className="rounded-xl border border-border bg-card p-10 text-center">
+            <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-3">
+              <History className="w-6 h-6 text-cyan-300" />
             </div>
-            <p className="text-sm font-semibold text-sky-900">
+            <p className="text-sm font-semibold text-foreground">
               {tr(
                 "No events yet",
                 "لا توجد أحداث بعد",
                 "Henüz olay yok"
               )}
             </p>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {hasFilters
                 ? tr(
                     "Try clearing your filters.",
@@ -438,7 +439,7 @@ export default function AuditLogPage() {
           </div>
         ) : (
           <>
-            <div className="rounded-xl border border-sky-100 bg-white overflow-hidden">
+            <div className="rounded-xl border border-border bg-card overflow-hidden">
               {page.items.map((entry, idx) => (
                 <EventRow
                   key={entry.id}
@@ -452,7 +453,7 @@ export default function AuditLogPage() {
             {/* Pagination */}
             {page.pagination.total > PAGE_SIZE && (
               <div className="flex items-center justify-between gap-3 flex-wrap">
-                <span className="text-xs text-slate-500">
+                <span className="text-xs text-muted-foreground">
                   {tr(
                     `Page ${currentPage} of ${totalPages} — ${page.pagination.total} total events`,
                     `الصفحة ${currentPage} من ${totalPages} — ${page.pagination.total} حدث`,
@@ -463,7 +464,7 @@ export default function AuditLogPage() {
                   <button
                     onClick={() => setOffset(Math.max(0, offset - PAGE_SIZE))}
                     disabled={offset === 0}
-                    className="p-2 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="p-2 rounded-lg bg-card border border-border hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft
                       className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
@@ -472,7 +473,7 @@ export default function AuditLogPage() {
                   <button
                     onClick={() => setOffset(offset + PAGE_SIZE)}
                     disabled={offset + PAGE_SIZE >= page.pagination.total}
-                    className="p-2 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="p-2 rounded-lg bg-card border border-border hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <ChevronRight
                       className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
@@ -543,8 +544,8 @@ function EventRow({
 
   return (
     <div
-      className={`px-4 py-3 flex items-start gap-3 hover:bg-sky-50/40 transition-colors ${
-        !isLast ? "border-b border-sky-100" : ""
+      className={`px-4 py-3 flex items-start gap-3 hover:bg-muted/40 transition-colors ${
+        !isLast ? "border-b border-border" : ""
       }`}
     >
       <div
@@ -555,16 +556,16 @@ function EventRow({
 
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-sky-900">
+          <span className="text-sm font-semibold text-foreground">
             {humanizeAction(entry.action, locale)}
           </span>
           {entry.user && (
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-muted-foreground">
               · {entry.user.fullName}
             </span>
           )}
           <time
-            className="ltr:ml-auto rtl:mr-auto text-xs text-slate-400 tabular-nums"
+            className="ltr:ml-auto rtl:mr-auto text-xs text-muted-foreground tabular-nums"
             dir="ltr"
             style={{ unicodeBidi: "embed" }}
             title={new Date(entry.createdAt).toLocaleString()}
@@ -575,7 +576,7 @@ function EventRow({
 
         {/* Entity reference if available */}
         {entry.entityType && entry.entityId && (
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             {entry.entityType}: <code className="font-mono">{entry.entityId}</code>
           </p>
         )}
@@ -583,7 +584,7 @@ function EventRow({
         {hasDetails && (
           <button
             onClick={() => setExpanded((e) => !e)}
-            className="mt-1 text-xs text-sky-600 hover:underline"
+            className="mt-1 text-xs text-cyan-300 hover:underline"
           >
             {expanded
               ? tr("Hide details", "إخفاء التفاصيل", "Detayları gizle")
@@ -592,9 +593,9 @@ function EventRow({
         )}
 
         {expanded && (
-          <div className="mt-2 p-3 rounded-lg bg-sky-50 border border-sky-100 text-xs space-y-2">
+          <div className="mt-2 p-3 rounded-lg bg-muted border border-border text-xs space-y-2">
             {entry.ipAddress && (
-              <div className="flex items-center gap-1.5 text-slate-700">
+              <div className="flex items-center gap-1.5 text-foreground">
                 <Globe className="w-3 h-3" />
                 <span className="font-medium">IP:</span>
                 <code dir="ltr" className="font-mono">
@@ -603,7 +604,7 @@ function EventRow({
               </div>
             )}
             {entry.userAgent && (
-              <div className="text-slate-600">
+              <div className="text-muted-foreground">
                 <span className="font-medium">User agent:</span>{" "}
                 <span className="font-mono break-all" dir="ltr">
                   {entry.userAgent}
@@ -611,7 +612,7 @@ function EventRow({
               </div>
             )}
             {entry.sessionId && (
-              <div className="text-slate-600">
+              <div className="text-muted-foreground">
                 <span className="font-medium">
                   {tr("Session", "الجلسة", "Oturum")}:
                 </span>{" "}
@@ -622,32 +623,32 @@ function EventRow({
             )}
             {entry.metadata && Object.keys(entry.metadata).length > 0 && (
               <div>
-                <div className="font-medium text-slate-700 mb-1">
+                <div className="font-medium text-foreground mb-1">
                   {tr("Metadata", "بيانات إضافية", "Meta veri")}
                 </div>
-                <pre className="bg-white p-2 rounded border border-sky-200 text-[10px] overflow-x-auto" dir="ltr">
+                <pre className="bg-card p-2 rounded border border-border text-[10px] overflow-x-auto" dir="ltr">
                   {JSON.stringify(entry.metadata, null, 2)}
                 </pre>
               </div>
             )}
             {entry.changes && Object.keys(entry.changes).length > 0 && (
               <div>
-                <div className="font-medium text-slate-700 mb-1">
+                <div className="font-medium text-foreground mb-1">
                   {tr("Changes", "التغييرات", "Değişiklikler")}
                 </div>
                 <div className="space-y-1">
                   {Object.entries(entry.changes).map(([field, { before, after }]) => (
                     <div
                       key={field}
-                      className="bg-white p-2 rounded border border-sky-200"
+                      className="bg-card p-2 rounded border border-border"
                     >
-                      <div className="font-mono font-semibold text-slate-800 mb-0.5">
+                      <div className="font-mono font-semibold text-foreground mb-0.5">
                         {field}
                       </div>
-                      <div className="text-rose-700 text-[10px]">
+                      <div className="text-rose-300 text-[10px]">
                         − {JSON.stringify(before)}
                       </div>
-                      <div className="text-emerald-700 text-[10px]">
+                      <div className="text-emerald-300 text-[10px]">
                         + {JSON.stringify(after)}
                       </div>
                     </div>
@@ -657,16 +658,16 @@ function EventRow({
             )}
             {hasSnapshot && (
               <div>
-                <div className="font-medium text-slate-700 mb-1">
+                <div className="font-medium text-foreground mb-1">
                   {tr("Record snapshot", "لقطة السجل", "Kayıt görüntüsü")}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-rose-700 mb-1">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-rose-300 mb-1">
                       {tr("Before", "قبل", "Önce")}
                     </div>
                     <pre
-                      className="bg-white p-2 rounded border border-rose-200 text-[10px] overflow-x-auto max-h-64"
+                      className="bg-card p-2 rounded border border-rose-500/30 text-[10px] overflow-x-auto max-h-64"
                       dir="ltr"
                     >
                       {entry.before
@@ -675,11 +676,11 @@ function EventRow({
                     </pre>
                   </div>
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wide text-emerald-700 mb-1">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-emerald-300 mb-1">
                       {tr("After", "بعد", "Sonra")}
                     </div>
                     <pre
-                      className="bg-white p-2 rounded border border-emerald-200 text-[10px] overflow-x-auto max-h-64"
+                      className="bg-card p-2 rounded border border-emerald-500/30 text-[10px] overflow-x-auto max-h-64"
                       dir="ltr"
                     >
                       {entry.after

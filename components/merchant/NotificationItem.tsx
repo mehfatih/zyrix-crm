@@ -60,9 +60,9 @@ export function NotificationItem({
     <div
       className={`relative group flex items-start gap-3 px-4 py-3 transition-colors border-l-4 ${
         notification.read
-          ? "bg-slate-50 border-transparent"
-          : "bg-white border-l-[#f97373]"
-      } hover:bg-sky-50/40`}
+          ? "bg-muted border-transparent"
+          : "bg-card border-l-[#f97373]"
+      } hover:bg-muted/40`}
     >
       <div
         className="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center"
@@ -74,16 +74,16 @@ export function NotificationItem({
         <div
           className={`text-sm ${
             notification.read
-              ? "text-slate-600"
+              ? "text-muted-foreground"
               : "text-[#0C4A6E] font-semibold"
           } truncate`}
         >
           {notification.title}
         </div>
-        <div className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+        <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
           {notification.body}
         </div>
-        <div className="text-[11px] text-slate-400 mt-1">{timeLabel}</div>
+        <div className="text-[11px] text-muted-foreground mt-1">{timeLabel}</div>
       </div>
       <button
         type="button"
@@ -94,7 +94,7 @@ export function NotificationItem({
         }}
         title={dismissLabel}
         aria-label={dismissLabel}
-        className="opacity-0 group-hover:opacity-100 transition-opacity absolute top-2 ltr:right-2 rtl:left-2 w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-rose-600 hover:bg-rose-50"
+        className="opacity-0 group-hover:opacity-100 transition-opacity absolute top-2 ltr:right-2 rtl:left-2 w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10"
       >
         <X className="w-3.5 h-3.5" />
       </button>

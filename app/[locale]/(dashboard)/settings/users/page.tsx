@@ -137,7 +137,7 @@ export default function TeamUsersPage() {
           <div className="flex items-center gap-3">
             <Link
               href={`/${locale}/settings`}
-              className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+              className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
             >
               <ArrowLeft
                 className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
@@ -147,10 +147,11 @@ export default function TeamUsersPage() {
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Team members", "أعضاء الفريق", "Ekip üyeleri")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Manage who has access and what they can do.",
                   "أدر من لديه الوصول وماذا يمكنه فعله.",
@@ -163,19 +164,19 @@ export default function TeamUsersPage() {
 
         {/* Banners */}
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-start gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700 whitespace-pre-line">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300 whitespace-pre-line">
             <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
         {!canEdit && !loading && (
-          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 flex items-start gap-2 text-sm text-amber-900">
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 flex items-start gap-2 text-sm text-amber-900">
             <Lock className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>
               {tr(
@@ -189,12 +190,12 @@ export default function TeamUsersPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : users.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
+          <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center">
             <Users className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               {tr(
                 "No team members yet.",
                 "لا يوجد أعضاء فريق بعد.",
@@ -272,8 +273,8 @@ function UserRow({
     <div
       className={`rounded-xl border p-4 flex items-start gap-3 ${
         user.status === "disabled"
-          ? "border-slate-200 bg-slate-50"
-          : "border-sky-100 bg-white"
+          ? "border-border bg-muted"
+          : "border-border bg-card"
       }`}
     >
       <div className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 text-white flex items-center justify-center font-bold text-sm">
@@ -290,20 +291,20 @@ function UserRow({
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <h3 className="text-sm font-bold text-sky-900">{user.fullName}</h3>
+          <h3 className="text-sm font-bold text-foreground">{user.fullName}</h3>
           {isSelf && (
-            <span className="inline-flex items-center text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-50 text-sky-600 border border-sky-200">
+            <span className="inline-flex items-center text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-muted text-cyan-300 border border-border">
               {tr("You", "أنت", "Sen")}
             </span>
           )}
           {user.status === "disabled" && (
-            <span className="inline-flex items-center text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-slate-200 text-slate-700">
+            <span className="inline-flex items-center text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-slate-200 text-foreground">
               {tr("Disabled", "معطل", "Devre dışı")}
             </span>
           )}
         </div>
         <p
-          className="text-xs text-slate-500 truncate"
+          className="text-xs text-muted-foreground truncate"
           dir={locale === "ar" ? "ltr" : undefined}
         >
           {user.email}
@@ -311,7 +312,7 @@ function UserRow({
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
           {/* Built-in role picker */}
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr("Built-in role", "الدور الأساسي", "Yerleşik rol")}
             </label>
             <div className="relative">
@@ -322,7 +323,7 @@ function UserRow({
                 onChange={(e) =>
                   onBuiltInChange(user, e.target.value as BuiltInRole)
                 }
-                className="w-full appearance-none bg-white border border-sky-200 rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed"
+                className="w-full appearance-none bg-card border border-border rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed"
               >
                 {ROLE_ORDER.map((r) => (
                   <option key={r} value={r}>
@@ -331,7 +332,7 @@ function UserRow({
                 ))}
               </select>
               <ChevronDown
-                className={`w-3.5 h-3.5 text-slate-400 pointer-events-none absolute top-1/2 -translate-y-1/2 ${
+                className={`w-3.5 h-3.5 text-muted-foreground pointer-events-none absolute top-1/2 -translate-y-1/2 ${
                   locale === "ar" ? "left-2" : "right-2"
                 }`}
               />
@@ -339,7 +340,7 @@ function UserRow({
           </div>
           {/* Custom role picker */}
           <div>
-            <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+            <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
               {tr(
                 "Custom role (optional)",
                 "دور مخصص (اختياري)",
@@ -362,7 +363,7 @@ function UserRow({
                 onChange={(e) =>
                   onCustomRoleChange(user, e.target.value || null)
                 }
-                className="w-full appearance-none bg-white border border-sky-200 rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed"
+                className="w-full appearance-none bg-card border border-border rounded-lg px-3 py-2 pr-8 rtl:pl-8 rtl:pr-3 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed"
               >
                 <option value="">
                   {tr(
@@ -378,7 +379,7 @@ function UserRow({
                 ))}
               </select>
               <ChevronDown
-                className={`w-3.5 h-3.5 text-slate-400 pointer-events-none absolute top-1/2 -translate-y-1/2 ${
+                className={`w-3.5 h-3.5 text-muted-foreground pointer-events-none absolute top-1/2 -translate-y-1/2 ${
                   locale === "ar" ? "left-2" : "right-2"
                 }`}
               />
@@ -388,10 +389,10 @@ function UserRow({
       </div>
       <div className="flex items-center flex-shrink-0">
         {saving ? (
-          <Loader2 className="w-4 h-4 animate-spin text-sky-500" />
+          <Loader2 className="w-4 h-4 animate-spin text-cyan-300" />
         ) : user.customRoleId ? (
           <span
-            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-50 text-sky-800 border border-sky-200"
+            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-muted text-foreground border border-border"
             title={tr("Custom role active", "دور مخصص نشط", "Özel rol aktif")}
           >
             <Shield className="w-2.5 h-2.5" />

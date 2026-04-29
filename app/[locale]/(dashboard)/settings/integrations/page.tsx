@@ -135,10 +135,11 @@ export default function EcommerceIntegrationsPage() {
               <Store className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {t("title")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {t("subtitle", { count: catalog.length })}
               </p>
             </div>
@@ -147,8 +148,8 @@ export default function EcommerceIntegrationsPage() {
 
         {stores.length > 0 && (
           <section className="space-y-3">
-            <h2 className="text-sm font-semibold text-sky-900 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-300" />
               {t("connectedStores")} ({stores.length})
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -177,18 +178,18 @@ export default function EcommerceIntegrationsPage() {
 
         <section className="space-y-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <h2 className="text-sm font-semibold text-sky-900 flex items-center gap-2">
-              <Plug className="w-4 h-4 text-sky-500" />
+            <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <Plug className="w-4 h-4 text-cyan-300" />
               {t("availablePlatforms")}
             </h2>
             <div className="relative">
-              <Search className="w-4 h-4 text-slate-400 absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
+              <Search className="w-4 h-4 text-muted-foreground absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t("searchPlatforms")}
-                className="ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-sky-200 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="ltr:pl-10 rtl:pr-10 ltr:pr-3 rtl:pl-3 py-2 text-sm border border-border rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>
@@ -203,12 +204,12 @@ export default function EcommerceIntegrationsPage() {
                   key={r}
                   onClick={() => setRegionFilter(r)}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-                    active ? "bg-sky-500 text-white shadow-sm" : "bg-white border border-sky-200 text-slate-700 hover:bg-sky-50"
+                    active ? "bg-sky-500 text-white shadow-sm" : "bg-card border border-border text-foreground hover:bg-muted"
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {label[locale as "en" | "ar" | "tr"] || label.en}
-                  <span className={`ml-1 px-1.5 py-0.5 text-[10px] font-bold rounded-full ${active ? "bg-white/20" : "bg-slate-100"}`}>
+                  <span className={`ml-1 px-1.5 py-0.5 text-[10px] font-bold rounded-full ${active ? "bg-card/20" : "bg-muted"}`}>
                     {counts[r]}
                   </span>
                 </button>
@@ -218,13 +219,13 @@ export default function EcommerceIntegrationsPage() {
 
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+              <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
             </div>
           ) : filtered.length === 0 ? (
-            <div className="bg-white border border-sky-100 rounded-xl p-12 text-center">
+            <div className="bg-card border border-border rounded-xl p-12 text-center">
               <Search className="w-10 h-10 text-sky-300 mx-auto mb-2" />
-              <h3 className="text-base font-semibold text-sky-900 mb-1">{t("noResults")}</h3>
-              <p className="text-sm text-slate-500">{t("noResultsHint")}</p>
+              <h3 className="text-base font-semibold text-foreground mb-1">{t("noResults")}</h3>
+              <p className="text-sm text-muted-foreground">{t("noResultsHint")}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
@@ -242,12 +243,12 @@ export default function EcommerceIntegrationsPage() {
           )}
         </section>
 
-        <div className="bg-gradient-to-br from-sky-50 to-sky-50 border border-sky-100 rounded-xl p-5">
-          <h3 className="text-base font-semibold text-sky-900 mb-2 flex items-center gap-2">
+        <div className="bg-gradient-to-br from-sky-50 to-sky-50 border border-border rounded-xl p-5">
+          <h3 className="text-base font-semibold text-foreground mb-2 flex items-center gap-2">
             <Info className="w-4 h-4" />
             {t("howItWorks.title")}
           </h3>
-          <ol className="space-y-1.5 text-sm text-slate-700">
+          <ol className="space-y-1.5 text-sm text-foreground">
             <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-sky-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">1</span><span>{t("howItWorks.step1")}</span></li>
             <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-sky-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">2</span><span>{t("howItWorks.step2")}</span></li>
             <li className="flex items-start gap-2"><span className="flex-shrink-0 w-5 h-5 rounded-full bg-sky-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">3</span><span>{t("howItWorks.step3")}</span></li>
@@ -276,14 +277,14 @@ function PlatformCard({ platform, isConnected, onConnect, locale, t }: any) {
   const description = platform.description[locale as "en" | "ar" | "tr"] || platform.description.en;
   const canConnect = platform.status === "native" || platform.status === "api";
   const statusColors: Record<string, string> = {
-    native: "bg-emerald-100 text-emerald-700",
-    api: "bg-sky-100 text-sky-600",
-    csv_only: "bg-amber-100 text-amber-700",
-    planned: "bg-slate-100 text-slate-500",
+    native: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30",
+    api: "bg-sky-100 text-cyan-300",
+    csv_only: "bg-amber-500/15 text-amber-300 border border-amber-500/30",
+    planned: "bg-muted text-muted-foreground",
   };
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4 hover:shadow-md transition-shadow flex flex-col">
+    <div className="bg-card border border-border rounded-xl p-4 hover:shadow-md transition-shadow flex flex-col">
       <div className="flex items-start gap-3 mb-2">
         <div
           className="w-11 h-11 rounded-lg flex items-center justify-center font-bold text-white text-lg flex-shrink-0 shadow-sm"
@@ -292,28 +293,28 @@ function PlatformCard({ platform, isConnected, onConnect, locale, t }: any) {
           {platform.name.charAt(0)}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-bold text-sky-900 truncate flex items-center gap-1">
+          <h3 className="text-sm font-bold text-foreground truncate flex items-center gap-1">
             {platform.name}
             {platform.popularity >= 85 && <Zap className="w-3 h-3 text-amber-500 flex-shrink-0" />}
           </h3>
-          <div className="flex items-center gap-1 text-[10px] text-slate-500 mt-0.5">
+          <div className="flex items-center gap-1 text-[10px] text-muted-foreground mt-0.5">
             <MapPin className="w-2.5 h-2.5" />
             {platform.country}
           </div>
         </div>
       </div>
 
-      <p className="text-xs text-slate-600 mb-3 line-clamp-3 flex-1">{description}</p>
+      <p className="text-xs text-muted-foreground mb-3 line-clamp-3 flex-1">{description}</p>
 
       <div className="flex items-center gap-1 mb-3 flex-wrap">
         {platform.supports.customers && (
-          <span className="inline-flex items-center gap-0.5 text-[10px] text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded">
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-cyan-300 bg-muted px-1.5 py-0.5 rounded">
             <Users className="w-2.5 h-2.5" />
             {t("cap.customers")}
           </span>
         )}
         {platform.supports.orders && (
-          <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+          <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-300 bg-emerald-500/10 px-1.5 py-0.5 rounded">
             <ShoppingCart className="w-2.5 h-2.5" />
             {t("cap.orders")}
           </span>
@@ -327,28 +328,28 @@ function PlatformCard({ platform, isConnected, onConnect, locale, t }: any) {
           {platform.status === "planned" && <Clock className="w-2.5 h-2.5" />}
           {t(`status.${platform.status}`)}
         </span>
-        <a href={platform.website} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-sky-500" title={t("visitWebsite")}>
+        <a href={platform.website} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-cyan-300" title={t("visitWebsite")}>
           <ExternalLink className="w-3 h-3" />
         </a>
       </div>
 
       {isConnected ? (
-        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
+        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 border border-emerald-500/30">
           <CheckCircle2 className="w-3.5 h-3.5" />
           {t("connected")}
         </div>
       ) : canConnect ? (
-        <button onClick={onConnect} className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-sky-500 hover:bg-sky-600 text-white">
+        <button onClick={onConnect} className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground">
           <Plus className="w-3.5 h-3.5" />
           {t("connect")}
         </button>
       ) : platform.status === "csv_only" ? (
-        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-amber-50 text-amber-700 border border-amber-100">
+        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/30 border border-amber-500/30">
           <FileText className="w-3.5 h-3.5" />
           {t("useCSVImport")}
         </div>
       ) : (
-        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-50 text-slate-500 border border-slate-100">
+        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-muted text-muted-foreground border border-border">
           <Clock className="w-3.5 h-3.5" />
           {t("comingSoon")}
         </div>
@@ -359,16 +360,16 @@ function PlatformCard({ platform, isConnected, onConnect, locale, t }: any) {
 
 function ConnectedStoreCard({ store, syncing, onSync, onDisconnect, locale, t }: any) {
   const statusMeta: Record<string, { bg: string; text: string; Icon: any }> = {
-    idle: { bg: "bg-slate-50", text: "text-slate-600", Icon: Clock },
-    syncing: { bg: "bg-sky-50", text: "text-sky-700", Icon: RefreshCw },
-    success: { bg: "bg-emerald-50", text: "text-emerald-700", Icon: CheckCircle2 },
-    error: { bg: "bg-red-50", text: "text-red-700", Icon: AlertTriangle },
+    idle: { bg: "bg-muted", text: "text-muted-foreground", Icon: Clock },
+    syncing: { bg: "bg-muted", text: "text-cyan-300", Icon: RefreshCw },
+    success: { bg: "bg-emerald-500/10", text: "text-emerald-300", Icon: CheckCircle2 },
+    error: { bg: "bg-rose-500/10", text: "text-rose-300", Icon: AlertTriangle },
   };
   const s = statusMeta[store.syncStatus] || statusMeta.idle;
   const SIcon = s.Icon;
 
   return (
-    <div className="bg-white border border-sky-100 rounded-xl p-4">
+    <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div className="flex items-start gap-3 min-w-0 flex-1">
           <div
@@ -378,12 +379,12 @@ function ConnectedStoreCard({ store, syncing, onSync, onDisconnect, locale, t }:
             {(store.platformInfo?.name || store.platform).charAt(0)}
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-xs font-semibold uppercase text-slate-500 tracking-wide">
+            <div className="text-xs font-semibold uppercase text-muted-foreground tracking-wide">
               {store.platformInfo?.name || store.platform}
             </div>
-            <h3 className="text-sm font-bold text-sky-900 truncate flex items-center gap-1 mt-0.5">
+            <h3 className="text-sm font-bold text-foreground truncate flex items-center gap-1 mt-0.5">
               {store.shopDomain}
-              <a href={`https://${store.shopDomain}`} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-sky-500 flex-shrink-0">
+              <a href={`https://${store.shopDomain}`} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-cyan-300 flex-shrink-0">
                 <ExternalLink className="w-3 h-3" />
               </a>
             </h3>
@@ -393,7 +394,7 @@ function ConnectedStoreCard({ store, syncing, onSync, onDisconnect, locale, t }:
                 {syncing ? t("status.syncing") : t(`status.${store.syncStatus}`)}
               </span>
               {store.lastSyncAt && (
-                <span className="text-[10px] text-slate-500">{formatDate(store.lastSyncAt, locale)}</span>
+                <span className="text-[10px] text-muted-foreground">{formatDate(store.lastSyncAt, locale)}</span>
               )}
             </div>
           </div>
@@ -403,14 +404,14 @@ function ConnectedStoreCard({ store, syncing, onSync, onDisconnect, locale, t }:
             {syncing ? <Loader2 className="w-3 h-3 animate-spin" /> : <RefreshCw className="w-3 h-3" />}
             {t("sync")}
           </button>
-          <button onClick={onDisconnect} className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded" title={t("disconnect")}>
+          <button onClick={onDisconnect} className="p-1.5 text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 rounded" title={t("disconnect")}>
             <Trash2 className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
 
       {store.syncError && (
-        <div className="mt-2 p-2 bg-red-50 border border-red-100 text-red-700 text-[10px] rounded flex items-start gap-1.5">
+        <div className="mt-2 p-2 bg-rose-500/10 border border-red-100 text-rose-300 text-[10px] rounded flex items-start gap-1.5">
           <AlertTriangle className="w-3 h-3 flex-shrink-0 mt-0.5" />
           {store.syncError}
         </div>
@@ -418,17 +419,17 @@ function ConnectedStoreCard({ store, syncing, onSync, onDisconnect, locale, t }:
 
       <div className="flex items-center gap-4 mt-3 pt-3 border-t border-sky-50">
         <div className="flex items-center gap-1.5">
-          <Users className="w-3.5 h-3.5 text-sky-500" />
+          <Users className="w-3.5 h-3.5 text-cyan-300" />
           <div>
-            <div className="text-[10px] text-slate-500 uppercase">{t("stats.customers")}</div>
-            <div className="text-sm font-bold text-sky-900">{store.totalCustomersImported}</div>
+            <div className="text-[10px] text-muted-foreground uppercase">{t("stats.customers")}</div>
+            <div className="text-sm font-bold text-foreground">{store.totalCustomersImported}</div>
           </div>
         </div>
         <div className="flex items-center gap-1.5">
-          <ShoppingCart className="w-3.5 h-3.5 text-emerald-600" />
+          <ShoppingCart className="w-3.5 h-3.5 text-emerald-300" />
           <div>
-            <div className="text-[10px] text-slate-500 uppercase">{t("stats.orders")}</div>
-            <div className="text-sm font-bold text-sky-900">{store.totalOrdersImported}</div>
+            <div className="text-[10px] text-muted-foreground uppercase">{t("stats.orders")}</div>
+            <div className="text-sm font-bold text-foreground">{store.totalOrdersImported}</div>
           </div>
         </div>
       </div>
@@ -493,13 +494,13 @@ function ConnectDialog({ platform, onClose, onConnected, locale, t }: any) {
 
   return (
     <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4" onClick={onClose}>
-      <div className="bg-white rounded-xl shadow-xl max-w-md w-full my-8" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-card rounded-xl shadow-xl max-w-md w-full my-8" onClick={(e) => e.stopPropagation()}>
         <div className="p-5 rounded-t-xl text-white relative" style={{ backgroundColor: platform.brandColor }}>
-          <button onClick={onClose} className="absolute top-3 ltr:right-3 rtl:left-3 p-1 text-white/80 hover:text-white hover:bg-white/20 rounded">
+          <button onClick={onClose} className="absolute top-3 ltr:right-3 rtl:left-3 p-1 text-white/80 hover:text-white hover:bg-card/20 rounded">
             <X className="w-5 h-5" />
           </button>
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center font-bold text-xl">
+            <div className="w-12 h-12 rounded-lg bg-card/20 flex items-center justify-center font-bold text-xl">
               {platform.name.charAt(0)}
             </div>
             <div>
@@ -513,62 +514,62 @@ function ConnectDialog({ platform, onClose, onConnected, locale, t }: any) {
         </div>
 
         <div className="p-5 space-y-4">
-          <p className="text-sm text-slate-600">{description}</p>
+          <p className="text-sm text-muted-foreground">{description}</p>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">{t("fields.domain")} *</label>
+            <label className="block text-xs font-medium text-foreground mb-1">{t("fields.domain")} *</label>
             <input
               type="text"
               value={form.shopDomain}
               onChange={(e) => setForm({ ...form, shopDomain: e.target.value })}
               placeholder={getDomainPlaceholder(platform.id)}
-              className="w-full px-3 py-2 text-sm border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <p className="text-[10px] text-slate-500 mt-1">{t("fields.domainHint")}</p>
+            <p className="text-[10px] text-muted-foreground mt-1">{t("fields.domainHint")}</p>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1">{tokenLabel} *</label>
+            <label className="block text-xs font-medium text-foreground mb-1">{tokenLabel} *</label>
             <input
               type="password"
               value={form.accessToken}
               onChange={(e) => setForm({ ...form, accessToken: e.target.value })}
               placeholder={getTokenPlaceholder(platform.id)}
-              className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <p className="text-[10px] text-slate-500 mt-1">{tokenHint}</p>
+            <p className="text-[10px] text-muted-foreground mt-1">{tokenHint}</p>
           </div>
 
           {requiresSecret && (
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">{t("fields.consumerSecret")} *</label>
+              <label className="block text-xs font-medium text-foreground mb-1">{t("fields.consumerSecret")} *</label>
               <input
                 type="password"
                 value={form.apiSecret || ""}
                 onChange={(e) => setForm({ ...form, apiSecret: e.target.value })}
                 placeholder="cs_..."
-                className="w-full px-3 py-2 text-sm font-mono border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           )}
 
           {platform.authHelpUrl && (
-            <a href={platform.authHelpUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-sky-500 hover:underline">
+            <a href={platform.authHelpUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-cyan-300 hover:underline">
               <ExternalLink className="w-3 h-3" />
               {t("howToGetCredentials")}
             </a>
           )}
 
           {error && (
-            <div className="p-3 bg-red-50 border border-red-100 text-red-700 text-sm rounded-lg flex items-start gap-2">
+            <div className="p-3 bg-rose-500/10 border border-red-100 text-rose-300 text-sm rounded-lg flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
               {error}
             </div>
           )}
         </div>
 
-        <div className="p-4 border-t border-sky-100 bg-sky-50/30 flex justify-end gap-2">
-          <button onClick={onClose} className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-lg">
+        <div className="p-4 border-t border-border bg-muted/30 flex justify-end gap-2">
+          <button onClick={onClose} className="px-4 py-2 bg-card border border-border hover:bg-muted text-foreground text-sm font-medium rounded-lg">
             {t("cancel")}
           </button>
           <button onClick={save} disabled={saving} className="flex items-center gap-1.5 px-4 py-2 text-white text-sm font-semibold rounded-lg disabled:opacity-50" style={{ backgroundColor: platform.brandColor }}>

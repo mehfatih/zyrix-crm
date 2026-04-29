@@ -37,14 +37,14 @@ export default function AdminDashboardView() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="animate-spin text-sky-500" size={28} />
+        <Loader2 className="animate-spin text-cyan-300" size={28} />
       </div>
     );
   }
 
   if (error || !stats) {
     return (
-      <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+      <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-4 text-sm text-red-800">
         {error ?? "Failed to load."}
       </div>
     );
@@ -54,8 +54,8 @@ export default function AdminDashboardView() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           {t("welcome")}, {me?.fullName ?? me?.email}. {t("subtitle")}
         </p>
       </div>
@@ -118,10 +118,10 @@ export default function AdminDashboardView() {
       </div>
 
       {/* Plans distribution */}
-      <div className="rounded-xl bg-white border border-sky-100 p-6">
+      <div className="rounded-xl bg-card border border-border p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Briefcase size={18} className="text-sky-500" />
-          <h2 className="text-sm font-semibold text-slate-900">
+          <Briefcase size={18} className="text-cyan-300" />
+          <h2 className="text-sm font-semibold text-foreground">
             {t("plansDistribution")}
           </h2>
         </div>
@@ -129,12 +129,12 @@ export default function AdminDashboardView() {
           {stats.plansDistribution.map((p) => (
             <div
               key={p.plan}
-              className="rounded-lg bg-sky-50 border border-sky-100 p-3"
+              className="rounded-lg bg-muted border border-border p-3"
             >
-              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
+              <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 {p.plan}
               </div>
-              <div className="text-2xl font-bold text-sky-600 mt-1">
+              <div className="text-2xl font-bold text-cyan-300 mt-1">
                 {p.count}
               </div>
             </div>
@@ -151,13 +151,13 @@ export default function AdminDashboardView() {
 type ColorKey = "cyan" | "sky" | "teal" | "emerald" | "indigo" | "amber" | "violet";
 
 const COLOR_MAP: Record<ColorKey, { bg: string; text: string; ring: string }> = {
-  cyan:    { bg: "bg-sky-50",    text: "text-sky-600",    ring: "ring-sky-100" },
-  sky:     { bg: "bg-sky-50",     text: "text-sky-700",     ring: "ring-sky-100" },
-  teal:    { bg: "bg-teal-50",    text: "text-teal-700",    ring: "ring-teal-100" },
-  emerald: { bg: "bg-emerald-50", text: "text-emerald-700", ring: "ring-emerald-100" },
-  indigo:  { bg: "bg-indigo-50",  text: "text-indigo-700",  ring: "ring-indigo-100" },
-  amber:   { bg: "bg-amber-50",   text: "text-amber-700",   ring: "ring-amber-100" },
-  violet:  { bg: "bg-violet-50",  text: "text-violet-700",  ring: "ring-violet-100" },
+  cyan:    { bg: "bg-muted",    text: "text-cyan-300",    ring: "ring-sky-100" },
+  sky:     { bg: "bg-muted",     text: "text-cyan-300",     ring: "ring-sky-100" },
+  teal:    { bg: "bg-teal-500/10",    text: "text-teal-700",    ring: "ring-teal-100" },
+  emerald: { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-100" },
+  indigo:  { bg: "bg-indigo-500/10",  text: "text-indigo-700",  ring: "ring-indigo-100" },
+  amber:   { bg: "bg-amber-500/10",   text: "text-amber-300",   ring: "ring-amber-100" },
+  violet:  { bg: "bg-violet-500/10",  text: "text-violet-700",  ring: "ring-violet-100" },
 };
 
 function KpiCard({
@@ -175,17 +175,17 @@ function KpiCard({
 }) {
   const c = COLOR_MAP[color];
   return (
-    <div className="rounded-xl bg-white border border-sky-100 p-5">
+    <div className="rounded-xl bg-card border border-border p-5">
       <div className="flex items-start justify-between">
         <div>
-          <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
+          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             {label}
           </div>
-          <div className="text-3xl font-bold text-slate-900 mt-2">
+          <div className="text-3xl font-bold text-foreground mt-2">
             {value.toLocaleString()}
           </div>
           {sublabel && (
-            <div className="text-xs text-slate-500 mt-1">{sublabel}</div>
+            <div className="text-xs text-muted-foreground mt-1">{sublabel}</div>
           )}
         </div>
         <div className={`rounded-lg p-2.5 ${c.bg} ring-1 ${c.ring}`}>

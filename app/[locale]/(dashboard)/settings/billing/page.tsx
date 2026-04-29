@@ -194,7 +194,7 @@ export default function BillingPage() {
     return (
       <DashboardShell locale={locale}>
         <div className="flex items-center justify-center py-24">
-          <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+          <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
         </div>
       </DashboardShell>
     );
@@ -213,10 +213,11 @@ export default function BillingPage() {
             <CreditCard className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("Billing", "الفوترة", "Faturalama")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Manage your plan, payment method, and invoices.",
                 "قم بإدارة خطتك وطريقة الدفع والفواتير.",
@@ -227,15 +228,15 @@ export default function BillingPage() {
         </div>
 
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         )}
 
         {/* Scheduled cancellation banner */}
         {scheduledToCancel && sub && (
-          <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 flex items-start gap-3">
-            <AlertTriangle className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
+          <div className="rounded-xl bg-amber-500/10 border border-amber-500/30 p-4 flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-amber-300 flex-shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-amber-900">
                 {tr(
@@ -255,7 +256,7 @@ export default function BillingPage() {
                 <button
                   onClick={handleResume}
                   disabled={cancelLoading}
-                  className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-amber-300 hover:bg-amber-100 rounded-lg text-xs font-semibold text-amber-900 disabled:opacity-50"
+                  className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-amber-300 hover:bg-amber-100 rounded-lg text-xs font-semibold text-amber-900 disabled:opacity-50"
                 >
                   {cancelLoading && <Loader2 className="w-3 h-3 animate-spin" />}
                   {tr("Keep subscription", "الاحتفاظ بالاشتراك", "Aboneliği koru")}
@@ -268,13 +269,13 @@ export default function BillingPage() {
         {/* Trial banner */}
         {billing?.company.trialEndsAt &&
           new Date(billing.company.trialEndsAt) > new Date() && (
-            <div className="rounded-xl bg-gradient-to-r from-sky-50 to-sky-50 border border-sky-200 p-4 flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-sky-600 flex-shrink-0 mt-0.5" />
+            <div className="rounded-xl bg-gradient-to-r from-sky-50 to-sky-50 border border-border p-4 flex items-start gap-3">
+              <Sparkles className="w-5 h-5 text-cyan-300 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-sky-900">
+                <p className="text-sm font-semibold text-foreground">
                   {tr("Free trial active", "النسخة التجريبية مفعّلة", "Ücretsiz deneme aktif")}
                 </p>
-                <p className="text-xs text-sky-800 mt-1">
+                <p className="text-xs text-foreground mt-1">
                   {tr(
                     `Trial ends on ${new Date(billing.company.trialEndsAt).toLocaleDateString()}. Upgrade any time to keep your features.`,
                     `تنتهي النسخة التجريبية في ${new Date(billing.company.trialEndsAt).toLocaleDateString()}. ترقّ في أي وقت للحفاظ على ميزاتك.`,
@@ -286,7 +287,7 @@ export default function BillingPage() {
           )}
 
         {/* Current plan card */}
-        <div className="rounded-2xl border border-sky-100 bg-white shadow-sm overflow-hidden">
+        <div className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden">
           <div className="p-5 sm:p-6 flex items-start gap-4 flex-wrap">
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-white"
@@ -306,7 +307,7 @@ export default function BillingPage() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-lg font-bold text-sky-900 capitalize">
+                <h2 className="text-lg font-bold text-foreground capitalize">
                   {sub?.plan
                     ? locale === "ar"
                       ? sub.plan.nameAr
@@ -331,11 +332,11 @@ export default function BillingPage() {
               </div>
               {sub ? (
                 <>
-                  <p className="text-sm text-slate-700 mt-1">
+                  <p className="text-sm text-foreground mt-1">
                     <span className="font-mono tabular-nums" dir="ltr">
                       {sub.amount} {sub.currency}
                     </span>
-                    <span className="text-slate-500">
+                    <span className="text-muted-foreground">
                       {" "}
                       /{" "}
                       {sub.billingCycle === "yearly"
@@ -343,7 +344,7 @@ export default function BillingPage() {
                         : tr("month", "شهر", "ay")}
                     </span>
                   </p>
-                  <p className="text-xs text-slate-500 mt-2 flex items-center gap-1.5">
+                  <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
                     {tr(
                       `Next renewal: ${new Date(sub.currentPeriodEnd).toLocaleDateString()}`,
@@ -353,7 +354,7 @@ export default function BillingPage() {
                   </p>
                 </>
               ) : (
-                <p className="text-sm text-slate-600 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   {tr(
                     "Upgrade to unlock premium features.",
                     "قم بالترقية لفتح الميزات المتقدمة.",
@@ -366,7 +367,7 @@ export default function BillingPage() {
               <button
                 onClick={handleCancel}
                 disabled={cancelLoading}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-rose-200 hover:bg-rose-50 rounded-lg text-xs font-semibold text-rose-700 disabled:opacity-50"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-rose-500/30 hover:bg-rose-500/10 rounded-lg text-xs font-semibold text-rose-300 disabled:opacity-50"
               >
                 {cancelLoading && <Loader2 className="w-3 h-3 animate-spin" />}
                 {tr("Cancel", "إلغاء", "İptal")}
@@ -378,10 +379,10 @@ export default function BillingPage() {
         {/* Plans picker */}
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <h3 className="text-lg font-bold text-sky-900">
+            <h3 className="text-lg font-bold text-foreground">
               {tr("Available plans", "الخطط المتاحة", "Mevcut planlar")}
             </h3>
-            <div className="inline-flex bg-white border border-sky-200 rounded-lg p-0.5">
+            <div className="inline-flex bg-card border border-border rounded-lg p-0.5">
               {BILLING_CYCLES.map((c) => (
                 <button
                   key={c.key}
@@ -389,7 +390,7 @@ export default function BillingPage() {
                   className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
                     cycle === c.key
                       ? "bg-sky-500 text-white"
-                      : "text-slate-600 hover:bg-sky-50"
+                      : "text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   {c.label[locale]}
@@ -399,7 +400,7 @@ export default function BillingPage() {
           </div>
 
           {plans.length === 0 ? (
-            <div className="rounded-xl border border-sky-100 bg-white p-6 text-sm text-slate-600 text-center">
+            <div className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground text-center">
               {tr(
                 "Plans aren't configured yet. Contact support to upgrade.",
                 "لم يتم تكوين الخطط بعد. اتصل بالدعم للترقية.",
@@ -416,10 +417,10 @@ export default function BillingPage() {
                     key={plan.id}
                     className={`rounded-2xl border p-5 relative transition-all ${
                       isCurrent
-                        ? "border-sky-400 ring-2 ring-sky-100 bg-sky-50/50"
+                        ? "border-sky-400 ring-2 ring-sky-100 bg-muted/50"
                         : plan.isFeatured
-                          ? "border-sky-300 bg-white hover:border-sky-400"
-                          : "border-sky-100 bg-white hover:border-sky-300"
+                          ? "border-sky-300 bg-card hover:border-sky-400"
+                          : "border-border bg-card hover:border-sky-300"
                     }`}
                   >
                     {plan.isFeatured && !isCurrent && (
@@ -441,15 +442,15 @@ export default function BillingPage() {
                         <Sparkles className="w-4 h-4" />
                       )}
                     </div>
-                    <h4 className="text-base font-bold text-sky-900 capitalize">
+                    <h4 className="text-base font-bold text-foreground capitalize">
                       {nameForPlan(plan)}
                     </h4>
-                    <p className="text-xs text-slate-600 mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {descriptionForPlan(plan) || " "}
                     </p>
                     <div className="mt-3">
                       <span
-                        className="text-2xl font-bold text-sky-900 tabular-nums"
+                        className="text-2xl font-bold text-foreground tabular-nums"
                         dir="ltr"
                       >
                         {price === 0
@@ -457,7 +458,7 @@ export default function BillingPage() {
                           : `${price} ${resolvedCurrency}`}
                       </span>
                       {price > 0 && (
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-muted-foreground">
                           {" "}
                           /{" "}
                           {cycle === "yearly"
@@ -466,10 +467,10 @@ export default function BillingPage() {
                         </span>
                       )}
                     </div>
-                    <ul className="mt-4 space-y-1.5 text-xs text-slate-700">
+                    <ul className="mt-4 space-y-1.5 text-xs text-foreground">
                       {(plan.features || []).slice(0, 6).map((f, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <Check className="w-3.5 h-3.5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-emerald-300 mt-0.5 flex-shrink-0" />
                           <span>{f}</span>
                         </li>
                       ))}
@@ -481,8 +482,8 @@ export default function BillingPage() {
                       }
                       className={`w-full mt-4 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors ${
                         isCurrent
-                          ? "bg-slate-100 text-slate-500 cursor-not-allowed"
-                          : "bg-sky-500 hover:bg-sky-600 text-white disabled:opacity-50"
+                          ? "bg-muted text-muted-foreground cursor-not-allowed"
+                          : "bg-primary hover:bg-primary/90 text-primary-foreground disabled:opacity-50"
                       }`}
                     >
                       {actingPlan === plan.slug && (
@@ -501,7 +502,7 @@ export default function BillingPage() {
           )}
 
           {!canManage && (
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-muted-foreground">
               {tr(
                 "Only owners and admins can change the subscription.",
                 "يمكن للمالكين والمديرين فقط تغيير الاشتراك.",
@@ -514,21 +515,21 @@ export default function BillingPage() {
         {/* Invoices */}
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <Receipt className="w-5 h-5 text-sky-500" />
-            <h3 className="text-lg font-bold text-sky-900">
+            <Receipt className="w-5 h-5 text-cyan-300" />
+            <h3 className="text-lg font-bold text-foreground">
               {tr("Invoices", "الفواتير", "Faturalar")}
             </h3>
           </div>
 
           {!invoicePage || invoicePage.items.length === 0 ? (
-            <div className="rounded-xl border border-sky-100 bg-white p-6 text-sm text-slate-500 text-center">
+            <div className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground text-center">
               {tr("No invoices yet.", "لا توجد فواتير بعد.", "Henüz fatura yok.")}
             </div>
           ) : (
             <>
-              <div className="rounded-xl border border-sky-100 bg-white overflow-hidden">
+              <div className="rounded-xl border border-border bg-card overflow-hidden">
                 <table className="w-full text-sm">
-                  <thead className="bg-sky-50 text-xs text-slate-600 uppercase">
+                  <thead className="bg-muted text-xs text-muted-foreground uppercase">
                     <tr>
                       <th className="text-left rtl:text-right px-4 py-2.5">
                         {tr("Date", "التاريخ", "Tarih")}
@@ -556,7 +557,7 @@ export default function BillingPage() {
               </div>
 
               {invoicePage.pagination.total > 10 && (
-                <div className="flex items-center justify-end gap-2 text-xs text-slate-500">
+                <div className="flex items-center justify-end gap-2 text-xs text-muted-foreground">
                   <span>
                     {tr(
                       `${invoiceOffset + 1}–${Math.min(invoiceOffset + 10, invoicePage.pagination.total)} of ${invoicePage.pagination.total}`,
@@ -567,14 +568,14 @@ export default function BillingPage() {
                   <button
                     onClick={() => setInvoiceOffset(Math.max(0, invoiceOffset - 10))}
                     disabled={invoiceOffset === 0}
-                    className="p-1.5 rounded bg-white border border-sky-200 hover:bg-sky-50 disabled:opacity-40"
+                    className="p-1.5 rounded bg-card border border-border hover:bg-muted disabled:opacity-40"
                   >
                     <ChevronLeft className={`w-3.5 h-3.5 ${isRtl ? "-scale-x-100" : ""}`} />
                   </button>
                   <button
                     onClick={() => setInvoiceOffset(invoiceOffset + 10)}
                     disabled={invoiceOffset + 10 >= invoicePage.pagination.total}
-                    className="p-1.5 rounded bg-white border border-sky-200 hover:bg-sky-50 disabled:opacity-40"
+                    className="p-1.5 rounded bg-card border border-border hover:bg-muted disabled:opacity-40"
                   >
                     <ChevronRight className={`w-3.5 h-3.5 ${isRtl ? "-scale-x-100" : ""}`} />
                   </button>
@@ -602,19 +603,19 @@ function InvoiceRow({
     paid: "bg-emerald-100 text-emerald-800",
     pending: "bg-amber-100 text-amber-800",
     failed: "bg-rose-100 text-rose-800",
-    refunded: "bg-slate-100 text-slate-700",
+    refunded: "bg-muted text-foreground",
   };
   return (
-    <tr className="border-t border-sky-100 hover:bg-sky-50/40">
+    <tr className="border-t border-border hover:bg-muted/40">
       <td className="px-4 py-2.5">
         <time dir="ltr" className="text-xs tabular-nums">
           {new Date(inv.createdAt).toLocaleDateString()}
         </time>
       </td>
-      <td className="px-4 py-2.5 text-slate-700">
+      <td className="px-4 py-2.5 text-foreground">
         {inv.subscription?.plan.name || inv.description || "—"}
         {inv.subscription?.billingCycle && (
-          <span className="text-xs text-slate-500 ml-1.5 rtl:ml-0 rtl:mr-1.5">
+          <span className="text-xs text-muted-foreground ml-1.5 rtl:ml-0 rtl:mr-1.5">
             ·{" "}
             {inv.subscription.billingCycle === "yearly"
               ? tr("yearly", "سنوي", "yıllık")
@@ -628,13 +629,13 @@ function InvoiceRow({
       <td className="px-4 py-2.5 text-center">
         <span
           className={`inline-block text-[10px] font-bold uppercase px-2 py-0.5 rounded ${
-            statusStyle[inv.status] || "bg-slate-100 text-slate-700"
+            statusStyle[inv.status] || "bg-muted text-foreground"
           }`}
         >
           {inv.status}
         </span>
       </td>
-      <td className="px-4 py-2.5 text-xs text-slate-600">
+      <td className="px-4 py-2.5 text-xs text-muted-foreground">
         {inv.last4 ? (
           <span dir="ltr">
             {inv.cardBrand || "card"} •••• {inv.last4}

@@ -99,29 +99,29 @@ export default async function ArticlePage({
     >
       <ArticleViewTracker locale={L} category={category} slug={slug} />
 
-      <nav className="text-xs text-slate-500 mb-4 flex items-center gap-1 flex-wrap">
-        <Link href={`/${L}/docs`} className="hover:text-sky-600">
+      <nav className="text-xs text-muted-foreground mb-4 flex items-center gap-1 flex-wrap">
+        <Link href={`/${L}/docs`} className="hover:text-cyan-300">
           {copy.title}
         </Link>
         <span>›</span>
         <Link
           href={`/${L}/docs/${category}`}
-          className="hover:text-sky-600"
+          className="hover:text-cyan-300"
         >
           {getCategoryLabel(category as CategoryId, L)}
         </Link>
         <span>›</span>
-        <span className="text-slate-700 font-medium truncate">
+        <span className="text-foreground font-medium truncate">
           {doc.frontmatter.title}
         </span>
       </nav>
 
       <article className="docs-article">
         <header className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 leading-tight">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight">
             {doc.frontmatter.title}
           </h1>
-          <div className="flex items-center gap-4 flex-wrap text-sm text-slate-500">
+          <div className="flex items-center gap-4 flex-wrap text-sm text-muted-foreground">
             {doc.frontmatter.readTime && (
               <span className="inline-flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />
@@ -139,7 +139,7 @@ export default async function ArticlePage({
                 {doc.frontmatter.plans.map((p) => (
                   <span
                     key={p}
-                    className="px-2 py-0.5 text-[11px] font-semibold bg-sky-50 text-sky-600 border border-sky-200 rounded-full capitalize"
+                    className="px-2 py-0.5 text-[11px] font-semibold bg-muted text-cyan-300 border border-border rounded-full capitalize"
                   >
                     {p}
                   </span>
@@ -150,16 +150,16 @@ export default async function ArticlePage({
         </header>
 
         <div
-          className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline prose-code:bg-sky-50 prose-code:text-sky-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-sky-50 prose-pre:border prose-pre:border-sky-100 prose-pre:text-slate-800 prose-blockquote:border-l-violet-400 prose-blockquote:bg-violet-50 prose-blockquote:px-4 prose-blockquote:py-3 prose-blockquote:not-italic prose-blockquote:rounded-r-lg prose-blockquote:text-slate-700"
+          className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:text-foreground prose-a:text-cyan-300 prose-a:no-underline hover:prose-a:underline prose-code:bg-muted prose-code:text-foreground prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:text-foreground prose-blockquote:border-l-violet-400 prose-blockquote:bg-violet-500/10 prose-blockquote:px-4 prose-blockquote:py-3 prose-blockquote:not-italic prose-blockquote:rounded-r-lg prose-blockquote:text-foreground"
           dangerouslySetInnerHTML={{ __html: html }}
         />
 
         <WasThisHelpful locale={L} articleSlug={slug} category={category} />
 
         {/* Edit on GitHub */}
-        <div className="mt-2 text-xs text-slate-500">
+        <div className="mt-2 text-xs text-muted-foreground">
           <a
-            className="inline-flex items-center gap-1 hover:text-sky-600"
+            className="inline-flex items-center gap-1 hover:text-cyan-300"
             href={`https://github.com/mehfatih/zyrix-crm/edit/main/content/docs/${L}/${doc.path}.md`}
             target="_blank"
             rel="noopener noreferrer"
@@ -171,18 +171,18 @@ export default async function ArticlePage({
 
         {/* Prev / Next */}
         {(prev || next) && (
-          <nav className="mt-10 pt-6 border-t border-sky-100 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <nav className="mt-10 pt-6 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-3">
             {prev ? (
               <Link
                 href={`/${L}/docs/${prev.category}/${prev.slug}`}
-                className="group flex items-start gap-3 p-4 rounded-xl border border-sky-100 hover:border-sky-300 bg-white transition-colors"
+                className="group flex items-start gap-3 p-4 rounded-xl border border-border hover:border-sky-300 bg-card transition-colors"
               >
-                <ArrowLeft className="w-4 h-4 mt-0.5 text-slate-400 group-hover:text-sky-500 rtl:rotate-180" />
+                <ArrowLeft className="w-4 h-4 mt-0.5 text-muted-foreground group-hover:text-cyan-300 rtl:rotate-180" />
                 <div className="min-w-0">
-                  <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">
+                  <div className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">
                     {copy.prev}
                   </div>
-                  <div className="text-sm font-semibold text-slate-900 truncate">
+                  <div className="text-sm font-semibold text-foreground truncate">
                     {prev.frontmatter.title}
                   </div>
                 </div>
@@ -193,17 +193,17 @@ export default async function ArticlePage({
             {next ? (
               <Link
                 href={`/${L}/docs/${next.category}/${next.slug}`}
-                className="group flex items-start justify-end gap-3 p-4 rounded-xl border border-sky-100 hover:border-sky-300 bg-white transition-colors text-end"
+                className="group flex items-start justify-end gap-3 p-4 rounded-xl border border-border hover:border-sky-300 bg-card transition-colors text-end"
               >
                 <div className="min-w-0">
-                  <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">
+                  <div className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">
                     {copy.next}
                   </div>
-                  <div className="text-sm font-semibold text-slate-900 truncate">
+                  <div className="text-sm font-semibold text-foreground truncate">
                     {next.frontmatter.title}
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 mt-0.5 text-slate-400 group-hover:text-sky-500 rtl:rotate-180" />
+                <ArrowRight className="w-4 h-4 mt-0.5 text-muted-foreground group-hover:text-cyan-300 rtl:rotate-180" />
               </Link>
             ) : (
               <span />

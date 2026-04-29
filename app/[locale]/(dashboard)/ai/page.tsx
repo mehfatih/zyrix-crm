@@ -144,10 +144,11 @@ export default function AiHubPage() {
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">AI AGENTS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr("AI Agents", "وكلاء الذكاء الاصطناعي", "AI Ajanları")}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "Three AI agents built into Zyrix — each purpose-built for a different workflow.",
                 "ثلاثة وكلاء AI مدمجين في Zyrix — كل واحد مصمم لسير عمل مختلف.",
@@ -165,7 +166,7 @@ export default function AiHubPage() {
               <Link
                 key={agent.key}
                 href={agent.href}
-                className="group block rounded-2xl border border-sky-100 bg-white hover:border-sky-300 hover:shadow-lg transition-all overflow-hidden"
+                className="group block rounded-2xl border border-border bg-card hover:border-sky-300 hover:shadow-lg transition-all overflow-hidden"
               >
                 <div className="flex items-start gap-4 p-5">
                   <div
@@ -175,33 +176,33 @@ export default function AiHubPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h2 className="text-lg font-bold text-sky-900">
+                      <h2 className="text-lg font-bold text-foreground">
                         {agent.label}
                       </h2>
                       <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white">
                         AI
                       </span>
                     </div>
-                    <p className="text-sm text-sky-600 font-medium mt-0.5">
+                    <p className="text-sm text-cyan-300 font-medium mt-0.5">
                       {agent.tagline}
                     </p>
-                    <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                       {agent.description}
                     </p>
                     <div className="flex items-center gap-2 flex-wrap mt-3">
                       {agent.examples.map((example, i) => (
                         <span
                           key={i}
-                          className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-sky-50 border border-sky-100 text-[11px] text-slate-600"
+                          className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-muted border border-border text-[11px] text-muted-foreground"
                         >
-                          <Zap className="w-3 h-3 text-sky-500" />
+                          <Zap className="w-3 h-3 text-cyan-300" />
                           "{example}"
                         </span>
                       ))}
                     </div>
                   </div>
                   <ArrowRight
-                    className={`w-5 h-5 text-slate-300 group-hover:text-sky-500 transition-colors flex-shrink-0 mt-2 ${
+                    className={`w-5 h-5 text-slate-300 group-hover:text-cyan-300 transition-colors flex-shrink-0 mt-2 ${
                       isRtl ? "-scale-x-100" : ""
                     }`}
                   />

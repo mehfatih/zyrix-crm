@@ -87,20 +87,20 @@ export default function AdminAuditView({ locale }: Props) {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="flex size-10 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+        <div className="flex size-10 items-center justify-center rounded-xl bg-muted text-cyan-300">
           <FileText className="size-5" />
         </div>
         <div>
-          <h1 className="text-2xl font-semibold text-sky-900">{t("title")}</h1>
-          <p className="text-sm text-slate-500">{t("subtitle")}</p>
+          <h1 className="text-2xl font-semibold text-foreground">{t("title")}</h1>
+          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="rounded-xl border border-sky-100 bg-white p-4">
+      <div className="rounded-xl border border-border bg-card p-4">
         <div className="flex flex-wrap items-end gap-3">
           <div className="min-w-[200px] flex-1">
-            <label className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-600">
+            <label className="mb-1 flex items-center gap-1 text-xs font-medium text-muted-foreground">
               <Filter className="size-3" />
               {t("filterAction")}
             </label>
@@ -110,7 +110,7 @@ export default function AdminAuditView({ locale }: Props) {
                 setActionFilter(e.target.value);
                 setPage(1);
               }}
-              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             >
               <option value="">{t("allActions")}</option>
               {ACTION_OPTIONS.map((a) => (
@@ -121,7 +121,7 @@ export default function AdminAuditView({ locale }: Props) {
             </select>
           </div>
           <div className="min-w-[200px] flex-1">
-            <label className="mb-1 block text-xs font-medium text-slate-600">
+            <label className="mb-1 block text-xs font-medium text-muted-foreground">
               {t("filterCompany")}
             </label>
             <input
@@ -132,32 +132,32 @@ export default function AdminAuditView({ locale }: Props) {
                 setPage(1);
               }}
               placeholder="company-uuid"
-              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/20"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
           </div>
         </div>
       </div>
 
       {error && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">
           {error}
         </div>
       )}
 
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <Loader2 className="size-8 animate-spin text-sky-500" />
+          <Loader2 className="size-8 animate-spin text-cyan-300" />
         </div>
       ) : !data || data.items.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
+        <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center text-muted-foreground">
           {t("noLogs")}
         </div>
       ) : (
-        <div className="rounded-xl border border-sky-100 bg-white">
+        <div className="rounded-xl border border-border bg-card">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-sky-50">
-                <tr className="text-left text-xs font-medium uppercase text-slate-600">
+              <thead className="bg-muted">
+                <tr className="text-left text-xs font-medium uppercase text-muted-foreground">
                   <th className="px-4 py-2.5">{t("action")}</th>
                   <th className="px-4 py-2.5">{t("user")}</th>
                   <th className="px-4 py-2.5">{t("company")}</th>
@@ -166,7 +166,7 @@ export default function AdminAuditView({ locale }: Props) {
                   <th className="px-4 py-2.5 text-right">{t("changes")}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-border">
                 {data.items.map((log) => {
                   const isExpanded = expandedId === log.id;
                   const hasChanges =
@@ -175,33 +175,33 @@ export default function AdminAuditView({ locale }: Props) {
                     <>
                       <tr
                         key={log.id}
-                        className="hover:bg-sky-50/50 transition-colors"
+                        className="hover:bg-muted/50 transition-colors"
                       >
                         <td className="px-4 py-3">
-                          <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-800">
+                          <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">
                             {log.action}
                           </code>
                         </td>
-                        <td className="px-4 py-3 text-sm text-slate-700">
+                        <td className="px-4 py-3 text-sm text-foreground">
                           {log.user ? (
                             <div>
                               <div className="font-medium">
                                 {log.user.fullName}
                               </div>
-                              <div className="text-xs text-slate-500">
+                              <div className="text-xs text-muted-foreground">
                                 {log.user.email}
                               </div>
                             </div>
                           ) : (
-                            <span className="text-xs italic text-slate-400">
+                            <span className="text-xs italic text-muted-foreground">
                               {t("system")}
                             </span>
                           )}
                         </td>
-                        <td className="px-4 py-3 text-sm text-slate-700">
+                        <td className="px-4 py-3 text-sm text-foreground">
                           {log.company?.name || "—"}
                         </td>
-                        <td className="px-4 py-3 text-xs text-slate-500">
+                        <td className="px-4 py-3 text-xs text-muted-foreground">
                           {log.entityType && (
                             <div>
                               <div>{log.entityType}</div>
@@ -213,7 +213,7 @@ export default function AdminAuditView({ locale }: Props) {
                             </div>
                           )}
                         </td>
-                        <td className="px-4 py-3 text-sm text-slate-500">
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
                           {new Date(log.createdAt).toLocaleString(locale)}
                         </td>
                         <td className="px-4 py-3 text-right">
@@ -222,7 +222,7 @@ export default function AdminAuditView({ locale }: Props) {
                               onClick={() =>
                                 setExpandedId(isExpanded ? null : log.id)
                               }
-                              className="inline-flex items-center gap-1 rounded text-xs font-medium text-sky-600 hover:text-sky-900"
+                              className="inline-flex items-center gap-1 rounded text-xs font-medium text-cyan-300 hover:text-foreground"
                             >
                               {isExpanded ? (
                                 <>
@@ -237,14 +237,14 @@ export default function AdminAuditView({ locale }: Props) {
                               )}
                             </button>
                           ) : (
-                            <span className="text-xs text-slate-400">—</span>
+                            <span className="text-xs text-muted-foreground">—</span>
                           )}
                         </td>
                       </tr>
                       {isExpanded && hasChanges && (
-                        <tr key={`${log.id}-details`} className="bg-slate-50">
+                        <tr key={`${log.id}-details`} className="bg-muted">
                           <td colSpan={6} className="px-4 py-3">
-                            <pre className="overflow-x-auto rounded-lg bg-white p-3 text-xs text-slate-700 ring-1 ring-slate-200">
+                            <pre className="overflow-x-auto rounded-lg bg-card p-3 text-xs text-foreground ring-1 ring-border">
                               {JSON.stringify(log.changes, null, 2)}
                             </pre>
                           </td>
@@ -258,19 +258,19 @@ export default function AdminAuditView({ locale }: Props) {
           </div>
 
           {/* Pagination */}
-          <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3 text-sm">
-            <div className="text-slate-600">
+          <div className="flex items-center justify-between border-t border-border px-4 py-3 text-sm">
+            <div className="text-muted-foreground">
               {data.pagination.total.toLocaleString()} total
             </div>
             <div className="flex items-center gap-2">
               <button
                 disabled={data.pagination.page <= 1}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
-                className="rounded border border-slate-200 p-1.5 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded border border-border p-1.5 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <ChevronLeft size={16} className="rtl:rotate-180" />
               </button>
-              <span className="text-slate-600">
+              <span className="text-muted-foreground">
                 {data.pagination.page} / {data.pagination.totalPages}
               </span>
               <button
@@ -280,7 +280,7 @@ export default function AdminAuditView({ locale }: Props) {
                     Math.min(data.pagination.totalPages, p + 1)
                   )
                 }
-                className="rounded border border-slate-200 p-1.5 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded border border-border p-1.5 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <ChevronRight size={16} className="rtl:rotate-180" />
               </button>

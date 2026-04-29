@@ -60,10 +60,10 @@ export function AIMessageComposer({ context = '', channel, onSend }: Props) {
   };
 
   return (
-    <div className="space-y-3 border-t border-zyrix-border bg-white p-4">
+    <div className="space-y-3 border-t border-border bg-card p-4">
       {drafts.length > 0 && (
         <div className="space-y-2">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-zyrix-primary">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-primary">
             {t('aiSuggestions')}
           </div>
           <div className="grid gap-2 lg:grid-cols-3">
@@ -74,15 +74,15 @@ export function AIMessageComposer({ context = '', channel, onSend }: Props) {
                   setContent(draft.content);
                   setDrafts([]);
                 }}
-                className="rounded-lg border border-zyrix-aiBorder bg-zyrix-aiSurface p-3 text-start transition-shadow hover:shadow-zyrix-card"
+                className="rounded-lg border border-violet-500/30 bg-violet-500/10 p-3 text-start transition-shadow hover:shadow-md"
               >
                 <div className="mb-1 flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-zyrix-primary capitalize">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-primary capitalize">
                     {t(`tone.${draft.tone}`)}
                   </span>
                   <AITrustBadge confidence={draft.confidence} size="sm" />
                 </div>
-                <p className="line-clamp-3 text-xs leading-relaxed text-zyrix-textBody">
+                <p className="line-clamp-3 text-xs leading-relaxed text-muted-foreground">
                   {draft.content}
                 </p>
               </button>
@@ -96,14 +96,14 @@ export function AIMessageComposer({ context = '', channel, onSend }: Props) {
         onChange={(e) => setContent(e.target.value)}
         placeholder={t('placeholder')}
         rows={4}
-        className="w-full rounded-lg border border-zyrix-border bg-white p-3 text-sm text-zyrix-textBody placeholder:text-zyrix-textMuted focus:border-zyrix-primary focus:outline-none focus:ring-1 focus:ring-zyrix-primary"
+        className="w-full rounded-lg border border-border bg-card p-3 text-sm text-muted-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
       />
 
       <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={generate}
           disabled={generating}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-zyrix-ai-gradient px-3 py-1.5 text-xs font-bold text-white shadow-zyrix-card hover:shadow-zyrix-card-hover disabled:opacity-60"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-violet-500 px-3 py-1.5 text-xs font-bold text-white shadow-md hover:shadow-md-hover disabled:opacity-60"
         >
           {generating ? (
             <Loader2 size={13} className="animate-spin" />
@@ -115,7 +115,7 @@ export function AIMessageComposer({ context = '', channel, onSend }: Props) {
 
         <ToneMenu onSelect={improveTone} loading={improvingTone} />
 
-        <button className="inline-flex items-center gap-1.5 rounded-lg border border-zyrix-border bg-white px-3 py-1.5 text-xs font-medium text-zyrix-textBody hover:bg-zyrix-cardBgAlt">
+        <button className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted">
           <Languages size={13} />
           <span>{t('translate')}</span>
         </button>
@@ -125,7 +125,7 @@ export function AIMessageComposer({ context = '', channel, onSend }: Props) {
         <button
           onClick={send}
           disabled={!content.trim()}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-zyrix-primary px-4 py-1.5 text-xs font-bold text-white hover:bg-zyrix-primaryDark disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-1.5 text-xs font-bold text-white hover:bg-primaryDark disabled:opacity-50"
         >
           <Send size={13} />
           <span>{t('send')}</span>
@@ -151,7 +151,7 @@ function ToneMenu({
       <button
         onClick={() => setOpen((v) => !v)}
         disabled={!!loading}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-zyrix-border bg-white px-3 py-1.5 text-xs font-medium text-zyrix-textBody hover:bg-zyrix-cardBgAlt disabled:opacity-50"
+        className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted disabled:opacity-50"
       >
         {loading ? (
           <Loader2 size={13} className="animate-spin" />
@@ -167,7 +167,7 @@ function ToneMenu({
             className="fixed inset-0 z-30"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute bottom-full left-0 z-40 mb-1 w-44 rounded-lg border border-zyrix-border bg-white p-1 shadow-zyrix-card">
+          <div className="absolute bottom-full left-0 z-40 mb-1 w-44 rounded-lg border border-border bg-card p-1 shadow-md">
             {tones.map((tone) => (
               <button
                 key={tone}
@@ -175,7 +175,7 @@ function ToneMenu({
                   onSelect(tone);
                   setOpen(false);
                 }}
-                className="block w-full rounded-md px-2 py-1.5 text-start text-xs text-zyrix-textBody hover:bg-zyrix-aiSurface"
+                className="block w-full rounded-md px-2 py-1.5 text-start text-xs text-muted-foreground hover:bg-violet-500/10"
               >
                 {t(`tone.${tone}`)}
               </button>

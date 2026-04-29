@@ -37,8 +37,8 @@ export default function CheckoutSuccessView({ locale }: Props) {
 function SuccessLoadingFallback() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-sky-100 p-8 text-center">
-        <Loader2 className="w-8 h-8 text-sky-500 animate-spin mx-auto" />
+      <div className="w-full max-w-md bg-card rounded-2xl shadow-xl border border-border p-8 text-center">
+        <Loader2 className="w-8 h-8 text-cyan-300 animate-spin mx-auto" />
       </div>
     </div>
   );
@@ -113,17 +113,17 @@ function SuccessContent({ locale }: Props) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-sky-100 p-8">
+      <div className="w-full max-w-md bg-card rounded-2xl shadow-xl border border-border p-8">
         {status === "confirming" && (
           <div className="text-center py-6">
             <Loader2
               size={44}
-              className="animate-spin text-sky-500 mx-auto mb-5"
+              className="animate-spin text-cyan-300 mx-auto mb-5"
             />
-            <h1 className="text-lg font-bold text-slate-900">
+            <h1 className="text-lg font-bold text-foreground">
               {t("activating")}
             </h1>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               {t("activatingDetail")}
             </p>
           </div>
@@ -132,29 +132,29 @@ function SuccessContent({ locale }: Props) {
         {status === "succeeded" && (
           <div className="text-center py-2">
             <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-5 ring-4 ring-emerald-50">
-              <CheckCircle2 size={32} className="text-emerald-600" />
+              <CheckCircle2 size={32} className="text-emerald-300" />
             </div>
-            <h1 className="text-xl font-bold text-slate-900">
+            <h1 className="text-xl font-bold text-foreground">
               {t("successTitle")}
             </h1>
-            <p className="text-sm text-slate-600 mt-2">{t("successDetail")}</p>
+            <p className="text-sm text-muted-foreground mt-2">{t("successDetail")}</p>
 
             {session && session.amount !== undefined && (
-              <div className="rounded-xl bg-sky-50 border border-sky-100 p-4 mt-5 text-start">
+              <div className="rounded-xl bg-muted border border-border p-4 mt-5 text-start">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
+                    <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       {t("plan")}
                     </div>
-                    <div className="text-base font-bold text-slate-900 mt-0.5 capitalize">
+                    <div className="text-base font-bold text-foreground mt-0.5 capitalize">
                       {session.planSlug}
                     </div>
                   </div>
                   <div className="text-end">
-                    <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
+                    <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       {t("amount")}
                     </div>
-                    <div className="text-base font-bold text-sky-600 mt-0.5">
+                    <div className="text-base font-bold text-cyan-300 mt-0.5">
                       {session.currency} {session.amount.toFixed(2)}
                     </div>
                   </div>
@@ -164,7 +164,7 @@ function SuccessContent({ locale }: Props) {
 
             <Link
               href={`/${locale}/dashboard`}
-              className="inline-flex items-center justify-center w-full bg-sky-500 hover:bg-sky-600 text-white rounded-lg px-4 py-2.5 text-sm font-semibold mt-6"
+              className="inline-flex items-center justify-center w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg px-4 py-2.5 text-sm font-semibold mt-6"
             >
               {t("goToDashboard")}
             </Link>
@@ -174,24 +174,24 @@ function SuccessContent({ locale }: Props) {
         {status === "failed" && (
           <div className="text-center py-2">
             <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-5 ring-4 ring-red-50">
-              <XCircle size={32} className="text-red-600" />
+              <XCircle size={32} className="text-rose-300" />
             </div>
-            <h1 className="text-xl font-bold text-slate-900">
+            <h1 className="text-xl font-bold text-foreground">
               {t("failedTitle")}
             </h1>
-            <p className="text-sm text-slate-600 mt-2">
+            <p className="text-sm text-muted-foreground mt-2">
               {error ?? t("failedDetail")}
             </p>
             <div className="flex gap-2 mt-5">
               <Link
                 href={`/${locale}/pricing`}
-                className="flex-1 text-center rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 px-4 py-2.5 text-sm font-semibold"
+                className="flex-1 text-center rounded-lg border border-border hover:bg-muted text-foreground px-4 py-2.5 text-sm font-semibold"
               >
                 {t("backToPricing")}
               </Link>
               <Link
                 href={`/${locale}/dashboard`}
-                className="flex-1 text-center rounded-lg bg-sky-500 hover:bg-sky-600 text-white px-4 py-2.5 text-sm font-semibold"
+                className="flex-1 text-center rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2.5 text-sm font-semibold"
               >
                 {t("goToDashboard")}
               </Link>

@@ -233,7 +233,7 @@ export default function ApiDocsPage() {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/settings/api`}
-            className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+            className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
           >
             <ArrowLeft
               className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`}
@@ -243,14 +243,15 @@ export default function ApiDocsPage() {
             <FileText className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-sky-900">
+            <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+            <h1 className="text-2xl font-bold text-foreground">
               {tr(
                 "API documentation",
                 "توثيق الـ API",
                 "API dokümantasyonu"
               )}
             </h1>
-            <p className="text-sm text-slate-600 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               {tr(
                 "REST endpoints for programmatic access to Zyrix CRM.",
                 "REST endpoints للوصول البرمجي لـ Zyrix CRM.",
@@ -261,27 +262,27 @@ export default function ApiDocsPage() {
         </div>
 
         {/* Base URL + OpenAPI links */}
-        <div className="rounded-xl border border-sky-100 bg-gradient-to-br from-sky-50/40 to-sky-50/40 p-4">
+        <div className="rounded-xl border border-border bg-gradient-to-br from-sky-50/40 to-sky-50/40 p-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wide">
+              <div className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide">
                 {tr("Base URL", "الرابط الأساسي", "Temel URL")}
               </div>
               <div className="flex items-center gap-2 mt-1">
-                <code className="flex-1 px-2 py-1 bg-white border border-sky-200 rounded text-xs font-mono text-slate-700 overflow-x-auto" dir="ltr">
+                <code className="flex-1 px-2 py-1 bg-card border border-border rounded text-xs font-mono text-foreground overflow-x-auto" dir="ltr">
                   {BASE_URL}
                 </code>
               </div>
             </div>
             <div>
-              <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wide">
+              <div className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide">
                 {tr("OpenAPI spec", "مواصفات OpenAPI", "OpenAPI spesifikasyonu")}
               </div>
               <a
                 href={`${BASE_URL}/v1/openapi.json`}
                 target="_blank"
                 rel="noopener"
-                className="inline-flex items-center gap-1.5 mt-1 px-3 py-1 bg-white border border-sky-200 hover:border-sky-300 rounded text-xs font-semibold text-sky-600"
+                className="inline-flex items-center gap-1.5 mt-1 px-3 py-1 bg-card border border-border hover:border-sky-300 rounded text-xs font-semibold text-cyan-300"
               >
                 <Code2 className="w-3.5 h-3.5" />
                 /v1/openapi.json
@@ -293,7 +294,7 @@ export default function ApiDocsPage() {
 
         {/* Auth example */}
         <section>
-          <h2 className="text-sm font-bold text-sky-900 mb-2 flex items-center gap-2">
+          <h2 className="text-sm font-bold text-foreground mb-2 flex items-center gap-2">
             <Globe className="w-4 h-4" />
             {tr(
               "Authentication",
@@ -301,8 +302,8 @@ export default function ApiDocsPage() {
               "Kimlik doğrulama"
             )}
           </h2>
-          <div className="rounded-xl border border-sky-100 bg-white p-4">
-            <p className="text-sm text-slate-700 mb-3">
+          <div className="rounded-xl border border-border bg-card p-4">
+            <p className="text-sm text-foreground mb-3">
               {tr(
                 "Include your API key in the Authorization header:",
                 "ضع مفتاح الـ API في ترويسة Authorization:",
@@ -325,7 +326,7 @@ curl -H "Authorization: Bearer zy_live_..." \\
         {/* Endpoint sections */}
         {ENDPOINTS.map((section, si) => (
           <section key={si}>
-            <h2 className="text-sm font-bold text-sky-900 mb-2">
+            <h2 className="text-sm font-bold text-foreground mb-2">
               {section.section[locale]}
             </h2>
             <div className="space-y-2">
@@ -344,8 +345,8 @@ curl -H "Authorization: Bearer zy_live_..." \\
         ))}
 
         {/* Zapier link */}
-        <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-white text-orange-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+        <div className="rounded-xl border border-amber-500/30 bg-gradient-to-br from-amber-50 to-orange-50 p-4 flex items-center gap-3">
+          <div className="w-11 h-11 rounded-xl bg-card text-orange-600 flex items-center justify-center flex-shrink-0 shadow-sm">
             <Zap className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
@@ -397,53 +398,53 @@ function EndpointCard({
   onCopy: (path: string) => void;
 }) {
   const methodColor: Record<string, string> = {
-    GET: "bg-sky-100 text-sky-800 border-sky-200",
-    POST: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    PATCH: "bg-amber-100 text-amber-800 border-amber-200",
-    DELETE: "bg-rose-100 text-rose-800 border-rose-200",
+    GET: "bg-sky-100 text-foreground border-border",
+    POST: "bg-emerald-100 text-emerald-800 border-emerald-500/30",
+    PATCH: "bg-amber-100 text-amber-800 border-amber-500/30",
+    DELETE: "bg-rose-100 text-rose-800 border-rose-500/30",
   };
   return (
-    <div className="rounded-xl border border-sky-100 bg-white overflow-hidden">
-      <div className="flex items-center gap-2 p-3 bg-sky-50/40 border-b border-sky-100">
+    <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="flex items-center gap-2 p-3 bg-muted/40 border-b border-border">
         <span
           className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border ${methodColor[endpoint.method]}`}
         >
           {endpoint.method}
         </span>
-        <code className="text-xs font-mono text-slate-700 flex-1 truncate" dir="ltr">
+        <code className="text-xs font-mono text-foreground flex-1 truncate" dir="ltr">
           {endpoint.path}
         </code>
         <span
           className={`text-[10px] font-bold uppercase rounded px-1.5 py-0.5 border ${
             endpoint.scope === "write"
-              ? "bg-indigo-50 text-indigo-700 border-indigo-200"
-              : "bg-slate-50 text-slate-600 border-slate-200"
+              ? "bg-indigo-500/10 text-indigo-700 border-indigo-200"
+              : "bg-muted text-muted-foreground border-border"
           }`}
         >
           {endpoint.scope}
         </span>
         <button
           onClick={() => onCopy(endpoint.path)}
-          className="w-6 h-6 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+          className="w-6 h-6 rounded text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
           title={tr("Copy URL", "نسخ الرابط", "URL'yi kopyala")}
         >
           {copiedPath === endpoint.path ? (
-            <Check className="w-3 h-3 text-emerald-600" />
+            <Check className="w-3 h-3 text-emerald-300" />
           ) : (
             <Copy className="w-3 h-3" />
           )}
         </button>
       </div>
       <div className="p-3 space-y-2">
-        <div className="text-sm font-semibold text-sky-900">
+        <div className="text-sm font-semibold text-foreground">
           {endpoint.label[locale]}
         </div>
-        <p className="text-xs text-slate-600">
+        <p className="text-xs text-muted-foreground">
           {endpoint.description[locale]}
         </p>
         {endpoint.requestBody && (
           <div>
-            <div className="text-[10px] font-bold uppercase text-slate-500 mt-2 mb-1">
+            <div className="text-[10px] font-bold uppercase text-muted-foreground mt-2 mb-1">
               {tr("Request body", "محتوى الطلب", "İstek gövdesi")}
             </div>
             <pre
@@ -456,11 +457,11 @@ function EndpointCard({
         )}
         {endpoint.response && (
           <div>
-            <div className="text-[10px] font-bold uppercase text-slate-500 mt-2 mb-1">
+            <div className="text-[10px] font-bold uppercase text-muted-foreground mt-2 mb-1">
               {tr("Response", "الاستجابة", "Yanıt")}
             </div>
             <pre
-              className="bg-slate-50 border border-slate-200 rounded p-2 text-[11px] font-mono overflow-x-auto text-slate-700"
+              className="bg-muted border border-border rounded p-2 text-[11px] font-mono overflow-x-auto text-foreground"
               dir="ltr"
             >
               {endpoint.response}

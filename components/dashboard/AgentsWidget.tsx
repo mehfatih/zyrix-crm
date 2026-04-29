@@ -41,14 +41,14 @@ export function AgentsWidget() {
     <section className="space-y-4">
       <header className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-bold text-zyrix-textHeading">{t('title')}</h2>
-          <p className="text-sm text-zyrix-textMuted">
+          <h2 className="text-lg font-bold text-foreground">{t('title')}</h2>
+          <p className="text-sm text-muted-foreground">
             {t('widgetSubtitle', { count: data.length })}
           </p>
         </div>
         <button
           onClick={() => router.push(`/${locale}/ai-agents`)}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-zyrix-aiBorder bg-zyrix-aiSurface px-3 py-1.5 text-xs font-bold text-zyrix-primaryDark hover:bg-white"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-violet-500/30 bg-violet-500/10 px-3 py-1.5 text-xs font-bold text-primaryDark hover:bg-card"
         >
           {t('viewAll')}
           <ArrowRight size={12} />

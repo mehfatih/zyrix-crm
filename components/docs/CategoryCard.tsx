@@ -34,17 +34,17 @@ export default function CategoryCard({
   return (
     <Link
       href={`/${locale}/docs/${category.id}`}
-      className={`group bg-white border-2 ${accent.border} ${accent.hoverBorder} rounded-2xl p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg flex flex-col`}
+      className={`group bg-card border-2 ${accent.border} ${accent.hoverBorder} rounded-2xl p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg flex flex-col`}
     >
       <div
         className={`inline-flex items-center justify-center w-11 h-11 rounded-xl ${accent.chipBg} ${accent.text} mb-3`}
       >
         <Icon className="w-5 h-5" />
       </div>
-      <h3 className="text-lg font-bold text-slate-900 mb-1">
+      <h3 className="text-lg font-bold text-foreground mb-1">
         {category.label[locale]}
       </h3>
-      <p className="text-sm text-slate-600 mb-4 flex-1">
+      <p className="text-sm text-muted-foreground mb-4 flex-1">
         {category.desc[locale]}
       </p>
       <div className="flex items-center justify-between text-xs">

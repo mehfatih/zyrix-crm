@@ -137,10 +137,11 @@ export default function WorkflowsListPage() {
               <Zap className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-violet-300 text-xs font-bold uppercase tracking-widest mb-2">AUTOMATIONS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Automations", "الأتمتة", "Otomasyonlar")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Build workflows that react to CRM events and run actions automatically.",
                   "ابنِ workflows بتتفاعل مع أحداث CRM وتنفذ إجراءات تلقائيًا.",
@@ -153,14 +154,14 @@ export default function WorkflowsListPage() {
           <div className="flex items-center gap-2">
             <Link
               href={`/${locale}/workflows/executions`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-sky-200 hover:bg-sky-50 rounded-lg text-xs font-semibold text-slate-700"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border hover:bg-muted rounded-lg text-xs font-semibold text-foreground"
             >
               <History className="w-3.5 h-3.5" />
               {tr("History", "السجل", "Geçmiş")}
             </Link>
             <Link
               href={`/${locale}/workflows/new`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("New workflow", "workflow جديد", "Yeni iş akışı")}
@@ -171,10 +172,10 @@ export default function WorkflowsListPage() {
         {/* Body */}
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : error ? (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300">
             {error}
           </div>
         ) : workflows.length === 0 ? (
@@ -216,18 +217,18 @@ function EmptyState({
   tr: (en: string, ar: string, trk: string) => string;
 }) {
   return (
-    <div className="rounded-2xl border border-dashed border-sky-200 bg-white p-12 text-center">
+    <div className="rounded-2xl border border-dashed border-border bg-card p-12 text-center">
       <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-sky-100 to-sky-200 flex items-center justify-center mb-4">
-        <Zap className="w-8 h-8 text-sky-600" />
+        <Zap className="w-8 h-8 text-cyan-300" />
       </div>
-      <h2 className="text-lg font-bold text-sky-900">
+      <h2 className="text-lg font-bold text-foreground">
         {tr(
           "No automations yet",
           "لا أتمتة بعد",
           "Henüz otomasyon yok"
         )}
       </h2>
-      <p className="text-sm text-slate-600 mt-1 mb-6 max-w-md mx-auto">
+      <p className="text-sm text-muted-foreground mt-1 mb-6 max-w-md mx-auto">
         {tr(
           "Build your first automation: send a WhatsApp welcome when a customer signs up, or create a follow-up task when a deal hits proposal stage.",
           "ابنِ أول أتمتة: ابعت رسالة ترحيب واتساب لما عميل يسجّل، أو أنشئ مهمة متابعة لما صفقة توصل لمرحلة العرض.",
@@ -236,7 +237,7 @@ function EmptyState({
       </p>
       <Link
         href={`/${locale}/workflows/new`}
-        className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold"
+        className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold"
       >
         <Plus className="w-4 h-4" />
         {tr("Create workflow", "إنشاء workflow", "İş akışı oluştur")}
@@ -281,8 +282,8 @@ function WorkflowCard({
 
   return (
     <div
-      className={`rounded-xl border bg-white p-4 ${
-        workflow.isEnabled ? "border-sky-100" : "border-slate-200 opacity-75"
+      className={`rounded-xl border bg-card p-4 ${
+        workflow.isEnabled ? "border-border" : "border-border opacity-75"
       }`}
     >
       <div className="flex items-start gap-4">
@@ -290,8 +291,8 @@ function WorkflowCard({
         <div
           className={`w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center ${
             workflow.isEnabled
-              ? "bg-gradient-to-br from-sky-100 to-sky-200 text-sky-600"
-              : "bg-slate-100 text-slate-400"
+              ? "bg-gradient-to-br from-sky-100 to-sky-200 text-cyan-300"
+              : "bg-muted text-muted-foreground"
           }`}
         >
           {triggerIcon}
@@ -303,11 +304,11 @@ function WorkflowCard({
             <div className="flex-1 min-w-0">
               <Link
                 href={`/${locale}/workflows/${workflow.id}`}
-                className="text-base font-semibold text-sky-900 hover:text-sky-600 truncate block"
+                className="text-base font-semibold text-foreground hover:text-cyan-300 truncate block"
               >
                 {workflow.name}
               </Link>
-              <p className="text-xs text-slate-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
+              <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1.5 flex-wrap">
                 <span>{triggerLabel}</span>
                 <span className="text-slate-300">·</span>
                 <span>
@@ -369,7 +370,7 @@ function WorkflowCard({
 
           {/* Last error */}
           {workflow.lastError && (
-            <div className="mt-2 rounded-lg bg-rose-50 border border-rose-200 px-2 py-1.5 text-xs text-rose-700 flex items-start gap-1.5">
+            <div className="mt-2 rounded-lg bg-rose-500/10 border border-rose-500/30 px-2 py-1.5 text-xs text-rose-300 flex items-start gap-1.5">
               <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
               <span className="line-clamp-1">{workflow.lastError}</span>
             </div>
@@ -380,8 +381,8 @@ function WorkflowCard({
             <div
               className={`mt-2 rounded-lg border px-2 py-1.5 text-xs flex items-start gap-1.5 ${
                 testResult.ok
-                  ? "bg-emerald-50 border-emerald-200 text-emerald-800"
-                  : "bg-rose-50 border-rose-200 text-rose-700"
+                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-800"
+                  : "bg-rose-500/10 border-rose-500/30 text-rose-300"
               }`}
             >
               {testResult.ok ? (
@@ -400,8 +401,8 @@ function WorkflowCard({
               disabled={isToggling}
               className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold disabled:opacity-50 ${
                 workflow.isEnabled
-                  ? "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+                  ? "bg-emerald-500/10 text-emerald-800 hover:bg-emerald-100 border border-emerald-500/30"
+                  : "bg-muted text-foreground hover:bg-slate-200 border border-border"
               }`}
             >
               {isToggling ? (
@@ -416,7 +417,7 @@ function WorkflowCard({
             <button
               onClick={onTest}
               disabled={isTesting || !workflow.isEnabled}
-              className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-sky-200 hover:bg-sky-50 rounded-md text-[11px] font-semibold text-slate-700 disabled:opacity-50"
+              className="inline-flex items-center gap-1 px-2.5 py-1 bg-card border border-border hover:bg-muted rounded-md text-[11px] font-semibold text-foreground disabled:opacity-50"
             >
               {isTesting ? (
                 <Loader2 className="w-3 h-3 animate-spin" />
@@ -427,14 +428,14 @@ function WorkflowCard({
             </button>
             <button
               onClick={onEdit}
-              className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-sky-200 hover:bg-sky-50 rounded-md text-[11px] font-semibold text-slate-700"
+              className="inline-flex items-center gap-1 px-2.5 py-1 bg-card border border-border hover:bg-muted rounded-md text-[11px] font-semibold text-foreground"
             >
               <Pencil className="w-3 h-3" />
               {tr("Edit", "تعديل", "Düzenle")}
             </button>
             <Link
               href={`/${locale}/workflows/${workflow.id}`}
-              className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-sky-200 hover:bg-sky-50 rounded-md text-[11px] font-semibold text-slate-700"
+              className="inline-flex items-center gap-1 px-2.5 py-1 bg-card border border-border hover:bg-muted rounded-md text-[11px] font-semibold text-foreground"
             >
               <History className="w-3 h-3" />
               {tr("Runs", "تشغيلات", "Çalıştırmalar")}
@@ -442,7 +443,7 @@ function WorkflowCard({
             <div className="flex-1" />
             <button
               onClick={onDelete}
-              className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-rose-200 hover:bg-rose-50 text-rose-700 rounded-md text-[11px] font-semibold"
+              className="inline-flex items-center gap-1 px-2.5 py-1 bg-card border border-rose-500/30 hover:bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-md text-[11px] font-semibold"
             >
               <Trash2 className="w-3 h-3" />
               {tr("Delete", "حذف", "Sil")}
@@ -466,10 +467,10 @@ function StatChip({
   tone: "cyan" | "emerald" | "rose" | "amber";
 }) {
   const toneClass: Record<string, string> = {
-    cyan: "bg-sky-50 text-sky-600 border-sky-100",
-    emerald: "bg-emerald-50 text-emerald-700 border-emerald-100",
-    rose: "bg-rose-50 text-rose-700 border-rose-100",
-    amber: "bg-amber-50 text-amber-700 border-amber-100",
+    cyan: "bg-muted text-cyan-300 border-border",
+    emerald: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    rose: "bg-rose-500/10 text-rose-300 border border-rose-500/30 border-rose-100",
+    amber: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
   };
   return (
     <span

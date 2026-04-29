@@ -56,7 +56,7 @@ export function IdleWarningModal({
       aria-modal="true"
       aria-labelledby="idle-warning-title"
     >
-      <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 text-center">
+      <div className="bg-card rounded-2xl shadow-xl max-w-sm w-full p-6 text-center">
         {/* Countdown ring */}
         <div className="relative w-24 h-24 mx-auto mb-4">
           <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
@@ -82,8 +82,8 @@ export function IdleWarningModal({
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <Clock className="w-4 h-4 text-slate-500 mb-0.5" />
-            <span className="text-2xl font-bold tabular-nums text-slate-900">
+            <Clock className="w-4 h-4 text-muted-foreground mb-0.5" />
+            <span className="text-2xl font-bold tabular-nums text-foreground">
               {secondsLeft}
             </span>
           </div>
@@ -91,7 +91,7 @@ export function IdleWarningModal({
 
         <h2
           id="idle-warning-title"
-          className="text-lg font-bold text-sky-900 mb-1"
+          className="text-lg font-bold text-foreground mb-1"
         >
           {tr(
             "Still there?",
@@ -100,7 +100,7 @@ export function IdleWarningModal({
           )}
         </h2>
 
-        <p className="text-sm text-slate-600 leading-relaxed mb-5">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
           {tr(
             `Your session will end in ${secondsLeft} seconds unless you continue working.`,
             `ستنتهي جلستك خلال ${secondsLeft} ثانية ما لم تستأنف العمل.`,
@@ -111,7 +111,7 @@ export function IdleWarningModal({
         <div className="flex items-center gap-2">
           <button
             onClick={onLogoutNow}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-lg text-sm font-semibold"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-card border border-border hover:bg-muted text-foreground rounded-lg text-sm font-semibold"
           >
             <LogOut className="w-3.5 h-3.5" />
             {tr("Logout now", "تسجيل الخروج", "Şimdi çıkış")}
@@ -119,7 +119,7 @@ export function IdleWarningModal({
           <button
             onClick={onContinue}
             autoFocus
-            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-sm font-semibold shadow-sm"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm font-semibold shadow-sm"
           >
             <ShieldCheck className="w-3.5 h-3.5" />
             {tr(
@@ -130,7 +130,7 @@ export function IdleWarningModal({
           </button>
         </div>
 
-        <p className="text-[10px] text-slate-400 mt-3">
+        <p className="text-[10px] text-muted-foreground mt-3">
           {tr(
             "Zyrix auto-locks after inactivity to protect your data.",
             "يُقفل Zyrix تلقائيًا بعد عدم النشاط لحماية بياناتك.",

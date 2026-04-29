@@ -29,16 +29,16 @@ import {
 // ============================================================================
 
 const STATUS_COLORS: Record<string, string> = {
-  active: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  disabled: "bg-slate-100 text-slate-600 ring-slate-200",
+  active: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 ring-emerald-500/30",
+  disabled: "bg-muted text-muted-foreground ring-border",
 };
 
 const ROLE_COLORS: Record<string, string> = {
-  super_admin: "bg-red-50 text-red-700 ring-red-200",
-  owner: "bg-sky-50 text-sky-600 ring-sky-200",
-  admin: "bg-sky-50 text-sky-700 ring-sky-200",
-  manager: "bg-indigo-50 text-indigo-700 ring-indigo-200",
-  member: "bg-slate-50 text-slate-700 ring-slate-200",
+  super_admin: "bg-rose-500/10 text-rose-300 border border-rose-500/30 ring-rose-500/30",
+  owner: "bg-muted text-cyan-300 ring-cyan-500/30",
+  admin: "bg-muted text-cyan-300 ring-cyan-500/30",
+  manager: "bg-indigo-500/10 text-indigo-700 ring-indigo-200",
+  member: "bg-muted text-foreground ring-border",
 };
 
 export default function AdminUsersView() {
@@ -155,8 +155,8 @@ export default function AdminUsersView() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-        <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       {/* Banner */}
@@ -164,8 +164,8 @@ export default function AdminUsersView() {
         <div
           className={`rounded-lg p-3 text-sm ${
             banner.tone === "success"
-              ? "bg-emerald-50 border border-emerald-200 text-emerald-800"
-              : "bg-red-50 border border-red-200 text-red-800"
+              ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-800"
+              : "bg-rose-500/10 border border-rose-500/30 text-red-800"
           }`}
         >
           {banner.text}
@@ -173,12 +173,12 @@ export default function AdminUsersView() {
       )}
 
       {/* Filters */}
-      <div className="rounded-xl bg-white border border-sky-100 p-4">
+      <div className="rounded-xl bg-card border border-border p-4">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="relative">
             <Search
               size={16}
-              className="absolute top-1/2 -translate-y-1/2 text-slate-400 ltr:left-3 rtl:right-3"
+              className="absolute top-1/2 -translate-y-1/2 text-muted-foreground ltr:left-3 rtl:right-3"
             />
             <input
               type="text"
@@ -188,7 +188,7 @@ export default function AdminUsersView() {
                 setPage(1);
               }}
               placeholder={t("search")}
-              className="w-full rounded-lg border border-slate-300 bg-white text-slate-900 py-2 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full rounded-lg border border-border bg-card text-foreground py-2 ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <select
@@ -197,7 +197,7 @@ export default function AdminUsersView() {
               setRoleFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+            className="rounded-lg border border-border bg-card text-foreground py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">{t("allRoles")}</option>
             <option value="super_admin">{tRole("super_admin")}</option>
@@ -212,7 +212,7 @@ export default function AdminUsersView() {
               setStatusFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-lg border border-slate-300 bg-white text-slate-900 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+            className="rounded-lg border border-border bg-card text-foreground py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">{t("allStatuses")}</option>
             <option value="active">{tStatus("active")}</option>
@@ -222,15 +222,15 @@ export default function AdminUsersView() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl bg-white border border-sky-100 overflow-hidden">
+      <div className="rounded-xl bg-card border border-border overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="animate-spin text-sky-500" size={24} />
+            <Loader2 className="animate-spin text-cyan-300" size={24} />
           </div>
         ) : error ? (
-          <div className="p-6 text-sm text-red-700">{error}</div>
+          <div className="p-6 text-sm text-rose-300">{error}</div>
         ) : !data || data.items.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-slate-500">
+          <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
             <UsersIcon size={36} className="mb-2 text-slate-300" />
             <p className="text-sm">{t("noResults")}</p>
           </div>
@@ -238,14 +238,14 @@ export default function AdminUsersView() {
           <>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-sky-50">
+                <thead className="bg-muted">
                   <tr>
                     <Th>{t("email")}</Th>
                     <Th>
                       <span className="inline-flex items-center gap-1">
                         {t("role")}
                         <span
-                          className="inline-flex items-center justify-center rounded-full text-slate-400 hover:text-sky-500 cursor-help"
+                          className="inline-flex items-center justify-center rounded-full text-muted-foreground hover:text-cyan-300 cursor-help"
                           title={t("roleTooltip")}
                         >
                           <Info size={12} />
@@ -258,18 +258,18 @@ export default function AdminUsersView() {
                     <Th className="text-right">{t("actions")}</Th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-border">
                   {data.items.map((u) => (
-                    <tr key={u.id} className="hover:bg-sky-50/50 transition-colors">
+                    <tr key={u.id} className="hover:bg-muted/50 transition-colors">
                       <td className="px-4 py-3">
-                        <div className="font-medium text-slate-900">{u.email}</div>
-                        <div className="text-xs text-slate-500">{u.fullName}</div>
+                        <div className="font-medium text-foreground">{u.email}</div>
+                        <div className="text-xs text-muted-foreground">{u.fullName}</div>
                       </td>
                       <td className="px-4 py-3">
                         <span
                           className={`inline-flex items-center rounded-full ring-1 px-2 py-0.5 text-xs font-medium ${
                             ROLE_COLORS[u.role] ??
-                            "bg-slate-100 text-slate-700 ring-slate-200"
+                            "bg-muted text-foreground ring-border"
                           }`}
                         >
                           {tRole(u.role as "member")}
@@ -279,21 +279,21 @@ export default function AdminUsersView() {
                         <span
                           className={`inline-flex items-center rounded-full ring-1 px-2 py-0.5 text-xs font-medium ${
                             STATUS_COLORS[u.status] ??
-                            "bg-slate-100 text-slate-700 ring-slate-200"
+                            "bg-muted text-foreground ring-border"
                           }`}
                         >
                           {tStatus(u.status as "active")}
                         </span>
                       </td>
                       <td className="px-4 py-3">
-                        <div className="text-sm text-slate-700">
+                        <div className="text-sm text-foreground">
                           {u.company.name}
                         </div>
-                        <div className="text-xs text-slate-500 capitalize">
+                        <div className="text-xs text-muted-foreground capitalize">
                           {u.company.plan}
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-sm text-slate-500">
+                      <td className="px-4 py-3 text-sm text-muted-foreground">
                         {u.lastLoginAt
                           ? new Date(u.lastLoginAt).toLocaleDateString()
                           : t("never")}
@@ -307,7 +307,7 @@ export default function AdminUsersView() {
                                   onClick={() =>
                                     setConfirm({ type: "disable", user: u })
                                   }
-                                  className="p-1.5 rounded hover:bg-amber-50 text-amber-600"
+                                  className="p-1.5 rounded hover:bg-amber-500/10 text-amber-300 border border-amber-500/30"
                                   title={t("disable")}
                                 >
                                   <UserX size={16} />
@@ -317,7 +317,7 @@ export default function AdminUsersView() {
                                   onClick={() =>
                                     setConfirm({ type: "enable", user: u })
                                   }
-                                  className="p-1.5 rounded hover:bg-emerald-50 text-emerald-600"
+                                  className="p-1.5 rounded hover:bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
                                   title={t("enable")}
                                 >
                                   <UserCheck size={16} />
@@ -327,7 +327,7 @@ export default function AdminUsersView() {
                                 onClick={() =>
                                   setConfirm({ type: "reset", user: u })
                                 }
-                                className="p-1.5 rounded hover:bg-indigo-50 text-indigo-600"
+                                className="p-1.5 rounded hover:bg-indigo-500/10 text-indigo-600"
                                 title={t("forceReset")}
                               >
                                 <KeyRound size={16} />
@@ -343,19 +343,19 @@ export default function AdminUsersView() {
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3 text-sm">
-              <div className="text-slate-600">
+            <div className="flex items-center justify-between border-t border-border px-4 py-3 text-sm">
+              <div className="text-muted-foreground">
                 {data.pagination.total.toLocaleString()} total
               </div>
               <div className="flex items-center gap-2">
                 <button
                   disabled={data.pagination.page <= 1}
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  className="p-1.5 rounded border border-slate-200 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="p-1.5 rounded border border-border hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft size={16} className="rtl:rotate-180" />
                 </button>
-                <span className="text-slate-600">
+                <span className="text-muted-foreground">
                   {data.pagination.page} / {data.pagination.totalPages}
                 </span>
                 <button
@@ -365,7 +365,7 @@ export default function AdminUsersView() {
                       Math.min(data.pagination.totalPages, p + 1)
                     )
                   }
-                  className="p-1.5 rounded border border-slate-200 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="p-1.5 rounded border border-border hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   <ChevronRight size={16} className="rtl:rotate-180" />
                 </button>
@@ -378,38 +378,38 @@ export default function AdminUsersView() {
       {/* Confirm modal */}
       {confirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 px-4">
-          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
-            <h3 className="text-lg font-bold text-slate-900">
+          <div className="w-full max-w-md rounded-xl bg-card p-6 shadow-xl">
+            <h3 className="text-lg font-bold text-foreground">
               {confirm.type === "disable"
                 ? t("confirmDisable")
                 : confirm.type === "enable"
                 ? t("enable") + "?"
                 : t("confirmForceReset")}
             </h3>
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="mt-2 text-sm text-muted-foreground">
               {confirm.type === "disable"
                 ? t("confirmDisableMessage")
                 : confirm.type === "reset"
                 ? t("confirmForceResetMessage")
                 : ""}
             </p>
-            <div className="mt-3 rounded-lg bg-sky-50 p-3 text-sm">
-              <div className="font-medium text-slate-900">{confirm.user.email}</div>
-              <div className="text-xs text-slate-500">
+            <div className="mt-3 rounded-lg bg-muted p-3 text-sm">
+              <div className="font-medium text-foreground">{confirm.user.email}</div>
+              <div className="text-xs text-muted-foreground">
                 {confirm.user.company.name}
               </div>
             </div>
 
             {confirm.type === "disable" && (
               <div className="mt-4">
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <label className="block text-sm font-medium text-foreground mb-1">
                   Reason (optional)
                 </label>
                 <input
                   type="text"
                   value={actionReason}
                   onChange={(e) => setActionReason(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 bg-white py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-full rounded-lg border border-border bg-card py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
             )}
@@ -421,7 +421,7 @@ export default function AdminUsersView() {
                   setActionReason("");
                 }}
                 disabled={actionBusy}
-                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -440,11 +440,11 @@ export default function AdminUsersView() {
       {/* Temp password modal */}
       {tempPassword && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 px-4">
-          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
-            <h3 className="text-lg font-bold text-slate-900">
+          <div className="w-full max-w-md rounded-xl bg-card p-6 shadow-xl">
+            <h3 className="text-lg font-bold text-foreground">
               {t("tempPasswordGenerated")}
             </h3>
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="mt-2 text-sm text-muted-foreground">
               Share this password with the user out-of-band. It will not be
               shown again.
             </p>
@@ -484,7 +484,7 @@ function Th({
 }) {
   return (
     <th
-      className={`px-4 py-3 text-start text-xs font-semibold text-slate-600 uppercase tracking-wide ${className}`}
+      className={`px-4 py-3 text-start text-xs font-semibold text-muted-foreground uppercase tracking-wide ${className}`}
     >
       {children}
     </th>

@@ -156,7 +156,7 @@ export default function BrandsPage() {
           <div className="flex items-center gap-3">
             <Link
               href={`/${locale}/settings`}
-              className="w-9 h-9 rounded-lg bg-white border border-sky-200 hover:bg-sky-50 flex items-center justify-center text-slate-500 hover:text-sky-600"
+              className="w-9 h-9 rounded-lg bg-card border border-border hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-cyan-300"
             >
               <ArrowLeft className={`w-4 h-4 ${isRtl ? "-scale-x-100" : ""}`} />
             </Link>
@@ -164,10 +164,11 @@ export default function BrandsPage() {
               <Store className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-sky-900">
+              <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+              <h1 className="text-2xl font-bold text-foreground">
                 {tr("Brands", "العلامات التجارية", "Markalar")}
               </h1>
-              <p className="text-sm text-slate-600 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {tr(
                   "Manage multiple brands under one Zyrix account.",
                   "إدارة عدة علامات تجارية من حساب Zyrix واحد.",
@@ -179,7 +180,7 @@ export default function BrandsPage() {
           {!creatingNew && !editing && (
             <button
               onClick={() => setCreatingNew(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" />
               {tr("New brand", "علامة جديدة", "Yeni marka")}
@@ -189,13 +190,13 @@ export default function BrandsPage() {
 
         {/* Banners */}
         {success && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 flex items-start gap-2 text-sm text-emerald-900">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 flex items-start gap-2 text-sm text-emerald-900">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{success}</span>
           </div>
         )}
         {error && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 flex items-start gap-2 text-sm text-rose-700">
+          <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 flex items-start gap-2 text-sm text-rose-300">
             <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
@@ -222,12 +223,12 @@ export default function BrandsPage() {
         {/* List */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-300" />
           </div>
         ) : brands.length === 0 && !creatingNew ? (
-          <div className="rounded-xl border border-dashed border-sky-200 bg-white p-10 text-center">
+          <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center">
             <Store className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               {tr(
                 "No brands yet — create your first one.",
                 "لا علامات بعد — أنشئ أول علامة.",
@@ -238,7 +239,7 @@ export default function BrandsPage() {
         ) : (
           <>
             <div className="flex items-center gap-2">
-              <label className="inline-flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer">
+              <label className="inline-flex items-center gap-1.5 text-xs text-muted-foreground cursor-pointer">
                 <input
                   type="checkbox"
                   checked={showArchived}
@@ -307,8 +308,8 @@ function BrandRow({
     <div
       className={`rounded-xl border p-4 ${
         brand.isArchived
-          ? "border-slate-200 bg-slate-50 opacity-75"
-          : "border-sky-100 bg-white"
+          ? "border-border bg-muted opacity-75"
+          : "border-border bg-card"
       }`}
     >
       <div className="flex items-start gap-3">
@@ -332,28 +333,28 @@ function BrandRow({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-bold text-sky-900">{brand.name}</h3>
+            <h3 className="text-sm font-bold text-foreground">{brand.name}</h3>
             {brand.isDefault && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200">
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-500/30">
                 <Star className="w-2.5 h-2.5" />
                 {tr("Default", "افتراضي", "Varsayılan")}
               </span>
             )}
             {brand.isArchived && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-slate-200 text-slate-700">
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-slate-200 text-foreground">
                 <Archive className="w-2.5 h-2.5" />
                 {tr("Archived", "مؤرشفة", "Arşivlenmiş")}
               </span>
             )}
           </div>
-          <code className="text-[11px] text-slate-500 font-mono" dir="ltr">
+          <code className="text-[11px] text-muted-foreground font-mono" dir="ltr">
             {brand.slug}
           </code>
           {brand.description && (
-            <p className="text-xs text-slate-600 mt-1">{brand.description}</p>
+            <p className="text-xs text-muted-foreground mt-1">{brand.description}</p>
           )}
           {stats && (
-            <div className="mt-2 flex items-center gap-3 text-[11px] text-slate-500">
+            <div className="mt-2 flex items-center gap-3 text-[11px] text-muted-foreground">
               <span className="inline-flex items-center gap-1">
                 <Users className="w-3 h-3" />
                 {stats.customerCount}{" "}
@@ -375,7 +376,7 @@ function BrandRow({
           {!brand.isArchived && !brand.isDefault && (
             <button
               onClick={onSetDefault}
-              className="text-[10px] font-bold uppercase px-2 py-1 rounded bg-white border border-amber-200 hover:bg-amber-50 text-amber-700"
+              className="text-[10px] font-bold uppercase px-2 py-1 rounded bg-card border border-amber-500/30 hover:bg-amber-500/10 text-amber-300 border border-amber-500/30"
               title={tr("Make default", "جعلها افتراضية", "Varsayılan yap")}
             >
               <Star className="w-3 h-3 inline" />
@@ -385,14 +386,14 @@ function BrandRow({
             <>
               <button
                 onClick={onEdit}
-                className="w-7 h-7 rounded text-slate-400 hover:text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+                className="w-7 h-7 rounded text-muted-foreground hover:text-cyan-300 hover:bg-muted flex items-center justify-center"
                 title={tr("Edit", "تعديل", "Düzenle")}
               >
                 <Pencil className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={onArchive}
-                className="w-7 h-7 rounded text-slate-400 hover:text-amber-700 hover:bg-amber-50 flex items-center justify-center"
+                className="w-7 h-7 rounded text-muted-foreground hover:text-amber-300 hover:bg-amber-500/10 flex items-center justify-center"
                 title={tr("Archive", "أرشفة", "Arşivle")}
               >
                 <Archive className="w-3.5 h-3.5" />
@@ -401,14 +402,14 @@ function BrandRow({
           ) : (
             <button
               onClick={onUnarchive}
-              className="inline-flex items-center gap-1 px-2 py-1 bg-white border border-emerald-200 hover:bg-emerald-50 text-emerald-700 rounded text-[10px] font-bold uppercase"
+              className="inline-flex items-center gap-1 px-2 py-1 bg-card border border-emerald-500/30 hover:bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 rounded text-[10px] font-bold uppercase"
             >
               {tr("Restore", "استعادة", "Geri yükle")}
             </button>
           )}
           <button
             onClick={onDelete}
-            className="w-7 h-7 rounded text-slate-400 hover:text-rose-700 hover:bg-rose-50 flex items-center justify-center"
+            className="w-7 h-7 rounded text-muted-foreground hover:text-rose-300 hover:bg-rose-500/10 flex items-center justify-center"
             title={tr("Delete", "حذف", "Sil")}
           >
             <Trash2 className="w-3.5 h-3.5" />
@@ -494,30 +495,30 @@ function BrandForm({
   };
 
   return (
-    <div className="rounded-xl border border-sky-200 bg-sky-50/30 p-4 space-y-4">
+    <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-sky-900">
+        <h2 className="text-sm font-bold text-foreground">
           {editing
             ? tr("Edit brand", "تعديل العلامة", "Markayı düzenle")
             : tr("New brand", "علامة جديدة", "Yeni marka")}
         </h2>
         <button
           onClick={onCancel}
-          className="w-7 h-7 rounded text-slate-500 hover:bg-slate-100 flex items-center justify-center"
+          className="w-7 h-7 rounded text-muted-foreground hover:bg-muted flex items-center justify-center"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {err && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-2 text-xs text-rose-700">
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-2 text-xs text-rose-300">
           {err}
         </div>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Name", "الاسم", "Ad")}
           </label>
           <input
@@ -525,11 +526,11 @@ function BrandForm({
             onChange={(e) => setName(e.target.value)}
             placeholder="Levana Cosmetics"
             maxLength={100}
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
           />
         </div>
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr(
               "Slug (URL identifier)",
               "المعرف في الرابط",
@@ -545,17 +546,17 @@ function BrandForm({
             placeholder="levana"
             maxLength={62}
             dir="ltr"
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary bg-card"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Brand color", "لون العلامة", "Marka rengi")}
           </label>
-          <div className="flex items-center gap-2 rounded-lg border border-sky-200 focus-within:ring-2 focus-within:ring-sky-400 overflow-hidden bg-white">
+          <div className="flex items-center gap-2 rounded-lg border border-border focus-within:ring-2 focus-within:ring-sky-400 overflow-hidden bg-card">
             <input
               type="color"
               value={primaryColor}
@@ -574,7 +575,7 @@ function BrandForm({
           </div>
         </div>
         <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+          <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
             {tr("Logo URL", "رابط الشعار", "Logo URL'si")}
           </label>
           <input
@@ -582,13 +583,13 @@ function BrandForm({
             onChange={(e) => setLogoUrl(e.target.value)}
             placeholder="https://cdn.example.com/logo.png"
             dir="ltr"
-            className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+            className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-[10px] font-bold uppercase text-slate-500 tracking-wide mb-1">
+        <label className="block text-[10px] font-bold uppercase text-muted-foreground tracking-wide mb-1">
           {tr("Description", "الوصف", "Açıklama")}
         </label>
         <textarea
@@ -601,12 +602,12 @@ function BrandForm({
             "ما نوع المنتجات أو الخدمات لهذه العلامة؟",
             "Bu marka ne tür ürün veya hizmet sunuyor?"
           )}
-          className="w-full px-3 py-2 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
+          className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-card"
         />
       </div>
 
       {/* Preview */}
-      <div className="rounded-lg border border-sky-100 bg-white p-3 flex items-center gap-3">
+      <div className="rounded-lg border border-border bg-card p-3 flex items-center gap-3">
         <div
           className="w-10 h-10 rounded-lg text-white flex items-center justify-center flex-shrink-0 shadow-sm"
           style={{ background: primaryColor }}
@@ -632,10 +633,10 @@ function BrandForm({
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-bold text-sky-900">
+          <div className="text-sm font-bold text-foreground">
             {name || tr("Brand name", "اسم العلامة", "Marka adı")}
           </div>
-          <code className="text-xs text-slate-500 font-mono" dir="ltr">
+          <code className="text-xs text-muted-foreground font-mono" dir="ltr">
             {slug || "brand-slug"}
           </code>
         </div>
@@ -644,7 +645,7 @@ function BrandForm({
       <div className="flex items-center justify-end gap-2">
         <button
           onClick={onCancel}
-          className="px-3 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900"
+          className="px-3 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           {tr("Cancel", "إلغاء", "İptal")}
         </button>

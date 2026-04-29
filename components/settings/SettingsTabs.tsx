@@ -25,8 +25,8 @@ export function SettingsTabs({ locale }: SettingsTabsProps) {
   ];
 
   return (
-    <div className="bg-white rounded-xl border border-line shadow-sm overflow-hidden">
-      <div className="flex border-b border-line bg-bg-subtle px-4">
+    <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+      <div className="flex border-b border-border bg-muted px-4">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -37,8 +37,8 @@ export function SettingsTabs({ locale }: SettingsTabsProps) {
               className={cn(
                 "flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-all",
                 isActive
-                  ? "border-primary-600 text-primary-600"
-                  : "border-transparent text-ink-light hover:text-ink"
+                  ? "border-primary-600 text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
               )}
             >
               <Icon className="w-4 h-4" />

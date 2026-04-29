@@ -89,7 +89,7 @@ export default function GlobalSearchBar() {
   return (
     <div className="relative flex-1 max-w-xl" ref={containerRef}>
       <div className="relative">
-        <Search className="absolute ltr:left-3 rtl:right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute ltr:left-3 rtl:right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
           ref={inputRef}
           type="text"
@@ -100,21 +100,21 @@ export default function GlobalSearchBar() {
           }}
           onFocus={() => setOpen(true)}
           placeholder={t("placeholder")}
-          className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-16 rtl:pl-16 py-2 text-sm bg-white border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
+          className="w-full ltr:pl-10 rtl:pr-10 ltr:pr-16 rtl:pl-16 py-2 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         />
-        <kbd className="absolute ltr:right-3 rtl:left-3 top-1/2 -translate-y-1/2 text-[10px] font-mono bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200 hidden sm:block">
+        <kbd className="absolute ltr:right-3 rtl:left-3 top-1/2 -translate-y-1/2 text-[10px] font-mono bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-border hidden sm:block">
           ⌘K
         </kbd>
       </div>
 
       {open && (query.trim().length >= 2 || loading) && (
-        <div className="absolute top-full mt-1 left-0 right-0 bg-white border border-sky-200 rounded-xl shadow-xl max-h-[70vh] overflow-y-auto z-50">
+        <div className="absolute top-full mt-1 left-0 right-0 bg-card border border-border rounded-xl shadow-xl max-h-[70vh] overflow-y-auto z-50">
           {loading && !results ? (
             <div className="p-6 text-center">
-              <Loader2 className="w-5 h-5 animate-spin text-sky-500 mx-auto" />
+              <Loader2 className="w-5 h-5 animate-spin text-cyan-300 mx-auto" />
             </div>
           ) : results && results.totalMatches === 0 ? (
-            <div className="p-6 text-center text-sm text-slate-500">
+            <div className="p-6 text-center text-sm text-muted-foreground">
               {t("noResults", { q: query })}
             </div>
           ) : results ? (
@@ -186,12 +186,12 @@ export default function GlobalSearchBar() {
                 }))}
                 onClick={closeAndReset}
               />
-              <div className="pt-2 border-t border-sky-50 flex items-center justify-between px-2 text-[10px] text-slate-500">
+              <div className="pt-2 border-t border-sky-50 flex items-center justify-between px-2 text-[10px] text-muted-foreground">
                 <span>
                   {results.totalMatches} {t("matches")}
                 </span>
                 <span>
-                  <kbd className="font-mono bg-slate-100 px-1 rounded">↵</kbd> {t("toNavigate")}
+                  <kbd className="font-mono bg-muted px-1 rounded">↵</kbd> {t("toNavigate")}
                 </span>
               </div>
             </div>
@@ -217,11 +217,11 @@ function ResultSection({
 }) {
   if (items.length === 0) return null;
   const colors: Record<string, string> = {
-    cyan: "bg-sky-50 text-sky-600",
-    emerald: "bg-emerald-50 text-emerald-700",
-    indigo: "bg-indigo-50 text-indigo-700",
-    amber: "bg-amber-50 text-amber-700",
-    sky: "bg-sky-50 text-sky-700",
+    cyan: "bg-muted text-cyan-300",
+    emerald: "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30",
+    indigo: "bg-indigo-500/10 text-indigo-700",
+    amber: "bg-amber-500/10 text-amber-300 border border-amber-500/30",
+    sky: "bg-muted text-cyan-300",
   };
   return (
     <div>
@@ -229,10 +229,10 @@ function ResultSection({
         <div className={`w-5 h-5 rounded flex items-center justify-center ${colors[color]}`}>
           <Icon className="w-3 h-3" />
         </div>
-        <span className="text-[10px] font-bold uppercase text-slate-500 tracking-wide">
+        <span className="text-[10px] font-bold uppercase text-muted-foreground tracking-wide">
           {title}
         </span>
-        <span className="text-[10px] text-slate-400">({items.length})</span>
+        <span className="text-[10px] text-muted-foreground">({items.length})</span>
       </div>
       <div className="space-y-0.5">
         {items.map((item) => (
@@ -240,16 +240,16 @@ function ResultSection({
             key={item.id}
             href={item.href}
             onClick={onClick}
-            className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-sky-50 text-sm group"
+            className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-muted text-sm group"
           >
             <div className="flex-1 min-w-0">
-              <div className="font-medium text-slate-900 truncate">{item.primary}</div>
-              <div className="text-xs text-slate-500 truncate">{item.secondary}</div>
+              <div className="font-medium text-foreground truncate">{item.primary}</div>
+              <div className="text-xs text-muted-foreground truncate">{item.secondary}</div>
             </div>
-            <div className="text-[10px] text-slate-400 whitespace-nowrap">
+            <div className="text-[10px] text-muted-foreground whitespace-nowrap">
               {item.meta}
             </div>
-            <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-sky-500 ltr:translate-x-0 rtl:-scale-x-100 flex-shrink-0" />
+            <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-cyan-300 ltr:translate-x-0 rtl:-scale-x-100 flex-shrink-0" />
           </Link>
         ))}
       </div>

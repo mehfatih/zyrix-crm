@@ -31,8 +31,9 @@ export default async function SettingsPage({
   return (
     <div className="max-w-5xl mx-auto py-6 px-4">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-ink">{t("title")}</h1>
-        <p className="text-sm text-ink-light mt-1">{t("subtitle")}</p>
+        <p className="text-slate-300 text-xs font-bold uppercase tracking-widest mb-2">SETTINGS</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
       </div>
       <SettingsTabs locale={locale} />
     </div>
