@@ -5,32 +5,41 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { Download, Sparkles } from 'lucide-react';
-import {
-  BarChart,
-  Bar,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-  Tooltip,
-  CartesianGrid,
-} from 'recharts';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { AITrustBadge } from '@/components/ai/AITrustBadge';
-import {
-  reportsAI,
-  type ReportType,
-  type AIReportChart,
-} from '@/lib/ai/reportsAI';
-import {
-  CHART_TOOLTIP_STYLE,
-  CHART_TOOLTIP_LABEL_STYLE,
-  CHART_TOOLTIP_ITEM_STYLE,
-} from '@/lib/chart-styles';
+import { ReportTabs, type ReportTabId } from '@/components/reports/ReportTabs';
+import { KeyInsights } from '@/components/reports/KeyInsights';
+import { VisualAnalysis } from '@/components/reports/VisualAnalysis';
+import { reportsAI, type ReportType } from '@/lib/ai/reportsAI';
 import { usePageContextSync } from '@/hooks/usePageContextSync';
 
-const REPORT_TYPES: ReportType[] = ['sales', 'pipeline', 'customers', 'revenue'];
+// ────────────────────────────────────────────────────────────────────
+// Sprint 14u — Reports BI overhaul
+// Tabs are now customizable (4 default + 9 addable) and persist in
+// localStorage. Each tab still calls the existing reportsAI service for
+// the AI narrative; Key Insights + Visual Analysis are static demo data
+// for now (varied chart types per the spec).
+// ────────────────────────────────────────────────────────────────────
+
+// Map our customizable tab IDs back onto the backend's ReportType enum.
+// Tabs that don't have a backend report type fall back to the closest
+// match so the AI narrative still renders.
+const TAB_TO_REPORT_TYPE: Record<ReportTabId, ReportType> = {
+  sales: 'sales',
+  pipeline: 'pipeline',
+  customers: 'customers',
+  revenue: 'revenue',
+  // Extras — map to the most semantically-related backend report.
+  deals: 'pipeline',
+  team: 'sales',
+  activity: 'sales',
+  leakage: 'revenue',
+  products: 'revenue',
+  channels: 'sales',
+  geography: 'customers',
+  cohorts: 'customers',
+  tax: 'revenue',
+};
 
 export default function ReportsPage() {
   usePageContextSync('reports');
@@ -38,170 +47,64 @@ export default function ReportsPage() {
   const t = useTranslations('ai.reports');
   const params = useParams<{ locale: string }>();
   const locale = params?.locale || 'en';
-  const [type, setType] = useState<ReportType>('sales');
+  const [activeTab, setActiveTab] = useState<ReportTabId>('sales');
 
+  const reportType = TAB_TO_REPORT_TYPE[activeTab];
   const { data, isLoading } = useQuery({
-    queryKey: ['ai-report', type],
-    queryFn: () => reportsAI.getReport(type),
+    queryKey: ['ai-report', reportType],
+    queryFn: () => reportsAI.getReport(reportType),
   });
 
   return (
     <DashboardShell locale={locale}>
-      <div className="space-y-5 p-4 sm:p-6 lg:p-8">
+      <div className="space-y-6 p-4 sm:p-6 lg:p-8">
         <header className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">REPORTS</p>
-            <h1 className="text-2xl font-bold text-foreground">
-              {t('title')}
-            </h1>
-            <p className="mt-0.5 text-sm text-muted-foreground">{t('subtitle')}</p>
+            <p className="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">
+              REPORTS
+            </p>
+            <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+            <p className="mt-0.5 text-sm text-muted-foreground">
+              {t('subtitle')}
+            </p>
           </div>
-          <button className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-violet-500 px-4 py-2 text-sm font-bold text-white shadow-md hover:shadow-md-hover">
+          <button className="inline-flex items-center gap-1.5 rounded-lg bg-primary hover:bg-primary/90 px-4 py-2 text-sm font-bold text-primary-foreground shadow-md transition-colors">
             <Download size={14} />
             {t('export')}
           </button>
         </header>
 
-        <div className="flex flex-wrap gap-2">
-          {REPORT_TYPES.map((rt) => (
-            <button
-              key={rt}
-              onClick={() => setType(rt)}
-              className={`rounded-lg px-4 py-2 text-sm font-semibold capitalize transition-colors ${
-                type === rt
-                  ? 'bg-primary text-white'
-                  : 'border border-border bg-card text-muted-foreground hover:bg-muted'
-              }`}
-            >
-              {t(`types.${rt}`)}
-            </button>
-          ))}
-        </div>
+        {/* Customizable tabs (4 default + addable extras) */}
+        <ReportTabs active={activeTab} onSelect={setActiveTab} />
 
         {isLoading || !data ? (
-          <div className="h-96 animate-pulse rounded-2xl bg-card" />
+          <div className="h-32 animate-pulse rounded-2xl bg-card border border-border" />
         ) : (
-          <>
-            <section className="rounded-2xl border border-violet-500/30 bg-gradient-to-br from-zyrix-aiSurface via-white to-zyrix-aiSurface p-6 shadow-zyrix-ai-glow lg:p-8">
-              <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-primary">
-                <Sparkles size={13} />
-                <span>{t('aiNarrative')}</span>
-              </div>
-              <p className="max-w-4xl text-base leading-relaxed text-foreground lg:text-lg">
-                {data.narrative}
-              </p>
-              <div className="mt-4">
-                <AITrustBadge confidence={data.confidence} />
-              </div>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-sm font-bold text-foreground">
-                {t('keyInsights')}
-              </h2>
-              <div className="grid gap-3 lg:grid-cols-3">
-                {data.insights.map((insight, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl border border-border bg-card p-4"
-                  >
-                    <h3 className="text-sm font-bold text-foreground">
-                      {insight.title}
-                    </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                      {insight.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-sm font-bold text-foreground">
-                {t('visualAnalysis')}
-              </h2>
-              <div className="grid gap-4 lg:grid-cols-2">
-                {data.charts.map((chart) => (
-                  <ChartCard key={chart.id} chart={chart} />
-                ))}
-              </div>
-            </section>
-          </>
+          <section className="rounded-2xl border border-violet-500/30 bg-gradient-to-br from-violet-500/10 to-card p-6 lg:p-8">
+            <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-violet-300">
+              <Sparkles size={13} />
+              <span>{t('aiNarrative')}</span>
+            </div>
+            <p className="max-w-4xl text-base leading-relaxed text-foreground lg:text-lg">
+              {data.narrative}
+            </p>
+            <div className="mt-4">
+              <AITrustBadge confidence={data.confidence} />
+            </div>
+          </section>
         )}
+
+        {/* Key Insights — 3 distinct cards with mini charts */}
+        <section className="space-y-3">
+          <h2 className="text-foreground text-sm font-bold">
+            {t('keyInsights')}
+          </h2>
+          <KeyInsights />
+        </section>
+
+        {/* Visual Analysis — 4 different chart types */}
+        <VisualAnalysis />
       </div>
     </DashboardShell>
-  );
-}
-
-function ChartCard({ chart }: { chart: AIReportChart }) {
-  return (
-    <article className="rounded-xl border border-border bg-card p-5">
-      <h3 className="text-sm font-bold text-foreground">{chart.title}</h3>
-      <div className="mt-4 h-56">
-        <ResponsiveContainer width="100%" height="100%">
-          {chart.kind === 'bar' ? (
-            <BarChart data={chart.data}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="hsl(var(--border))"
-                opacity={0.3}
-              />
-              <XAxis
-                dataKey="label"
-                stroke="hsl(var(--muted-foreground))"
-                fontSize={11}
-              />
-              <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} />
-              <Tooltip
-                contentStyle={CHART_TOOLTIP_STYLE}
-                labelStyle={CHART_TOOLTIP_LABEL_STYLE}
-                itemStyle={CHART_TOOLTIP_ITEM_STYLE}
-                cursor={{ fill: 'hsl(var(--muted))', opacity: 0.4 }}
-              />
-              <Bar dataKey="value" fill="#22d3ee" radius={[6, 6, 0, 0]} />
-            </BarChart>
-          ) : (
-            <LineChart data={chart.data}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="hsl(var(--border))"
-                opacity={0.3}
-              />
-              <XAxis
-                dataKey="label"
-                stroke="hsl(var(--muted-foreground))"
-                fontSize={11}
-              />
-              <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} />
-              <Tooltip
-                contentStyle={CHART_TOOLTIP_STYLE}
-                labelStyle={CHART_TOOLTIP_LABEL_STYLE}
-                itemStyle={CHART_TOOLTIP_ITEM_STYLE}
-              />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="#22d3ee"
-                strokeWidth={2}
-                dot={{ fill: '#22d3ee', r: 4 }}
-              />
-            </LineChart>
-          )}
-        </ResponsiveContainer>
-      </div>
-
-      <div className="mt-4 rounded-lg border-l-[3px] border-primary bg-violet-500/10 p-3">
-        <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary">
-          <Sparkles size={11} />
-          <span>AI Interpretation</span>
-        </div>
-        <p className="text-xs leading-relaxed text-muted-foreground">
-          {chart.aiInterpretation}
-        </p>
-        <div className="mt-2">
-          <AITrustBadge confidence={chart.confidence} size="sm" />
-        </div>
-      </div>
-    </article>
   );
 }

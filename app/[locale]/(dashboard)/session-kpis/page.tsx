@@ -19,6 +19,11 @@ import {
   getSessionKpis,
   type SessionKpiSummary,
 } from "@/lib/api/session-events";
+import {
+  TopFiveHero,
+  type TopFiveItem,
+} from "@/components/shared/TopFiveHero";
+import { SessionsTrendChart } from "@/components/session/SessionsTrendChart";
 
 // ============================================================================
 // SESSION KPIs — per-employee close counts + auto vs manual breakdown
@@ -215,7 +220,7 @@ export default function SessionKpisPage() {
                   data.totals.autoLogoutRatio > 0.4
                     ? "from-rose-500 to-pink-600"
                     : data.totals.autoLogoutRatio > 0.2
-                      ? "from-amber-500 to-orange-600"
+                      ? "from-violet-500 to-fuchsia-600"
                       : "from-sky-400 to-teal-600"
                 }
                 label={tr(
@@ -242,6 +247,48 @@ export default function SessionKpisPage() {
               />
             </div>
 
+            {/* Sprint 14u — Top 5 employees hero */}
+            <TopFiveHero
+              eyebrow="TOP 5 ACTIVE EMPLOYEES"
+              title={tr(
+                "Most engaged users this period",
+                "أكثر المستخدمين نشاطاً هذه الفترة",
+                "Bu dönemin en aktif kullanıcıları",
+              )}
+              accentText="text-cyan-300"
+              items={data.perUser.map<TopFiveItem>((row) => ({
+                id: row.userId,
+                primary:
+                  row.userName ??
+                  tr("Unnamed user", "مستخدم بلا اسم", "İsimsiz kullanıcı"),
+                secondary: row.userEmail ?? undefined,
+                metric: row.totalCloses,
+                metricLabel: tr("sessions", "جلسات", "oturum"),
+                badge:
+                  row.totalCloses > 0
+                    ? `${Math.round((row.autoLogouts / row.totalCloses) * 100)}% auto`
+                    : undefined,
+              }))}
+              formatMetric={(v) => v.toLocaleString()}
+              chartTitle="SESSIONS BY EMPLOYEE"
+              chartSubtitle={tr(
+                "Top 5 activity",
+                "أكثر 5 نشاطاً",
+                "En aktif 5",
+              )}
+            />
+
+            {/* Sprint 14u — Daily sessions trend per top-5 employee */}
+            <SessionsTrendChart
+              users={data.perUser.map((row) => ({
+                id: row.userId,
+                name:
+                  row.userName ??
+                  tr("Unnamed user", "مستخدم بلا اسم", "İsimsiz kullanıcı"),
+                total: row.totalCloses,
+              }))}
+            />
+
             {/* Per-user table */}
             <div className="rounded-xl border border-border bg-card overflow-hidden">
               <div className="px-4 py-3 border-b border-border bg-muted/50 flex items-center gap-2">
@@ -266,7 +313,7 @@ export default function SessionKpisPage() {
                   </p>
                 </div>
               ) : (
-                <div className="divide-y divide-sky-50">
+                <div className="divide-y divide-border">
                   {data.perUser.map((row) => {
                     const autoRatio =
                       row.totalCloses > 0
