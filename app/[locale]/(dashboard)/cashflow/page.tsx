@@ -10,10 +10,8 @@ import {
   Target,
   BarChart3,
   AlertTriangle,
-  Calendar,
   Award,
   Sparkles,
-  ArrowUpRight,
 } from "lucide-react";
 import {
   fetchForecast,
@@ -23,20 +21,17 @@ import {
   type Horizon,
 } from "@/lib/api/cashflow";
 import { DashboardShell } from "@/components/layout/DashboardShell";
+import {
+  TopFiveHero,
+  type TopFiveItem,
+} from "@/components/shared/TopFiveHero";
+import { WeightedByStageChart } from "@/components/cash-flow/WeightedByStageChart";
+import { TopDealsRadialChart } from "@/components/cash-flow/TopDealsRadialChart";
+import { cn } from "@/lib/utils";
 
 // ============================================================================
 // CASH FLOW FORECAST PAGE
 // ============================================================================
-
-const STAGE_COLORS: Record<string, string> = {
-  lead: "bg-slate-400",
-  qualified: "bg-sky-400",
-  proposal: "bg-indigo-400",
-  negotiation: "bg-amber-400",
-  proposal_accepted: "bg-emerald-400",
-  won: "bg-emerald-600",
-  lost: "bg-red-400",
-};
 
 export default function CashflowPage() {
   const params = useParams();
@@ -155,15 +150,39 @@ export default function CashflowPage() {
               />
             </div>
 
-            {/* Historical context banner */}
+            {/* Top 5 weighted-value deals (Sprint 14u hero) */}
+            <TopFiveHero
+              eyebrow="TOP 5 PROJECTIONS"
+              title="Highest weighted-value deals"
+              accentText="text-emerald-300"
+              items={forecast.topDeals.map<TopFiveItem>((d) => ({
+                id: d.id,
+                primary: d.title,
+                secondary:
+                  d.customer.companyName ?? d.customer.fullName,
+                metric: d.weightedValue,
+                badge: `${d.probability}% likely`,
+              }))}
+              formatMetric={(v) =>
+                formatMoney(v, forecast.currency, locale)
+              }
+              chartTitle="WEIGHTED VALUE"
+              chartSubtitle="Top 5 expected revenue"
+            />
+
+            {/* Historical context banner — Sprint 14u: amber gradient,
+                4 distinct color KPIs */}
             {historical && (
-              <div className="bg-gradient-to-r from-sky-50 to-sky-50 border border-border rounded-xl p-5">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="bg-card rounded-lg p-2 shadow-sm">
-                    <Award className="w-5 h-5 text-cyan-300" />
+              <div className="rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-card to-card p-5">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+                    <Award className="w-5 h-5 text-amber-300" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground">
+                    <p className="text-amber-300 text-xs font-bold uppercase tracking-widest mb-0.5">
+                      BASELINE
+                    </p>
+                    <h3 className="text-sm font-bold text-foreground">
                       {t("historical.title")}
                     </h3>
                     <p className="text-xs text-muted-foreground">
@@ -171,11 +190,11 @@ export default function CashflowPage() {
                     </p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <HistBox
                     label={t("historical.wonCount")}
                     value={String(historical.wonLast30dCount)}
-                    positive
+                    variant="emerald"
                   />
                   <HistBox
                     label={t("historical.wonValue")}
@@ -184,11 +203,12 @@ export default function CashflowPage() {
                       forecast.currency,
                       locale
                     )}
-                    positive
+                    variant="cyan"
                   />
                   <HistBox
                     label={t("historical.winRate")}
                     value={`${historical.winRatePercent.toFixed(1)}%`}
+                    variant="violet"
                   />
                   <HistBox
                     label={t("historical.avgDealSize")}
@@ -197,6 +217,7 @@ export default function CashflowPage() {
                       forecast.currency,
                       locale
                     )}
+                    variant="amber"
                   />
                 </div>
               </div>
@@ -224,127 +245,24 @@ export default function CashflowPage() {
               )}
             </div>
 
-            {/* Two-column: by stage + top deals */}
+            {/* Two-column: weighted value funnel + top 10 radial */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {/* By stage */}
-              <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <div className="px-5 py-3 border-b border-border bg-muted/50">
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {t("byStage.title")}
-                  </h3>
-                </div>
-                {forecast.byStage.length === 0 ? (
-                  <div className="py-10 text-center text-muted-foreground text-sm">
-                    {t("byStage.empty")}
-                  </div>
-                ) : (
-                  <div className="divide-y divide-sky-50">
-                    {forecast.byStage.map((s, idx) => {
-                      const pct =
-                        forecast.totalWeightedValue > 0
-                          ? (s.weightedValue / forecast.totalWeightedValue) * 100
-                          : 0;
-                      const color = STAGE_COLORS[s.stage] || "bg-slate-400";
-                      return (
-                        <div key={idx} className="px-5 py-3">
-                          <div className="flex items-center justify-between mb-1.5">
-                            <div className="flex items-center gap-2">
-                              <div
-                                className={`w-2.5 h-2.5 rounded-full ${color}`}
-                              />
-                              <span className="text-sm font-medium text-foreground capitalize">
-                                {s.stage.replace(/_/g, " ")}
-                              </span>
-                              <span className="text-xs text-muted-foreground">
-                                ({s.count})
-                              </span>
-                            </div>
-                            <span className="text-sm font-semibold text-foreground">
-                              {formatMoney(
-                                s.weightedValue,
-                                forecast.currency,
-                                locale
-                              )}
-                            </span>
-                          </div>
-                          <div className="h-2 bg-muted rounded-full overflow-hidden">
-                            <div
-                              className={`h-full ${color} transition-all`}
-                              style={{ width: `${pct}%` }}
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              {/* Top deals */}
-              <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <div className="px-5 py-3 border-b border-border bg-muted/50 flex items-center gap-2">
-                  <ArrowUpRight className="w-4 h-4 text-emerald-300" />
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {t("topDeals.title")}
-                  </h3>
-                </div>
-                {forecast.topDeals.length === 0 ? (
-                  <div className="py-10 text-center text-muted-foreground text-sm">
-                    {t("topDeals.empty")}
-                  </div>
-                ) : (
-                  <div className="divide-y divide-sky-50">
-                    {forecast.topDeals.map((d, idx) => (
-                      <div
-                        key={idx}
-                        className="px-5 py-3 flex items-start gap-3 hover:bg-muted/30"
-                      >
-                        <div className="w-7 h-7 rounded-full bg-muted text-cyan-300 font-bold text-xs flex items-center justify-center flex-shrink-0">
-                          {idx + 1}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-foreground text-sm truncate">
-                            {d.title}
-                          </div>
-                          <div className="text-xs text-muted-foreground truncate">
-                            {d.customer.fullName}
-                            {d.customer.companyName
-                              ? ` — ${d.customer.companyName}`
-                              : ""}
-                          </div>
-                          <div className="flex items-center gap-2 mt-1 text-xs">
-                            <span className="text-muted-foreground capitalize">
-                              {d.stage.replace(/_/g, " ")}
-                            </span>
-                            <span className="text-muted-foreground">·</span>
-                            <span className="text-muted-foreground">
-                              {d.probability}%
-                            </span>
-                            {d.expectedCloseDate && (
-                              <>
-                                <span className="text-muted-foreground">·</span>
-                                <span className="text-muted-foreground flex items-center gap-0.5">
-                                  <Calendar className="w-3 h-3" />
-                                  {formatDate(d.expectedCloseDate, locale)}
-                                </span>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        <div className="text-right flex-shrink-0">
-                          <div className="font-bold text-emerald-300 text-sm">
-                            {formatMoney(d.weightedValue, d.currency, locale)}
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            {t("topDeals.of")}{" "}
-                            {formatMoney(d.value, d.currency, locale)}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <WeightedByStageChart
+                data={forecast.byStage}
+                formatValue={(v) =>
+                  formatMoney(v, forecast.currency, locale)
+                }
+              />
+              <TopDealsRadialChart
+                deals={forecast.topDeals.map((d) => ({
+                  id: d.id,
+                  name: d.title,
+                  weightedValue: d.weightedValue,
+                }))}
+                formatValue={(v) =>
+                  formatMoney(v, forecast.currency, locale)
+                }
+              />
             </div>
           </>
         )}
@@ -518,20 +436,25 @@ function KpiCard({
 function HistBox({
   label,
   value,
-  positive,
+  variant = "neutral",
 }: {
   label: string;
   value: string;
-  positive?: boolean;
+  variant?: "emerald" | "cyan" | "violet" | "amber" | "neutral";
 }) {
+  const styles = {
+    emerald: { ring: "ring-emerald-500/20", text: "text-emerald-100", label: "text-emerald-300" },
+    cyan: { ring: "ring-cyan-500/20", text: "text-cyan-100", label: "text-cyan-300" },
+    violet: { ring: "ring-violet-500/20", text: "text-violet-100", label: "text-violet-300" },
+    amber: { ring: "ring-amber-500/20", text: "text-amber-100", label: "text-amber-300" },
+    neutral: { ring: "ring-slate-500/20", text: "text-foreground", label: "text-muted-foreground" },
+  }[variant];
   return (
-    <div className="bg-card rounded-lg border border-border px-3 py-2">
-      <div className="text-xs text-muted-foreground">{label}</div>
-      <div
-        className={`text-sm font-bold mt-0.5 ${
-          positive ? "text-emerald-300" : "text-foreground"
-        }`}
-      >
+    <div className={cn("rounded-xl bg-card/60 ring-1 px-3 py-2.5", styles.ring)}>
+      <div className={cn("text-[10px] font-bold uppercase tracking-wider", styles.label)}>
+        {label}
+      </div>
+      <div className={cn("text-base font-bold tabular-nums mt-0.5", styles.text)}>
         {value}
       </div>
     </div>
@@ -558,15 +481,3 @@ function formatMoneyShort(n: number): string {
   return n.toFixed(0);
 }
 
-function formatDate(iso: string, locale: string): string {
-  const loc =
-    locale === "ar" ? "ar-SA" : locale === "tr" ? "tr-TR" : "en-US";
-  try {
-    return new Date(iso).toLocaleDateString(loc, {
-      month: "short",
-      day: "numeric",
-    });
-  } catch {
-    return iso;
-  }
-}
