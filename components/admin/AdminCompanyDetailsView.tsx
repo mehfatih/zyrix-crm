@@ -97,7 +97,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
     industry: "",
     size: "",
     baseCurrency: "",
-    idleTimeoutMinutes: 10,
+    idleTimeoutMinutes: 15,
   });
   const [saving, setSaving] = useState(false);
 
@@ -132,7 +132,7 @@ export default function AdminCompanyDetailsView({ companyId, locale }: Props) {
         size: c.size || "",
         baseCurrency: c.baseCurrency || "",
         idleTimeoutMinutes:
-          typeof c.idleTimeoutMinutes === "number" ? c.idleTimeoutMinutes : 10,
+          typeof c.idleTimeoutMinutes === "number" ? c.idleTimeoutMinutes : 15,
       });
     } catch (err: unknown) {
       setError(t("loadError"));
