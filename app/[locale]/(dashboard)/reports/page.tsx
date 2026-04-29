@@ -23,6 +23,11 @@ import {
   type ReportType,
   type AIReportChart,
 } from '@/lib/ai/reportsAI';
+import {
+  CHART_TOOLTIP_STYLE,
+  CHART_TOOLTIP_LABEL_STYLE,
+  CHART_TOOLTIP_ITEM_STYLE,
+} from '@/lib/chart-styles';
 import { usePageContextSync } from '@/hooks/usePageContextSync';
 
 const REPORT_TYPES: ReportType[] = ['sales', 'pipeline', 'customers', 'revenue'];
@@ -136,36 +141,49 @@ function ChartCard({ chart }: { chart: AIReportChart }) {
         <ResponsiveContainer width="100%" height="100%">
           {chart.kind === 'bar' ? (
             <BarChart data={chart.data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
-              <XAxis dataKey="label" stroke="#64748B" fontSize={11} />
-              <YAxis stroke="#64748B" fontSize={11} />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: '#FFFFFF',
-                  borderColor: '#BAE6FD',
-                  borderRadius: 8,
-                }}
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="hsl(var(--border))"
+                opacity={0.3}
               />
-              <Bar dataKey="value" fill="#0EA5E9" radius={[6, 6, 0, 0]} />
+              <XAxis
+                dataKey="label"
+                stroke="hsl(var(--muted-foreground))"
+                fontSize={11}
+              />
+              <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} />
+              <Tooltip
+                contentStyle={CHART_TOOLTIP_STYLE}
+                labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                itemStyle={CHART_TOOLTIP_ITEM_STYLE}
+                cursor={{ fill: 'hsl(var(--muted))', opacity: 0.4 }}
+              />
+              <Bar dataKey="value" fill="#22d3ee" radius={[6, 6, 0, 0]} />
             </BarChart>
           ) : (
             <LineChart data={chart.data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
-              <XAxis dataKey="label" stroke="#64748B" fontSize={11} />
-              <YAxis stroke="#64748B" fontSize={11} />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="hsl(var(--border))"
+                opacity={0.3}
+              />
+              <XAxis
+                dataKey="label"
+                stroke="hsl(var(--muted-foreground))"
+                fontSize={11}
+              />
+              <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} />
               <Tooltip
-                contentStyle={{
-                  backgroundColor: '#FFFFFF',
-                  borderColor: '#BAE6FD',
-                  borderRadius: 8,
-                }}
+                contentStyle={CHART_TOOLTIP_STYLE}
+                labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                itemStyle={CHART_TOOLTIP_ITEM_STYLE}
               />
               <Line
                 type="monotone"
                 dataKey="value"
-                stroke="#0EA5E9"
+                stroke="#22d3ee"
                 strokeWidth={2}
-                dot={{ fill: '#0EA5E9', r: 4 }}
+                dot={{ fill: '#22d3ee', r: 4 }}
               />
             </LineChart>
           )}

@@ -8,18 +8,24 @@ import { Plus, Search, Filter } from 'lucide-react';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { AITable, type AITableColumn } from '@/components/ai/AITable';
 import { CreateDealModal } from '@/components/deals/CreateDealModal';
+import { TopDealsHero } from '@/components/deals/TopDealsHero';
+import {
+  StatusPill,
+  STAGE_TONE,
+  type StatusTone,
+} from '@/components/ui/StatusPill';
 import { dealsAI, type AIDeal, type DealStage } from '@/lib/ai/dealsAI';
 import { usePageContextSync } from '@/hooks/usePageContextSync';
-import { cn } from '@/lib/utils';
 
-const STAGE_TONE: Record<DealStage, string> = {
-  lead: 'bg-muted text-cyan-300',
-  qualified: 'bg-sky-100 text-foreground',
-  proposal: 'bg-amber-500/10 text-amber-300 border border-amber-500/30',
-  negotiation: 'bg-violet-500/10 text-violet-700',
-  closing: 'bg-cyan-500/10 text-cyan-700',
-  won: 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30',
-  lost: 'bg-rose-500/10 text-rose-300 border border-rose-500/30',
+// Local fallback so a never-before-seen stage at least renders neutrally.
+const STAGE_TONE_FALLBACK: Record<DealStage, StatusTone> = {
+  lead: 'neutral',
+  qualified: 'info',
+  proposal: 'warning',
+  negotiation: 'warning',
+  closing: 'premium',
+  won: 'success',
+  lost: 'danger',
 };
 
 export default function DealsPage() {
@@ -52,14 +58,12 @@ export default function DealsPage() {
       key: 'stage',
       header: t('stage'),
       render: (d) => (
-        <span
-          className={cn(
-            'inline-flex rounded-md px-2 py-0.5 text-[11px] font-medium capitalize',
-            STAGE_TONE[d.stage],
-          )}
+        <StatusPill
+          tone={STAGE_TONE[d.stage] ?? STAGE_TONE_FALLBACK[d.stage] ?? 'neutral'}
+          size="sm"
         >
-          {d.stage}
-        </span>
+          <span className="capitalize">{d.stage}</span>
+        </StatusPill>
       ),
     },
     {
@@ -146,6 +150,16 @@ export default function DealsPage() {
             {t('filters')}
           </button>
         </div>
+
+        <TopDealsHero
+          deals={(data?.deals ?? []).map((d) => ({
+            id: d.id,
+            name: d.name,
+            customer: d.customerName,
+            value: d.value,
+            stage: d.stage,
+          }))}
+        />
 
         <AITable
           data={data?.deals ?? []}

@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Sparkles, AlertTriangle, ArrowUpDown } from 'lucide-react';
 import { AIBulkActionBar } from './AIBulkActionBar';
 import { AITrustBadge } from './AITrustBadge';
+import { StatusPill } from '@/components/ui/StatusPill';
 
 export interface AITableColumn<T> {
   key: string;
@@ -214,23 +215,27 @@ function AIScoreBadge({ score }: { score: number }) {
 }
 
 function RiskBadge({ level }: { level: 'low' | 'medium' | 'high' }) {
-  const map = {
-    low: { bg: 'bg-emerald-50', text: 'text-emerald-300', label: 'Low' },
-    medium: { bg: 'bg-amber-50', text: 'text-amber-300', label: 'Med' },
-    high: {
-      bg: 'bg-red-50',
-      text: 'text-rose-300',
-      label: 'High',
-      icon: <AlertTriangle size={10} />,
-    },
-  } as const;
-  const c = map[level];
+  if (level === 'low') {
+    return (
+      <StatusPill tone="success" size="sm">
+        Low
+      </StatusPill>
+    );
+  }
+  if (level === 'medium') {
+    return (
+      <StatusPill tone="warning" size="sm">
+        Med
+      </StatusPill>
+    );
+  }
   return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-bold ${c.bg} ${c.text}`}
+    <StatusPill
+      tone="danger"
+      size="sm"
+      icon={<AlertTriangle size={10} />}
     >
-      {'icon' in c ? c.icon : null}
-      {c.label}
-    </span>
+      High
+    </StatusPill>
   );
 }

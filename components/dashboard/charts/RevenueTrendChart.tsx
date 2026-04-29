@@ -11,6 +11,11 @@ import {
   CartesianGrid,
 } from "recharts";
 import { TrendingUp, TrendingDown } from "lucide-react";
+import {
+  CHART_TOOLTIP_STYLE,
+  CHART_TOOLTIP_LABEL_STYLE,
+  CHART_TOOLTIP_ITEM_STYLE,
+} from "@/lib/chart-styles";
 
 // ────────────────────────────────────────────────────────────────────
 // Sprint 14p — Revenue Trend chart (won vs lost)
@@ -151,13 +156,9 @@ export default function RevenueTrendChart({ data = MOCK_DATA }: Props) {
               tickFormatter={(v) => `$${v / 1000}k`}
             />
             <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--foreground))",
-                fontSize: "12px",
-              }}
+              contentStyle={CHART_TOOLTIP_STYLE}
+              labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+              itemStyle={CHART_TOOLTIP_ITEM_STYLE}
               formatter={((v: number) => [
                 `$${v.toLocaleString()}`,
                 activeView === "won" ? "Won" : "Lost",

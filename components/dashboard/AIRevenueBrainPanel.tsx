@@ -11,6 +11,11 @@ import {
 } from 'recharts';
 import { revenueBrain, type RevenueScenario } from '@/lib/ai/revenueBrain';
 import { AITrustBadge } from '@/components/ai/AITrustBadge';
+import {
+  CHART_TOOLTIP_STYLE,
+  CHART_TOOLTIP_LABEL_STYLE,
+  CHART_TOOLTIP_ITEM_STYLE,
+} from '@/lib/chart-styles';
 import { cn } from '@/lib/utils';
 
 // ────────────────────────────────────────────────────────────────────
@@ -107,14 +112,9 @@ export function AIRevenueBrainPanel({ workspaceId }: Props) {
                 </linearGradient>
               </defs>
               <Tooltip
-                contentStyle={{
-                  backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '6px',
-                  fontSize: '11px',
-                  padding: '4px 8px',
-                  color: 'hsl(var(--foreground))',
-                }}
+                contentStyle={CHART_TOOLTIP_STYLE}
+                labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                itemStyle={CHART_TOOLTIP_ITEM_STYLE}
                 formatter={(((v: number) => [`$${v}k`, 'Cumulative']) as never)}
                 labelFormatter={(l) => `Day ${l}`}
               />
