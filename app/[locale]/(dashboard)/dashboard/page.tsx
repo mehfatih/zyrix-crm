@@ -23,7 +23,6 @@ import {
 import { DashboardShell } from "@/components/layout/DashboardShell";
 import ConnectedStoresWidget from "@/components/dashboard/ConnectedStoresWidget";
 import { useTranslations } from "next-intl";
-import { X, Rocket } from "lucide-react";
 import {
   fetchDashboardStats,
   type DashboardStats,
@@ -40,6 +39,14 @@ import { AIPriorityActions } from "@/components/dashboard/AIPriorityActions";
 import { AISmartKPIGrid } from "@/components/dashboard/AISmartKPIGrid";
 import { AIRevenueBrainPanel } from "@/components/dashboard/AIRevenueBrainPanel";
 import { AgentsWidget } from "@/components/dashboard/AgentsWidget";
+import RevenueTrendChart from "@/components/dashboard/charts/RevenueTrendChart";
+import PipelineSnapshotChart from "@/components/dashboard/charts/PipelineSnapshotChart";
+import TeamLeaderboardChart, {
+  type TeamMember,
+} from "@/components/dashboard/charts/TeamLeaderboardChart";
+import TopCustomersChart, {
+  type CustomerRevenue,
+} from "@/components/dashboard/charts/TopCustomersChart";
 import { usePageContextSync } from "@/hooks/usePageContextSync";
 import { useAuth } from "@/lib/auth/context";
 
@@ -123,17 +130,38 @@ export default function DashboardPage() {
 
   const scope = stats.scope;
 
+  // Map real stats into the chart data shapes (charts fall back to mock
+  // defaults when these arrays are empty — they handle their own empty
+  // states with on-brand messaging). Stats fields below are role-scoped,
+  // so they're typed loosely on DashboardStats.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const statsAny = stats as any;
+  const teamLeaderboardData: TeamMember[] = (
+    (statsAny.teamLeaderboard as TeamLeaderboardEntry[] | undefined) ?? []
+  ).map((e) => ({
+    name: e.user.fullName,
+    sales: e.revenue,
+  }));
+  const topCustomersData: CustomerRevenue[] = (
+    (statsAny.topCustomers as
+      | { fullName: string; lifetimeValue: number }[]
+      | undefined) ?? []
+  ).map((c) => ({
+    name: c.fullName,
+    revenue: c.lifetimeValue,
+  }));
+
   return (
     <DashboardShell locale={locale}>
-      <div className="p-6 space-y-6">
-        {/* AI Executive Summary — hero card with greeting + narrative */}
+      <div className="p-4 md:p-6 max-w-[1600px] mx-auto space-y-6">
+        {/* 1 — Hero strip (greeting + narrative) */}
         <AIExecutiveSummary workspaceId={workspaceId} userName={userName} />
 
-        {/* AI Smart KPI Grid — KPIs always carry context, never raw numbers */}
+        {/* 2 — Executive Summary KPIs (4 AI cards w/ context) */}
         <AISmartKPIGrid />
 
-        {/* AI Priority Actions + Revenue Brain — two-column on lg */}
-        <div className="grid gap-6 lg:grid-cols-3">
+        {/* 3 — Priority Actions + Revenue Brain (2/3 + 1/3) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <AIPriorityActions workspaceId={workspaceId} />
           </div>
@@ -142,13 +170,17 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* AI Agents — top 3 pending outputs */}
-        <AgentsWidget />
+        {/* 4 — Onboarding strip (only when incomplete + not dismissed) */}
+        {onboarding && !onboarding.completed && !bannerDismissed && (
+          <OnboardingBanner locale={locale} />
+        )}
 
-        {/* Header with scope badge */}
-        <div className="flex items-center justify-between gap-4 flex-wrap pt-4 border-t border-border">
+        {/* 5 — Header with scope badge (executive-summary eyebrow) */}
+        <div className="flex items-center justify-between gap-4 flex-wrap pt-2">
           <div>
-            <p className="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">EXECUTIVE SUMMARY</p>
+            <p className="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">
+              EXECUTIVE SUMMARY
+            </p>
             <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
             <div className="flex items-center gap-2 mt-1">
               <ScopeBadge scope={scope} t={t} />
@@ -159,101 +191,12 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Onboarding banner — shows until wizard is completed */}
-        {onboarding && !onboarding.completed && !bannerDismissed && (
-          <div className="relative rounded-2xl bg-gradient-to-r from-primary/20 via-violet-500/20 to-cyan-500/20 border border-primary/30 text-foreground p-5 shadow-md overflow-hidden">
-            <div className="absolute right-0 top-0 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 backdrop-blur flex items-center justify-center flex-shrink-0 text-primary">
-                <Rocket className="w-5 h-5" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-base font-bold">
-                  {locale === "ar"
-                    ? "أكمل إعداد حسابك"
-                    : locale === "tr"
-                      ? "Hesap kurulumunuzu tamamlayın"
-                      : "Finish setting up your account"}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                  {locale === "ar"
-                    ? "يستغرق الأمر دقيقتين فقط — قم بإعداد عملتك الأساسية، اربط متجرك، وادعُ فريقك."
-                    : locale === "tr"
-                      ? "Sadece 2 dakika sürer — ana para biriminizi ayarlayın, mağazanızı bağlayın ve ekibinizi davet edin."
-                      : "It takes just 2 minutes — set your base currency, connect your store, and invite your team."}
-                </p>
-                <div className="mt-4 flex items-center gap-3 flex-wrap">
-                  <Link
-                    href={`/${locale}/onboarding`}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors"
-                  >
-                    {locale === "ar"
-                      ? "ابدأ الإعداد"
-                      : locale === "tr"
-                        ? "Kuruluma başla"
-                        : "Start setup"}
-                    <ArrowRight
-                      className={`w-4 h-4 ${locale === "ar" ? "-scale-x-100" : ""}`}
-                    />
-                  </Link>
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <span>
-                      {onboarding.signals.storesConnected > 0
-                        ? locale === "ar"
-                          ? `✓ ${onboarding.signals.storesConnected} متجر متصل`
-                          : locale === "tr"
-                            ? `✓ ${onboarding.signals.storesConnected} mağaza bağlı`
-                            : `✓ ${onboarding.signals.storesConnected} store connected`
-                        : locale === "ar"
-                          ? "○ لا توجد متاجر بعد"
-                          : locale === "tr"
-                            ? "○ Henüz mağaza yok"
-                            : "○ No stores yet"}
-                    </span>
-                    <span>
-                      {onboarding.signals.teamMembers > 1
-                        ? locale === "ar"
-                          ? `✓ ${onboarding.signals.teamMembers} أعضاء`
-                          : locale === "tr"
-                            ? `✓ ${onboarding.signals.teamMembers} üye`
-                            : `✓ ${onboarding.signals.teamMembers} members`
-                        : locale === "ar"
-                          ? "○ أنت وحدك"
-                          : locale === "tr"
-                            ? "○ Sadece siz"
-                            : "○ Just you"}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <button
-                onClick={dismissBanner}
-                aria-label={
-                  locale === "ar" ? "إغلاق" : locale === "tr" ? "kapat" : "dismiss"
-                }
-                className="flex-shrink-0 w-7 h-7 rounded-lg bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors text-muted-foreground hover:text-foreground"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Post-onboarding banner — shows remaining 5-step checklist until
-            every step is marked complete (P3). */}
-        <OnboardingBanner locale={locale} />
-
-        {/* Customizable widget grid — per-user layout saved in DashboardLayout */}
-        <DashboardGrid locale={(["en", "ar", "tr"].includes(locale) ? locale : "en") as "en" | "ar" | "tr"} />
-
-        {/* Primary KPIs */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* 6 — KPI Summary (4 equal cards, mixed accents per KPI) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <KpiCard
             icon={DollarSign}
             label={
-              scope === "personal"
-                ? t("kpis.myRevenue")
-                : t("kpis.revenue")
+              scope === "personal" ? t("kpis.myRevenue") : t("kpis.revenue")
             }
             value={formatMoney(stats.deals.wonValueLast30d)}
             hint={`${stats.deals.wonLast30d} ${t("kpis.wonDeals")}`}
@@ -273,7 +216,7 @@ export default function DashboardPage() {
             }
             value={String(stats.customers.total)}
             hint={`+${stats.customers.new30d} ${t("kpis.last30d")}`}
-            color="sky"
+            color="violet"
           />
           <KpiCard
             icon={CheckSquare}
@@ -288,16 +231,50 @@ export default function DashboardPage() {
           />
         </div>
 
-        {/* Connected e-commerce stores — shortcut cards with sync status */}
+        {/* 7 — Revenue Trend + Pipeline Snapshot (50/50 charts) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <RevenueTrendChart />
+          <PipelineSnapshotChart />
+        </div>
+
+        {/* 8 — Recent Deals + Upcoming Tasks (50/50 lists, role-aware) */}
+        {scope === "personal" && (
+          <MemberView stats={stats as any} locale={locale} t={t} />
+        )}
+        {scope === "team" && (
+          <ManagerView stats={stats as any} t={t} />
+        )}
+        {scope === "company" && (
+          <CompanyView stats={stats as any} locale={locale} t={t} />
+        )}
+
+        {/* 9 — Team Leaderboard + Top Customers (50/50 charts) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <TeamLeaderboardChart
+            data={teamLeaderboardData.length > 0 ? teamLeaderboardData : undefined}
+          />
+          <TopCustomersChart
+            data={topCustomersData.length > 0 ? topCustomersData : undefined}
+          />
+        </div>
+
+        {/* 10 — AI Agents inbox (3 cards) */}
+        <AgentsWidget />
+
+        {/* 11 — Connected e-commerce stores (themed, single instance) */}
         <ConnectedStoresWidget locale={locale} />
 
-        {/* Role-specific content */}
-        {scope === "personal" && <MemberView stats={stats as any} locale={locale} t={t} />}
-        {scope === "team" && <ManagerView stats={stats as any} t={t} />}
-        {scope === "company" && <CompanyView stats={stats as any} locale={locale} t={t} />}
-
-        {/* Quick links */}
+        {/* 12 — Quick links footer */}
         <QuickLinks locale={locale} t={t} />
+
+        {/* 13 — Customizable widget grid (power-user feature, bottom of page) */}
+        <DashboardGrid
+          locale={
+            (["en", "ar", "tr"].includes(locale)
+              ? locale
+              : "en") as "en" | "ar" | "tr"
+          }
+        />
       </div>
     </DashboardShell>
   );
@@ -607,24 +584,25 @@ function KpiCard({
   label: string;
   value: string;
   hint: string;
-  color: "cyan" | "sky" | "emerald" | "amber";
+  color: "cyan" | "sky" | "emerald" | "amber" | "violet";
 }) {
   const colors: Record<string, { iconBg: string; iconText: string; eyebrow: string }> = {
-    cyan: { iconBg: "bg-cyan-500/15 border border-cyan-500/30", iconText: "text-cyan-300", eyebrow: "text-cyan-300" },
-    sky: { iconBg: "bg-cyan-500/15 border border-cyan-500/30", iconText: "text-cyan-300", eyebrow: "text-cyan-300" },
+    cyan:    { iconBg: "bg-cyan-500/15 border border-cyan-500/30",       iconText: "text-cyan-300",    eyebrow: "text-cyan-300" },
+    sky:     { iconBg: "bg-sky-500/15 border border-sky-500/30",         iconText: "text-sky-300",     eyebrow: "text-sky-300" },
     emerald: { iconBg: "bg-emerald-500/15 border border-emerald-500/30", iconText: "text-emerald-300", eyebrow: "text-emerald-300" },
-    amber: { iconBg: "bg-amber-500/15 border border-amber-500/30", iconText: "text-amber-300", eyebrow: "text-amber-300" },
+    amber:   { iconBg: "bg-amber-500/15 border border-amber-500/30",     iconText: "text-amber-300",   eyebrow: "text-amber-300" },
+    violet:  { iconBg: "bg-violet-500/15 border border-violet-500/30",   iconText: "text-violet-300",  eyebrow: "text-violet-300" },
   };
   const c = colors[color];
   return (
-    <div className="bg-card border border-border rounded-xl p-4">
-      <div className="flex items-center gap-3 mb-2">
-        <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg`}>
+    <div className="bg-card border border-border rounded-xl p-5 min-h-[140px] flex flex-col">
+      <div className="flex items-center gap-3 mb-3">
+        <div className={`${c.iconBg} ${c.iconText} p-2 rounded-lg flex-shrink-0`}>
           <Icon className="w-5 h-5" />
         </div>
         <div className={`text-xs font-bold uppercase tracking-wider truncate ${c.eyebrow}`}>{label}</div>
       </div>
-      <div className="text-2xl font-bold text-foreground">{value}</div>
+      <div className="text-2xl font-bold text-foreground tabular-nums">{value}</div>
       <div className="text-xs text-muted-foreground mt-0.5 truncate">{hint}</div>
     </div>
   );
