@@ -4200,5 +4200,75 @@
       "subtitle": "Bir ajanla ücretsiz başlayın. Büyüdükçe daha fazlasını ekleyin. İstediğiniz zaman iptal edin.",
       "primary": "Ücretsiz deneme başlat"
     }
+  },
+  "Analytics": {
+    "eyebrow": "ANALİTİK",
+    "title": "Analitik",
+    "subtitle": "Power BI seviyesinde panel. Sekme seç, grafik tipini değiştir, verilerini incele.",
+    "scheduledReports": "Zamanlanmış raporlar",
+    "toolbar": {
+      "timeRange": {
+        "7d": "7g",
+        "30d": "30g",
+        "90d": "90g",
+        "ytd": "Yıl"
+      },
+      "refresh": "Yenile",
+      "export": "Dışa aktar",
+      "emailReport": "Raporu e-postala"
+    },
+    "pivot": {
+      "title": "PİVOT",
+      "chartType": {
+        "bar": "Sütun",
+        "line": "Çizgi",
+        "area": "Alan"
+      }
+    },
+    "viz": {
+      "title": "VERİ GÖRSELLEŞTİRME",
+      "subtitle": "Power BI modu — incele, dilimle, çevir.",
+      "chartType": {
+        "bar": "Sütun",
+        "line": "Çizgi",
+        "area": "Alan",
+        "pie": "Pasta",
+        "scatter": "Dağılım",
+        "funnel": "Huni",
+        "radar": "Radar"
+      },
+      "dimension": "Boyut",
+      "measure": "Ölçü",
+      "filters": "Filtreler",
+      "addFilter": "Filtre ekle",
+      "drill": {
+        "back": "Geri"
+      }
+    },
+    "email": {
+      "modalEyebrow": "RAPOR E-POSTALA",
+      "modalTitle": "Bu analitik raporunu e-postala",
+      "recipients": "Alıcılar",
+      "subject": "Konu",
+      "subjectPrefix": "Analitik Rapor —",
+      "message": "Mesaj",
+      "messageTemplate": "{tab} için {date} tarihli analitik raporu ektedir.",
+      "send": "Gönder",
+      "cancel": "İptal",
+      "preview": "Önizleme",
+      "previewFooter": "{count} KPI · {date} tarihinde oluşturuldu",
+      "queuedToast": "Rapor {count} alıcıya gönderilmek üzere sıraya alındı.",
+      "noRecipientsError": "Önce en az bir alıcı ekleyin."
+    },
+    "export": {
+      "png": "PNG olarak dışa aktar",
+      "csv": "CSV olarak dışa aktar",
+      "pdf": "PDF olarak dışa aktar",
+      "comingSoonToast": "{type} dışa aktarımı yakında."
+    },
+    "addTab": {
+      "label": "Bölüm ekle",
+      "empty": "Tüm bölümler eklenmiş."
+    }
   }
 }

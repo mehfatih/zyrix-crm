@@ -4200,5 +4200,75 @@
       "subtitle": "ابدأ بوكيل واحد مجاناً. أضف المزيد مع نموك. ألغِ في أي وقت.",
       "primary": "ابدأ التجربة المجانية"
     }
+  },
+  "Analytics": {
+    "eyebrow": "التحليلات",
+    "title": "التحليلات",
+    "subtitle": "لوحة بمستوى Power BI. اختر علامة التبويب، بدّل نوع الرسم البياني، وتعمّق في بياناتك.",
+    "scheduledReports": "التقارير المجدولة",
+    "toolbar": {
+      "timeRange": {
+        "7d": "٧ أيام",
+        "30d": "٣٠ يوم",
+        "90d": "٩٠ يوم",
+        "ytd": "هذه السنة"
+      },
+      "refresh": "تحديث",
+      "export": "تصدير",
+      "emailReport": "إرسال تقرير"
+    },
+    "pivot": {
+      "title": "محور",
+      "chartType": {
+        "bar": "أعمدة",
+        "line": "خطي",
+        "area": "مساحي"
+      }
+    },
+    "viz": {
+      "title": "تصور البيانات",
+      "subtitle": "وضع Power BI — تعمّق وقطّع ومحوّر.",
+      "chartType": {
+        "bar": "أعمدة",
+        "line": "خطي",
+        "area": "مساحي",
+        "pie": "دائري",
+        "scatter": "متناثر",
+        "funnel": "قمع",
+        "radar": "رادار"
+      },
+      "dimension": "البُعد",
+      "measure": "المقياس",
+      "filters": "المرشحات",
+      "addFilter": "أضف مرشحًا",
+      "drill": {
+        "back": "رجوع"
+      }
+    },
+    "email": {
+      "modalEyebrow": "إرسال التقرير",
+      "modalTitle": "أرسل تقرير التحليلات",
+      "recipients": "المستلمون",
+      "subject": "الموضوع",
+      "subjectPrefix": "تقرير التحليلات —",
+      "message": "الرسالة",
+      "messageTemplate": "تجد مرفقًا تقرير التحليلات لـ {tab}، تم إنشاؤه في {date}.",
+      "send": "إرسال",
+      "cancel": "إلغاء",
+      "preview": "معاينة",
+      "previewFooter": "{count} مؤشرات مشمولة · تم في {date}",
+      "queuedToast": "تم وضع التقرير في قائمة الإرسال إلى {count} مستلمين.",
+      "noRecipientsError": "أضف مستلمًا واحدًا على الأقل أولًا."
+    },
+    "export": {
+      "png": "تصدير كصورة PNG",
+      "csv": "تصدير كـ CSV",
+      "pdf": "تصدير كـ PDF",
+      "comingSoonToast": "تصدير {type} قريبًا."
+    },
+    "addTab": {
+      "label": "أضف قسمًا",
+      "empty": "تمت إضافة جميع الأقسام."
+    }
   }
 }

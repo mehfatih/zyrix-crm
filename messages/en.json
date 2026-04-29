@@ -4200,5 +4200,75 @@
       "subtitle": "Start with one agent free. Add more as you grow. Cancel anytime.",
       "primary": "Start free trial"
     }
+  },
+  "Analytics": {
+    "eyebrow": "ANALYTICS",
+    "title": "Analytics",
+    "subtitle": "Power BI-grade dashboard. Pick a tab, switch chart types, drill into your data.",
+    "scheduledReports": "Scheduled reports",
+    "toolbar": {
+      "timeRange": {
+        "7d": "7d",
+        "30d": "30d",
+        "90d": "90d",
+        "ytd": "YTD"
+      },
+      "refresh": "Refresh",
+      "export": "Export",
+      "emailReport": "Email report"
+    },
+    "pivot": {
+      "title": "PIVOT",
+      "chartType": {
+        "bar": "Bar",
+        "line": "Line",
+        "area": "Area"
+      }
+    },
+    "viz": {
+      "title": "DATA VISUALIZATION",
+      "subtitle": "Power BI mode — drill, slice, and pivot.",
+      "chartType": {
+        "bar": "Bar",
+        "line": "Line",
+        "area": "Area",
+        "pie": "Pie",
+        "scatter": "Scatter",
+        "funnel": "Funnel",
+        "radar": "Radar"
+      },
+      "dimension": "Dimension",
+      "measure": "Measure",
+      "filters": "Filters",
+      "addFilter": "Add filter",
+      "drill": {
+        "back": "Back"
+      }
+    },
+    "email": {
+      "modalEyebrow": "EMAIL REPORT",
+      "modalTitle": "Email this analytics report",
+      "recipients": "Recipients",
+      "subject": "Subject",
+      "subjectPrefix": "Analytics Report —",
+      "message": "Message",
+      "messageTemplate": "Find attached the analytics report for {tab}, generated on {date}.",
+      "send": "Send",
+      "cancel": "Cancel",
+      "preview": "Preview",
+      "previewFooter": "{count} KPIs included · generated on {date}",
+      "queuedToast": "Report queued for delivery to {count} recipients.",
+      "noRecipientsError": "Add at least one recipient first."
+    },
+    "export": {
+      "png": "Export as PNG",
+      "csv": "Export as CSV",
+      "pdf": "Export as PDF",
+      "comingSoonToast": "{type} export coming soon."
+    },
+    "addTab": {
+      "label": "Add section",
+      "empty": "All sections already added."
+    }
   }
 }
